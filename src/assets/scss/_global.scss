@@ -16,3 +16,28 @@ p,a,span,li {
 a{
   text-decoration: none;
 }
+img{
+  cursor: pointer;
+}
+.c-container{
+    width: 100%;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .first-container{
+      height: 250px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .main-heading{
+      font-size: $font-size-lg;
+    }
+    img{
+      max-width: 700px;
+      
+    }
+    :first-child{
+    }
+}
