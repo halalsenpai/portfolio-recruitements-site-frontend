@@ -1,0 +1,18 @@
+body {
+  margin: 0;
+}
+html *
+{
+   font-family: Montserrat-Light !important;
+}
+.b-text{
+  font-family: Montserrat-Bold !important;
+}
+
+p,a,span,li {
+  font-size: $font-size-md;
+  color: $text-color;
+}
+a{
+  text-decoration: none;
+}
