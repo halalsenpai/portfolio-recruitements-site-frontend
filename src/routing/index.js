@@ -1,6 +1,7 @@
 import React, {Fragment} from 'react'
 import {Route, Switch} from 'react-router-dom';
 import {Home, About} from '../pages';
+import CFooter from '../uiComponents/CFooter/CFooter';
 import CHeader from '../uiComponents/CHeader/CHeader';
 
 function Routing() {
@@ -16,6 +17,7 @@ function Routing() {
                     </div>
                 )}/>
             </Switch>
+            <CFooter />
         </Fragment>
     )
 }

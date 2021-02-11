@@ -1,0 +1,43 @@
+.c-footer{
+    background:transparent radial-gradient(closest-side at 50% 68%, #4B4B55 -133%, #FFFFFF00 200%) -22% 0 no-repeat padding-box;
+    padding-top: 50px;
+    .inner-container{
+        display: flex;
+        justify-content: space-between;
+        padding: 50px 50px 0px 50px;
+        background-color: $white;
+        ul{
+            display: flex;
+            flex-direction: column;
+            padding: 0px;
+            margin-top: 30px;
+            &:first-of-type{
+                width: 500px;
+                margin-top: 0px;
+            }
+            .logo{
+                width: 300px;
+            }
+            h3{
+                font-family: $font-bold  !important;
+                font-size: $font-size-sm;
+                text-decoration: underline;
+                text-underline-position: under;
+                &.green {
+                    color: $green;
+                }
+                &.blue{
+                    color:$blue;
+                }
+                &.red{
+                    color:$primary;
+                }
+            }
+            a,p{
+                color:$secondary;
+                font-size: $font-size-sm;
+                margin: 0px 0px 5px 0px;
+            }
+        }
+    }   
+}

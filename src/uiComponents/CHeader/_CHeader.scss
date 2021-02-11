@@ -1,4 +1,6 @@
 .c-header{
+    position: sticky;
+    top: 0px;
     background: transparent radial-gradient(closest-side at 50% 75%, #9b9b8f -81%, #FFFFFF00 100%) 0% 0% no-repeat padding-box;   
     height: 80px;
     .inner-container{
@@ -6,8 +8,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0px 50px 0px 50px;
-    position: sticky;
-    top: 0px;
+   
     height: 64px;
     background-color: $white;
     }
@@ -23,6 +24,7 @@
             list-style: none;
             padding: 0px 20px;
             font-weight: 600;
+            color:$secondary;
             &.active{
                 color: $primary;
             }
