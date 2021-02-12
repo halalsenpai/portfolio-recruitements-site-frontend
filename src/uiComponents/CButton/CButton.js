@@ -1,7 +1,7 @@
 import React from 'react'
-function CButton({children}) {
+function CButton({children,type="small"}) {
     return (
-        <button className="c-button">
+        <button className={`c-button ${type==='large'?'large':''}`}>
         {children}
       </button>
     )

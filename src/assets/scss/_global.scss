@@ -3,7 +3,7 @@ body {
 }
 html *
 {
-   font-family: Montserrat-Light !important;
+   font-family: Montserrat-Medium ;
 }
 .b-text{
   font-family: Montserrat-Bold !important;
@@ -12,6 +12,12 @@ html *
 p,a,span,li {
   font-size: $font-size-md;
   color: $text-color;
+  font-family: Montserrat-Light !important;
+  mark{
+    background: transparent;
+    font-family: Montserrat-Bold !important;
+    color:$primary;
+  }
 }
 a{
   text-decoration: none;
@@ -23,13 +29,17 @@ img{
     width: 100%;
     flex: 1;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
+    padding: 50px 0px 50px 0px;
     .first-container{
-      height: 250px;
+      height: 300px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: space-around;
+    }
+    .second-container{
+      max-width: 650px;
     }
     .main-heading{
       font-size: $font-size-lg;

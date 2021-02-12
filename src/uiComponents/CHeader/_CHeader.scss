@@ -3,6 +3,7 @@
     top: 0px;
     background: transparent radial-gradient(closest-side at 50% 75%, #9b9b8f -81%, #FFFFFF00 100%) 0% 0% no-repeat padding-box;   
     height: 80px;
+    z-index:100;
     .inner-container{
     display: flex;
     justify-content: space-between;
