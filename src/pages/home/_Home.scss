@@ -1,3 +1,52 @@
 .home{
-    
+    .ea-container{
+        flex-direction: column;
+        justify-self: flex-start;
+        padding: 0px 50px 0px 50px;
+        margin: 100px 0px 0px 0px;
+        
+        h3{
+            font-size: $font-size-md;
+            text-decoration: underline;
+            text-underline-position: under;
+        }
+        &.primary{
+            h3{
+                color:$primary;
+            }
+        }
+        .inner-container{
+            flex-direction: row;
+            display: flex;
+            margin: 20px 0px 0px 0px;
+            .box{
+                display: flex;
+                flex-direction: row;
+                margin-left: 30px;
+                &:first-of-type{
+                    margin-left: 0px;
+                }
+                h3{
+                    font-size: $font-size-md;
+                    text-decoration: none;
+                }
+                p{
+                    font-size: $font-size-sm;
+                }
+                img{
+                    width: 70px;
+                }
+                span{
+                    padding: 20px 0px 0px 15px;
+                }
+            }
+        }
+    }
+    .cv-container{
+        position: relative;
+        bottom: -50px;
+    .cv-sample{
+            max-width: 1000px;
+    }
+}
 }
