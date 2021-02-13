@@ -16,7 +16,7 @@ function CHeader() {
             </nav>
             <nav >
                 <Link to="/login" className="login b-text">Login</Link>
-                <a href="/" className="sign-up b-text">Sign Up</a>
+                <Link to="/signup" href="/" className="sign-up b-text">Sign Up</Link>
             </nav>
             </span>
         </div>

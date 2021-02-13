@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom';
 import CButton from '../../uiComponents/shared/CButton/CButton';
 import { userTypes } from '../../utils/constants';
 import * as Rules from '../../utils/rules';
-function Login() {
 
-    const [userType, setUserType] = useState(userTypes.SEEKER);
+function SignUp() {
+    const [userType, setUserType] = useState('');
     const onFinish = () => {
 
     }
@@ -27,9 +27,48 @@ function Login() {
                 return ''
         }
     }
+    if (!userType) {
+        return (
+            <div className="c-container p-0">
+                <div className="signup-container">
+                    <div className="wrapper">
+                        <div className="user-type seeker">
+                            <span className="" >
+                                <div className="inner-container">
+                                    <img src={require('../../assets/images/user-icon.svg')} alt="seeker" />
+                                    <p>Job Seeker</p>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                    <div className="wrapper">
+                        <div className="user-type employer">
+                            <span className="" >
+                                <div className="inner-container">
+                                    <img src={require('../../assets/images/employee-icon.svg')} alt="seeker" />
+                                    <p>Employer</p>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                    <div className="wrapper">
+                        <div className="user-type agency">
+                            <span className="" >
+                                <div className="inner-container">
+                                    <img src={require('../../assets/images/agency-icon.svg')} alt="seeker" />
+                                    <p>Agency</p>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        )
+    }
     return (
         <div className="c-container pt-4 pb-0">
-            <div className="login-container">
+            <div className="signup-container">
                 <div className="first-container">
                     <img src={require('../../assets/images/logo-white.png')} alt="logo" />
                     <p className="ml-4">The <b>smartest</b> job site in the Middle East.</p>
@@ -93,4 +132,4 @@ function Login() {
     )
 }
 
-export default Login
+export default SignUp
