@@ -32,7 +32,7 @@ function Login() {
             <div className="login-container">
                 <div className="first-container">
                     <img src={require('../../assets/images/logo-white.png')} alt="logo" />
-                    <p>The smartest job site in Middle East.</p>
+                    <p className="ml-4">The <b>smartest</b> job site in the Middle East.</p>
                 </div>
                 <div className="second-container">
                     <div className="user-type">
