@@ -1,6 +1,6 @@
 import React from 'react'
 import LogoImage from '../../assets/images/logo-md.png'
-import CButton from '../CButton/CButton'
+import CButton from '../shared/CButton/CButton'
 
 function CFooter() {
     return (

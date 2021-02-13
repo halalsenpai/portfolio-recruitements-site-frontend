@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import LogoImage from '../../assets/images/logo-md.png'
 function CHeader() {
     return (
@@ -14,7 +15,7 @@ function CHeader() {
                 <a href="/">Pricing</a>
             </nav>
             <nav >
-                <a href="/" className="login b-text">Login</a>
+                <Link to="/login" className="login b-text">Login</Link>
                 <a href="/" className="sign-up b-text">Sign Up</a>
             </nav>
             </span>

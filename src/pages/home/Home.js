@@ -1,6 +1,6 @@
 import React from 'react';
-import CButton from '../../uiComponents/CButton/CButton';
-import CSlider from '../../uiComponents/CSlider/CSlider';
+import CButton from '../../uiComponents/shared/CButton/CButton';
+import CSlider from '../../uiComponents/shared/CSlider/CSlider';
 import SampleCvSVG from './../../assets/images/cv-sample.svg';
 
 function Home() {
