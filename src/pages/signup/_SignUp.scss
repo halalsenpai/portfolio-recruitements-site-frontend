@@ -1,12 +1,17 @@
 .signup-container{
-    width: 800px;
+    width: 1150px;
     border-radius: 20px ;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding:0px !important;
-    height: 720px;
+    height: 650px;
     position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 16px #00000026;
+    &.no-shadow{
+        box-shadow: none;
+    }
     .wrapper{
         width: 190px;
         height: 190px;
@@ -121,5 +126,74 @@
             bottom: -21px;
           }
 }
+    }
+    .first-container{
+        width: 280px;
+        background: transparent url("../../assets/images/signup-back.png") 0% 0% no-repeat padding-box;
+        background-position: top;
+        background-repeat: no-repeat;   
+        background-size: cover;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    align-items: center;
+    
+        img{
+            width: 230px;
+        }
+        h3{
+            // text-decoration: underline;
+            // text-underline-position: under;
+            
+
+            span {
+            font-size: $font-size-md;
+            color: $white;
+            font-family: $font-bold !important;
+            border-bottom: 3px solid $white;
+            padding-bottom: 6px;
+            }
+        }
+        .inner-container{
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            flex-direction: column;
+            padding: 50px 25px 0px 25px;
+        .box{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: flex-start;
+            margin: 5px 0px 0px 0px;
+            &:first-of-type{
+                margin-top: 15px;
+            }
+            h3{
+                font-size: $font-size-md;
+                text-decoration: none;
+                color: $white;
+            }
+            p{
+                font-size: $font-size-sm;
+                color: $white;
+            }
+            img{
+                width: 50px;
+            }
+            span{
+                padding: 0px 0px 0px 8px;
+            }
+        }
+    }
+    }
+    .second-container{
+        width:900px;
+        padding: 0px 50px 0px 50px;
+        max-width: inherit;
+        .c-button{
+            align-self: flex-end;
+        }
     }
 }

@@ -28,11 +28,11 @@ function Login() {
         }
     }
     return (
-        <div className="c-container pt-4 pb-0">
+        <div className="c-container pt-2 pb-0">
             <div className="login-container">
                 <div className="first-container">
-                    <img src={require('../../assets/images/logo-white.png')} alt="logo" />
-                    <p className="ml-4">The <b>smartest</b> job site in the Middle East.</p>
+                    <img src={require('../../assets/images/logo-white.svg')} alt="logo" />
+                    {/* <p className="ml-4">The <b>smartest</b> job site in the Middle East.</p> */}
                 </div>
                 <div className="second-container">
                     <div className="user-type">
@@ -69,7 +69,7 @@ function Login() {
 
                         <span className="d-flex justify-content-between align-items-center w-100 alt-text mt-2">
                             <Form.Item name="remember" className="mb-0" >
-                                <Checkbox>Remember me</Checkbox>
+                                <Checkbox value="">Remember me</Checkbox>
                             </Form.Item>
                             <Link to="/" className="alt-text">Forgot Password</Link>
                         </span>

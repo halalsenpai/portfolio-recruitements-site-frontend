@@ -18,11 +18,11 @@ function SignUp() {
     const getFormTitle = (type) => {
         switch (type) {
             case userTypes.AGENCY:
-                return 'Agency login';
+                return 'Agency sign up';
             case userTypes.EMPLOYER:
-                return 'Employer login';
+                return 'Employer sign up';
             case userTypes.SEEKER:
-                return 'Job Seeker login';
+                return 'Job Seeker sign up';
             default:
                 return ''
         }
@@ -30,8 +30,8 @@ function SignUp() {
     if (!userType) {
         return (
             <div className="c-container p-0">
-                <div className="signup-container">
-                    <div className="wrapper">
+                <div className="signup-container no-shadow">
+                    <div className="wrapper" onClick={() => setUserType(userTypes.SEEKER)}>
                         <div className="user-type seeker">
                             <span className="" >
                                 <div className="inner-container">
@@ -41,77 +41,120 @@ function SignUp() {
                             </span>
                         </div>
                     </div>
-                    <div className="wrapper">
+                    <div className="wrapper" onClick={() => setUserType(userTypes.EMPLOYER)}>
                         <div className="user-type employer">
                             <span className="" >
                                 <div className="inner-container">
-                                    <img src={require('../../assets/images/employee-icon.svg')} alt="seeker" />
+                                    <img src={require('../../assets/images/employee-icon.svg')} alt="employer" />
                                     <p>Employer</p>
                                 </div>
                             </span>
                         </div>
                     </div>
-                    <div className="wrapper">
+                    <div className="wrapper" onClick={() => setUserType(userTypes.AGENCY)}>
                         <div className="user-type agency">
                             <span className="" >
                                 <div className="inner-container">
-                                    <img src={require('../../assets/images/agency-icon.svg')} alt="seeker" />
+                                    <img src={require('../../assets/images/agency-icon.svg')} alt="agency" />
                                     <p>Agency</p>
                                 </div>
                             </span>
                         </div>
                     </div>
-                   
+
                 </div>
             </div>
         )
     }
     return (
-        <div className="c-container pt-4 pb-0">
+        <div className="c-container pt-2 pb-0">
             <div className="signup-container">
                 <div className="first-container">
-                    <img src={require('../../assets/images/logo-white.png')} alt="logo" />
-                    <p className="ml-4">The <b>smartest</b> job site in the Middle East.</p>
+                    <img src={require('../../assets/images/logo-white.svg')} alt="logo" />
+                    <span className="inner-container">
+                        <h3><span>Looking for a new job?</span></h3>
+                        <div className="box">
+                            <img src={require('../../assets/images/signup-icon-1.svg')} alt="img" />
+                            <span>
+                                <h3 className="b-text">One click apply</h3>
+                                <p>Short list jobs and apply All to  them  with 1 click</p>
+                            </span>
+                        </div>
+                        <div className="box">
+                            <img src={require('../../assets/images/signup-icon-2.svg')} alt="img" />
+                            <span>
+                                <h3 className="b-text">Job Match</h3>
+                                <p>Let our system do the work for you even while you sleep!</p>
+                            </span>
+                        </div>
+                        <div className="box">
+                            <img src={require('../../assets/images/signup-icon-3.svg')} alt="img" />
+                            <span>
+                                <h3 className="b-text">Direct chat + Inbox</h3>
+                                <p>Talk to employers & agencies in real time, no emails!</p>
+                            </span>
+                        </div>
+                        <div className="box">
+                            <img src={require('../../assets/images/signup-icon-4.svg')} alt="img" />
+                            <span>
+                                <h3 className="b-text">Follow Companies</h3>
+                                <p>Follow companies and stay up to date with all their jobs</p>
+                            </span>
+                        </div>
+                    </span>
                 </div>
                 <div className="second-container">
-                    <div className="user-type">
-                        <span
-                            className={`${getIsActive(userTypes.SEEKER)}`}
-                            onClick={() => setUserType(userTypes.SEEKER)}>
-                            Job Seeker
-                        </span>
-                        <span
-                            className={`${getIsActive(userTypes.EMPLOYER)}`}
-                            onClick={() => setUserType(userTypes.EMPLOYER)}>
-                            Employer
-                        </span>
-                        <span
-                            className={`${getIsActive(userTypes.AGENCY)}`}
-                            onClick={() => setUserType(userTypes.AGENCY)}>
-                            Agency
-                        </span>
-                    </div>
-                    <Form className="c-form" onFinish={onFinish}>
-                        <h3 className="form-title">{getFormTitle(userType)}</h3>
-                        <Form.Item name="email" className="c-input" rules={Rules.emailRule} >
-                            <label>Email</label>
-                            <Input placeholder="Email" size="large" type="email" />
-                        </Form.Item>
-                        <Form.Item
-                            name="password"
-                            rules={Rules.passwordRule}
-                            className="c-password-input mb-2"
-                        >
-                            <label>Password</label>
-                            <Input.Password placeholder="Password" className="c-input" size="large" />
-                        </Form.Item>
 
-                        <span className="d-flex justify-content-between align-items-center w-100 alt-text mt-2">
-                            <Form.Item name="remember" className="mb-0" >
-                                <Checkbox>Remember me</Checkbox>
+                    <Form className="c-form" onFinish={onFinish}>
+                        {/* <h3 className="form-title">{getFormTitle(userType)}</h3> */}
+                        <div className="c-row">
+                            <Form.Item name="firstName" className="c-input" rules={Rules.firstNameRule} >
+                                <label>First name</label>
+                                <Input placeholder="Enter your first name" size="small" type="text" />
                             </Form.Item>
-                            <Link to="/" className="alt-text">Forgot Password</Link>
-                        </span>
+                            <Form.Item name="lastName" className="c-input" rules={Rules.lastNameRule} >
+                                <label>Last name</label>
+                                <Input placeholder="Enter your last name" size="small" type="text" />
+                            </Form.Item>
+                        </div>
+                        <div className="c-row">
+                            <Form.Item name="mobileNumber" className="c-input" rules={Rules.phoneRule} >
+                                <label>Mobile number</label>
+                                <Input placeholder="Enter your mobile no." size="small" type="text" />
+                            </Form.Item>
+                            <Form.Item name="email" className="c-input" rules={Rules.emailRule} >
+                                <label>Email</label>
+                                <Input placeholder="Enter your email" size="small" type="text" />
+                            </Form.Item>
+                        </div>
+
+                        <div className="c-row">
+                            <Form.Item name="familyStatus" className="c-input" rules={Rules.phoneRule} >
+                                <label>Family status</label>
+                                <Input placeholder="" size="small" type="text" />
+                            </Form.Item>
+                            <Form.Item name="email" className="c-input" rules={Rules.emailRule} >
+                                <label>Gender</label>
+                                <Input placeholder="" size="small" type="text" />
+                            </Form.Item>
+                        </div>
+
+                        <div className="c-row">
+                            <Form.Item name="mobileNumber" className="c-input" rules={Rules.phoneRule} >
+                                <label>Date of birth</label>
+                                <Input placeholder="" size="small" type="text" />
+                            </Form.Item>
+                            <Form.Item name="email" className="c-input" rules={Rules.emailRule} >
+                                <label>Passport nationality</label>
+                                <Input placeholder="Enter your email" size="small" type="text" />
+                            </Form.Item>
+                        </div>
+                        <Form.Item name="remember" className="mb-0" >
+                                <Checkbox value="">I agree with Jobsmideast.com <mark>terms & conditions</mark> and <mark>privacy policy.</mark></Checkbox>
+                            </Form.Item>
+                            <Form.Item name="remember" className="mb-0" >
+                                <Checkbox value="">I agree to Jobsmideast T&C’s, the data privacy statement, and to receive future emails, texts and communications.</Checkbox>
+                            </Form.Item>
                         <Form.Item className="mt-4">
                             <CButton
                                 type="large"
@@ -119,12 +162,10 @@ function SignUp() {
                                 // loading={true}
                                 block
                             >
-                                Login
+                                Create my profile
                          </CButton>
                         </Form.Item>
-                        <Form.Item className="alt-text mb-0">
-                            <p className="mb-0">Don't have an account? <Link to="/sign-up"><mark> Sign up</mark></Link></p>
-                        </Form.Item>
+                       
                     </Form>
                 </div>
             </div>

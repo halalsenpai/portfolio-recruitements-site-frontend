@@ -5,7 +5,7 @@ function CHeader() {
     return (
         <div className="c-header">
         <span className="inner-container">
-            <img className="logo" src={LogoImage} alt="Logo" />
+        <Link to="/"><img className="logo" src={LogoImage} alt="Logo" /></Link>
             <nav className="menu">
                 <a href="/">Post a free job</a>
                 <a href="/">Employers</a>
