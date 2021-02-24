@@ -3,14 +3,11 @@ import Checkbox from 'antd/lib/checkbox/Checkbox';
 import React from 'react'
 import { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import CButton from '../../uiComponents/shared/CButton/CButton';
-import { userTypes } from '../../utils/constants';
-import * as Rules from '../../utils/rules';
 
 function SignUp() {
     const history = useHistory();
     return (
-        <div className="c-container p-0">
+        <div className="c-container pt-2 pb-0">
             <div className="c-card-container ">
                 <div className="first-container">
                     <img className="small" src={require('../../assets/images/signup-icon.svg')} alt="logo" />
@@ -26,7 +23,7 @@ function SignUp() {
                                 </span>
                             </div>
                         </div>
-                        <div className="wrapper" onClick={() => history.push('/user-signup')}>
+                        <div className="wrapper" onClick={() => history.push('/employer-signup')}>
                             <div className="user-type employer">
                                 <span className="" >
                                     <div className="inner-container">
@@ -36,7 +33,7 @@ function SignUp() {
                                 </span>
                             </div>
                         </div>
-                        <div className="wrapper" onClick={() => history.push('/-signup')}>
+                        <div className="wrapper" onClick={() => history.push('/agency-signup')}>
                             <div className="user-type agency">
                                 <span className="" >
                                     <div className="inner-container">

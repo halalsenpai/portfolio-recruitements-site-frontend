@@ -3,23 +3,23 @@ import { Input, Form } from 'antd';
 import Checkbox from 'antd/lib/checkbox/Checkbox';
 import * as Rules from '../../utils/rules';
 import CButton from '../../uiComponents/shared/CButton/CButton'
-function JobSeekerSignUp() {
-    const onFinish = ()=>{
+function JobSeekerSignUp(){
+    const onFinish = ()=> {
 
     };
     return (
         <div className="c-container pt-2 pb-0">
-            <div className="signup-container">
+            <div className="signup-container with-form">
                 <div className="first-container">
                     <img src={require('../../assets/images/logo-white.svg')} alt="logo" />
                     <span className="inner-container">
                         <h3><span>Looking for a new job?</span></h3>
                         <div className="box">
                             <img src={require('../../assets/images/signup-icon-1.svg')} alt="img" />
-                            <span>ß
+                            <span> 
                                 <h3 className="b-text">One click apply</h3>
                                 <p>Short list jobs and apply All to  them  with 1 click</p>
-                            </span>ß
+                            </span> 
                         </div>
                         <div className="box">
                             <img src={require('../../assets/images/signup-icon-2.svg')} alt="img" />
