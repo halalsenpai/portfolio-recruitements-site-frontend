@@ -13,11 +13,11 @@ p,a,span,li {
   font-size: $font-size-md;
   color: $text-color;
   font-family: Montserrat-Light !important;
-  mark{
-    background: transparent;
-    font-family: Montserrat-Bold !important;
-    color:$primary;
-  }
+}
+mark{
+  background: transparent;
+  font-family: Montserrat-Bold !important;
+  color:$primary;
 }
 a{
   text-decoration: none;
@@ -42,7 +42,7 @@ img{
       max-width: 650px;
     }
     .main-heading{
-      font-size: $font-size-lg;
+      font-size: $font-size-x-lg;
     }
     img{
       max-width: 800px;
@@ -146,6 +146,43 @@ img{
 .ant-form-item-with-help {
   max-height: 100px;
 }
+// custom select 
+.ant-select{
+ &.ant-select-lg{
+ width: 300px !important;
+.ant-select-selector{
+    font-size: 15px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3) !important;
+    border: none !important;
+    border-radius: 100px !important;
+    height: 40px !important;
+    padding: 0 18px !important;
+    box-shadow: 0 0 16px rgba(0 ,0, 0 ,0.3);
+    background: #ffffff !important;
+}
+.ant-select-arrow {
+  right: 15px;
+}   
+}
+}
+
+// custom date picker 
+.ant-picker{
+  font-size: 15px;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3) !important;
+  border: none !important;
+  border-radius: 100px !important;
+  height: 40px !important;
+  padding: 0 18px 0px 0px !important;
+  box-shadow: 0 0 16px rgba(0 ,0, 0 ,0.3);
+  background: #ffffff !important;
+  width: 300px;
+  input {
+      font-size: 15px;
+      box-shadow: none!important;
+  }
+}
+
 
 
 .c-row{
@@ -207,15 +244,25 @@ img{
   align-items: center;
   padding: 40px 0px 40px 0px;
   .form-title{
-   width: 400px;
-   color:$primary;
    font-family: $font-bold;
-   font-size: $font-size-md;
+   font-size: $font-size-lg;
    margin-bottom: 15px;
-}
+  } 
+  label{
+      font-family: $font-light;
+    &.required:after {
+      content:"  *";
+      margin:0px 5px 0px 3px;
+      color: red;
+      }
+    }
+    .c-label{
+      display: flex;
+      align-items: end;
+    }
   .alt-text{
    font-size: $font-size-sm;
-}
+  }
 .ant-checkbox-wrapper {
    span{
        font-size: $font-size-sm;

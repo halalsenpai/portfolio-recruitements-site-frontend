@@ -8,6 +8,9 @@
     width: max-content;
     border: none;
     background: transparent linear-gradient(90deg, #FF245E 0%, #C864DD 100%) 0% 0% no-repeat padding-box;
+    &.light {
+        background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(106,210,89,1) 0%, rgba(0,176,250,1) 100%);
+    }
     span{
         color:$white;
     }

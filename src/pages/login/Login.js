@@ -53,7 +53,9 @@ function Login() {
                         </span>
                     </div>
                     <Form className="c-form" onFinish={onFinish}>
-                        <h3 className="form-title">{getFormTitle(userType)}</h3>
+                        <h3 className="form-title w-100">
+                            <mark>{getFormTitle(userType)}</mark>
+                        </h3>
                         <Form.Item name="email" className="c-input" rules={Rules.emailRule} >
                             <label>Email</label>
                             <Input placeholder="Email" size="large" type="email" />

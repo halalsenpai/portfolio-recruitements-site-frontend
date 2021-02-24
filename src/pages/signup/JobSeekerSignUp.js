@@ -2,11 +2,15 @@ import React from 'react'
 import { Input, Form } from 'antd';
 import Checkbox from 'antd/lib/checkbox/Checkbox';
 import * as Rules from '../../utils/rules';
-import CButton from '../../uiComponents/shared/CButton/CButton'
+import CButton from '../../uiComponents/shared/CButton/CButton';
+import { Popover ,DatePicker,Select} from 'antd';
+const { Option } = Select;
 function JobSeekerSignUp(){
     const onFinish = ()=> {
 
     };
+    let helperText = "This helps employers understand your family needs and accommodate accordingly such as booking you flights, providing accommodation and benefits such as free or discounted tuition fees.";
+    const WithHintText =({children})=> <Popover placement="topLeft"  overlayInnerStyle={{width:400}}  content={helperText} trigger="click">{children}</Popover>
     return (
         <div className="c-container pt-2 pb-0">
             <div className="signup-container with-form">
@@ -44,59 +48,87 @@ function JobSeekerSignUp(){
                         </div>
                     </span>
                 </div>
-                <div className="second-container">
-                    <Form className="c-form" onFinish={onFinish}>
-                        {/* <h3 className="form-title">{getFormTitle(userType)}</h3> */}
+                    <Form className="second-container c-form align-items-start" onFinish={onFinish}>
+                        <h3 className="form-title">Discover a new way of hiring & make the right connections.</h3>
                         <div className="c-row">
                             <Form.Item name="firstName" className="c-input" rules={Rules.firstNameRule} >
-                                <label>First name</label>
+                                <label className="required">First name</label>
                                 <Input placeholder="Enter your first name" size="small" type="text" />
                             </Form.Item>
                             <Form.Item name="lastName" className="c-input" rules={Rules.lastNameRule} >
-                                <label>Last name</label>
+                                <label className="required">Last name</label>
                                 <Input placeholder="Enter your last name" size="small" type="text" />
                             </Form.Item>
                         </div>
                         <div className="c-row">
                             <Form.Item name="mobileNumber" className="c-input" rules={Rules.phoneRule} >
-                                <label>Mobile number</label>
+                                <label className="required">Mobile number</label>
                                 <Input placeholder="Enter your mobile no." size="small" type="text" />
                             </Form.Item>
                             <Form.Item name="email" className="c-input" rules={Rules.emailRule} >
-                                <label>Email</label>
+                                <label className="required">Email</label>
                                 <Input placeholder="Enter your email" size="small" type="text" />
                             </Form.Item>
                         </div>
 
                         <div className="c-row">
                             <Form.Item name="familyStatus" className="c-input" rules={Rules.phoneRule} >
-                                <label>Family status</label>
-                                <Input placeholder="" size="small" type="text" />
+                                <div className="c-label">
+                                    <label className="required"> Family status </label>
+                                    <WithHintText>
+                                        <img class="label-icon" src={require('../../assets/images/information-icon.svg')} alt="" />
+                                    </WithHintText>
+                                </div>
+                                <Select size="large" defaultValue="" style={{ width: 120 }}>
+                                    <Option value="">Select</Option>
+                                    <Option value="jack">Jack</Option>
+                                    <Option value="lucy">Lucy</Option>
+                                    <Option value="Yiminghe">yiminghe</Option>
+                                </Select>
                             </Form.Item>
                             <Form.Item name="email" className="c-input" rules={Rules.emailRule} >
-                                <label>Gender</label>
-                                <Input placeholder="" size="small" type="text" />
+                            <div className="c-label">
+                                <label className="required">Gender</label>
+                                <WithHintText>
+                                    <img class="label-icon" src={require('../../assets/images/information-icon.svg')} alt="" />
+                                </WithHintText>
+                                </div>
+                                <Select size="large" defaultValue="" style={{ width: 120 }}>
+                                    <Option value="">Select</Option>
+                                    <Option value="jack">Male</Option>
+                                    <Option value="lucy">Female</Option>
+                                </Select>
                             </Form.Item>
                         </div>
 
                         <div className="c-row">
                             <Form.Item name="mobileNumber" className="c-input" rules={Rules.phoneRule} >
-                                <label>Date of birth</label>
-                                <Input placeholder="" size="small" type="text" />
+                                <label className="required">Date of birth</label>
+                                <DatePicker  />
                             </Form.Item>
                             <Form.Item name="email" className="c-input" rules={Rules.emailRule} >
-                                <label>Passport nationality</label>
-                                <Input placeholder="Enter your email" size="small" type="text" />
+                            <div className="c-label">
+                            <label className="required">Passport nationality</label>
+                                <WithHintText>
+                                    <img class="label-icon" src={require('../../assets/images/information-icon.svg')} alt="" />
+                                </WithHintText>
+                                </div>
+                                <Select size="large" defaultValue="" style={{ width: 120 }}>
+                                    <Option value="">Select</Option>
+                                    <Option value="asfd">US </Option>
+                                    <Option value="lucy">Canada</Option>
+                                </Select>
                             </Form.Item>
                         </div>
                         <Form.Item name="remember" className="mb-0" >
-                            <Checkbox value="">I agree with Jobsmideast.com <mark>terms & conditions</mark> and <mark>privacy policy.</mark></Checkbox>
+                            <Checkbox checked value="">I agree with Jobsmideast.com <mark>terms & conditions</mark> and <mark>privacy policy.</mark></Checkbox>
                         </Form.Item>
                         <Form.Item name="remember" className="mb-0" >
                             <Checkbox value="">I agree to Jobsmideast T&C’s, the data privacy statement, and to receive future emails, texts and communications.</Checkbox>
                         </Form.Item>
-                        <Form.Item className="mt-4">
+                        <Form.Item className="mt-4 mb-0 align-self-end">
                             <CButton
+                                themeColor="light"
                                 type="large"
                                 htmlType="submit"
                                 // loading={true}
@@ -108,7 +140,6 @@ function JobSeekerSignUp(){
 
                     </Form>
                 </div>
-            </div>
         </div>
     )
 }

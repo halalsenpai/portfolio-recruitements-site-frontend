@@ -1,11 +1,11 @@
 import { Button } from 'antd'
 import React from 'react'
 function CButton(props) {
-  const {children,type="small"} = props;
+  const {children,type="small", themeColor=''} = props;
     return (
-        <Button className={`c-button ${type==='large'?'large':''}`} {...props}>
+        <Button {...props} className={`c-button ${type==='large'?'large':''} ${themeColor}`} >
         {children}
-      </Button>
+        </Button>
     )
 }
 
