@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import {interceptor} from "./utils/intercepter";
 import {Provider} from "react-redux";
+import 'react-phone-input-international/lib/style.css';
 //global add here
 import 'antd/dist/antd.css';
 import './assets/scss/index.scss';

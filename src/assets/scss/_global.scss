@@ -183,6 +183,41 @@ img{
   }
 }
 
+// custom phone number input 
+.react-tel-input {
+    width: 300px;
+    font-size: 15px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3) ;
+    border: none ;
+    border-radius: 100px ;
+    height: 40px ;
+    padding: 0 18px 0px 0px ;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+    background: #ffffff ;
+     .flag-dropdown {
+      background-color: transparent;
+      border: none;
+      border-radius: 20px 0 0 20px;
+      padding: 0 0px 0px 5px;
+  }
+    .form-control{
+        width: 270px !important;
+        box-shadow: none !important;
+        left: 30px;
+    }
+    .selected-flag:hover{
+      background: transparent;
+    }
+    .flag-dropdown.open {
+      border-radius: 20px 0 0 20px;
+      background: transparent;
+      .selected-flag {
+        border-radius: 20px 0 0 20px;
+      background: transparent;
+      }
+    }
+
+}
 
 
 .c-row{

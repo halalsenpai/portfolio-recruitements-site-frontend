@@ -3,6 +3,7 @@ import { Input, Form } from 'antd';
 import Checkbox from 'antd/lib/checkbox/Checkbox';
 import * as Rules from '../../utils/rules';
 import CButton from '../../uiComponents/shared/CButton/CButton';
+import PhoneInput from 'react-phone-input-international';
 import { Popover ,DatePicker,Select} from 'antd';
 const { Option } = Select;
 function JobSeekerSignUp(){
@@ -63,7 +64,11 @@ function JobSeekerSignUp(){
                         <div className="c-row">
                             <Form.Item name="mobileNumber" className="c-input" rules={Rules.phoneRule} >
                                 <label className="required">Mobile number</label>
-                                <Input placeholder="Enter your mobile no." size="small" type="text" />
+                                <PhoneInput
+                                    placeholder="Enter your mobile no."
+                                    country={'us'}
+                                    onChange={phone => console.log(phone)}
+                                    />
                             </Form.Item>
                             <Form.Item name="email" className="c-input" rules={Rules.emailRule} >
                                 <label className="required">Email</label>
