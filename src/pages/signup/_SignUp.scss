@@ -1,14 +1,9 @@
 .signup-container{
-    width: 1150px;
-    border-radius: 20px ;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding:0px !important;
-    height: 650px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 0 16px #00000026;
+    .first-container {
+        img {
+        width: 100px;
+        }
+    }
     &.no-shadow{
         box-shadow: none;
     }
@@ -20,6 +15,7 @@
         justify-content: center;
         align-items: center;
         transition: 0.1s linear all;
+        margin-bottom: 50px;
     .user-type{
         width: 170px;
         height: 170px;
@@ -31,6 +27,11 @@
         cursor: pointer;
         transition: 0.1s linear all;
         box-shadow: 0 0 3px 0px;
+        a{
+            :hover{
+                text-decoration: none !important;
+            }
+        }
         &.seeker{
             background: rgb(200,100,221);
             background: linear-gradient(0deg, rgba(200,100,221,1) 0%, rgba(255,36,94,1) 100%);
@@ -127,6 +128,17 @@
           }
 }
     }
+    &.with-form{
+        width: 1150px;
+        border-radius: 20px ;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding:0px !important;
+        height: 650px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 0 16px #00000026;
     .first-container{
         width: 280px;
         background: transparent url("../../assets/images/signup-back.png") 0% 0% no-repeat padding-box;
@@ -137,8 +149,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-    align-items: center;
-    
+        align-items: center;
         img{
             width: 230px;
         }
@@ -196,4 +207,5 @@
             align-self: flex-end;
         }
     }
+}
 }
