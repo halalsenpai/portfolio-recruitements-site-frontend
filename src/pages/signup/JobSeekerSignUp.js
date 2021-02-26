@@ -107,7 +107,7 @@ function JobSeekerSignUp(){
                         </div>
 
                         <div className="c-row">
-                            <Form.Item name="mobileNumber" className="c-input" rules={Rules.phoneRule} >
+                            <Form.Item name="dateOfbirth" className="c-input" rules={Rules.phoneRule} >
                                 <label className="required">Date of birth</label>
                                 <DatePicker  />
                             </Form.Item>
