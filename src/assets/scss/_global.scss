@@ -147,9 +147,9 @@ img{
 .ant-form-item-with-help {
   max-height: 100px;
 }
+
 // custom select 
 .ant-select{
- &.ant-select-lg{
  width: 300px !important;
 .ant-select-selector{
     font-size: 15px;
@@ -164,7 +164,6 @@ img{
 .ant-select-arrow {
   right: 15px;
 }   
-}
 }
 
 // custom date picker 

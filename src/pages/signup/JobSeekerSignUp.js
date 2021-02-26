@@ -84,7 +84,7 @@ function JobSeekerSignUp(){
                                         <img class="label-icon" src={require('../../assets/images/information-icon.svg')} alt="" />
                                     </WithHintText>
                                 </div>
-                                <Select size="large" defaultValue="" style={{ width: 120 }}>
+                                <Select size="large" defaultValue="" >
                                     <Option value="">Select</Option>
                                     <Option value="jack">Jack</Option>
                                     <Option value="lucy">Lucy</Option>
@@ -98,7 +98,7 @@ function JobSeekerSignUp(){
                                     <img class="label-icon" src={require('../../assets/images/information-icon.svg')} alt="" />
                                 </WithHintText>
                                 </div>
-                                <Select size="large" defaultValue="" style={{ width: 120 }}>
+                                <Select size="large" defaultValue="" >
                                     <Option value="">Select</Option>
                                     <Option value="jack">Male</Option>
                                     <Option value="lucy">Female</Option>
