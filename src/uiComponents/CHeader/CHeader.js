@@ -7,17 +7,17 @@ function CHeader() {
         <span className="inner-container">
         <Link to="/"><img className="logo" src={LogoImage} alt="Logo" /></Link>
             <nav className="menu">
-                <a href="/">Post a free job</a>
-                <a href="/">Employers</a>
-                <a href="/" className="active b-text">Job Seekers</a>
-                <a href="/">Jobs</a>
-                <a href="/">Services</a>
-                <a href="/">Pricing</a>
+                <Link to="/">Post a free job</Link>
+                <Link to="/employee-and-agencies">Employers & agencies</Link>
+                <Link to="/" className="active b-text">Job Seekers</Link>
+                <Link to="/">Jobs</Link>
+                <Link to="/">Services</Link>
+                <Link to="/">Pricing</Link>
             </nav>
             <nav >
                 <Link to="/login" className="login b-text">Login</Link>
                 <Link to="/signup" href="/" className="sign-up b-text">Sign Up</Link>
-            </nav>
+            </nav> 
             </span>
         </div>
     )

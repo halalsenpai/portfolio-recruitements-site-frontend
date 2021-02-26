@@ -33,13 +33,13 @@ img{
     align-items: flex-start;
     justify-content: center;
     padding: 50px 0px 50px 0px;
-    .first-container{
+    .first-container {
       height: 300px;
       display: flex;
       flex-direction: column;
       justify-content: space-around;
     }
-    .second-container{
+    .second-container {
       max-width: 650px;
     }
     .main-heading{
@@ -51,7 +51,21 @@ img{
     }
     :first-child{
     }
+    &.with-title-and-action {
+
+    }
 }
+.c-container-with-title-and-action{
+  display: flex;
+  flex-direction: column;
+  min-height: 250px;
+  justify-content: center;
+  align-items: center;
+  button{
+    margin: 0px 0px 25px 0px;
+  }
+}
+
 
 // custom input styling
 .ant-form-item-control {

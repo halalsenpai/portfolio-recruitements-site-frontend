@@ -8,6 +8,7 @@ import EmployerSignUp from '../pages/signup/EmployerSignUp';
 import JobSeekerSignUp from '../pages/signup/JobSeekerSignUp';
 import CFooter from '../uiComponents/CFooter/CFooter';
 import CHeader from '../uiComponents/CHeader/CHeader';
+import EmployerAndAgencies from '../pages/EmployerAndAgencies/EmployerAndAgencies';
 function Routing() {
     return (
         <Fragment>
@@ -20,6 +21,7 @@ function Routing() {
                 <Route exact path="/agency-signup" component={AgencySignUp}/>
                 <Route exact path="/employer-signup" component={EmployerSignUp}/>
                 <Route exact path="/signup" component={SignUp}/>
+                <Route exact path="/employee-and-agencies" component={EmployerAndAgencies}/>
                 <Route path="/about" component={About}/>
 
                 <Route path="*" render={() => (
