@@ -124,7 +124,7 @@ function EmployerSignUp() {
                     <Form.Item name="remember" className="mb-0" >
                         <Checkbox value="">I agree with Jobsmideast.com <mark>terms & conditions</mark> and <mark>privacy policy.</mark> and I agree to receive future emails, texts and communications. </Checkbox>
                     </Form.Item>
-                    <Form.Item className="mt-4 align-self-end">
+                    <Form.Item className="align-self-end">
                         <CButton
                             type="large"
                             htmlType="submit"

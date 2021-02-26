@@ -13,7 +13,7 @@ function EmployerAndAgencies() {
                     block
                 >
                     Create my profile
-                         </CButton>
+                </CButton>
                 <h3 className="mt-4">
                     Discover a new way of hiring & make the right connections.
                 </h3>

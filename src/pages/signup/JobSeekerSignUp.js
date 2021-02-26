@@ -131,7 +131,7 @@ function JobSeekerSignUp(){
                         <Form.Item name="remember" className="mb-0" >
                             <Checkbox value="">I agree to Jobsmideast T&C’s, the data privacy statement, and to receive future emails, texts and communications.</Checkbox>
                         </Form.Item>
-                        <Form.Item className="mt-4 mb-0 align-self-end">
+                        <Form.Item className=" mb-0 align-self-end">
                             <CButton
                                 themeColor="light"
                                 type="large"

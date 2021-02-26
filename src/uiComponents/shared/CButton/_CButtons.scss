@@ -13,6 +13,21 @@
     }
     &.primary{
         background: $primary;
+        &:hover{
+            background: $primary;    
+        }
+        &:focus{
+            background: $primary;    
+        }
+    }
+    &.blue{
+        background: $blue;
+        &:hover{
+            background: $blue;      
+          }
+        &:focus{
+            background: $blue;        
+        }
     }
     span{
         color:$white;

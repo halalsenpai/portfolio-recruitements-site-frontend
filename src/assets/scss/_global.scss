@@ -19,6 +19,9 @@ mark{
   font-family: Montserrat-Bold !important;
   color:$primary;
   padding: 0px;
+  &.blue {
+    color: $blue;
+  }
 }
 a{
   text-decoration: none;
@@ -68,17 +71,20 @@ img{
 
 
 // custom input styling
+.ant-form-item{
+  margin-bottom: 15px;
+}
 .ant-form-item-control {
   margin: 3px 0px;
 }
 .c-input {
   position: relative;
   input {
-    font-size: 15px;
+    font-size: $font-size-md;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, .3) !important;
     border: none !important;
     border-radius: 100px !important;
-    height: 40px !important; 
+    height: 35px !important; 
     padding: 0 18px !important;
     box-shadow: 0 0 16px rgba(0, 0, 0, .3);
     background: $white !important;
@@ -173,7 +179,7 @@ img{
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3) !important;
     border: none !important;
     border-radius: 100px !important;
-    height: 40px !important;
+    height: 35px !important;
     padding: 0 18px !important;
     box-shadow: 0 0 16px rgba(0 ,0, 0 ,0.3);
     background: #ffffff !important;
@@ -203,11 +209,11 @@ img{
 // custom phone number input 
 .react-tel-input {
     width: 300px;
-    font-size: 15px;
+    font-size: $font-size-md;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3) ;
     border: none ;
     border-radius: 100px ;
-    height: 40px ;
+    height: 35px;
     padding: 0 18px 0px 0px ;
     box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
     background: #ffffff ;
@@ -230,7 +236,8 @@ img{
       background: transparent;
       .selected-flag {
         border-radius: 20px 0 0 20px;
-      background: transparent;
+        background: transparent;
+        width: 30px;
       }
     }
 

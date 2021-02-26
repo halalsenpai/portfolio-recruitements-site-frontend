@@ -6,6 +6,7 @@ import CButton from '../../uiComponents/shared/CButton/CButton'
 import { useState } from 'react';
 import CSelectWithAddItem from '../../uiComponents/shared/CSelectWithAddItem/CSelectWithAddItem';
 import PhoneInput from 'react-phone-input-international';
+import CImagePicker from '../../uiComponents/shared/CAvatarPicker/CAvatarPicker';
 const { Option } = Select;
 function AgencySignUp() {
     const [currentStep, setCurrentStep] = useState(1);
@@ -21,7 +22,10 @@ function AgencySignUp() {
                     {currentStep == 1
                         ?
                         <>
-                            <h3 className="form-title"><mark>Agency details</mark></h3>
+                            <h3 className="form-title"><mark className="blue">Agency details</mark></h3>
+                            <div className="d-flex w-100 justify-content-end align-items-center">
+                               <label className="required">Upload Profile Photo</label> <CImagePicker/>
+                            </div>
                             <div className="c-row">
                                 <Form.Item name="lastName" className="c-input" >
                                     <label className="required">Company name</label>
@@ -124,10 +128,11 @@ function AgencySignUp() {
                     <Form.Item name="remember" className="mb-0" >
                         <Checkbox value="">I agree with Jobsmideast.com <mark>terms & conditions</mark> and <mark>privacy policy.</mark> and I agree to receive future emails, texts and communications. </Checkbox>
                     </Form.Item>
-                    <Form.Item className="mt-4 align-self-end">
+                    <Form.Item className=" align-self-end">
                         <CButton
-                            type="large"
+                            type="large"                                                                                                                        
                             htmlType="submit"
+                            themeColor="blue"
                             // loading={true}
                             block
                         >

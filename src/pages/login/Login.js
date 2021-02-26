@@ -75,7 +75,7 @@ function Login() {
                             </Form.Item>
                             <Link to="/" className="alt-text">Forgot Password</Link>
                         </span>
-                        <Form.Item className="mt-4">
+                        <Form.Item >
                             <CButton
                                 type="large"
                                 htmlType="submit"
