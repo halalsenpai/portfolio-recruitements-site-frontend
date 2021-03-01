@@ -9,7 +9,7 @@ function CHeader() {
                 <nav className="menu">
                     <Link to="/">Post a free job</Link>
                     <Link to="/employee-and-agencies">Employers & agencies</Link>
-                    <Link to="/" className="active b-text">Job Seekers</Link>
+                    <Link to="/job-seekers" className="active b-text">Job Seekers</Link>
                     <Link to="/">Jobs</Link>
                     <Link to="/">Services</Link>
                     <Link to="/">Pricing</Link>
