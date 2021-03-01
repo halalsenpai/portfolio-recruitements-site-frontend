@@ -82,7 +82,8 @@ img{
     }
   }
   p{
-    margin-top: 10px;
+    margin-top: 12px;
+    font-family: $font-medium !important;
   }
   .img-back-cover{
     height: 100%;
@@ -98,7 +99,7 @@ img{
     }
     &.purple{
       background: $purple;
-      
+
     }
   }
 }
