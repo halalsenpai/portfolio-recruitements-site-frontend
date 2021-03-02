@@ -21,7 +21,7 @@ function EmployerSignUp() {
                     {currentStep == 1
                         ?
                         <>
-                            <h3 className="form-title"><mark>Employer details</mark></h3>
+                            <h3 className="form-title"><mark className="blue">Employer details</mark></h3>
                             <div className="c-row">
                                 <Form.Item name="lastName" className="c-input" >
                                     <label className="required">Company name</label>
@@ -84,7 +84,7 @@ function EmployerSignUp() {
                         </>
                         :
                         <>
-                            <h3 className="form-title"><mark>Company details</mark></h3>
+                            <h3 className="form-title"><mark className="blue">Company details</mark></h3>
                             <div className="c-row">
                                 <Form.Item name="firstName" className="c-input"  >
                                     <label className="required">I’m registering a</label>
@@ -119,15 +119,14 @@ function EmployerSignUp() {
                         </>
 
                     }
-
-
                     <Form.Item name="remember" className="mb-0" >
-                        <Checkbox value="">I agree with Jobsmideast.com <mark>terms & conditions</mark> and <mark>privacy policy.</mark> and I agree to receive future emails, texts and communications. </Checkbox>
+                        <Checkbox value="">I agree with Jobsmideast.com <mark className="blue">terms & conditions</mark> and <mark className="blue">privacy policy.</mark> and I agree to receive future emails, texts and communications. </Checkbox>
                     </Form.Item>
                     <Form.Item className="align-self-end">
                         <CButton
                             type="large"
                             htmlType="submit"
+                            themeColor="blue"
                             // loading={true}
                             block
                         >
@@ -136,7 +135,7 @@ function EmployerSignUp() {
                     </Form.Item>
 
                 </Form>
-                <div className="first-container on-right">
+                <div className="first-container on-right bg-2">
                     <img src={require('../../assets/images/logo-white.svg')} alt="logo" />
                     <span className="inner-container">
                         <div className="box">

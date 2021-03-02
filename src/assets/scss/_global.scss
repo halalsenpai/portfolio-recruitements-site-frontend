@@ -14,6 +14,9 @@ p,a,span,li {
   color: $text-color;
   font-family: Montserrat-Light !important;
 }
+.color-text{
+  color:$text-color;
+}
 mark{
   background: transparent;
   font-family: Montserrat-Bold !important;
@@ -45,9 +48,6 @@ img{
     .second-container {
       max-width: 650px;
     }
-    .main-heading{
-      font-size: $font-size-x-lg;
-    }
     img{
       max-width: 800px;
       
@@ -61,7 +61,7 @@ img{
   justify-content: center;
   align-items: center;
   min-height: 400px;
-  margin: 60px 0px;
+  margin: 100px 0px;
   position: relative;
   &.pl{
     padding: 0px 0px 0px 150px;

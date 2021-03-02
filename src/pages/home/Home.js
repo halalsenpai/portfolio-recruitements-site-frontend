@@ -1,4 +1,5 @@
 import React from 'react';
+import CBannerWithImages from '../../uiComponents/shared/CBannerWithImages/CBannerWithImages';
 import CButton from '../../uiComponents/shared/CButton/CButton';
 import CSlider from '../../uiComponents/shared/CSlider/CSlider';
 import SampleCvSVG from './../../assets/images/cv-sample.svg';
@@ -6,21 +7,23 @@ import SampleCvSVG from './../../assets/images/cv-sample.svg';
 function Home() {
     return (
         <div className="home">
-            <div className="c-container">
-                <div className="first-container mr-4">
-                    <span>
-                        <p className="main-heading">The <mark>smartest </mark>jobsite in the <br /><mark>Middle East</mark>.</p>
-                        <p>People at the core of every interaction</p>
-                    </span>
-                    <CButton type={'large'}>View demo</CButton>
-                </div>
-                <div className="second-container ml-4">
-                    <CSlider />
+            <div className="container-fluid">
+                <div className="row">
+                    <div className="col-lg-6 first-banner-heading-container">
+                            <h2 className="main-heading">THE <mark>SMARTEST </mark> JOBSITE IN THE MIDDLE EAST.</h2>
+                            <h5 className="mt-4 mb-4 color-text">You asked, we delivered.</h5>
+                            <p className="pr-4 mb-4">We asked a 100 companies, and 1000 job seekers what they struggle with  when searching on job sites, and we got the answers, so we built the smartest  and the most advanced recruitment platform, free to use for everyone across the globe!</p>
+                        <CButton type={'large'}>Get Started <img className="ml-2" src={require('../../assets/images/right-arrow-icon.svg')} alt="->" /></CButton>
+                    </div>
+                    <div className="col-lg-6 p-0">
+                        <CBannerWithImages />
+                    </div>
                 </div>
             </div>
-            <div className="c-container">
+            <div className="container">
+            <div className="row">
                 <div className="ea-container">
-                    <h3 className="b-text">Employers & Agencies</h3>
+                    <h4 className="b-text">Employers & Agencies</h4>
                     <span className="inner-container">
                         <div className="box">
                             <img src={require('../../assets/images/ea-1.svg')} alt="img" />
@@ -33,21 +36,21 @@ function Home() {
                             <img src={require('../../assets/images/ea-2.svg')} alt="img" />
                             <span>
                                 <h3 className="b-text">Save up to 75%</h3>
-                                <p>Save up to 75% of to your<br /> annual recruitment budget</p>
+                                <p>Save up to 75% of to your annual recruitment budget</p>
                             </span>
                         </div>
                         <div className="box">
                             <img src={require('../../assets/images/ea-3.svg')} alt="img" />
                             <span>
                                 <h3 className="b-text">Direct chat + Inbox</h3>
-                                <p>Connect with candidates direct,<br /> no more emails!</p>
+                                <p>Connect with candidates direct, no more emails!</p>
                             </span>
                         </div>
                         <div className="box">
                             <img src={require('../../assets/images/ea-4.svg')} alt="img" />
                             <span>
                                 <h3 className="b-text">Candidate Match</h3>
-                                <p>Set accurate filters and let the<br /> system find you job seekers!</p>
+                                <p>Set accurate filters and let the system find you job seekers!</p>
                             </span>
                         </div>
                     </span>
@@ -58,34 +61,34 @@ function Home() {
             </div>
             <div className="c-container">
                 <div className="ea-container primary mt-0">
-                    <h3 className="b-text">Looking for a new job?</h3>
+                    <h4 className="b-text">Looking for a new job?</h4>
                     <span className="inner-container">
                         <div className="box">
                             <img src={require('../../assets/images/ma-1.svg')} alt="img" />
                             <span>
                                 <h3 className="b-text">One click apply</h3>
-                                <p>Short list jobs and apply All to  them <br /> with 1 click</p>
+                                <p>Short list jobs and apply All to  them  with 1 click</p>
                             </span>
                         </div>
                         <div className="box">
                             <img src={require('../../assets/images/ma-2.svg')} alt="img" />
                             <span>
                                 <h3 className="b-text">Job Match</h3>
-                                <p>Let our system do the work <br />for you even while you sleep!</p>
+                                <p>Let our system do the work for you even while you sleep!</p>
                             </span>
                         </div>
                         <div className="box">
                             <img src={require('../../assets/images/ma-3.svg')} alt="img" />
                             <span>
                                 <h3 className="b-text">Direct chat + Inbox</h3>
-                                <p>Talk to employers & agencies in real time,<br /> no emails!</p>
+                                <p>Talk to employers & agencies in real time, no emails!</p>
                             </span>
                         </div>
                         <div className="box">
                             <img src={require('../../assets/images/ma-4.svg')} alt="img" />
                             <span>
                                 <h3 className="b-text">Follow Companies</h3>
-                                <p>Follow companies and stay <br />up to date with all their jobs<br /></p>
+                                <p>Follow companies and stay up to date with all their jobs</p>
                             </span>
                         </div>
                     </span>
@@ -96,6 +99,7 @@ function Home() {
                     <img className="cv-sample" src={SampleCvSVG} alt="cv" />
                 </div>
             </div>
+        </div>
         </div>
     );
 }

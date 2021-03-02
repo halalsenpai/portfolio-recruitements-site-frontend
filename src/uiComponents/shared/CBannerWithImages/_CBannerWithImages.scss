@@ -1,0 +1,10 @@
+.c-banner-with-images{
+    .imgs-row{
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        img{
+            width: 33%;
+        }
+    }
+}

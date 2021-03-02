@@ -30,7 +30,7 @@ function EmployerAndAgencies() {
             </div>
             <div className="row">
 
-                <div className="col-lg-6 c-container-centered-content  align-items-start">
+                <div className="col-lg-6 c-container-centered-content  align-items-start mt-0">
                     <h4 className="mt-4">
                         Save up to 75% of your <br /> annual recruitment budget
                      </h4>
@@ -38,7 +38,7 @@ function EmployerAndAgencies() {
                         Finding the right person can be costly, and we can help you <br /> minimise those costs. Start your search with 2 free jobs and try <br /> us out with no strings attached.
                     </p>
                 </div>
-                <div className="col-lg-5 c-container-centered-content ">
+                <div className="col-lg-5 c-container-centered-content mt-0">
                     <Bounce>
                         <img className="right-image lg-rad" src={require('../../assets/images/employeeandagency/ea-1.jpg')} alt="ban1" />
                     </Bounce>

@@ -146,6 +146,9 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        &.bg-2{
+            background: transparent url("../../assets/images/signup-ban-2.jpg") 0% 0% no-repeat padding-box;
+        }
         img{
             width: 230px;
         }
