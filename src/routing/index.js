@@ -8,12 +8,10 @@ import EmployerSignUp from '../pages/signup/EmployerSignUp';
 import JobSeekerSignUp from '../pages/signup/JobSeekerSignUp';
 import CFooter from '../uiComponents/CFooter/CFooter';
 import CHeader from '../uiComponents/CHeader/CHeader';
-import { useHistory, useLocation } from 'react-router-dom';
 import EmployerAndAgencies from '../pages/EmployerAndAgencies/EmployerAndAgencies';
 import JobSeekers from '../pages/JobSeekers/JobSeekers';
 function Routing() {
-    const history = useHistory()
-    console.log(history.location.pathname);
+    
     return (
         <Fragment>
             <CHeader />

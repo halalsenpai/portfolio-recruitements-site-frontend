@@ -5,7 +5,6 @@ import { useHistory, useLocation } from 'react-router-dom';
 
 function CHeader() {
     const history = useHistory()
-    console.log(history.location.pathname);
     const getActiveClassForPath = (currentLocation, path) => {
         return currentLocation === path ? 'active b-text' : ''
     }
