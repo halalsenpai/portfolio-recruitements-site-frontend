@@ -29,14 +29,14 @@ function JobSeekers() {
                 </div>
             </div>
             <div className="row">
-                <div className="col-lg-6 c-container-centered-content  align-items-start mt-0">
+                <div className="col-lg-5 c-container-centered-content  align-items-start mt-0">
                     <h4 className="mt-4">
                         Follow companies
                      </h4>
                     <p>
                         Follow your favourite companies and stay up to date <br />with all of their current and future jobs.                    </p>
                 </div>
-                <div className="col-lg-5 c-container-centered-content mt-0">
+                <div className="col-lg-7 c-container-centered-content mt-0">
                     <Bounce>
                         <img className="right-image lg-rad" src={require('../../assets/images/jobseekers/js-1.jpg')} alt="ban1" />
                     </Bounce>
