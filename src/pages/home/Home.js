@@ -28,7 +28,7 @@ function Home() {
                 <h5>connected in one platform.</h5>
             </div>
             <div className="container-fluid p-0">
-                <img className="w-100" src={require('../../assets/images/home/ban-3-hm.jpg')} alt="" />
+                <img className="w-100" src={require('../../assets/images/home/ban-hm3.png')} alt="" />
             </div>
             <div className="container">
                 <div className="c-container-centered-content mt-0 mb-0">
