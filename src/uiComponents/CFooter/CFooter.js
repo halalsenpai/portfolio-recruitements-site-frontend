@@ -5,6 +5,7 @@ import CButton from '../shared/CButton/CButton'
 function CFooter() {
     return (
         <div className="c-footer">
+             <span className="shadow-box"></span>
             <span className="inner-container">
                 <ul>
                     <img className="logo" src={LogoImage} alt="Logo" />
@@ -64,6 +65,7 @@ function CFooter() {
                     <a href="mailto:enquiries@jobsmideast.com" className="mt-4">enquiries@jobsmideast.com</a>
                 </ul>
             </span>
+           
         </div>
     )
 }

@@ -34,7 +34,8 @@ function CHeader() {
                     <Link to="/signup" href="/" className="sign-up b-text">Sign Up</Link>
                 </nav>
             </span>
-        </div>
+                <span className="shadow-box"></span>
+        </div>  
     )
 }
 

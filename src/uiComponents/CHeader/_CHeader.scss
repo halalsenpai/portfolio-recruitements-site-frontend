@@ -1,8 +1,7 @@
 .c-header{
     position: sticky;
     top: 0px;
-    background: transparent radial-gradient(closest-side at 50% 75%, #9b9b8f -81%, #FFFFFF00 100%) 0% 0% no-repeat padding-box;   
-    height: 80px;
+    height: 60px;
     z-index:100;
     .inner-container{
     display: flex;
@@ -40,5 +39,13 @@
     }
     .logo{
         width: 230px;
+    }
+    .shadow-box{
+        background: transparent radial-gradient(closest-side at 50% 75%, #9b9b8f -81%, #FFFFFF00 100%) 0% 0% no-repeat padding-box;   
+        height: 80px;
+        position: absolute;
+        top: 0;
+        z-index: -1;
+        width: 100%;
     }
 }   
