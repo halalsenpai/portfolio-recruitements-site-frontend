@@ -1,5 +1,5 @@
 import React,{useEffect,useRef,useState} from 'react'
-
+import CrossfadeImage from 'react-crossfade-image';
 function CBannerWithImages() {
     const [images,setImages] = useState([1,2,3,4,5,6,7,8,9,10,11,12]);
     const interval = useRef(null);
@@ -28,27 +28,30 @@ function CBannerWithImages() {
     const getRNo = ()=> {
        return Math.floor(Math.random() * 15)+1;
     }
+    const renderImage = (imageSrc)=>{
+        return <CrossfadeImage duration={500} src={require(`../../../assets/images/ms/ms-${imageSrc}.png`)} />
+    }
     return (
         <div className="c-banner-with-images">
             <span className="imgs-row">
-                <img src={require(`../../../assets/images/ms/ms-${images[0]}.png`)} att="ms" />
-                <img src={require(`../../../assets/images/ms/ms-${images[1]}.png`)} att="ms" />
-                <img src={require(`../../../assets/images/ms/ms-${images[2]}.png`)} att="ms" />
+               {renderImage(images[0])} 
+               {renderImage(images[1])} 
+               {renderImage(images[2])} 
             </span>
             <span className="imgs-row">
-                <img src={require(`../../../assets/images/ms/ms-${images[3]}.png`)} att="ms" />
-                <img src={require(`../../../assets/images/ms/ms-${images[4]}.png`)} att="ms" />
-                <img src={require(`../../../assets/images/ms/ms-${images[5]}.png`)} att="ms" />
+               {renderImage(images[3])} 
+               {renderImage(images[4])} 
+               {renderImage(images[5])} 
             </span>
             <span className="imgs-row">
-                <img src={require(`../../../assets/images/ms/ms-${images[6]}.png`)} att="ms" />
-                <img src={require(`../../../assets/images/ms/ms-${images[7]}.png`)} att="ms" />
-                <img src={require(`../../../assets/images/ms/ms-${images[8]}.png`)} att="ms" />
+               {renderImage(images[6])} 
+               {renderImage(images[7])} 
+               {renderImage(images[8])} 
             </span>
             <span className="imgs-row">
-                <img src={require(`../../../assets/images/ms/ms-${images[9]}.png`)} att="ms" />
-                <img src={require(`../../../assets/images/ms/ms-${images[10]}.png`)} att="ms" />
-                <img src={require(`../../../assets/images/ms/ms-${images[11]}.png`)} att="ms" />
+               {renderImage(images[9])} 
+               {renderImage(images[10])}
+               {renderImage(images[11])}
             </span>
             
         </div>

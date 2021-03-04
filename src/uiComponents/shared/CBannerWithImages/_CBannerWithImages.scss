@@ -3,8 +3,12 @@
         display: flex;
         flex-wrap: nowrap;
         justify-content: flex-end;
+        >div {
+                width: 33.3333%;
+        }
         img{
-            width: 33%;
+         height: 100%;
+         width: 100%;
         }
     }
 }
