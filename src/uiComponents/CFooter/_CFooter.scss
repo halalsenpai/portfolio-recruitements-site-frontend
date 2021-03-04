@@ -12,7 +12,7 @@
             flex-direction: column;
             padding: 0px;
             margin-top: 30px;
-            &:first-of-type{
+            &.info{
                 width: 500px;
                 margin-top: 0px;
                 justify-content: space-between;
@@ -41,6 +41,12 @@
                 font-size: $font-size-sm;
                 margin: 0px 0px 5px 0px;
             }
+        }
+        .links-wrapper{
+            width: 600px;
+            justify-content: space-between;
+            margin: 0px 0px 0px 50px;
+            display: flex;
         }
     }   
     .shadow-box{
