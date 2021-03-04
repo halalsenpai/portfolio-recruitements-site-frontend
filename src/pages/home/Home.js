@@ -12,9 +12,9 @@ function Home() {
                     <div className="col-lg-6 first-banner-heading-container">
                         <span className="inner-container">
                             <h2 className="main-heading">THE <mark>SMARTEST </mark> JOBSITE IN THE MIDDLE EAST.</h2>
-                            <h5 className="mt-4 mb-4 color-text">You asked, we delivered.</h5>
+                            <h5 className="sub-heading color-text">You asked, we delivered.</h5>
                             <p className="pr-4 mb-4">We asked a 100 companies, and 1000 job seekers what they struggle with  when searching on job sites, and we got the answers, so we built the smartest  and the most advanced recruitment platform, free to use for everyone across the globe!</p>
-                            <CButton type={'large'}>Get Started <img className="ml-2" src={require('../../assets/images/right-arrow-icon.svg')} alt="->" /></CButton>
+                            <CButton className="mt-4" type={'large'}>Get Started <img className="ml-2" src={require('../../assets/images/right-arrow-icon.svg')} alt="->" /></CButton>
                         </span>
                     </div>
                     <div className="col-lg-6 p-0">
