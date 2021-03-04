@@ -7,7 +7,7 @@ import { Link, useHistory } from 'react-router-dom';
 function SignUp() {
     const history = useHistory();
     return (
-        <div className="c-container pt-2 pb-0">
+        <div className="c-container auth-wrapper">
             <div className="c-card-container ">
                 <div className="first-container">
                     <img className="small" src={require('../../assets/images/signup-icon.svg')} alt="logo" />

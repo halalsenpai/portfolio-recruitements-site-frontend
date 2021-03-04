@@ -38,6 +38,8 @@ img{
     display: flex;
     align-items: flex-start;
     justify-content: center;
+    height: calc(100vh - 100px);
+    align-items: center;
     padding: 50px 0px 50px 0px;
     .first-container {
       height: 300px;
@@ -289,7 +291,7 @@ img{
 
 // custom card container 
 .c-card-container{
-  width: 900px;
+  width: 800px;
   border-radius: 20px ;
   box-shadow: 0 0 16px #00000026;
   padding:0px !important;

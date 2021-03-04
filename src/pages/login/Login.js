@@ -28,7 +28,7 @@ function Login() {
         }
     }
     return (
-        <div className="c-container pt-2 pb-0">
+        <div className="c-container auth-wrapper">
             <div className="c-card-container login-container">
                 <div className="first-container">
                     <img src={require('../../assets/images/logo-white.svg')} alt="logo" />

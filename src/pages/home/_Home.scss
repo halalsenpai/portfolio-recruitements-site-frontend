@@ -17,8 +17,6 @@
     .ea-container{
         flex-direction: column;
         justify-self: flex-start;
-        padding: 0px 50px 0px 50px;
-        
         h4 {
             font-size: $font-size-lg;
             text-decoration: underline;
@@ -49,7 +47,7 @@
                     font-size: $font-size-sm;
                 }
                 img{
-                    width: 70px;
+                    width: 100px;
                 }
                 span{
                     padding: 20px 0px 0px 15px;

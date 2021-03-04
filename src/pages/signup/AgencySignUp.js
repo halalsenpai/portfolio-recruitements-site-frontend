@@ -16,7 +16,7 @@ function AgencySignUp() {
         }
     }
     return (
-        <div className="c-container pt-2 pb-0">
+        <div className="c-container auth-wrapper">
             <div className="signup-container with-form">
                 <Form className="c-form second-container align-items-start" onFinish={onFinish}>
                     {currentStep == 1

@@ -13,7 +13,7 @@ function JobSeekerSignUp(){
     let helperText = "This helps employers understand your family needs and accommodate accordingly such as booking you flights, providing accommodation and benefits such as free or discounted tuition fees.";
     const WithHintText =({children})=> <Popover placement="topLeft"  overlayInnerStyle={{width:400}}  content={helperText} trigger="click">{children}</Popover>
     return (
-        <div className="c-container pt-2 pb-0">
+        <div className="c-container auth-wrapper">
             <div className="signup-container with-form">
                 <div className="first-container">
                     <img src={require('../../assets/images/logo-white.svg')} alt="logo" />

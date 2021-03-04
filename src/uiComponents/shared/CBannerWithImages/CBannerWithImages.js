@@ -4,13 +4,13 @@ function CBannerWithImages() {
     const [images,setImages] = useState([1,2,3,4,5,6,7,8,9,10,11,12]);
     const interval = useRef(null);
     useEffect(() => {
-        interval.current = setInterval(()=>shuffleImages(),5000);
+        interval.current = setInterval(()=>shuffleImages(),2000);
         return ()=> { 
             clearInterval(interval.current)
         }
     }, [])
     const shuffleImages = async ()=>{
-            let indexes = [getRNo(),getRNo(),getRNo(),getRNo(),,getRNo()];
+            let indexes = [getRNo(),getRNo()];
             let currentImages = [...images];
            await indexes.forEach(index=>{
                 let isUniqueImage = false;  
