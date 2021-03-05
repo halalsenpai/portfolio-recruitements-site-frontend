@@ -10,15 +10,15 @@ function SignUp() {
         <div className="c-container auth-wrapper">
             <div className="c-card-container ">
                 <div className="first-container">
-                    <img className="small" src={require('../../assets/images/signup-icon.svg')} alt="logo" />
-                    <img  src={require('../../assets/images/logo-white.svg')} alt="logo" />
+                    <img className="small" src={require('../../assets/images/icons/signup-icons/signup-icon.svg')} alt="logo" />
+                    <img  src={require('../../assets/images/logo/logo-white.svg')} alt="logo" />
                 </div>
                 <div className="second-container signup-container flex-row with-pad">
                         <div className="wrapper" onClick={() => history.push('/user-signup')}>
                             <div className="user-type seeker">
                                 <span className="" >
                                     <div className="inner-container">
-                                        <img src={require('../../assets/images/user-icon.svg')} alt="seeker" />
+                                        <img src={require('../../assets/images/icons/user-icon.svg')} alt="seeker" />
                                         <p>Job Seeker</p>
                                     </div>
                                 </span>
@@ -28,7 +28,7 @@ function SignUp() {
                             <div className="user-type employer">
                                 <span className="" >
                                     <div className="inner-container">
-                                        <img src={require('../../assets/images/employee-icon.svg')} alt="employer" />
+                                        <img src={require('../../assets/images/icons/employee-signup-icons/employee-icon.svg')} alt="employer" />
                                         <p>Employer</p>
                                     </div>
                                 </span>
@@ -38,7 +38,7 @@ function SignUp() {
                             <div className="user-type agency">
                                 <span className="" >
                                     <div className="inner-container">
-                                        <img src={require('../../assets/images/agency-icon.svg')} alt="agency" />
+                                        <img src={require('../../assets/images/icons/agency-icon.svg')} alt="agency" />
                                         <p>Agency</p>
                                     </div>
                                 </span>

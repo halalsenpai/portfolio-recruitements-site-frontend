@@ -1,5 +1,5 @@
 import React from 'react'
-import LogoImage from '../../assets/images/logo-md.png'
+import LogoImage from '../../assets/images/logo/logo-md.png'
 import CButton from '../shared/CButton/CButton'
 
 function CFooter() {

@@ -31,7 +31,7 @@ function Login() {
         <div className="c-container auth-wrapper">
             <div className="c-card-container login-container">
                 <div className="first-container">
-                    <img src={require('../../assets/images/logo-white.svg')} alt="logo" />
+                    <img src={require('../../assets/images/logo/logo-white.svg')} alt="logo" />
                     {/* <p className="ml-4">The <b>smartest</b> job site in the Middle East.</p> */}
                 </div>
                 <div className="second-container">

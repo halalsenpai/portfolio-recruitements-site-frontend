@@ -136,31 +136,31 @@ function EmployerSignUp() {
 
                 </Form>
                 <div className="first-container on-right bg-2">
-                    <img src={require('../../assets/images/logo-white.svg')} alt="logo" />
+                    <img src={require('../../assets/images/logo/logo-white.svg')} alt="logo" />
                     <span className="inner-container">
                         <div className="box">
-                            <img src={require('../../assets/images/emp-signup-1.svg')} alt="img" />
+                            <img src={require('../../assets/images/icons/employee-signup-icons/emp-signup-1.svg')} alt="img" />
                             <span>
                                 <h3 className="b-text">Free CRM</h3>
                                 <p>Builtin CRM with drag and Drop function</p>
                             </span>
                         </div>
                         <div className="box">
-                            <img src={require('../../assets/images/emp-signup-2.svg')} alt="img" />
+                            <img src={require('../../assets/images/icons/employee-signup-icons/emp-signup-2.svg')} alt="img" />
                             <span>
                                 <h3 className="b-text">Save up to 75%</h3>
                                 <p>Save up to 75% of to your annual recruitment budget</p>
                             </span>
                         </div>
                         <div className="box">
-                            <img src={require('../../assets/images/emp-signup-3.svg')} alt="img" />
+                            <img src={require('../../assets/images/icons/employee-signup-icons/emp-signup-3.svg')} alt="img" />
                             <span>
                                 <h3 className="b-text">Direct chat + Inbox</h3>
                                 <p>Connect with candidates direct, no more emails!</p>
                             </span>
                         </div>
                         <div className="box">
-                            <img src={require('../../assets/images/emp-signup-4.svg')} alt="img" />
+                            <img src={require('../../assets/images/icons/employee-signup-icons/emp-signup-4.svg')} alt="img" />
                             <span>
                                 <h3 className="b-text">Candidate Match</h3>
                                 <p>Set accurate filters and let the system find you job seekers!</p>

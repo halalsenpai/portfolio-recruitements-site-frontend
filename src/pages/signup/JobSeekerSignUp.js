@@ -16,32 +16,32 @@ function JobSeekerSignUp(){
         <div className="c-container auth-wrapper">
             <div className="signup-container with-form">
                 <div className="first-container">
-                    <img src={require('../../assets/images/logo-white.svg')} alt="logo" />
+                    <img src={require('../../assets/images/logo/logo-white.svg')} alt="logo" />
                     <span className="inner-container">
                         <h3><span>Looking for a new job?</span></h3>
                         <div className="box">
-                            <img src={require('../../assets/images/signup-icon-1.svg')} alt="img" />
+                            <img src={require('../../assets/images/icons/signup-icons/signup-icon-1.svg')} alt="img" />
                             <span> 
                                 <h3 className="b-text">One click apply</h3>
                                 <p>Short list jobs and apply All to  them  with 1 click</p>
                             </span> 
                         </div>
                         <div className="box">
-                            <img src={require('../../assets/images/signup-icon-2.svg')} alt="img" />
+                            <img src={require('../../assets/images/icons/signup-icons/signup-icon-2.svg')} alt="img" />
                             <span>
                                 <h3 className="b-text">Job Match</h3>
                                 <p>Let our system do the work for you even while you sleep!</p>
                             </span>
                         </div>
                         <div className="box">
-                            <img src={require('../../assets/images/signup-icon-3.svg')} alt="img" />
+                            <img src={require('../../assets/images/icons/signup-icons/signup-icon-3.svg')} alt="img" />
                             <span>
                                 <h3 className="b-text">Direct chat + Inbox</h3>
                                 <p>Talk to employers & agencies in real time, no emails!</p>
                             </span>
                         </div>
                         <div className="box">
-                            <img src={require('../../assets/images/signup-icon-4.svg')} alt="img" />
+                            <img src={require('../../assets/images/icons/signup-icons/signup-icon-4.svg')} alt="img" />
                             <span>
                                 <h3 className="b-text">Follow Companies</h3>
                                 <p>Follow companies and stay up to date with all their jobs</p>
@@ -81,7 +81,7 @@ function JobSeekerSignUp(){
                                 <div className="c-label">
                                     <label className="required"> Family status </label>
                                     <WithHintText>
-                                        <img class="label-icon" src={require('../../assets/images/information-icon.svg')} alt="" />
+                                        <img class="label-icon" src={require('../../assets/images/icons/information-icon.svg')} alt="" />
                                     </WithHintText>
                                 </div>
                                 <Select size="large" defaultValue="" >
@@ -95,7 +95,7 @@ function JobSeekerSignUp(){
                             <div className="c-label">
                                 <label className="required">Gender</label>
                                 <WithHintText>
-                                    <img class="label-icon" src={require('../../assets/images/information-icon.svg')} alt="" />
+                                    <img class="label-icon" src={require('../../assets/images/icons/information-icon.svg')} alt="" />
                                 </WithHintText>
                                 </div>
                                 <Select size="large" defaultValue="" >
@@ -115,7 +115,7 @@ function JobSeekerSignUp(){
                             <div className="c-label">
                             <label className="required">Passport nationality</label>
                                 <WithHintText>
-                                    <img class="label-icon" src={require('../../assets/images/information-icon.svg')} alt="" />
+                                    <img class="label-icon" src={require('../../assets/images/icons/information-icon.svg')} alt="" />
                                 </WithHintText>
                                 </div>
                                 <Select size="large" defaultValue="" style={{ width: 120 }}>
