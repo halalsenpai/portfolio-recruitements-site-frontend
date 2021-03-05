@@ -11,6 +11,7 @@ function SignUp() {
             <div className="c-card-container ">
                 <div className="first-container">
                     <img className="small" src={require('../../assets/images/signup-icon.svg')} alt="logo" />
+                    <img  src={require('../../assets/images/logo-white.svg')} alt="logo" />
                 </div>
                 <div className="second-container signup-container flex-row with-pad">
                         <div className="wrapper" onClick={() => history.push('/user-signup')}>

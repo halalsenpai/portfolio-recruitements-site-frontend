@@ -305,9 +305,12 @@ img{
       background-repeat: no-repeat;
       background-size: cover;
       img{
-          width: 350px;
+          width: 320px;
           &.small{
-            width: 100px;
+            width: 70px;
+          }
+          &.medium{
+            width: 200px;
           }
       }
       p{
@@ -323,7 +326,7 @@ img{
       max-width: 100% !important;
       min-height: 400px;
       &.with-pad{
-        padding: 0px 120px;
+        padding: 0px 100px;
       }
   }
 }

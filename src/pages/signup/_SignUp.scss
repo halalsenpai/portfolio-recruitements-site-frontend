@@ -1,6 +1,12 @@
 .signup-container{
     .first-container {
         img {
+            &.signup-icon{
+                width: 70px;
+            }
+            &.logo{
+                width: 200px;
+            }
         width: 100px;
         }
     }

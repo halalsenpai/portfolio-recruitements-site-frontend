@@ -15,9 +15,9 @@ function CHeader() {
                 <Link to="/"><img className="logo" src={LogoImage} alt="Logo" /></Link>
                 <nav className="menu">
                     <Link to="/" >Post a free job</Link>
-                    <Link 
-                    to="/employee-and-agencies" 
-                    className={getActiveClassForPath(pathname, '/employee-and-agencies')}>
+                    <Link
+                        to="/employee-and-agencies"
+                        className={getActiveClassForPath(pathname, '/employee-and-agencies')}>
                         Employers & agencies
                         </Link>
                     <Link
@@ -29,13 +29,17 @@ function CHeader() {
                     <Link to="/">Services</Link>
                     <Link to="/">Pricing</Link>
                 </nav>
-                <nav >
+                <nav className="align-items-center" >
                     <Link to="/login" className="login b-text">Login</Link>
-                    <Link to="/signup" href="/" className="sign-up b-text">Sign Up</Link>
+                    <Link to="/signup">
+                        <button className="c-button primary">
+                            Sign Up
+                        </button>
+                    </Link>
                 </nav>
             </span>
-                <span className="shadow-box"></span>
-        </div>  
+            <span className="shadow-box"></span>
+        </div>
     )
 }
 
