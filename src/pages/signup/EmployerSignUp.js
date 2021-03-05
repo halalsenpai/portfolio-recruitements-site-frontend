@@ -6,6 +6,7 @@ import CButton from '../../uiComponents/shared/CButton/CButton'
 import { useState } from 'react';
 import CSelectWithAddItem from '../../uiComponents/shared/CSelectWithAddItem/CSelectWithAddItem';
 import PhoneInput from 'react-phone-input-international';
+import CMediaPicker from '../../uiComponents/shared/CMediaPicker/CMediaPicker';
 const { Option } = Select;
 function EmployerSignUp() {
     const [currentStep, setCurrentStep] = useState(1);
@@ -22,11 +23,15 @@ function EmployerSignUp() {
                         ?
                         <>
                             <h3 className="form-title"><mark className="blue">Employer details</mark></h3>
+                            <div className="d-flex w-100 justify-content-end align-items-center">
+                                <label className="required">Upload Profile Photo</label>
+                                <CMediaPicker onPicked={(data)=>console.log(data)} />
+                            </div>
                             <div className="c-row">
                                 <Form.Item name="lastName" className="c-input" >
                                     <label className="required">Company name</label>
                                     <Input placeholder="Enter your last name" size="small" type="text" />
-                                </Form.Item>
+                                </Form.Item> 
                                 <Form.Item name="lastName" className="c-input" >
                                     <label className="required">Job Title</label>
                                     <CSelectWithAddItem

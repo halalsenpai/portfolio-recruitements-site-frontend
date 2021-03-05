@@ -24,7 +24,7 @@ function beforeUpload(file) {
 
 const CAvatarPicker =()=> {
     const [loading, setloading] = useState(false);
-    const [imageUrl, setImageUrl] = useState('');
+    const [ imageUrl, setImageUrl] = useState('');
 
     const handleChange = info => {
     if (info.file.status === 'uploading') {
