@@ -215,3 +215,26 @@
     }
 }
 }
+
+
+
+.confirm-email-card{
+    align-self: center;
+    height: 400px;
+    display: flex;
+    width: 800px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .inner-container{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+        width: 520px;
+        height: 280px;
+        .mail-icon{
+            width: 60px;
+        }
+    }
+}

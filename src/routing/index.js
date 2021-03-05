@@ -8,8 +8,9 @@ import EmployerSignUp from '../pages/signup/EmployerSignUp';
 import JobSeekerSignUp from '../pages/signup/JobSeekerSignUp';
 import CFooter from '../uiComponents/CFooter/CFooter';
 import CHeader from '../uiComponents/CHeader/CHeader';
-import EmployerAndAgencies from '../pages/EmployerAndAgencies/EmployerAndAgencies';
-import JobSeekers from '../pages/JobSeekers/JobSeekers';
+import EmployerAndAgencies from '../pages/employerAndAgencies/EmployerAndAgencies';
+import JobSeekers from '../pages/jobSeekers/JobSeekers';
+import ConfirmEmail from '../pages/signup/ConfirmEmail';
 function Routing() {
     
     return (
@@ -21,6 +22,7 @@ function Routing() {
                 <Route exact path="/signup" component={SignUp} />
                 <Route exact path="/user-signup" component={JobSeekerSignUp} />
                 <Route exact path="/agency-signup" component={AgencySignUp} />
+                <Route exact path="/confirm-email" component={ConfirmEmail} />
                 <Route exact path="/employer-signup" component={EmployerSignUp} />
                 <Route exact path="/signup" component={SignUp} />
                 <Route exact path="/employee-and-agencies" component={EmployerAndAgencies} />
