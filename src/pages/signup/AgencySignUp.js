@@ -22,7 +22,7 @@ function AgencySignUp() {
                     {currentStep == 1
                         ?
                         <>
-                            <h3 className="form-title"><mark className="blue">Agency details</mark></h3>
+                            <h3 className="form-title"><mark className="blue">Agent details</mark></h3>
                             <div className="d-flex w-100 justify-content-end align-items-center">
                                 <label className="required">Upload Profile Photo</label> <CImagePicker />
                             </div>
@@ -88,7 +88,7 @@ function AgencySignUp() {
                         </>
                         :
                         <>
-                            <h3 className="form-title"><mark className="blue">Company details</mark></h3>
+                            <h3 className="form-title"><mark className="blue">Agency details</mark></h3>
                             <div className="c-row">
                                 <Form.Item name="firstName" className="c-input"  >
                                     <label className="required">I’m registering a</label>
