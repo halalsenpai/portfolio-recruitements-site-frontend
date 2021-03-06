@@ -6,7 +6,7 @@ import CButton from '../../uiComponents/shared/CButton/CButton'
 import { useState } from 'react';
 import CSelectWithAddItem from '../../uiComponents/shared/CSelectWithAddItem/CSelectWithAddItem';
 import PhoneInput from 'react-phone-input-international';
-import CImagePicker from '../../uiComponents/shared/CAvatarPicker/CAvatarPicker';
+import CMediaPicker from '../../uiComponents/shared/CMediaPicker/CMediaPicker';
 const { Option } = Select;
 function AgencySignUp() {
     const [currentStep, setCurrentStep] = useState(1);
@@ -24,7 +24,7 @@ function AgencySignUp() {
                         <>
                             <h3 className="form-title"><mark className="blue">Agent details</mark></h3>
                             <div className="d-flex w-100 justify-content-end align-items-center">
-                                <label className="required">Upload Profile Photo</label> <CImagePicker />
+                                <CMediaPicker onPicked={(data)=>console.log(data)} />
                             </div>
                             <div className="c-row">
                                 <Form.Item name="lastName" className="c-input" >

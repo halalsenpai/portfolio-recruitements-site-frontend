@@ -3,30 +3,33 @@ import { Upload, message } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { InboxOutlined } from '@ant-design/icons';
 import CModal from '../CModal/CModal';
+import CButton from '../CButton/CButton';
 
 const { Dragger } = Upload;
 function CMediaPicker({
+    multiple = false,
     onPicked,
-    hintText="Upload Profile Photo"
+    hintText = "Upload Profile Photo",
+    maxCount = 1
 }) {
     const [showModal, setShowModal] = useState(false);
     const [fileList, setFileList] = useState([]);
-    const handleClose = ()=>{
+    const handleClose = () => {
         onPicked(fileList)
         setShowModal(false);
     }
-    const onRemove =file => {
+    const onRemove = file => {
         setFileList(prevState => {
-          const index = prevState.indexOf(file);
-          const newFileList = prevState.slice();
-          newFileList.splice(index, 1);
-          return newFileList
+            const index = prevState.indexOf(file);
+            const newFileList = prevState.slice();
+            newFileList.splice(index, 1);
+            return newFileList
         });
-      }
-     const  beforeUpload = file => {
-        setFileList(state =>  [...state, file]);
+    }
+    const beforeUpload = file => {
+        setFileList(state => multiple ? [...state, file] : [file]);
         return false;
-      }
+    }
     return (
         <span className="c-media-picker">
             <label className="required mb-0">{hintText}</label>
@@ -42,8 +45,9 @@ function CMediaPicker({
             >
                 <Dragger
                     name={'file'}
-                    multiple={true}
+                    multiple={multiple}
                     fileList={fileList}
+                    maxCount={maxCount}
                     onRemove={onRemove}
                     beforeUpload={beforeUpload}
                     onChange={(info) => {
@@ -64,9 +68,14 @@ function CMediaPicker({
                     band files
                      </p> */}
                 </Dragger>
+                {fileList.length > 0 &&
+                    <span className="d-flex justify-content-end mt-2">
+                        <CButton onClick={handleClose} >Proceed</CButton>
+                    </span>
+                }
             </CModal>
         </span>
     )
 }
-  
+
 export default CMediaPicker
