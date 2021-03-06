@@ -24,7 +24,6 @@ function EmployerSignUp() {
                         <>
                             <h3 className="form-title"><mark className="blue">Employer details</mark></h3>
                             <div className="d-flex w-100 justify-content-end align-items-center">
-                                <label className="required">Upload Profile Photo</label>
                                 <CMediaPicker onPicked={(data)=>console.log(data)} />
                             </div>
                             <div className="c-row">

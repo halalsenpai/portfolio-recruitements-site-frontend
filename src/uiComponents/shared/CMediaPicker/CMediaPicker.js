@@ -6,11 +6,30 @@ import CModal from '../CModal/CModal';
 
 const { Dragger } = Upload;
 function CMediaPicker({
-    onPicked
+    onPicked,
+    hintText="Upload Profile Photo"
 }) {
-    const [showModal, setShowModal] = useState(true);
+    const [showModal, setShowModal] = useState(false);
+    const [fileList, setFileList] = useState([]);
+    const handleClose = ()=>{
+        onPicked(fileList)
+        setShowModal(false);
+    }
+    const onRemove =file => {
+        setFileList(prevState => {
+          const index = prevState.indexOf(file);
+          const newFileList = prevState.slice();
+          newFileList.splice(index, 1);
+          return newFileList
+        });
+      }
+     const  beforeUpload = file => {
+        setFileList(state =>  [...state, file]);
+        return false;
+      }
     return (
         <span className="c-media-picker">
+            <label className="required mb-0">{hintText}</label>
             <button type="button" onClick={() => setShowModal(true)} className="upload-button">
                 <PlusOutlined />
             </button>
@@ -19,15 +38,14 @@ function CMediaPicker({
                 className="center lg c-media-picker"
                 backdrop="static"
                 keyboard={false}
-                onHide={() => setShowModal(false)}
+                onHide={handleClose}
             >
                 <Dragger
                     name={'file'}
                     multiple={true}
-                    beforeUpload={(file) => {
-                        console.log('state.fileList', file)
-                        return false;
-                    }}
+                    fileList={fileList}
+                    onRemove={onRemove}
+                    beforeUpload={beforeUpload}
                     onChange={(info) => {
                         const { status } = info.file;
                         if (status !== 'uploading') {
