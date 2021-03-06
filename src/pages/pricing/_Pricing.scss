@@ -1,0 +1,89 @@
+.pricing-page{
+    background-image: url('../../assets/images/auth/page-back-split.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+.pricing-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 0px;
+    .diamond-icon{
+        width: 60px;
+    }
+    .title{
+        color: $blue;
+        font-size: $font-size-x-lg;
+        margin: 10px 0px;
+        mark {
+        font-family: $font-medium !important;
+        }
+    }
+    .sub-title{
+        font-size: $font-size-lg;
+    }
+    .prices-wrapper{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin: 30px 0px;
+    .pc-box{
+        width: 240px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-shadow: 0 0 16px #00000026;
+        padding: 0px 0px 20px 0px;
+        border-radius: 10px;
+        margin: 0px 5px;
+        .header{
+            display: flex;
+            flex-direction: column;
+            padding: 20px 0px;
+            position: relative;
+            color: $white;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            p{
+                    color: $white;
+                    margin: 0px;
+                    z-index: 2;
+            }
+            h2{
+                    color: $white;
+                    z-index: 2;
+                    margin: 0px;
+            }
+            .back-img{
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                width: 100%;
+                z-index: 1;
+            }
+        }
+        .feature-list{
+            display: flex;
+            flex-direction: column;
+            list-style: none;
+            width: 100%;
+            margin: 40px 0px 50px 0px;
+            li{
+                display: flex;
+                align-items: center;
+                padding: 5px 20px;
+                p{
+                    margin: 0px 0px 0px 10px;
+                    border-bottom: 0.02rem solid $border-color;
+                    text-align: left;
+                    width: 100%;
+                }
+            }
+        }
+        button{
+            padding: 0px 35px;
+        }
+    }
+}
+}
+}

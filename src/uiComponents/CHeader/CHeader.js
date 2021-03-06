@@ -27,7 +27,11 @@ function CHeader() {
                     </Link>
                     <Link to="/" >Jobs</Link>
                     <Link to="/">Services</Link>
-                    <Link to="/">Pricing</Link>
+                    <Link
+                        to="/pricing"
+                        className={getActiveClassForPath(pathname, '/pricing')}>
+                        Pricing
+                    </Link>
                 </nav>
                 <nav className="align-items-center" >
                     <Link to="/login" className="login b-text">Login</Link>

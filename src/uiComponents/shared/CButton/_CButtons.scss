@@ -21,6 +21,26 @@
         }
         color: $white;
     }
+    &.green{
+        background: $green;
+        &:hover{
+            background: $green;    
+        }
+        &:focus{
+            background: $green;    
+        }
+        color: $white;
+    }
+    &.purple{
+        background: $light-purple;
+        &:hover{
+            background: $light-purple;    
+        }
+        &:focus{
+            background: $light-purple;    
+        }
+        color: $white;
+    }
     &.blue{
         background: $blue;
         &:hover{
