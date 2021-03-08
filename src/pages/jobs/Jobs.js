@@ -1,5 +1,8 @@
 import React from 'react'
 import { Input, Form } from 'antd';
+import { MappedElement } from '../../utils/helper';
+import CJobCard from '../../uiComponents/shared/CJobCard/CJobCard';
+import data from './Data';
 function Jobs() {
     const onFinish = () => {
 
@@ -40,6 +43,16 @@ function Jobs() {
                     </span>
                 </Form>
             </div>
+            <div className="container pb-2">
+                    <div className="jobs-list">
+                            <MappedElement data={data} renderElement={(obj,index)=>{
+                                return <CJobCard job={obj} key={obj.title}  />
+                            }} />
+                    </div>
+                    <div className="job-details">
+                        
+                    </div>
+                </div>
         </div>
     )
 }
