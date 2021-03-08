@@ -11,7 +11,7 @@ function JobSeekers() {
                     <Bounce left >
                         <h2>
                             Make the right connections.
-                     </h2>
+                        </h2>
                     </Bounce>
                 </div>
                 <div className="col-lg-4 c-container-centered-content small mb-0 mt-2">

@@ -25,7 +25,11 @@ function CHeader() {
                         className={getActiveClassForPath(pathname, '/job-seekers')}>
                         Job Seekers
                     </Link>
-                    <Link to="/" >Jobs</Link>
+                    <Link
+                        to="/jobs"
+                        className={getActiveClassForPath(pathname, '/jobs')}>
+                            Jobs
+                            </Link>
                     <Link to="/">Services</Link>
                     <Link
                         to="/pricing"

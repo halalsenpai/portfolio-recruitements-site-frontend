@@ -1,0 +1,63 @@
+.jobs-page{
+    .header-wrapper{
+        height: 130px;
+        background: rgb(2,0,36);
+        background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(52,30,91,1) 0%, rgba(245,38,102,1) 100%);
+        .header{
+                flex-direction: row;
+                align-items: center;
+                width: 100%;
+                height: 100%;
+                justify-content: space-between;
+                .form-fields{
+                    display: flex;
+                    align-items: center;
+                .c-input{
+                    margin: 0px;
+                    &:first-of-type{
+                        margin: 0px 30px 0px 0px;
+                    }
+                }
+            }
+
+                .filters{
+                    width: 100px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    .filter-icon{
+                        width: 50px;
+                    }
+                }
+                .statistics-wrapper{
+                    display: flex;
+                    align-items: center;
+                    .statistic {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
+                        padding: 0px 10px;
+                        height: 85px;
+                            h4{
+                                color: $white;
+                                margin: 5px;
+                            }
+                            p{
+                                color: $white;
+                                font-size: $font-size-sm;
+                                text-align: center;
+                                height: 20px;
+                                width: 140px;
+                                margin: 0px 0px 15px 0px;
+                            }
+                            .statistic-icon{
+                                width: 20px;
+                            }
+                    }
+                }
+
+        }
+    }
+
+}

@@ -130,6 +130,9 @@ img{
     &.ant-input-sm{
       width: 300px;
     }
+    &.xs{
+      width: 200px;
+    }
     &::placeholder {
       // color: $text-color;
       opacity: 0.4;
@@ -148,18 +151,18 @@ img{
   &.c-input-with-icon {
     .ant-form-item-control-input-content {
       position: relative;
-
-      svg {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      .input-icon {
         position: absolute;
-        left: 15px;
+        left: 12px;
         z-index: 1;
-        font-size: 18px;
-        top: 13px;
-        // color: $text-color;
+        max-width: 15px;
       }
 
       input {
-        padding: 0 15px 0 45px;
+        padding: 0 15px 0 35px !important;
       }
     }
   }

@@ -12,6 +12,7 @@ import EmployerAndAgencies from '../pages/employerAndAgencies/EmployerAndAgencie
 import JobSeekers from '../pages/jobSeekers/JobSeekers';
 import ConfirmEmail from '../pages/signup/ConfirmEmail';
 import Pricing from '../pages/pricing/Pricing';
+import Jobs from '../pages/jobs/Jobs';
 function Routing() {
     
     return (
@@ -29,7 +30,8 @@ function Routing() {
                 <Route exact path="/employee-and-agencies" component={EmployerAndAgencies} />
                 <Route exact path="/job-seekers" component={JobSeekers} />
                 <Route exact path="/pricing" component={Pricing} />
-                <Route path="/about" component={About} />
+                <Route exact path="/jobs" component={Jobs} />
+                <Route path="/about" component={About} /> 
 
                 <Route path="*" render={() => (
                     <div>
