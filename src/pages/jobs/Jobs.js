@@ -43,7 +43,7 @@ function Jobs() {
                     </span>
                 </Form>
             </div>
-            <div className="container pb-2">
+            <div className="container p-0 pt-2 pb-2">
                     <div className="jobs-list">
                             <MappedElement data={data} renderElement={(obj,index)=>{
                                 return <CJobCard job={obj} key={obj.title}  />
