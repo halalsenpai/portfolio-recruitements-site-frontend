@@ -5,6 +5,7 @@ import Zoom from 'react-reveal/Zoom';
 import Slide from 'react-reveal/Slide';
 function EmployerAndAgencies() {
     return (
+        <div className="container-fluid position-relative  employer-and-agencies">
         <div className="container">
             <div className="row">
                 <div className="col-lg-8 c-container-centered-content small mb-0 mt-2">
@@ -28,70 +29,70 @@ function EmployerAndAgencies() {
                     </Bounce>
                 </div>
             </div>
-            <div className="row">
-
-                <div className="col-lg-5 c-container-centered-content  align-items-start mt-0">
-                    <h4 className="mt-4">
+        </div>
+            <div className="row banner">
+                <div className="col-lg-5 left-text-container">
+                    <div className="inner-container">
+                    <h2 className="mt-4">
                         Save up to 75% of your <br /> annual recruitment budget
-                     </h4>
+                     </h2>
                     <p>
                         Finding the right person can be costly, and we can help you <br /> minimise those costs. Start your search with 2 free jobs and try <br /> us out with no strings attached.
                     </p>
+                    </div>
                 </div>
-                <div className="col-lg-7 c-container-centered-content mt-0">
+                <div className="col-lg-7 p-0">
                     <Bounce>
-                        <img className="right-image lg-rad" src={require('../../assets/images/employeeandagency/ea-1.jpg')} alt="ban1" />
+                        <img className="banner-img" src={require('../../assets/images/employeeandagency/ea-1.jpg')} alt="ban1" />
                     </Bounce>
                 </div>
             </div>
-            <div className="row">
+            <div className="row banner">
                 <Slide left>
-                    <div className="col-lg-8 c-container-centered-content">
-                        <img className="lg" src={require('../../assets/images/employeeandagency/ea-2.png')} alt="ban1" />
-                        <div className="img-back-cover"></div>
+                    <div className="col-lg-7 p-0">
+                        <img className="banner-img" src={require('../../assets/images/employeeandagency/ea-2.png')} alt="ban1" />
                     </div>
                 </Slide>
-                <div className="col-lg-4 c-container-centered-content align-items-start">
-                    <h4 className="mt-4">
+                <div className="col-lg-5 right-text-container">
+                    <h2 className="mt-4">
                         Smart profiles
-                     </h4>
+                     </h2>
                     <p>
-                        We show you profiles, not CV's. Connect with job <br /> seekers through their smart profiles, and get to<br /> know them through video introductions.                     </p>
+                        We show you profiles, not CV's. Connect with job  seekers through their smart profiles, and get to know them through video introductions.                     </p>
                 </div>
 
             </div>
-            <div className="row">
-                <div className="col-lg-4 c-container-centered-content align-items-start">
-                    <h4 className="mt-4">
+            <div className="row banner">
+                <div className="col-lg-5 left-text-container">
+                <div className="inner-container">
+                    <h2 className="mt-4">
                         Video questionnaire's
-                     </h4>
+                     </h2>
                     <p>
                         Write your interview questions, set a time for each answer, and fire away! Candidates can  then answer each question in a video format,  and once their done it comes back straight into your online inbox.
                     </p>
+                    </div>
                 </div>
                 <Zoom left>
-                    <div className="col-lg-8 c-container-centered-content">
-                        <img className="right-image lg" src={require('../../assets/images/employeeandagency/ea-4.jpg')} alt="ban1" />
-
+                    <div className="col-lg-7 p-0">
+                        <img className="banner-img" src={require('../../assets/images/employeeandagency/ea-4.jpg')} alt="ban1" />
                     </div>
                 </Zoom>
             </div>
-            <div className="row">
+            <div className="row banner">
                 <Slide left>
-                    <div className="col-lg-8 c-container-centered-content">
-                        <img className="lg" src={require('../../assets/images/employeeandagency/ea-3.jpg')} alt="ban1" />
-                        <div className="img-back-cover"></div>
+                    <div className="col-lg-8 p-0">
+                        <img className="banner-img" src={require('../../assets/images/employeeandagency/ea-3.jpg')} alt="ban1" />
                     </div>
                 </Slide>
-                <div className="col-lg-4 c-container-centered-content align-items-start">
-                    <h4 className="mt-4"> Keep your team connected  </h4>
+                <div className="col-lg-4 right-text-container">
+                    <h2 className="mt-4"> Keep your team connected  </h2>
                     <p>
                         However big or small, you can add your entire team here. Make notes on profiles only visible to you and your team.
                     </p>
                 </div>
             </div>
-        </div >
-
+        </div>
     )
 }
 
