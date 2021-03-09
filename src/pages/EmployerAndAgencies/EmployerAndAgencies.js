@@ -6,16 +6,18 @@ import Slide from 'react-reveal/Slide';
 function EmployerAndAgencies() {
     return (
         <div className="container-fluid position-relative  employer-and-agencies">
-        <div className="container">
-            <div className="row">
-                <div className="col-lg-8 c-container-centered-content small mb-0 mt-2">
+            <div className="row banner">
+                <div className="col-lg-6  c-container-centered-content left-text-container">
+
                     <Bounce left >
-                        <h2 >
-                            Discover a new way of hiring & make the right connections.
+                        <div className="inner-container">
+                            <h2 >
+                                Discover a new way of hiring & make the right connections.
                         </h2>
+                        </div>
                     </Bounce>
                 </div>
-                <div className="col-lg-4 c-container-centered-content small mb-0 mt-2">
+                <div className="col-lg-6 c-container-centered-content right-text-container ">
                     <Bounce right >
                         <CButton
                             type="large"
@@ -29,22 +31,23 @@ function EmployerAndAgencies() {
                     </Bounce>
                 </div>
             </div>
-        </div>
             <div className="row banner">
                 <div className="col-lg-5 left-text-container">
-                    <div className="inner-container">
-                    <h2 className="mt-4">
-                        Save up to 75% of your <br /> annual recruitment budget
-                     </h2>
-                    <p>
-                        Finding the right person can be costly, and we can help you <br /> minimise those costs. Start your search with 2 free jobs and try <br /> us out with no strings attached.
-                    </p>
-                    </div>
+                    <Slide left>
+                        <div className="inner-container">
+                            <h2 className="mt-4">
+                                Save up to 75% of your <br /> annual recruitment budget
+                            </h2>
+                            <p>
+                                Finding the right person can be costly, and we can help you <br /> minimise those costs. Start your search with 2 free jobs and try <br /> us out with no strings attached.
+                            </p>
+                        </div>
+                    </Slide>
                 </div>
                 <div className="col-lg-7 p-0">
-                    <Bounce>
-                        <img className="banner-img" src={require('../../assets/images/employeeandagency/ea-1.jpg')} alt="ban1" />
-                    </Bounce>
+
+                    <img className="banner-img" src={require('../../assets/images/employeeandagency/ea-1.jpg')} alt="ban1" />
+
                 </div>
             </div>
             <div className="row banner">
@@ -64,20 +67,18 @@ function EmployerAndAgencies() {
             </div>
             <div className="row banner">
                 <div className="col-lg-5 left-text-container">
-                <div className="inner-container">
-                    <h2 className="mt-4">
-                        Video questionnaire's
+                    <div className="inner-container">
+                        <h2 className="mt-4">
+                            Video questionnaire's
                      </h2>
-                    <p>
-                        Write your interview questions, set a time for each answer, and fire away! Candidates can  then answer each question in a video format,  and once their done it comes back straight into your online inbox.
+                        <p>
+                            Write your interview questions, set a time for each answer, and fire away! Candidates can  then answer each question in a video format,  and once their done it comes back straight into your online inbox.
                     </p>
                     </div>
                 </div>
-                <Zoom left>
-                    <div className="col-lg-7 p-0">
-                        <img className="banner-img" src={require('../../assets/images/employeeandagency/ea-4.jpg')} alt="ban1" />
-                    </div>
-                </Zoom>
+                <div className="col-lg-7 p-0">
+                    <img className="banner-img" src={require('../../assets/images/employeeandagency/ea-4.jpg')} alt="ban1" />
+                </div>
             </div>
             <div className="row banner">
                 <Slide left>
