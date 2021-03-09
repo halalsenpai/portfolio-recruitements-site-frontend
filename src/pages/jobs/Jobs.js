@@ -27,7 +27,7 @@ function Jobs() {
                     <span className="statistics-wrapper">
                         <span className="statistic">
                             <h4>0</h4>
-                            <p>Direct message Employers & agencies</p>
+                            <p className="mb-2">Direct message Employers & agencies</p>
                             <img className="statistic-icon" src={require('../../assets/images/icons/diamond_white_icon.svg')} alt="" />
                         </span>
                         <span className="statistic">

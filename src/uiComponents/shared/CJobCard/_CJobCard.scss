@@ -11,6 +11,7 @@
     overflow: hidden;
     padding: 10px 10px;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, .3) !important;
+    transition: 0.3s all linear;
     cursor: pointer;
     p{
         margin: 0px;
@@ -81,5 +82,11 @@
             font-size: 9px;
             font-family: $font-medium !important;
         }
+    }
+    &:hover{
+        box-shadow: rgba(255, 36, 94, 0.5) 2px 2px 9px !important;
+    }
+    &.active{
+        box-shadow: rgba(255, 36, 94, 0.5) 2px 2px 9px !important;
     }
 }

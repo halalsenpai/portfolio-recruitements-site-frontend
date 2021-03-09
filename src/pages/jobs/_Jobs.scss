@@ -12,6 +12,7 @@
                 .form-fields{
                     display: flex;
                     align-items: center;
+                    padding: 0px 0px 0px 5px;
                 .c-input{
                     margin: 0px;
                     &:first-of-type{
@@ -34,7 +35,7 @@
                     align-items: center;
                     .statistic {
                         display: flex;
-                        justify-content: center;
+                        justify-content: flex-start;
                         align-items: center;
                         flex-direction: column;
                         padding: 0px 10px;
@@ -47,7 +48,7 @@
                                 color: $white;
                                 font-size: $font-size-sm;
                                 text-align: center;
-                                height: 20px;
+                                line-height: 12px;
                                 width: 140px;
                                 margin: 0px 0px 15px 0px;
                             }
@@ -64,5 +65,7 @@
         padding: 5px 5px 0px 5px;
         height: calc(100vh - 210px);
         overflow: auto;
+        
     }
+    
 }
