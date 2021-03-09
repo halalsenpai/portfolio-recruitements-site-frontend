@@ -15,7 +15,6 @@ function CFooter() {
                         <CButton>Book Demo</CButton>
                     </span>
                 </ul>
-                <span className="links-wrapper">
                 <ul>
                     <a href="/">
                         <h3 className="green">Site Map</h3>
@@ -66,7 +65,6 @@ function CFooter() {
                     <a href="mailto:enquiries@jobsmideast.com" className="mt-4">enquiries@jobsmideast.com</a>
                 </ul>
                 </span>
-            </span>
         </div>
     )
 }
