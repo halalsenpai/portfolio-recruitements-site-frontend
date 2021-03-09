@@ -13,6 +13,7 @@ import JobSeekers from '../pages/jobSeekers/JobSeekers';
 import ConfirmEmail from '../pages/signup/ConfirmEmail';
 import Pricing from '../pages/pricing/Pricing';
 import Jobs from '../pages/jobs/Jobs';
+import ForgotPassword from '../pages/forgotPassword/ForgotPassword';
 function Routing() {
     
     return (
@@ -23,6 +24,7 @@ function Routing() {
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/signup" component={SignUp} />
                 <Route exact path="/user-signup" component={JobSeekerSignUp} />
+                <Route exact path="/forgot-password" component={ForgotPassword} />
                 <Route exact path="/agency-signup" component={AgencySignUp} />
                 <Route exact path="/confirm-email" component={ConfirmEmail} />
                 <Route exact path="/employer-signup" component={EmployerSignUp} />

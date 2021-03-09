@@ -73,7 +73,7 @@ function Login() {
                             <Form.Item name="remember" className="mb-0" >
                                 <Checkbox value="">Remember me</Checkbox>
                             </Form.Item>
-                            <Link to="/" className="alt-text">Forgot Password</Link>
+                            <Link to="/forgot-password" className="alt-text">Forgot Password</Link>
                         </span>
                         <Form.Item >
                             <CButton
