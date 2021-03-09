@@ -146,7 +146,7 @@ function AgencySignUp() {
 
                 </Form>
                 <div className="first-container on-right bg-2">
-                    <img src={require('../../assets/images/logo/logo-white.svg')} alt="logo" />
+                    <img src={require('../../assets/images/logo/logo-white.png')} alt="logo" />
                     <span className="inner-container">
                         <div className="box">
                             <img src={require('../../assets/images/icons/employee-signup-icons/emp-signup-1.svg')} alt="img" />

@@ -16,7 +16,7 @@ function JobSeekerSignUp(){
         <div className="c-container auth-wrapper">
             <div className="signup-container with-form">
                 <div className="first-container">
-                    <img src={require('../../assets/images/logo/logo-white.svg')} alt="logo" />
+                    <img src={require('../../assets/images/logo/logo-white.png')} alt="logo" />
                     <span className="inner-container">
                         <h3><span>Looking for a new job?</span></h3>
                         <div className="box">
