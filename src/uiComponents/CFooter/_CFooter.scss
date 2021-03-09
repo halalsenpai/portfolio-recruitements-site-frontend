@@ -23,7 +23,7 @@
             }
             h3{
                 font-family: $font-bold  !important;
-                font-size: $font-size-md;
+                font-size: $font-size-sm;
                 text-decoration: underline;
                 text-underline-position: under;
                 &.green {
@@ -38,7 +38,7 @@
             }
             a,p{
                 color:$secondary;
-                font-size: $font-size-md;
+                font-size: $font-size-sm;
                 margin: 0px 0px 5px 0px;
             }
         }
