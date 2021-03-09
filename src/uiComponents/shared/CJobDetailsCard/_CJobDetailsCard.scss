@@ -1,0 +1,68 @@
+.c-job-detail-card {
+    .header{
+        position: relative;
+        height: 300px;
+        display: flex;
+        justify-content: space-between;
+        padding: 30px;
+        align-items: flex-end;
+
+        .job-banner-img{
+            position: absolute;
+            top: 0;
+            left: 0%;
+            height: 100%;
+            z-index: -2;
+        }
+
+        .banner-img-overlay{
+            position: absolute;
+            top: 0;
+            left:0;
+            width: 100%;
+            z-index: -1;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .job-info-wrapper{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 550px;
+
+            .job-img{
+                width: 100px;
+                border-radius: 10px;
+            }
+            
+            .job-info{
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                flex-direction: column;
+                margin: 0px 0px 0px 10px;
+                .job-title{
+                    color:$white;
+                    margin: 0px;
+                    font-family: $font-light;
+                    font-size: $font-size-md;
+                }
+
+                .job-company{
+                    color:$white;
+                    margin: 5px 0px;
+                }
+
+                .job-sector{
+                    color:$white;
+                    margin: 0px;
+                    font-family: $font-light;
+                    font-size: $font-size-sm;
+                }
+
+            }
+
+        }
+    }
+}
