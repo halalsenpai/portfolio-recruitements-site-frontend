@@ -50,11 +50,17 @@
                                 font-size: $font-size-sm;
                                 text-align: center;
                                 line-height: 12px;
-                                width: 140px;
                                 margin: 0px 0px 15px 0px;
+                                width: 100px;
+
                             }
                             .statistic-icon{
                                 width: 20px;
+                            }
+                            &:first-of-type{
+                                p{
+                                     width: 140px;
+                                }
                             }
                     }
                 }
