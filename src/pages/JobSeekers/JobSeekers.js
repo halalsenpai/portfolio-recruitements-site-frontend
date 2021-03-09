@@ -43,9 +43,7 @@ function JobSeekers() {
                     </Slide>
                 </div>
                 <div className="col-lg-7 p-0">
-                    <Bounce>
                         <img className="banner-img" src={require('../../assets/images/jobseekers/js-1.jpg')} alt="ban1" />
-                    </Bounce>
                 </div>
             </div>
             <div className="row banner">
