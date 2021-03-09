@@ -8,6 +8,7 @@ function CFooter() {
             
             <span className="shadow-box"></span>
             <span className=" inner-container ">
+                <div className='container d-flex'>
                 <ul className="info">
                     <img className="logo" src={LogoImage} alt="Logo" />
                     <span>
@@ -64,6 +65,7 @@ function CFooter() {
                     <p>Buckinghamshire <br /> United Kingdom</p>
                     <a href="mailto:enquiries@jobsmideast.com" className="mt-4">enquiries@jobsmideast.com</a>
                 </ul>
+                </div>
                 </span>
         </div>
     )
