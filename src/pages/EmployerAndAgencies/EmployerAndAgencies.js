@@ -5,10 +5,9 @@ import Zoom from 'react-reveal/Zoom';
 import Slide from 'react-reveal/Slide';
 function EmployerAndAgencies() {
     return (
-        <div className="container-fluid position-relative  employer-and-agencies">
+        <div className="container-fluid employer-and-agencies">
             <div className="row banner">
-                <div className="col-lg-6  c-container-centered-content left-text-container">
-
+                <div className="col-lg-6  c-container-centered-content left-text-container mb-2">
                     <Bounce left >
                         <div className="inner-container">
                             <h2 >
@@ -17,7 +16,7 @@ function EmployerAndAgencies() {
                         </div>
                     </Bounce>
                 </div>
-                <div className="col-lg-6 c-container-centered-content right-text-container ">
+                <div className="col-lg-6 c-container-centered-content right-text-container mb-2">
                     <Bounce right >
                         <CButton
                             type="large"
