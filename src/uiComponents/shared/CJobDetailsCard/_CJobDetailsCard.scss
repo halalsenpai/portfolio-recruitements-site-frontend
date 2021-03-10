@@ -74,11 +74,12 @@
     .job-details-wrapper{
         display: flex;
         flex-direction: column;
-        padding: 25px;
+        padding: 25px 35px;
 
         .details-header{
             display: flex;
             justify-content: space-between;
+            align-items: center;
 
             .job-title{
                 margin: 0px;
@@ -90,6 +91,97 @@
                 width: 250px;
                 justify-content: space-between;
                 align-items: center;
+            }
+
+        }
+
+        .content-box{
+            display: flex;
+            justify-content: space-between;
+
+            &.first{
+            padding: 25px 0px 0px 0px;
+            }
+
+            .content-section {
+                display: flex;
+                flex-direction: column;
+                
+                .content-block {
+                    display: flex;
+                    flex-direction: column;
+                    padding: 0px 20px 0px 0px;
+                    margin: 0px 0px 10px 0px;
+
+                    .block-title {
+                        font-size: $font-size-md;
+                        color: $text-color;
+                    }
+
+                    .block-text{
+                        font-size: $font-size-sm;
+                        padding: 0px 0px 0px 20px;
+                    }
+
+                    .c-list {
+                        display: flex;
+                        flex-direction: column;
+                        border-radius: 10px;
+                        padding: 0px 0px 0px 35px;
+                        height: 100%;
+                        list-style-type: circle;
+    
+                        li {
+                            padding: 5px 15px 5px 0px;
+                            justify-content: space-between;
+                            font-size: $font-size-sm;
+    
+                            &::marker{
+                                color: $light-purple;
+                                font-size: $font-size-sm;
+                            }
+                        }
+    
+                    }
+
+                    &:last-of-type{
+                        margin-bottom: 0px;
+                    }
+                }
+                
+            }
+
+            .benefits-list{
+                list-style: none;
+                display: flex;
+                flex-direction: column;
+                box-shadow: 0 0 16px rgba(0, 0, 0, .3);
+                border-radius: 10px;
+                padding: 0px;
+                min-width: 250px;
+                height: 100%;
+                
+                li {
+                    padding: 10px 15px;
+                    display: flex;
+                    justify-content: space-between;
+                    border-bottom: 0.5px solid $border-color;
+                   
+                    &:first-of-type{
+                        padding: 15px 15px;
+                    }
+                    
+                    .title {
+                        margin: 0px;
+                        font-size: $font-size-sm;
+                    }
+
+                    span{
+                    font-size: $font-size-x-sm;
+                    }
+
+                }
+
             }
 
         }
