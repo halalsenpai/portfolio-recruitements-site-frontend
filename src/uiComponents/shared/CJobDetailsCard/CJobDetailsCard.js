@@ -18,7 +18,7 @@ function CJobDetailsCard() {
                         </span>
                     </span>
 
-                    <CButton themeColor="transparent">View Jobs</CButton>
+                    <CButton themeColor="transparent small">View Jobs</CButton>
 
                 </div>
         </div>
