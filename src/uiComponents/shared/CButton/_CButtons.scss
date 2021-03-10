@@ -10,7 +10,24 @@
     border-radius: 32px;
     width: max-content;
     border: none;
+    transition: 0.2s all linear;
     background: transparent linear-gradient(90deg, #FF245E 0%, #C864DD 100%) 0% 0% no-repeat padding-box;
+
+    span{
+        color:$white;
+        transition: 0.2s all linear;
+        font-family: $font-medium !important;
+    }
+    &:hover{
+        background: transparent linear-gradient(90deg, #FF245E 0%, #C864DD 100%) 0% 0% no-repeat padding-box;
+
+    }
+    &:focus{
+        background: transparent linear-gradient(90deg, #FF245E 0%, #C864DD 100%) 0% 0% no-repeat padding-box;
+
+    }
+
+    // themes
     &.transparent {
         background: transparent;
         border: 1px solid $white;
@@ -22,6 +39,7 @@
         }
         color: $white;
     }
+
     &.light {
         background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(106,210,89,1) 0%, rgba(0,176,250,1) 100%);
         &:hover{
@@ -32,6 +50,7 @@
         }
         color: $white;
     }
+
     &.primary{
         background: $primary;
         &:hover{
@@ -42,6 +61,7 @@
         }
         color: $white;
     }
+
     &.green{
         background: $green;
         &:hover{
@@ -52,6 +72,7 @@
         }
         color: $white;
     }
+
     &.purple{
         background: $light-purple;
         &:hover{
@@ -62,6 +83,22 @@
         }
         color: $white;
     }
+
+    &.shadowed{
+        background: $white;
+        box-shadow: 0 0 16px rgba(0, 0, 0, .3);
+        span {
+            color: $text-color;
+        }
+
+        &:hover, &:focus{
+            background: $primary;  
+            span {
+                color:$white;
+            }    
+        }
+    }
+
     &.blue{
         background: $blue;
         &:hover{
@@ -71,13 +108,12 @@
             background: $blue;        
         }
     }
-    span{
-        color:$white;
-        font-family: $font-medium !important;
-    }
+
+    //sizes
     &.large {
         width: 200px;
     }
+
     &.small {
         min-width: 90px;
         padding: 5px 10px;
@@ -89,12 +125,26 @@
             font-size: $font-size-sm;
         }
     }
-    &:hover{
-        background: transparent linear-gradient(90deg, #FF245E 0%, #C864DD 100%) 0% 0% no-repeat padding-box;
+    
+    &.rounded{
+        width: 35px;
+        height: 35px;
+        padding: 0px !important;
+        border-radius: 20px !important;
+        font-size: 18px;
 
-    }
-    &:focus{
-        background: transparent linear-gradient(90deg, #FF245E 0%, #C864DD 100%) 0% 0% no-repeat padding-box;
+        svg{
+            color: $text-color !important;
+            &.highlighted{
+                color: $primary !important;
+            }
+        }
+
+        &:hover, &.focus {
+            svg{
+            color: $white !important;
+            }
+        }
 
     }
 }

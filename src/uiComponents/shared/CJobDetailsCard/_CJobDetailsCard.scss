@@ -1,4 +1,5 @@
 .c-job-detail-card {
+
     .header{
         position: relative;
         height: 220px;
@@ -69,4 +70,30 @@
 
         }
     }
+
+    .job-details-wrapper{
+        display: flex;
+        flex-direction: column;
+        padding: 25px;
+
+        .details-header{
+            display: flex;
+            justify-content: space-between;
+
+            .job-title{
+                margin: 0px;
+                font-size: $font-size-lg;
+            }
+
+            .actions-wrapper{
+                display: flex;
+                width: 250px;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+        }
+
+    }
+
 }
