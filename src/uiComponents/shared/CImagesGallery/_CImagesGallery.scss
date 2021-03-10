@@ -1,0 +1,40 @@
+.c-images-gallery{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .c-images-gallery-header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0px;
+        .title{
+            font-size: $font-size-md;
+            color: $text-color;
+        }
+
+        .action{
+
+            &:hover{
+                text-decoration: underline;
+            }
+
+        }
+
+    }
+
+    .images-container{
+        display: flex;
+        justify-content: space-between;
+
+        .ant-image{
+            width: 30%;
+            .ant-image-img{
+                
+            }
+
+        }
+
+    }
+
+}
