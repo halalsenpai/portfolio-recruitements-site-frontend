@@ -112,7 +112,7 @@ function CJobDetailsCard() {
                         </span>
 
                         <span className="content-block">
-
+        
                             <h6 className="block-title">About company: <mark className="ml-2 blue">Jobsmideast</mark> </h6>
 
                             <p className="block-text">

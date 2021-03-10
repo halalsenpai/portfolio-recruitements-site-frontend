@@ -64,8 +64,8 @@
                                 text-align: center;
                                 line-height: 12px;
                                 margin: 0px 0px 15px 0px;
-                                width: 100px;
-
+                                min-width: 100px;
+                                max-width: 105px;
                             }
 
                             .statistic-icon{
@@ -75,7 +75,7 @@
                             &:first-of-type{
 
                                 p{
-                                     width: 140px;
+                                     max-width: 140px;
                                 }
 
                             }
