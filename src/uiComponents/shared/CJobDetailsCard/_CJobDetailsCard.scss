@@ -122,6 +122,13 @@
                         font-size: $font-size-sm;
                         padding: 0px 0px 0px 20px;
                     }
+                    
+                    .block-video {
+                        height: 400px;
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                    }
 
                     .c-list {
                         display: flex;

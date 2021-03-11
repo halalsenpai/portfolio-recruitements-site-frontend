@@ -123,13 +123,37 @@ function CJobDetailsCard() {
 
                         <CImagesGallery title="Company Photos" />
 
+                        <span className="content-block mt-4">
+
+                            <h6 className="block-title mb-3">Company Video </h6>
+
+                            <div className="block-video">
+
+                                <video className="w-100" controls>
+                                    <source src={require('../../../assets/videos/sample/sample-intro.mp4')} type="video/mp4" />
+                                        Your browser does not support the video tag.
+                                </video>
+
+                            </div>
+                        </span>
+
+                        <span className="content-block mt-4">
+
+                            <h6 className="block-title mb-3">Map </h6>
+
+                            <div className="block-video">
+
+
+                            </div>
+                        </span>
+
                     </span>
 
 
                 </span>
 
             </div>
-            
+
         </div >
     )
 }
