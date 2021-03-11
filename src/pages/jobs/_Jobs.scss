@@ -1,7 +1,7 @@
 .jobs-page{
 
     .header-wrapper{
-        height: 130px;
+        height: 110px;
         padding:0px 50px 0px 50px;
         background: rgb(2,0,36);
         background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(52,30,91,1) 0%, rgba(245,38,102,1) 100%);
@@ -63,7 +63,7 @@
                                 font-size: $font-size-sm;
                                 font-family: $font-light;
                                 text-align: center;
-                                line-height: 12px;
+                                line-height: 11px;
                                 margin: 0px 0px 15px 0px;
                                 min-width: 100px;
                                 max-width: 105px;
@@ -95,14 +95,14 @@
         .jobs-list{
             width: 500px;
             padding: 15px 10px 0px 10px;
-            height: calc(100vh - 210px);
+            height: calc(100vh - 180px);
             overflow: auto;
         }
 
         .job-details{
             overflow: hidden;
             flex: 1;
-            height: calc(100vh - 210px);
+            height: calc(100vh - 180px);
             overflow: auto;
         }
 
