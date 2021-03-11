@@ -6,10 +6,16 @@ import { useHistory, useLocation } from 'react-router-dom';
 function CHeader() {
     const history = useHistory()
     const getActiveClassForPath = (currentLocation, path) => {
-        console.log(currentLocation)
+
+        console.log('path ---> ' , currentLocation);
+
+        console.log('path condition',currentLocation === path ? 'active b-text' : '')
+
         return currentLocation === path ? 'active b-text' : ''
+
     }
     const { pathname } = history.location;
+    console.log('path gettign form history',pathname)
     return (
         <div className="c-header">
             <span className="inner-container">
