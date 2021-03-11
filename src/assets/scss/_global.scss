@@ -415,3 +415,24 @@ img{
   background: $green;
   border-color: $green;
 }
+
+.images-container-modal {
+  display: flex;
+  justify-content: start;
+    flex-wrap: wrap;
+    width: 100%;
+  
+  .ant-image{
+      width: 30%;
+      height: 100%;
+      margin: 0px 15px 15px 0px;
+      
+      .ant-image-img{
+          height: 100%;    
+      }
+
+  }
+
+}
+
+

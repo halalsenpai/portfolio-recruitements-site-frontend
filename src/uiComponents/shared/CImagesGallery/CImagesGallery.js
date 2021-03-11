@@ -37,25 +37,21 @@ function CImagesGallery({ title = 'Photos', images = [
 
                 }} />
 
-            </span>
+            </span>  
 
             <CModal
-                show={openAllImages}
+                show={openAllImages}   
                 className="center lg c-media-picker"
                 backdrop="static"
                 keyboard={false}
                 onHide={() => setOpenAllImages(false)}
             >
-
-             
+                <span className="images-container-modal">
                             <MappedElement data={images} renderElement={(obj, index) => {
-
                                 return  <Image src={obj.src} />
             
                             }} />
-                        
-  
-
+                </span>
             </CModal>
         </div>
     )
