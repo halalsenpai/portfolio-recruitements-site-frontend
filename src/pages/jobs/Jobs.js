@@ -48,7 +48,7 @@ function Jobs() {
             <div className="jobs-wrapper">
                 <div className="jobs-list">
                     <MappedElement data={data} renderElement={(obj, index) => {
-                        return <CJobCard job={obj} key={obj.title} />
+                        return <CJobCard job={obj} key={index} />
                     }} />
                 </div>
                 <div className="job-details">

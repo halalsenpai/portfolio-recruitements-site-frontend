@@ -19,7 +19,7 @@ function CJobCard({ job }) {
                     </span>
                 </span>
             </span>
-            <span class="more-info">
+            <span className="more-info">
                 <p>{job.type}</p>
                 <p>{job.salary} AED-month</p>
             </span>

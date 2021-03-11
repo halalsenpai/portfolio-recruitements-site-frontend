@@ -4,6 +4,8 @@ import { FaRegHeart } from 'react-icons/fa'
 import { BsChat } from 'react-icons/bs';
 import { GoStar } from 'react-icons/go';
 import CImagesGallery from '../CImagesGallery/CImagesGallery';
+import GoogleMapReact from 'google-map-react';
+
 function CJobDetailsCard() {
     return (
         <div className="c-job-detail-card">
@@ -21,7 +23,7 @@ function CJobDetailsCard() {
                     </span>
                 </span>
 
-                <CButton themeColor="transparent small">View Jobs</CButton>
+                <CButton themeColor="transparent small" >View Jobs</CButton>
 
             </div>
 
@@ -123,7 +125,7 @@ function CJobDetailsCard() {
 
                         <CImagesGallery title="Company Photos" />
 
-                        <span className="content-block mt-4">
+                        <span className="content-block mt-4 pr-0">
 
                             <h6 className="block-title mb-3">Company Video </h6>
 
@@ -137,14 +139,31 @@ function CJobDetailsCard() {
                             </div>
                         </span>
 
-                        <span className="content-block mt-4">
+                        <span className="content-block mt-4 pr-0">
 
                             <h6 className="block-title mb-3">Map </h6>
 
                             <div className="block-video">
 
+                                <div className="block-map">
+
+                                    <GoogleMapReact
+                                        bootstrapURLKeys={{ key: 'AIzaSyDxfSNbgNkKIDu45-aJdQpfHwMd7Dft3T4' }}
+                                        defaultCenter={{
+                                            lat: 59.95,
+                                            lng: 30.33
+                                        }}
+                                        defaultZoom={11}
+                                        yesIWantToUseGoogleMapApiInternals
+                                        // onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
+                                    >
+
+                                    </GoogleMapReact>
+
+                                </div>
 
                             </div>
+
                         </span>
 
                     </span>

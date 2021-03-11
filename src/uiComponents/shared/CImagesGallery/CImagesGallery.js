@@ -48,7 +48,7 @@ function CImagesGallery({ title = 'Photos', images = [
             >
                 <span className="images-container-modal">
                             <MappedElement data={images} renderElement={(obj, index) => {
-                                return  <Image src={obj.src} />
+                                return  <Image key={index} src={obj.src} />
             
                             }} />
                 </span>
