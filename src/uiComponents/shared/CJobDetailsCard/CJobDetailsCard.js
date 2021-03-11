@@ -155,9 +155,8 @@ function CJobDetailsCard() {
                                         }}
                                         defaultZoom={11}
                                         yesIWantToUseGoogleMapApiInternals
-                                        // onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
+                                    // onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
                                     >
-
                                     </GoogleMapReact>
 
                                 </div>
@@ -171,9 +170,27 @@ function CJobDetailsCard() {
 
                 </span>
 
+                <span className="content-box first">
+
+                    <span className="content-section">
+
+                        <span className="content-block">
+
+                            <h6 className="block-title">Other jobs in your sector</h6>
+
+                            <div className="">
+
+                            </div>
+
+                        </span>
+
+                    </span>
+
+                </span>
+
             </div>
 
-        </div >
+        </div>
     )
 }
 
