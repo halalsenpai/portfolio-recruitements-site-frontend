@@ -423,10 +423,10 @@ img{
     width: 100%;
   
   .ant-image{
-      width: 30%;
+      width: calc(33.33% - 10px);
       height: 100%;
-      margin: 0px 15px 15px 0px;
-      
+      margin: 5px 5px;
+
       .ant-image-img{
           height: 100%;    
       }

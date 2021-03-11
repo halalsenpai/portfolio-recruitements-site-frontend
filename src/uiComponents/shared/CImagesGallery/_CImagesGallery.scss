@@ -27,7 +27,7 @@
         max-height: 200px;
 
         .ant-image{
-            width: 30%;
+            width: calc(33.33% - 10px);
             height: 100%;
             
             .ant-image-img{
