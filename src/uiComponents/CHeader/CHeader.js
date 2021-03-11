@@ -40,7 +40,7 @@ function CHeader() {
                 </nav>
                 <nav className="align-items-center" >
                     <Link to="/login" className="login b-text">Login</Link>
-                    <Link to="/signup">
+                    <Link className="text-decoration-none" to="/signup">
                         <button className="c-button primary">
                             Sign Up
                         </button>

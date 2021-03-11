@@ -52,6 +52,9 @@
                 }
             }
         }
+        p,a{
+            font-family: $font-light !important;
+            }
     }
 }
     .more-info{
@@ -60,6 +63,9 @@
         align-items: center;
         justify-content: flex-end;
         height: 100%;
+        p,a{
+        font-family: $font-light !important;
+        }
     }
     .tag{
         position: absolute;

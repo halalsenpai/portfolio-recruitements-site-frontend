@@ -6,20 +6,20 @@ html *
    font-family: Montserrat-Medium ;
 }
 .b-text{
-  font-family: Montserrat-Bold !important;
+  font-family: Montserrat-Bold ;
 }
 
 p,a,span,li {
   font-size: $font-size-md;
   color: $text-color;
-  font-family: Montserrat-Light !important;
+  font-family: $font-medium;
 }
 .color-text{
   color:$text-color;
 }
 mark{
   background: transparent;
-  font-family: Montserrat-Bold !important;
+  font-family: Montserrat-Bold ;
   color:$primary;
   padding: 0px;
   &.blue {
