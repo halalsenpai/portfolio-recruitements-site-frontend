@@ -12,7 +12,7 @@ function Pricing() {
                     <div className="prices-wrapper">
                         <div className="pc-box">
                             <span className="header">
-                                <img class="back-img" src={require('../../assets/images/pricing/pc-1.png')} alt="icon" />
+                                <img className="back-img" src={require('../../assets/images/pricing/pc-1.png')} alt="icon" />
                                 <p>Standard</p>
                                 <h2>£300</h2>
                                 <p>per ad</p>

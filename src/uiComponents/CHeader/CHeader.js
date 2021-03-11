@@ -4,17 +4,13 @@ import LogoImage from '../../assets/images/logo/logo-md.png';
 import { useHistory, useLocation } from 'react-router-dom';
 
 function CHeader() {
-    const history = useHistory();
-    const [currentPath,setCurrentPath] = useState('');
-    const { pathname } = history.location;
-    useEffect(() => {
-        setCurrentPath(pathname);
-    }, [pathname]);
+
+    const [currentPath,setCurrentPath] = useState(window.location.pathname);
+
     const getActiveClassForPath = (currentLocation, path) => {
-
         return currentLocation === path ? 'active b-text' : ''
-
     }
+
     return (
         <div className="c-header">
             <span className="inner-container">
@@ -23,22 +19,26 @@ function CHeader() {
                     <Link to="/" >Post a free job</Link>
                     <Link
                         to="/employee-and-agencies"
+                        onClick={()=>setCurrentPath('/employee-and-agencies')}
                         className={getActiveClassForPath(currentPath, '/employee-and-agencies')}>
                         Employers & agencies
                         </Link>
                     <Link
                         to="/job-seekers"
+                        onClick={()=>setCurrentPath('/job-seekers')}
                         className={getActiveClassForPath(currentPath, '/job-seekers')}>
                         Job Seekers
                     </Link>
                     <Link
                         to="/jobs"
+                        onClick={()=>setCurrentPath('/jobs')}
                         className={getActiveClassForPath(currentPath, '/jobs')}>
                             Jobs
                             </Link>
                     <Link to="/">Services</Link>
                     <Link
                         to="/pricing"
+                        onClick={()=>setCurrentPath('/pricing')}
                         className={getActiveClassForPath(currentPath, '/pricing')}>
                         Pricing
                     </Link>
