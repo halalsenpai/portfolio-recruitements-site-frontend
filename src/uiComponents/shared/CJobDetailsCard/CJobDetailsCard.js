@@ -172,7 +172,7 @@ function CJobDetailsCard() {
 
                 <span className="content-box first">
 
-                    <span className="content-section">
+                    <span className="content-section">  
 
                         <span className="content-block">
 
