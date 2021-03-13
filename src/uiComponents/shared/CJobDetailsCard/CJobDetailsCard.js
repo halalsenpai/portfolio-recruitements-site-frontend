@@ -7,6 +7,7 @@ import CImagesGallery from '../CImagesGallery/CImagesGallery';
 import GoogleMapReact from 'google-map-react';
 import { MappedElement } from '../../../utils/helper';
 import CJobCard from '../CJobCard/CJobCard';
+import CJobsCarousel from '../CJobsCarousel/CJobsCarousel';
 
 function CJobDetailsCard({ jobs }) {
     return (
@@ -181,9 +182,9 @@ function CJobDetailsCard({ jobs }) {
                             <h6 className="block-title">Other jobs in your sector</h6>
 
                             <div className="block-more">
-                                <MappedElement data={jobs.slice(0, 4)} renderElement={(obj, index) => {
-                                    return <CJobCard job={obj} type="box" />
-                                }} />
+                                
+                                <CJobsCarousel jobs={jobs.slice(0, 4)} />
+                    
                             </div>
 
                         </span>
@@ -201,9 +202,9 @@ function CJobDetailsCard({ jobs }) {
                             <h6 className="block-title">Other jobs by this company</h6>
 
                             <div className="block-more">
-                                <MappedElement data={jobs.slice(0, 4)} renderElement={(obj, index) => {
-                                    return <CJobCard job={obj} type="box" />
-                                }} />
+
+                                <CJobsCarousel jobs={jobs.slice(0, 4)} />
+                    
                             </div>
 
                         </span>
