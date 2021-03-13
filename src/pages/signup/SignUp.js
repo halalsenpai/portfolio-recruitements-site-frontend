@@ -1,51 +1,101 @@
-import { Input, Form } from 'antd';
+import { Input, Form, Radio } from 'antd';
 import Checkbox from 'antd/lib/checkbox/Checkbox';
 import React from 'react'
 import { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import CButton from '../../uiComponents/shared/CButton/CButton';
+import { userTypes } from '../../utils/constants';
+
 
 function SignUp() {
+    const [role,setRole] = useState(userTypes.SEEKER);
     const history = useHistory();
+  
+    const onFinish = () =>{
+        
+        switch(role){
+            case userTypes.SEEKER:
+                history.push('user-signup');
+                return;
+            case userTypes.EMPLOYER:
+                history.push('employer-signup');
+                return;
+            case userTypes.AGENCY:
+                history.push('agency-signup');
+                return;
+            default:
+                history.push('user-signup');
+                return;
+
+        }
+    }
+
+     const onChange = e => {
+
+        console.log('radio checked', e.target.value);
+
+       setRole( e.target.value);
+
+      };
+
     return (
         <div className="c-container auth-wrapper">
-            <div className="c-card-container ">
-                <div className="first-container">
-                    <img className="small" src={require('../../assets/images/icons/signup-icons/signup-icon.svg')} alt="logo" />
-                    <img  src={require('../../assets/images/logo/logo-white.png')} alt="logo" />
+
+            <div className="signup-container with-form role-container">
+
+                <div className="first-container role-select">
+
+                    <img src={require('../../assets/images/logo/logo-white.png')} alt="logo" />
+
                 </div>
-                <div className="second-container signup-container flex-row with-pad">
-                        <div className="wrapper" onClick={() => history.push('/user-signup')}>
-                            <div className="user-type seeker">
-                                <span className="" >
-                                    <div className="inner-container">
-                                        <img src={require('../../assets/images/icons/user-icon.svg')} alt="seeker" />
-                                        <p>Job Seeker</p>
-                                    </div>
-                                </span>
-                            </div>
-                        </div>
-                        <div className="wrapper" onClick={() => history.push('/employer-signup')}>
-                            <div className="user-type employer">
-                                <span className="" >
-                                    <div className="inner-container">
-                                        <img src={require('../../assets/images/icons/employee-signup-icons/employee-icon.svg')} alt="employer" />
-                                        <p>Employer</p>
-                                    </div>
-                                </span>
-                            </div>
-                        </div>
-                        <div className="wrapper" onClick={() => history.push('/agency-signup')}>
-                            <div className="user-type agency">
-                                <span className="" >
-                                    <div className="inner-container">
-                                        <img src={require('../../assets/images/icons/agency-icon.svg')} alt="agency" />
-                                        <p>Agency</p>
-                                    </div>
-                                </span>
-                            </div>
-                        </div>
-                </div>
+                <Form className="second-container c-form w-100" onFinish={onFinish}>
+
+                <img src={require('../../assets/images/auth/signup-illus.png')} alt="logo" />
+
+                    <span class="mt-3">
+
+                    <h3 className="form-title">
+                        
+                        <mark>Create an account</mark>
+                        
+                    </h3>
+                    
+                    <Radio.Group onChange={onChange} value={role}>
+
+                        <Radio value={userTypes.SEEKER}>
+                            I'm looking for jobs
+                        </Radio>
+
+                        <Radio value={userTypes.EMPLOYER}>
+                            I'm an employer
+                        </Radio>
+
+                        <Radio value={userTypes.AGENCY}>
+                             I'm a recruiter
+                        </Radio>
+                    </Radio.Group>
+
+                    </span>
+
+                    <Form.Item>
+
+                        <CButton
+                           
+                            type="large"
+                            htmlType="submit"
+                            // loading={true}
+                            block
+                        >
+                            Next
+                        
+                         </CButton>
+
+                    </Form.Item>
+
+                </Form>
+
             </div>
+
         </div>
     )
 
