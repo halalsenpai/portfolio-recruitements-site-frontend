@@ -13,86 +13,138 @@
     box-shadow: 1px 1px 10px rgba(0, 0, 0, .3) !important;
     transition: 0.3s all linear;
     cursor: pointer;
-    p{
-        margin: 0px;
-        font-size: $font-size-sm;
-    }
-    .info-wrapper{ 
+
+        p { 
+
+            margin: 0px;
+            font-size: $font-size-sm;
+            
+        }
+
+         .info-wrapper { 
         display: flex;
         height: 100%;
-    align-items: center;
-    .job-thumbnail{
-        max-width: 60px;
-        max-height: 60px;
-        border-radius: 5px;
-        margin: 0px 10px 0px 0px;
-    }
-    .info{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: flex-start;
-        height: 100%;
-        .title-row{
+        align-items: center;
+
+        .job-thumbnail {
+
+            max-width: 60px;
+            max-height: 60px;
+            border-radius: 5px;
+            margin: 0px 10px 0px 0px;
+
+        }
+        .info{
             display: flex;
-            align-items: center;
-            .title{
-                font-size: $font-size-md;
-                margin: 0px;
-            }
-            .location-container{
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+            height: 100%;
+
+            .title-row{
                 display: flex;
-                margin: 0px 0px 0px 10px;
-                .location-icon{
-                    max-width: 10px;
+                align-items: center;
+
+                .title {
+
+                    font-size: $font-size-md;
+                    margin: 0px;
+
                 }
+
+                .location-container {
+
+                    display: flex;
+                    margin: 0px 0px 0px 10px;
+
+                .location-icon {
+
+                    max-width: 10px;
+
+                }
+
                 .location-text {
+
                     margin: 0px 0px 0px 5px;
                     font-size: $font-size-sm;
+
                 }
+
             }
+
         }
-        p,a{
+
+        p,a {
+
             font-family: $font-light !important;
+
+        }
+
+    }
+
             }
-    }
-}
-    .more-info{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-end;
-        height: 100%;
-        p,a{
-        font-family: $font-light !important;
+            
+        .more-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            height: 100%;
+
+            p,a {
+
+            font-family: $font-light !important;
+
+            }
         }
-    }
-    .tag{
-        position: absolute;
-        top: -16px;
-        right: 0px;
-        height: 47px;
-        width: 140px;
-        background: url('../../../assets/images/icons/tag-back-icon.svg');
-        background-size: cover;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 3px 0px 0px 0px;
-        .tag-icon{
-            width: 13px;
-            margin-right: 3px;
+
+        .tag{
+            position: absolute;
+            top: -16px;
+            right: 0px;
+            height: 47px;
+            width: 140px;
+            background: url('../../../assets/images/icons/tag-back-icon.svg');
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3px 0px 0px 0px;
+            display: none;
+
+            .tag-icon {
+
+                width: 13px;
+                margin-right: 3px;
+
+            }
+
+            .tag-text {
+
+                color: $white;
+                font-size: 9px;
+                font-family: $font-medium !important;
+
+            }
+
         }
-        .tag-text{
-            color: $white;
-            font-size: 9px;
-            font-family: $font-medium !important;
-        }
-    }
-    &:hover{
+
+    &:hover {
+
         box-shadow: rgba(255, 36, 94, 0.5) 2px 2px 9px !important;
+
     }
-    &.active{
+
+    &.active {
+
         box-shadow: rgba(255, 36, 94, 0.5) 2px 2px 9px !important;
+
     }
+
+    &.featured {
+        .tag{
+            display: flex;
+        }
+    }
+    
 }
