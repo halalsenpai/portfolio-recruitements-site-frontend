@@ -174,14 +174,34 @@ function CJobDetailsCard({ jobs }) {
 
                 <span className="content-box first">
 
-                    <span className="content-section">  
+                    <span className="content-section">
 
                         <span className="content-block">
 
                             <h6 className="block-title">Other jobs in your sector</h6>
 
                             <div className="block-more">
-                                <MappedElement data={jobs} renderElement={(obj,index)=>{
+                                <MappedElement data={jobs.slice(0, 4)} renderElement={(obj, index) => {
+                                    return <CJobCard job={obj} type="box" />
+                                }} />
+                            </div>
+
+                        </span>
+
+                    </span>
+
+                </span>
+
+                <span className="content-box first">
+
+                    <span className="content-section">
+
+                        <span className="content-block">
+
+                            <h6 className="block-title">Other jobs by this company</h6>
+
+                            <div className="block-more">
+                                <MappedElement data={jobs.slice(0, 4)} renderElement={(obj, index) => {
                                     return <CJobCard job={obj} type="box" />
                                 }} />
                             </div>
@@ -194,7 +214,7 @@ function CJobDetailsCard({ jobs }) {
 
             </div>
 
-        </div>
+        </div >
     )
 }
 
