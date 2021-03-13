@@ -52,7 +52,7 @@ function Jobs() {
                     }} />
                 </div>
                 <div className="job-details">
-                    <CJobDetailsCard />
+                    <CJobDetailsCard jobs={data} />
                 </div>
             </div>
         </div>

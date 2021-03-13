@@ -5,8 +5,10 @@ import { BsChat } from 'react-icons/bs';
 import { GoStar } from 'react-icons/go';
 import CImagesGallery from '../CImagesGallery/CImagesGallery';
 import GoogleMapReact from 'google-map-react';
+import { MappedElement } from '../../../utils/helper';
+import CJobCard from '../CJobCard/CJobCard';
 
-function CJobDetailsCard() {
+function CJobDetailsCard({ jobs }) {
     return (
         <div className="c-job-detail-card">
             <div className="header">
@@ -178,8 +180,10 @@ function CJobDetailsCard() {
 
                             <h6 className="block-title">Other jobs in your sector</h6>
 
-                            <div className="">
-
+                            <div className="block-more">
+                                <MappedElement data={jobs} renderElement={(obj,index)=>{
+                                    return <CJobCard job={obj} type="box" />
+                                }} />
                             </div>
 
                         </span>

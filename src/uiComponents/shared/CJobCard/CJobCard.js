@@ -1,8 +1,8 @@
 import React from 'react'
 
-function CJobCard({ job }) {
+function CJobCard({ job, type }) {
     return (
-        <div className={`c-job-card ${ job.featured && 'featured' } `}>
+        <div className={`c-job-card ${ job.featured && 'featured' } ${type} `}>
 
             <span className="info-wrapper">
 

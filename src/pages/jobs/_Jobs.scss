@@ -103,7 +103,7 @@
             overflow: hidden;
             flex: 1;
             height: calc(100vh - 180px);
-            overflow: auto;
+            overflow-y: auto;
         }
 
     }
