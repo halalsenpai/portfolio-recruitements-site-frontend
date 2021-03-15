@@ -68,6 +68,9 @@ img{
     padding: 0px 0px 0px 150px;
   }
   &.small{
+    min-height: 100px;
+  }
+  &.medium{
     min-height: 200px;
   }
   img{

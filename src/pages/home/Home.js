@@ -53,7 +53,7 @@ function Home() {
 
             </div>
 
-            <div className="c-container-centered-content  mb-2 small">
+            <div className="c-container-centered-content  mb-2 medium justify-content-end">
 
                 <h2 className="main-heading">
                     Employers, agencies, jobseekers,</h2>
