@@ -32,7 +32,7 @@ function CBannerWithImages() {
         return Math.floor(Math.random() * 15) + 1;
     }
     const renderImage = (imageSrc) => {
-        return  <Fade key={imageSrc} bottom duration={1000}><Flip bottom   duration={1500}>
+        return  <Fade key={imageSrc} bottom duration={700}><Flip bottom   duration={1500}>
             <img src={require(`../../../assets/images/ms/ms-${imageSrc}.png`)} />
         </Flip></Fade>
     }
