@@ -15,29 +15,29 @@ function Home() {
                     <div className="col-lg-6 first-banner-heading-container">
 
                         <span className="inner-container">
+                            <Slide bottom duration={100}>
+                                <Slide bottom duration={400}>
+                                    <h2 className="main-heading">THE <mark>SMARTEST </mark> JOBSITE IN THE MIDDLE EAST.</h2>
+                                </Slide>
 
-                            <Slide bottom duration={400}>
-                                <h2 className="main-heading">THE <mark>SMARTEST </mark> JOBSITE IN THE MIDDLE EAST.</h2>
+                                <Slide bottom duration={1600}>
+                                    <h5 className="sub-heading color-text">You asked, we delivered.</h5>
+                                </Slide>
+
+                                <Slide bottom duration={1500}>
+
+                                    <p className="pr-4 mb-4">We asked a 100 companies, and 1000 job seekers what they struggle with  when searching on job sites, and we got the answers, so we built the smartest  and the most advanced recruitment platform, free to use for everyone across the globe!</p>
+
+
+                                </Slide>
+
+                                <Slide bottom duration={2200}>
+
+                                    <CButton className="mt-4" type={'large'}>Get Started <img className="ml-2" src={require('../../assets/images/icons/right-arrow-icon.svg')} alt="->" /></CButton>
+
+                                </Slide>
+
                             </Slide>
-
-                            <Slide bottom duration={1600}>
-                                <h5 className="sub-heading color-text">You asked, we delivered.</h5>
-                            </Slide>
-
-                            <Slide bottom duration={1500}>
-
-                                <p className="pr-4 mb-4">We asked a 100 companies, and 1000 job seekers what they struggle with  when searching on job sites, and we got the answers, so we built the smartest  and the most advanced recruitment platform, free to use for everyone across the globe!</p>
-                               
-                            
-                            </Slide>
-
-                            <Slide bottom duration={2200}>
-
-                            <CButton className="mt-4" type={'large'}>Get Started <img className="ml-2" src={require('../../assets/images/icons/right-arrow-icon.svg')} alt="->" /></CButton>                               
-                            
-                            </Slide>
-                               
-                           
 
                         </span>
 
@@ -48,7 +48,7 @@ function Home() {
                         <CBannerWithImages />
 
                     </div>
-                    
+
                 </div>
 
             </div>
@@ -149,9 +149,9 @@ function Home() {
                         {/* <h4 className="b-text">Looking for a new job?</h4> */}
 
                         <span className="inner-container">
-                            
+
                             <Fade bottom duration={1500}>
-                                
+
                                 <div className="box">
 
                                     <img src={require('../../assets/images/icons/ma/ma-1.svg')} alt="img" />
