@@ -7,14 +7,17 @@ function CBannerWithImages() {
     const [images, setImages] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
     const interval = useRef(null);
     useEffect(() => {
-        interval.current = setInterval(() => shuffleImages(), 4000);
+        interval.current = setInterval(() => shuffleImages(), 2000);
         return () => {
             clearInterval(interval.current)
         }
     }, [])
     const shuffleImages = async () => {
+
         let indexes = [getRNo(), getRNo(),getRNo()];
+
         let currentImages = [...images];
+
         await indexes.forEach(index => {
             let isUniqueImage = false;
             while (!isUniqueImage) {
@@ -25,16 +28,18 @@ function CBannerWithImages() {
                 }
             }
         });
+
         setImages(currentImages);
+
     }
 
     const getRNo = () => {
         return Math.floor(Math.random() * 15) + 1;
     }
     const renderImage = (imageSrc) => {
-        return  <Fade key={imageSrc} bottom duration={700}><Flip bottom   duration={1500}>
+        return  <Flip key={imageSrc} right   duration={1500}>
             <img src={require(`../../../assets/images/ms/ms-${imageSrc}.png`)} />
-        </Flip></Fade>
+        </Flip>
     }
     return (
         <div className="c-banner-with-images">
