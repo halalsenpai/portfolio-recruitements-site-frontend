@@ -3,6 +3,7 @@ import CBannerWithImages from '../../uiComponents/shared/CBannerWithImages/CBann
 import CButton from '../../uiComponents/shared/CButton/CButton';
 import Fade from 'react-reveal/Fade';
 import Slide from 'react-reveal/Slide';
+
 function Home() {
     return (
 

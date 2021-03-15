@@ -3,12 +3,13 @@
         display: flex;
         flex-wrap: nowrap;
         justify-content: flex-end;
+        overflow: hidden;
         >div {
                 width: 33.3333%;
         }
         img{
-         height: 100%;
-         width: 100%;
+            width: 32%;
+            height: auto;
         }
     }
 }
