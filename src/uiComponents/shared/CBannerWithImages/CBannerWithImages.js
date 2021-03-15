@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import CrossfadeImage from 'react-crossfade-image';
 import Flip from 'react-reveal/Flip';
+import Fade from 'react-reveal/Fade';
 
 function CBannerWithImages() {
     const [images, setImages] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
@@ -31,9 +32,9 @@ function CBannerWithImages() {
         return Math.floor(Math.random() * 15) + 1;
     }
     const renderImage = (imageSrc) => {
-        return <Flip bottom cascade key={imageSrc} duration={2000}>
+        return  <Fade key={imageSrc} bottom duration={1000}><Flip bottom   duration={1500}>
             <img src={require(`../../../assets/images/ms/ms-${imageSrc}.png`)} />
-        </Flip>
+        </Flip></Fade>
     }
     return (
         <div className="c-banner-with-images">
