@@ -113,6 +113,7 @@ img{
 }
 .c-input {
   position: relative;
+
   input {
     font-size: $font-size-md;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, .3) !important;
@@ -122,14 +123,23 @@ img{
     padding: 0 18px !important;
     box-shadow: 0 0 16px rgba(0, 0, 0, .3);
     background: $white !important;
+
     &.ant-input-lg{
+
       width: 400px;
+
     }
+
     &.ant-input-sm{
+
       width: 300px;
+
     }
+
     &.xs{
+
       width: 200px;
+
     }
     &::placeholder {
       // color: $text-color;
@@ -137,40 +147,58 @@ img{
     }
 
     &:hover {
+
       border: none;
       border-right-width:0px !important;
+
     }
 
     &:focus {
+
       border-color: $primary;
+
     }
+
   }
 
   &.c-input-with-icon {
+
     .ant-form-item-control-input-content {
+
       position: relative;
       display: flex;
       align-items: center;
       flex-direction: row;
+
       .input-icon {
+
         position: absolute;
         left: 12px;
         z-index: 1;
         max-width: 17px;
+
       }
 
       input {
+
         padding: 0 15px 0 35px !important;
+
       }
+
     }
+
   }
 
   .ant-form-item-explain {
+
     div {
+
       font-size: 14px;
       // font-family: $font-regular;
     }
+
   }
+
 }
 .ant-input-password{
   border: none !important;
@@ -300,11 +328,12 @@ img{
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 200px;
+      height: 170px;
       background: transparent url("../../assets/images/auth/login-background.png") 0% 0% no-repeat padding-box;
       background-position: top;
       background-repeat: no-repeat;
-      background-size: cover;
+      background-size: 100% 100%;
+      
       img{
           width: 320px;
           &.small{
