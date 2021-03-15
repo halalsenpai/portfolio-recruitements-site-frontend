@@ -12,7 +12,7 @@ function CBannerWithImages() {
         }
     }, [])
     const shuffleImages = async () => {
-        let indexes = [getRNo(), getRNo()];
+        let indexes = [getRNo(), getRNo(),getRNo()];
         let currentImages = [...images];
         await indexes.forEach(index => {
             let isUniqueImage = false;
