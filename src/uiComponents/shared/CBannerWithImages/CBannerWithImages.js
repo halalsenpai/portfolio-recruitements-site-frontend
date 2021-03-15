@@ -29,7 +29,7 @@ function CBannerWithImages() {
        return Math.floor(Math.random() * 15)+1;
     }
     const renderImage = (imageSrc)=>{
-        return <CrossfadeImage duration={500} src={require(`../../../assets/images/ms/ms-${imageSrc}.png`)} />
+        return <CrossfadeImage duration={800} src={require(`../../../assets/images/ms/ms-${imageSrc}.png`)} />
     }
     return (
         <div className="c-banner-with-images">
