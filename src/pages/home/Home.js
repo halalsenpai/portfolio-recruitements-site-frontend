@@ -33,7 +33,7 @@ function Home() {
 
                                 <Slide bottom duration={2200}>
 
-                                    <CButton className="mt-4" type={'large'}>Get Started <img className="ml-2" src={require('../../assets/images/icons/right-arrow-icon.svg')} alt="->" /></CButton>
+                                    <CButton className="mt-4" type={'large'}>Get Started <img className="animated-icon" src={require('../../assets/images/icons/right-arrow-icon.svg')} alt="->" /></CButton>
 
                                 </Slide>
 
