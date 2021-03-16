@@ -1,0 +1,54 @@
+.task-width {
+  width: 450px;
+  height: 600px;
+  overflow-y: scroll;
+
+  margin-top: 3.5em;
+}
+.task-btn > a {
+  margin-left: 8px;
+}
+.edit {
+  color: $blue;
+}
+.delete {
+  color: $primary;
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 1em;
+}
+.task-header-left {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.task-header-right {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  & > a {
+    margin-inline: 0.4em;
+
+    &:hover {
+      text-decoration: unset;
+    }
+  }
+}
+.task-header-heading {
+  margin: 0 0 0 7px;
+  padding: 0;
+
+  font-size: $font-size-lg;
+  font-family: $font-bold;
+  color: $text-color;
+}
+.add-task-btn {
+  margin-left: 0.6em;
+}
+.ant-divider {
+  margin-block: 1em;
+}

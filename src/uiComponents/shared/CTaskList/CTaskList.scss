@@ -1,0 +1,67 @@
+.task-list {
+  .task-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 1em;
+  }
+  .task-description {
+    font-size: $font-size-sm;
+    padding: 0;
+    margin: 2px 0 0 7px;
+  }
+  .expand-icon {
+    margin-top: 1px;
+  }
+  // Custom Task Edit Section
+  .date-save-div {
+    margin-top: 1em;
+    display: flex;
+    justify-content: space-between;
+  }
+  .ant-form-item {
+    margin-bottom: 0;
+  }
+}
+
+// Custom Tag Style
+
+.custom-tag {
+  border-radius: 100px !important;
+  min-width: fit-content;
+  color: white !important;
+  background: $brown;
+  cursor: pointer !important;
+  text-align: center;
+  width: 70px;
+  font-size: $font-size-x-sm;
+  margin: 0;
+
+  //  Types of tags
+  &.complete {
+    background-color: $green;
+  }
+  &.due {
+    background-color: $text-color;
+  }
+  &.due-today {
+    background-color: $primary;
+  }
+  &.save {
+    background: $blue;
+  }
+}
+
+// Custom Task Edit
+.c-task-edit {
+  padding-inline: 1em;
+
+  .date-save-div {
+    margin-top: 1em;
+    display: flex;
+    justify-content: space-between;
+  }
+  .ant-form-item {
+    margin-bottom: 0;
+  }
+}
