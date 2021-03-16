@@ -1,34 +1,28 @@
 import React from "react";
 import { Input, Form, Select, Popover, DatePicker } from "antd";
 import PhoneInput from "react-phone-input-international";
-import CButton from "../../uiComponents/shared/CButton/CButton";
+import CButton from "../../shared/CButton/CButton"
+import * as Rules from "../../../utils/rules";
 
-//modal imports
-
-import Modal from "../../uiComponents/shared/CModal/CModal"
-import Checkbox from 'antd/lib/checkbox/Checkbox';
-
-
-import * as Rules from "../../utils/rules";
 const { Option } = Select;
 
 const DashboardFrom = () => {
-//   const WithHintText = ({ children }) => (
-//     <Popover
-//       placement="topLeft"
-//       overlayInnerStyle={{ width: 400 }}
-//       content={helperText}
-//       trigger="click"
-//     >
-//       {children}
-//     </Popover>
-//   );
-//   let helperText =
-//     "This helps employers understand your family needs and accommodate accordingly such as booking you flights, providing accommodation and benefits such as free or discounted tuition fees.";
+  const WithHintText = ({ children }) => (
+    <Popover
+      placement="topLeft"
+      overlayInnerStyle={{ width: 400 }}
+      content={helperText}
+      trigger="click"
+    >
+      {children}
+    </Popover>
+  );
+  let helperText =
+    "This helps employers understand your family needs and accommodate accordingly such as booking you flights, providing accommodation and benefits such as free or discounted tuition fees.";
 
   return (
     <>
-      {/* <div className="dash-formContainer">
+      <div className="dash-formContainer">
 
         <div className="form-sections">
 
@@ -36,7 +30,7 @@ const DashboardFrom = () => {
 
             <div className="form-types">
 
-              <img class=""  src={require("../../assets/images/icons/dashboard/Path 50.svg")}   alt="" />
+              <img class=""  src={require("../../../assets/images/icons/dashboard/Path 50.svg")}   alt="" />
               <h5>
                 <b>Personal Info</b>
               </h5>
@@ -58,7 +52,7 @@ const DashboardFrom = () => {
                   <WithHintText>
                     <img
                       class="label-icon"
-                      src={require("../../assets/images/icons/information-icon.svg")}
+                      src={require("../../../assets/images/icons/information-icon.svg")}
                       alt=""
                     />
                   </WithHintText>
@@ -83,7 +77,7 @@ const DashboardFrom = () => {
                   <label className="required"> Gender </label>
 
                   <WithHintText>
-                    <img class="label-icon" src={require("../../assets/images/icons/information-icon.svg")}  alt="" />
+                    <img class="label-icon" src={require("../../../assets/images/icons/information-icon.svg")}  alt="" />
                   </WithHintText>
 
                 </div>
@@ -117,7 +111,7 @@ const DashboardFrom = () => {
                   <label className="required">Passport nationality</label>
 
                   <WithHintText>
-                    <img class="label-icon" src={require("../../assets/images/icons/information-icon.svg")}  alt="" />
+                    <img class="label-icon" src={require("../../../assets/images/icons/information-icon.svg")}  alt="" />
                   </WithHintText>
 
                 </div>
@@ -134,7 +128,7 @@ const DashboardFrom = () => {
 
             <div className="form-types">
 
-              <img class="" src={require("../../assets/images/icons/dashboard/Union 11.svg")} alt="" />
+              <img class="" src={require("../../../assets/images/icons/dashboard/Union 11.svg")} alt="" />
 
               <h5>
                 <b>Social</b>
@@ -196,7 +190,7 @@ const DashboardFrom = () => {
             </div>
 
             <div className="form-types">
-              <img class="" src={require("../../assets/images/icons/dashboard/Group 4803.svg")} alt="" />
+              <img class="" src={require("../../../assets/images/icons/dashboard/Group 4803.svg")} alt="" />
 
               <h5>
                 <b>Other info</b>
@@ -351,7 +345,7 @@ const DashboardFrom = () => {
             </div>
 
             <div className="form-types">
-              <img class="" src={require("../../assets/images/icons/dashboard/Path 4042.svg")} alt="" />
+              <img class="" src={require("../../../assets/images/icons/dashboard/Path 4042.svg")} alt="" />
 
               <h5>
                 <b>Destinations</b>
@@ -423,125 +417,7 @@ const DashboardFrom = () => {
 
         </div>
 
-      </div> */}
-
-      <Modal  show={true} >
-          <div className="modal-formContainer">
-
-            <div className="modal-type">
-
-                <h5>Add education</h5>
-
-            </div>
-            <Form className="c-form second-container align-items-start">
-
-                <div className="m-form-row spacing">
-
-                    <Form.Item name="email" className="c-input" rules={Rules.emailRule}>
-
-                        <div className="c-label">
-                            <label className="required">Qualification</label>
-                        </div>
-
-                        <Select size="large" defaultValue="" style={{ width: 120 }}>
-                            <Option value="">Select</Option>
-                        </Select>
-
-                    </Form.Item>
-
-                    <Form.Item name="email" className="c-input" rules={Rules.emailRule}>
-
-                        <div className="c-label">
-                            <label className="required">Subject / Field of study</label>
-                        </div>
-
-                        <Select size="large" defaultValue="" style={{ width: 120 }}>
-                            <Option value="">Select</Option>
-                        </Select>
-
-                    </Form.Item>
-
-                </div>
-
-                <div className="m-form-row">
-                    
-                    <Form.Item name="firstName" className="c-input w-100 " rules={Rules.firstNameRule}>
-
-                        <label className="required">Desired locations to work in</label>
-                        <Input className="w-100" placeholder="" size="large" type="text" />
-                    
-                    </Form.Item>
-
-                </div>
-
-                <div className="m-form-row spacing">
-
-                    <Form.Item name="dateOfbirth" className="c-input " rules={Rules.phoneRule}>
-
-                    <label className="required">Start year</label>
-                    <DatePicker />
-
-                    </Form.Item>
-
-                    <Form.Item name="dateOfbirth" className="c-input " rules={Rules.phoneRule}>
-
-                        <label className="required">End year</label>
-                        <DatePicker />
-
-                    </Form.Item>
-
-
-                    <Form.Item name="email" className="c-input" rules={Rules.emailRule}>
-
-                        <div className="c-label">
-                            <label className="required">Grade</label>
-                        </div>
-
-                        <Select size="large" defaultValue="" style={{ width: 120 }}>
-                            <Option value="">Select</Option>
-                        </Select>
-
-                    </Form.Item>
-
-                </div>
-
-                <div className="m-form-row">
-
-                    <Form.Item name="remember" className="mb-0" >
-
-                        <Checkbox value="">
-                            I currently study here
-                        </Checkbox>
-
-                    </Form.Item>
-                </div>
-                <div className="m-form-row">
-                    <textarea className="w-100 my-4">
-
-                    </textarea>
-                </div>
-                <div className="m-form-row left-align">
-
-                    <CButton 
-                    themeColor="light" 
-                    type="large" 
-                    htmlType="submit"
-                    // loading={true}
-                    block
-                    >
-
-                    Update
-
-                    </CButton>
-
-                </div>
-
-
-            </Form>
-
-          </div>    
-      </Modal>
-
+      </div>
     </>
   );
 };
