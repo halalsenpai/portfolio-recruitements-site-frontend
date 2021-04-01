@@ -2,16 +2,40 @@
   .task-div {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding-inline: 1em;
+    align-items: flex-start;
+    padding: 1em;
+    cursor: pointer;
   }
   .task-description {
     font-size: $font-size-sm;
     padding: 0;
     margin: 2px 0 0 7px;
+    width: 260px;
+    height: 18px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    &.expanded{
+      white-space: normal;
+      height: auto;
+    }
   }
-  .expand-icon {
+  .expand {
     margin-top: 1px;
+    cursor: pointer;
+    transition: transform ease 450ms;
+
+    &:hover{
+      transform: translateY(-1px);
+      
+    }
+    
+  }
+  .collapse{
+    margin-top: 1px;
+    cursor: pointer;
+    transform: rotate(9);
+    
   }
   // Custom Task Edit Section
   .date-save-div {
@@ -54,7 +78,7 @@
 
 // Custom Task Edit
 .c-task-edit {
-  padding-inline: 1em;
+  padding: 1em;
 
   .date-save-div {
     margin-top: 1em;

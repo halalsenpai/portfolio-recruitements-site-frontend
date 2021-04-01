@@ -15,6 +15,9 @@ import Pricing from "../pages/pricing/Pricing";
 import Jobs from "../pages/jobs/Jobs";
 import ForgotPassword from "../pages/forgotPassword/ForgotPassword";
 import TaskList from "../pages/TestPage/TaskList";
+import ChatList from "../pages/ChatTest/ChatList";
+import CInterviewCard from "../uiComponents/shared/CInterviewCard/CInterviewCard";
+import Sandbox from "../pages/Sandbox";
 function Routing() {
   return (
     <Fragment>
@@ -39,6 +42,7 @@ function Routing() {
         <Route exact path="/jobs" component={Jobs} />
         <Route path="/about" component={About} />
         <Route path="/test" component={TaskList} />
+        <Route path="/sandbox" component={Sandbox} />
 
         <Route
           path="*"

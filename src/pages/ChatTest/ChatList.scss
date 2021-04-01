@@ -1,0 +1,77 @@
+.chat-list-panel{
+    width: 400px;
+    margin-bottom: 50px;
+    height: 87vh;
+    overflow-y: scroll;
+    
+    .selector-div{
+
+        display: flex;
+        align-items: center;
+        padding: 1em 0.5em;
+
+        .dropdown{
+
+            margin: 0 0 0 1em;
+
+           
+        }
+        .notification-count{
+            padding: 0;
+            margin: 0 0 0 0.5em;
+            background-color: $primary;
+            width: 15px;
+            height: 15px;
+            border-radius: 25px;
+            text-align: center;
+            font-size: $font-size-x-sm;
+            color: white;
+            
+        }
+
+    }
+ 
+
+       
+
+        .search-inner-div{
+            padding: 1em;
+
+            .ant-form-item{
+                margin: 0;
+            }
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .ant-btn {
+                &:hover{
+                color: $primary !important;
+                }
+                &:focus{
+                    color: $primary !important;
+                }
+
+            }
+         .filters{
+
+            .filter-icon{
+                margin: 0 0 0 1em;
+            }
+         }
+         .c-overlay{
+
+            margin-top: 5em;
+         }
+         .dropdown{
+
+            .ant-dropdown{
+                margin-top: 3em !important;
+            }
+         } 
+         
+        }
+
+    }
+
