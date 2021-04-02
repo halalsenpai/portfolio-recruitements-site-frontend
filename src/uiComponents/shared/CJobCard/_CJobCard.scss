@@ -132,13 +132,15 @@
 
     &:hover {
 
-        box-shadow: rgba(255, 36, 94, 0.5) 2px 2px 9px !important;
+        box-shadow: $primary 2px 2px 9px !important;
+
 
     }
 
     &.active {
 
-        box-shadow: rgba(255, 36, 94, 0.5) 2px 2px 9px !important;
+        box-shadow: $primary 2px 2px 9px !important;
+
 
     }
 
