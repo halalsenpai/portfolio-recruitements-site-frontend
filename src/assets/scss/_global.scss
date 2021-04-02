@@ -9,6 +9,11 @@ html *
   font-family: Montserrat-Bold ;
 }
 
+.width-wrapper {
+  max-width: 1600px;
+  margin: auto;
+}
+
 p,a,span,li {
   font-size: $font-size-md;
   color: $text-color;
@@ -104,7 +109,6 @@ img{
     }
   }
 }
-
 
 // custom input styling
 
