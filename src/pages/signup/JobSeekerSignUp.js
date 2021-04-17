@@ -33,7 +33,7 @@ function JobSeekerSignUp() {
 
                         <div className="box">
 
-                            <img src={require('../../assets/images/icons/signup-icons/signup-icon-1.svg')} alt="img" />
+                            <img src={require('../../assets/images/icons/signup-icons/sign-1.svg')} alt="img" />
                             <span>
                                 <h3 className="b-text">One click apply</h3>
                                 <p>Short list jobs and apply All to  them  with 1 click</p>
@@ -43,7 +43,7 @@ function JobSeekerSignUp() {
 
                         <div className="box">
 
-                            <img src={require('../../assets/images/icons/signup-icons/signup-icon-2.svg')} alt="img" />
+                            <img src={require('../../assets/images/icons/signup-icons/sign-2.svg')} alt="img" />
 
                             <span>
                                 <h3 className="b-text">Job Match</h3>
@@ -53,7 +53,7 @@ function JobSeekerSignUp() {
                         </div>
                         <div className="box">
 
-                            <img src={require('../../assets/images/icons/signup-icons/signup-icon-3.svg')} alt="img" />
+                            <img src={require('../../assets/images/icons/signup-icons/sign-3.svg')} alt="img" />
                             <span>
                                 <h3 className="b-text">Direct chat + Inbox</h3>
                                 <p>Talk to employers & agencies in real time, no emails!</p>
@@ -62,7 +62,7 @@ function JobSeekerSignUp() {
                         </div>
                         <div className="box">
 
-                            <img src={require('../../assets/images/icons/signup-icons/signup-icon-4.svg')} alt="img" />
+                            <img src={require('../../assets/images/icons/signup-icons/sign-4.svg')} alt="img" />
                             <span>
                                 <h3 className="b-text">Follow Companies</h3>
                                 <p>Follow companies and stay up to date with all their jobs</p>
@@ -212,7 +212,7 @@ function JobSeekerSignUp() {
                     <Form.Item className=" mb-0 align-self-end">
                      
                         <CButton
-                            themeColor="light"
+                            themeColor="primary"
                             type="large"
                             htmlType="submit"
                             // loading={true}

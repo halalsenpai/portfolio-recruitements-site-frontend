@@ -85,6 +85,7 @@ function SignUp() {
                             htmlType="submit"
                             // loading={true}
                             block
+                            themeColor='primary'
                         >
                             Next
                         

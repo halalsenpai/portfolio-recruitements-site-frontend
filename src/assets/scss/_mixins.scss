@@ -1,4 +1,4 @@
-@mixin font-face($style-name, $file, $file-format: ".ttf",  $category:"") {
+@mixin font-face($style-name, $file, $file-format: ".woff2",  $category:"") {
   $filepath: "../fonts/" + $file;
   @font-face {
     font-family: "#{$style-name}";

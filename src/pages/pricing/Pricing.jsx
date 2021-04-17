@@ -128,7 +128,7 @@ function Pricing() {
 
                     <div className="image-section">
 
-                        <img src={require("../../assets/images/sample/an-african.png")} alt="" />
+                        <img src={require("../../assets/images/ms/ms-1.png")} alt="" />
 
                     </div>
 
@@ -146,7 +146,7 @@ function Pricing() {
                             </p>
                     </div>
                     <div className="right-side container-fluid p-0 d-flex justify-content-center">
-                        <img className="w-100" src={require("..//..//assets/images/pricing/interview.svg")} alt="" />
+                        <img className="w-100" src={require("../../assets/images/pricing/pc-1.png")} alt="" />
                         {/* <img className="slider-btn" src={require("..//../assets/images/buttons/SliderBtn.svg")} alt="" /> */}
                     </div>
                 </div>
