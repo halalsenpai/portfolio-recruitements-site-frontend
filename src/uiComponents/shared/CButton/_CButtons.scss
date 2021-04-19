@@ -1,100 +1,135 @@
-.c-button{
-    padding: 5px 10px 5px 10px;
-    color: #ffffff;
-    height: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 4px 25px;
-    font-size: 15px;
-    border-radius: 32px;
-    width: max-content;
-    border: none;
+.c-button {
+  padding: 5px 10px;
+  color: #ffffff;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 25px;
+  font-size: 14px;
+  border-radius: 32px;
+  width: max-content;
+  border: none;
+  transition: 0.2s all linear;
+  background: transparent linear-gradient(90deg, #ff245e 0%, #c864dd 100%) 0% 0% no-repeat padding-box;
+
+  span {
+    color: $white;
     transition: 0.2s all linear;
-    background: transparent linear-gradient(90deg, #FF245E 0%, #C864DD 100%) 0% 0% no-repeat padding-box;
+    font-family: $font-bold !important;
+  }
 
     
     span{
         color:$white;
         transition: 0.2s all linear;
-        font-family: $font-medium !important;
+        font-family: $font-light !important;
+        letter-spacing: 1.5px;
+    }
+    .animated-icon {
+      transition: 0.2s linear all;
+      padding: 0px 0px 0px 5px;
     }
 
-    .animated-icon{
-        padding: 0px 0px 0px 5px;
-        transition: all 0.3s linear;
-    }   
+  &:hover {
+    background: transparent linear-gradient(90deg, #ff245e 0%, #c864dd 100%) 0% 0% no-repeat padding-box;
 
-    &:hover{
-        background: transparent linear-gradient(90deg, #FF245E 0%, #C864DD 100%) 0% 0% no-repeat padding-box;
-        
-        .animated-icon{ 
-            padding: 0px 0px 0px 15px;
-        }
+    .animated-icon {
+      padding: 0px 0px 0px 12px;
+    }
+  }
 
+  &:focus {
+    background: transparent linear-gradient(90deg, #ff245e 0%, #c864dd 100%) 0% 0% no-repeat padding-box;
+  }
+
+  // themes
+  &.transparent {
+    background: transparent;
+    border: 1px solid $white;
+    &:hover {
+      background: transparent;
+    }
+    &:focus {
+      background: transparent;
+    }
+    color: $white;
+  }
+
+  &.light {
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(106, 210, 89, 1) 0%, rgba(0, 176, 250, 1) 100%);
+    &:hover {
+      background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(106, 210, 89, 1) 0%, rgba(0, 176, 250, 1) 100%);
+    }
+    &:focus {
+      background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(106, 210, 89, 1) 0%, rgba(0, 176, 250, 1) 100%);
+    }
+    color: $white;
+  }
+
+  &.primary {
+    background: $primary;
+    &:hover {
+      background: $primary;
+    }
+    &:focus {
+      background: $primary;
+    }
+    color: $white;
+  }
+
+  &.green {
+    background: $green;
+    &:hover {
+      background: $green;
+    }
+    &:focus {
+      background: $green;
+    }
+    color: $white;
+  }
+
+  &.purple {
+    background: $light-purple;
+    &:hover {
+      background: $light-purple;
+    }
+    &:focus {
+      background: $light-purple;
+    }
+    color: $white;
+  }
+
+  &.shadowed {
+    background: $white;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+    span {
+      color: $text-color;
     }
 
-    &:focus{
-        background: transparent linear-gradient(90deg, #FF245E 0%, #C864DD 100%) 0% 0% no-repeat padding-box;
-
-    }
-
-    // themes
-    &.transparent {
-        background: transparent;
-        border: 1px solid $white;
-        &:hover{
-            background: transparent;
-        }
-        &:focus{
-            background: transparent;
-        }
+    &:hover,
+    &:focus {
+      background: $primary;
+      span {
         color: $white;
+      }
     }
+  }
 
-    &.light {
-        background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(106,210,89,1) 0%, rgba(0,176,250,1) 100%);
-        &:hover{
-            background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(106,210,89,1) 0%, rgba(0,176,250,1) 100%);
-        }
-        &:focus{
-            background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(106,210,89,1) 0%, rgba(0,176,250,1) 100%);
-        }
-        color: $white;
+  &.blue {
+    background: $blue;
+    &:hover {
+      background: $blue;
     }
+    &:focus {
+      background: $blue;
+    }
+  }
 
-    &.primary{
-        background: $primary;
-        &:hover{
-            background: $primary;    
-        }
-        &:focus{
-            background: $primary;    
-        }
-        color: $white;
-    }
-
-    &.green{
-        background: $green;
-        &:hover{
-            background: $green;    
-        }
-        &:focus{
-            background: $green;    
-        }
-        color: $white;
-    }
-
-    &.purple{
-        background: $light-purple;
-        &:hover{
-            background: $light-purple;    
-        }
-        &:focus{
-            background: $light-purple;    
-        }
-        color: $white;
-    }
+  //sizes
+  &.large {
+    width: 200px;
+  }
 
     &.shadowed{
         background: $white;
@@ -124,6 +159,10 @@
     //sizes
     &.large {
         width: 200px;
+    }
+
+    &.medium{
+        width:130px;
     }
 
     &.small {
@@ -158,9 +197,15 @@
             }
         }
 
+    &:hover,
+    &.focus {
+      svg {
+        color: $white !important;
+      }
     }
+  }
 }
-.ant-btn:hover, .ant-btn:focus {
-    color: $white !important;
-  
+.ant-btn:hover,
+.ant-btn:focus {
+  color: $white !important;
 }

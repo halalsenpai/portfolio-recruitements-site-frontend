@@ -1,116 +1,151 @@
-.pricing-page{
-    background-image: url('../../assets/images/auth/page-back-split.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    .pricing-container{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 40px 0px;
+.pricing-container {
+    padding: 30px 10px 30px 50px;
 
-        .diamond-icon{
-            width: 60px;
-        }
+    .heading-section {
+        padding: 60px 0;
 
-        .title{
-            color: $blue;
+        & p {
+            color: $text-color;
             font-size: $font-size-x-lg;
-            margin: 10px 0px;
-
-            mark {
-
-            font-family: $font-medium !important;
-
-            }
+            font-family: $font-medium;
 
         }
-        
-        .sub-title{
-
-            font-size: $font-size-lg;
-
-        }
-
-        .prices-wrapper {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            margin: 30px 0px;
-
-            .pc-box{
-                width: 240px;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                box-shadow: 0 0 16px #00000026;
-                padding: 0px 0px 20px 0px;
-                border-radius: 10px;
-                margin: 0px 5px;
-
-                .header{
-
-                    display: flex;
-                    flex-direction: column;
-                    padding: 20px 0px;
-                    position: relative;
-                    color: $white;
-                    justify-content: center;
-                    align-items: center;
-                    width: 100%;
-
-                    p{
-
-                            color: $white;
-                            margin: 0px;
-                            z-index: 2;
-
-                    }
-
-                    h2{
-
-                            color: $white;
-                            z-index: 2;
-                            margin: 0px;
-
-                    }
-
-                    .back-img{
-
-                        position: absolute;
-                        top: 0px;
-                        left: 0px;
-                        width: 100%;
-                        z-index: 1;
-
-                    }
-
-                }
-                
-                .feature-list{
-                    display: flex;
-                    flex-direction: column;
-                    list-style: none;
-                    width: 100%;
-                    margin: 40px 0px 50px 0px;
-                    li{
-                        display: flex;
-                        align-items: center;
-                        padding: 5px 20px;
-                        p{
-                            margin: 0px 0px 0px 10px;
-                            border-bottom: 0.02rem solid $border-color;
-                            text-align: left;
-                            width: 100%;
-                        }
-                    }
-                }
-                button{
-                    padding: 0px 35px;
-                }
-            }
-
-        }
-
     }
 
+
+    .pricing-main {
+        margin: auto;
+        display: flex;
+        color: $text-color;
+        font-size: $font-size-md;
+
+        & .color-blue {
+            color: $blue;
+            font-size: $font-size-lg;
+        }
+
+        & .pricing-section {
+            height: 70vh;
+
+            width: 60%;
+            height: 100%;
+
+            & .pricing-row {
+                display: flex;
+                height: 100%;
+
+                & .pricing-card {
+                    width: 100%;
+                    border-left: 1px solid $border-color;
+                    height: 100%;
+
+                    &:first-child {
+                        border-left: none
+                    }
+
+                    &:last-child {
+                        border-right: 1px solid $border-color;
+                    }
+
+                    & .pricing-header {
+                        width: 100%;
+
+                        & .top-items-head {
+
+                            height: 50px;
+                            text-align: center;
+                            width: 100%;
+                        }
+
+                    }
+
+                    & .pricing-items {
+
+                        & .pricings {
+                            text-align: center;
+                            min-height: 45px;
+                            vertical-align: middle;
+
+                            & .check-icon {
+                                color: $green;
+                                font-size: 25px;
+                            }
+                        }
+
+                        & .pricing-typs {
+
+                            min-height: 45px;
+                            vertical-align: middle;
+                        }
+
+                    }
+                }
+
+            }
+
+        }
+
+
+        & .align-center {
+            display: grid;
+            place-items: center;
+        }
+
+        & .pricing-image {
+            width: 40%;
+            padding: 0 20px;
+
+            & .image-section {
+
+
+                & img {
+                    width: 80%;
+                    margin: -30px 0 0 0;
+                    min-width: 290px;
+
+                }
+            }
+
+        }
+    }
+
+
+    .pricing-page {
+        .section-2 {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 50px 0 !important;
+
+            .left-side {
+                left: 50px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+
+                .title {
+                    font-size: $font-size-lg;
+                    font-family: $font-bold;
+                }
+
+                .description {
+                    font-size: $font-size-md;
+                }
+            }
+
+            .right-side {
+                position: relative;
+                flex: 2;
+                min-width: 340px;
+
+                .slider-btn {
+                    position: absolute;
+                    width: 300px;
+                    bottom: 87px;
+                    left: 157px;
+                }
+            }
+        }
+    }
 }

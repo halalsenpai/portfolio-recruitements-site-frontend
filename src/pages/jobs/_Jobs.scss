@@ -4,7 +4,8 @@
         height: 110px;
         padding:0px 50px 0px 50px;
         background: rgb(2,0,36);
-        background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(52,30,91,1) 0%, rgba(245,38,102,1) 100%);
+        // background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(52,30,91,1) 0%, rgba(245,38,102,1) 100%);
+        background: $primary;
         
         .header{
                 flex-direction: row;

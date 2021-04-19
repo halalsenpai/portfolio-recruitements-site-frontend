@@ -2,6 +2,7 @@ import React, { useState,useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import LogoImage from '../../assets/images/logo/logo-md.png';
 import { useHistory, useLocation } from 'react-router-dom';
+import CButton from '../shared/CButton/CButton';
 
 function CHeader() {
 
@@ -44,11 +45,9 @@ function CHeader() {
                     </Link>
                 </nav>
                 <nav className="align-items-center" >
-                    <Link to="/login" className="login b-text">Login</Link>
+                    <Link to="/login" className="login">Login</Link>
                     <Link className="text-decoration-none" to="/signup">
-                        <button className="c-button primary">
-                            Sign Up
-                        </button>
+                    <button className="c-button blue sign-up-btn">Sign Up</button>
                     </Link>
                 </nav>
             </span>

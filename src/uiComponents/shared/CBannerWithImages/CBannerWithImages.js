@@ -1,66 +1,187 @@
-import React, { useEffect, useRef, useState } from 'react'
-import CrossfadeImage from 'react-crossfade-image';
-import Flip from 'react-reveal/Flip';
-import Fade from 'react-reveal/Fade';
+import React, { useEffect, useRef, useState } from "react";
 
-function CBannerWithImages() {
-    const [images, setImages] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
-    const interval = useRef(null);
-    useEffect(() => {
-        interval.current = setInterval(() => shuffleImages(), 4000);
-        return () => {
-            clearInterval(interval.current)
-        }
-    }, [])
-    const shuffleImages = async () => {
-        let indexes = [getRNo(), getRNo(),getRNo()];
-        let currentImages = [...images];
-        await indexes.forEach(index => {
-            let isUniqueImage = false;
-            while (!isUniqueImage) {
-                let randomImage = getRNo();
-                if (currentImages.indexOf(randomImage) === -1) {
-                    currentImages[index] = randomImage;
-                    isUniqueImage = true;
-                }
-            }
-        });
-        setImages(currentImages);
-    }
+const CBannerWithImages = ({className}) => {
 
-    const getRNo = () => {
-        return Math.floor(Math.random() * 15) + 1;
-    }
-    const renderImage = (imageSrc) => {
-        return  <Fade key={imageSrc} bottom duration={700}><Flip bottom   duration={1500}>
-            <img src={require(`../../../assets/images/ms/ms-${imageSrc}.png`)} />
-        </Flip></Fade>
-    }
-    return (
-        <div className="c-banner-with-images">
-            <span className="imgs-row">
-                {renderImage(images[0])}
-                {renderImage(images[1])}
-                {renderImage(images[2])}
-            </span>
-            <span className="imgs-row">
-                {renderImage(images[3])}
-                {renderImage(images[4])}
-                {renderImage(images[5])}
-            </span>
-            <span className="imgs-row">
-                {renderImage(images[6])}
-                {renderImage(images[7])}
-                {renderImage(images[8])}
-            </span>
-            <span className="imgs-row">
-                {renderImage(images[9])}
-                {renderImage(images[10])}
-                {renderImage(images[11])}
-            </span>
+  const [opacity, setOpacity] = useState(false)
+  const [opacity2, setopacity2] = useState(true)
+  const interval = useRef(null);
+
+  useEffect(() => {
+    interval.current = setInterval(() => shuffleImg(), 4000);
+    
+    return () => {
+      clearInterval(interval.current);
+    };
+  }, [opacity? 'showimg':null]);
+const shuffleImg =()=>{
+  setOpacity(!opacity);
+  setopacity2(!opacity2)
+}
+ 
+
+  return (
+
+
+    <div className={`c-banner-with-images ${className}`}>
+
+      <div className="imgs-row">
+
+        <div className="banner-img-main">
+
+          <div className={`first  ${opacity? 'showimg':null}`}>
+            <img src={require(`../../../assets/images/ms/ms-1.png`)} />
+          </div>
+
+          <div className="second">
+            <img src={require(`../../../assets/images/lp/1.png`)} />
+          </div>
 
         </div>
-    )
-}
+        <div className="banner-img-main">
 
-export default CBannerWithImages
+          <div className={`first  ${opacity2? 'showimglate':null}`}>
+          <img src={require(`../../../assets/images/ms/ms-2.png`)} />
+
+          </div>
+
+          <div className="second">
+            <img src={require(`../../../assets/images/lp/2.png`)} />
+          </div>
+
+        </div>
+
+        <div className="banner-img-main">
+
+          <div className={`first  ${opacity? 'showimg':null}`}>
+          <img src={require(`../../../assets/images/ms/ms-3.png`)} />
+
+          </div>
+
+          <div className="second">
+            <img src={require(`../../../assets/images/lp/3.png`)} />
+          </div>
+
+        </div>
+
+      </div>
+      <div className="imgs-row">
+
+        <div className="banner-img-main">
+
+          <div className={`first  ${opacity2? 'showimglate':null}`}>
+          <img src={require(`../../../assets/images/ms/ms-4.png`)} />
+
+          </div>
+
+          <div className="second">
+            <img src={require(`../../../assets/images/lp/4.png`)} />
+          </div>
+
+        </div>
+        <div className="banner-img-main">
+
+          <div className={`first  ${opacity? 'showimg':null}`}>
+            <img src={require(`../../../assets/images/ms/ms-5.png`)} />
+          </div>
+
+          <div className="second">
+            <img src={require(`../../../assets/images/lp/5.png`)} />
+          </div>
+
+        </div>
+
+        <div className="banner-img-main">
+
+          <div className={`first  ${opacity2? 'showimglate':null}`}>
+            <img src={require(`../../../assets/images/ms/ms-6.png`)} />
+          </div>
+
+          <div className="second">
+            <img src={require(`../../../assets/images/lp/6.png`)} />
+          </div>
+
+        </div>
+
+      </div>
+      <div className="imgs-row">
+
+        <div className="banner-img-main">
+
+          <div className={`first  ${opacity? 'showimg':null}`}>
+            <img src={require(`../../../assets/images/ms/ms-7.png`)} />
+          </div>
+
+          <div className="second">
+            <img src={require(`../../../assets/images/lp/7.png`)} />
+          </div>
+
+        </div>
+        <div className="banner-img-main">
+
+          <div className={`first  ${opacity2? 'showimglate':null}`}>
+            <img src={require(`../../../assets/images/ms/ms-8.png`)} />
+          </div>
+
+          <div className="second">
+            <img src={require(`../../../assets/images/lp/8.png`)} />
+          </div>
+
+        </div>
+
+        <div className="banner-img-main">
+
+          <div className={`first  ${opacity? 'showimg':null}`}>
+            <img src={require(`../../../assets/images/ms/ms-9.png`)} />
+          </div>
+
+          <div className="second">
+            <img src={require(`../../../assets/images/lp/9.png`)} />
+          </div>
+
+        </div>
+
+      </div>
+      <div className="imgs-row">
+
+        <div className="banner-img-main">
+
+          <div className={`first  ${opacity? 'showimg':null}`}>
+            <img src={require(`../../../assets/images/ms/ms-10.png`)} />
+          </div>
+
+          <div className="second">
+            <img src={require(`../../../assets/images/lp/10.png`)} />
+          </div>
+
+        </div>
+        <div className="banner-img-main">
+
+          <div className={`first  ${opacity2? 'showimglate':null}`}>
+            <img src={require(`../../../assets/images/ms/ms-11.png`)} />
+          </div>
+
+          <div className="second">
+            <img src={require(`../../../assets/images/lp/11.png`)} />
+          </div>
+
+        </div>
+
+        <div className="banner-img-main">
+
+          <div className={`first  ${opacity? 'showimg':null}`}>
+          <img src={require(`../../../assets/images/ms/ms-12.png`)} />
+          </div>
+
+          <div className="second">
+            <img src={require(`../../../assets/images/lp/12.png`)} />
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  );
+};
+
+export default CBannerWithImages;

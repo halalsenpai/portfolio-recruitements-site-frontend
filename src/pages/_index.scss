@@ -1,9 +1,16 @@
-@import "home/Home";
-@import "pricing/Pricing";
-@import "jobs/Jobs";
-@import "login/Login";
-@import "employerAndAgencies/EmployerAndAgencies";
-@import "jobSeekers/JobSeekers";
-@import "signup/SignUp";
-@import "TestPage/TaskList";
-@import "ChatTest/ChatList.scss"
+@import 'home/Home';
+@import 'pricing/Pricing';
+@import 'jobs/Jobs';
+@import 'login/Login';
+@import 'employerAndAgencies/EmployerAndAgencies';
+@import 'jobSeekers/JobSeekers';
+@import 'signup/SignUp';
+
+
+
+
+
+// Responsive Sass imports
+
+@import 'pricing/Responsive';
+@import 'home/Responsive';

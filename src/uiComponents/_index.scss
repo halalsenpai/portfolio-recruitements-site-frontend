@@ -12,6 +12,15 @@
 @import "shared/CJobDetailsCard/CJobDetailsCard";
 @import "shared/CImagesGallery/CImagesGallery";
 @import "shared/CJobsCarousel/CJobsCarousel";
-@import "shared/CTaskList/CTaskList.scss";
-@import "shared/CChatListItem/ChatListItem.scss";
-@import "shared/CInterviewCard/CinterviewCard.scss";
+
+
+
+// dev imports//
+
+@import "devComponents/AdditionalForm/additionalForm";
+@import "devComponents/ModalForms/modalFrom";
+@import "devComponents/NotificationSetting/notSettings";
+@import "devComponents/expModalForm/expForm";
+@import "devComponents/ModalCertificateForm/ModalCertificateForm";
+
+

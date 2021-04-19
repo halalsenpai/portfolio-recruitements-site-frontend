@@ -1,23 +1,19 @@
-import React, { Fragment } from "react";
-import { Route, Switch } from "react-router-dom";
-import { Home, About } from "../pages";
-import Login from "../pages/login/Login";
-import SignUp from "../pages/signup/SignUp";
-import AgencySignUp from "../pages/signup/AgencySignUp";
-import EmployerSignUp from "../pages/signup/EmployerSignUp";
-import JobSeekerSignUp from "../pages/signup/JobSeekerSignUp";
-import CFooter from "../uiComponents/CFooter/CFooter";
-import CHeader from "../uiComponents/CHeader/CHeader";
-import EmployerAndAgencies from "../pages/EmployerAndAgencies/EmployerAndAgencies";
-import JobSeekers from "../pages/JobSeekers/JobSeekers";
-import ConfirmEmail from "../pages/signup/ConfirmEmail";
-import Pricing from "../pages/pricing/Pricing";
-import Jobs from "../pages/jobs/Jobs";
-import ForgotPassword from "../pages/forgotPassword/ForgotPassword";
-import TaskList from "../pages/TestPage/TaskList";
-import ChatList from "../pages/ChatTest/ChatList";
-import CInterviewCard from "../uiComponents/shared/CInterviewCard/CInterviewCard";
-import Sandbox from "../pages/Sandbox";
+import React, { Fragment } from 'react'
+import { Route, Switch } from 'react-router-dom';
+import { Home, About } from '../pages';
+import Login from '../pages/login/Login';
+import SignUp from '../pages/signup/SignUp';
+import AgencySignUp from '../pages/signup/AgencySignUp';
+import EmployerSignUp from '../pages/signup/EmployerSignUp';
+import JobSeekerSignUp from '../pages/signup/JobSeekerSignUp';
+import CFooter from '../uiComponents/CFooter/CFooter';
+import CHeader from '../uiComponents/CHeader/CHeader';
+import EmployerAndAgencies from '../pages/EmployerAndAgencies/EmployerAndAgencies';
+import JobSeekers from '../pages/JobSeekers/JobSeekers';
+import ConfirmEmail from '../pages/signup/ConfirmEmail';
+import Pricing from '../pages/pricing/Pricing.jsx';
+import Jobs from '../pages/jobs/Jobs';
+import ForgotPassword from '../pages/forgotPassword/ForgotPassword';
 function Routing() {
   return (
     <Fragment>
