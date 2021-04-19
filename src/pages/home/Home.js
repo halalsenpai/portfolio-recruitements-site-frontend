@@ -187,7 +187,7 @@ function Home() {
         {/* <Fade bottom duration={1000}> */}
         <div className="row">
           <div className="padding-mobile col-lg-5 text-column pb-5 ">
-            <img className="bottom-logo" src={require("..//..//assets/images/logo/logo-md.png")} alt="" />
+            {/* <img className="bottom-logo" src={require("..//..//assets/images/logo/logo-md.png")} alt="" /> */}
 
             <span className="small-paragraph">
               <p>

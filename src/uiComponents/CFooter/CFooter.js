@@ -13,7 +13,7 @@ function CFooter() {
                     <img className="logo" src={LogoImage} alt="Logo" />
                     <span>
                         <p className="mb-4">Jobsmideast.com is the smartest job site in the Middle East. Our amazing team consists of some of the most experienced and talented developers, social media executives and account managers on the market, with years of experience in different sectors to make your experience more efficient & effortless. <br /><br /> We are the only job site in the Middle East that offers our clients a job platform + CRM + inbox & live chat all in one package. To book a demo with one of our account managers click below.</p>
-                        <CButton>Book Demo</CButton>
+                    
                     </span>
                 </ul>
                 <ul>

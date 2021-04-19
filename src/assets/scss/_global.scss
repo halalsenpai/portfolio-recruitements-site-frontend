@@ -159,6 +159,7 @@ img {
     padding: 0 18px !important;
     box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
     background: $white !important;
+    
 
     &.ant-input-lg {
       width: 400px;
@@ -325,13 +326,13 @@ img {
 
 // custom phone number input
 .react-tel-input {
-  width: 300px;
+  max-width: 300px;
+  width: 100%;
   font-size: $font-size-md;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
   border: none;
   border-radius: 100px;
   height: 35px;
-  padding: 0 18px 0px 0px;
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
   background: #ffffff;
 
@@ -343,7 +344,7 @@ img {
   }
 
   .form-control {
-    width: 270px !important;
+    width: calc(300px - 60px);
     box-shadow: none !important;
     left: 30px;
   }
@@ -374,7 +375,8 @@ img {
 
 // custom card container
 .c-card-container {
-  width: 800px;
+  max-width: 800px;
+  width: 100%;
   border-radius: 20px;
   box-shadow: 0 0 16px #00000026;
   padding: 0px !important;
@@ -621,3 +623,25 @@ img {
 
 
 // orientation lock
+
+@media only screen and (max-width: 991px) {
+  .c-input{
+  max-width: 300px;
+  width: 100%;
+  .ant-input{
+    width: 100% !important;
+  }
+  }
+  .c-password-input{
+    max-width: 300px;
+    width: 100%;
+  }
+  .c-container {
+    
+    padding: 50px 5px;
+  }
+  .c-row{
+    max-width: 900px;
+    width: 100%;
+  }
+}
