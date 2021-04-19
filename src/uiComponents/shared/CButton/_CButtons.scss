@@ -11,7 +11,7 @@
   width: max-content;
   border: none;
   transition: 0.2s all linear;
-  background: transparent linear-gradient(90deg, #ff245e 0%, #c864dd 100%) 0% 0% no-repeat padding-box;
+  background: $primary;
 
   span {
     color: $white;
