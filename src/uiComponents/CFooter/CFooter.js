@@ -8,7 +8,7 @@ function CFooter() {
             
             <span className="shadow-box"></span>
             <span className=" inner-container ">
-                <div className='container d-flex'>
+                <div className='container-lg container-fluid d-flex flex-wrap'>
                 <ul className="info">
                     <img className="logo" src={LogoImage} alt="Logo" />
                     <span>
