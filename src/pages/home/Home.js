@@ -218,13 +218,6 @@ function Home() {
             <div className="container-fluid p-0 d-flex justify-content-center">
               <img className="w-100 safari-fix" src={require("../../assets/images/home/20778407.png")} alt="" />
             </div>
-<<<<<<< HEAD
-
-        </div>
-
-    );
-
-=======
           </div>
         </div>
         {/* </Fade> */}
@@ -233,7 +226,6 @@ function Home() {
 
     </>
   );
->>>>>>> 8fca0551fdc68f967774ad382c3e51ad87a4e8bd
 }
 
 export default Home;

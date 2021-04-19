@@ -37,8 +37,6 @@ function Routing() {
         <Route exact path="/pricing" component={Pricing} />
         <Route exact path="/jobs" component={Jobs} />
         <Route path="/about" component={About} />
-        <Route path="/test" component={TaskList} />
-        <Route path="/sandbox" component={Sandbox} />
 
         <Route
           path="*"
