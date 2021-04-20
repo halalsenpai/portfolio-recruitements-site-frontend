@@ -12,7 +12,7 @@ import EmployerAndAgencies from '../pages/EmployerAndAgencies/EmployerAndAgencie
 import JobSeekers from '../pages/JobSeekers/JobSeekers';
 import ConfirmEmail from '../pages/signup/ConfirmEmail';
 import Pricing from '../pages/pricing/Pricing.jsx';
-import Jobs from '../pages/jobs/Jobs';
+import Jobs from '../pages/findJobs/FindJobs';
 import ForgotPassword from '../pages/forgotPassword/ForgotPassword';
 function Routing() {
   return (
