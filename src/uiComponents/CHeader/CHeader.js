@@ -55,69 +55,71 @@ function CHeader() {
           </Link>
         </nav>
         <div className={`mobile-menu ${menu ? "menu-open" : ""}`}>
-          <Link
-            to="/"
-            onClick={() => {
-              setCurrentPath("/");
-              setMenu(false);
-            }}
-          >
-            Post a free job
-          </Link>
-          <Link
-            to="/employee-and-agencies"
-            onClick={() => {
-              setCurrentPath("/employee-and-agencies");
-              setMenu(false);
-            }}
-            className={getActiveClassForPath(
-              currentPath,
-              "/employee-and-agencies"
-            )}
-          >
-            Employers & agencies
-          </Link>
-          <Link
-            to="/job-seekers"
-            onClick={() => {
-              setCurrentPath("/job-seekers");
-              setMenu(false);
-            }}
-            className={getActiveClassForPath(currentPath, "/job-seekers")}
-          >
-            Job Seekers
-          </Link>
-          <Link
-            to="/jobs"
-            onClick={() => {
-              setCurrentPath("/jobs");
-              setMenu(false);
-            }}
-            className={getActiveClassForPath(currentPath, "/jobs")}
-          >
-            Jobs
-          </Link>
-          <Link to="/">Services</Link>
-          <Link
-            to="/pricing"
-            onClick={() => {
-              setCurrentPath("/pricing");
-              setMenu(false);
-            }}
-            className={getActiveClassForPath(currentPath, "/pricing")}
-          >
-            Pricing
-          </Link>
-          <Link
-            to="/login"
-            onClick={() => {
-              setCurrentPath("/login");
-              setMenu(false);
-            }}
-            className="login"
-          >
-            Login
-          </Link>
+          <div className="links-wrapper">
+            <Link
+              to="/"
+              onClick={() => {
+                setCurrentPath("/");
+                setMenu(false);
+              }}
+            >
+              Post a free job
+            </Link>
+            <Link
+              to="/employee-and-agencies"
+              onClick={() => {
+                setCurrentPath("/employee-and-agencies");
+                setMenu(false);
+              }}
+              className={getActiveClassForPath(
+                currentPath,
+                "/employee-and-agencies"
+              )}
+            >
+              Employers & agencies
+            </Link>
+            <Link
+              to="/job-seekers"
+              onClick={() => {
+                setCurrentPath("/job-seekers");
+                setMenu(false);
+              }}
+              className={getActiveClassForPath(currentPath, "/job-seekers")}
+            >
+              Job Seekers
+            </Link>
+            <Link
+              to="/jobs"
+              onClick={() => {
+                setCurrentPath("/jobs");
+                setMenu(false);
+              }}
+              className={getActiveClassForPath(currentPath, "/jobs")}
+            >
+              Jobs
+            </Link>
+            <Link to="/">Services</Link>
+            <Link
+              to="/pricing"
+              onClick={() => {
+                setCurrentPath("/pricing");
+                setMenu(false);
+              }}
+              className={getActiveClassForPath(currentPath, "/pricing")}
+            >
+              Pricing
+            </Link>
+            <Link
+              to="/login"
+              onClick={() => {
+                setCurrentPath("/login");
+                setMenu(false);
+              }}
+              className="login"
+            >
+              Login
+            </Link>
+          </div>
         </div>
         <nav className="align-items-center">
           <Link to="/login" className="login">
