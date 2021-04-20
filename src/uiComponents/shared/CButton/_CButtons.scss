@@ -19,17 +19,10 @@
     font-family: $font-bold !important;
   }
 
-    
-    span{
-        color:$white;
-        transition: 0.2s all linear;
-        font-family: $font-light !important;
-        letter-spacing: 1.5px;
-    }
-    .animated-icon {
-      transition: 0.2s linear all;
-      padding: 0px 0px 0px 5px;
-    }
+  .animated-icon {
+    transition: 0.2s linear all;
+    padding: 0px 0px 0px 5px;
+  }
 
   &:hover {
     background: transparent linear-gradient(90deg, #ff245e 0%, #c864dd 100%) 0% 0% no-repeat padding-box;
@@ -131,71 +124,73 @@
     width: 200px;
   }
 
-    &.shadowed{
-        background: $white;
-        box-shadow: 0 0 16px rgba(0, 0, 0, .3);
-        span {
-            color: $text-color;
-        }
-
-        &:hover, &:focus{
-            background: $primary;  
-            span {
-                color:$white;
-            }    
-        }
+  &.shadowed {
+    background: $white;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+    span {
+      color: $text-color;
     }
 
-    &.blue{
-        background: $blue;
-        &:hover{
-            background: $blue;      
-          }
-        &:focus{
-            background: $blue;        
-        }
+    &:hover,
+    &:focus {
+      background: $primary;
+      span {
+        color: $white;
+      }
+    }
+  }
+
+  &.blue {
+    background: $blue;
+    &:hover {
+      background: $blue;
+    }
+    &:focus {
+      background: $blue;
+    }
+  }
+
+  //sizes
+  &.large {
+    width: 200px;
+  }
+
+  &.medium {
+    width: 130px;
+  }
+
+  &.small {
+    min-width: 90px;
+    padding: 5px 10px;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: auto;
+    span {
+      font-size: $font-size-sm;
+    }
+  }
+
+  &.rounded {
+    width: 35px;
+    height: 35px;
+    padding: 0px !important;
+    border-radius: 20px !important;
+    font-size: 18px;
+
+    svg {
+      color: $text-color !important;
+      &.highlighted {
+        color: $primary !important;
+      }
     }
 
-    //sizes
-    &.large {
-        width: 200px;
+    &:hover,
+    &.focus {
+      svg {
+        color: $white !important;
+      }
     }
-
-    &.medium{
-        width:130px;
-    }
-
-    &.small {
-        min-width: 90px;
-        padding: 5px 10px;
-        justify-content: center;
-        align-items: center;
-        height: auto;
-        width: auto;
-        span{
-            font-size: $font-size-sm;
-        }
-    }
-    
-    &.rounded{
-        width: 35px;
-        height: 35px;
-        padding: 0px !important;
-        border-radius: 20px !important;
-        font-size: 18px;
-
-        svg{
-            color: $text-color !important;
-            &.highlighted{
-                color: $primary !important;
-            }
-        }
-
-        &:hover, &.focus {
-            svg{
-            color: $white !important;
-            }
-        }
 
     &:hover,
     &.focus {
