@@ -53,7 +53,7 @@ function EmployerSignUp() {
               </div>
 
               <div className="c-row">
-                <Form.Item name="mobileNumber" className="c-input">
+                <Form.Item name="mobileNumber" className="c-input phone-fix">
                   <label className="required">Mobile number</label>
                   <PhoneInput
                     placeholder="Enter your mobile no."
@@ -61,7 +61,7 @@ function EmployerSignUp() {
                     onChange={(phone) => console.log(phone)}
                   />
                 </Form.Item>
-                <Form.Item name="workPhone" className="c-input">
+                <Form.Item name="workPhone" className="c-input phone-fix">
                   <label className="required">Direct Work Phone</label>
                   <PhoneInput
                     placeholder="Enter your work phone."
@@ -115,7 +115,7 @@ function EmployerSignUp() {
                   <label className="required">Website https://</label>
                   <Input placeholder="Enter your email" size="small" type="text" />
                 </Form.Item>
-                <Form.Item name="email" className="c-input" rules={Rules.emailRule}>
+                <Form.Item name="email" className="c-input phone-fix" rules={Rules.emailRule}>
                   <label className="required">Company phone number</label>
                   <Input placeholder="" size="small" type="text" />
                 </Form.Item>

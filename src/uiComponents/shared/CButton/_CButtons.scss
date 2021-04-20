@@ -25,7 +25,8 @@
   }
 
   &:hover {
-    background: transparent linear-gradient(90deg, #ff245e 0%, #c864dd 100%) 0% 0% no-repeat padding-box;
+    background: $primary;
+    filter: brightness(90%);
 
     .animated-icon {
       padding: 0px 0px 0px 12px;
@@ -33,7 +34,8 @@
   }
 
   &:focus {
-    background: transparent linear-gradient(90deg, #ff245e 0%, #c864dd 100%) 0% 0% no-repeat padding-box;
+    background: $primary;
+    filter: brightness(90%);
   }
 
   // themes
