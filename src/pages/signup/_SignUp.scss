@@ -4,12 +4,15 @@
       &.signup-icon {
         width: 70px;
       }
+
       &.logo {
         width: 500px;
       }
+
       width: 100px;
     }
   }
+
   &.no-shadow {
     box-shadow: none;
   }
@@ -71,44 +74,53 @@
           padding-bottom: 6px;
         }
       }
+
       .inner-container {
         display: flex;
         justify-content: space-around;
         align-items: flex-start;
         flex-direction: column;
         padding: 50px 25px 0px 25px;
+
         .box {
           display: flex;
           flex-direction: row;
           justify-content: center;
           align-items: flex-start;
           margin: 5px 0px 0px 0px;
+
           &:first-of-type {
             margin-top: 15px;
           }
+
           h3 {
             font-size: $font-size-md;
             text-decoration: none;
             color: $white;
           }
+
           p {
             font-size: $font-size-sm;
             color: $white;
           }
+
           img {
             width: 50px;
           }
+
           span {
             padding: 0px 0px 0px 8px;
           }
         }
       }
     }
+
     .second-container {
       max-width: 740px;
       width: 100%;
       padding: 50px 50px 50px 50px;
       max-width: inherit;
+
       .c-button {
         align-self: flex-end;
       }
@@ -134,6 +146,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
   .inner-container {
     display: flex;
     justify-content: space-between;
@@ -141,9 +154,11 @@
     flex-direction: column;
     width: 520px;
     height: 280px;
+
     .mail-icon {
       width: 60px;
     }
+
     button {
       text-decoration: underline;
     }
