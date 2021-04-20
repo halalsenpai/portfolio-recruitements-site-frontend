@@ -1,5 +1,42 @@
  @media screen and (max-width:1200px) {
      .c-header {
+         .close-icon {
+             transition: .5s ease;
+             animation: mymove both .3s ease;
+             transform: rotate(95deg);
+         }
+
+         .menu-icon {
+            transition: .5s ease;
+            animation: menuMove both .5s ease;
+         }
+
+         @keyframes menuMove {
+
+            from {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+
+            }
+
+        }
+
+         @keyframes mymove {
+
+             from {
+                 transform: rotate(95deg);
+             }
+
+             to {
+                 transform: rotate(0deg);
+             }
+
+         }
 
          .menu {
              display: none;
@@ -36,6 +73,7 @@
              transform: translateX(0);
              opacity: 1;
          }
+
      }
 
  }
@@ -44,11 +82,12 @@
      .c-header {
 
          .inner-container {
-             padding: 0 0 0 20px;
+             padding: 0 20px 0 20px;
          }
 
          .logo {
-             width: 130px;
+             max-width: 150px;
+             width: 100%;
          }
 
          .mobile-menu a {
