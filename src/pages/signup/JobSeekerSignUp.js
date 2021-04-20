@@ -81,7 +81,7 @@ function JobSeekerSignUp() {
           </div>
 
           <div className="c-row">
-            <Form.Item name="mobileNumber" className="c-input" rules={Rules.phoneRule}>
+            <Form.Item name="mobileNumber" className="c-input phone-fix" rules={Rules.phoneRule}>
               <label className="required">Mobile number</label>
 
               <PhoneInput placeholder="Enter your mobile no." country={"us"} onChange={(phone) => console.log(phone)} />

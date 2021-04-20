@@ -95,13 +95,13 @@ function EmployerSignUp() {
                   <label className="required">I’m registering a</label>
                   <Input placeholder="Enter your first name" size="small" type="text" />
                 </Form.Item>
-                <Form.Item name="lastName" className="c-input">
+                <Form.Item name="companyName" className="c-input">
                   <label className="required">Company name</label>
                   <Input placeholder="Enter your last name" size="small" type="text" />
                 </Form.Item>
               </div>
               <div className="c-row">
-                <Form.Item name="lastName" className="c-input">
+                <Form.Item name="companyLocation" className="c-input">
                   <label className="required">Company location</label>
                   <Input placeholder="Enter your last name" size="small" type="text" />
                 </Form.Item>
