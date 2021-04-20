@@ -112,6 +112,11 @@
       .c-button {
         align-self: flex-end;
       }
+      .c-input {
+        &.phone-fix {
+          width: 300px;
+        }
+      }
     }
 
     &.role-container {
