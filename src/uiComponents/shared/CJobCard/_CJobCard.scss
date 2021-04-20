@@ -1,198 +1,219 @@
-.c-job-card{
-    width: 100%;
-    height: 90px;
-    border-radius: 10px;
-    background: #ffffff;
+.c-job-card {
+  width: 100%;
+  border-radius: 10px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  margin: 0px 0px 15px 0px;
+  justify-content: space-between;
+  overflow: hidden;
+  padding: 10px 10px;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3) !important;
+  transition: 0.3s all linear;
+  cursor: pointer;
+
+  p {
+    margin: 0px;
+    font-size: $font-size-x-sm;
+  }
+
+  .job-card-first-container {
     display: flex;
+    width: 100%;
     align-items: center;
-    position: relative;
-    margin: 0px 0px 15px 0px;
-    justify-content: space-between;
-    overflow: hidden;
-    padding: 10px 10px;
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, .3) !important;
-    transition: 0.3s all linear;
-    cursor: pointer;
 
-        p { 
-
-            margin: 0px;
-            font-size: $font-size-sm;
-            
-        }
-
-         .info-wrapper { 
-            display: flex;
-            height: 100%;
-            align-items: center;
-
-            .job-thumbnail {
-
-                max-width: 60px;
-                max-height: 60px;
-                border-radius: 5px;
-                margin: 0px 10px 0px 0px;
-
-            }
-
-            .info{
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                align-items: flex-start;
-                height: 100%;
-
-                .title-row {
-                    display: flex;
-                    align-items: center;
-
-                    .title {
-
-                        font-size: $font-size-md;
-                        margin: 0px;
-
-                    }
-
-                    .location-container {
-
-                        display: flex;
-                        margin: 0px 0px 0px 10px;
-
-                        .location-icon {
-
-                            max-width: 10px;
-
-                        }
-
-                        .location-text {
-
-                            margin: 0px 0px 0px 5px;
-                            font-size: $font-size-sm;
-
-                        }
-
-                     }
-
-                }
-
-        p,a {
-
-            font-family: $font-light !important;
-
-        }
-
+    .job-thumbnail {
+      max-width: 80px;
+      max-height: 80px;
+      border-radius: 5px;
+      margin: 0px 10px 0px 0px;
+      padding: 5px;
+      box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.15);
     }
 
-            }
-            
-        .more-info {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-end;
-            height: 100%;
+    .info-wrapper {
+      display: flex;
+      height: 100%;
+      align-items: center;
+      width: 100%;
+      justify-content: space-between;
+      border-bottom: $border-color 1px solid;
+      padding: 0px 0px 5px 0px;
+      margin: 20px 0px 0px 0px;
 
-            p,a {
-
-            font-family: $font-light !important;
-
-            }
-        }
-
-        .tag{
-            position: absolute;
-            top: -16px;
-            right: 0px;
-            height: 47px;
-            width: 140px;
-            background: url('../../../assets/images/icons/tag-back-icon.svg');
-            background-size: cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 3px 0px 0px 0px;
-            display: none;
-
-            .tag-icon {
-
-                width: 13px;
-                margin-right: 3px;
-
-            }
-
-            .tag-text {
-
-                color: $white;
-                font-size: 9px;
-                font-family: $font-medium !important;
-
-            }
-
-        }
-
-    &:hover {
-
-        box-shadow: $primary 2px 2px 9px !important;
-
-
-    }
-
-    &.active {
-
-        box-shadow: $primary 2px 2px 9px !important;
-
-
-    }
-
-    &.featured {
-        .tag{
-            display: flex;
-        }
-    }
-
-    &.box{
-        height: 220px;
-        width: 250px;
+      .info {
+        display: flex;
         flex-direction: column;
+        justify-content: space-between;
         align-items: flex-start;
-        padding: 5px 15px 5px 25px;
+        height: 60px;
 
-        .info-wrapper {
-            flex-direction: column;
+        .title-row {
+          display: flex;
+          align-items: center;
 
-            .job-thumbnail{
-                max-width: 80px;
-                max-height: 80px;
+          .title {
+            font-size: $font-size-md;
+            margin: 0px;
+          }
+
+          .location-container {
+            display: flex;
+            margin: 0px 0px 0px 10px;
+
+            .location-icon {
+              max-width: 10px;
             }
 
-            .info {
-                flex-direction: column;
-                justify-content: space-around;
-                height: 90px;
-                margin: 10px 0px 0px 0px;
-
-                .title-row{
-                    flex-direction: column;
-
-                    .location-container{
-                        margin: 5px 0px 0px 0px;
-                    }
-
-                }
-
+            .location-text {
+              margin: 0px 0px 0px 5px;
+              font-size: $font-size-sm;
             }
-
-
-
+          }
         }
 
-        .more-info {
-            align-self: flex-end;
-            position: absolute;
-            bottom: 5px;
-            right: 10px;
+        p,
+        a {
+          font-family: $font-light !important;
         }
- 
+      }
     }
-    
+
+    .more-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      height: 100%;
+      align-self: flex-end;
+      p,
+      a {
+        font-family: $font-light !important;
+        white-space: break-all;
+      }
+    }
+  }
+  .details-container {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    padding: 10px 10px;
+
+    p {
+      text-align: left;
+    }
+  }
+
+  .details-container-box {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    padding: 10px 0 0 0;
+
+    p {
+      text-align: left;
+    }
+    .title {
+      font-size: $font-size-md;
+    }
+  }
+
+  .tag-container {
+    position: absolute;
+    top: 0;
+    display: flex;
+    right: 0;
+    align-items: flex-start;
+
+    .featured-tag {
+      position: relative;
+      top: -6px;
+      right: 0px;
+      height: 45px;
+      width: 99px;
+      background: url("../../../assets/images/icons/job-tag-back-icon.png");
+      background-size: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0px 5px 7px 0px;
+
+      .tag-icon {
+        width: 15px;
+        margin-right: 3px;
+      }
+
+      .tag-text {
+        color: $white;
+        font-size: 9px;
+        font-family: $font-medium !important;
+      }
+    }
+
+    .job-tag {
+      display: flex;
+      align-items: center;
+      padding: 4px 5px;
+      margin: 0px 5px 0px 0px;
+
+      .tag-icon {
+        width: 20px;
+        margin-right: 3px;
+      }
+
+      .tag-text {
+        color: $text-color;
+        font-size: 9px;
+        font-family: $font-medium !important;
+      }
+    }
+  }
+
+  &:hover {
+    box-shadow: rgba($color: $primary, $alpha: 0.5) 2px 2px 9px !important;
+  }
+
+  &.active {
+    box-shadow: rgba($color: $primary, $alpha: 0.5) 2px 2px 9px !important;
+  }
+
+  &.box {
+    height: 220px;
+    width: 220px;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1em;
+
+    .info-wrapper {
+      flex-direction: column;
+
+      .job-thumbnail {
+        max-width: 80px;
+        max-height: 80px;
+      }
+
+      .info {
+        flex-direction: column;
+        justify-content: space-around;
+        height: 90px;
+
+        .title-row {
+          flex-direction: column;
+
+          .location-container {
+            margin: 5px 0px 0px 0px;
+          }
+        }
+      }
+    }
+
+    .more-info {
+      align-self: flex-end;
+      position: absolute;
+      bottom: 5px;
+      right: 10px;
+    }
+  }
 }
