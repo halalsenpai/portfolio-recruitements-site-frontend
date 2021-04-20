@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import LogoImage from "../../assets/images/logo/logo-md.png";
 import { useHistory, useLocation } from "react-router-dom";
 import CButton from "../shared/CButton/CButton";
-import { HiMenuAlt1 } from 'react-icons/hi';
+import { VscMenu, VscChromeClose } from 'react-icons/vsc';
 
 function CHeader() {
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
@@ -92,16 +92,22 @@ function CHeader() {
           >
             Pricing
           </Link>
+          <Link 
+          to="/login" 
+          onClick={() => {setCurrentPath("/login"); setMenu(false)}}
+          className="login">
+            Login
+          </Link>
         </div>
         <nav className="align-items-center">
           <Link to="/login" className="login">
             Login
           </Link>
           <Link className="text-decoration-none" to="/signup">
-            <button className="c-button blue sign-up-btn">Sign Up</button>
+            <CButton className="sign-up-btn">Sign Up</CButton>
           </Link>
           <button onClick={()=>setMenu(!menu)} className="toggle-button">
-              <HiMenuAlt1 size="25px"/>
+              {menu ? ( <VscChromeClose className="close-icon"  size="25px"/>) :(<VscMenu className="menu-icon" size="25px"/>)}
           </button>
         </nav>
       </span>
