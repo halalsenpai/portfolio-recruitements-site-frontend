@@ -1,14 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { Input, Form } from "antd";
 import { MappedElement } from "../../utils/helper";
-import CJobCard from "../../uiComponents/shared/CJobCard/CJobCard";
+import JobCard from "../../uiComponents/shared/CJobCard/CJobCard";
 import data from "./Data";
 import CJobDetailsCard from "../../uiComponents/shared/CJobDetailsCard/CJobDetailsCard";
-function Jobs() {
-  const onFinish = () => {};
+import JobFilter from "../../uiComponents/JobFilter/JobFilter";
+import Button from "../../uiComponents/shared/CButton/CButton";
+import "./_FindJobs.scss";
+function FindJobs() {
+  // const onFinish = () => {};
+
+  let [filter, setFilter] = useState(false);
+
+  let ShowFilter = () => {
+    setFilter(!filter);
+  };
+
   return (
     <div className="jobs-page">
-      <div className="header-wrapper">
+      {/* header section */}
+
+      {/* <div className="header-wrapper">
         <Form className="c-form header" onFinish={onFinish}>
           <span className="form-fields">
             <Form.Item name="search" className="c-input c-input-with-icon">
@@ -46,15 +58,60 @@ function Jobs() {
             </span>
           </span>
         </Form>
-      </div>
+      </div> */}
+
+      {/* header section end  */}
+
       <div className="jobs-wrapper">
-        <div className="jobs-list">
-          <MappedElement
-            data={data}
-            renderElement={(obj, index) => {
-              return <CJobCard job={obj} key={index} />;
-            }}
-          />
+        <JobFilter show={filter} onHide={ShowFilter} />
+
+        <div>
+          <span className="form-fields job-filter-section">
+            <Form.Item name="search" className="c-input c-input-with-icon">
+              <img
+                className="input-icon"
+                src={require("../../assets/images/icons/search_icon.svg")}
+                alt=""
+              />
+              <Input
+                placeholder="Job title"
+                size="small"
+                className="xs"
+                type="text"
+              ></Input>
+            </Form.Item>
+            <Form.Item name="location" className="c-input c-input-with-icon">
+              <img
+                className="input-icon"
+                src={require("../../assets/images/icons/location_icon.svg")}
+                alt=""
+              />
+              <Input
+                placeholder="Location"
+                size="small"
+                className="xs"
+                type="text"
+              ></Input>
+            </Form.Item>
+            <Button type="small" themeColor="outlined">
+              Search
+            </Button>
+            <div className="filters" onClick={ShowFilter}>
+              <img
+                className="filter-icon mt-2"
+                src={require("../../assets/images/icons/filter_icon.svg")}
+                alt=""
+              />
+            </div>
+          </span>
+          <div className="jobs-list">
+            <MappedElement
+              data={data}
+              renderElement={(obj, index) => {
+                return <JobCard job={obj} key={index} />;
+              }}
+            />
+          </div>
         </div>
         <div className="job-details">
           <CJobDetailsCard jobs={data} />
@@ -64,4 +121,4 @@ function Jobs() {
   );
 }
 
-export default Jobs;
+export default FindJobs;
