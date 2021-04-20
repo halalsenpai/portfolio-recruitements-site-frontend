@@ -18,7 +18,11 @@ li {
   color: $text-color;
   font-family: $font-light;
 }
-h1,h2,h3,h5,h6{
+h1,
+h2,
+h3,
+h5,
+h6 {
   color: $text-color;
 }
 
@@ -159,21 +163,17 @@ img {
     padding: 0 18px !important;
     box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
     background: $white !important;
-    
 
     &.ant-input-lg {
       width: 400px;
-
     }
 
     &.ant-input-sm {
       width: 300px;
-
     }
 
     &.xs {
       width: 200px;
-
     }
 
     &::placeholder {
@@ -182,57 +182,41 @@ img {
     }
 
     &:hover {
-
       border: none;
       border-right-width: 0px !important;
     }
 
     &:focus {
-
       border-color: $primary;
-
     }
-
   }
 
   &.c-input-with-icon {
-
     .ant-form-item-control-input-content {
-
       position: relative;
       display: flex;
       align-items: center;
       flex-direction: row;
 
       .input-icon {
-
         position: absolute;
         left: 12px;
         z-index: 1;
         max-width: 17px;
-
       }
 
       input {
-
         padding: 0 15px 0 35px !important;
-
       }
-
     }
-
   }
 
   .ant-form-item-explain {
-
     div {
-
       font-size: 14px;
       // font-family: $font-regular;
     }
-
   }
-
 }
 
 .ant-input-password {
@@ -241,7 +225,7 @@ img {
   &::before {
     display: none;
   }
-  
+
   .ant-input-suffix {
     position: absolute;
     right: 5px;
@@ -288,7 +272,7 @@ img {
 
 // custom select
 .ant-select {
-  width: 300px !important;
+  max-width: 300px !important;
 
   .ant-select-selector {
     font-size: 15px;
@@ -316,7 +300,7 @@ img {
   padding: 0 18px 0px 0px !important;
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
   background: #ffffff !important;
-  width: 300px;
+  max-width: 300px;
 
   input {
     font-size: 15px;
@@ -387,10 +371,10 @@ img {
     justify-content: center;
     align-items: center;
     height: 170px;
-    background: transparent url("../../assets/images/auth/login-background.png") 0% 0% no-repeat padding-box;
-    background-position: top;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
+    // background: transparent url("../../assets/images/auth/login-background.png") 0% 0% no-repeat padding-box;
+    // background-position: top;
+    // background-repeat: no-repeat;
+    // background-size: 100% 100%;
 
     img {
       width: 320px;
@@ -574,8 +558,6 @@ img {
 
 // ant inputs
 
-
-
 .ant-select-item-option-content {
   -ms-flex: auto;
   flex: auto;
@@ -595,52 +577,69 @@ img {
   height: 400px;
 }
 
-
 @keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @-moz-keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @-webkit-keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @-o-keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @-ms-keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
-
 
 // orientation lock
 
 @media only screen and (max-width: 991px) {
-  .c-input{
-  max-width: 300px;
-  width: 100%;
-  .ant-input{
-    width: 100% !important;
+  .c-input {
+    max-width: 300px;
+    width: 100%;
+    .ant-input {
+      width: 100% !important;
+    }
   }
-  }
-  .c-password-input{
+  .c-password-input {
     max-width: 300px;
     width: 100%;
   }
   .c-container {
-    
     padding: 50px 5px;
   }
-  .c-row{
+  .c-row {
     max-width: 900px;
     width: 100%;
   }

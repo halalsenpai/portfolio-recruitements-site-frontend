@@ -1,12 +1,15 @@
 @media only screen and (max-width: 991px) {
-    .c-form{
+  .c-form {
     max-width: 400px;
     width: 100%;
-    }
+  }
+  .forget-password-app {
+    width: 300px !important;
+  }
 }
 
 @media only screen and (max-width: 480px) {
-    .c-form{
+  .c-form {
     padding: 0 5px;
-}
+  }
 }

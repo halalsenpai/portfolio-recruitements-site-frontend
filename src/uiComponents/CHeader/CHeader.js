@@ -24,33 +24,26 @@ function CHeader() {
           <Link
             to="/employee-and-agencies"
             onClick={() => setCurrentPath("/employee-and-agencies")}
-            className={getActiveClassForPath(
-              currentPath,
-              "/employee-and-agencies"
-            )}
-          >
+            className={getActiveClassForPath(currentPath, "/employee-and-agencies")}>
             Employers & agencies
           </Link>
           <Link
             to="/job-seekers"
             onClick={() => setCurrentPath("/job-seekers")}
-            className={getActiveClassForPath(currentPath, "/job-seekers")}
-          >
+            className={getActiveClassForPath(currentPath, "/job-seekers")}>
             Job Seekers
           </Link>
           <Link
             to="/jobs"
             onClick={() => setCurrentPath("/jobs")}
-            className={getActiveClassForPath(currentPath, "/jobs")}
-          >
+            className={getActiveClassForPath(currentPath, "/jobs")}>
             Jobs
           </Link>
           <Link to="/">Services</Link>
           <Link
             to="/pricing"
             onClick={() => setCurrentPath("/pricing")}
-            className={getActiveClassForPath(currentPath, "/pricing")}
-          >
+            className={getActiveClassForPath(currentPath, "/pricing")}>
             Pricing
           </Link>
         </nav>
@@ -60,8 +53,7 @@ function CHeader() {
             onClick={() => {
               setCurrentPath("/");
               setMenu(false);
-            }}
-          >
+            }}>
             Post a free job
           </Link>
           <Link
@@ -70,11 +62,7 @@ function CHeader() {
               setCurrentPath("/employee-and-agencies");
               setMenu(false);
             }}
-            className={getActiveClassForPath(
-              currentPath,
-              "/employee-and-agencies"
-            )}
-          >
+            className={getActiveClassForPath(currentPath, "/employee-and-agencies")}>
             Employers & agencies
           </Link>
           <Link
@@ -83,8 +71,7 @@ function CHeader() {
               setCurrentPath("/job-seekers");
               setMenu(false);
             }}
-            className={getActiveClassForPath(currentPath, "/job-seekers")}
-          >
+            className={getActiveClassForPath(currentPath, "/job-seekers")}>
             Job Seekers
           </Link>
           <Link
@@ -93,8 +80,7 @@ function CHeader() {
               setCurrentPath("/jobs");
               setMenu(false);
             }}
-            className={getActiveClassForPath(currentPath, "/jobs")}
-          >
+            className={getActiveClassForPath(currentPath, "/jobs")}>
             Jobs
           </Link>
           <Link to="/">Services</Link>
@@ -104,8 +90,7 @@ function CHeader() {
               setCurrentPath("/pricing");
               setMenu(false);
             }}
-            className={getActiveClassForPath(currentPath, "/pricing")}
-          >
+            className={getActiveClassForPath(currentPath, "/pricing")}>
             Pricing
           </Link>
           <Link
@@ -114,8 +99,7 @@ function CHeader() {
               setCurrentPath("/login");
               setMenu(false);
             }}
-            className="login"
-          >
+            className="login">
             Login
           </Link>
         </div>
@@ -129,8 +113,7 @@ function CHeader() {
             onClick={() => {
               setCurrentPath("/signup");
               setMenu(false);
-            }}
-          >
+            }}>
             <CButton className="sign-up-btn">Sign Up</CButton>
           </Link>
           <button onClick={() => setMenu(!menu)} className="toggle-button">

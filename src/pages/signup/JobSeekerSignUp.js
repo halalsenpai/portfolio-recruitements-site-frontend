@@ -141,7 +141,7 @@ function JobSeekerSignUp() {
                 </WithHintText>
               </div>
 
-              <Select size="large" defaultValue="" style={{ width: 120 }}>
+              <Select size="large" defaultValue="">
                 <Option value="">Select</Option>
                 <Option value="asfd">US </Option>
                 <Option value="lucy">Canada</Option>
@@ -149,18 +149,20 @@ function JobSeekerSignUp() {
             </Form.Item>
           </div>
 
-          <Form.Item name="remember" className="mb-0">
-            <Checkbox checked value="">
-              I agree with Jobsmideast.com <mark>terms & conditions</mark> and <mark>privacy policy.</mark>
-            </Checkbox>
-          </Form.Item>
+          <span className="responsive-bottom-section">
+            <Form.Item name="remember" className="mb-0">
+              <Checkbox checked value="">
+                I agree with Jobsmideast.com <mark>terms & conditions</mark> and <mark>privacy policy.</mark>
+              </Checkbox>
+            </Form.Item>
 
-          <Form.Item name="remember" className="mb-0">
-            <Checkbox value="">
-              I agree to Jobsmideast T&C’s, the data privacy statement, and to receive future emails, texts and
-              communications.
-            </Checkbox>
-          </Form.Item>
+            <Form.Item name="remember" className="mb-0">
+              <Checkbox value="">
+                I agree to Jobsmideast T&C’s, the data privacy statement, and to receive future emails, texts and
+                communications.
+              </Checkbox>
+            </Form.Item>
+          </span>
 
           <Form.Item className=" mb-0 align-self-end">
             <CButton

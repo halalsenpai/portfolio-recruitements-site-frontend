@@ -56,6 +56,10 @@
     .second-container {
       width: 100%;
       padding: 2em 1em !important;
+      .responsive-bottom-section {
+        max-width: 300px;
+        margin: 0 auto;
+      }
 
       .c-row {
         justify-content: space-evenly;
