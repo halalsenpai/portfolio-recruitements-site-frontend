@@ -1,0 +1,103 @@
+@import "../../assets/scss/variables";
+
+@media screen and (max-width: 480px) {
+  .pricing-container {
+    padding: 30px 10px;
+
+    .pricing-main {
+      display: block;
+      font-size: $font-size-sm;
+
+      & .pricing-section {
+        width: 100%;
+
+        & .pricing-row {
+          & .pricing-card {
+            & .pricing-items {
+              & .pricings {
+                & .check-icon {
+                  color: #7ed957;
+                  font-size: 18px;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      & .pricing-image {
+        width: auto;
+        padding: 0;
+
+        & .image-section {
+          padding: 0;
+
+          & img {
+            margin: unset;
+            width: 100%;
+          }
+        }
+      }
+
+      & .color-blue {
+        color: $blue;
+        font-size: $font-size-sm;
+      }
+    }
+
+    .pricing-page {
+      & .section-2 {
+        & .left-side {
+          left: 0;
+          padding: 0 10px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 768px) {
+  .pricing-container {
+    padding: 30px 10px;
+
+    .pricing-main {
+      display: block;
+      font-size: $font-size-sm;
+
+      & .pricing-section {
+        width: 100%;
+      }
+
+      & .pricing-image {
+        width: auto;
+        padding: 0;
+
+        & .image-section {
+          padding: 0;
+
+          & img {
+            margin: unset;
+            width: 100%;
+          }
+        }
+      }
+
+      & .color-blue {
+        color: $blue;
+        font-size: $font-size-md;
+      }
+    }
+
+    .pricing-page {
+      & .section-2 {
+        & .left-side {
+          left: 0;
+          padding: 0 10px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+}
