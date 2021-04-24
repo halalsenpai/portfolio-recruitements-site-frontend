@@ -1,4 +1,5 @@
 import React from "react";
+
 import CardWithLines from "../../shared-ui/CardWithLines/CardWithLines";
 
 function ConfirmEmail() {

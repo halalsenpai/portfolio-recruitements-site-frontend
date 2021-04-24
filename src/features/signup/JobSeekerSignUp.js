@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 
+import { useHistory } from "react-router-dom";
 import PhoneInput from "react-phone-input-international";
 import { Input, Form, Checkbox, Popover, DatePicker, Select } from "antd";
 
 import * as Rules from "../../utils/rules";
 import Button from "../../shared-ui/Button/Button";
+import { useAppSelector, useAppDispatch } from "../../store/hooks";
+import {
+  getFamilyStatus,
+  getNationality,
+  jobseekerSignup,
+  selectFamilyStatus,
+  selectJobseekerSignup,
+  selectNationality,
+} from "./slice";
 
 const { Option } = Select;
 
-let helperText =
-  "This helps employers understand your family needs and accommodate accordingly such as booking you flights, providing accommodation and benefits such as free or discounted tuition fees.";
+let helperText = `This helps employers understand your family needs and accommodate accordingly such as booking you flights, 
+  providing accommodation and benefits such as free or discounted tuition fees.`;
 
 const WithHintText = ({ children }) => (
   <Popover
@@ -23,11 +33,40 @@ const WithHintText = ({ children }) => (
 );
 
 function JobSeekerSignUp() {
-  const onFinish = () => {};
+  const [form] = Form.useForm();
+  const history = useHistory();
+  const dispatch = useAppDispatch();
+  const familyStatuses = useAppSelector(selectFamilyStatus);
+  const nationalities = useAppSelector(selectNationality);
+  const signupSuccess = useAppSelector(selectJobseekerSignup);
+
+  useEffect(() => {
+    dispatch(getFamilyStatus());
+    dispatch(getNationality());
+  }, []);
+
+  useEffect(() => {
+    if (signupSuccess === true) {
+      history.push("confirm-email");
+    }
+  }, [signupSuccess]);
+
+  const onFinish = (values) => {
+    delete values.confirmPassword;
+    delete values.agreeTerms;
+    delete values.agreePrivacy;
+    const payload = {
+      ...values,
+      roleId: 1,
+      dob: values.dob.toISOString(),
+    };
+    dispatch(jobseekerSignup(payload));
+  };
 
   return (
     <div className="c-container auth-wrapper">
       <div className="signup-container with-form">
+        {/* left container */}
         <div className="first-container">
           <img
             className="logo"
@@ -84,9 +123,13 @@ function JobSeekerSignUp() {
             </div>
           </span>
         </div>
+
+        {/* form */}
         <Form
-          className="second-container c-form align-items-start"
+          form={form}
+          layout="vertical"
           onFinish={onFinish}
+          className="second-container c-form align-items-start"
         >
           <h3 className="form-title">
             Discover a new way of hiring & make the right connections.
@@ -94,12 +137,11 @@ function JobSeekerSignUp() {
 
           <div className="c-row">
             <Form.Item
+              label="First name"
               name="firstName"
               className="c-input"
               rules={Rules.firstNameRule}
             >
-              <label className="required">First name</label>
-
               <Input
                 placeholder="Enter your first name"
                 size="small"
@@ -108,12 +150,11 @@ function JobSeekerSignUp() {
             </Form.Item>
 
             <Form.Item
+              label="Last name"
               name="lastName"
               className="c-input"
               rules={Rules.lastNameRule}
             >
-              <label className="required">Last name</label>
-
               <Input
                 placeholder="Enter your last name"
                 size="small"
@@ -124,118 +165,174 @@ function JobSeekerSignUp() {
 
           <div className="c-row">
             <Form.Item
-              name="mobileNumber"
+              label="Mobile number"
+              name="mobile"
               className="c-input phone-fix"
               rules={Rules.phoneRule}
             >
-              <label className="required">Mobile number</label>
-
-              <PhoneInput
-                placeholder="Enter your mobile no."
-                country={"us"}
-                onChange={(phone) => console.log(phone)}
-              />
+              <PhoneInput placeholder="Enter your mobile no." country={"us"} />
             </Form.Item>
 
-            <Form.Item name="email" className="c-input" rules={Rules.emailRule}>
-              <label className="required">Email</label>
-
+            <Form.Item
+              label="Email"
+              name="email"
+              className="c-input"
+              rules={Rules.emailRule}
+            >
               <Input placeholder="Enter your email" size="small" type="text" />
             </Form.Item>
           </div>
 
           <div className="c-row">
             <Form.Item
-              name="familyStatus"
-              className="c-input"
-              rules={Rules.phoneRule}
+              label="Password"
+              name="password"
+              className="c-input phone-fix"
+              rules={Rules.passwordRule}
             >
-              <div className="c-label">
-                <label className="required"> Family status </label>
-                <WithHintText>
-                  <img
-                    class="label-icon"
-                    src={require("../../assets/images/icons/information-icon.svg")}
-                    alt=""
-                  />
-                </WithHintText>
-              </div>
+              <Input.Password
+                placeholder="Enter password"
+                size="small"
+                type="password"
+              />
+            </Form.Item>
 
+            <Form.Item
+              label="Confirm Password"
+              name="confirmPassword"
+              className="c-input"
+              rules={Rules.confirmPasswordRule}
+              dependencies={["password"]}
+            >
+              <Input.Password placeholder="Enter password again" size="small" />
+            </Form.Item>
+          </div>
+
+          <div className="c-row">
+            <Form.Item
+              label={
+                <div className="c-label">
+                  <label>Family status&nbsp;</label>
+                  <WithHintText>
+                    <img
+                      class="label-icon"
+                      src={require("../../assets/images/icons/information-icon.svg")}
+                      alt=""
+                    />
+                  </WithHintText>
+                </div>
+              }
+              name="familyStatusId"
+              className="c-input"
+              rules={Rules.requiredRule}
+            >
               <Select size="large" defaultValue="">
                 <Option value="">Select</Option>
-                <Option value="jack">Jack</Option>
-                <Option value="lucy">Lucy</Option>
-                <Option value="Yiminghe">yiminghe</Option>
+                {familyStatuses?.map((fs) => (
+                  <Option value={fs.id}>{fs.title}</Option>
+                ))}
               </Select>
             </Form.Item>
 
-            <Form.Item name="email" className="c-input" rules={Rules.emailRule}>
-              <div className="c-label">
-                <label className="required">Gender</label>
-                <WithHintText>
-                  <img
-                    class="label-icon"
-                    src={require("../../assets/images/icons/information-icon.svg")}
-                    alt=""
-                  />
-                </WithHintText>
-              </div>
-
+            <Form.Item
+              label={
+                <div className="c-label">
+                  <label>Gender&nbsp;</label>
+                  <WithHintText>
+                    <img
+                      class="label-icon"
+                      src={require("../../assets/images/icons/information-icon.svg")}
+                      alt=""
+                    />
+                  </WithHintText>
+                </div>
+              }
+              name="gender"
+              className="c-input"
+              rules={Rules.requiredRule}
+            >
               <Select size="large" defaultValue="">
                 <Option value="">Select</Option>
-                <Option value="jack">Male</Option>
-                <Option value="lucy">Female</Option>
+                <Option value="male">Male</Option>
+                <Option value="female">Female</Option>
+                <Option value="other">Other</Option>
               </Select>
             </Form.Item>
           </div>
 
           <div className="c-row">
             <Form.Item
-              name="dateOfbirth"
+              label="Date of birth"
+              name="dob"
               className="c-input"
-              rules={Rules.phoneRule}
+              rules={Rules.requiredRule}
             >
-              <label className="required">Date of birth</label>
               <DatePicker />
             </Form.Item>
 
-            <Form.Item name="email" className="c-input" rules={Rules.emailRule}>
-              <div className="c-label">
-                <label className="required">Passport nationality</label>
-                <WithHintText>
-                  <img
-                    class="label-icon"
-                    src={require("../../assets/images/icons/information-icon.svg")}
-                    alt=""
-                  />
-                </WithHintText>
-              </div>
-
+            <Form.Item
+              label={
+                <div className="c-label">
+                  <label>Passport nationality&nbsp;</label>
+                  <WithHintText>
+                    <img
+                      class="label-icon"
+                      src={require("../../assets/images/icons/information-icon.svg")}
+                      alt=""
+                    />
+                  </WithHintText>
+                </div>
+              }
+              name="nationalityId"
+              className="c-input"
+              rules={Rules.requiredRule}
+            >
               <Select size="large" defaultValue="">
                 <Option value="">Select</Option>
-                <Option value="asfd">US </Option>
-                <Option value="lucy">Canada</Option>
+                {nationalities?.map((n) => (
+                  <Option value={n.id}>{n.title}</Option>
+                ))}
               </Select>
             </Form.Item>
           </div>
 
           <span className="responsive-bottom-section">
-            <Form.Item name="remember" className="mb-0">
-              <Checkbox checked value="">
-                I agree with Jobsmideast.com <mark>terms & conditions</mark> and{" "}
-                <mark>privacy policy.</mark>
+            <Form.Item
+              rules={[
+                {
+                  required: true,
+                  message: "Please select our terms & conditions",
+                },
+              ]}
+              name="agreeTerms"
+              className="mb-0"
+              valuePropName="checked"
+            >
+              <Checkbox>
+                I agree with Jobsmideast.com <mark>terms &amp; conditions</mark>{" "}
+                and <mark>privacy policy.</mark>
               </Checkbox>
             </Form.Item>
 
-            <Form.Item name="remember" className="mb-0">
-              <Checkbox value="">
+            <Form.Item
+              rules={[
+                {
+                  required: true,
+                  message: "Please agree to our data privacy statement",
+                },
+              ]}
+              name="agreePrivacy"
+              className="mb-0"
+              valuePropName="checked"
+            >
+              <Checkbox>
                 I agree to Jobsmideast T&C’s, the data privacy statement, and to
                 receive future emails, texts and communications.
               </Checkbox>
             </Form.Item>
           </span>
 
-          <Form.Item className=" mb-0 align-self-end">
+          <Form.Item className="mb-0 align-self-end">
             <Button
               themeColor="primary"
               type="large"

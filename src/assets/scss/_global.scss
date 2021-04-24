@@ -210,12 +210,13 @@ img {
       }
     }
   }
+}
 
-  .ant-form-item-explain {
-    div {
-      font-size: 14px;
-      // font-family: $font-regular;
-    }
+.ant-form-item-explain-error {
+  div {
+    font-size: 12px;
+    margin-left: 1em;
+    // font-family: $font-regular;
   }
 }
 
@@ -266,9 +267,9 @@ img {
   border-color: $primary;
 }
 
-.ant-form-item-with-help {
-  max-height: 100px;
-}
+// .ant-form-item-with-help {
+//   max-height: 100px;
+// }
 
 // custom select
 .ant-select {
@@ -459,7 +460,10 @@ img {
   height: 3px;
 }
 
-.ant-steps-item-finish > .ant-steps-item-container > .ant-steps-item-content > .ant-steps-item-title::after {
+.ant-steps-item-finish
+  > .ant-steps-item-container
+  > .ant-steps-item-content
+  > .ant-steps-item-title::after {
   background-color: $green;
 }
 
@@ -554,6 +558,9 @@ img {
   margin: 0px 0px 10px 0px;
 }
 
+.ant-form-vertical .ant-form-item {
+  flex-direction: row;
+}
 //  extras
 
 // ant inputs
