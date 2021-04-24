@@ -1,29 +1,29 @@
 import React from "react";
-import { Input, Form } from "antd";
-import Checkbox from "antd/lib/checkbox/Checkbox";
+
+import PhoneInput from "react-phone-input-international";
+import { Input, Form, Checkbox, Popover, DatePicker, Select } from "antd";
+
 import * as Rules from "../../utils/rules";
 import Button from "../../shared-ui/Button/Button";
-import PhoneInput from "react-phone-input-international";
-import { Popover, DatePicker, Select } from "antd";
 
 const { Option } = Select;
 
+let helperText =
+  "This helps employers understand your family needs and accommodate accordingly such as booking you flights, providing accommodation and benefits such as free or discounted tuition fees.";
+
+const WithHintText = ({ children }) => (
+  <Popover
+    placement="topLeft"
+    overlayInnerStyle={{ width: 400 }}
+    content={helperText}
+    trigger="click"
+  >
+    {children}
+  </Popover>
+);
+
 function JobSeekerSignUp() {
   const onFinish = () => {};
-
-  let helperText =
-    "This helps employers understand your family needs and accommodate accordingly such as booking you flights, providing accommodation and benefits such as free or discounted tuition fees.";
-
-  const WithHintText = ({ children }) => (
-    <Popover
-      placement="topLeft"
-      overlayInnerStyle={{ width: 400 }}
-      content={helperText}
-      trigger="click"
-    >
-      {children}
-    </Popover>
-  );
 
   return (
     <div className="c-container auth-wrapper">

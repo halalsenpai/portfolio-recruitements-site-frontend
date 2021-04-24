@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import { Form, Radio } from "antd";
@@ -9,11 +9,11 @@ import "./_SignUp.scss";
 import "./_Responsive.scss";
 
 function SignUp() {
-  const [role, setRole] = useState(userTypes.SEEKER);
+  const [userType, setUserType] = useState(userTypes.SEEKER);
   const history = useHistory();
 
-  const onFinish = () => {
-    switch (role) {
+  const onFinish = useCallback(() => {
+    switch (userType) {
       case userTypes.SEEKER:
         history.push("user-signup");
         return;
@@ -27,12 +27,10 @@ function SignUp() {
         history.push("user-signup");
         return;
     }
-  };
+  }, [userType]);
 
   const onChange = (e) => {
-    console.log("radio checked", e.target.value);
-
-    setRole(e.target.value);
+    setUserType(e.target.value);
   };
 
   return (
@@ -56,7 +54,7 @@ function SignUp() {
               <mark>Create an account</mark>
             </h3>
 
-            <Radio.Group onChange={onChange} value={role}>
+            <Radio.Group onChange={onChange} value={userType}>
               <Radio value={userTypes.SEEKER}>I'm looking for jobs</Radio>
 
               <Radio value={userTypes.EMPLOYER}>I'm an employer</Radio>
