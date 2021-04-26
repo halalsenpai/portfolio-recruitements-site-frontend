@@ -151,6 +151,13 @@
   }
 }
 
+.form-actions {
+  display: flex;
+  button:last-of-type {
+    margin-left: 1em;
+  }
+}
+
 .confirm-email-card {
   align-self: center;
   height: 400px;

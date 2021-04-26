@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+
 import { Select, Divider, Input } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 
 const { Option } = Select;
 let index = 0;
+
 const SelectWithAddItem = ({
   options = [],
   onItemChange = null,
@@ -25,7 +27,6 @@ const SelectWithAddItem = ({
   return (
     <Select
       className={"c-select-with-add-item"}
-      style={{ width: 240 }}
       defaultValue={defaultValue}
       placeholder="Select"
       onChange={onItemChange}

@@ -210,6 +210,18 @@ img {
       }
     }
   }
+
+  .ant-form-item-label {
+    label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
+      content: " ";
+    }
+    label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::after {
+      display: inline-block;
+      margin-right: 4px;
+      line-height: 1;
+      content: "*";
+    }
+  }
 }
 
 .ant-form-item-explain-error {
@@ -237,6 +249,13 @@ img {
 .ant-form-item-control-input-content {
   display: flex;
   flex-direction: column;
+  button.c-button.default {
+    background-color: #ffffff;
+    border: 1px solid #d9d9d9;
+    span {
+      color: #000000d9;
+    }
+  }
 }
 
 .ant-input-affix-wrapper {
@@ -571,7 +590,7 @@ img {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  font-size: 20px;
+  font-size: $font-size-sm;
   padding: 5px 0px;
   font-family: $font-light;
 }
