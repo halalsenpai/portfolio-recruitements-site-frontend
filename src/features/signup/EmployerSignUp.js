@@ -10,27 +10,44 @@ import MediaPicker from "../../shared-ui/MediaPicker/MediaPicker";
 import SelectWithAddItem from "../../shared-ui/SelectWithAddItem/SelectWithAddItem";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
-  selectFindUsPlatform,
+  getCompany,
   getFindUsPlatform,
+  getCountry,
+  getCity,
+  getJobTitle,
+} from "./thunk";
+import {
+  selectFindUsPlatform,
   selectEmployerSignup,
+  selectCompany,
+  selectCountry,
+  selectCity,
+  selectJobTitles,
 } from "./slice";
 
 const { Option } = Select;
 
 function EmployerSignUp() {
+  const [form] = Form.useForm();
   const history = useHistory();
+  const [isCreateCompany, setCreateCompany] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
+  const [formData, setFormData] = useState({});
   const dispatch = useAppDispatch();
   const findUsPlatforms = useAppSelector(selectFindUsPlatform);
   const signupSuccess = useAppSelector(selectEmployerSignup);
+  const companies = useAppSelector(selectCompany);
+  const countries = useAppSelector(selectCountry);
+  const cities = useAppSelector(selectCity);
+  const jobTitles = useAppSelector(selectJobTitles);
 
   useEffect(() => {
     dispatch(getFindUsPlatform());
+    dispatch(getCompany());
+    dispatch(getCountry());
+    dispatch(getCity());
+    dispatch(getJobTitle());
   }, []);
-
-  useEffect(() => {
-    console.log("findUsPlatforms: ", findUsPlatforms);
-  }, [findUsPlatforms]);
 
   useEffect(() => {
     if (signupSuccess === true) {
@@ -39,29 +56,58 @@ function EmployerSignUp() {
   }, [signupSuccess]);
 
   const onFinish = (values) => {
-    delete values.agreeTerms;
+    console.log("onFinish values: ", values);
+
+    if (values.companyProfileId === "create-company") {
+      setFormData(values);
+      setCurrentStep((prevValue) => prevValue + 1);
+      return;
+    }
+
     const payload = {
-      ...values,
       roleId: 2,
+      ...formData,
+      ...values,
     };
+
+    if (payload.companyProfileId === "create-company") {
+      delete payload.companyProfileId;
+    }
+    delete payload.agreeTerms;
+    console.log("payload: ", payload);
     // dispatch(jobseekerSignup(payload));
+  };
+
+  const onFinishFailed = (values) => {
+    console.log("onFinishFailed values: ", values);
   };
 
   const onStepChange = () => {
     if (currentStep < 2) {
       setCurrentStep((prevValue) => prevValue + 1);
     } else {
+      setFormData({});
       setCurrentStep(1);
     }
+  };
+
+  const onCompanyNameChange = (value) => {
+    if (value === "create-company") {
+      setCreateCompany(true);
+      return;
+    }
+    setCreateCompany(false);
   };
 
   return (
     <div className="c-container auth-wrapper">
       <div className="signup-container with-form">
         <Form
+          form={form}
           layout="vertical"
           className="c-form second-container align-items-start"
           onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
         >
           {currentStep === 1 ? (
             <>
@@ -75,15 +121,22 @@ function EmployerSignUp() {
               <div className="c-row">
                 <Form.Item
                   label="Company name"
-                  name="companyName"
+                  name="companyProfileId"
                   className="c-input"
                   rules={Rules.requiredRule}
                 >
-                  <Input
-                    placeholder="Enter your company name"
-                    size="small"
-                    type="text"
-                  />
+                  <Select
+                    size="large"
+                    defaultValue=""
+                    onChange={onCompanyNameChange}
+                  >
+                    <Option value="">Select</Option>
+                    <Option value="create-company">Create new company</Option>
+
+                    {companies?.map((c) => (
+                      <Option value={c.id}>{c.companyName}</Option>
+                    ))}
+                  </Select>
                 </Form.Item>
                 <Form.Item
                   label="Job title"
@@ -91,11 +144,18 @@ function EmployerSignUp() {
                   className="c-input"
                   rules={Rules.requiredRule}
                 >
-                  <SelectWithAddItem
+                  {/* <SelectWithAddItem
                     options={["Software Engineer", "Accountant"]}
                     onItemChange={(e) => console.log(e)}
                     hintTextForAddItem={"Can't find your job title?"}
-                  />
+                  /> */}
+                  <Select size="large" defaultValue="">
+                    <Option value="">Select</Option>
+
+                    {["jobTitles"].map((jt) => (
+                      <Option value={jt}>{jt}</Option>
+                    ))}
+                  </Select>
                 </Form.Item>
               </div>
               <div className="c-row">
@@ -139,7 +199,7 @@ function EmployerSignUp() {
                 </Form.Item>
                 <Form.Item
                   label="Direct work phone"
-                  name="companyPhone"
+                  name="directWorkPhone"
                   className="c-input phone-fix"
                   rules={Rules.phoneRule}
                 >
@@ -176,6 +236,33 @@ function EmployerSignUp() {
                       <Option value={fu.id}>{fu.title}</Option>
                     ))}
                   </Select>
+                </Form.Item>
+              </div>
+              <div className="c-row">
+                <Form.Item
+                  label="Password"
+                  name="password"
+                  className="c-input phone-fix"
+                  rules={Rules.passwordRule}
+                >
+                  <Input.Password
+                    placeholder="Enter password"
+                    size="small"
+                    type="password"
+                  />
+                </Form.Item>
+
+                <Form.Item
+                  label="Confirm Password"
+                  name="confirmPassword"
+                  className="c-input"
+                  rules={Rules.confirmPasswordRule}
+                  dependencies={["password"]}
+                >
+                  <Input.Password
+                    placeholder="Enter password again"
+                    size="small"
+                  />
                 </Form.Item>
               </div>
             </>
@@ -220,6 +307,9 @@ function EmployerSignUp() {
                 >
                   <Select size="large" defaultValue="">
                     <Option value="">Select</Option>
+                    {countries?.map((c) => (
+                      <Option value={c.id}>{c.title}</Option>
+                    ))}
                   </Select>
                 </Form.Item>
                 <Form.Item
@@ -230,6 +320,9 @@ function EmployerSignUp() {
                 >
                   <Select size="large" defaultValue="">
                     <Option value="">Select</Option>
+                    {cities?.map((c) => (
+                      <Option value={c.id}>{c.title}</Option>
+                    ))}
                   </Select>
                 </Form.Item>
               </div>
@@ -238,7 +331,7 @@ function EmployerSignUp() {
                   label="Website https://"
                   name="webUrl"
                   className="c-input"
-                  rules={Rules.emailRule}
+                  rules={Rules.requiredRule}
                 >
                   <Input
                     placeholder="Enter your website"
@@ -258,7 +351,12 @@ function EmployerSignUp() {
             </>
           )}
 
-          <Form.Item name="agreeTerms" className="mb-3" valuePropName="checked">
+          <Form.Item
+            name="agreeTerms"
+            className="mb-3"
+            valuePropName="checked"
+            rules={Rules.requiredRule}
+          >
             <Checkbox value="">
               I agree with Jobsmideast.com{" "}
               <mark className="blue">terms &amp; conditions</mark> and{" "}
@@ -272,11 +370,12 @@ function EmployerSignUp() {
               <Button
                 block
                 type="large"
-                htmlType="button"
+                htmlType="submit"
                 themeColor="blue"
-                onClick={onStepChange}
+                // loading={true}
               >
-                Next
+                {isCreateCompany && "Next"}
+                {!isCreateCompany && "Create my profile"}
               </Button>
             </Form.Item>
           )}

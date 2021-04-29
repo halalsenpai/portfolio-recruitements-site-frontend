@@ -1,58 +1,26 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 import {
-  getFamilyStatus as getFamilyStatusAPI,
-  getNationality as getNationalityAPI,
-  getFindUsPlatform as getFindUsPlatformAPI,
-  jobseekerSignup as jobseekerSignupAPI,
-  employerSignup as employerSignupAPI,
-} from "./service";
-
-export const getFamilyStatus = createAsyncThunk(
-  "signup/family-status",
-  async () => {
-    const response = await getFamilyStatusAPI();
-    return response.data;
-  }
-);
-
-export const getNationality = createAsyncThunk(
-  "signup/nationality",
-  async () => {
-    const response = await getNationalityAPI();
-    return response.data;
-  }
-);
-
-export const getFindUsPlatform = createAsyncThunk(
-  "signup/find-us",
-  async () => {
-    const response = await getFindUsPlatformAPI();
-    return response.data;
-  }
-);
-
-export const jobseekerSignup = createAsyncThunk(
-  "signup/jobseeker",
-  async (payload) => {
-    const response = await jobseekerSignupAPI(payload);
-    return response.data;
-  }
-);
-
-export const employerSignup = createAsyncThunk(
-  "signup/employer",
-  async (payload) => {
-    const response = await employerSignupAPI(payload);
-    return response.data;
-  }
-);
+  getFamilyStatus,
+  getFindUsPlatform,
+  getNationality,
+  getCompany,
+  getCountry,
+  getCity,
+  getJobTitle,
+  jobseekerSignup,
+  employerSignup,
+} from "./thunk";
 
 const initialState = {
   status: "idle",
   familyStatuses: [],
   nationalities: [],
   findUsPlatforms: [],
+  companies: [],
+  countries: [],
+  cities: [],
+  jobTitles: [],
   jobseekerSignupSuccess: false,
   employerSignupSuccess: false,
 };
@@ -65,11 +33,14 @@ export const slice = createSlice({
     builder
       .addCase(
         [
-          jobseekerSignup.pending,
           getFamilyStatus.pending,
           getNationality.pending,
           getFindUsPlatform.pending,
+          getCompany.pending,
+          getCountry.pending,
+          getCity.pending,
           jobseekerSignup.pending,
+          employerSignup.pending,
         ],
         (state) => {
           state.status = "loading";
@@ -91,6 +62,22 @@ export const slice = createSlice({
         state.status = "idle";
         state.jobseekerSignupSuccess = true;
       })
+      .addCase(getCompany.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.companies = action.payload.items;
+      })
+      .addCase(getCountry.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.countries = action.payload;
+      })
+      .addCase(getCity.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.cities = action.payload;
+      })
+      .addCase(getJobTitle.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.cities = action.payload;
+      })
       .addCase(employerSignup.fulfilled, (state, action) => {
         state.status = "idle";
         state.employerSignupSuccess = true;
@@ -105,6 +92,10 @@ export const selectSignupStatus = (state) => state.signup.status;
 export const selectFamilyStatus = (state) => state.signup.familyStatuses;
 export const selectNationality = (state) => state.signup.nationalities;
 export const selectFindUsPlatform = (state) => state.signup.findUsPlatforms;
+export const selectCompany = (state) => state.signup.companies;
+export const selectCountry = (state) => state.signup.countries;
+export const selectCity = (state) => state.signup.cities;
+export const selectJobTitles = (state) => state.signup.jobTitles;
 export const selectJobseekerSignup = (state) =>
   state.signup.jobseekerSignupSuccess;
 export const selectEmployerSignup = (state) =>

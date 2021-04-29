@@ -7,10 +7,8 @@ import { Input, Form, Checkbox, Popover, DatePicker, Select } from "antd";
 import * as Rules from "../../utils/rules";
 import Button from "../../shared-ui/Button/Button";
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
+import { getFamilyStatus, getNationality, jobseekerSignup } from "./thunk";
 import {
-  getFamilyStatus,
-  getNationality,
-  jobseekerSignup,
   selectFamilyStatus,
   selectJobseekerSignup,
   selectNationality,
