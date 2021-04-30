@@ -10,6 +10,7 @@ import MediaPicker from "../../shared-ui/MediaPicker/MediaPicker";
 // import SelectWithAddItem from "../../shared-ui/SelectWithAddItem/SelectWithAddItem";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
+  getRole,
   getCompany,
   getFindUsPlatform,
   getCountry,
@@ -18,6 +19,7 @@ import {
   employerSignup,
 } from "./thunk";
 import {
+  selectRole,
   selectFindUsPlatform,
   selectEmployerSignup,
   selectCompany,
@@ -32,9 +34,12 @@ function EmployerSignUp() {
   const [form] = Form.useForm();
   const history = useHistory();
   const dispatch = useAppDispatch();
+
   const [isCreateCompany, setCreateCompany] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({});
+
+  const roles = useAppSelector(selectRole);
   const findUsPlatforms = useAppSelector(selectFindUsPlatform);
   const signupSuccess = useAppSelector(selectEmployerSignup);
   const companies = useAppSelector(selectCompany);
@@ -43,6 +48,7 @@ function EmployerSignUp() {
   const jobTitles = useAppSelector(selectJobTitles);
 
   useEffect(() => {
+    dispatch(getRole());
     dispatch(getFindUsPlatform());
     dispatch(getCompany());
     dispatch(getCountry());
@@ -63,8 +69,14 @@ function EmployerSignUp() {
       return;
     }
 
+    const role = roles.find((r) => r.title === "employer");
+
+    if (!role && !role.length) {
+      return;
+    }
+
     const payload = {
-      roleId: 2,
+      roleId: role.id,
       ...formData,
       ...values,
     };

@@ -1,66 +1,187 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
+import { useHistory } from "react-router-dom";
 import { Input, Form, Select, Checkbox } from "antd";
-import PhoneInput from "react-phone-input-international";
 
 import * as Rules from "../../utils/rules";
 import Button from "../../shared-ui/Button/Button";
-import SelectWithAddItem from "../../shared-ui/SelectWithAddItem/SelectWithAddItem";
+import PhoneInput from "react-phone-input-international";
 import MediaPicker from "../../shared-ui/MediaPicker/MediaPicker";
+// import SelectWithAddItem from "../../shared-ui/SelectWithAddItem/SelectWithAddItem";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import {
+  getCompany,
+  getFindUsPlatform,
+  getCountry,
+  getCity,
+  getJobTitle,
+  employerSignup,
+  getRole,
+} from "./thunk";
+import {
+  selectRole,
+  selectFindUsPlatform,
+  selectEmployerSignup,
+  selectCompany,
+  selectCountry,
+  selectCity,
+  selectJobTitles,
+} from "./slice";
 
 const { Option } = Select;
 
 function AgencySignUp() {
+  const [form] = Form.useForm();
+  const history = useHistory();
+  const dispatch = useAppDispatch();
+
+  const [isCreateCompany, setCreateCompany] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
-  const onFinish = () => {
+  const [formData, setFormData] = useState({});
+
+  const roles = useAppSelector(selectRole);
+  const findUsPlatforms = useAppSelector(selectFindUsPlatform);
+  const signupSuccess = useAppSelector(selectEmployerSignup);
+  const companies = useAppSelector(selectCompany);
+  const countries = useAppSelector(selectCountry);
+  const cities = useAppSelector(selectCity);
+  const jobTitles = useAppSelector(selectJobTitles);
+
+  useEffect(() => {
+    dispatch(getRole());
+    dispatch(getFindUsPlatform());
+    dispatch(getCompany());
+    dispatch(getCountry());
+    dispatch(getCity());
+    dispatch(getJobTitle());
+  }, []);
+
+  useEffect(() => {
+    if (signupSuccess === true) {
+      history.push("confirm-email");
+    }
+  }, [signupSuccess]);
+
+  const onFinish = (values) => {
+    if (values.companyProfileId === "create-company") {
+      setFormData(values);
+      setCurrentStep((prevValue) => prevValue + 1);
+      return;
+    }
+
+    const role = roles.find((r) => r.title === "agency");
+
+    if (!role && !role.length) {
+      return;
+    }
+
+    const payload = {
+      roleId: role.id,
+      ...formData,
+      ...values,
+    };
+
+    if (payload.companyProfileId === "create-company") {
+      delete payload.companyProfileId;
+    }
+    delete payload.agreeTerms;
+    dispatch(employerSignup(payload));
+  };
+
+  const onStepChange = () => {
     if (currentStep < 2) {
       setCurrentStep((prevValue) => prevValue + 1);
+    } else {
+      setFormData({});
+      setCurrentStep(1);
     }
   };
+
+  const onCompanyNameChange = (value) => {
+    if (value === "create-company") {
+      setCreateCompany(true);
+      return;
+    }
+    setCreateCompany(false);
+  };
+
   return (
     <div className="c-container auth-wrapper">
       <div className="signup-container with-form">
         <Form
+          form={form}
+          layout="vertical"
           className="c-form second-container align-items-start"
           onFinish={onFinish}
         >
           {currentStep === 1 ? (
             <>
               <h3 className="form-title">
-                <mark className="blue">Agent details</mark>
+                <mark className="blue">Agency details</mark>
               </h3>
               <div className="d-flex w-100 justify-content-end align-items-center">
                 <MediaPicker onPicked={(data) => console.log(data)} />
               </div>
+
               <div className="c-row">
-                <Form.Item name="lastName" className="c-input">
-                  <label className="required">Company name</label>
-                  <Input
-                    placeholder="Enter your last name"
-                    size="small"
-                    type="text"
-                  />
+                <Form.Item
+                  label="Company name"
+                  name="companyProfileId"
+                  className="c-input"
+                  rules={Rules.requiredRule}
+                >
+                  <Select
+                    size="large"
+                    defaultValue=""
+                    onChange={onCompanyNameChange}
+                  >
+                    <Option value="">Select</Option>
+                    <Option value="create-company">Create new company</Option>
+
+                    {companies?.map((c) => (
+                      <Option value={c.id}>{c.companyName}</Option>
+                    ))}
+                  </Select>
                 </Form.Item>
-                <Form.Item name="lastName" className="c-input">
-                  <label className="required">Job Title</label>
-                  <SelectWithAddItem
+                <Form.Item
+                  label="Job title"
+                  name="jobTitleId"
+                  className="c-input"
+                  rules={Rules.requiredRule}
+                >
+                  {/* <SelectWithAddItem
                     options={["Software Engineer", "Accountant"]}
                     onItemChange={(e) => console.log(e)}
                     hintTextForAddItem={"Can't find your job title?"}
-                  />
+                  /> */}
+                  <Select size="large" defaultValue="">
+                    <Option value="">Select</Option>
+
+                    {jobTitles.map((jt) => (
+                      <Option value={jt.id}>{jt.title}</Option>
+                    ))}
+                  </Select>
                 </Form.Item>
               </div>
               <div className="c-row">
-                <Form.Item name="firstName" className="c-input">
-                  <label className="required">First Name</label>
+                <Form.Item
+                  label="First name"
+                  name="firstName"
+                  className="c-input"
+                  rules={Rules.firstNameRule}
+                >
                   <Input
                     placeholder="Enter your first name"
                     size="small"
                     type="text"
                   />
                 </Form.Item>
-                <Form.Item name="lastName" className="c-input">
-                  <label className="required">Last Name </label>
+                <Form.Item
+                  label="Last name"
+                  name="lastName"
+                  className="c-input"
+                  rules={Rules.lastNameRule}
+                >
                   <Input
                     placeholder="Enter your last name"
                     size="small"
@@ -68,80 +189,113 @@ function AgencySignUp() {
                   />
                 </Form.Item>
               </div>
-
               <div className="c-row">
-                <Form.Item name="mobileNumber" className="c-input phone-fix">
-                  <label className="required">Mobile number</label>
+                <Form.Item
+                  label="Mobile number"
+                  name="mobile"
+                  className="c-input phone-fix"
+                  rules={Rules.phoneRule}
+                >
                   <PhoneInput
                     placeholder="Enter your mobile no."
                     country={"us"}
-                    onChange={(phone) => console.log(phone)}
                   />
                 </Form.Item>
-                <Form.Item name="workPhone" className="c-input phone-fix">
-                  <label className="required">Direct Work Phone</label>
+                <Form.Item
+                  label="Direct work phone"
+                  name="directWorkPhone"
+                  className="c-input phone-fix"
+                  rules={Rules.phoneRule}
+                >
                   <PhoneInput
                     placeholder="Enter your work phone."
                     country={"us"}
-                    onChange={(phone) => console.log(phone)}
                   />
                 </Form.Item>
               </div>
               <div className="c-row">
-                <Form.Item name="email" className="c-input">
-                  <label className="required">Work email address </label>
+                <Form.Item
+                  label="Work email address"
+                  name="email"
+                  className="c-input"
+                  rules={Rules.emailRule}
+                >
                   <Input
                     placeholder="Enter your email"
                     size="small"
                     type="text"
                   />
                 </Form.Item>
-                <Form.Item name="familyStatus" className="c-input">
-                  <div className="c-label">
-                    <label className="required">How did you find us?</label>
-                  </div>
+                <Form.Item
+                  label="How did you find us?"
+                  name="findUsId"
+                  className="c-input"
+                  rules={Rules.requiredRule}
+                >
                   <Select size="large" defaultValue="">
                     <Option value="">Select</Option>
+
+                    {findUsPlatforms?.map((fu) => (
+                      <Option value={fu.id}>{fu.title}</Option>
+                    ))}
                   </Select>
+                </Form.Item>
+              </div>
+              <div className="c-row">
+                <Form.Item
+                  label="Password"
+                  name="password"
+                  className="c-input phone-fix"
+                  rules={Rules.passwordRule}
+                >
+                  <Input.Password
+                    placeholder="Enter password"
+                    size="small"
+                    type="password"
+                  />
+                </Form.Item>
+
+                <Form.Item
+                  label="Confirm Password"
+                  name="confirmPassword"
+                  className="c-input"
+                  rules={Rules.confirmPasswordRule}
+                  dependencies={["password"]}
+                >
+                  <Input.Password
+                    placeholder="Enter password again"
+                    size="small"
+                  />
                 </Form.Item>
               </div>
             </>
           ) : (
             <>
               <h3 className="form-title">
-                <mark className="blue">Agency details</mark>
+                <mark className="blue">Company details</mark>
               </h3>
               <div className="c-row">
-                <Form.Item name="firstName" className="c-input">
-                  <label className="required">I’m registering a</label>
-                  <Input
-                    placeholder="Enter your first name"
-                    size="small"
-                    type="text"
-                  />
+                <Form.Item
+                  label="I’m registering a"
+                  name="companyType"
+                  className="c-input"
+                  rules={Rules.requiredRule}
+                >
+                  <Select size="large" defaultValue="">
+                    <Option value="">Select</Option>
+                    <Option value="single-company">Single company</Option>
+                    <Option value="headquarters">Headquarters</Option>
+                    <Option value="branch">Branch within the company</Option>
+                  </Select>
                 </Form.Item>
-                <Form.Item name="lastName" className="c-input">
-                  <label className="required">Company name</label>
+                <Form.Item
+                  label="Company name"
+                  name="companyName"
+                  className="c-input"
+                  rules={Rules.requiredRule}
+                >
                   <Input
-                    placeholder="Enter your last name"
-                    size="small"
-                    type="text"
-                  />
-                </Form.Item>
-              </div>
-              <div className="c-row">
-                <Form.Item name="lastName" className="c-input">
-                  <label className="required">Company location</label>
-                  <Input
-                    placeholder="Enter your last name"
-                    size="small"
-                    type="text"
-                  />
-                </Form.Item>
-                <Form.Item name="mobileNumber" className="c-input">
-                  <label className="required">City </label>
-                  <Input
-                    placeholder="Enter your mobile no."
+                    placeholder="Enter your company name"
                     size="small"
                     type="text"
                   />
@@ -149,48 +303,115 @@ function AgencySignUp() {
               </div>
               <div className="c-row">
                 <Form.Item
-                  name="email"
+                  label="Company location"
+                  name="countryId"
                   className="c-input"
-                  rules={Rules.emailRule}
+                  rules={Rules.requiredRule}
                 >
-                  <label className="required">Website https://</label>
+                  <Select size="large" defaultValue="">
+                    <Option value="">Select</Option>
+                    {countries?.map((c) => (
+                      <Option value={c.id}>{c.title}</Option>
+                    ))}
+                  </Select>
+                </Form.Item>
+                <Form.Item
+                  label="City"
+                  name="cityId"
+                  className="c-input"
+                  rules={Rules.requiredRule}
+                >
+                  <Select size="large" defaultValue="">
+                    <Option value="">Select</Option>
+                    {cities?.map((c) => (
+                      <Option value={c.id}>{c.title}</Option>
+                    ))}
+                  </Select>
+                </Form.Item>
+              </div>
+              <div className="c-row">
+                <Form.Item
+                  label="Website https://"
+                  name="webUrl"
+                  className="c-input"
+                  rules={Rules.requiredRule}
+                >
                   <Input
-                    placeholder="Enter your email"
+                    placeholder="Enter your website"
                     size="small"
                     type="text"
                   />
                 </Form.Item>
                 <Form.Item
-                  name="email"
-                  className="c-input"
-                  rules={Rules.emailRule}
+                  label="Company phone number"
+                  name="companyPhone"
+                  className="c-input phone-fix"
+                  rules={Rules.phoneRule}
                 >
-                  <label className="required">Company phone number</label>
-                  <Input placeholder="" size="small" type="text" />
+                  <PhoneInput
+                    placeholder="Enter your work phone."
+                    country={"us"}
+                  />
                 </Form.Item>
               </div>
             </>
           )}
 
-          <Form.Item name="remember" className="mb-0">
+          <Form.Item
+            name="agreeTerms"
+            className="mb-3"
+            valuePropName="checked"
+            rules={Rules.requiredRule}
+          >
             <Checkbox value="">
-              I agree with Jobsmideast.com
-              <mark className="blue">terms & conditions</mark>
-              and <mark className="blue">privacy policy.</mark>
-              and I agree to receive future emails, texts and communications.
+              I agree with Jobsmideast.com{" "}
+              <mark className="blue">terms &amp; conditions</mark> and{" "}
+              <mark className="blue">privacy policy.</mark> and I agree to
+              receive future emails, texts and communications.{" "}
             </Checkbox>
           </Form.Item>
-          <Form.Item className=" align-self-end">
-            <Button
-              type="large"
-              htmlType="submit"
-              themeColor="blue"
-              // loading={true}
-              block
-            >
-              Create my profile
-            </Button>
-          </Form.Item>
+
+          {currentStep === 1 && (
+            <Form.Item className="align-self-end">
+              <Button
+                block
+                type="large"
+                htmlType="submit"
+                themeColor="blue"
+                // loading={true}
+              >
+                {isCreateCompany && "Next"}
+                {!isCreateCompany && "Create my profile"}
+              </Button>
+            </Form.Item>
+          )}
+
+          {currentStep === 2 && (
+            <>
+              <Form.Item className="align-self-end">
+                <div className="form-actions">
+                  <Button
+                    block
+                    type="large"
+                    htmlType="button"
+                    themeColor="default"
+                    onClick={onStepChange}
+                  >
+                    Back
+                  </Button>
+                  <Button
+                    block
+                    type="large"
+                    htmlType="submit"
+                    themeColor="blue"
+                    // loading={true}
+                  >
+                    Create my profile
+                  </Button>
+                </div>
+              </Form.Item>
+            </>
+          )}
         </Form>
         <div className="first-container on-right bg-2">
           <img

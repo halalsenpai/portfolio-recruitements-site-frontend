@@ -7,8 +7,14 @@ import { Input, Form, Checkbox, Popover, DatePicker, Select } from "antd";
 import * as Rules from "../../utils/rules";
 import Button from "../../shared-ui/Button/Button";
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
-import { getFamilyStatus, getNationality, jobseekerSignup } from "./thunk";
 import {
+  getRole,
+  getFamilyStatus,
+  getNationality,
+  jobseekerSignup,
+} from "./thunk";
+import {
+  selectRole,
   selectFamilyStatus,
   selectJobseekerSignup,
   selectNationality,
@@ -34,11 +40,14 @@ function JobSeekerSignUp() {
   const [form] = Form.useForm();
   const history = useHistory();
   const dispatch = useAppDispatch();
+
+  const roles = useAppSelector(selectRole);
   const familyStatuses = useAppSelector(selectFamilyStatus);
   const nationalities = useAppSelector(selectNationality);
   const signupSuccess = useAppSelector(selectJobseekerSignup);
 
   useEffect(() => {
+    dispatch(getRole());
     dispatch(getFamilyStatus());
     dispatch(getNationality());
   }, []);
@@ -53,9 +62,16 @@ function JobSeekerSignUp() {
     delete values.confirmPassword;
     delete values.agreeTerms;
     delete values.agreePrivacy;
+
+    const role = roles.find((r) => r.title === "jobseeker");
+
+    if (!role && !role.length) {
+      return;
+    }
+
     const payload = {
       ...values,
-      roleId: 1,
+      roleId: role.id,
       dob: values.dob.toISOString(),
     };
     dispatch(jobseekerSignup(payload));

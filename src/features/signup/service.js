@@ -1,6 +1,7 @@
 import { get, post } from "../../utils/httpService";
 
 const SERVICE_URLS = {
+  getRole: () => `/role`,
   getFamilyStatus: () => `/family-status`,
   getNationality: () => `/nationality`,
   getFindUsPlatform: () => `/find-us`,
@@ -12,6 +13,7 @@ const SERVICE_URLS = {
   employerSignup: () => `/auth/employer/signup`,
 };
 
+export const getRole = () => get(SERVICE_URLS.getRole());
 export const getFamilyStatus = () => get(SERVICE_URLS.getFamilyStatus());
 export const getNationality = () => get(SERVICE_URLS.getNationality());
 export const getFindUsPlatform = () => get(SERVICE_URLS.getFindUsPlatform());

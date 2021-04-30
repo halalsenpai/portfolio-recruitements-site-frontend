@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import {
+  getRole,
   getFamilyStatus,
   getFindUsPlatform,
   getNationality,
@@ -14,6 +15,7 @@ import {
 
 const initialState = {
   status: "idle",
+  roles: [],
   familyStatuses: [],
   nationalities: [],
   findUsPlatforms: [],
@@ -33,6 +35,7 @@ export const slice = createSlice({
     builder
       .addCase(
         [
+          getRole.pending,
           getFamilyStatus.pending,
           getNationality.pending,
           getFindUsPlatform.pending,
@@ -47,6 +50,10 @@ export const slice = createSlice({
           state.status = "loading";
         }
       )
+      .addCase(getRole.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.roles = action.payload;
+      })
       .addCase(getFamilyStatus.fulfilled, (state, action) => {
         state.status = "idle";
         state.familyStatuses = action.payload;
@@ -95,6 +102,7 @@ export const slice = createSlice({
 });
 
 export const selectSignupStatus = (state) => state.signup.status;
+export const selectRole = (state) => state.signup.roles;
 export const selectFamilyStatus = (state) => state.signup.familyStatuses;
 export const selectNationality = (state) => state.signup.nationalities;
 export const selectFindUsPlatform = (state) => state.signup.findUsPlatforms;

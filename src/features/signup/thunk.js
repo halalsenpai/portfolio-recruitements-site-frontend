@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import {
+  getRole as getRoleAPI,
   getFamilyStatus as getFamilyStatusAPI,
   getNationality as getNationalityAPI,
   getFindUsPlatform as getFindUsPlatformAPI,
@@ -13,6 +14,11 @@ import {
 } from "./service";
 
 // GET APIs
+export const getRole = createAsyncThunk("signup/role", async () => {
+  const response = await getRoleAPI();
+  return response.data;
+});
+
 export const getFamilyStatus = createAsyncThunk(
   "signup/family-status",
   async () => {
