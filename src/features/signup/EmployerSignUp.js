@@ -7,7 +7,7 @@ import * as Rules from "../../utils/rules";
 import Button from "../../shared-ui/Button/Button";
 import PhoneInput from "react-phone-input-international";
 import MediaPicker from "../../shared-ui/MediaPicker/MediaPicker";
-import SelectWithAddItem from "../../shared-ui/SelectWithAddItem/SelectWithAddItem";
+// import SelectWithAddItem from "../../shared-ui/SelectWithAddItem/SelectWithAddItem";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
   getCompany,
@@ -15,6 +15,7 @@ import {
   getCountry,
   getCity,
   getJobTitle,
+  employerSignup,
 } from "./thunk";
 import {
   selectFindUsPlatform,
@@ -30,10 +31,10 @@ const { Option } = Select;
 function EmployerSignUp() {
   const [form] = Form.useForm();
   const history = useHistory();
+  const dispatch = useAppDispatch();
   const [isCreateCompany, setCreateCompany] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({});
-  const dispatch = useAppDispatch();
   const findUsPlatforms = useAppSelector(selectFindUsPlatform);
   const signupSuccess = useAppSelector(selectEmployerSignup);
   const companies = useAppSelector(selectCompany);
@@ -56,8 +57,6 @@ function EmployerSignUp() {
   }, [signupSuccess]);
 
   const onFinish = (values) => {
-    console.log("onFinish values: ", values);
-
     if (values.companyProfileId === "create-company") {
       setFormData(values);
       setCurrentStep((prevValue) => prevValue + 1);
@@ -74,12 +73,7 @@ function EmployerSignUp() {
       delete payload.companyProfileId;
     }
     delete payload.agreeTerms;
-    console.log("payload: ", payload);
-    // dispatch(jobseekerSignup(payload));
-  };
-
-  const onFinishFailed = (values) => {
-    console.log("onFinishFailed values: ", values);
+    dispatch(employerSignup(payload));
   };
 
   const onStepChange = () => {
@@ -107,7 +101,6 @@ function EmployerSignUp() {
           layout="vertical"
           className="c-form second-container align-items-start"
           onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
         >
           {currentStep === 1 ? (
             <>
@@ -152,8 +145,8 @@ function EmployerSignUp() {
                   <Select size="large" defaultValue="">
                     <Option value="">Select</Option>
 
-                    {["jobTitles"].map((jt) => (
-                      <Option value={jt}>{jt}</Option>
+                    {jobTitles.map((jt) => (
+                      <Option value={jt.id}>{jt.title}</Option>
                     ))}
                   </Select>
                 </Form.Item>
@@ -194,7 +187,6 @@ function EmployerSignUp() {
                   <PhoneInput
                     placeholder="Enter your mobile no."
                     country={"us"}
-                    onChange={(phone) => console.log(phone)}
                   />
                 </Form.Item>
                 <Form.Item
@@ -206,7 +198,6 @@ function EmployerSignUp() {
                   <PhoneInput
                     placeholder="Enter your work phone."
                     country={"us"}
-                    onChange={(phone) => console.log(phone)}
                   />
                 </Form.Item>
               </div>
@@ -345,7 +336,10 @@ function EmployerSignUp() {
                   className="c-input phone-fix"
                   rules={Rules.phoneRule}
                 >
-                  <Input placeholder="" size="small" type="text" />
+                  <PhoneInput
+                    placeholder="Enter your work phone."
+                    country={"us"}
+                  />
                 </Form.Item>
               </div>
             </>

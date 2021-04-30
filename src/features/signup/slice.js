@@ -39,6 +39,7 @@ export const slice = createSlice({
           getCompany.pending,
           getCountry.pending,
           getCity.pending,
+          getJobTitle.pending,
           jobseekerSignup.pending,
           employerSignup.pending,
         ],
@@ -58,13 +59,9 @@ export const slice = createSlice({
         state.status = "idle";
         state.findUsPlatforms = action.payload;
       })
-      .addCase(jobseekerSignup.fulfilled, (state, action) => {
-        state.status = "idle";
-        state.jobseekerSignupSuccess = true;
-      })
       .addCase(getCompany.fulfilled, (state, action) => {
         state.status = "idle";
-        state.companies = action.payload.items;
+        state.companies = action.payload;
       })
       .addCase(getCountry.fulfilled, (state, action) => {
         state.status = "idle";
@@ -76,7 +73,11 @@ export const slice = createSlice({
       })
       .addCase(getJobTitle.fulfilled, (state, action) => {
         state.status = "idle";
-        state.cities = action.payload;
+        state.jobTitles = action.payload;
+      })
+      .addCase(jobseekerSignup.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.jobseekerSignupSuccess = true;
       })
       .addCase(employerSignup.fulfilled, (state, action) => {
         state.status = "idle";
@@ -84,6 +85,11 @@ export const slice = createSlice({
       })
       .addCase(jobseekerSignup.rejected, (state) => {
         state.status = "failed";
+        state.jobseekerSignupSuccess = false;
+      })
+      .addCase(employerSignup.rejected, (state) => {
+        state.status = "failed";
+        state.employerSignupSuccess = false;
       });
   },
 });

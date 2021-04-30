@@ -6,8 +6,8 @@ const SERVICE_URLS = {
   getFindUsPlatform: () => `/find-us`,
   getCompany: () => `/company-profile?page=1&limit=100`,
   getCountry: () => `/country`,
-  getCity: () => `/city`,
-  getJobTitle: (id) => `/job-title/${id}`,
+  getCity: () => `/city?page=1&limit=100`,
+  getJobTitle: () => `/jobtitle?page=1&limit=100&title=`,
   jobseekerSignup: () => `/auth/jobseeker/signup`,
   employerSignup: () => `/auth/employer/signup`,
 };
@@ -18,7 +18,7 @@ export const getFindUsPlatform = () => get(SERVICE_URLS.getFindUsPlatform());
 export const getCompany = () => get(SERVICE_URLS.getCompany());
 export const getCountry = () => get(SERVICE_URLS.getCountry());
 export const getCity = () => get(SERVICE_URLS.getCity());
-export const getJobTitle = (id) => get(SERVICE_URLS.getJobTitle(id));
+export const getJobTitle = () => get(SERVICE_URLS.getJobTitle());
 
 export const jobseekerSignup = (body) =>
   post(SERVICE_URLS.jobseekerSignup(), body);

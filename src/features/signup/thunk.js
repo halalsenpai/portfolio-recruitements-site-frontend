@@ -53,7 +53,7 @@ export const getCity = createAsyncThunk("signup/city", async () => {
 });
 
 export const getJobTitle = createAsyncThunk("signup/job-title", async () => {
-  const response = await getJobTitleAPI(2);
+  const response = await getJobTitleAPI();
   return response.data;
 });
 

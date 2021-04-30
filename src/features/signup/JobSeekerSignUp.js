@@ -160,7 +160,6 @@ function JobSeekerSignUp() {
               />
             </Form.Item>
           </div>
-
           <div className="c-row">
             <Form.Item
               label="Mobile number"
@@ -180,7 +179,6 @@ function JobSeekerSignUp() {
               <Input placeholder="Enter your email" size="small" type="text" />
             </Form.Item>
           </div>
-
           <div className="c-row">
             <Form.Item
               label="Password"
@@ -205,7 +203,6 @@ function JobSeekerSignUp() {
               <Input.Password placeholder="Enter password again" size="small" />
             </Form.Item>
           </div>
-
           <div className="c-row">
             <Form.Item
               label={
@@ -257,7 +254,6 @@ function JobSeekerSignUp() {
               </Select>
             </Form.Item>
           </div>
-
           <div className="c-row">
             <Form.Item
               label="Date of birth"
