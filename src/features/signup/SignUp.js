@@ -9,18 +9,18 @@ import "./_SignUp.scss";
 import "./_Responsive.scss";
 
 function SignUp() {
-  const [userType, setUserType] = useState(userTypes.SEEKER);
+  const [userType, setUserType] = useState(userTypes.JOBSEEKER.title);
   const history = useHistory();
 
   const onFinish = useCallback(() => {
     switch (userType) {
-      case userTypes.SEEKER:
+      case userTypes.JOBSEEKER.title:
         history.push("user-signup");
         return;
-      case userTypes.EMPLOYER:
+      case userTypes.EMPLOYER.title:
         history.push("employer-signup");
         return;
-      case userTypes.AGENCY:
+      case userTypes.AGENCY.title:
         history.push("agency-signup");
         return;
       default:
@@ -43,7 +43,10 @@ function SignUp() {
             alt="logo"
           />
         </div>
-        <Form className="second-container c-form w-100" onFinish={onFinish}>
+        <Form
+          className="second-container c-form w-100 signup-option"
+          onFinish={onFinish}
+        >
           <img
             src={require("../../assets/images/auth/signup-illus.png")}
             alt="logo"
@@ -55,11 +58,13 @@ function SignUp() {
             </h3>
 
             <Radio.Group onChange={onChange} value={userType}>
-              <Radio value={userTypes.SEEKER}>I'm looking for jobs</Radio>
+              <Radio value={userTypes.JOBSEEKER.title}>
+                I'm looking for jobs
+              </Radio>
 
-              <Radio value={userTypes.EMPLOYER}>I'm an employer</Radio>
+              <Radio value={userTypes.EMPLOYER.title}>I'm an employer</Radio>
 
-              <Radio value={userTypes.AGENCY}>I'm a recruiter</Radio>
+              <Radio value={userTypes.AGENCY.title}>I'm a recruiter</Radio>
             </Radio.Group>
           </span>
 

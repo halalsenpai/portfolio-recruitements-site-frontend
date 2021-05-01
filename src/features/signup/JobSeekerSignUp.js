@@ -180,7 +180,7 @@ function JobSeekerSignUp() {
             <Form.Item
               label="Mobile number"
               name="mobile"
-              className="c-input phone-fix"
+              className="c-input"
               rules={Rules.phoneRule}
             >
               <PhoneInput placeholder="Enter your mobile no." country={"us"} />
@@ -199,7 +199,7 @@ function JobSeekerSignUp() {
             <Form.Item
               label="Password"
               name="password"
-              className="c-input phone-fix"
+              className="c-input"
               rules={Rules.passwordRule}
             >
               <Input.Password

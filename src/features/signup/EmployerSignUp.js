@@ -193,7 +193,7 @@ function EmployerSignUp() {
                 <Form.Item
                   label="Mobile number"
                   name="mobile"
-                  className="c-input phone-fix"
+                  className="c-input"
                   rules={Rules.phoneRule}
                 >
                   <PhoneInput
@@ -204,7 +204,7 @@ function EmployerSignUp() {
                 <Form.Item
                   label="Direct work phone"
                   name="directWorkPhone"
-                  className="c-input phone-fix"
+                  className="c-input"
                   rules={Rules.phoneRule}
                 >
                   <PhoneInput
@@ -245,7 +245,7 @@ function EmployerSignUp() {
                 <Form.Item
                   label="Password"
                   name="password"
-                  className="c-input phone-fix"
+                  className="c-input"
                   rules={Rules.passwordRule}
                 >
                   <Input.Password
@@ -345,7 +345,7 @@ function EmployerSignUp() {
                 <Form.Item
                   label="Company phone number"
                   name="companyPhone"
-                  className="c-input phone-fix"
+                  className="c-input"
                   rules={Rules.phoneRule}
                 >
                   <PhoneInput

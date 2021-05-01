@@ -128,14 +128,14 @@
       padding: 0 50px;
       max-width: inherit;
 
+      &.signup-option {
+        align-items: center;
+      }
       .c-button {
         align-self: flex-end;
       }
       .c-input {
         width: 300px;
-        &.phone-fix {
-          width: 300px;
-        }
       }
     }
 

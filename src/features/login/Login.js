@@ -1,32 +1,59 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 
-import { Input, Form, Checkbox } from "antd";
+import { Input, Form, Checkbox, Alert } from "antd";
 
 import * as Rules from "../../utils/rules";
 import { userTypes } from "../../utils/constants";
 import Button from "../../shared-ui/Button/Button";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { login } from "./thunk";
+import {
+  selectLogin,
+  selectLoginError,
+  selectLoginResponse,
+  selectLoginStatus,
+} from "./slice";
 import "./_Login.scss";
 import "./_Responsive.scss";
 
 function Login() {
-  const [userType, setUserType] = useState(userTypes.SEEKER);
-  const onFinish = () => {};
+  const history = useHistory();
+  const dispatch = useAppDispatch();
+  const [userType, setUserType] = useState(userTypes.JOBSEEKER.title);
+  const isLoading = useAppSelector(selectLoginStatus);
+  const loginSuccess = useAppSelector(selectLogin);
+  const loginErrorMessage = useAppSelector(selectLoginError);
+  const loginResponse = useAppSelector(selectLoginResponse);
+
+  useEffect(() => {
+    if (loginSuccess === true) {
+      // history.push("confirm-email");
+    }
+  }, [loginSuccess]);
+
   const getIsActive = (type) => {
     return userType === type ? "active" : "";
   };
+
   const getFormTitle = (type) => {
     switch (type) {
-      case userTypes.AGENCY:
+      case userTypes.AGENCY.title:
         return "Agency login";
-      case userTypes.EMPLOYER:
+      case userTypes.EMPLOYER.title:
         return "Employer login";
-      case userTypes.SEEKER:
+      case userTypes.JOBSEEKER.title:
         return "Job Seeker login";
       default:
         return "";
     }
   };
+
+  const onFinish = (values) => {
+    console.log("values: ", values);
+    dispatch(login(values));
+  };
+
   return (
     <div className="c-container auth-wrapper">
       <div className="c-card-container login-container">
@@ -44,44 +71,38 @@ function Login() {
         </div>
         <div className="second-container">
           <div className="user-type">
-            <span
-              className={`${getIsActive(userTypes.SEEKER)}`}
-              onClick={() => setUserType(userTypes.SEEKER)}
-            >
-              Job Seeker
-            </span>
-            <span
-              className={`${getIsActive(userTypes.EMPLOYER)}`}
-              onClick={() => setUserType(userTypes.EMPLOYER)}
-            >
-              Employer
-            </span>
-            <span
-              className={`${getIsActive(userTypes.AGENCY)}`}
-              onClick={() => setUserType(userTypes.AGENCY)}
-            >
-              Agency
-            </span>
+            {Object.keys(userTypes).map((ut) => (
+              <span
+                className={`${getIsActive(userTypes[ut].title)}`}
+                onClick={() => setUserType(userTypes[ut].title)}
+              >
+                {userTypes[ut].title}
+              </span>
+            ))}
           </div>
-          <Form className="c-form" onFinish={onFinish}>
+
+          {/* Form */}
+          <Form
+            className="c-form login-form"
+            layout="vertical"
+            onFinish={onFinish}
+          >
             <h3 className="form-title w-100">
               <mark>{getFormTitle(userType)}</mark>
             </h3>
+
+            <label>Email *</label>
             <Form.Item name="email" className="c-input" rules={Rules.emailRule}>
-              <label>Email</label>
-              <Input placeholder="Email" size="large" type="email" />
+              <Input placeholder="Enter your email" size="large" />
             </Form.Item>
+
+            <label>Password *</label>
             <Form.Item
               name="password"
+              className="c-input"
               rules={Rules.passwordRule}
-              className="c-password-input mb-2"
             >
-              <label>Password</label>
-              <Input.Password
-                placeholder="Password"
-                className="c-input"
-                size="large"
-              />
+              <Input.Password placeholder="Enter your password" size="large" />
             </Form.Item>
 
             <span className="d-flex justify-content-between align-items-center w-100 alt-text mt-2 forget-password-app">
@@ -92,20 +113,21 @@ function Login() {
                 Forgot Password
               </Link>
             </span>
+
             <Form.Item>
-              <Button
-                type="large"
-                htmlType="submit"
-                // loading={true}
-                block
-              >
+              <Button type="large" htmlType="submit" loading={isLoading} block>
                 Login
               </Button>
             </Form.Item>
+
+            {loginErrorMessage && (
+              <Alert message={loginErrorMessage} type="error" />
+            )}
+
             <Form.Item className="alt-text mb-0">
               <p className="mb-0">
                 Don't have an account?{" "}
-                <Link to="/sign-up">
+                <Link to="/signup">
                   <mark> Sign up</mark>
                 </Link>
               </p>

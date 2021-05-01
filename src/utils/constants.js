@@ -1,5 +1,5 @@
 export const userTypes = {
-  SEEKER: "SEEKER",
-  EMPLOYER: "EMPLOYER",
-  AGENCY: "AGENCY",
+  JOBSEEKER: { title: "Job Seeker", url: "" },
+  EMPLOYER: { title: "Employer", url: "" },
+  AGENCY: { title: "Agency", url: "" },
 };
