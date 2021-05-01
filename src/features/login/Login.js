@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { Input, Form, Checkbox, Alert } from "antd";
 
@@ -8,6 +8,8 @@ import { userTypes } from "../../utils/constants";
 import Button from "../../shared-ui/Button/Button";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { login } from "./thunk";
+import { getRole } from "../signup/thunk";
+import { selectRole } from "../signup/slice";
 import {
   selectLogin,
   selectLoginError,
@@ -18,17 +20,28 @@ import "./_Login.scss";
 import "./_Responsive.scss";
 
 function Login() {
-  const history = useHistory();
   const dispatch = useAppDispatch();
   const [userType, setUserType] = useState(userTypes.JOBSEEKER.title);
   const isLoading = useAppSelector(selectLoginStatus);
   const loginSuccess = useAppSelector(selectLogin);
   const loginErrorMessage = useAppSelector(selectLoginError);
   const loginResponse = useAppSelector(selectLoginResponse);
+  const roles = useAppSelector(selectRole);
+
+  useEffect(() => {
+    dispatch(getRole());
+  }, []);
 
   useEffect(() => {
     if (loginSuccess === true) {
-      // history.push("confirm-email");
+      const token = loginResponse.token;
+      const roleId = loginResponse.roleId;
+      const role = roles.find((r) => r.id === roleId);
+
+      const url = userTypes[role.title.toUpperCase()].url;
+      if (url) {
+        window.location = `${url}/?token=${token}`;
+      }
     }
   }, [loginSuccess]);
 
