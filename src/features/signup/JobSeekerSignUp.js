@@ -2,7 +2,15 @@ import React, { useEffect } from "react";
 
 import { useHistory } from "react-router-dom";
 import PhoneInput from "react-phone-input-international";
-import { Input, Form, Checkbox, Popover, DatePicker, Select } from "antd";
+import {
+  Input,
+  Form,
+  Checkbox,
+  Popover,
+  DatePicker,
+  Select,
+  Alert,
+} from "antd";
 
 import * as Rules from "../../utils/rules";
 import Button from "../../shared-ui/Button/Button";
@@ -18,6 +26,8 @@ import {
   selectFamilyStatus,
   selectJobseekerSignup,
   selectNationality,
+  selectErrorMessage,
+  selectLoadingStatus,
 } from "./slice";
 
 const { Option } = Select;
@@ -45,6 +55,8 @@ function JobSeekerSignUp() {
   const familyStatuses = useAppSelector(selectFamilyStatus);
   const nationalities = useAppSelector(selectNationality);
   const signupSuccess = useAppSelector(selectJobseekerSignup);
+  const isLoading = useAppSelector(selectLoadingStatus);
+  const errorMessage = useAppSelector(selectErrorMessage);
 
   useEffect(() => {
     dispatch(getRole());
@@ -342,12 +354,14 @@ function JobSeekerSignUp() {
             </Form.Item>
           </span>
 
+          {errorMessage && <Alert message={errorMessage} type="error" />}
+
           <Form.Item className="mb-0 align-self-end">
             <Button
               themeColor="primary"
               type="large"
               htmlType="submit"
-              // loading={true}
+              loading={isLoading}
               block
             >
               Create my profile
