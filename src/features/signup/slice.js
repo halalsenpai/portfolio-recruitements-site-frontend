@@ -25,7 +25,12 @@ const initialState = {
   jobTitles: [],
   jobseekerSignupSuccess: false,
   employerSignupSuccess: false,
+  errorMessage: null,
 };
+
+function isPendingAction(action) {
+  return action.type.endsWith("/pending");
+}
 
 export const slice = createSlice({
   name: "signup",
@@ -33,23 +38,6 @@ export const slice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(
-        [
-          getRole.pending,
-          getFamilyStatus.pending,
-          getNationality.pending,
-          getFindUsPlatform.pending,
-          getCompany.pending,
-          getCountry.pending,
-          getCity.pending,
-          getJobTitle.pending,
-          jobseekerSignup.pending,
-          employerSignup.pending,
-        ],
-        (state) => {
-          state.status = "loading";
-        }
-      )
       .addCase(getRole.fulfilled, (state, action) => {
         state.status = "idle";
         state.roles = action.payload;
@@ -90,17 +78,25 @@ export const slice = createSlice({
         state.status = "idle";
         state.employerSignupSuccess = true;
       })
-      .addCase(jobseekerSignup.rejected, (state) => {
+      .addCase(jobseekerSignup.rejected, (state, action) => {
         state.status = "failed";
         state.jobseekerSignupSuccess = false;
+        state.errorMessage = action.error.message;
       })
-      .addCase(employerSignup.rejected, (state) => {
+      .addCase(employerSignup.rejected, (state, action) => {
         state.status = "failed";
         state.employerSignupSuccess = false;
+        state.errorMessage = action.error.message;
+      })
+      .addMatcher(isPendingAction, (state) => {
+        state.status = "loading";
+        state.errorMessage = null;
       });
   },
 });
 
+export const selectLoadingStatus = (state) => state.signup.status === "loading";
+export const selectErrorMessage = (state) => state.signup.errorMessage;
 export const selectSignupStatus = (state) => state.signup.status;
 export const selectRole = (state) => state.signup.roles;
 export const selectFamilyStatus = (state) => state.signup.familyStatuses;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { useHistory } from "react-router-dom";
-import { Input, Form, Select, Checkbox } from "antd";
+import { Input, Form, Select, Checkbox, Alert } from "antd";
 
 import * as Rules from "../../utils/rules";
 import Button from "../../shared-ui/Button/Button";
@@ -26,6 +26,8 @@ import {
   selectCountry,
   selectCity,
   selectJobTitles,
+  selectLoadingStatus,
+  selectErrorMessage,
 } from "./slice";
 
 const { Option } = Select;
@@ -46,6 +48,8 @@ function AgencySignUp() {
   const countries = useAppSelector(selectCountry);
   const cities = useAppSelector(selectCity);
   const jobTitles = useAppSelector(selectJobTitles);
+  const isLoading = useAppSelector(selectLoadingStatus);
+  const errorMessage = useAppSelector(selectErrorMessage);
 
   useEffect(() => {
     dispatch(getRole());
@@ -274,6 +278,7 @@ function AgencySignUp() {
               <h3 className="form-title">
                 <mark className="blue">Company details</mark>
               </h3>
+
               <div className="c-row">
                 <Form.Item
                   label="I’m registering a"
@@ -371,6 +376,8 @@ function AgencySignUp() {
             </Checkbox>
           </Form.Item>
 
+          {errorMessage && <Alert message={errorMessage} type="error" />}
+
           {currentStep === 1 && (
             <Form.Item className="align-self-end">
               <Button
@@ -378,7 +385,7 @@ function AgencySignUp() {
                 type="large"
                 htmlType="submit"
                 themeColor="blue"
-                // loading={true}
+                loading={isLoading}
               >
                 {isCreateCompany && "Next"}
                 {!isCreateCompany && "Create my profile"}
@@ -396,6 +403,7 @@ function AgencySignUp() {
                     htmlType="button"
                     themeColor="default"
                     onClick={onStepChange}
+                    disabled={isLoading}
                   >
                     Back
                   </Button>
@@ -404,7 +412,7 @@ function AgencySignUp() {
                     type="large"
                     htmlType="submit"
                     themeColor="blue"
-                    // loading={true}
+                    loading={isLoading}
                   >
                     Create my profile
                   </Button>

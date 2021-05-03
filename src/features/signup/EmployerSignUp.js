@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { useHistory } from "react-router-dom";
-import { Input, Form, Select, Checkbox } from "antd";
+import { Input, Form, Select, Checkbox, Alert } from "antd";
 
 import * as Rules from "../../utils/rules";
 import Button from "../../shared-ui/Button/Button";
@@ -26,6 +26,8 @@ import {
   selectCountry,
   selectCity,
   selectJobTitles,
+  selectLoadingStatus,
+  selectErrorMessage,
 } from "./slice";
 
 const { Option } = Select;
@@ -46,6 +48,8 @@ function EmployerSignUp() {
   const countries = useAppSelector(selectCountry);
   const cities = useAppSelector(selectCity);
   const jobTitles = useAppSelector(selectJobTitles);
+  const isLoading = useAppSelector(selectLoadingStatus);
+  const errorMessage = useAppSelector(selectErrorMessage);
 
   useEffect(() => {
     dispatch(getRole());
@@ -371,6 +375,8 @@ function EmployerSignUp() {
             </Checkbox>
           </Form.Item>
 
+          {errorMessage && <Alert message={errorMessage} type="error" />}
+
           {currentStep === 1 && (
             <Form.Item className="align-self-end">
               <Button
@@ -378,7 +384,7 @@ function EmployerSignUp() {
                 type="large"
                 htmlType="submit"
                 themeColor="blue"
-                // loading={true}
+                loading={isLoading}
               >
                 {isCreateCompany && "Next"}
                 {!isCreateCompany && "Create my profile"}
@@ -396,6 +402,7 @@ function EmployerSignUp() {
                     htmlType="button"
                     themeColor="default"
                     onClick={onStepChange}
+                    disabled={isLoading}
                   >
                     Back
                   </Button>
@@ -404,7 +411,7 @@ function EmployerSignUp() {
                     type="large"
                     htmlType="submit"
                     themeColor="blue"
-                    // loading={true}
+                    loading={isLoading}
                   >
                     Create my profile
                   </Button>
