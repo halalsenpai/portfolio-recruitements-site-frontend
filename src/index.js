@@ -16,9 +16,6 @@ import "./assets/scss/index.scss";
 import * as serviceWorker from "./serviceWorker";
 import { store } from "./store";
 
-//call axios interceptor
-interceptor();
-
 function Root() {
   return (
     <React.StrictMode>

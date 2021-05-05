@@ -1,9 +1,14 @@
 import axios from "axios";
 
+import { interceptor } from "./intercepter";
+
 const instance = axios.create({
   baseURL: "https://dev-api.jobsmideast.com",
   timeout: 60000,
 });
+
+//call axios interceptor
+interceptor(instance);
 
 const request = async ({ method, url, data, headers, skipAuth }) => {
   const promise = instance[method](url, data);

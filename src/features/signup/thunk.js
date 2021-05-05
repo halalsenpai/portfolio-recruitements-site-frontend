@@ -11,6 +11,7 @@ import {
   getJobTitle as getJobTitleAPI,
   jobseekerSignup as jobseekerSignupAPI,
   employerSignup as employerSignupAPI,
+  confirmEmail as confirmEmailAPI,
 } from "./service";
 
 // GET APIs
@@ -62,6 +63,14 @@ export const getJobTitle = createAsyncThunk("signup/job-title", async () => {
   const response = await getJobTitleAPI();
   return response.data;
 });
+
+export const confirmEmail = createAsyncThunk(
+  "signup/confirm-email",
+  async () => {
+    const response = await confirmEmailAPI();
+    return response.data;
+  }
+);
 
 // POST APIs
 export const jobseekerSignup = createAsyncThunk(

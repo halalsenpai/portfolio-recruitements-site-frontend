@@ -11,6 +11,7 @@ import {
   getJobTitle,
   jobseekerSignup,
   employerSignup,
+  confirmEmail,
 } from "./thunk";
 
 const initialState = {
@@ -25,6 +26,8 @@ const initialState = {
   jobTitles: [],
   jobseekerSignupSuccess: false,
   employerSignupSuccess: false,
+  confirmEmailSuccess: false,
+  confirmEmailResponse: {},
   errorMessage: null,
 };
 
@@ -78,6 +81,11 @@ export const slice = createSlice({
         state.status = "idle";
         state.employerSignupSuccess = true;
       })
+      .addCase(confirmEmail.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.confirmEmailSuccess = true;
+        state.confirmEmailResponse = action.payload;
+      })
       .addCase(jobseekerSignup.rejected, (state, action) => {
         state.status = "failed";
         state.jobseekerSignupSuccess = false;
@@ -86,6 +94,11 @@ export const slice = createSlice({
       .addCase(employerSignup.rejected, (state, action) => {
         state.status = "failed";
         state.employerSignupSuccess = false;
+        state.errorMessage = action.error.message;
+      })
+      .addCase(confirmEmail.rejected, (state, action) => {
+        state.status = "failed";
+        state.confirmEmailSuccess = false;
         state.errorMessage = action.error.message;
       })
       .addMatcher(isPendingAction, (state) => {
@@ -106,6 +119,9 @@ export const selectCompany = (state) => state.signup.companies;
 export const selectCountry = (state) => state.signup.countries;
 export const selectCity = (state) => state.signup.cities;
 export const selectJobTitles = (state) => state.signup.jobTitles;
+export const selectConfirmEmail = (state) => state.signup.confirmEmailSuccess;
+export const selectConfirmEmailResponse = (state) =>
+  state.signup.confirmEmailResponse;
 export const selectJobseekerSignup = (state) =>
   state.signup.jobseekerSignupSuccess;
 export const selectEmployerSignup = (state) =>
