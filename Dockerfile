@@ -1,4 +1,4 @@
-FROM node:14.1-alpine AS builder
+FROM 032274180776.dkr.ecr.eu-central-1.amazonaws.com/node-images:14 AS builder
 
 WORKDIR /opt/web
 COPY package.json package-lock.json ./
@@ -9,7 +9,7 @@ ENV PATH="./node_modules/.bin:$PATH"
 COPY . ./
 RUN npm run build
 
-FROM nginx:1.17-alpine
+FROM 032274180776.dkr.ecr.eu-central-1.amazonaws.com/nginx-images:1.17
 RUN apk --no-cache add curl
 RUN curl -L https://github.com/a8m/envsubst/releases/download/v1.1.0/envsubst-`uname -s`-`uname -m` -o envsubst && \
     chmod +x envsubst && \
