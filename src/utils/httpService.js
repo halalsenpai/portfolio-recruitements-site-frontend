@@ -3,7 +3,7 @@ import axios from "axios";
 import { interceptor } from "./intercepter";
 
 const instance = axios.create({
-  baseURL: "https://dev-api.jobsmideast.com",
+  baseURL: process.env.REACT_APP_BASE_URL,
   timeout: 60000,
 });
 
