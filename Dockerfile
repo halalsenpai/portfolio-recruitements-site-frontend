@@ -5,6 +5,12 @@ COPY package.json package-lock.json ./
 RUN npm install
 
 ENV PATH="./node_modules/.bin:$PATH"
+ENV REACT_APP_VERSION=0.1.0
+ENV REACT_APP_BASE_URL=https://backend.jobsmideast.com
+ENV REACT_APP_MAP_KEY=AIzaSyDxfSNbgNkKIDu45-aJdQpfHwMd7Dft3T4
+ENV REACT_APP_CANDIDATE_PORTAL_URL=https://candidatev2.jobsmideast.com
+ENV REACT_APP_EMPLOYER_PORTAL_URL=https://employerv2.jobsmideast.com
+ENV REACT_APP_AGENCY_PORTAL_URL=https://agency.jobsmideast.com
 
 COPY . ./
 RUN npm run build
