@@ -17,6 +17,7 @@ import {
   getJobByCategory as getJobByCategoryAPI,
   getJobsByCompany as getJobsByCompanyAPI,
   getSuitableFor as getSuitableForAPI,
+  getFilteredJob as getFilteredJobAPI,
 } from "./service";
 
 export const getJob = createAsyncThunk("jobs/get-job", async () => {
@@ -97,5 +98,12 @@ export const getJobsByCompany = createAsyncThunk("jobs/get-job-by-company-id", a
 
 export const getSuitableFor = createAsyncThunk("jobs/get-suitable-for", async () => {
   const response = await getSuitableForAPI();
+  return response.data;
+});
+
+export const getFilteredJob = createAsyncThunk("jobs/get-filtered-job", async (params) => {
+  const newparams = String("&").concat(params);
+  console.log(newparams);
+  const response = await getFilteredJobAPI(newparams);
   return response.data;
 });

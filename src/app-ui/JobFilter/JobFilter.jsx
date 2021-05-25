@@ -18,6 +18,7 @@ import {
   getJobTitlesById,
   getSalaryType,
   getSuitableFor,
+  getFilteredJob,
 } from "../../features/jobs/thunk";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
@@ -81,8 +82,10 @@ const JobFilter = (props) => {
   };
 
   const onFinish = (values) => {
-    console.log(values);
-    console.log(new URLSearchParams(values).toString());
+    let o = Object.fromEntries(Object.entries(values).filter(([_, v]) => v != null));
+    const payload = new URLSearchParams(o).toString();
+    console.log(payload);
+    dispatch(getFilteredJob(payload));
   };
   return (
     <>

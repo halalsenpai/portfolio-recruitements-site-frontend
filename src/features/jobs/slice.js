@@ -17,6 +17,7 @@ import {
   getJobByCategory,
   getJobsByCompany,
   getSuitableFor,
+  getFilteredJob,
 } from "./thunk";
 
 const thunks = [
@@ -36,6 +37,7 @@ const thunks = [
   getJobByCategory,
   getJobsByCompany,
   getSuitableFor,
+  getFilteredJob,
 ];
 
 const initialState = {
@@ -66,6 +68,10 @@ export const slice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getJob.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.jobs = action.payload;
+      })
+      .addCase(getFilteredJob.fulfilled, (state, action) => {
         state.status = "idle";
         state.jobs = action.payload;
       })

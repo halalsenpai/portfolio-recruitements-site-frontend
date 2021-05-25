@@ -2,6 +2,7 @@ import { get } from "../../utils/httpService";
 
 const SERVICE_URLS = {
   getJob: () => `/jobs/public?page=1&limit=100`,
+  getFilteredJob: (params) => `/jobs/public?page=1&limit=100${params}`,
   verifyToken: () => `/auth/verify`,
   getJobTitle: () => `/jobtitle?page=1&limit=100&title=`,
   getEmploymentType: () => `/employment-type`,
@@ -20,7 +21,7 @@ const SERVICE_URLS = {
   getSuitableFor: (id) => `/suitable-job-list`,
 };
 
-export const getJob = () => get(SERVICE_URLS.getJob());
+export const getJob = (filter) => get(SERVICE_URLS.getJob(filter));
 export const getJobTitle = () => get(SERVICE_URLS.getJobTitle());
 export const getEmploymentType = () => get(SERVICE_URLS.getEmploymentType());
 export const getCountry = () => get(SERVICE_URLS.getCountry());
@@ -36,3 +37,4 @@ export const getSalaryType = () => get(SERVICE_URLS.getSalaryType());
 export const getJobByCategory = (id) => get(SERVICE_URLS.getJobByCategory(id));
 export const getJobsByCompany = (id) => get(SERVICE_URLS.getJobsByCompany(id));
 export const getSuitableFor = () => get(SERVICE_URLS.getSuitableFor());
+export const getFilteredJob = (params) => get(SERVICE_URLS.getFilteredJob(params));
