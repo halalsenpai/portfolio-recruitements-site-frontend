@@ -1,14 +1,18 @@
 @import "../../assets/scss/variables";
 
 .jobs-page {
+  position: relative;
+  overflow: hidden;
   .header-wrapper {
     height: 110px;
     padding: 0px 50px 0px 50px;
     background: rgb(2, 0, 36);
-    background: linear-gradient(90deg,
-        rgba(2, 0, 36, 1) 0%,
-        rgba(52, 30, 91, 1) 0%,
-        rgba(245, 38, 102, 1) 100%);
+    background: linear-gradient(
+      90deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(52, 30, 91, 1) 0%,
+      rgba(245, 38, 102, 1) 100%
+    );
 
     .header {
       flex-direction: row;
@@ -83,17 +87,14 @@
       }
     }
   }
-
   .jobs-wrapper {
     display: flex;
     padding: 0px;
-    background: #efefef;
 
     .jobs-list {
-      width: 500px;
       padding: 15px 10px 0px 10px;
-      height: calc(100vh - 130px);
-      overflow: auto;
+      height: calc(100vh - 124px);
+      overflow-y: auto;
     }
 
     .job-details {
@@ -101,6 +102,15 @@
       flex: 1;
       height: calc(100vh - 64px);
       overflow-y: auto;
+      background: #efefef;
+
+      .ant-empty {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+      }
     }
 
     .job-filter-section {
@@ -108,13 +118,14 @@
       align-items: center;
       height: 60px;
       justify-content: space-around;
+      width: 100%;
+      input {
+        width: 100%;
+      }
+      .c-input {
+        width: 100%;
+        margin: 0 8px;
+      }
     }
-  }
-
-  // custom antd 
-  .ant-form-item {
-
-    margin-bottom: 0;
-
   }
 }

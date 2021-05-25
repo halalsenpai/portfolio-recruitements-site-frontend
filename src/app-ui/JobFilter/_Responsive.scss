@@ -1,0 +1,45 @@
+@media screen and (min-width: 541px) and (max-width: 1024px) {
+  .filter-main {
+    .filter-section {
+      .filters-row {
+        flex-wrap: unset;
+      }
+      .filter-cell {
+        .switches {
+          font-size: 12px;
+        }
+      }
+      .ant-slider {
+        margin: 0;
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .filter-main {
+    .filter-section {
+      .filter-cell {
+        .switches {
+          font-size: 12px;
+        }
+      }
+      .column {
+        align-items: unset;
+      }
+      .ant-slider {
+        margin: 0 0 30px;
+        width: 100%;
+      }
+    }
+    .mr-sm-0 {
+      margin: 0 !important;
+    }
+    .silder-equivalent {
+      color: #7ed957;
+      position: absolute;
+      bottom: -4px !important;
+    }
+  }
+}

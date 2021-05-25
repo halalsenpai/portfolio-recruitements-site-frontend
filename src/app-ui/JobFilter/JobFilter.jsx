@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import { Input, Form, Select, Switch, Slider } from "antd";
 
 import Modal from "../../shared-ui/Modal/Modal";
-import Cbutton from "../../shared-ui/Button/Button";
+import Button from "../../shared-ui/Button/Button";
+import * as Rules from "../../utils/rules";
 
 const { Option } = Select;
 
@@ -29,7 +30,7 @@ const JobFilter = (props) => {
   };
   return (
     <>
-      <Modal className="center medium" show={props.show} onHide={props.onHide}>
+      <Modal className="center lg" show={props.show} onHide={props.onHide}>
         <Form className="filter-main">
           <div className="filter-header">
             <div className="filter-cell">
@@ -55,7 +56,7 @@ const JobFilter = (props) => {
                 className="c-input c-form p-0"
                 rules={null}
               >
-                <label htmlFor="">Job type</label>
+                <label>Job type</label>
                 <Select placeholder="Select">
                   <Option value="employers">Employers</Option>
                   <Option value="agencies">Agencies</Option>
@@ -66,7 +67,7 @@ const JobFilter = (props) => {
                 className="c-input c-form p-0"
                 rules={null}
               >
-                <label htmlFor="">Add location</label>
+                <label>Add location</label>
                 <Select placeholder="Select">
                   <Option value="employers">Employers</Option>
                   <Option value="agencies">Agencies</Option>
@@ -79,7 +80,7 @@ const JobFilter = (props) => {
                 className="c-input c-form p-0"
                 rules={null}
               >
-                <label htmlFor="">Category</label>
+                <label>Category</label>
                 <Select {...selectProps} />
               </Form.Item>
               <Form.Item
@@ -87,7 +88,7 @@ const JobFilter = (props) => {
                 className="c-input c-form p-0"
                 rules={null}
               >
-                <label htmlFor="">Sub category</label>
+                <label>Sub category</label>
                 <Select placeholder="Select">
                   <Option value="employers">Employers</Option>
                   <Option value="agencies">Agencies</Option>
@@ -100,23 +101,20 @@ const JobFilter = (props) => {
                 className="c-input c-form p-0"
                 rules={null}
               >
-                <label htmlFor="">Salary type</label>
+                <label>Salary type</label>
                 <Select placeholder="Select">
                   <Option value="employers">Employers</Option>
                   <Option value="agencies">Agencies</Option>
                 </Select>
               </Form.Item>
               <Form.Item name="aed" className="c-input c-form p-0" rules={null}>
-                <label className="text-center" htmlFor="">
-                  5,000 AED
-                </label>
+                <label className="text-center">5,000 AED</label>
                 <Slider
                   range={{ draggableTrack: true }}
                   defaultValue={[20, 50]}
-                  style={{ width: 270 }}
                 />
                 <span className="silder-equivalent">
-                  Equivalent t0 2,000 GBP
+                  {/* Equivalent to 2,000 GBP */}
                 </span>
               </Form.Item>
             </div>
@@ -126,7 +124,7 @@ const JobFilter = (props) => {
                 className="c-input c-form p-0"
                 rules={null}
               >
-                <label htmlFor="">Gender</label>
+                <label>Gender</label>
                 <Select placeholder="Select">
                   <Option value="employers">Employers</Option>
                   <Option value="agencies">Agencies</Option>
@@ -137,7 +135,7 @@ const JobFilter = (props) => {
                 className="c-input c-form p-0"
                 rules={null}
               >
-                <label htmlFor="">Qualification</label>
+                <label>Qualification</label>
                 <Select placeholder="Select">
                   <Option value="employers">Employers</Option>
                   <Option value="agencies">Agencies</Option>
@@ -150,7 +148,7 @@ const JobFilter = (props) => {
                 className="c-input c-form p-0"
                 rules={null}
               >
-                <label htmlFor="">Accommodation</label>
+                <label>Accommodation</label>
                 <Select placeholder="Select">
                   <Option value="employers">Employers</Option>
                   <Option value="agencies">Agencies</Option>
@@ -161,7 +159,7 @@ const JobFilter = (props) => {
                 className="c-input c-form p-0"
                 rules={null}
               >
-                <label htmlFor="">Exclude</label>
+                <label>Exclude</label>
                 <Select placeholder="Select">
                   <Option value="employers">Employers</Option>
                   <Option value="agencies">Agencies</Option>
@@ -174,9 +172,7 @@ const JobFilter = (props) => {
                 className="c-input c-form p-0"
                 rules={null}
               >
-                <label className="required" htmlFor="">
-                  Suitable for
-                </label>
+                <label className="required">Suitable for</label>
                 <Select placeholder="Select">
                   <Option value="employers">Employers</Option>
                   <Option value="agencies">Agencies</Option>
@@ -186,7 +182,7 @@ const JobFilter = (props) => {
           </div>
           <div className="filter-section">
             <div className="filters-row">
-              <div className="filter-cell column mr-4">
+              <div className="filter-cell column mr-4 mr-sm-0">
                 <span className="switches">
                   <Switch size="small" /> Anual flight provided
                 </span>
@@ -220,7 +216,6 @@ const JobFilter = (props) => {
                 </label>
                 <Input
                   className="w-100"
-                  placeholder=""
                   size="large"
                   type="text"
                   id="filterName"
@@ -228,9 +223,9 @@ const JobFilter = (props) => {
               </Form.Item>
             </div>
             <div className="filters-row margin-y">
-              <Cbutton themeColor="green">Save filter</Cbutton>
+              <Button themeColor="green">Save filter</Button>
               <span>Or</span>
-              <Cbutton themeColor="green">Apply filter</Cbutton>
+              <Button themeColor="green">Apply filter</Button>
             </div>
           </div>
         </Form>

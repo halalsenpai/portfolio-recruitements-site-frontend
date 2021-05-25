@@ -1,5 +1,8 @@
 body {
   margin: 0;
+  color: $text-color;
+  // position: fixed;
+  overflow: auto;
 }
 
 html * {
@@ -10,31 +13,33 @@ html * {
   font-family: $font-bold;
 }
 
-p,
-a,
-span,
-li {
-  font-size: $font-size-md;
-  color: $text-color;
-  font-family: $font-light;
-}
-h1,
-h2,
-h3,
-h5,
-h6 {
-  color: $text-color;
-}
-
 button {
   border: none;
   background: transparent;
-  color: #000;
   outline: none;
+}
+
+p,
+a,
+span,
+li,
+h1 {
+  font-size: $font-size-md;
+  color: $text-color;
+  font-family: $font-medium;
 }
 
 .color-text {
   color: $text-color;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $secondary;
 }
 
 mark {
@@ -54,6 +59,17 @@ a {
 
 img {
   cursor: pointer;
+}
+
+.preloader {
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: rgba(255, 255, 255, 0.5);
+  padding-top: 6em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .c-container {
@@ -78,9 +94,6 @@ img {
 
   img {
     max-width: 800px;
-  }
-
-  :first-child {
   }
 }
 
@@ -107,41 +120,39 @@ img {
 
   img {
     width: 600px;
-
-    &.right-image {
-      // border-radius: 25px;
-      &.lg-rad {
-        // border-radius: 60px;
-      }
-    }
-
-    &.lg {
-      // width: 750px;
-    }
+    // &.right-image {
+    //   // border-radius: 25px;
+    //   // &.lg-rad {
+    //   //   // border-radius: 60px;
+    //   // }
   }
 
-  p {
-    margin-top: 12px;
-    font-family: $font-medium !important;
+  // &.lg {
+  //   // width: 750px;
+  // }
+}
+
+p {
+  margin-top: 12px;
+  font-family: $font-medium !important;
+}
+
+.img-back-cover {
+  height: 100%;
+  position: absolute;
+  left: -500%;
+  right: 752px;
+  top: 0px;
+  background: $brown;
+
+  &.right {
+    right: -500%;
+    left: 535px;
+    background-color: $brown;
   }
 
-  .img-back-cover {
-    height: 100%;
-    position: absolute;
-    left: -500%;
-    right: 752px;
-    top: 0px;
-    background: $brown;
-
-    &.right {
-      right: -500%;
-      left: 535px;
-      background-color: $brown;
-    }
-
-    &.purple {
-      background: $purple;
-    }
+  &.purple {
+    background: $purple;
   }
 }
 
@@ -149,17 +160,22 @@ img {
 
 .ant-form-item-control {
   margin: 3px 0px;
+  width: 100%;
 }
 
 .c-input {
   position: relative;
 
+  .ant-picker {
+    box-shadow: $theme-shadow !important;
+  }
+
   input {
-    font-size: $font-size-md;
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3) !important;
+    font-size: $font-size-sm;
+    box-shadow: $theme-shadow !important;
     border: none !important;
     border-radius: 100px !important;
-    height: 35px !important;
+    height: 32px !important;
     padding: 0 18px !important;
     box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
     background: $white !important;
@@ -176,11 +192,6 @@ img {
       width: 150px;
     }
 
-    &::placeholder {
-      // color: $text-color;
-      opacity: 0.4;
-    }
-
     &:hover {
       border: none;
       border-right-width: 0px !important;
@@ -190,6 +201,15 @@ img {
       border-color: $primary;
     }
   }
+
+  // textarea {
+  //   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3) !important;
+  //   // border: solid 1px rgba($color: $primary, $alpha: 0.3);
+  //   border: none !important;
+  //   border-radius: 10px !important;
+  //   padding: 1em !important;
+  //   font-size: $font-size-sm;
+  // }
 
   &.c-input-with-icon {
     .ant-form-item-control-input-content {
@@ -211,38 +231,53 @@ img {
     }
   }
 
-  .ant-form-item-label {
-    label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
-      content: " ";
+  .ant-form-item-explain-error {
+    div {
+      font-size: 12px;
+      margin-left: 1em;
     }
-    label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::after {
-      display: inline-block;
-      margin-right: 4px;
-      line-height: 1;
-      content: "*";
-    }
+  }
+  .ant-form-item-extra {
+    margin-left: 0.5em;
   }
 }
 
-.ant-form-item-explain-error {
-  div {
-    font-size: 12px;
-    margin-left: 1em;
-    // font-family: $font-regular;
+.c-text-box {
+  width: 100%;
+
+  .c-text-area {
+    width: 100%;
+    resize: none;
+    height: 200px !important;
+    border-radius: 20px;
+    border: $theme-border !important;
+    padding: 20px;
+  }
+
+  .ant-input:focus,
+  .ant-input-focused {
+    box-shadow: none !important;
   }
 }
 
 .ant-input-password {
   border: none !important;
   width: auto;
-  &::before {
-    display: none;
-  }
 
   .ant-input-suffix {
-    position: absolute;
-    right: 5px;
-    bottom: 10px;
+    display: none;
+  }
+}
+
+.ant-form-item-label {
+  label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
+    content: " ";
+  }
+  label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::after {
+    display: inline-block;
+    margin-right: 4px;
+    line-height: 1;
+    content: "*";
   }
 }
 
@@ -273,6 +308,7 @@ img {
   }
 }
 
+// custom ant checkbox
 .ant-checkbox-checked {
   .ant-checkbox-inner {
     background-color: $primary;
@@ -286,22 +322,21 @@ img {
   border-color: $primary;
 }
 
-// .ant-form-item-with-help {
-//   max-height: 100px;
-// }
+.ant-form-item-with-help {
+  max-height: 100px;
+}
 
 // custom select
 .ant-select {
-  max-width: 300px !important;
+  width: 300px !important;
 
   .ant-select-selector {
-    font-size: 15px;
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3) !important;
+    font-size: $font-size-sm;
+    box-shadow: $theme-shadow !important;
     border: none !important;
     border-radius: 100px !important;
-    height: 35px !important;
+    height: 32px !important;
     padding: 0 18px !important;
-    box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
     background: #ffffff !important;
   }
 
@@ -312,32 +347,71 @@ img {
 
 // custom date picker
 .ant-picker {
-  font-size: 15px;
+  font-size: $font-size-sm;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3) !important;
   border: none !important;
   border-radius: 100px !important;
-  height: 35px !important;
   padding: 0 18px 0px 0px !important;
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
   background: #ffffff !important;
-  max-width: 300px;
+  width: 300px;
+  height: 32px !important;
 
   input {
-    font-size: 15px;
+    font-size: $font-size-sm;
     box-shadow: none !important;
+    height: 30px;
+  }
+}
+
+.ant-btn-primary {
+  span {
+    color: $white;
+  }
+}
+
+// custom date picker
+.c-date-picker {
+  .ant-picker {
+    font-size: $font-size-sm;
+    border: none !important;
+    border-radius: 100px !important;
+    box-shadow: $theme-shadow !important;
+    background: #ffffff !important;
+    width: 300px;
+    height: 32px !important;
+    margin: 0;
+    input {
+      font-size: $font-size-sm;
+      font-family: $font-medium;
+      box-shadow: none !important;
+      height: 30px;
+      padding-left: 1em;
+    }
+  }
+  .ant-picker-lg {
+    width: 300px;
+  }
+  .ant-picker-md {
+    width: 200px;
+  }
+  .ant-picker-sm {
+    width: 140px;
+  }
+  .ant-picker-xs {
+    width: 100px;
   }
 }
 
 // custom phone number input
 .react-tel-input {
-  max-width: 300px;
-  width: 100%;
+  width: 300px;
   font-size: $font-size-md;
-  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: $theme-shadow;
   border: none;
   border-radius: 100px;
   height: 35px;
-  box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+  padding: 0 18px 0px 0px;
   background: #ffffff;
 
   .flag-dropdown {
@@ -348,7 +422,7 @@ img {
   }
 
   .form-control {
-    width: calc(300px - 60px);
+    width: 270px !important;
     box-shadow: none !important;
     left: 30px;
   }
@@ -377,62 +451,12 @@ img {
   width: 100%;
 }
 
-// custom card container
-.c-card-container {
-  max-width: 800px;
-  width: 100%;
-  border-radius: 20px;
-  box-shadow: 0 0 16px #00000026;
-  padding: 0px !important;
-  overflow: hidden;
-
-  .first-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 170px;
-    // background: transparent url("../../assets/images/auth/login-background.png") 0% 0% no-repeat padding-box;
-    // background-position: top;
-    // background-repeat: no-repeat;
-    // background-size: 100% 100%;
-
-    img {
-      width: 320px;
-
-      &.small {
-        width: 70px;
-      }
-
-      &.medium {
-        width: 200px;
-      }
-    }
-
-    p {
-      color: $white;
-      font-family: $font-bold;
-    }
-  }
-
-  .second-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
-    max-width: 100% !important;
-    min-height: 400px;
-
-    &.with-pad {
-      padding: 0px 100px;
-    }
-  }
-}
-
 // custom form
 .c-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   padding: 40px 0px 40px 0px;
 
   .form-title {
@@ -442,7 +466,10 @@ img {
   }
 
   label {
-    font-family: $font-light;
+    font-family: $font-medium;
+    color: $text-color;
+    display: flex;
+    align-items: center;
 
     &.required:after {
       content: "  *";
@@ -468,6 +495,7 @@ img {
 }
 
 // custom divider
+
 .divider {
   border-top: 0.5px solid #bbb;
   width: 100%;
@@ -524,6 +552,10 @@ img {
   border-color: $green;
 }
 
+.ant-form-vertical .ant-form-item {
+  flex-direction: row;
+}
+
 .images-container-modal {
   display: flex;
   justify-content: start;
@@ -542,6 +574,7 @@ img {
 }
 
 // custom radio buttons
+
 .ant-radio-wrapper:hover .ant-radio,
 .ant-radio:hover .ant-radio-inner,
 .ant-radio-input:focus + .ant-radio-inner {
@@ -567,6 +600,19 @@ img {
   }
 }
 
+// custom ant select icon
+
+.ant-select .ant-select-arrow {
+  right: 15px;
+  width: 0;
+  overflow: hidden;
+  color: transparent;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #6c6c6c;
+  top: 19px;
+}
+
 .ant-radio-group {
   display: flex;
   flex-direction: column;
@@ -576,96 +622,90 @@ img {
   margin: 0px 0px 10px 0px;
 }
 
-.ant-form-vertical .ant-form-item {
-  flex-direction: row;
-}
-//  extras
+// notification-count
 
-// ant inputs
-
-.ant-select-item-option-content {
-  -ms-flex: auto;
-  flex: auto;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  font-size: $font-size-sm;
-  padding: 5px 0px;
-  font-family: $font-light;
+.c-notification-count {
+  padding: 0;
+  background-color: $primary;
+  width: 15px;
+  height: 15px;
+  border-radius: 25px;
+  text-align: center;
+  font-size: $font-size-x-sm;
+  color: white;
 }
 
-.ant-form-item-control {
-  width: 100%;
+.center-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-.ant-form {
-  height: auto;
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-moz-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-o-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-ms-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-// orientation lock
-
-@media only screen and (max-width: 991px) {
+@media screen and (max-width: 540px) {
   .c-input {
-    max-width: 300px;
     width: 100%;
-    .ant-input {
+
+    input.ant-input-sm,
+    input.ant-input-large,
+    input.ant-input-medium,
+    .ant-picker {
+      width: 100%;
+    }
+
+    .ant-select {
       width: 100% !important;
     }
   }
-  .c-password-input {
+  .c-date-picker {
+    width: 100%;
+    .ant-picker.ant-picker-lg,
+    .ant-picker-md,
+    .ant-picker-sm,
+    .ant-picker-xs {
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (min-width: 541px) and (max-width: 1024px) {
+  .c-input {
+    width: 100%;
     max-width: 300px;
-    width: 100%;
+    min-width: 160px;
+    margin: 10px;
+
+    input.ant-input-sm,
+    input.ant-input-large,
+    input.ant-input-medium,
+    .ant-picker {
+      width: 100%;
+    }
+    .ant-select {
+      width: 100% !important;
+    }
+    // input {
+    //   &.ant-input-lg {
+    //     width: 100%;
+    //   }
+
+    //   &.ant-input-sm {
+    //     width: 100%;
+
+    //   }
+    //   &.xs {
+    //     width: 100%;
+
+    //   }
+    // }
   }
-  .c-container {
-    padding: 50px 5px;
+}
+@media screen and (max-width: 1024px) {
+  .react-tel-input .form-control {
+    width: unset !important;
   }
-  .c-row {
-    max-width: 900px;
+  .react-tel-input {
     width: 100%;
+    height: 32px;
   }
 }

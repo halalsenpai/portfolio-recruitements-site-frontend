@@ -22,18 +22,18 @@
     a {
       list-style: none;
       padding: 0px 12px;
-      font-weight: 600;
+      // font-weight: 400;
       color: $secondary;
       &.active {
         color: $primary;
       }
       &.sign-up {
         color: $primary;
-        font-weight: bold;
+        // font-weight: bold;
       }
       &.login {
         color: $secondary;
-        font-weight: bold;
+        // font-weight: bold;
       }
     }
   }
