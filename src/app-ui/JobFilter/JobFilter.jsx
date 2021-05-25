@@ -82,6 +82,7 @@ const JobFilter = (props) => {
 
   const onFinish = (values) => {
     console.log(values);
+    console.log(new URLSearchParams(values).toString());
   };
   return (
     <>
