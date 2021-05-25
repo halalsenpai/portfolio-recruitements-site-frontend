@@ -11,6 +11,12 @@ import {
   getGrade as getGradeAPI,
   getCompany as getCompanyAPI,
   getAccommodation as getAccommodationAPI,
+  getCategories as getCategoriesAPI,
+  getJobTitlesById as getJobTitlesByIdAPI,
+  getSalaryType as getSalaryTypeAPI,
+  getJobByCategory as getJobByCategoryAPI,
+  getJobsByCompany as getJobsByCompanyAPI,
+  getSuitableFor as getSuitableForAPI,
 } from "./service";
 
 export const getJob = createAsyncThunk("jobs/get-job", async () => {
@@ -60,5 +66,36 @@ export const getCompany = createAsyncThunk("jobs/get-company", async () => {
 
 export const getAccommodation = createAsyncThunk("jobs/get-accommodation", async () => {
   const response = await getAccommodationAPI();
+  return response.data;
+});
+export const getCategories = createAsyncThunk("jobs/get-category", async () => {
+  const response = await getCategoriesAPI();
+  return response.data;
+});
+
+export const getJobTitlesById = createAsyncThunk("jobs/get-jobtitles-by-id", async (id) => {
+  const response = await getJobTitlesByIdAPI(id);
+  return response.data;
+});
+
+export const getSalaryType = createAsyncThunk("jobs/get-salarytype", async () => {
+  const response = await getSalaryTypeAPI();
+  return response.data;
+});
+
+export const getJobByCategory = createAsyncThunk("jobs/get-job-by-category", async (id) => {
+  const categoryId = `&categoriesId=${id}`;
+  const response = await getJobByCategoryAPI(categoryId);
+  return response.data;
+});
+
+export const getJobsByCompany = createAsyncThunk("jobs/get-job-by-company-id", async (id) => {
+  const companyId = `&companyId=${id}`;
+  const response = await getJobsByCompanyAPI(companyId);
+  return response.data;
+});
+
+export const getSuitableFor = createAsyncThunk("jobs/get-suitable-for", async () => {
+  const response = await getSuitableForAPI();
   return response.data;
 });

@@ -643,6 +643,13 @@ p {
   height: 100vh;
 }
 
+// maps
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
 @media screen and (max-width: 540px) {
   .c-input {
     width: 100%;

@@ -12,6 +12,12 @@ const SERVICE_URLS = {
   getGrade: () => `/grade`,
   getCompany: () => `/company-profile?page=1&limit=100`,
   getAccommodation: () => `/accommodation-list`,
+  getCategory: () => `/categories`,
+  getJobTitles: (id) => `/jobtitle/${id}`,
+  getSalaryType: () => `/salary-type`,
+  getJobByCategory: (id) => `/jobs/public?page=1&limit=5${id}`,
+  getJobsByCompany: (id) => `/jobs/public?page=1&limit=5${id}`,
+  getSuitableFor: (id) => `/suitable-job-list`,
 };
 
 export const getJob = () => get(SERVICE_URLS.getJob());
@@ -24,3 +30,9 @@ export const getFieldOfStudy = () => get(SERVICE_URLS.getFieldOfStudy());
 export const getGrade = () => get(SERVICE_URLS.getGrade());
 export const getCompany = () => get(SERVICE_URLS.getCompany());
 export const getAccommodation = () => get(SERVICE_URLS.getAccommodation());
+export const getCategories = () => get(SERVICE_URLS.getCategory());
+export const getJobTitlesById = (id) => get(SERVICE_URLS.getJobTitles(id));
+export const getSalaryType = () => get(SERVICE_URLS.getSalaryType());
+export const getJobByCategory = (id) => get(SERVICE_URLS.getJobByCategory(id));
+export const getJobsByCompany = (id) => get(SERVICE_URLS.getJobsByCompany(id));
+export const getSuitableFor = () => get(SERVICE_URLS.getSuitableFor());

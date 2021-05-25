@@ -71,6 +71,13 @@ export const getConsistentData = (response) => {
   return response.data;
 };
 
+export const readableYearDate = (d) => {
+  if (!d) {
+    return null;
+  }
+  return moment(d).format("YYYY");
+};
+
 export const readableShortDate = (d) => {
   if (!d) {
     return null;
@@ -120,14 +127,14 @@ export const getTitleById = (data, id) => {
 
 export const getLat = (location) => {
   if (!location) {
-    return null;
+    return 25.3430485;
   }
   return location[0];
 };
 
 export const getLng = (location) => {
   if (!location) {
-    return null;
+    return 50.6572839;
   }
   return location[1];
 };
