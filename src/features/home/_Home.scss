@@ -1,0 +1,151 @@
+@import "../../assets/scss/variables";
+
+.home {
+  position: relative;
+  top: 5px;
+  background: rgb(235, 235, 235);
+  background: -moz-linear-gradient(
+    0deg,
+    rgba(235, 235, 235, 1) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  background: -webkit-linear-gradient(
+    0deg,
+    rgba(235, 235, 235, 1) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  background: linear-gradient(
+    0deg,
+    rgba(235, 235, 235, 1) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ebebeb",endColorstr="#ffffff",GradientType=1);
+  .mobile-textalign {
+    font-family: $font-medium;
+    margin-top: 4px;
+  }
+
+  .first-banner-heading-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 50px 0px 100px;
+
+    .inner-container {
+      max-width: 600px;
+      p {
+        font-family: $font-light;
+      }
+      .get-started-btn > span {
+        font-family: $font-bold !important;
+      }
+    }
+  }
+  .main-heading {
+    font-size: $font-size-x-lg;
+    font-family: $font-medium;
+    color: $secondary;
+    mark {
+      font-family: $font-medium;
+    }
+  }
+
+  .sub-heading {
+    margin: 25px 0px;
+    font-family: $font-medium;
+    color: $secondary;
+  }
+
+  .ea-container {
+    flex-direction: column;
+    justify-self: flex-start;
+
+    h4 {
+      font-size: $font-size-lg;
+      text-decoration: underline;
+      text-underline-position: under;
+    }
+
+    &.primary {
+      h4 {
+        color: $primary;
+      }
+    }
+    .inner-container {
+      flex-direction: row;
+      display: flex;
+      margin: 20px 0px 0px 0px;
+      .box {
+        display: flex;
+        flex-direction: row;
+        margin-left: 30px;
+        align-items: center;
+        &:first-of-type {
+          margin-left: 0px;
+        }
+        h3 {
+          font-size: $font-size-md;
+          text-decoration: none;
+        }
+        p {
+          font-size: $font-size-sm;
+          font-family: $font-light !important;
+        }
+        img {
+          width: 100px;
+        }
+        span {
+          padding: 20px 0px 0px 15px;
+          flex: 1;
+        }
+        .b-text {
+          color: $primary;
+          font-family: $font-medium !important;
+        }
+        .a-text {
+          color: #1a1d3d;
+          font-family: $font-medium;
+        }
+      }
+    }
+  }
+  .cv-container {
+    position: relative;
+    bottom: -50px;
+    .cv-sample {
+      max-width: 1000px;
+    }
+  }
+  .small-paragraph p {
+    font-size: $font-size-sm !important;
+    font-family: $font-light;
+  }
+  .bottom-container {
+    .text-column {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      flex-direction: column;
+      padding: 0 3.8em;
+    }
+    .book-a-demo-btn {
+      font-family: $font-bold;
+      text-decoration: none;
+    }
+  }
+  .bottom-logo {
+    max-width: 287px;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+}
+
+.small-txt {
+  margin-top: 0.6em;
+  font-size: $font-size-x-sm !important;
+}
+.safari-fix {
+  align-self: flex-start !important;
+  justify-self: flex-start !important;
+}

@@ -1,0 +1,80 @@
+@media only screen and (max-width: 991px) {
+  .signup-container {
+    &.with-form {
+      max-width: 1020px;
+      width: 100%;
+      border-radius: 20px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 0px !important;
+      height: max-content;
+      position: relative;
+      box-shadow: 0 0 16px #00000026;
+    }
+    .first-container {
+      display: none !important;
+    }
+    .second-container {
+      width: 100%;
+
+      .c-row {
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+      }
+    }
+    .c-form {
+      height: fit-content;
+    }
+  }
+  .react-tel-input {
+    max-width: 400px;
+    width: 100%;
+    .form-control {
+      width: calc(100% - 60px);
+    }
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .signup-container {
+    &.with-form {
+      max-width: 1020px;
+      width: 100%;
+      border-radius: 20px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 0px !important;
+      height: max-content;
+      position: relative;
+      box-shadow: 0 0 16px #00000026;
+    }
+    .first-container {
+      display: none !important;
+    }
+    .second-container {
+      width: 100%;
+      padding: 2em 1em !important;
+      .responsive-bottom-section {
+        max-width: 300px;
+        margin: 0 auto;
+      }
+
+      .c-row {
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+      }
+    }
+    .c-form {
+      height: fit-content;
+    }
+  }
+  .react-tel-input {
+    max-width: 400px;
+    width: 100%;
+    .form-control {
+      width: calc(100% - 60px);
+    }
+  }
+}

@@ -1,0 +1,30 @@
+@import "Header/Header";
+@import "Footer/Footer";
+@import "JobFilter/JobFilter";
+
+@import "../shared-ui/Button/Buttons";
+@import "../shared-ui/JobCard/JobCard";
+@import "../shared-ui/Modal/Modal";
+@import "../shared-ui/Slider/Slider";
+@import "../shared-ui/MediaPicker/MediaPicker";
+@import "../shared-ui/SelectWithAddItem/SelectWithAddItem";
+@import "../shared-ui/AvatarPicker/AvatarPicker";
+@import "../shared-ui/BannerWithImages/BannerWithImages";
+@import "../shared-ui/CardWithLines/CardWithLines";
+@import "../shared-ui/JobDetailsCard/JobDetailsCard";
+@import "../shared-ui/ImagesGallery/ImagesGallery";
+@import "../shared-ui/JobsCarousel/JobsCarousel";
+
+// dev imports//
+
+@import "devComponents/AdditionalForm/AdditionalForm";
+@import "devComponents/ModalForms/ModalFrom";
+@import "devComponents/NotificationSetting/NotifSettings";
+@import "devComponents/ExpModalForm/ExpForm";
+@import "devComponents/ModalCertificateForm/ModalCertificateForm";
+
+// Reponsive Imports
+
+@import "Footer/Responsive";
+@import "Header/Responsive";
+@import "../shared-ui/Modal/Responsive";
