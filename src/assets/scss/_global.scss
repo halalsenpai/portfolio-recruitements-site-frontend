@@ -452,6 +452,59 @@ p {
   width: 100%;
 }
 
+// custom card container
+.c-card-container {
+  max-width: 800px;
+  width: 100%;
+  height: 720px;
+  border-radius: 20px;
+  box-shadow: 0 0 16px #00000026;
+  padding: 0px !important;
+  overflow: hidden;
+
+  .first-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 170px;
+    // background: transparent url("../../assets/images/auth/login-background.png") 0% 0% no-repeat padding-box;
+    // background-position: top;
+    // background-repeat: no-repeat;
+    // background-size: 100% 100%;
+
+    img {
+      width: 320px;
+
+      &.small {
+        width: 70px;
+      }
+
+      &.medium {
+        width: 200px;
+      }
+    }
+
+    p {
+      color: $white;
+      font-family: $font-bold;
+    }
+  }
+
+  .second-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    max-width: 100% !important;
+    min-height: 400px;
+
+    &.with-pad {
+      padding: 0px 100px;
+    }
+  }
+}
+
+
 // custom form
 .c-form {
   display: flex;
@@ -655,7 +708,7 @@ p {
     width: 100%;
 
     input.ant-input-sm,
-    input.ant-input-large,
+    input.ant-input-lg,
     input.ant-input-medium,
     .ant-picker {
       width: 100%;
@@ -684,7 +737,7 @@ p {
     margin: 10px;
 
     input.ant-input-sm,
-    input.ant-input-large,
+    input.ant-input-lg,
     input.ant-input-medium,
     .ant-picker {
       width: 100%;
