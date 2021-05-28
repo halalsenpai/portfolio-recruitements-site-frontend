@@ -1,32 +1,64 @@
-.employer-and-agencies{
-    .banner{
-        h2{
-            margin:0px 0px 20px 0px;
-        }
-    .left-text-container{
+@import "../../assets/scss/variables";
+.emp-agncy-main {
+  padding: 40px 0;
+  .c-containers {
+    padding: 0 80px;
+    .c-row {
+      display: flex;
+      .cell-half {
+        width: 50%;
+      }
+      .cell-auto {
+        flex: auto;
+        width: auto;
+      }
+      .cell-full {
+        width: 100%;
+      }
+      .text-section {
+        width: 100%;
+        max-width: 600px;
+        flex: unset;
+        padding: 0 20px;
+        min-width: 400px;
+      }
+      .image-section {
+        width: 100%;
+        min-width: 500px;
+        flex: unset;
+        padding: 0 20px;
         display: flex;
-        flex-direction: column;
         justify-content: center;
-        align-items: center;
-        padding: 0px 50px 0px 100px;
-        margin: 0px 0px 150px 0px;
-        .inner-container {
-            max-width: 600px;
+
+        img {
+          width: 100%;
+          max-width: 1000px;
         }
+      }
     }
-    .right-text-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 0px 100px 0px 50px;
-        margin: 0px 0px 150px 0px;
-        .inner-container{
-            max-width: 600px;
-        }
+  }
+  .emp-heading {
+    font-size: $font-size-x-lg;
+    line-height: 55px;
+  }
+  .blue {
+    color: $blue;
+  }
+  .job-n-demo {
+    display: flex;
+  }
+  .sections {
+    padding-top: 60px;
+    h1 {
+      font-size: $font-size-x-lg;
+      margin: 0 0 20px 0;
     }
-    .banner-img{
-        width: 100%; 
-        margin: 0px 0px 150px 0px;
+    p {
+      font-size: $font-size-lg;
+      max-width: 380px;
     }
-}
+    // img {
+    //   width: auto;
+    // }
+  }
 }

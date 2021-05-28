@@ -1,0 +1,56 @@
+@import "../../assets/scss/variables";
+.services-main {
+  display: flex;
+  .cust-reward-section {
+    width: 60%;
+    height: calc(100vh - 64px);
+    padding: 100px 60px;
+
+    .coming-soon {
+      color: $blue;
+      font-size: $font-size-x-lg;
+      text-transform: uppercase;
+    }
+    .services-desc {
+      font-size: $font-size-30;
+      margin: 25px 0 0 0;
+    }
+    .full-desc {
+      font-size: $font-size-lg;
+      max-width: 800px;
+    }
+    .icons {
+      display: flex;
+      flex-wrap: wrap;
+      margin: -10px 0 0 0;
+      img {
+        margin: 10px 20px 0 0;
+      }
+    }
+  }
+  .user-services {
+    width: 40%;
+    background-image: url("../../assets/images/Services/form-bg.png");
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .services-form {
+      width: 85%;
+      height: 85%;
+      background-color: rgba(255, 255, 255, 0.689);
+      border-radius: 10px;
+      padding: 30px;
+
+      p {
+        font-size: $font-size-lg;
+      }
+      .services-form-wrapper {
+        width: unset;
+        display: unset;
+        flex-direction: unset;
+      }
+    }
+  }
+}

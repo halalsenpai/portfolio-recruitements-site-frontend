@@ -1,0 +1,81 @@
+@import "../../assets/scss/variables";
+
+@media screen and (max-width: 767px) {
+  .emp-agncy-main {
+    padding: 10px;
+    .c-containers {
+      padding: 0;
+      .c-row {
+        .image-section {
+          width: 100%;
+          min-width: unset;
+          padding: 0;
+        }
+        .text-section {
+          width: 100%;
+          max-width: unset;
+          flex: unset;
+          padding: 0;
+          min-width: unset;
+          text-align: center;
+
+          h1 {
+            font-size: $font-size-lg;
+          }
+          p {
+            font-size: $font-size-md;
+          }
+        }
+        .cell-half {
+          width: 100%;
+          text-align: center;
+        }
+      }
+      .column-rev {
+        flex-direction: column-reverse !important;
+      }
+    }
+    .sections {
+      padding-top: 40px;
+    }
+    .c-row {
+      flex-direction: column;
+    }
+    .emp-heading {
+      font-size: $font-size-lg;
+      line-height: unset;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1200px) {
+  .emp-agncy-main {
+    padding: 10px;
+    .c-containers {
+      padding: 0;
+
+      .c-row {
+        .text-section {
+          width: 100%;
+          max-width: 280px;
+          flex: unset;
+          padding: 0;
+          min-width: unset;
+        }
+      }
+    }
+    .sections {
+      padding-top: 60px;
+      h1 {
+        font-size: $font-size-lg;
+      }
+      p {
+        font-size: $font-size-md;
+      }
+    }
+    .emp-heading {
+      font-size: $font-size-lg;
+      line-height: unset;
+    }
+  }
+}

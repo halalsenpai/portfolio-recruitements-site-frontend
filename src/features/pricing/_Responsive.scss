@@ -56,7 +56,7 @@
   }
 }
 
-@media screen and (min-width: 480px) and (max-width: 768px) {
+@media screen and (min-width: 481px) and (max-width: 768px) {
   .pricing-container {
     padding: 30px 10px;
 
@@ -100,4 +100,66 @@
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
+  .pricing-container {
+    .pricing-details {
+      flex-direction: column-reverse;
+      .buy-premuim {
+        width: 100%;
+        .desc {
+          font-size: $font-size-lg;
+          line-height: unset;
+
+          span {
+            font-size: $font-size-lg;
+          }
+        }
+      }
+      .video-section {
+        width: 100%;
+      }
+    }
+    .interview-details {
+      width: 100%;
+    }
+    .interview-image {
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 767.5px) {
+  .pricing-container {
+    .pricing-details {
+      display: flex;
+      flex-direction: column-reverse;
+
+      .video-section {
+        width: 100%;
+      }
+      .buy-premuim {
+        width: 100%;
+      }
+      .buy-premuim {
+        .desc {
+          font-size: $font-size-lg;
+          line-height: unset;
+
+          span {
+            font-size: $font-size-lg;
+          }
+        }
+      }
+    }
+    .interview {
+      display: flex;
+      flex-direction: column;
+
+      .interview-details {
+        width: 100%;
+      }
+      .interview-image {
+        width: 100%;
+      }
+    }
+  }
 }
