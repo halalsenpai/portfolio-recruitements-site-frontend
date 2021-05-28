@@ -1,8 +1,10 @@
 import React from "react";
 import "./_services.scss";
 import "./_Responsive.scss";
-import { Input, Form, Select, DatePicker, Checkbox } from "antd";
+import { Input, Form, Select } from "antd";
+import Button from "../../shared-ui/Button/Button";
 const { Option } = Select;
+const { TextArea } = Input;
 
 const services = () => {
   return (
@@ -30,19 +32,19 @@ const services = () => {
             in touch with you shortly.
           </p>
           <Form className="services-form-wrapper c-form">
-            <Form.Item name="firstName" className="c-input mx-auto" rules={null}>
-              <label className="required">Job title</label>
-              <Input className="" placeholder="Real Estate Manager" size="" type="text" />
+            <Form.Item name="firstName" className="c-input" rules={null}>
+              <label className="required">Name</label>
+              <Input className="" size="" type="text" />
             </Form.Item>
-            <Form.Item name="firstName" className="c-input mx-auto" rules={null}>
-              <label className="required">Job title</label>
-              <Input className="" placeholder="Real Estate Manager" size="" type="text" />
+            <Form.Item name="firstName" className="c-input" rules={null}>
+              <label className="required">Work email adress</label>
+              <Input className="" size="" type="text" />
             </Form.Item>
-            <Form.Item name="firstName" className="c-input mx-auto" rules={null}>
-              <label className="required">Job title</label>
-              <Input className="" placeholder="Real Estate Manager" size="" type="text" />
+            <Form.Item name="firstName" className="c-input" rules={null}>
+              <label className="required">Mobile phone number</label>
+              <Input className="" size="" type="text" />
             </Form.Item>
-            <Form.Item name="email" className="c-input" rules={null}>
+            <Form.Item name="email" className="c-input select-w100" rules={null}>
               <div className="c-label">
                 <label className="required">Employment type</label>
               </div>
@@ -50,6 +52,13 @@ const services = () => {
                 <Option value="">Select</Option>
               </Select>
             </Form.Item>
+            <Form.Item className="text-area">
+              <label htmlFor="">Short Message (Optional)</label>
+              <TextArea rows={4} />
+            </Form.Item>
+            <div className="submit-btn">
+              <Button>Submit</Button>
+            </div>
           </Form>
         </div>
       </div>

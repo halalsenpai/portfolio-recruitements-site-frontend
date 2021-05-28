@@ -242,6 +242,14 @@ p {
   }
 }
 
+// antd select
+
+.select-w100 {
+  .ant-select {
+    width: 100% !important;
+  }
+}
+
 .c-text-box {
   width: 100%;
 
@@ -401,7 +409,6 @@ p {
   .ant-picker-xs {
     width: 100px;
   }
-
 }
 
 // custom phone number input
@@ -504,7 +511,6 @@ p {
   }
 }
 
-
 // custom form
 .c-form {
   display: flex;
@@ -560,10 +566,7 @@ p {
   height: 3px;
 }
 
-.ant-steps-item-finish
-  > .ant-steps-item-container
-  > .ant-steps-item-content
-  > .ant-steps-item-title::after {
+.ant-steps-item-finish > .ant-steps-item-container > .ant-steps-item-content > .ant-steps-item-title::after {
   background-color: $green;
 }
 
