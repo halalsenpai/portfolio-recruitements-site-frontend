@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 
 import { BiMessageRounded } from "react-icons/bi";
-import { BsHeart, BsStar } from "react-icons/bs";
+import { BsFillChatFill } from "react-icons/bs";
+import { FaHeart, FaStar } from "react-icons/fa";
 
 import { Map } from "../../shared-ui/Map/Map";
 import { getTitleById } from "../../utils/helper";
@@ -65,13 +66,13 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
             <Button themeColor="shadowed">Apply</Button>
             <Button themeColor="shadowed rounded">
               {" "}
-              <BsHeart className="highlighted mt-1" />{" "}
+              <FaHeart size="14px" className="highlighted" />{" "}
             </Button>
-            <Button themeColor="shadowed rounded" icon={<BsStar className="highlighted" />} />
+            <Button themeColor="shadowed rounded" icon={<FaStar size="14px" className="highlighted" />} />
             <Popover content={"coming soon..."}>
               <Button themeColor="shadowed rounded">
                 {" "}
-                <BiMessageRounded className="highlighted" />{" "}
+                <BsFillChatFill size="14px" className="highlighted" />{" "}
               </Button>
             </Popover>
           </span>
