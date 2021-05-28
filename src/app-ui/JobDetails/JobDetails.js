@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 
+import { Popover } from "antd";
 import { BiMessageRounded } from "react-icons/bi";
 import { BsHeart, BsStar } from "react-icons/bs";
 
@@ -7,37 +8,37 @@ import { Map } from "../../shared-ui/Map/Map";
 import { getTitleById } from "../../utils/helper";
 import Button from "../../shared-ui/Button/Button";
 import defaultImage from "../../assets/images/default.png";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import ImagesGallery from "../../shared-ui/ImagesGallery/ImagesGallery";
 import JobsCarouselv2 from "../../shared-ui/JobsCarousel/JobsCarouselv2";
 import defaultBanner from "../../assets/images/sample/job-banner.png";
-import { showErrorMessage, showSuccessMessage } from "../../utils/message";
 
 import "./_JobDetails.scss";
 import "./_Responsive.scss";
-import { Popover } from "antd";
-import { getJobByCategory } from "../../features/jobs/thunk";
-import { selectOtherJobs } from "../../features/jobs/slice";
 
-function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData = {}, otherJobs }) {
-  const dispatch = useAppDispatch();
-  // const errorMessage = useAppSelector(selectError);
-
-  // useEffect(() => {
-  //   if (errorMessage) {
-  //     showErrorMessage(errorMessage);
-  //   }
-  // }, [errorMessage]);
-
+function JobDetails({
+  data = {},
+  showAllDetails = true,
+  setJobDetails,
+  extraData = {},
+  otherJobs,
+}) {
   return (
     <div className="c-job-detail-card">
       {/* Header */}
       <div className="header">
-        <img className="job-banner-img" src={data.company?.companyBanner || defaultBanner} alt="banner-img" />
+        <img
+          className="job-banner-img"
+          src={data.company?.companyBanner || defaultBanner}
+          alt="banner-img"
+        />
         <span className="banner-img-overlay"></span>
 
         <span className="job-info-wrapper">
-          <img className="job-img" src={data.company?.companyLogo || defaultImage} alt="" />
+          <img
+            className="job-img"
+            src={data.company?.companyLogo || defaultImage}
+            alt=""
+          />
           <span className="job-info">
             <h6 className="job-title">{data.company?.tagLine}</h6>
             <h3 className="job-company">{data.company?.companyName}</h3>
@@ -50,7 +51,10 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
         )} */}
 
         <div onClick={() => setJobDetails(data)} className="back-btn">
-          <img src={require("../../assets/images/icons/back-button.svg")} alt="" />
+          <img
+            src={require("../../assets/images/icons/back-button.svg")}
+            alt=""
+          />
         </div>
       </div>
 
@@ -67,7 +71,10 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
               {" "}
               <BsHeart className="highlighted mt-1" />{" "}
             </Button>
-            <Button themeColor="shadowed rounded" icon={<BsStar className="highlighted" />} />
+            <Button
+              themeColor="shadowed rounded"
+              icon={<BsStar className="highlighted" />}
+            />
             <Popover content={"coming soon..."}>
               <Button themeColor="shadowed rounded">
                 {" "}
@@ -122,7 +129,11 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
                 Accommodation
                 {!data.accommodationListId && <mark>N/A</mark>}
                 {data.accommodationListId && (
-                  <mark>{data.accommodationListId?.map((d) => getTitleById(extraData.accommodations, d))}</mark>
+                  <mark>
+                    {data.accommodationListId?.map((d) =>
+                      getTitleById(extraData.accommodations, d)
+                    )}
+                  </mark>
                 )}
               </span>
               <span>
@@ -164,10 +175,14 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
                 <span className="content-block">
                   <h6 className="block-title">
                     About company:
-                    <mark className="ml-2 blue">{data.company?.companyName || "N/A"}</mark>
+                    <mark className="ml-2 blue">
+                      {data.company?.companyName || "N/A"}
+                    </mark>
                   </h6>
 
-                  <p className="block-text">{data.company?.introduction || "N/A"}</p>
+                  <p className="block-text">
+                    {data.company?.introduction || "N/A"}
+                  </p>
                 </span>
 
                 <ImagesGallery title="Company Photos" />
@@ -189,7 +204,10 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
                 <span className="content-block mt-4 pr-0">
                   <h6 className="block-title mb-3">Map</h6>
                   <div className="block-map">
-                    <Map data={data?.company} location={data?.company?.companyLocation} />
+                    <Map
+                      data={data?.company}
+                      location={data?.company?.companyLocation}
+                    />
                   </div>
                 </span>
               </>
@@ -213,7 +231,7 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
               <span className="content-section">
                 <span className="content-block">
                   <h6 className="block-title">Other jobs by this company</h6>
-
+                  <p>N/A</p>
                   {/* <JobsCarouselv2 jobs={jobs.slice(0, 5)} /> */}
                 </span>
               </span>
