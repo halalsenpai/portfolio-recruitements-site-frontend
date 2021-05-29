@@ -31,29 +31,22 @@ const services = () => {
             If you would like to provide our users with your services, then please fill out the form below and we'll be
             in touch with you shortly.
           </p>
-          <Form className="services-form-wrapper c-form">
-            <Form.Item name="firstName" className="c-input" rules={null}>
-              <label className="required">Name</label>
+          <Form layout="vertical" className="services-form-wrapper c-form">
+            <Form.Item label="Name" name="firstName" className="c-input" rules={null}>
               <Input className="" size="" type="text" />
             </Form.Item>
-            <Form.Item name="firstName" className="c-input" rules={null}>
-              <label className="required">Work email adress</label>
+            <Form.Item label="Work email adress" name="firstName" className="c-input" rules={null}>
               <Input className="" size="" type="text" />
             </Form.Item>
-            <Form.Item name="firstName" className="c-input" rules={null}>
-              <label className="required">Mobile phone number</label>
+            <Form.Item label="Mobile phone number" name="firstName" className="c-input" rules={null}>
               <Input className="" size="" type="text" />
             </Form.Item>
-            <Form.Item name="email" className="c-input select-w100" rules={null}>
-              <div className="c-label">
-                <label className="required">Employment type</label>
-              </div>
+            <Form.Item label="Employment type" name="email" className="c-input select-w100" rules={null}>
               <Select size="" defaultValue="">
                 <Option value="">Select</Option>
               </Select>
             </Form.Item>
-            <Form.Item className="text-area">
-              <label htmlFor="">Short Message (Optional)</label>
+            <Form.Item label="Short Message (Optional)" className="text-area">
               <TextArea rows={4} />
             </Form.Item>
             <div className="submit-btn">
