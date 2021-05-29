@@ -12,7 +12,7 @@ const EmployerAndAgency = () => {
       {" "}
       <div className="c-containers">
         <div className="c-row">
-          <div style={{ maxWidth: 600 }} className="cell-auto">
+          <div className="cell-30">
             <h1 className="emp-heading">
               Descover a new way of hiring <br /> & make the right connection
             </h1>
@@ -25,7 +25,7 @@ const EmployerAndAgency = () => {
       </div>
       <div className="c-containers sections">
         <div className="c-row">
-          <div className="cell-auto align-left text-section">
+          <div className="cell-30 align-left text-section">
             <div>
               <h1>
                 Save up to 75% of your <br />
@@ -47,7 +47,7 @@ const EmployerAndAgency = () => {
           <div className="cell-auto align-left image-section">
             <img src={require("../../assets/images/employeeandagency/Mask Group 37.png")} alt="" />
           </div>
-          <div className="cell-auto text-section">
+          <div className="cell-30 text-section">
             <div>
               <h1>Smart profiles</h1>
               <p>
@@ -60,7 +60,7 @@ const EmployerAndAgency = () => {
       </div>
       <div className="c-containers sections">
         <div className="c-row">
-          <div className="cell-auto align-left text-section">
+          <div className="cell-30 align-left text-section">
             <div>
               <h1>Keep your team connected</h1>
               <p>
@@ -79,7 +79,7 @@ const EmployerAndAgency = () => {
           <div className="cell-auto align-left image-section">
             <img src={require("../../assets/images/employeeandagency/interview.png")} alt="" />
           </div>
-          <div className="cell-auto text-section">
+          <div className="cell-30 text-section">
             <div>
               <h1 className="blue">Comming soon...</h1>
               <h1>

@@ -18,6 +18,9 @@
           padding: 0;
           min-width: unset;
           text-align: center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
 
           h1 {
             font-size: $font-size-lg;
@@ -29,6 +32,9 @@
         .cell-half {
           width: 100%;
           text-align: center;
+        }
+        .cell-30 {
+          width: 100%;
         }
       }
       .column-rev {
@@ -44,6 +50,7 @@
     .emp-heading {
       font-size: $font-size-lg;
       line-height: unset;
+      text-align: center;
     }
   }
 }
@@ -61,6 +68,9 @@
           flex: unset;
           padding: 0;
           min-width: unset;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
       }
     }

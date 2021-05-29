@@ -15,7 +15,7 @@ function JobSeekers() {
       {" "}
       <div className="c-containers">
         <div className="c-row">
-          <div style={{ maxWidth: 600 }} className="cell-auto">
+          <div className="cell-30">
             <h1 className="emp-heading">Make the right connections.</h1>
           </div>
           <div className="cell-auto job-n-demo">
@@ -25,14 +25,14 @@ function JobSeekers() {
       </div>
       <div className="c-containers sections">
         <div className="c-row">
-          <div className="cell-auto align-left text-section">
+          <div className="align-left text-section cell-30">
             <div>
               <h1>Follow companies</h1>
               <p>Follow your favourite companies and stay up to date with all of their current and future jobs.</p>
             </div>
           </div>
           <div className="cell-auto align-right image-section">
-            <img className="w75" src={require("../../assets/images/jobseekers/Inbox Video (0-00-24-24).png")} alt="" />
+            <img className="" src={require("../../assets/images/jobseekers/screen.png")} alt="" />
           </div>
         </div>
       </div>
@@ -41,7 +41,7 @@ function JobSeekers() {
           <div className="cell-auto align-left image-section">
             <img src={require("../../assets/images/jobseekers/chat.png")} alt="" />
           </div>
-          <div className="cell-auto text-section">
+          <div className=" text-section cell-30">
             <div>
               <h1>Live chat + inbox</h1>
               <p>Connect with employers and agencies and keep your conversations in one place.</p>
@@ -51,7 +51,7 @@ function JobSeekers() {
       </div>
       <div className="c-containers sections">
         <div className="c-row">
-          <div className="cell-auto align-left text-section">
+          <div className=" align-left text-section cell-30">
             <div>
               <h1>Smart profile</h1>
               <p>
@@ -70,7 +70,7 @@ function JobSeekers() {
           <div className="cell-auto align-left image-section">
             <img src={require("../../assets/images/jobseekers/laptop.png")} alt="" />
           </div>
-          <div className="cell-auto text-section">
+          <div className=" text-section cell-30">
             <div>
               <h1>Smart interview features</h1>
               <p>
