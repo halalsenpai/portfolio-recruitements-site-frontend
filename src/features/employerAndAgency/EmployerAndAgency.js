@@ -1,124 +1,100 @@
 import React from "react";
 import { useHistory } from "react-router";
-
 import Slide from "react-reveal/Slide";
 import Bounce from "react-reveal/Bounce";
-
 import Button from "../../shared-ui/Button/Button";
-
 import "./_EmployerAndAgency.scss";
+import "./_Responsive.scss";
 
-function EmployerAndAgency() {
-  const history = useHistory();
+const EmployerAndAgency = () => {
   return (
-    <div className="container-fluid employer-and-agencies">
-      <div className="row banner">
-        <div className="col-lg-6  c-container-centered-content left-text-container mb-2">
-          <Bounce left>
-            <div className="inner-container">
-              <h2>
-                Discover a new way of hiring & make the right connections.
-              </h2>
-            </div>
-          </Bounce>
-        </div>
-        <div className="col-lg-6 c-container-centered-content right-text-container mb-2">
-          <Bounce right>
-            <Button
-              onClick={() => history.push("/signup")}
-              type="large"
-              htmlType="submit"
-              // loading={tr`ue}
-              themeColor="primary"
-              block
-            >
-              Post a free job
-            </Button>
-          </Bounce>
+    <div className="emp-agncy-main">
+      {" "}
+      <div className="c-containers">
+        <div className="c-row">
+          <div className="cell-30">
+            <h1 className="emp-heading">
+              Descover a new way of hiring <br /> & make the right connection
+            </h1>
+          </div>
+          <div className="cell-auto job-n-demo">
+            <Button className="blue mr-3">Post a free job</Button>
+            <Button className="green">Book a demo</Button>
+          </div>
         </div>
       </div>
-      <div className="row banner">
-        <div className="col-lg-5 left-text-container">
-          <Slide left>
-            <div className="inner-container">
-              <h2 className="mt-4">
-                Save up to 75% of your <br /> annual recruitment budget
-              </h2>
+      <div className="c-containers sections">
+        <div className="c-row">
+          <div className="cell-30 align-left text-section">
+            <div>
+              <h1>
+                Save up to 75% of your <br />
+                annual recruiment budget
+              </h1>
               <p>
-                Finding the right person can be costly, and we can help you{" "}
-                <br /> minimise those costs. Start your search with 2 free jobs
-                and try <br /> us out with no strings attached.
+                Finding the right person can be costly and we can help you minimise those costs. Start your search with
+                2 free jobs on us.
               </p>
             </div>
-          </Slide>
-        </div>
-        <div className="col-lg-7 p-0">
-          <img
-            className="banner-img"
-            src={require("../../assets/images/employeeandagency/ea-1.jpg")}
-            alt="ban1"
-          />
-        </div>
-      </div>
-      <div className="row banner">
-        <Slide left>
-          <div className="col-lg-7 p-0">
-            <img
-              className="banner-img"
-              src={require("../../assets/images/employeeandagency/ea-2.png")}
-              alt="ban1"
-            />
           </div>
-        </Slide>
-        <div className="col-lg-5 right-text-container">
-          <h2 className="mt-4">Smart profiles</h2>
-          <p>
-            We show you profiles, not CV's. Connect with job seekers through
-            their smart profiles, and get to know them through video
-            introductions.{" "}
-          </p>
-        </div>
-      </div>
-      <div className="row banner">
-        <div className="col-lg-5 left-text-container">
-          <div className="inner-container">
-            <h2 className="mt-4">Video questionnaire's</h2>
-            <p>
-              Write your interview questions, set a time for each answer, and
-              fire away! Candidates can then answer each question in a video
-              format, and once their done it comes back straight into your
-              online inbox.
-            </p>
+          <div className="cell-auto align-right image-section">
+            <img src={require("../../assets/images/employeeandagency/user-cards.png")} alt="" />
           </div>
         </div>
-        <div className="col-lg-7 p-0">
-          <img
-            className="banner-img"
-            src={require("../../assets/images/employeeandagency/ea-4.jpg")}
-            alt="ban1"
-          />
+      </div>
+      <div className="c-containers sections">
+        <div className="c-row column-rev">
+          <div className="cell-auto align-left image-section">
+            <img src={require("../../assets/images/employeeandagency/Mask Group 37.png")} alt="" />
+          </div>
+          <div className="cell-30 text-section">
+            <div>
+              <h1>Smart profiles</h1>
+              <p>
+                We show you profiles, not CV's. Connect with job seekers through their smart profiles, and get to know
+                them through video introductions.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
-      <div className="row banner">
-        <Slide left>
-          <div className="col-lg-8 p-0">
-            <img
-              className="banner-img"
-              src={require("../../assets/images/employeeandagency/ea-3.jpg")}
-              alt="ban1"
-            />
+      <div className="c-containers sections">
+        <div className="c-row">
+          <div className="cell-30 align-left text-section">
+            <div>
+              <h1>Keep your team connected</h1>
+              <p>
+                However big or small, you can add your entire team here. Make notes on profiles only visible to you and
+                your team.
+              </p>
+            </div>
           </div>
-        </Slide>
-        <div className="col-lg-4 right-text-container">
-          <h2 className="mt-4"> Keep your team connected </h2>
-          <p>
-            However big or small, you can add your entire team here. Make notes
-            on profiles only visible to you and your team.
-          </p>
+          <div className="cell-auto align-right image-section">
+            <img src={require("../../assets/images/employeeandagency/team-table.png")} alt="" />
+          </div>
+        </div>
+      </div>
+      <div className="c-containers sections">
+        <div className="c-row column-rev ">
+          <div className="cell-auto align-left image-section">
+            <img src={require("../../assets/images/employeeandagency/interview.png")} alt="" />
+          </div>
+          <div className="cell-30 text-section">
+            <div>
+              <h1 className="blue">Comming soon...</h1>
+              <h1>
+                Make your interviews personal, <br /> without even being there!
+              </h1>
+              <p>
+                Our video platform allows you to attend your interviews even if you're not there! Simply write your
+                interview questions, record them as voice notes, or record them as a video.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default EmployerAndAgency;

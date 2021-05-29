@@ -159,7 +159,6 @@ p {
 // custom input styling
 
 .ant-form-item-control {
-  margin: 3px 0px;
   width: 100%;
 }
 
@@ -239,6 +238,14 @@ p {
   }
   .ant-form-item-extra {
     margin-left: 0.5em;
+  }
+}
+
+// antd select
+
+.select-w100 {
+  .ant-select {
+    width: 100% !important;
   }
 }
 
@@ -733,38 +740,38 @@ p {
   }
 }
 
-@media screen and (min-width: 541px) and (max-width: 1024px) {
-  .c-input {
-    width: 100%;
-    max-width: 300px;
-    min-width: 160px;
-    margin: 10px;
+// @media screen and (min-width: 541px) and (max-width: 1024px) {
+//   .c-input {
+//     width: 100%;
+//     max-width: 300px;
+//     min-width: 160px;
+//     margin: 10px;
 
-    input.ant-input-sm,
-    input.ant-input-lg,
-    input.ant-input-medium,
-    .ant-picker {
-      width: 100%;
-    }
-    .ant-select {
-      width: 100% !important;
-    }
-    // input {
-    //   &.ant-input-lg {
-    //     width: 100%;
-    //   }
+//     input.ant-input-sm,
+//     input.ant-input-lg,
+//     input.ant-input-medium,
+//     .ant-picker {
+//       width: 100%;
+//     }
+//     .ant-select {
+//       width: 100% !important;
+//     }
+//     // input {
+//     //   &.ant-input-lg {
+//     //     width: 100%;
+//     //   }
 
-    //   &.ant-input-sm {
-    //     width: 100%;
+//     //   &.ant-input-sm {
+//     //     width: 100%;
 
-    //   }
-    //   &.xs {
-    //     width: 100%;
+//     //   }
+//     //   &.xs {
+//     //     width: 100%;
 
-    //   }
-    // }
-  }
-}
+//     //   }
+//     // }
+//   }
+// }
 @media screen and (max-width: 1024px) {
   .react-tel-input .form-control {
     width: unset !important;
