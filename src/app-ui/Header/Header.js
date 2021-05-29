@@ -85,7 +85,14 @@ function Header() {
               className={getActiveClassForPath(currentPath, "/jobs")}>
               Jobs
             </Link>
-            <Link to="/">Services</Link>
+            <Link
+              to="/services"
+              onClick={() => {
+                setCurrentPath("/jobs");
+                setMenu(false);
+              }}>
+              Services
+            </Link>
             <Link
               to="/pricing"
               onClick={() => {
