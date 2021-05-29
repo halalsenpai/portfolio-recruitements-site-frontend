@@ -41,7 +41,7 @@ const services = () => {
             <Form.Item label="Mobile phone number" name="firstName" className="c-input" rules={null}>
               <Input className="" size="" type="text" />
             </Form.Item>
-            <Form.Item label="Employment type" name="email" className="c-input select-w100" rules={null}>
+            <Form.Item label="Category" name="email" className="c-input select-w100" rules={null}>
               <Select size="" defaultValue="">
                 <Option value="">Select</Option>
               </Select>

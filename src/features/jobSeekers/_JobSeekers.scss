@@ -1,32 +1,81 @@
-.job-seeker-page{
-    .banner{
-        h2{
-            margin:0px 0px 20px 0px;
-        }
-    .left-text-container{
+@import "../../assets/scss/variables";
+.job-seekers-main {
+  padding: 40px 0;
+  .c-containers {
+    padding: 0 88px;
+    .c-row {
+      display: flex;
+      .cell-half {
+        width: 50%;
+      }
+      .cell-auto {
+        flex: auto;
+        width: auto;
+      }
+      .cell-full {
+        width: 100%;
+      }
+      .text-section {
+        width: 50%;
+        flex-grow: 1;
         display: flex;
-        flex-direction: column;
         justify-content: center;
-        align-items: center;
-        padding: 0px 50px 0px 100px;
-        margin: 0px 0px 150px 0px;
-        .inner-container {
-            max-width: 600px;
-        }
-    }
-    .right-text-container {
+        flex: unset;
+        // padding: 0 20px;
+        min-width: 400px;
+      }
+      .image-section {
+        width: 50%;
+        min-width: 500px;
+        flex: unset;
+        padding: 0 20px;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 0px 100px 0px 50px;
-        margin: 0px 0px 150px 0px;
-        .inner-container{
-            max-width: 600px;
+        // justify-content: center;
+
+        img {
+          width: 100%;
+          // max-width: 850px;
         }
+        .w75 {
+          width: 75%;
+        }
+      }
+
+      .align-left {
+        justify-content: flex-start;
+      }
+      .align-right {
+        justify-content: flex-end;
+        width: 70%;
+      }
+      .w70 {
+        width: 70%;
+      }
     }
-    .banner-img{
-        width: 100%; 
-        margin: 0px 0px 150px 0px;
+  }
+  .emp-heading {
+    font-size: $font-size-x-lg;
+    line-height: 55px;
+  }
+  .blue {
+    color: $blue;
+  }
+  .job-n-demo {
+    display: flex;
+    justify-content: center;
+  }
+  .sections {
+    padding-top: 60px;
+    h1 {
+      font-size: $font-size-x-lg;
+      margin: 0 0 20px 0;
     }
-}
+    p {
+      font-size: $font-size-lg;
+      max-width: 380px;
+    }
+    // img {
+    //   width: auto;
+    // }
+  }
 }

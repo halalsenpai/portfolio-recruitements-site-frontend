@@ -124,7 +124,9 @@ const Pricing = () => {
       </div>
       <div className="pricing-details">
         <div className="video-section">
-          <img src={require("../../assets/images/pricing/Mask Group 35.png")} alt="" />
+          <div class="box">
+            <img src={require("../../assets/images/pricing/Mask Group 35.png")} alt="" />
+          </div>
         </div>
         <div className="buy-premuim">
           <h1 className="desc">
