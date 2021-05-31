@@ -12,6 +12,7 @@ ENV REACT_APP_HOMEPAGE_URL=https://develop-homepage.jobsmideast.com
 ENV REACT_APP_CANDIDATE_PORTAL_URL=https://develop-candidate.jobsmideast.com
 ENV REACT_APP_EMPLOYER_PORTAL_URL=https://develop-employer.jobsmideast.com
 ENV REACT_APP_AGENCY_PORTAL_URL=https://develop-agency.jobsmideast.com
+ENV REACT_APP_CHAT_URL=https://develop-socket.jobsmideast.com/chat
 
 COPY . ./
 RUN npm run build
