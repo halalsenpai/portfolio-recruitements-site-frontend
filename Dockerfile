@@ -8,9 +8,11 @@ ENV PATH="./node_modules/.bin:$PATH"
 ENV REACT_APP_VERSION=0.1.0
 ENV REACT_APP_BASE_URL=https://staging-backend.jobsmideast.com
 ENV REACT_APP_MAP_KEY=AIzaSyDxfSNbgNkKIDu45-aJdQpfHwMd7Dft3T4
+ENV REACT_APP_HOMEPAGE_URL=https://staging-homepage.jobsmideast.com
 ENV REACT_APP_CANDIDATE_PORTAL_URL=https://staging-candidate.jobsmideast.com
 ENV REACT_APP_EMPLOYER_PORTAL_URL=https://staging-employer.jobsmideast.com
 ENV REACT_APP_AGENCY_PORTAL_URL=https://staging-agency.jobsmideast.com
+ENV REACT_APP_CHAT_URL=https://staging-socket.jobsmideast.com/chat
 
 COPY . ./
 RUN npm run build
