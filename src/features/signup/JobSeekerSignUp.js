@@ -58,7 +58,7 @@ function JobSeekerSignUp() {
   const onFinish = (values) => {
     delete values.confirmPassword;
     delete values.agreeTerms;
-    delete values.agreePrivacy;
+    // delete values.agreePrivacy;
 
     const role = roles.find((r) => r.title === "jobseeker");
 
@@ -89,7 +89,7 @@ function JobSeekerSignUp() {
             <div className="box">
               <img src={require("../../assets/images/icons/signup-icons/sign-1.svg")} alt="img" />
               <span>
-                <h3 className="b-text">One click apply</h3>
+                <h3 className="">One click apply</h3>
                 <p>Short list jobs and apply All to them with 1 click</p>
               </span>
             </div>
@@ -98,21 +98,21 @@ function JobSeekerSignUp() {
               <img src={require("../../assets/images/icons/signup-icons/sign-2.svg")} alt="img" />
 
               <span>
-                <h3 className="b-text">Job Match</h3>
+                <h3 className="">Job Match</h3>
                 <p>Let our system do the work for you even while you sleep!</p>
               </span>
             </div>
             <div className="box">
               <img src={require("../../assets/images/icons/signup-icons/sign-3.svg")} alt="img" />
               <span>
-                <h3 className="b-text">Direct chat + Inbox</h3>
+                <h3 className="">Direct chat + Inbox</h3>
                 <p>Talk to employers & agencies in real time, no emails!</p>
               </span>
             </div>
             <div className="box">
               <img src={require("../../assets/images/icons/signup-icons/sign-4.svg")} alt="img" />
               <span>
-                <h3 className="b-text">Follow Companies</h3>
+                <h3 className="">Follow Companies</h3>
                 <p>Follow companies and stay up to date with all their jobs</p>
               </span>
             </div>
@@ -244,7 +244,7 @@ function JobSeekerSignUp() {
               <TermsConditions />
             </Modal>
 
-            <Form.Item
+            {/* <Form.Item
               rules={[
                 {
                   required: true,
@@ -258,7 +258,7 @@ function JobSeekerSignUp() {
                 I agree to Jobsmideast T&C’s, the data privacy statement, and to receive future emails, texts and
                 communications.
               </Checkbox>
-            </Form.Item>
+            </Form.Item> */}
           </span>
 
           {errorMessage && <Alert message={errorMessage} type="error" />}

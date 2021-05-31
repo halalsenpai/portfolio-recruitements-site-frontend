@@ -1,7 +1,7 @@
 @import "../../assets/scss/variables";
 
 .pricing-container {
-  padding: 30px 10px 30px 50px;
+  padding: 40px 90px;
 
   .heading-section {
     padding: 60px 0;
@@ -37,6 +37,7 @@
         & .pricing-card {
           width: 100%;
           border-left: 1px solid $border-color;
+          min-height: 500px;
           height: 100%;
 
           &:first-child {
@@ -88,50 +89,139 @@
       padding: 0 20px;
 
       & .image-section {
+        display: flex;
+        justify-content: center;
         & img {
-          width: 80%;
-          margin: -30px 0 0 0;
+          width: 100%;
+          max-width: 360px;
           min-width: 290px;
+          max-height: 500px;
+          object-fit: cover;
+          border-radius: 15px;
         }
       }
     }
   }
 
-  .pricing-page {
-    .section-2 {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      padding: 50px 0 !important;
+  .pricing-details {
+    width: 100%;
+    display: flex;
+    padding-top: 60px;
 
-      .left-side {
-        left: 50px;
-        flex: 1;
+    .video-section {
+      width: 40%;
+      height: 0;
+      padding-bottom: 40%;
+      position: relative;
+
+      .box {
+        position: absolute;
+        width: 100%;
+        height: 100%;
         display: flex;
-        flex-direction: column;
-
-        .title {
-          font-size: $font-size-lg;
-          font-family: $font-bold;
-        }
-
-        .description {
-          font-size: $font-size-md;
+        overflow: hidden;
+        video {
+          width: calc(100% + 120px);
+          position: relative;
+          left: -100px;
         }
       }
 
-      .right-side {
-        position: relative;
-        flex: 2;
-        min-width: 340px;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+    .buy-premuim {
+      width: 60%;
+      padding-block-start: inherit;
+      padding-left: 60px;
 
-        .slider-btn {
-          position: absolute;
-          width: 300px;
-          bottom: 87px;
-          left: 157px;
+      .desc {
+        font-size: $font-size-x-lg;
+        max-width: 650px;
+        line-height: 60px;
+        margin: 0 0 30px;
+
+        span {
+          color: $blue;
+          font-size: $font-size-x-lg;
         }
+      }
+      .premium-heading {
+        font-size: $font-size-lg;
+      }
+      .points {
+        margin: 0;
+        margin-bottom: 2px;
+        font-size: $font-size-sm;
+      }
+      .btn-sec {
+        display: flex;
+        align-items: center;
+        margin: 20px 0 0 0;
+
+        p {
+          font-size: $font-size-sm;
+          margin: 0 0 0 10px;
+        }
+      }
+      .direct-message {
+        font-size: $font-size-x-sm;
+      }
+    }
+  }
+  .interview {
+    display: flex;
+    align-items: center;
+    padding-top: 60px;
+
+    .interview-details {
+      width: 40%;
+
+      .coming-soon {
+        font-size: $font-size-x-lg;
+        color: $blue;
+        text-transform: uppercase;
+      }
+      .make-interview {
+        font-size: $font-size-lg;
+      }
+    }
+
+    .interview-image {
+      width: 60%;
+
+      img {
+        width: 100%;
+        max-width: 1100px;
+      }
+    }
+    p {
+      max-width: 500px;
+    }
+    .points {
+      display: flex;
+      align-items: center;
+      margin: 15px 0;
+
+      .checks {
+        width: 27px;
+        height: 27px;
+        border-radius: 89px;
+        background-color: $green;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        font-size: 20px;
+        min-width: 27px;
+        min-height: 27px;
+      }
+      p {
+        margin: 0 0 0 10px;
+        max-width: unset;
       }
     }
   }

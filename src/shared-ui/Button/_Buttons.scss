@@ -16,7 +16,7 @@
   span {
     color: $white;
     transition: 0.2s all linear;
-    font-family: $font-bold !important;
+    // font-family: $font-bold !important;
   }
 
   .animated-icon {
@@ -174,8 +174,8 @@
   }
 
   &.rounded {
-    width: 35px;
-    height: 35px;
+    width: 34px;
+    height: 34px;
     padding: 0px !important;
     border-radius: 20px !important;
     font-size: 18px;

@@ -93,7 +93,7 @@ img {
   }
 
   img {
-    max-width: 800px;
+    max-width: 900px;
   }
 }
 
@@ -159,7 +159,6 @@ p {
 // custom input styling
 
 .ant-form-item-control {
-  margin: 3px 0px;
   width: 100%;
 }
 
@@ -242,6 +241,14 @@ p {
   }
 }
 
+// antd select
+
+.select-w100 {
+  .ant-select {
+    width: 100% !important;
+  }
+}
+
 .c-text-box {
   width: 100%;
 
@@ -265,7 +272,10 @@ p {
   width: auto;
 
   .ant-input-suffix {
-    display: none;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    // display: none;
   }
 }
 
@@ -304,7 +314,7 @@ p {
   &:focus {
     border: none;
     box-shadow: none;
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3) !important;
+    // box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3) !important;
   }
 }
 
@@ -401,7 +411,6 @@ p {
   .ant-picker-xs {
     width: 100px;
   }
-
 }
 
 // custom phone number input
@@ -454,7 +463,7 @@ p {
 
 // custom card container
 .c-card-container {
-  max-width: 800px;
+  max-width: 900px;
   width: 100%;
   height: 720px;
   border-radius: 20px;
@@ -488,11 +497,14 @@ p {
       color: $white;
       font-family: $font-bold;
     }
+    .login-background-image {
+      width: 100%;
+    }
   }
 
   .second-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
     max-width: 100% !important;
@@ -503,7 +515,6 @@ p {
     }
   }
 }
-
 
 // custom form
 .c-form {
@@ -516,7 +527,10 @@ p {
   .form-title {
     font-family: $font-bold;
     font-size: $font-size-lg;
-    margin-bottom: 15px;
+    margin-bottom: 28px;
+  }
+  .ant-radio-group {
+    margin-bottom: 18px;
   }
 
   label {
@@ -560,10 +574,7 @@ p {
   height: 3px;
 }
 
-.ant-steps-item-finish
-  > .ant-steps-item-container
-  > .ant-steps-item-content
-  > .ant-steps-item-title::after {
+.ant-steps-item-finish > .ant-steps-item-container > .ant-steps-item-content > .ant-steps-item-title::after {
   background-color: $green;
 }
 
@@ -729,38 +740,38 @@ p {
   }
 }
 
-@media screen and (min-width: 541px) and (max-width: 1024px) {
-  .c-input {
-    width: 100%;
-    max-width: 300px;
-    min-width: 160px;
-    margin: 10px;
+// @media screen and (min-width: 541px) and (max-width: 1024px) {
+//   .c-input {
+//     width: 100%;
+//     max-width: 300px;
+//     min-width: 160px;
+//     margin: 10px;
 
-    input.ant-input-sm,
-    input.ant-input-lg,
-    input.ant-input-medium,
-    .ant-picker {
-      width: 100%;
-    }
-    .ant-select {
-      width: 100% !important;
-    }
-    // input {
-    //   &.ant-input-lg {
-    //     width: 100%;
-    //   }
+//     input.ant-input-sm,
+//     input.ant-input-lg,
+//     input.ant-input-medium,
+//     .ant-picker {
+//       width: 100%;
+//     }
+//     .ant-select {
+//       width: 100% !important;
+//     }
+//     // input {
+//     //   &.ant-input-lg {
+//     //     width: 100%;
+//     //   }
 
-    //   &.ant-input-sm {
-    //     width: 100%;
+//     //   &.ant-input-sm {
+//     //     width: 100%;
 
-    //   }
-    //   &.xs {
-    //     width: 100%;
+//     //   }
+//     //   &.xs {
+//     //     width: 100%;
 
-    //   }
-    // }
-  }
-}
+//     //   }
+//     // }
+//   }
+// }
 @media screen and (max-width: 1024px) {
   .react-tel-input .form-control {
     width: unset !important;
@@ -769,4 +780,20 @@ p {
     width: 100%;
     height: 32px;
   }
+}
+// select placeholder
+.ant-select-single.ant-select-lg:not(.ant-select-customize-input) .ant-select-selector::after,
+.ant-select-single.ant-select-lg:not(.ant-select-customize-input) .ant-select-selector .ant-select-selection-item,
+.ant-select-single.ant-select-lg:not(.ant-select-customize-input)
+  .ant-select-selector
+  .ant-select-selection-placeholder {
+  line-height: 34.4px;
+}
+
+html {
+  image-rendering: -moz-crisp-edges !important; /* Firefox */
+  image-rendering: -o-crisp-edges !important; /* Opera */
+  image-rendering: -webkit-optimize-contrast !important; /* Webkit (non-standard naming) */
+  image-rendering: crisp-edges !important;
+  -ms-interpolation-mode: nearest-neighbor !important;
 }

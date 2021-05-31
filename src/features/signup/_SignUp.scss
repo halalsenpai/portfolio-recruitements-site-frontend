@@ -8,10 +8,17 @@
       }
 
       &.logo {
+        position: relative;
+        top: 30px;
         width: 500px;
       }
 
       width: 100px;
+    }
+    .inner-container {
+      h3 span {
+        font-family: $font-light !important;
+      }
     }
   }
 
@@ -33,8 +40,7 @@
 
     .first-container {
       width: 380px !important;
-      background: transparent url("../../assets/images/auth/sign-up-back.png")
-        0% 0% no-repeat padding-box;
+      background: transparent url("../../assets/images/auth/sign-up-back.png") 0% 0% no-repeat padding-box;
       background-position: top;
       background-repeat: no-repeat;
       background-size: cover;
@@ -50,21 +56,20 @@
       }
 
       &.bg-2 {
-        background: transparent url("../../assets/images/auth/signup-ban-2.jpg")
-          0% 0% no-repeat padding-box;
+        background: transparent url("../../assets/images/auth/signup-ban-2.jpg") 0% 0% no-repeat padding-box;
         background-size: 100% 100%;
       }
 
       &.role-select {
-        background: transparent
-          url("../../assets/images/auth/sign-up-main-back.png") 0% 0% no-repeat
-          padding-box;
+        background: transparent url("../../assets/images/auth/sign-up-main-back.png") 0% 0% no-repeat padding-box;
         background-size: 100% 100%;
         padding: 40px 15px;
         justify-content: flex-start;
       }
 
       .logo {
+        position: absolute;
+        top: 60px;
         width: 200px;
       }
 
@@ -75,8 +80,8 @@
         span {
           font-size: $font-size-md;
           color: $white;
-          font-family: $font-bold !important;
-          border-bottom: 3px solid $white;
+          font-family: $font-medium !important;
+          border-bottom: 1px solid $white;
           padding-bottom: 6px;
         }
       }
@@ -96,7 +101,7 @@
           margin: 5px 0px 0px 0px;
 
           &:first-of-type {
-            margin-top: 15px;
+            margin-top: 24px;
           }
 
           h3 {
@@ -107,8 +112,10 @@
           }
 
           p {
-            font-size: $font-size-sm;
+            font-size: $font-size-x-sm;
             color: $white;
+            margin: 0px 0 20px 0 !important;
+            font-family: $font-light !important;
           }
 
           img {
@@ -140,12 +147,12 @@
     }
 
     &.role-container {
-      width: 800px;
+      max-width: 1024px;
       height: 720px;
 
       .second-container {
         height: 500px;
-        justify-content: space-between;
+        justify-content: center;
       }
     }
   }

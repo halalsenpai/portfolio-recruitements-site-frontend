@@ -1,0 +1,92 @@
+@import "../../assets/scss/variables";
+
+@media screen and (max-width: 767px) {
+  .job-seekers-main {
+    padding: 10px;
+    .c-containers {
+      padding: 0;
+      .c-row {
+        .image-section {
+          width: 100%;
+          min-width: unset;
+          padding: 0;
+        }
+        .text-section {
+          width: 100%;
+          max-width: unset;
+          flex: unset;
+          padding: 0;
+          min-width: unset;
+          text-align: center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          h1 {
+            font-size: $font-size-lg;
+          }
+          p {
+            font-size: $font-size-md;
+          }
+        }
+        .cell-half {
+          width: 100%;
+          text-align: center;
+        }
+        .cell-30 {
+          width: 100%;
+        }
+      }
+      .column-rev {
+        flex-direction: column-reverse !important;
+      }
+    }
+    .sections {
+      padding-top: 40px;
+    }
+    .c-row {
+      flex-direction: column;
+    }
+    .emp-heading {
+      font-size: $font-size-lg;
+      line-height: unset;
+      text-align: center;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1200px) {
+  .job-seekers-main {
+    padding: 10px;
+    .c-containers {
+      padding: 0;
+
+      .c-row {
+        .text-section {
+          width: 100%;
+          max-width: 280px;
+          flex: unset;
+          padding: 0;
+          min-width: unset;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+    .sections {
+      padding-top: 60px;
+      h1 {
+        font-size: $font-size-lg;
+      }
+      p {
+        font-size: $font-size-md;
+      }
+    }
+    .emp-heading {
+      font-size: $font-size-lg;
+      line-height: unset;
+    }
+  }
+}

@@ -5,12 +5,13 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 24px;
     span {
       display: flex;
       justify-content: center;
       align-items: center;
       flex: 1;
-      padding: 12px 0px 12px 0px;
+      padding: 9px 0;
       cursor: pointer;
       font-family: $font-medium !important;
       box-shadow: 2px 3px 5px #00000026;
