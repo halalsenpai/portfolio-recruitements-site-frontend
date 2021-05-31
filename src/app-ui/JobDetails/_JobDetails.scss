@@ -97,7 +97,7 @@
       }
 
       .title {
-        font-family: $font-bold;
+        font-family: $font-subtitle;
       }
 
       .actions-wrapper {
@@ -216,5 +216,8 @@
         }
       }
     }
+  }
+  mark {
+    font-family: $font-subtitle !important;
   }
 }
