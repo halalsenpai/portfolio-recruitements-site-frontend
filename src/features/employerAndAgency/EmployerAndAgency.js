@@ -18,8 +18,12 @@ const EmployerAndAgency = () => {
             </div>
           </div>
           <div className="cell-auto job-n-demo">
-            <Button className="blue mr-3">Post a free job</Button>
-            <Button className="green">Book a demo</Button>
+            <Button type="large" className="blue mr-4">
+              Post a free job
+            </Button>
+            <Button type="large" className="green">
+              Book a demo
+            </Button>
           </div>
         </div>
       </div>

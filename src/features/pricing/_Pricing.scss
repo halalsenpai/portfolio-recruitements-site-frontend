@@ -109,7 +109,7 @@
     padding-top: 60px;
 
     .video-section {
-      width: 40%;
+      width: 50%;
       height: 0;
       padding-bottom: 40%;
       position: relative;
@@ -121,9 +121,7 @@
         display: flex;
         overflow: hidden;
         video {
-          width: calc(100% + 120px);
-          position: relative;
-          left: -100px;
+          width: calc(100%);
         }
       }
 
@@ -134,7 +132,7 @@
       }
     }
     .buy-premuim {
-      width: 60%;
+      width: 50%;
       padding-block-start: inherit;
       padding-left: 60px;
 

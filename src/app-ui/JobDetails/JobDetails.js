@@ -213,7 +213,11 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
                   <Row gutter={16}>
                     {otherJobs?.map((otherJob) => (
                       <Col>
-                        <JobCard job={transformJobData(otherJob, jobTitles, employmentTypes, countries)} type="box" />
+                        <JobCard
+                          onClick={() => setJobDetails(otherJob)}
+                          job={transformJobData(otherJob, jobTitles, employmentTypes, countries)}
+                          type="box"
+                        />
                       </Col>
                     ))}
                   </Row>

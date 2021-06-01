@@ -1,12 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "../../shared-ui/Button/Button";
 import { FaCheckCircle } from "react-icons/fa";
 import "./_Pricing.scss";
 import "./_Responsive.scss";
 import { HiCheck } from "react-icons/hi";
 import video from "../../assets/videos/Inbox Video.mp4";
+import { getPackages } from "./thunk";
+import { selectError, selectPackages, selectStatus } from "./slice";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { showErrorMessage, showSuccessMessage } from "../../utils/message";
+import { Popover, Spin } from "antd";
+import { Link } from "react-router-dom";
 
 const Pricing = () => {
+  const dispatch = useAppDispatch();
+  const packages = useAppSelector(selectPackages);
+  const errorMessage = useAppSelector(selectError);
+  const isLoading = useAppSelector(selectStatus);
+
+  useEffect(() => {
+    dispatch(getPackages());
+  }, []);
+
+  useEffect(() => {
+    if (errorMessage) {
+      showErrorMessage(errorMessage.toString());
+    }
+  }, [errorMessage]);
   return (
     <div className="pricing-container">
       <div className="heading-section">
@@ -15,7 +35,7 @@ const Pricing = () => {
       <div className="pricing-main">
         <div className="pricing-section">
           <div className="pricing-row">
-            <div className="pricing-card ">
+            <div className="pricing-card pricing-first">
               <div className="pricing-header">
                 <div className="top-items-head"></div>
                 <div className="top-items-head color-blue"></div>
@@ -31,88 +51,43 @@ const Pricing = () => {
                 <div className="pricing-typs">Customer support</div>
               </div>
             </div>
+            {packages?.map((p, i) => (
+              <div key={i} className="pricing-card">
+                <div className="pricing-header">
+                  <div className="top-items-head">{p?.title}</div>
+
+                  <div className="top-items-head color-blue">&#163; {p.amount}</div>
+                </div>
+                <div className="pricing-items">
+                  <div className="pricings">{p?.duration} days</div>
+                  <div className="pricings">100</div>
+                  <div className="pricings">{p?.numberOfConnect}</div>
+                  <div className="pricings">
+                    <FaCheckCircle className="check-icon" />
+                  </div>
+                  <div className="pricings">
+                    <FaCheckCircle className="check-icon" />
+                  </div>
+                  <div className="pricings">
+                    <FaCheckCircle className="check-icon" />
+                  </div>
+                  <div className="pricings">
+                    <FaCheckCircle className="check-icon" />
+                  </div>
+                  <div className="pricings">
+                    <FaCheckCircle className="check-icon" />
+                  </div>
+                </div>
+              </div>
+            ))}
+
             <div className="pricing-card">
               <div className="pricing-header">
                 <div className="top-items-head">VIP package</div>
-                <div className="top-items-head color-blue">€0</div>
-              </div>
-              <div className="pricing-items">
-                <div className="pricings">14 day</div>
-                <div className="pricings">100</div>
-                <div className="pricings">5</div>
-                <div className="pricings">
-                  <FaCheckCircle className="check-icon" />
-                </div>
-                <div className="pricings">
-                  <FaCheckCircle className="check-icon" />
-                </div>
-                <div className="pricings">
-                  <FaCheckCircle className="check-icon" />
-                </div>
-                <div className="pricings">
-                  <FaCheckCircle className="check-icon" />
-                </div>
-                <div className="pricings">
-                  <FaCheckCircle className="check-icon" />
-                </div>
-              </div>
-            </div>
-            <div className="pricing-card">
-              <div className="pricing-header">
-                <div className="top-items-head">Standard ad</div>
-                <div className="top-items-head color-blue">€300</div>
-              </div>
-              <div className="pricing-items">
-                <div className="pricings">30 days</div>
-                <div className="pricings">Unlimited</div>
-                <div className="pricings">20</div>
-                <div className="pricings">
-                  <FaCheckCircle className="check-icon" />
-                </div>
-                <div className="pricings">
-                  <FaCheckCircle className="check-icon" />
-                </div>
-                <div className="pricings">
-                  <FaCheckCircle className="check-icon" />
-                </div>
-                <div className="pricings">
-                  <FaCheckCircle className="check-icon" />
-                </div>
-                <div className="pricings">
-                  <FaCheckCircle className="check-icon" />
-                </div>
-              </div>
-            </div>
-            <div className="pricing-card">
-              <div className="pricing-header">
-                <div className="top-items-head">Job bundle</div>
-                <div className="top-items-head color-blue">€1000</div>
-              </div>
-              <div className="pricing-items">
-                <div className="pricings">30 day</div>
-                <div className="pricings">Unlimited</div>
-                <div className="pricings">100</div>
-                <div className="pricings">
-                  <FaCheckCircle className="check-icon" />
-                </div>
-                <div className="pricings">
-                  <FaCheckCircle className="check-icon" />
-                </div>
-                <div className="pricings">
-                  <FaCheckCircle className="check-icon" />
-                </div>
-                <div className="pricings">
-                  <FaCheckCircle className="check-icon" />
-                </div>
-                <div className="pricings">
-                  <FaCheckCircle className="check-icon" />
-                </div>
-              </div>
-            </div>
-            <div className="pricing-card">
-              <div className="pricing-header">
-                <div className="top-items-head">VIP package</div>
-                <div className="top-items-head color-blue">Customize</div>
+
+                <Button themeColor="blue mx-auto mb-2 custom-button">
+                  <Link to="/login">Customize</Link>
+                </Button>
               </div>
             </div>
           </div>
@@ -126,8 +101,8 @@ const Pricing = () => {
       <div className="pricing-details">
         <div className="video-section">
           <div class="box">
-            <video autoPlay loop="" muted>
-              <source src={video} type="video/mp4" />
+            <video autoPlay loop="true" muted>
+              <source src={"https://jobsmideat-stag.s3.amazonaws.com/Inbox+Video.mp4"} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>
@@ -148,8 +123,8 @@ const Pricing = () => {
       </div>
       <div className="interview">
         <div className="interview-details">
-          <h1 className="coming-soon">Coming soon...</h1>
-          <h1 className="make-interview">Make your interviews personal, without even being there!</h1>
+          <h1 className="coming-soon mb-4">Coming soon...</h1>
+          <h1 className="make-interview mb-4">Make your interviews personal, without even being there!</h1>
           <p>
             Our video platform allows you to attend your interviews even if you're not there! Simply write your
             interview questions, record them as voice notes, or record them as a video.{" "}
@@ -159,6 +134,7 @@ const Pricing = () => {
             answers back in video format! <br /> You can export all videos, or share them with team members for updates
             and reviews.
           </p>
+          <br />
           <div className="points">
             <div className="checks">
               <HiCheck />

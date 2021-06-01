@@ -258,7 +258,8 @@ p {
     resize: none;
     height: 200px !important;
     border-radius: 20px;
-    border: $theme-border !important;
+    // border: $theme-border !important;
+    border: 1px solid $primary !important;
     padding: 20px;
   }
 
@@ -343,8 +344,9 @@ p {
 
   .ant-select-selector {
     font-size: $font-size-sm;
-    box-shadow: $theme-shadow !important;
-    border: none !important;
+    // box-shadow: $theme-shadow !important;
+    // border: none !important;
+    border: 1px solid $primary !important;
     border-radius: 100px !important;
     height: 32px !important;
     padding: 0 18px !important;

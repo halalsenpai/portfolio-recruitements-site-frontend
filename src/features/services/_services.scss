@@ -24,8 +24,10 @@
       display: flex;
       flex-wrap: wrap;
       margin: -10px 0 0 0;
+
       img {
-        margin: 10px 20px 0 0;
+        margin: 40px 50px 0 0;
+        max-width: 70px;
       }
     }
   }
@@ -53,8 +55,8 @@
 
         .text-area {
           .ant-input {
-            border: 1px solid rgba(42, 143, 255, 0.4);
-            border-radius: 2px;
+            border: 1px solid $primary;
+
             -webkit-transition: all 0.3s;
             transition: all 0.3s;
             border-radius: 20px;
