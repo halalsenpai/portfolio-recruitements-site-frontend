@@ -54,6 +54,10 @@ function Jobs() {
   const [showJobDetails, setShowJobDetails] = useState(false);
   const [categoryId, setcategoryId] = useState(null);
   const [companyId, setcompanyId] = useState(null);
+  const [queryParams, setQueryParams] = useState({
+    page: 1,
+    limit: 100,
+  });
 
   useEffect(() => {
     dispatch(getJob());
@@ -65,6 +69,10 @@ function Jobs() {
     dispatch(getFieldOfStudy());
     dispatch(getGrade());
     dispatch(getAccommodation());
+  }, []);
+
+  useEffect(() => {
+    dispatch(getJob({ qs: queryParams }));
   }, []);
 
   useEffect(() => {
@@ -93,6 +101,12 @@ function Jobs() {
       behavior: "smooth",
     });
 
+  const onSearchJob = (values) => {
+    const qs = { ...queryParams, ...values };
+    setQueryParams(qs);
+    dispatch(getJob({ qs }));
+  };
+
   // const onFinish = () => {};
 
   return (
@@ -108,31 +122,33 @@ function Jobs() {
             </div>
           )}
 
-          <span className="form-fields job-filter-section">
-            <Form.Item name="jobTitle" className="c-input c-input-with-icon">
-              <Input
-                size="small"
-                className="xs"
-                type="text"
-                placeholder="Job title"
-                prefix={<img className="input-icon" src={searchIcon} alt="ico" />}></Input>
-            </Form.Item>
-            <Form.Item name="location" className="c-input c-input-with-icon">
-              <Input
-                size="small"
-                className="xs"
-                type="text"
-                placeholder="Location"
-                prefix={<img className="input-icon" src={locationIcon} alt="ico" />}></Input>
-            </Form.Item>
-            <Button type="small" htmlType="submit" themeColor="outlined" style={{ height: "32px", margin: "0 8px" }}>
-              Search
-            </Button>
+          <Form onFinish={onSearchJob}>
+            <span className="form-fields job-filter-section">
+              <Form.Item name="jobTitleName" className="c-input c-input-with-icon">
+                <Input
+                  size="small"
+                  className="xs"
+                  type="text"
+                  placeholder="Job title"
+                  prefix={<img className="input-icon" src={searchIcon} alt="ico" />}></Input>
+              </Form.Item>
+              <Form.Item name="location" className="c-input c-input-with-icon">
+                <Input
+                  size="small"
+                  className="xs"
+                  type="text"
+                  placeholder="Location"
+                  prefix={<img className="input-icon" src={locationIcon} alt="ico" />}></Input>
+              </Form.Item>
+              <Button type="small" htmlType="submit" themeColor="outlined" style={{ height: "32px", margin: "0 8px" }}>
+                Search
+              </Button>
 
-            <div style={{ marginLeft: "8px" }} className="filters" onClick={ShowFilter}>
-              <img className="filter-icon" src={filterIcon} alt="ico" />
-            </div>
-          </span>
+              <div style={{ marginLeft: "8px" }} className="filters" onClick={ShowFilter}>
+                <img className="filter-icon" src={filterIcon} alt="ico" />
+              </div>
+            </span>
+          </Form>
 
           <div className="jobs-list">
             {!jobs.length && <Empty description={"No jobs"} />}

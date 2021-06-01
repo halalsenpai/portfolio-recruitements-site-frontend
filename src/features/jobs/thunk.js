@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { jsonToQueryString } from "../../utils/helper";
 
 import {
   getJob as getJobAPI,
@@ -21,8 +22,9 @@ import {
   getCitiesByCountry as getCitiesByCountryAPI,
 } from "./service";
 
-export const getJob = createAsyncThunk("jobs/get-job", async () => {
-  const response = await getJobAPI();
+export const getJob = createAsyncThunk("jobs/get-job", async ({ qs }) => {
+  const _qs = jsonToQueryString(qs);
+  const response = await getJobAPI(_qs);
   return response.data;
 });
 

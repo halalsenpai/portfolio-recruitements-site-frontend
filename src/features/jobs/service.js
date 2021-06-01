@@ -1,7 +1,7 @@
 import { get } from "../../utils/httpService";
 
 const SERVICE_URLS = {
-  getJob: () => `/jobs/public?page=1&limit=100`,
+  getJob: (qs) => `/jobs/jobseeker${qs}`,
   getFilteredJob: (params) => `/jobs/public?page=1&limit=100${params}`,
   verifyToken: () => `/auth/verify`,
   getJobTitle: () => `/jobtitle?page=1&limit=100&title=`,
@@ -22,7 +22,7 @@ const SERVICE_URLS = {
   getCitiesByCountry: (id) => `/city/by-country-id/${id}?page=1&limit=500`,
 };
 
-export const getJob = (filter) => get(SERVICE_URLS.getJob(filter));
+export const getJob = (qs) => get(SERVICE_URLS.getJob(qs));
 export const getJobTitle = () => get(SERVICE_URLS.getJobTitle());
 export const getEmploymentType = () => get(SERVICE_URLS.getEmploymentType());
 export const getCountry = () => get(SERVICE_URLS.getCountry());
