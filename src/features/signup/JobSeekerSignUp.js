@@ -8,7 +8,7 @@ import * as Rules from "../../utils/rules";
 import Button from "../../shared-ui/Button/Button";
 import Modal from "../../shared-ui/Modal/Modal";
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
-import { getRole, getFamilyStatus, getNationality, jobseekerSignup } from "./thunk";
+import { getRole, getFamilyStatus, getNationality, jobseekerSignup, getCountryByIp } from "./thunk";
 import {
   selectRole,
   selectFamilyStatus,
@@ -16,6 +16,7 @@ import {
   selectNationality,
   selectErrorMessage,
   selectLoadingStatus,
+  selectCountryByIp,
 } from "./slice";
 import TermsConditions from "./TermsConditions";
 
@@ -35,6 +36,7 @@ function JobSeekerSignUp() {
   const history = useHistory();
   const dispatch = useAppDispatch();
   const [termsModalShow, setTermsModalShow] = useState(false);
+  const [countryCode, setCountryCode] = useState("uk");
 
   const roles = useAppSelector(selectRole);
   const familyStatuses = useAppSelector(selectFamilyStatus);
@@ -43,11 +45,19 @@ function JobSeekerSignUp() {
   const isLoading = useAppSelector(selectLoadingStatus);
   const errorMessage = useAppSelector(selectErrorMessage);
 
+  const countryByIp = useAppSelector(selectCountryByIp);
+  console.log(countryByIp);
+
   useEffect(() => {
     dispatch(getRole());
     dispatch(getFamilyStatus());
     dispatch(getNationality());
+    dispatch(getCountryByIp());
   }, []);
+
+  useEffect(() => {
+    setCountryCode(countryByIp?.countryCode?.toLowerCase());
+  }, [countryByIp]);
 
   useEffect(() => {
     if (signupSuccess === true) {
@@ -134,7 +144,7 @@ function JobSeekerSignUp() {
           </div>
           <div className="c-row">
             <Form.Item label="Mobile number" name="mobile" className="c-input" rules={Rules.phoneRule}>
-              <PhoneInput placeholder="Enter your mobile no." country={"us"} />
+              <PhoneInput placeholder="Enter your mobile no." country={countryCode} />
             </Form.Item>
 
             <Form.Item label="Email" name="email" className="c-input" rules={Rules.emailRule}>

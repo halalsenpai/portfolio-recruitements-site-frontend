@@ -362,11 +362,12 @@ p {
 // custom date picker
 .ant-picker {
   font-size: $font-size-sm;
-  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3) !important;
-  border: none !important;
+  // box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3) !important;
+  // border: none !important;
+  border: 1px solid $primary;
   border-radius: 100px !important;
   padding: 0 18px 0px 0px !important;
-  box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+  // box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
   background: #ffffff !important;
   width: 300px;
   height: 32px !important;
@@ -374,7 +375,7 @@ p {
   input {
     font-size: $font-size-sm;
     box-shadow: none !important;
-    height: 30px;
+    height: 30px !important;
   }
 }
 
@@ -436,10 +437,11 @@ p {
   }
 
   .form-control {
-    width: 270px !important;
+    max-width: 260px !important;
     box-shadow: none !important;
     left: 30px;
     border: none !important;
+    height: 30px !important;
   }
 
   .selected-flag:hover {
