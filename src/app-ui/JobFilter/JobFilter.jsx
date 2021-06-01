@@ -37,6 +37,9 @@ import { useForm } from "antd/lib/form/Form";
 const { Option } = Select;
 
 const JobFilter = (props) => {
+  const [salaryStart, setSalaryStart] = useState(null);
+  const [salaryEnd, setSalaryEnd] = useState(null);
+
   const dispatch = useAppDispatch();
   const jobTitles = useAppSelector(selectJobTitles);
   const employmentTypes = useAppSelector(selectEmploymentTypes);
@@ -47,6 +50,7 @@ const JobFilter = (props) => {
   const jobTitlesById = useAppSelector(selectJobTitlesById);
   const salaryType = useAppSelector(selectSalaryType);
   const suitableFor = useAppSelector(selectSuitableFor);
+
   useEffect(() => {
     dispatch(getJobTitle());
     dispatch(getEmploymentType());
@@ -153,13 +157,37 @@ const JobFilter = (props) => {
                   ))}
                 </Select>
               </Form.Item>
-              <Form.Item
+              {/* <Form.Item
                 extra={<span>Equivalent to 2,000 GBP</span>}
                 label="Salary range"
                 name="salaryEnd"
                 className="c-input c-form p-0"
                 rules={null}>
                 <Slider range={{ draggableTrack: true }} defaultValue={[0, 5000]} />
+              </Form.Item> */}
+              <Form.Item
+                label={
+                  <div className="d-flex justify-content-between w-100 align-items-center">
+                    <span>Select Salary Range</span>
+                    <span style={{ fontSize: "10px" }}>
+                      {salaryStart} - {salaryEnd} {"AED"}
+                    </span>
+                  </div>
+                }
+                extra={<span className="">Equivalent to 2,000 GBP</span>}
+                name="salaryRange"
+                className="c-input c-form p-0"
+                rules={null}>
+                <Slider
+                  onChange={(v) => {
+                    setSalaryStart(v[0]);
+                    setSalaryEnd(v[1]);
+                  }}
+                  min={0}
+                  max={5000}
+                  range={{ draggableTrack: true }}
+                  defaultValue={[0, 1000]}
+                />
               </Form.Item>
             </div>
             <div className="filters-row">
@@ -203,7 +231,7 @@ const JobFilter = (props) => {
             </div>
           </div>
           <div className="filter-section">
-            <div className="filters-row">
+            <div className="filters-row justify-content-around">
               <div className="filter-cell column mr-4 mr-sm-0">
                 <Form.Item
                   className="switches"
