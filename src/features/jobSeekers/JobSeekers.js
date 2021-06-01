@@ -32,7 +32,7 @@ function JobSeekers() {
             </div>
           </div>
           <div className="cell-auto align-right image-section">
-            <img className="" src={require("../../assets/images/jobseekers/screen.png")} alt="" />
+            <img className="" src={require("../../assets/images/jobseekers/Screen.png")} alt="" />
           </div>
         </div>
       </div>

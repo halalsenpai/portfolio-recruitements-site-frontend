@@ -90,7 +90,7 @@ const JobFilter = (props) => {
   return (
     <>
       <Modal className="center lg" show={props.show} onHide={props.onHide}>
-        <Form form={form} onFinish={onFinish} layout="horizontal" className="filter-main">
+        <Form form={form} onFinish={onFinish} className="filter-main">
           <div className="filter-header">
             <div className="filter-cell">
               <p>Filters</p>
@@ -154,7 +154,7 @@ const JobFilter = (props) => {
                 </Select>
               </Form.Item>
               <Form.Item
-                extra={<span className="silder-equivalent">Equivalent to 2,000 GBP</span>}
+                extra={<span>Equivalent to 2,000 GBP</span>}
                 label="Salary range"
                 name="salaryEnd"
                 className="c-input c-form p-0"
@@ -205,26 +205,42 @@ const JobFilter = (props) => {
           <div className="filter-section">
             <div className="filters-row">
               <div className="filter-cell column mr-4 mr-sm-0">
-                <Form.Item valuePropName="checked" name="isAnnualFlight" label="Anual flight provided">
+                <Form.Item
+                  className="switches"
+                  valuePropName="checked"
+                  name="isAnnualFlight"
+                  label="Anual flight provided">
                   <Switch size="small" />
                 </Form.Item>
-                <Form.Item valuePropName="checked" name="isFamilyFlight" label="Include family flights">
+                <Form.Item
+                  className="switches"
+                  valuePropName="checked"
+                  name="isFamilyFlight"
+                  label="Include family flights">
                   <Switch size="small" />{" "}
                 </Form.Item>
-                <Form.Item label="Include utility bills" name="isUtilityBills">
+                <Form.Item className="switches" label="Include utility bills" name="isUtilityBills">
                   {" "}
                   <Switch size="small" />
                 </Form.Item>
               </div>
               <div className="filter-cell column ">
-                <Form.Item valuePropName="checked" label="Include tuition fees" name="isTuitionFee">
+                <Form.Item
+                  className="switches"
+                  valuePropName="checked"
+                  label="Include tuition fees"
+                  name="isTuitionFee">
                   <Switch size="small" />
                 </Form.Item>
-                <Form.Item valuePropName="checked" label=" Provides gratuity bonus" name="isGratuityBonus">
+                <Form.Item
+                  className="switches"
+                  valuePropName="checked"
+                  label=" Provides gratuity bonus"
+                  name="isGratuityBonus">
                   {" "}
                   <Switch size="small" />
                 </Form.Item>
-                <Form.Item valuePropName="checked" label="Provides visa" name="isProvideVisa">
+                <Form.Item className="switches" valuePropName="checked" label="Provides visa" name="isProvideVisa">
                   {" "}
                   <Switch size="small" />{" "}
                 </Form.Item>
