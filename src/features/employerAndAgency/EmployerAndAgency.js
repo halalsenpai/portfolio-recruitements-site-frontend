@@ -13,17 +13,21 @@ const EmployerAndAgency = () => {
       <div className="c-containers">
         <div className="c-row">
           <div className="cell-30">
-            <h1 className="emp-heading">
-              Descover a new way of hiring <br /> & make the right connection
-            </h1>
+            <div className="emp-heading">
+              Discover a new way of hiring <br /> & make the right connections.
+            </div>
           </div>
           <div className="cell-auto job-n-demo">
-            <Button className="blue mr-3">Post a free job</Button>
-            <Button className="green">Book a demo</Button>
+            <Button type="large" className="blue mr-4">
+              Post a free job
+            </Button>
+            <Button type="large" className="green">
+              Book a demo
+            </Button>
           </div>
         </div>
       </div>
-      <div className="c-containers sections">
+      <div style={{ paddingTop: 50 }} className="c-containers">
         <div className="c-row">
           <div className="cell-30 align-left text-section">
             <div>
@@ -32,7 +36,7 @@ const EmployerAndAgency = () => {
                 annual recruiment budget
               </h1>
               <p>
-                Finding the right person can be costly and we can help you minimise those costs. Start your search with
+                Finding the right person can be costly, and we can help you minimise those costs. Start your search with
                 2 free jobs on us.
               </p>
             </div>
@@ -81,7 +85,9 @@ const EmployerAndAgency = () => {
           </div>
           <div className="cell-30 text-section">
             <div>
-              <h1 className="blue">Comming soon...</h1>
+              <h1 className="blue" style={{ letterSpacing: "3px" }}>
+                COMING SOON...
+              </h1>
               <h1>
                 Make your interviews personal, <br /> without even being there!
               </h1>

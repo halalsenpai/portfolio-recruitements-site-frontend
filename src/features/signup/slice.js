@@ -12,6 +12,7 @@ import {
   jobseekerSignup,
   employerSignup,
   confirmEmail,
+  getCountryByIp,
 } from "./thunk";
 
 const initialState = {
@@ -29,6 +30,7 @@ const initialState = {
   confirmEmailSuccess: false,
   confirmEmailResponse: {},
   errorMessage: null,
+  countryByIp: {},
 };
 
 function isPendingAction(action) {
@@ -56,6 +58,10 @@ export const slice = createSlice({
       .addCase(getFindUsPlatform.fulfilled, (state, action) => {
         state.status = "idle";
         state.findUsPlatforms = action.payload;
+      })
+      .addCase(getCountryByIp.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.countryByIp = action.payload;
       })
       .addCase(getCompany.fulfilled, (state, action) => {
         state.status = "idle";
@@ -120,12 +126,10 @@ export const selectCountry = (state) => state.signup.countries;
 export const selectCity = (state) => state.signup.cities;
 export const selectJobTitles = (state) => state.signup.jobTitles;
 export const selectConfirmEmail = (state) => state.signup.confirmEmailSuccess;
-export const selectConfirmEmailResponse = (state) =>
-  state.signup.confirmEmailResponse;
-export const selectJobseekerSignup = (state) =>
-  state.signup.jobseekerSignupSuccess;
-export const selectEmployerSignup = (state) =>
-  state.signup.employerSignupSuccess;
+export const selectConfirmEmailResponse = (state) => state.signup.confirmEmailResponse;
+export const selectJobseekerSignup = (state) => state.signup.jobseekerSignupSuccess;
+export const selectEmployerSignup = (state) => state.signup.employerSignupSuccess;
+export const selectCountryByIp = (state) => state.signup.countryByIp;
 
 // export const { getSignup } = slice.actions;
 

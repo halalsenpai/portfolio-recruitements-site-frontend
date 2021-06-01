@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import { Form, Radio } from "antd";
@@ -55,7 +55,7 @@ function SignUp() {
 
               <Radio value={userTypes.EMPLOYER.title}>I'm an employer</Radio>
 
-              <Radio value={userTypes.AGENCY.title}>I'm a recruiter</Radio>
+              {/* <Radio value={userTypes.AGENCY.title}>I'm a recruiter</Radio> */}
             </Radio.Group>
           </span>
 

@@ -1,6 +1,7 @@
 import React from "react";
 
-import { Popover } from "antd";
+import { Link } from "react-router-dom";
+import { Col, Popover, Row } from "antd";
 import { BsFillChatFill } from "react-icons/bs";
 import { FaHeart, FaStar } from "react-icons/fa";
 
@@ -9,36 +10,27 @@ import { getTitleById } from "../../utils/helper";
 import Button from "../../shared-ui/Button/Button";
 import defaultImage from "../../assets/images/default.png";
 import ImagesGallery from "../../shared-ui/ImagesGallery/ImagesGallery";
-import JobsCarouselv2 from "../../shared-ui/JobsCarousel/JobsCarouselv2";
 import defaultBanner from "../../assets/images/sample/job-banner.png";
-
 import "./_JobDetails.scss";
 import "./_Responsive.scss";
+import { selectCountries, selectEmploymentTypes, selectJobTitles, selectOtherJobs } from "../../features/jobs/slice";
+import JobCard from "../../shared-ui/JobCard/JobCard";
+import { transformJobData } from "../../features/jobs/transformers";
+import { useAppSelector } from "../../store/hooks";
 
-function JobDetails({
-  data = {},
-  showAllDetails = true,
-  setJobDetails,
-  extraData = {},
-  otherJobs,
-}) {
+function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData = {}, otherJobs }) {
+  const countries = useAppSelector(selectCountries);
+  const jobTitles = useAppSelector(selectJobTitles);
+  const employmentTypes = useAppSelector(selectEmploymentTypes);
   return (
     <div className="c-job-detail-card">
       {/* Header */}
       <div className="header">
-        <img
-          className="job-banner-img"
-          src={data.company?.companyBanner || defaultBanner}
-          alt="banner-img"
-        />
+        <img className="job-banner-img" src={data.company?.companyBanner || defaultBanner} alt="banner-img" />
         <span className="banner-img-overlay"></span>
 
         <span className="job-info-wrapper">
-          <img
-            className="job-img"
-            src={data.company?.companyLogo || defaultImage}
-            alt=""
-          />
+          <img className="job-img" src={data.company?.companyLogo || defaultImage} alt="" />
           <span className="job-info">
             <h6 className="job-title">{data.company?.tagLine}</h6>
             <h3 className="job-company">{data.company?.companyName}</h3>
@@ -51,10 +43,7 @@ function JobDetails({
         )} */}
 
         <div onClick={() => setJobDetails(data)} className="back-btn">
-          <img
-            src={require("../../assets/images/icons/back-button.svg")}
-            alt=""
-          />
+          <img src={require("../../assets/images/icons/back-button.svg")} alt="" />
         </div>
       </div>
 
@@ -66,21 +55,24 @@ function JobDetails({
           </h3>
 
           <span className="actions-wrapper">
-            <Button themeColor="shadowed">Apply</Button>
+            <Button themeColor="shadowed">
+              <Link to="/login">Apply</Link>
+            </Button>
             <Button themeColor="shadowed rounded">
               {" "}
-              <FaHeart size="14px" className="highlighted" />{" "}
+              <Link to="/login">
+                <FaHeart size="14px" className="highlighted" />{" "}
+              </Link>
             </Button>
-            <Button
-              themeColor="shadowed rounded"
-              icon={<FaStar size="14px" className="highlighted" />}
-            />
-            <Popover content={"coming soon..."}>
-              <Button themeColor="shadowed rounded">
+            <Button themeColor="shadowed rounded" icon={<FaStar size="14px" className="highlighted" />} />
+
+            <Button themeColor="shadowed rounded">
+              {" "}
+              <Link to="/login">
                 {" "}
                 <BsFillChatFill size="14px" className="highlighted" />{" "}
-              </Button>
-            </Popover>
+              </Link>
+            </Button>
           </span>
         </span>
 
@@ -129,11 +121,7 @@ function JobDetails({
                 Accommodation
                 {!data.accommodationListId && <mark>N/A</mark>}
                 {data.accommodationListId && (
-                  <mark>
-                    {data.accommodationListId?.map((d) =>
-                      getTitleById(extraData.accommodations, d)
-                    )}
-                  </mark>
+                  <mark>{data.accommodationListId?.map((d) => getTitleById(extraData.accommodations, d))}</mark>
                 )}
               </span>
               <span>
@@ -175,14 +163,10 @@ function JobDetails({
                 <span className="content-block">
                   <h6 className="block-title">
                     About company:
-                    <mark className="ml-2 blue">
-                      {data.company?.companyName || "N/A"}
-                    </mark>
+                    <mark className="ml-2 blue">{data.company?.companyName || "N/A"}</mark>
                   </h6>
 
-                  <p className="block-text">
-                    {data.company?.introduction || "N/A"}
-                  </p>
+                  <p className="block-text">{data.company?.introduction || "N/A"}</p>
                 </span>
 
                 <ImagesGallery title="Company Photos" />
@@ -204,10 +188,7 @@ function JobDetails({
                 <span className="content-block mt-4 pr-0">
                   <h6 className="block-title mb-3">Map</h6>
                   <div className="block-map">
-                    <Map
-                      data={data?.company}
-                      location={data?.company?.companyLocation}
-                    />
+                    <Map data={data?.company} location={data?.company?.companyLocation} />
                   </div>
                 </span>
               </>
@@ -220,9 +201,21 @@ function JobDetails({
             <span className="content-box first">
               <span className="content-section">
                 <span className="content-block">
-                  <h6 className="block-title">Other jobs in your sector</h6>
+                  <h6 className="block-title mb-3">Other jobs in your sector</h6>
 
-                  <JobsCarouselv2 jobs={otherJobs?.slice(0, 5)} />
+                  <Row gutter={16}>
+                    {otherJobs?.map((otherJob) => (
+                      <Col>
+                        <JobCard
+                          onClick={() => setJobDetails(otherJob)}
+                          job={transformJobData(otherJob, jobTitles, employmentTypes, countries)}
+                          type="box"
+                        />
+                      </Col>
+                    ))}
+                  </Row>
+
+                  {/* <JobsCarouselv2 jobs={otherJobs?.slice(0, 5)} /> */}
                 </span>
               </span>
             </span>
