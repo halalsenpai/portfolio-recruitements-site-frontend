@@ -1,7 +1,7 @@
 import { get } from "../../utils/httpService";
 
 const SERVICE_URLS = {
-  getJob: (qs) => `/jobs/jobseeker${qs}`,
+  getJob: (qs) => `/jobs/public${qs}`,
   getFilteredJob: (params) => `/jobs/public?page=1&limit=100${params}`,
   verifyToken: () => `/auth/verify`,
   getJobTitle: () => `/jobtitle?page=1&limit=100&title=`,
