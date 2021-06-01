@@ -420,8 +420,8 @@ p {
 .react-tel-input {
   width: 300px;
   font-size: $font-size-md;
-  box-shadow: $theme-shadow;
-  border: none;
+  // box-shadow: $theme-shadow;
+  border: 1px solid $primary !important;
   border-radius: 100px;
   height: 35px;
   padding: 0 18px 0px 0px;
@@ -438,6 +438,7 @@ p {
     width: 270px !important;
     box-shadow: none !important;
     left: 30px;
+    border: none !important;
   }
 
   .selected-flag:hover {
