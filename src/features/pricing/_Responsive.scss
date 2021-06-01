@@ -29,19 +29,19 @@
         width: auto;
         padding: 0;
 
-        & .image-section {
-          padding: 0;
+        // & .image-section {
+        //   padding: 0;
 
-          & img {
-            margin: unset;
-            width: 100%;
-          }
-        }
+        //   & img {
+        //     margin: unset;
+        //     width: 100%;
+        //   }
+        // }
       }
 
       & .color-blue {
         color: $blue;
-        font-size: $font-size-sm;
+        font-size: $font-size-x-sm;
       }
     }
 
@@ -130,6 +130,58 @@
 
 @media screen and (max-width: 767.5px) {
   .pricing-container {
+    .heading-section {
+      padding: 0 0 20px 0;
+
+      P {
+        font-size: $font-size-lg;
+      }
+    }
+    .pricing-details {
+      padding-top: 50px;
+    }
+    .interview {
+      padding-top: 50px;
+    }
+    .pricing-main {
+      .pricing-section {
+        .pricing-row {
+          .pricing-card {
+            .pricing-items {
+              .pricing-typs {
+                font-size: $font-size-x-sm;
+              }
+              .pricings {
+                font-size: $font-size-x-sm;
+              }
+            }
+            .pricing-header {
+              // .customize {
+              a {
+                font-size: $font-size-x-sm;
+                text-decoration: none;
+              }
+              // }
+            }
+            .top-items-head {
+              font-size: $font-size-x-sm;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+          }
+        }
+      }
+      .pricing-image {
+        .image-section {
+          img {
+            margin: 40px 0 0 0;
+            width: 100%;
+          }
+        }
+      }
+    }
+
     .pricing-details {
       display: flex;
       flex-direction: column-reverse;
@@ -140,6 +192,7 @@
       }
       .buy-premuim {
         width: 100%;
+        padding: 0 0 50px 0;
       }
       .buy-premuim {
         .desc {
@@ -162,6 +215,10 @@
       .interview-image {
         width: 100%;
       }
+    }
+    & .pricing-image {
+      width: auto;
+      padding: 0;
     }
   }
 }

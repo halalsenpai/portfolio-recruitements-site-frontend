@@ -42,7 +42,9 @@ const Services = () => {
     <div className="services-main">
       <div className="cust-reward-section">
         <h1 className="coming-soon">Coming soon...</h1>
-        <p className="services-desc">Our loyalty and customer reward section, built around what you love.</p>
+        <h1 className="">
+          Our loyalty and customer reward section, <br /> built around what you love.
+        </h1>
         <p className="full-desc">
           This page will be for services such as restaurants, estate agencies, air lines and other sectors that provide
           services to our users, providing you with discount codes and the best offers on the market exclusively
@@ -58,7 +60,7 @@ const Services = () => {
       </div>
       <div className="user-services">
         <div className="services-form">
-          <p>
+          <p className="services-desc">
             If you would like to provide our users with your services, then please fill out the form below and we'll be
             in touch with you shortly.
           </p>

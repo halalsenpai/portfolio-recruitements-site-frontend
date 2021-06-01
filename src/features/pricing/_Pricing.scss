@@ -2,6 +2,20 @@
 
 .pricing-container {
   padding: 40px 90px;
+  position: relative;
+
+  .bg {
+    background-image: url("../../assets/images/bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: calc(100vh - 64px);
+    z-index: -1;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
 
   .heading-section {
     padding: 60px 0;
@@ -56,6 +70,16 @@
               text-align: center;
               width: 100%;
             }
+
+            // .customize {
+            // padding: 0;
+            // margin: 0;
+            a {
+              color: $blue;
+              font-size: $font-size-lg;
+              text-decoration: none;
+            }
+            // }
           }
 
           & .pricing-items {
@@ -106,10 +130,15 @@
   .pricing-details {
     width: 100%;
     display: flex;
-    padding-top: 60px;
+    padding-top: 200px;
 
     .video-section {
-      width: 50%;
+      // width: 50%;
+      // height: 0;
+      // padding-bottom: 40%;
+      // position: relative;
+      width: 100%;
+      max-width: 850px;
       height: 0;
       padding-bottom: 40%;
       position: relative;
@@ -132,19 +161,29 @@
       }
     }
     .buy-premuim {
-      width: 50%;
-      padding-block-start: inherit;
-      padding-left: 60px;
+      // width: 50%;
+      // padding-top: 80px;
+      // padding-left: 60px;
+      flex-grow: 1;
+      // background: red;
+      padding-top: 2%;
+      // padding-top: 80px;
+      // padding-left: 60px;
 
       .desc {
-        font-size: $font-size-x-lg;
+        // font-size: $font-size-x-lg;
+        // max-width: 650px;
+        // line-height: 60px;
+        // margin: 0 0 30px;
+        font-size: 2.2vw;
         max-width: 650px;
-        line-height: 60px;
+        line-height: 3.5vw;
         margin: 0 0 30px;
 
         span {
           color: $blue;
-          font-size: $font-size-x-lg;
+          // font-size: $font-size-x-lg;
+          font-size: 2.2vw;
         }
       }
       .premium-heading {
@@ -173,7 +212,7 @@
   .interview {
     display: flex;
     align-items: center;
-    padding-top: 60px;
+    padding-top: 200px;
 
     .interview-details {
       width: 40%;

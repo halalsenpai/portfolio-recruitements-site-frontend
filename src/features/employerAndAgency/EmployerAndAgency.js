@@ -27,7 +27,7 @@ const EmployerAndAgency = () => {
           </div>
         </div>
       </div>
-      <div className="c-containers sections">
+      <div style={{ paddingTop: 50 }} className="c-containers">
         <div className="c-row">
           <div className="cell-30 align-left text-section">
             <div>
