@@ -29,6 +29,7 @@ const Pricing = () => {
   }, [errorMessage]);
   return (
     <div className="pricing-container">
+      <div className="bg"></div>
       <div className="heading-section">
         <p>Choose the plan that's right for your business</p>
       </div>

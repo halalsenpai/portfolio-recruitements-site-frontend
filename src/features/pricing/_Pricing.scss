@@ -2,6 +2,20 @@
 
 .pricing-container {
   padding: 40px 90px;
+  position: relative;
+
+  .bg {
+    background-image: url("../../assets/images/bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: calc(100vh - 64px);
+    z-index: -1;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
 
   .heading-section {
     padding: 60px 0;
