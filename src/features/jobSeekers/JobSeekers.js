@@ -19,13 +19,15 @@ function JobSeekers() {
             <h1 className="emp-heading">Make the right connections.</h1>
           </div>
           <div className="cell-auto job-n-demo">
-            <Button className="blue">Get started</Button>
+            <Button type="large" className="blue">
+              Get started
+            </Button>
           </div>
         </div>
       </div>
-      <div className="c-containers sections">
+      <div style={{ paddingTop: 50 }} className="c-containers">
         <div className="c-row">
-          <div className="align-left text-section cell-30 pl-5">
+          <div className="align-left text-section cell-30">
             <div>
               <h1>Follow companies</h1>
               <p>Follow your favourite companies and stay up to date with all of their current and future jobs.</p>

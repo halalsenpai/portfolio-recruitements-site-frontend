@@ -42,11 +42,12 @@ const Pricing = () => {
               </div>
               <div className="pricing-items">
                 <div className="pricing-typs">Duration</div>
-                <div className="pricing-typs">Profile view</div>
+                <div className="pricing-typs">Number of ads</div>
+                <div className="pricing-typs">Profile views</div>
                 <div className="pricing-typs">Contact credits</div>
                 <div className="pricing-typs">Direct chat</div>
                 <div className="pricing-typs">Calling features</div>
-                <div className="pricing-typs">Video questionare</div>
+                <div className="pricing-typs">Video questionnaire</div>
                 <div className="pricing-typs">Add team members</div>
                 <div className="pricing-typs">Customer support</div>
               </div>
@@ -55,12 +56,13 @@ const Pricing = () => {
               <div key={i} className="pricing-card">
                 <div className="pricing-header">
                   <div className="top-items-head">{p?.title}</div>
-
                   <div className="top-items-head color-blue">&#163; {p.amount}</div>
                 </div>
                 <div className="pricing-items">
                   <div className="pricings">{p?.duration} days</div>
-                  <div className="pricings">100</div>
+                  <div className="pricings">{i === 0 ? p?.numberOfJob + " per company" : p?.numberOfJob}</div>
+                  <div className="pricings">{i === 0 ? "100" : "Unlimited"}</div>
+
                   <div className="pricings">{p?.numberOfConnect}</div>
                   <div className="pricings">
                     <FaCheckCircle className="check-icon" />
@@ -84,10 +86,9 @@ const Pricing = () => {
             <div className="pricing-card">
               <div className="pricing-header">
                 <div className="top-items-head">VIP package</div>
-
-                <Button themeColor="blue mx-auto mb-2 custom-button">
+                <div className="top-items-head">
                   <Link to="/login">Customize</Link>
-                </Button>
+                </div>
               </div>
             </div>
           </div>
@@ -102,7 +103,10 @@ const Pricing = () => {
         <div className="video-section">
           <div class="box">
             <video autoPlay loop="true" muted>
-              <source src={"https://jobsmideat-stag.s3.amazonaws.com/Inbox+Video.mp4"} type="video/mp4" />
+              <source
+                src={"https://jobsmideat-dev.s3.amazonaws.com/2b8679c9-3e0c-409c-86fc-a7313ef901e0-Comp%201.mp4"}
+                type="video/mp4"
+              />
               Your browser does not support the video tag.
             </video>
           </div>
