@@ -276,6 +276,7 @@ const JobFilter = (props) => {
             </div>
             <Divider></Divider>
             <divide className="d-flex justify-content-center">
+              <Button themeColor="blue mr-3">Reset Filter</Button>
               <Button htmlType="submit" themeColor="green">
                 Apply Filter
               </Button>
