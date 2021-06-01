@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Col, Popover, Row } from "antd";
 import { BsFillChatFill } from "react-icons/bs";
 import { FaHeart, FaStar } from "react-icons/fa";
@@ -18,10 +18,11 @@ import JobCard from "../../shared-ui/JobCard/JobCard";
 import { transformJobData } from "../../features/jobs/transformers";
 import { useAppSelector } from "../../store/hooks";
 
-function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData = {}, otherJobs }) {
+function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData = {}, otherJobs, executeScroll }) {
   const countries = useAppSelector(selectCountries);
   const jobTitles = useAppSelector(selectJobTitles);
   const employmentTypes = useAppSelector(selectEmploymentTypes);
+  const history = useHistory();
   return (
     <div className="c-job-detail-card">
       {/* Header */}
@@ -64,7 +65,11 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
                 <FaHeart size="14px" className="highlighted" />{" "}
               </Link>
             </Button>
-            <Button themeColor="shadowed rounded" icon={<FaStar size="14px" className="highlighted" />} />
+            <Button
+              onClick={() => history.push("/login")}
+              themeColor="shadowed rounded"
+              icon={<FaStar size="14px" className="highlighted" />}
+            />
 
             <Button themeColor="shadowed rounded">
               {" "}
@@ -207,7 +212,10 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
                     {otherJobs?.map((otherJob) => (
                       <Col>
                         <JobCard
-                          onClick={() => setJobDetails(otherJob)}
+                          onClick={() => {
+                            setJobDetails(otherJob);
+                            executeScroll();
+                          }}
                           job={transformJobData(otherJob, jobTitles, employmentTypes, countries)}
                           type="box"
                         />

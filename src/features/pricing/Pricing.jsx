@@ -10,9 +10,10 @@ import { selectError, selectPackages, selectStatus } from "./slice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { showErrorMessage, showSuccessMessage } from "../../utils/message";
 import { Popover, Spin } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const Pricing = () => {
+  const history = useHistory();
   const dispatch = useAppDispatch();
   const packages = useAppSelector(selectPackages);
   const errorMessage = useAppSelector(selectError);
@@ -121,7 +122,8 @@ const Pricing = () => {
           <p className="points">- Contact up to 20 companies of your choice per month -</p>
           <p className="points">- Follow your favorite companies and stay up to date with all of their jobs</p>
           <div className="btn-sec">
-            <Button>7.99 per month</Button> <p>No contracts, cancel at any time!</p>
+            <Button onClick={() => history.push("/signup")}>&#163; 7.99 per month</Button>{" "}
+            <p>No contracts, cancel at any time!</p>
           </div>
           <p className="direct-message">Direct messaging a company maximises your chances by up to 80%!</p>
         </div>

@@ -18,6 +18,7 @@ import {
   getJobsByCompany as getJobsByCompanyAPI,
   getSuitableFor as getSuitableForAPI,
   getFilteredJob as getFilteredJobAPI,
+  getCitiesByCountry as getCitiesByCountryAPI,
 } from "./service";
 
 export const getJob = createAsyncThunk("jobs/get-job", async () => {
@@ -71,7 +72,7 @@ export const getAccommodation = createAsyncThunk("jobs/get-accommodation", async
 });
 export const getCategories = createAsyncThunk("jobs/get-category", async () => {
   const response = await getCategoriesAPI();
-  console.log(response);
+
   return response.data;
 });
 
@@ -106,5 +107,10 @@ export const getFilteredJob = createAsyncThunk("jobs/get-filtered-job", async (p
   const newparams = String("&").concat(params);
   console.log(newparams);
   const response = await getFilteredJobAPI(newparams);
+  return response.data;
+});
+
+export const getCitiesByCountry = createAsyncThunk("jobs/get-cities-by-country", async (id) => {
+  const response = await getCitiesByCountryAPI(id);
   return response.data;
 });

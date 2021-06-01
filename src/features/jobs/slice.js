@@ -18,6 +18,7 @@ import {
   getJobsByCompany,
   getSuitableFor,
   getFilteredJob,
+  getCitiesByCountry,
 } from "./thunk";
 
 const thunks = [
@@ -31,11 +32,9 @@ const thunks = [
   getGrade,
   getCompany,
   getAccommodation,
-  getCategories,
-  getJobTitlesById,
+
   getSalaryType,
-  getJobByCategory,
-  getJobsByCompany,
+
   getSuitableFor,
   getFilteredJob,
 ];
@@ -59,6 +58,8 @@ const initialState = {
   otherJobs: [],
   otherJobsByCompany: [],
   suitableFor: [],
+  citiesByCountry: [],
+  applyFilterSuccess: false,
 };
 
 export const slice = createSlice({
@@ -74,6 +75,7 @@ export const slice = createSlice({
       .addCase(getFilteredJob.fulfilled, (state, action) => {
         state.status = "idle";
         state.jobs = action.payload;
+        state.applyFilterSuccess = true;
       })
       .addCase(getJobByCategory.fulfilled, (state, action) => {
         state.status = "idle";
@@ -135,13 +137,19 @@ export const slice = createSlice({
         state.status = "idle";
         state.suitableFor = action.payload;
       })
+      .addCase(getCitiesByCountry.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.citiesByCountry = action.payload;
+      })
       .addMatcher(isPending(...thunks), (state) => {
         state.status = "loading";
         state.errorMessage = null;
+        state.applyFilterSuccess = false;
       })
       .addMatcher(isRejected(...thunks), (state, action) => {
         state.status = "failed";
         state.errorMessage = action.error.message;
+        state.applyFilterSuccess = false;
       });
   },
 });
@@ -164,6 +172,8 @@ export const selectJobTitlesById = (state) => state.jobs.jobTitlesById;
 export const selectSalaryType = (state) => state.jobs.salaryType;
 export const selectOtherJobsByCompany = (state) => state.jobs.otherJobsByCompany;
 export const selectSuitableFor = (state) => state.jobs.suitableFor;
+export const selectCitiesByCountry = (state) => state.jobs.citiesByCountry;
+export const selectFilterApplySuccess = (state) => state.jobs.applyFilterSuccess;
 
 // export const { getProfile } = slice.actions;
 

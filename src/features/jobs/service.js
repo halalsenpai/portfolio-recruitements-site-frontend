@@ -19,6 +19,7 @@ const SERVICE_URLS = {
   getJobByCategory: (id) => `/jobs/public?page=1&limit=5${id}`,
   getJobsByCompany: (id) => `/jobs/public?page=1&limit=5${id}`,
   getSuitableFor: (id) => `/suitable-job-list`,
+  getCitiesByCountry: (id) => `/city/by-country-id/${id}?page=1&limit=500`,
 };
 
 export const getJob = (filter) => get(SERVICE_URLS.getJob(filter));
@@ -38,3 +39,4 @@ export const getJobByCategory = (id) => get(SERVICE_URLS.getJobByCategory(id));
 export const getJobsByCompany = (id) => get(SERVICE_URLS.getJobsByCompany(id));
 export const getSuitableFor = () => get(SERVICE_URLS.getSuitableFor());
 export const getFilteredJob = (params) => get(SERVICE_URLS.getFilteredJob(params));
+export const getCitiesByCountry = (id) => get(SERVICE_URLS.getCitiesByCountry(id));

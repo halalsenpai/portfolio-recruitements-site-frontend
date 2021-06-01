@@ -121,8 +121,8 @@ function JobCard({ job = {}, type, onClick }) {
         )}
       </div>
 
-      <span className="tag-container">
-        {/* <Checkbox className="jobcard-checkbox-mobile job-tag" /> */}
+      {/* <span className="tag-container">
+        <Checkbox className="jobcard-checkbox-mobile job-tag" />
 
         {type !== "box" && getTagByType(job.messaged)}
 
@@ -131,7 +131,7 @@ function JobCard({ job = {}, type, onClick }) {
         {type !== "box" && getTagByType(job.applied)}
 
         {job?.featured && getTagByType(JobTagTypes.FEATURED)}
-      </span>
+      </span> */}
     </div>
   );
 }

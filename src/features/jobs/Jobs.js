@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { Input, Form, Empty, Spin } from "antd";
 
@@ -39,6 +39,7 @@ import "./_Jobs.scss";
 import "./_Responsive.scss";
 
 function Jobs() {
+  const myRef = useRef(null);
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(selectStatus);
   const jobTitles = useAppSelector(selectJobTitles);
@@ -85,6 +86,12 @@ function Jobs() {
   let ShowFilter = () => {
     setFilter(!filter);
   };
+  const executeScroll = () =>
+    myRef.current.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
 
   // const onFinish = () => {};
 
@@ -108,7 +115,6 @@ function Jobs() {
                 className="xs"
                 type="text"
                 placeholder="Job title"
-                disabled={!jobs.length}
                 prefix={<img className="input-icon" src={searchIcon} alt="ico" />}></Input>
             </Form.Item>
             <Form.Item name="location" className="c-input c-input-with-icon">
@@ -117,19 +123,13 @@ function Jobs() {
                 className="xs"
                 type="text"
                 placeholder="Location"
-                disabled={!jobs.length}
                 prefix={<img className="input-icon" src={locationIcon} alt="ico" />}></Input>
             </Form.Item>
-            <Button
-              type="small"
-              htmlType="submit"
-              themeColor="outlined"
-              disabled={!jobs.length}
-              style={{ height: "32px", margin: "0 8px" }}>
+            <Button type="small" htmlType="submit" themeColor="outlined" style={{ height: "32px", margin: "0 8px" }}>
               Search
             </Button>
 
-            <div style={{ marginLeft: "8px" }} className="filters" onClick={jobs.length ? ShowFilter : () => {}}>
+            <div style={{ marginLeft: "8px" }} className="filters" onClick={ShowFilter}>
               <img className="filter-icon" src={filterIcon} alt="ico" />
             </div>
           </span>
@@ -157,7 +157,7 @@ function Jobs() {
         </div>
 
         {/* Job Detail */}
-        <div className={`job-details ${showJobDetails && "job-details-show"}`}>
+        <div ref={myRef} className={`job-details ${showJobDetails && "job-details-show"}`}>
           {isLoading && (
             <div className="preloader">
               <Spin />
@@ -172,6 +172,7 @@ function Jobs() {
               data={transformJobData(jobDetails, jobTitles, employmentTypes, countries)}
               extraData={{ accommodations }}
               setJobDetails={setJobDetails}
+              executeScroll={executeScroll}
             />
           )}
         </div>

@@ -19,6 +19,7 @@ import {
   getSalaryType,
   getSuitableFor,
   getFilteredJob,
+  getJob,
 } from "../../features/jobs/thunk";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
@@ -31,7 +32,10 @@ import {
   selectSalaryType,
   selectQualifications,
   selectSuitableFor,
+  selectFilterApplySuccess,
 } from "../../features/jobs/slice";
+import CountryCityModal from "../CountryCityModal/CountryCityModal";
+import { getTitleById } from "../../utils/helper";
 import { useForm } from "antd/lib/form/Form";
 
 const { Option } = Select;
@@ -39,9 +43,13 @@ const { Option } = Select;
 const JobFilter = (props) => {
   const [salaryStart, setSalaryStart] = useState(null);
   const [salaryEnd, setSalaryEnd] = useState(null);
+  const [selectedCitiesIds, setSelectedCitiesIds] = useState(null);
+  const [selectedCountryId, setSelectedCountryId] = useState(null);
+  const [maxSalaryLimit, setMaxSalaryLimit] = useState(1000000);
 
   const dispatch = useAppDispatch();
   const jobTitles = useAppSelector(selectJobTitles);
+  const [countriesCitiesModal, setCountriesCitiesModal] = useState(false);
   const employmentTypes = useAppSelector(selectEmploymentTypes);
   const countries = useAppSelector(selectCountries);
   const accommodations = useAppSelector(selectAccommodations);
@@ -50,6 +58,7 @@ const JobFilter = (props) => {
   const jobTitlesById = useAppSelector(selectJobTitlesById);
   const salaryType = useAppSelector(selectSalaryType);
   const suitableFor = useAppSelector(selectSuitableFor);
+  const filterApplySuccess = useAppSelector(selectFilterApplySuccess);
 
   useEffect(() => {
     dispatch(getJobTitle());
@@ -64,6 +73,13 @@ const JobFilter = (props) => {
     dispatch(getSalaryType());
     dispatch(getSuitableFor());
   }, []);
+
+  useEffect(() => {
+    if (filterApplySuccess === true) {
+      props.onHide();
+    }
+  }, [filterApplySuccess]);
+
   const options = [
     { value: "Takashi" },
     { value: "John" },
@@ -74,22 +90,34 @@ const JobFilter = (props) => {
   ];
   const [value, setValue] = useState([]);
   const [form] = Form.useForm();
-  const selectProps = {
-    mode: "multiple",
-    value,
-    options,
-    onChange: (newValue) => {
-      setValue(newValue);
-    },
-    placeholder: "Select Item...",
-    maxTagCount: "responsive",
-  };
 
   const onFinish = (values) => {
+    if (selectedCountryId && selectedCitiesIds) {
+      values.countryId = selectedCountryId;
+      values.cityId = selectedCitiesIds[0];
+    }
+
+    values.salaryRangeFrom = salaryStart;
+    values.salaryRangeUpto = salaryEnd;
+    delete values.salaryRange;
     let o = Object.fromEntries(Object.entries(values).filter(([_, v]) => v != null));
     const payload = new URLSearchParams(o).toString();
     console.log(payload);
     dispatch(getFilteredJob(payload));
+  };
+
+  const handleMaxSalaryLimit = (value) => {
+    if (value === 4) {
+      setMaxSalaryLimit(10000000);
+    } else {
+      setMaxSalaryLimit(1000000);
+    }
+  };
+
+  const handleReset = () => {
+    form.resetFields();
+    dispatch(getJob());
+    props.onHide();
   };
   return (
     <>
@@ -121,15 +149,38 @@ const JobFilter = (props) => {
                   ))}
                 </Select>
               </Form.Item>
-              <Form.Item label={<label>Country</label>} name="addLocation" className="c-input c-form p-0" rules={null}>
-                <Select placeholder="Select">
-                  <Option value="employers">Employers</Option>
-                  <Option value="agencies">Agencies</Option>
-                </Select>
+              <Form.Item
+                label="Add location"
+                name="addLocation"
+                className="c-input c-input-with-icon c-form p-0"
+                rules={null}>
+                <img className="input-icon" src={require("../../assets/images/icons/country-select-icon.svg")} alt="" />
+                <Input
+                  onClick={() => setCountriesCitiesModal(true)}
+                  placeholder="Select countires and cities"
+                  value={`${selectedCountryId ? getTitleById(countries, selectedCountryId) : ""}`}></Input>
               </Form.Item>
+              <Modal
+                className="rm-padding medium country-city-modal-parent"
+                backdropClassName="country-city-modal"
+                show={countriesCitiesModal}
+                onHide={() => setCountriesCitiesModal(false)}>
+                <CountryCityModal
+                  selectedCitiesIds={selectedCitiesIds}
+                  setSelectedCitiesIds={setSelectedCitiesIds}
+                  setCountriesCitiesModal={setCountriesCitiesModal}
+                  setSelectedCountryId={setSelectedCountryId}
+                  selectedCountryId={selectedCountryId}
+                />
+              </Modal>
             </div>
             <div className="filters-row">
-              <Form.Item label="Category" name="category" className="c-input c-form p-0" rules={null}>
+              <Form.Item
+                label="Category"
+                placeholder="Select category"
+                name="category"
+                className="c-input c-form p-0"
+                rules={null}>
                 <Select onSelect={(v) => dispatch(getJobTitlesById(v))}>
                   {categories?.map((d) => (
                     <Option value={d.id}>{d.title}</Option>
@@ -149,7 +200,7 @@ const JobFilter = (props) => {
             </div>
             <div className="filters-row">
               <Form.Item label="Salary type" name="salaryType" className="c-input c-form p-0" rules={null}>
-                <Select placeholder="Select salary type">
+                <Select placeholder="Select salary type" onSelect={handleMaxSalaryLimit}>
                   {salaryType?.map((d, i) => (
                     <Option key={i} value={d?.id}>
                       {d?.title}
@@ -174,7 +225,6 @@ const JobFilter = (props) => {
                     </span>
                   </div>
                 }
-                extra={<span className="">Equivalent to 2,000 GBP</span>}
                 name="salaryRange"
                 className="c-input c-form p-0"
                 rules={null}>
@@ -184,7 +234,7 @@ const JobFilter = (props) => {
                     setSalaryEnd(v[1]);
                   }}
                   min={0}
-                  max={5000}
+                  max={maxSalaryLimit}
                   range={{ draggableTrack: true }}
                   defaultValue={[0, 1000]}
                 />
@@ -276,7 +326,9 @@ const JobFilter = (props) => {
             </div>
             <Divider></Divider>
             <divide className="d-flex justify-content-center">
-              <Button themeColor="blue mr-3">Reset Filter</Button>
+              <Button onClick={handleReset} themeColor="blue mr-3">
+                Reset Filter
+              </Button>
               <Button htmlType="submit" themeColor="green">
                 Apply Filter
               </Button>
