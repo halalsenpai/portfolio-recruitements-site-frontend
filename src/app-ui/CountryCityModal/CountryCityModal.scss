@@ -1,0 +1,102 @@
+@import "../../assets/scss/variables";
+.country-city-modal-parent {
+  .modal-dialog {
+    padding: 0 !important;
+
+    .modal-content {
+      box-shadow: 0 0 0 1px rgba($color: grey, $alpha: 0.4);
+      border-radius: 16px;
+      max-width: 500px;
+      display: flex;
+      justify-content: center;
+      margin: 0 auto;
+      .close {
+        position: absolute;
+        top: -25px;
+        right: -25px;
+        width: 24px;
+        height: 24px;
+        border-radius: 12px;
+        background-color: #ffffff;
+        outline: none;
+        opacity: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        float: right;
+        font-size: 1rem;
+      }
+    }
+  }
+  .countries-cities-selector {
+    .country-city-wrapper {
+      display: flex;
+    }
+    .header {
+      height: 60px;
+      box-shadow: 0 8px 8px -8px gray;
+      font-size: $font-size-lg;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .country-list {
+      height: calc(100vh - 220px);
+      overflow-y: auto;
+      flex-basis: 50%;
+      .country-list-item {
+        display: flex;
+        align-items: center;
+        padding: 1em 2em;
+        border-bottom: $theme-border;
+        cursor: pointer;
+        img {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+        }
+        .country-name {
+          margin-left: 5px;
+        }
+        &.active {
+          background-color: whitesmoke;
+        }
+      }
+    }
+    .city-list {
+      height: calc(100vh - 220px);
+      overflow-y: auto;
+      flex-basis: 50%;
+      .Select-all {
+        display: flex;
+        padding: 1em 2em;
+        .title {
+          margin-left: 15px;
+          font-family: $font-subtitle;
+          color: $secondary;
+        }
+      }
+      .city-list-item {
+        display: flex;
+        align-items: baseline;
+        padding: 1em 2em;
+        // border-bottom: $theme-border;
+
+        .city-name {
+          margin-left: 15px;
+        }
+      }
+    }
+    .footer {
+      display: flex;
+      justify-content: center;
+      padding-top: 1em;
+      padding-bottom: 1em;
+      box-shadow: 0 -8px 8px -8px rgba($color: grey, $alpha: 0.4);
+    }
+  }
+
+  .country-city-modal {
+    z-index: 1050 !important;
+  }
+}

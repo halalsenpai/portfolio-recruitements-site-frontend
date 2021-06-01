@@ -1,9 +1,14 @@
 import axios from "axios";
 
+import { interceptor } from "./intercepter";
+
 const instance = axios.create({
-  baseURL: "https://dev-api.jobsmideast.com",
+  baseURL: process.env.REACT_APP_BASE_URL,
   timeout: 60000,
 });
+
+//call axios interceptor
+interceptor(instance);
 
 const request = async ({ method, url, data, headers, skipAuth }) => {
   const promise = instance[method](url, data);
@@ -28,8 +33,6 @@ const request = async ({ method, url, data, headers, skipAuth }) => {
 };
 
 export const get = (url, params) => request({ method: "get", url, ...params });
-export const post = (url, data, params) =>
-  request({ method: "post", url, data, ...params });
-export const put = (url, data, params) =>
-  request({ method: "put", url, data, ...params });
+export const post = (url, data, params) => request({ method: "post", url, data, ...params });
+export const put = (url, data, params) => request({ method: "put", url, data, ...params });
 export const del = (url) => request({ method: "delete", url });

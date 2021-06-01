@@ -1,12 +1,11 @@
-import axios from "axios";
-
-const baseUrl = "";
-
-const interceptor = () => {
-  axios.defaults.baseURL = baseUrl;
-
-  axios.interceptors.request.use(
+export const interceptor = (instance) => {
+  instance.interceptors.request.use(
     function (config) {
+      const token = localStorage.getItem("token");
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+
       return config;
     },
     function (error) {
@@ -14,7 +13,7 @@ const interceptor = () => {
     }
   );
 
-  axios.interceptors.response.use(
+  instance.interceptors.response.use(
     function (response) {
       return response;
     },
@@ -23,5 +22,3 @@ const interceptor = () => {
     }
   );
 };
-
-export { baseUrl, interceptor };

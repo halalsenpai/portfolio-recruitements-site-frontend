@@ -1,0 +1,64 @@
+@media screen and (max-width: 1024px) {
+  .c-job-detail-card {
+    .header {
+      position: relative;
+      flex-wrap: wrap;
+      justify-content: center;
+      .job-info-wrapper {
+        justify-content: center;
+        text-align: center;
+        .job-info {
+          align-items: center;
+          .job-sector {
+            margin-bottom: 5px;
+          }
+        }
+      }
+    }
+    .job-details-wrapper .content-box.first {
+      flex-wrap: wrap;
+
+      .content-section {
+        order: 2;
+      }
+      .benefits-list {
+        flex-grow: 1;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .c-job-detail-card {
+    .header {
+      top: 60px;
+      position: relative;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      .job-info-wrapper {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        .job-info {
+          justify-content: center;
+          text-align: center;
+        }
+      }
+      .back-btn {
+        display: unset;
+        position: absolute;
+        left: 16px;
+        display: flex;
+        align-self: center;
+      }
+    }
+    .job-details-wrapper .content-box.first {
+      flex-direction: column;
+
+      .content-section {
+        order: 2;
+      }
+    }
+  }
+}

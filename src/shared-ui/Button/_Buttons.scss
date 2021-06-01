@@ -16,7 +16,7 @@
   span {
     color: $white;
     transition: 0.2s all linear;
-    font-family: $font-bold !important;
+    // font-family: $font-bold !important;
   }
 
   .animated-icon {
@@ -49,6 +49,29 @@
       background: transparent;
     }
     color: $white;
+  }
+  &.outlined {
+    background: $white;
+    border: 1px solid $primary;
+
+    span {
+      color: $primary;
+    }
+
+    &:hover {
+      background: $primary;
+
+      span {
+        color: $white;
+      }
+    }
+
+    &:focus {
+      background: $primary;
+      span {
+        color: $white;
+      }
+    }
   }
 
   &.light {
@@ -174,8 +197,8 @@
   }
 
   &.rounded {
-    width: 35px;
-    height: 35px;
+    width: 34px;
+    height: 34px;
     padding: 0px !important;
     border-radius: 20px !important;
     font-size: 18px;

@@ -11,6 +11,8 @@ import {
   getJobTitle as getJobTitleAPI,
   jobseekerSignup as jobseekerSignupAPI,
   employerSignup as employerSignupAPI,
+  confirmEmail as confirmEmailAPI,
+  getCountryByIp as getCountryByIpAPI,
 } from "./service";
 
 // GET APIs
@@ -19,29 +21,20 @@ export const getRole = createAsyncThunk("signup/role", async () => {
   return response.data;
 });
 
-export const getFamilyStatus = createAsyncThunk(
-  "signup/family-status",
-  async () => {
-    const response = await getFamilyStatusAPI();
-    return response.data;
-  }
-);
+export const getFamilyStatus = createAsyncThunk("signup/family-status", async () => {
+  const response = await getFamilyStatusAPI();
+  return response.data;
+});
 
-export const getNationality = createAsyncThunk(
-  "signup/nationality",
-  async () => {
-    const response = await getNationalityAPI();
-    return response.data;
-  }
-);
+export const getNationality = createAsyncThunk("signup/nationality", async () => {
+  const response = await getNationalityAPI();
+  return response.data;
+});
 
-export const getFindUsPlatform = createAsyncThunk(
-  "signup/find-us",
-  async () => {
-    const response = await getFindUsPlatformAPI();
-    return response.data;
-  }
-);
+export const getFindUsPlatform = createAsyncThunk("signup/find-us", async () => {
+  const response = await getFindUsPlatformAPI();
+  return response.data;
+});
 
 export const getCompany = createAsyncThunk("signup/company", async () => {
   const response = await getCompanyAPI();
@@ -63,19 +56,23 @@ export const getJobTitle = createAsyncThunk("signup/job-title", async () => {
   return response.data;
 });
 
-// POST APIs
-export const jobseekerSignup = createAsyncThunk(
-  "signup/jobseeker",
-  async (payload) => {
-    const response = await jobseekerSignupAPI(payload);
-    return response.data;
-  }
-);
+export const confirmEmail = createAsyncThunk("signup/confirm-email", async () => {
+  const response = await confirmEmailAPI();
+  return response.data;
+});
 
-export const employerSignup = createAsyncThunk(
-  "signup/employer",
-  async (payload) => {
-    const response = await employerSignupAPI(payload);
-    return response.data;
-  }
-);
+// POST APIs
+export const jobseekerSignup = createAsyncThunk("signup/jobseeker", async (payload) => {
+  const response = await jobseekerSignupAPI(payload);
+  return response.data;
+});
+
+export const employerSignup = createAsyncThunk("signup/employer", async (payload) => {
+  const response = await employerSignupAPI(payload);
+  return response.data;
+});
+
+export const getCountryByIp = createAsyncThunk("signup/country-by-ip", async () => {
+  const response = await getCountryByIpAPI();
+  return response.json();
+});

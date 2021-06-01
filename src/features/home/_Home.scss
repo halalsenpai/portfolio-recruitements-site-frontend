@@ -4,21 +4,9 @@
   position: relative;
   top: 5px;
   background: rgb(235, 235, 235);
-  background: -moz-linear-gradient(
-    0deg,
-    rgba(235, 235, 235, 1) 0%,
-    rgba(255, 255, 255, 1) 100%
-  );
-  background: -webkit-linear-gradient(
-    0deg,
-    rgba(235, 235, 235, 1) 0%,
-    rgba(255, 255, 255, 1) 100%
-  );
-  background: linear-gradient(
-    0deg,
-    rgba(235, 235, 235, 1) 0%,
-    rgba(255, 255, 255, 1) 100%
-  );
+  background: -moz-linear-gradient(0deg, rgba(235, 235, 235, 1) 0%, rgba(255, 255, 255, 1) 100%);
+  background: -webkit-linear-gradient(0deg, rgba(235, 235, 235, 1) 0%, rgba(255, 255, 255, 1) 100%);
+  background: linear-gradient(0deg, rgba(235, 235, 235, 1) 0%, rgba(255, 255, 255, 1) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ebebeb",endColorstr="#ffffff",GradientType=1);
   .mobile-textalign {
     font-family: $font-medium;
@@ -38,7 +26,7 @@
         font-family: $font-light;
       }
       .get-started-btn > span {
-        font-family: $font-bold !important;
+        font-family: $font-medium !important;
       }
     }
   }
@@ -130,7 +118,7 @@
       padding: 0 3.8em;
     }
     .book-a-demo-btn {
-      font-family: $font-bold;
+      font-family: $font-medium;
       text-decoration: none;
     }
   }

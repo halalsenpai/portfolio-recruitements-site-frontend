@@ -11,6 +11,8 @@ import {
   getJobTitle,
   jobseekerSignup,
   employerSignup,
+  confirmEmail,
+  getCountryByIp,
 } from "./thunk";
 
 const initialState = {
@@ -25,7 +27,15 @@ const initialState = {
   jobTitles: [],
   jobseekerSignupSuccess: false,
   employerSignupSuccess: false,
+  confirmEmailSuccess: false,
+  confirmEmailResponse: {},
+  errorMessage: null,
+  countryByIp: {},
 };
+
+function isPendingAction(action) {
+  return action.type.endsWith("/pending");
+}
 
 export const slice = createSlice({
   name: "signup",
@@ -33,23 +43,6 @@ export const slice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(
-        [
-          getRole.pending,
-          getFamilyStatus.pending,
-          getNationality.pending,
-          getFindUsPlatform.pending,
-          getCompany.pending,
-          getCountry.pending,
-          getCity.pending,
-          getJobTitle.pending,
-          jobseekerSignup.pending,
-          employerSignup.pending,
-        ],
-        (state) => {
-          state.status = "loading";
-        }
-      )
       .addCase(getRole.fulfilled, (state, action) => {
         state.status = "idle";
         state.roles = action.payload;
@@ -65,6 +58,10 @@ export const slice = createSlice({
       .addCase(getFindUsPlatform.fulfilled, (state, action) => {
         state.status = "idle";
         state.findUsPlatforms = action.payload;
+      })
+      .addCase(getCountryByIp.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.countryByIp = action.payload;
       })
       .addCase(getCompany.fulfilled, (state, action) => {
         state.status = "idle";
@@ -90,17 +87,35 @@ export const slice = createSlice({
         state.status = "idle";
         state.employerSignupSuccess = true;
       })
-      .addCase(jobseekerSignup.rejected, (state) => {
+      .addCase(confirmEmail.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.confirmEmailSuccess = true;
+        state.confirmEmailResponse = action.payload;
+      })
+      .addCase(jobseekerSignup.rejected, (state, action) => {
         state.status = "failed";
         state.jobseekerSignupSuccess = false;
+        state.errorMessage = action.error.message;
       })
-      .addCase(employerSignup.rejected, (state) => {
+      .addCase(employerSignup.rejected, (state, action) => {
         state.status = "failed";
         state.employerSignupSuccess = false;
+        state.errorMessage = action.error.message;
+      })
+      .addCase(confirmEmail.rejected, (state, action) => {
+        state.status = "failed";
+        state.confirmEmailSuccess = false;
+        state.errorMessage = action.error.message;
+      })
+      .addMatcher(isPendingAction, (state) => {
+        state.status = "loading";
+        state.errorMessage = null;
       });
   },
 });
 
+export const selectLoadingStatus = (state) => state.signup.status === "loading";
+export const selectErrorMessage = (state) => state.signup.errorMessage;
 export const selectSignupStatus = (state) => state.signup.status;
 export const selectRole = (state) => state.signup.roles;
 export const selectFamilyStatus = (state) => state.signup.familyStatuses;
@@ -110,10 +125,11 @@ export const selectCompany = (state) => state.signup.companies;
 export const selectCountry = (state) => state.signup.countries;
 export const selectCity = (state) => state.signup.cities;
 export const selectJobTitles = (state) => state.signup.jobTitles;
-export const selectJobseekerSignup = (state) =>
-  state.signup.jobseekerSignupSuccess;
-export const selectEmployerSignup = (state) =>
-  state.signup.employerSignupSuccess;
+export const selectConfirmEmail = (state) => state.signup.confirmEmailSuccess;
+export const selectConfirmEmailResponse = (state) => state.signup.confirmEmailResponse;
+export const selectJobseekerSignup = (state) => state.signup.jobseekerSignupSuccess;
+export const selectEmployerSignup = (state) => state.signup.employerSignupSuccess;
+export const selectCountryByIp = (state) => state.signup.countryByIp;
 
 // export const { getSignup } = slice.actions;
 

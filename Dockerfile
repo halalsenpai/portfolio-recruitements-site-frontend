@@ -1,7 +1,7 @@
 FROM 032274180776.dkr.ecr.eu-central-1.amazonaws.com/node-images:14 AS builder
 
 WORKDIR /opt/web
-COPY package.json package-lock.json ./
+COPY package*.json ./
 RUN npm install
 
 ENV PATH="./node_modules/.bin:$PATH"

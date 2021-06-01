@@ -15,6 +15,7 @@ import {
   JobSeekers,
   Pricing,
   Jobs,
+  Services,
 } from "../features";
 
 import Footer from "../app-ui/Footer/Footer";
@@ -30,16 +31,13 @@ function Routing() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/user-signup" component={JobSeekerSignUp} />
+        <Route exact path="/services" component={Services} />
         <Route exact path="/forgot-password" component={ForgotPassword} />
         <Route exact path="/agency-signup" component={AgencySignUp} />
         <Route exact path="/confirm-email" component={ConfirmEmail} />
         <Route exact path="/employer-signup" component={EmployerSignUp} />
         <Route exact path="/signup" component={SignUp} />
-        <Route
-          exact
-          path="/employee-and-agency"
-          component={EmployerAndAgency}
-        />
+        <Route exact path="/employee-and-agency" component={EmployerAndAgency} />
         <Route exact path="/job-seekers" component={JobSeekers} />
         <Route exact path="/pricing" component={Pricing} />
         <Route exact path="/jobs" component={Jobs} />

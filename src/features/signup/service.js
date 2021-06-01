@@ -11,6 +11,8 @@ const SERVICE_URLS = {
   getJobTitle: () => `/jobtitle?page=1&limit=100&title=`,
   jobseekerSignup: () => `/auth/jobseeker/signup`,
   employerSignup: () => `/auth/employer/signup`,
+  confirmEmail: () => `/auth/verify`,
+  getCountryByIp: () => `http://ip-api.com/json'`,
 };
 
 export const getRole = () => get(SERVICE_URLS.getRole());
@@ -21,8 +23,9 @@ export const getCompany = () => get(SERVICE_URLS.getCompany());
 export const getCountry = () => get(SERVICE_URLS.getCountry());
 export const getCity = () => get(SERVICE_URLS.getCity());
 export const getJobTitle = () => get(SERVICE_URLS.getJobTitle());
+export const confirmEmail = () => get(SERVICE_URLS.confirmEmail());
 
-export const jobseekerSignup = (body) =>
-  post(SERVICE_URLS.jobseekerSignup(), body);
-export const employerSignup = (body) =>
-  post(SERVICE_URLS.employerSignup(), body);
+export const jobseekerSignup = (body) => post(SERVICE_URLS.jobseekerSignup(), body);
+export const employerSignup = (body) => post(SERVICE_URLS.employerSignup(), body);
+
+export const getCountryByIp = () => fetch("http://ip-api.com/json");

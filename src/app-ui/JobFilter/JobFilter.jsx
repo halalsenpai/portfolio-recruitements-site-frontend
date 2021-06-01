@@ -1,13 +1,85 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-import { Input, Form, Select, Switch, Slider } from "antd";
+import { Input, Form, Select, Switch, Slider, Divider } from "antd";
 
 import Modal from "../../shared-ui/Modal/Modal";
-import Cbutton from "../../shared-ui/Button/Button";
+import Button from "../../shared-ui/Button/Button";
+import * as Rules from "../../utils/rules";
+import {
+  getAccommodation,
+  getCity,
+  getCountry,
+  getEmploymentType,
+  getFieldOfStudy,
+  getGrade,
+  getJobTitle,
+  getQualification,
+  getCategories,
+  getJobTitlesById,
+  getSalaryType,
+  getSuitableFor,
+  getFilteredJob,
+  getJob,
+} from "../../features/jobs/thunk";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import {
+  selectCountries,
+  selectEmploymentTypes,
+  selectJobTitles,
+  selectAccommodations,
+  selectCategories,
+  selectJobTitlesById,
+  selectSalaryType,
+  selectQualifications,
+  selectSuitableFor,
+  selectFilterApplySuccess,
+} from "../../features/jobs/slice";
+import CountryCityModal from "../CountryCityModal/CountryCityModal";
+import { getTitleById } from "../../utils/helper";
+import { useForm } from "antd/lib/form/Form";
 
 const { Option } = Select;
 
 const JobFilter = (props) => {
+  const [salaryStart, setSalaryStart] = useState(null);
+  const [salaryEnd, setSalaryEnd] = useState(null);
+  const [selectedCitiesIds, setSelectedCitiesIds] = useState(null);
+  const [selectedCountryId, setSelectedCountryId] = useState(null);
+  const [maxSalaryLimit, setMaxSalaryLimit] = useState(1000000);
+
+  const dispatch = useAppDispatch();
+  const jobTitles = useAppSelector(selectJobTitles);
+  const [countriesCitiesModal, setCountriesCitiesModal] = useState(false);
+  const employmentTypes = useAppSelector(selectEmploymentTypes);
+  const countries = useAppSelector(selectCountries);
+  const accommodations = useAppSelector(selectAccommodations);
+  const qualifications = useAppSelector(selectQualifications);
+  const categories = useAppSelector(selectCategories);
+  const jobTitlesById = useAppSelector(selectJobTitlesById);
+  const salaryType = useAppSelector(selectSalaryType);
+  const suitableFor = useAppSelector(selectSuitableFor);
+  const filterApplySuccess = useAppSelector(selectFilterApplySuccess);
+
+  useEffect(() => {
+    dispatch(getJobTitle());
+    dispatch(getEmploymentType());
+    dispatch(getCountry());
+    dispatch(getCity());
+    dispatch(getQualification());
+    dispatch(getFieldOfStudy());
+    dispatch(getGrade());
+    dispatch(getAccommodation());
+    dispatch(getCategories());
+    dispatch(getSalaryType());
+    dispatch(getSuitableFor());
+  }, []);
+
+  useEffect(() => {
+    if (filterApplySuccess === true) {
+      props.onHide();
+    }
+  }, [filterApplySuccess]);
+
   const options = [
     { value: "Takashi" },
     { value: "John" },
@@ -17,26 +89,46 @@ const JobFilter = (props) => {
     { value: "Jack" },
   ];
   const [value, setValue] = useState([]);
-  const selectProps = {
-    mode: "multiple",
-    value,
-    options,
-    onChange: (newValue) => {
-      setValue(newValue);
-    },
-    placeholder: "Select Item...",
-    maxTagCount: "responsive",
+  const [form] = Form.useForm();
+
+  const onFinish = (values) => {
+    if (selectedCountryId && selectedCitiesIds) {
+      values.countryId = selectedCountryId;
+      values.cityId = selectedCitiesIds[0];
+    }
+
+    values.salaryRangeFrom = salaryStart;
+    values.salaryRangeUpto = salaryEnd;
+    delete values.salaryRange;
+    let o = Object.fromEntries(Object.entries(values).filter(([_, v]) => v != null));
+    const payload = new URLSearchParams(o).toString();
+    console.log(payload);
+    dispatch(getFilteredJob(payload));
+  };
+
+  const handleMaxSalaryLimit = (value) => {
+    if (value === 4) {
+      setMaxSalaryLimit(10000000);
+    } else {
+      setMaxSalaryLimit(1000000);
+    }
+  };
+
+  const handleReset = () => {
+    form.resetFields();
+    dispatch(getJob());
+    props.onHide();
   };
   return (
     <>
-      <Modal className="center medium" show={props.show} onHide={props.onHide}>
-        <Form className="filter-main">
+      <Modal className="center lg" show={props.show} onHide={props.onHide}>
+        <Form form={form} onFinish={onFinish} className="filter-main">
           <div className="filter-header">
             <div className="filter-cell">
               <p>Filters</p>
             </div>
             <div className="filter-cell">
-              <Form.Item
+              {/* <Form.Item
                 name="savedFilters"
                 className="c-input c-form p-0"
                 rules={null}
@@ -45,193 +137,202 @@ const JobFilter = (props) => {
                   <Option value="employers">Employers</Option>
                   <Option value="agencies">Agencies</Option>
                 </Select>
-              </Form.Item>
+              </Form.Item> */}
             </div>
           </div>
           <div className="filter-section">
             <div className="filters-row al-spacing">
-              <Form.Item
-                name="jobType"
-                className="c-input c-form p-0"
-                rules={null}
-              >
-                <label htmlFor="">Job type</label>
+              <Form.Item label="Job type" name="jobType" className="c-input c-form p-0" rules={null}>
                 <Select placeholder="Select">
-                  <Option value="employers">Employers</Option>
-                  <Option value="agencies">Agencies</Option>
+                  {employmentTypes?.map((d) => (
+                    <Option value={d.id}>{d.title}</Option>
+                  ))}
                 </Select>
               </Form.Item>
               <Form.Item
+                label="Add location"
                 name="addLocation"
-                className="c-input c-form p-0"
-                rules={null}
-              >
-                <label htmlFor="">Add location</label>
-                <Select placeholder="Select">
-                  <Option value="employers">Employers</Option>
-                  <Option value="agencies">Agencies</Option>
-                </Select>
+                className="c-input c-input-with-icon c-form p-0"
+                rules={null}>
+                <img className="input-icon" src={require("../../assets/images/icons/country-select-icon.svg")} alt="" />
+                <Input
+                  onClick={() => setCountriesCitiesModal(true)}
+                  placeholder="Select countires and cities"
+                  value={`${selectedCountryId ? getTitleById(countries, selectedCountryId) : ""}`}></Input>
               </Form.Item>
+              <Modal
+                className="rm-padding medium country-city-modal-parent"
+                backdropClassName="country-city-modal"
+                show={countriesCitiesModal}
+                onHide={() => setCountriesCitiesModal(false)}>
+                <CountryCityModal
+                  selectedCitiesIds={selectedCitiesIds}
+                  setSelectedCitiesIds={setSelectedCitiesIds}
+                  setCountriesCitiesModal={setCountriesCitiesModal}
+                  setSelectedCountryId={setSelectedCountryId}
+                  selectedCountryId={selectedCountryId}
+                />
+              </Modal>
             </div>
             <div className="filters-row">
               <Form.Item
+                label="Category"
+                placeholder="Select category"
                 name="category"
                 className="c-input c-form p-0"
-                rules={null}
-              >
-                <label htmlFor="">Category</label>
-                <Select {...selectProps} />
+                rules={null}>
+                <Select onSelect={(v) => dispatch(getJobTitlesById(v))}>
+                  {categories?.map((d) => (
+                    <Option value={d.id}>{d.title}</Option>
+                  ))}
+                </Select>
               </Form.Item>
-              <Form.Item
-                name="subCategory"
-                className="c-input c-form p-0"
-                rules={null}
-              >
-                <label htmlFor="">Sub category</label>
+              <Form.Item label="Job title" name="jobTitle" className="c-input c-form p-0" rules={null}>
                 <Select placeholder="Select">
-                  <Option value="employers">Employers</Option>
-                  <Option value="agencies">Agencies</Option>
+                  {" "}
+                  {jobTitlesById?.map((d, i) => (
+                    <Option key={i} value={d?.id}>
+                      {d?.title}
+                    </Option>
+                  ))}
                 </Select>
               </Form.Item>
             </div>
             <div className="filters-row">
-              <Form.Item
-                name="salaryType"
-                className="c-input c-form p-0"
-                rules={null}
-              >
-                <label htmlFor="">Salary type</label>
-                <Select placeholder="Select">
-                  <Option value="employers">Employers</Option>
-                  <Option value="agencies">Agencies</Option>
+              <Form.Item label="Salary type" name="salaryType" className="c-input c-form p-0" rules={null}>
+                <Select placeholder="Select salary type" onSelect={handleMaxSalaryLimit}>
+                  {salaryType?.map((d, i) => (
+                    <Option key={i} value={d?.id}>
+                      {d?.title}
+                    </Option>
+                  ))}
                 </Select>
               </Form.Item>
-              <Form.Item name="aed" className="c-input c-form p-0" rules={null}>
-                <label className="text-center" htmlFor="">
-                  5,000 AED
-                </label>
+              {/* <Form.Item
+                extra={<span>Equivalent to 2,000 GBP</span>}
+                label="Salary range"
+                name="salaryEnd"
+                className="c-input c-form p-0"
+                rules={null}>
+                <Slider range={{ draggableTrack: true }} defaultValue={[0, 5000]} />
+              </Form.Item> */}
+              <Form.Item
+                label={
+                  <div className="d-flex justify-content-between w-100 align-items-center">
+                    <span>Select Salary Range</span>
+                    <span style={{ fontSize: "10px" }}>
+                      {salaryStart} - {salaryEnd} {"AED"}
+                    </span>
+                  </div>
+                }
+                name="salaryRange"
+                className="c-input c-form p-0"
+                rules={null}>
                 <Slider
+                  onChange={(v) => {
+                    setSalaryStart(v[0]);
+                    setSalaryEnd(v[1]);
+                  }}
+                  min={0}
+                  max={maxSalaryLimit}
                   range={{ draggableTrack: true }}
-                  defaultValue={[20, 50]}
-                  style={{ width: 270 }}
+                  defaultValue={[0, 1000]}
                 />
-                <span className="silder-equivalent">
-                  Equivalent t0 2,000 GBP
-                </span>
               </Form.Item>
             </div>
             <div className="filters-row">
-              <Form.Item
-                name="gender"
-                className="c-input c-form p-0"
-                rules={null}
-              >
-                <label htmlFor="">Gender</label>
+              <Form.Item label="Gender" name="gender" className="c-input c-form p-0" rules={null}>
                 <Select placeholder="Select">
-                  <Option value="employers">Employers</Option>
-                  <Option value="agencies">Agencies</Option>
+                  <Option value="Male">Male</Option>
+                  <Option value="Female"> Female </Option>
+                  <Option value="Other"> Other </Option>
                 </Select>
               </Form.Item>
-              <Form.Item
-                name="qualification"
-                className="c-input c-form p-0"
-                rules={null}
-              >
-                <label htmlFor="">Qualification</label>
+              <Form.Item label="Qualification" name="qualification" className="c-input c-form p-0" rules={null}>
                 <Select placeholder="Select">
-                  <Option value="employers">Employers</Option>
-                  <Option value="agencies">Agencies</Option>
+                  {qualifications?.map((d, i) => (
+                    <Option key={i} value={d?.id}>
+                      {d?.title}
+                    </Option>
+                  ))}
                 </Select>
               </Form.Item>
             </div>
             <div className="filters-row">
-              <Form.Item
-                name="accommodation"
-                className="c-input c-form p-0"
-                rules={null}
-              >
-                <label htmlFor="">Accommodation</label>
+              <Form.Item label="Accommodation" name="accommodation" className="c-input c-form p-0" rules={null}>
                 <Select placeholder="Select">
-                  <Option value="employers">Employers</Option>
-                  <Option value="agencies">Agencies</Option>
+                  {accommodations?.map((d, i) => (
+                    <Option key={i} value={d?.id}>
+                      {d?.title}
+                    </Option>
+                  ))}
                 </Select>
               </Form.Item>
-              <Form.Item
-                name="exclude"
-                className="c-input c-form p-0"
-                rules={null}
-              >
-                <label htmlFor="">Exclude</label>
+              <Form.Item label="Suitable for" name="suitableFor" className="c-input c-form p-0" rules={null}>
                 <Select placeholder="Select">
-                  <Option value="employers">Employers</Option>
-                  <Option value="agencies">Agencies</Option>
-                </Select>
-              </Form.Item>
-            </div>
-            <div className="filters-row">
-              <Form.Item
-                name="suitableFor"
-                className="c-input c-form p-0"
-                rules={null}
-              >
-                <label className="required" htmlFor="">
-                  Suitable for
-                </label>
-                <Select placeholder="Select">
-                  <Option value="employers">Employers</Option>
-                  <Option value="agencies">Agencies</Option>
+                  {" "}
+                  {suitableFor?.map((d, i) => (
+                    <Option key={i} value={d?.id}>
+                      {d?.title}
+                    </Option>
+                  ))}
                 </Select>
               </Form.Item>
             </div>
           </div>
           <div className="filter-section">
-            <div className="filters-row">
-              <div className="filter-cell column mr-4">
-                <span className="switches">
-                  <Switch size="small" /> Anual flight provided
-                </span>
-                <span className="switches">
-                  <Switch size="small" /> Include family flights
-                </span>
-                <span className="switches">
-                  <Switch size="small" /> Include utility bills
-                </span>
+            <div className="filters-row justify-content-around">
+              <div className="filter-cell column mr-4 mr-sm-0">
+                <Form.Item
+                  className="switches"
+                  valuePropName="checked"
+                  name="isAnnualFlight"
+                  label="Anual flight provided">
+                  <Switch size="small" />
+                </Form.Item>
+                <Form.Item
+                  className="switches"
+                  valuePropName="checked"
+                  name="isFamilyFlight"
+                  label="Include family flights">
+                  <Switch size="small" />{" "}
+                </Form.Item>
+                <Form.Item className="switches" label="Include utility bills" name="isUtilityBills">
+                  {" "}
+                  <Switch size="small" />
+                </Form.Item>
               </div>
               <div className="filter-cell column ">
-                <span className="switches">
-                  <Switch size="small" /> Include tuition fees
-                </span>
-                <span className="switches">
-                  <Switch size="small" /> Provides gratuity bonus
-                </span>
-                <span className="switches">
-                  <Switch size="small" /> Provides visa
-                </span>
+                <Form.Item
+                  className="switches"
+                  valuePropName="checked"
+                  label="Include tuition fees"
+                  name="isTuitionFee">
+                  <Switch size="small" />
+                </Form.Item>
+                <Form.Item
+                  className="switches"
+                  valuePropName="checked"
+                  label=" Provides gratuity bonus"
+                  name="isGratuityBonus">
+                  {" "}
+                  <Switch size="small" />
+                </Form.Item>
+                <Form.Item className="switches" valuePropName="checked" label="Provides visa" name="isProvideVisa">
+                  {" "}
+                  <Switch size="small" />{" "}
+                </Form.Item>
               </div>
             </div>
-            <div className="filters-row margin-y">
-              <Form.Item
-                name="Filter Name"
-                className="c-input form-padding w-100"
-                rules={null}
-              >
-                <label htmlFor="filterName" className="required">
-                  Filter Name
-                </label>
-                <Input
-                  className="w-100"
-                  placeholder=""
-                  size="large"
-                  type="text"
-                  id="filterName"
-                />
-              </Form.Item>
-            </div>
-            <div className="filters-row margin-y">
-              <Cbutton themeColor="green">Save filter</Cbutton>
-              <span>Or</span>
-              <Cbutton themeColor="green">Apply filter</Cbutton>
-            </div>
+            <Divider></Divider>
+            <divide className="d-flex justify-content-center">
+              <Button onClick={handleReset} themeColor="blue mr-3">
+                Reset Filter
+              </Button>
+              <Button htmlType="submit" themeColor="green">
+                Apply Filter
+              </Button>
+            </divide>
           </div>
         </Form>
       </Modal>
