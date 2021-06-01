@@ -217,4 +217,13 @@
       }
     }
   }
+  .ant-btn > a {
+    color: $primary !important;
+
+    text-decoration: none !important;
+    &:hover {
+      background-color: unset !important;
+      color: $white !important;
+    }
+  }
 }

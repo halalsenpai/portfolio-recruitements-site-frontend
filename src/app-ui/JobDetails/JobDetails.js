@@ -21,6 +21,7 @@ import { getJobByCategory } from "../../features/jobs/thunk";
 import { selectCountries, selectEmploymentTypes, selectJobTitles, selectOtherJobs } from "../../features/jobs/slice";
 import JobCard from "../../shared-ui/JobCard/JobCard";
 import { transformJobData } from "../../features/jobs/transformers";
+import { Link } from "react-router-dom";
 
 function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData = {}, otherJobs }) {
   const dispatch = useAppDispatch();
@@ -68,18 +69,24 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
           </h3>
 
           <span className="actions-wrapper">
-            <Button themeColor="shadowed">Apply</Button>
+            <Button themeColor="shadowed">
+              <Link to="/login">Apply</Link>
+            </Button>
             <Button themeColor="shadowed rounded">
               {" "}
-              <FaHeart size="14px" className="highlighted" />{" "}
+              <Link to="/login">
+                <FaHeart size="14px" className="highlighted" />{" "}
+              </Link>
             </Button>
             <Button themeColor="shadowed rounded" icon={<FaStar size="14px" className="highlighted" />} />
-            <Popover content={"coming soon..."}>
-              <Button themeColor="shadowed rounded">
+
+            <Button themeColor="shadowed rounded">
+              {" "}
+              <Link to="/login">
                 {" "}
                 <BsFillChatFill size="14px" className="highlighted" />{" "}
-              </Button>
-            </Popover>
+              </Link>
+            </Button>
           </span>
         </span>
 
