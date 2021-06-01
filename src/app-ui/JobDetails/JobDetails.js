@@ -16,9 +16,11 @@ import { showErrorMessage, showSuccessMessage } from "../../utils/message";
 
 import "./_JobDetails.scss";
 import "./_Responsive.scss";
-import { Popover } from "antd";
+import { Col, Popover, Row } from "antd";
 import { getJobByCategory } from "../../features/jobs/thunk";
-import { selectOtherJobs } from "../../features/jobs/slice";
+import { selectCountries, selectEmploymentTypes, selectJobTitles, selectOtherJobs } from "../../features/jobs/slice";
+import JobCard from "../../shared-ui/JobCard/JobCard";
+import { transformJobData } from "../../features/jobs/transformers";
 
 function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData = {}, otherJobs }) {
   const dispatch = useAppDispatch();
@@ -29,6 +31,9 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
   //     showErrorMessage(errorMessage);
   //   }
   // }, [errorMessage]);
+  const countries = useAppSelector(selectCountries);
+  const jobTitles = useAppSelector(selectJobTitles);
+  const employmentTypes = useAppSelector(selectEmploymentTypes);
 
   return (
     <div className="c-job-detail-card">
@@ -203,9 +208,17 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
             <span className="content-box first">
               <span className="content-section">
                 <span className="content-block">
-                  <h6 className="block-title">Other jobs in your sector</h6>
+                  <h6 className="block-title mb-3">Other jobs in your sector</h6>
 
-                  <JobsCarouselv2 jobs={otherJobs?.slice(0, 5)} />
+                  <Row gutter={16}>
+                    {otherJobs?.map((otherJob) => (
+                      <Col>
+                        <JobCard job={transformJobData(otherJob, jobTitles, employmentTypes, countries)} type="box" />
+                      </Col>
+                    ))}
+                  </Row>
+
+                  {/* <JobsCarouselv2 jobs={otherJobs?.slice(0, 5)} /> */}
                 </span>
               </span>
             </span>
