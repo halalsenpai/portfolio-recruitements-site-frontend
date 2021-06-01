@@ -71,6 +71,7 @@ export const getAccommodation = createAsyncThunk("jobs/get-accommodation", async
 });
 export const getCategories = createAsyncThunk("jobs/get-category", async () => {
   const response = await getCategoriesAPI();
+  console.log(response);
   return response.data;
 });
 
