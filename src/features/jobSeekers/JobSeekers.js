@@ -25,7 +25,7 @@ function JobSeekers() {
       </div>
       <div className="c-containers sections">
         <div className="c-row">
-          <div className="align-left text-section cell-30">
+          <div className="align-left text-section cell-30 pl-5">
             <div>
               <h1>Follow companies</h1>
               <p>Follow your favourite companies and stay up to date with all of their current and future jobs.</p>

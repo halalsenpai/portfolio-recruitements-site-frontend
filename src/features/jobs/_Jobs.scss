@@ -7,12 +7,7 @@
     height: 110px;
     padding: 0px 50px 0px 50px;
     background: rgb(2, 0, 36);
-    background: linear-gradient(
-      90deg,
-      rgba(2, 0, 36, 1) 0%,
-      rgba(52, 30, 91, 1) 0%,
-      rgba(245, 38, 102, 1) 100%
-    );
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(52, 30, 91, 1) 0%, rgba(245, 38, 102, 1) 100%);
 
     .header {
       flex-direction: row;
@@ -94,7 +89,7 @@
     .jobs-list {
       padding: 15px 10px 0px 10px;
       height: calc(100vh - 124px);
-      overflow-y: auto;
+      overflow-y: scroll;
     }
 
     .job-details {
@@ -102,7 +97,7 @@
       flex: 1;
       height: calc(100vh - 64px);
       overflow-y: auto;
-      background: #efefef;
+      // background: #efefef;
 
       .ant-empty {
         display: flex;
@@ -119,6 +114,8 @@
       height: 60px;
       justify-content: space-around;
       width: 100%;
+      padding: 0 15px;
+
       input {
         width: 100%;
       }
@@ -127,5 +124,8 @@
         margin: 0 8px;
       }
     }
+  }
+  .ant-input-affix-wrapper {
+    border: none !important;
   }
 }

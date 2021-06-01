@@ -1,6 +1,6 @@
 @import "../../assets/scss/variables";
 .job-seekers-main {
-  padding: 40px 0;
+  padding: 80px 0;
   .c-containers {
     padding: 0 88px;
     .c-row {
@@ -16,7 +16,7 @@
       }
       .text-section {
         display: flex;
-        justify-content: center;
+        justify-content: flex-end;
       }
       .image-section {
         img {
@@ -53,7 +53,7 @@
     }
     p {
       font-size: $font-size-lg;
-      max-width: 380px;
+      max-width: 460px;
     }
   }
 }
