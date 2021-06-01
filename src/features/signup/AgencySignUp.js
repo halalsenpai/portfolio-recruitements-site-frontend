@@ -10,7 +10,16 @@ import MediaPicker from "../../shared-ui/MediaPicker/MediaPicker";
 import Modal from "../../shared-ui/Modal/Modal";
 // import SelectWithAddItem from "../../shared-ui/SelectWithAddItem/SelectWithAddItem";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { getCompany, getFindUsPlatform, getCountry, getCity, getJobTitle, employerSignup, getRole } from "./thunk";
+import {
+  getCompany,
+  getFindUsPlatform,
+  getCountry,
+  getCity,
+  getJobTitle,
+  employerSignup,
+  getRole,
+  getCountryByIp,
+} from "./thunk";
 import {
   selectRole,
   selectFindUsPlatform,
@@ -21,6 +30,7 @@ import {
   selectJobTitles,
   selectLoadingStatus,
   selectErrorMessage,
+  selectCountryByIp,
 } from "./slice";
 import TermsConditions from "./TermsConditions";
 
@@ -35,6 +45,7 @@ function AgencySignUp() {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({});
   const [termsModalShow, setTermsModalShow] = useState(false);
+  const [countryCode, setCountryCode] = useState("uk");
 
   const roles = useAppSelector(selectRole);
   const findUsPlatforms = useAppSelector(selectFindUsPlatform);
@@ -45,6 +56,7 @@ function AgencySignUp() {
   const jobTitles = useAppSelector(selectJobTitles);
   const isLoading = useAppSelector(selectLoadingStatus);
   const errorMessage = useAppSelector(selectErrorMessage);
+  const countryByIp = useAppSelector(selectCountryByIp);
 
   useEffect(() => {
     dispatch(getRole());
@@ -53,7 +65,12 @@ function AgencySignUp() {
     dispatch(getCountry());
     dispatch(getCity());
     dispatch(getJobTitle());
+    dispatch(getCountryByIp());
   }, []);
+
+  useEffect(() => {
+    setCountryCode(countryByIp?.countryCode?.toLowerCase());
+  }, [countryByIp]);
 
   useEffect(() => {
     if (signupSuccess === true) {
@@ -153,10 +170,10 @@ function AgencySignUp() {
               </div>
               <div className="c-row">
                 <Form.Item label="Mobile number" name="mobile" className="c-input" rules={Rules.phoneRule}>
-                  <PhoneInput placeholder="Enter your mobile no." country={"us"} />
+                  <PhoneInput placeholder="Enter your mobile no." country={countryCode} />
                 </Form.Item>
                 <Form.Item label="Direct work phone" name="directWorkPhone" className="c-input" rules={Rules.phoneRule}>
-                  <PhoneInput placeholder="Enter your work phone." country={"us"} />
+                  <PhoneInput placeholder="Enter your work phone." country={countryCode} />
                 </Form.Item>
               </div>
               <div className="c-row">
@@ -230,7 +247,7 @@ function AgencySignUp() {
                   <Input placeholder="Enter your website" size="small" type="text" />
                 </Form.Item>
                 <Form.Item label="Company phone number" name="companyPhone" className="c-input" rules={Rules.phoneRule}>
-                  <PhoneInput placeholder="Enter your work phone." country={"us"} />
+                  <PhoneInput placeholder="Enter your work phone." country={countryCode} />
                 </Form.Item>
               </div>
             </>

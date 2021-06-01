@@ -169,10 +169,10 @@ function EmployerSignUp() {
               </div>
               <div className="c-row">
                 <Form.Item label="Mobile number" name="mobile" className="c-input" rules={Rules.phoneRule}>
-                  <PhoneInput placeholder="Enter your mobile no." country={"us"} />
+                  <PhoneInput placeholder="Enter your mobile no." country={countryCode} />
                 </Form.Item>
                 <Form.Item label="Direct work phone" name="directWorkPhone" className="c-input" rules={Rules.phoneRule}>
-                  <PhoneInput placeholder="Enter your work phone." country={"us"} />
+                  <PhoneInput placeholder="Enter your work phone." country={countryCode} />
                 </Form.Item>
               </div>
               <div className="c-row">
@@ -245,7 +245,7 @@ function EmployerSignUp() {
                   <Input placeholder="Enter your website" size="small" type="text" />
                 </Form.Item>
                 <Form.Item label="Company phone number" name="companyPhone" className="c-input" rules={Rules.phoneRule}>
-                  <PhoneInput placeholder="Enter your work phone." country={"us"} />
+                  <PhoneInput placeholder="Enter your work phone." country={countryCode} />
                 </Form.Item>
               </div>
             </>
