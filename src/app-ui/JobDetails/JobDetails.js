@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 
 import { BiMessageRounded } from "react-icons/bi";
-import { BsHeart, BsStar } from "react-icons/bs";
+import { BsFillChatFill } from "react-icons/bs";
+import { FaHeart, FaStar } from "react-icons/fa";
 
 import { Map } from "../../shared-ui/Map/Map";
 import { getTitleById } from "../../utils/helper";
@@ -15,9 +16,11 @@ import { showErrorMessage, showSuccessMessage } from "../../utils/message";
 
 import "./_JobDetails.scss";
 import "./_Responsive.scss";
-import { Popover } from "antd";
+import { Col, Popover, Row } from "antd";
 import { getJobByCategory } from "../../features/jobs/thunk";
-import { selectOtherJobs } from "../../features/jobs/slice";
+import { selectCountries, selectEmploymentTypes, selectJobTitles, selectOtherJobs } from "../../features/jobs/slice";
+import JobCard from "../../shared-ui/JobCard/JobCard";
+import { transformJobData } from "../../features/jobs/transformers";
 
 function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData = {}, otherJobs }) {
   const dispatch = useAppDispatch();
@@ -28,6 +31,9 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
   //     showErrorMessage(errorMessage);
   //   }
   // }, [errorMessage]);
+  const countries = useAppSelector(selectCountries);
+  const jobTitles = useAppSelector(selectJobTitles);
+  const employmentTypes = useAppSelector(selectEmploymentTypes);
 
   return (
     <div className="c-job-detail-card">
@@ -65,13 +71,13 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
             <Button themeColor="shadowed">Apply</Button>
             <Button themeColor="shadowed rounded">
               {" "}
-              <BsHeart className="highlighted mt-1" />{" "}
+              <FaHeart size="14px" className="highlighted" />{" "}
             </Button>
-            <Button themeColor="shadowed rounded" icon={<BsStar className="highlighted" />} />
+            <Button themeColor="shadowed rounded" icon={<FaStar size="14px" className="highlighted" />} />
             <Popover content={"coming soon..."}>
               <Button themeColor="shadowed rounded">
                 {" "}
-                <BiMessageRounded className="highlighted" />{" "}
+                <BsFillChatFill size="14px" className="highlighted" />{" "}
               </Button>
             </Popover>
           </span>
@@ -202,9 +208,17 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
             <span className="content-box first">
               <span className="content-section">
                 <span className="content-block">
-                  <h6 className="block-title">Other jobs in your sector</h6>
+                  <h6 className="block-title mb-3">Other jobs in your sector</h6>
 
-                  <JobsCarouselv2 jobs={otherJobs?.slice(0, 5)} />
+                  <Row gutter={16}>
+                    {otherJobs?.map((otherJob) => (
+                      <Col>
+                        <JobCard job={transformJobData(otherJob, jobTitles, employmentTypes, countries)} type="box" />
+                      </Col>
+                    ))}
+                  </Row>
+
+                  {/* <JobsCarouselv2 jobs={otherJobs?.slice(0, 5)} /> */}
                 </span>
               </span>
             </span>

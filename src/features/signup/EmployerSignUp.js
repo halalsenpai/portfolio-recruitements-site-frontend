@@ -288,28 +288,28 @@ function EmployerSignUp() {
             <div className="box">
               <img src={require("../../assets/images/icons/employee-signup-icons/emp-signup-1.svg")} alt="img" />
               <span>
-                <h3 className="b-text">Free CRM</h3>
+                <h3 className="">Free CRM</h3>
                 <p>Builtin CRM with drag and Drop function</p>
               </span>
             </div>
             <div className="box">
               <img src={require("../../assets/images/icons/employee-signup-icons/emp-signup-2.svg")} alt="img" />
               <span>
-                <h3 className="b-text">Save up to 75%</h3>
+                <h3 className="">Save up to 75%</h3>
                 <p>Save up to 75% of to your annual recruitment budget</p>
               </span>
             </div>
             <div className="box">
               <img src={require("../../assets/images/icons/employee-signup-icons/emp-signup-3.svg")} alt="img" />
               <span>
-                <h3 className="b-text">Direct chat + Inbox</h3>
+                <h3 className="">Direct chat + Inbox</h3>
                 <p>Connect with candidates direct, no more emails!</p>
               </span>
             </div>
             <div className="box">
               <img src={require("../../assets/images/icons/employee-signup-icons/emp-signup-4.svg")} alt="img" />
               <span>
-                <h3 className="b-text">Candidate Match</h3>
+                <h3 className="">Candidate Match</h3>
                 <p>Set accurate filters and let the system find you job seekers!</p>
               </span>
             </div>

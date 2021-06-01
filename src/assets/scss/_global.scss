@@ -93,7 +93,7 @@ img {
   }
 
   img {
-    max-width: 800px;
+    max-width: 900px;
   }
 }
 
@@ -171,12 +171,13 @@ p {
 
   input {
     font-size: $font-size-sm;
-    box-shadow: $theme-shadow !important;
-    border: none !important;
+    // box-shadow: $theme-shadow !important;
+    // border: none !important;
     border-radius: 100px !important;
     height: 32px !important;
     padding: 0 18px !important;
-    box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+    // box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+    border: 1px solid $primary !important;
     background: $white !important;
 
     &.ant-input-lg {
@@ -272,7 +273,10 @@ p {
   width: auto;
 
   .ant-input-suffix {
-    display: none;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    // display: none;
   }
 }
 
@@ -311,7 +315,7 @@ p {
   &:focus {
     border: none;
     box-shadow: none;
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3) !important;
+    // box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3) !important;
   }
 }
 
@@ -460,7 +464,7 @@ p {
 
 // custom card container
 .c-card-container {
-  max-width: 800px;
+  max-width: 900px;
   width: 100%;
   height: 720px;
   border-radius: 20px;
@@ -494,11 +498,14 @@ p {
       color: $white;
       font-family: $font-bold;
     }
+    .login-background-image {
+      width: 100%;
+    }
   }
 
   .second-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
     max-width: 100% !important;
@@ -521,7 +528,10 @@ p {
   .form-title {
     font-family: $font-bold;
     font-size: $font-size-lg;
-    margin-bottom: 15px;
+    margin-bottom: 28px;
+  }
+  .ant-radio-group {
+    margin-bottom: 18px;
   }
 
   label {
@@ -771,4 +781,20 @@ p {
     width: 100%;
     height: 32px;
   }
+}
+// select placeholder
+.ant-select-single.ant-select-lg:not(.ant-select-customize-input) .ant-select-selector::after,
+.ant-select-single.ant-select-lg:not(.ant-select-customize-input) .ant-select-selector .ant-select-selection-item,
+.ant-select-single.ant-select-lg:not(.ant-select-customize-input)
+  .ant-select-selector
+  .ant-select-selection-placeholder {
+  line-height: 34.4px;
+}
+
+html {
+  image-rendering: -moz-crisp-edges !important; /* Firefox */
+  image-rendering: -o-crisp-edges !important; /* Opera */
+  image-rendering: -webkit-optimize-contrast !important; /* Webkit (non-standard naming) */
+  image-rendering: crisp-edges !important;
+  -ms-interpolation-mode: nearest-neighbor !important;
 }

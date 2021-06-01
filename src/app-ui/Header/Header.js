@@ -21,7 +21,12 @@ function Header() {
           <img className="logo" src={LogoImage} alt="Logo" />
         </Link>
         <nav className="menu">
-          <Link to="/">Post a free job</Link>
+          <Link
+            onClick={() => setCurrentPath("/signup")}
+            to="/signup"
+            className={getActiveClassForPath(currentPath, "/signup")}>
+            Post a free job
+          </Link>
           <Link
             to="/employee-and-agency"
             onClick={() => setCurrentPath("/employee-and-agency")}
@@ -40,7 +45,12 @@ function Header() {
             className={getActiveClassForPath(currentPath, "/jobs")}>
             Jobs
           </Link>
-          <Link to="/services">Services</Link>
+          <Link
+            to="/services"
+            onClick={() => setCurrentPath("/services")}
+            className={getActiveClassForPath(currentPath, "/services")}>
+            Services
+          </Link>
           <Link
             to="/pricing"
             onClick={() => setCurrentPath("/pricing")}
@@ -51,7 +61,7 @@ function Header() {
         <div className={`mobile-menu ${menu ? "menu-open" : ""}`}>
           <div className="links-wrapper">
             <Link
-              to="/"
+              to="/signup"
               onClick={() => {
                 setCurrentPath("/");
                 setMenu(false);
@@ -88,7 +98,7 @@ function Header() {
             <Link
               to="/services"
               onClick={() => {
-                setCurrentPath("/jobs");
+                setCurrentPath("/services");
                 setMenu(false);
               }}>
               Services

@@ -4,6 +4,7 @@ import { FaCheckCircle } from "react-icons/fa";
 import "./_Pricing.scss";
 import "./_Responsive.scss";
 import { HiCheck } from "react-icons/hi";
+import video from "../../assets/videos/Inbox Video.mp4";
 
 const Pricing = () => {
   return (
@@ -125,7 +126,10 @@ const Pricing = () => {
       <div className="pricing-details">
         <div className="video-section">
           <div class="box">
-            <img src={require("../../assets/images/pricing/Mask Group 35.png")} alt="" />
+            <video autoPlay loop="" muted>
+              <source src={video} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </div>
         </div>
         <div className="buy-premuim">

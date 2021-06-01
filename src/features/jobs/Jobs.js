@@ -102,31 +102,35 @@ function Jobs() {
           )}
 
           <span className="form-fields job-filter-section">
-            <Form.Item name="search" className="c-input c-input-with-icon">
+            <Form.Item name="jobTitle" className="c-input c-input-with-icon">
               <Input
-                prefix={<img className="input-icon" src={searchIcon} alt="ico" />}
-                placeholder="Job title"
                 size="small"
                 className="xs"
                 type="text"
-                disabled={!jobs?.length}></Input>
+                placeholder="Job title"
+                disabled={!jobs.length}
+                prefix={<img className="input-icon" src={searchIcon} alt="ico" />}></Input>
             </Form.Item>
-
             <Form.Item name="location" className="c-input c-input-with-icon">
               <Input
-                prefix={<img className="input-icon" src={locationIcon} alt="ico" />}
-                placeholder="Location"
                 size="small"
                 className="xs"
                 type="text"
-                disabled={!jobs.length}></Input>
+                placeholder="Location"
+                disabled={!jobs.length}
+                prefix={<img className="input-icon" src={locationIcon} alt="ico" />}></Input>
             </Form.Item>
-            <Button disabled={!jobs.length} type="small" themeColor="outlined" style={{ height: "32px" }}>
+            <Button
+              type="small"
+              htmlType="submit"
+              themeColor="outlined"
+              disabled={!jobs.length}
+              style={{ height: "32px", margin: "0 8px" }}>
               Search
             </Button>
 
-            <div className="filters" onClick={jobs?.length ? ShowFilter : () => {}}>
-              <img className="filter-icon mt-2" src={filterIcon} alt="ico" />
+            <div style={{ marginLeft: "8px" }} className="filters" onClick={jobs.length ? ShowFilter : () => {}}>
+              <img className="filter-icon" src={filterIcon} alt="ico" />
             </div>
           </span>
 
