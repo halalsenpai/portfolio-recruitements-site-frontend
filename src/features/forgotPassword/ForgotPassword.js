@@ -16,6 +16,7 @@ import {
   selectResendVerifyEmailSuccess,
   selectVerifyTokenSuccess,
   selectResetPasswordSuccess,
+  selectVerifyTokenDetail,
 } from "./slice";
 import {
   postResendVerifyEmail,
@@ -115,6 +116,7 @@ function ForgotPassword() {
   const history = useHistory();
   const isLoading = useAppSelector(selectStatus);
   const errorMessage = useAppSelector(selectError);
+  const verifyTokenDetail = useAppSelector(selectVerifyTokenDetail);
   const verifyEmailSuccess = useAppSelector(selectVerifyEmailSuccess);
   const verifyTokenSuccess = useAppSelector(selectVerifyTokenSuccess);
   const resetPasswordSuccess = useAppSelector(selectResetPasswordSuccess);
@@ -135,11 +137,15 @@ function ForgotPassword() {
     if (verifyEmailSuccess || verifyTokenSuccess) {
       setCurrentStep((prev) => prev + 1);
     }
+    if (verifyTokenSuccess && verifyTokenDetail?.token) {
+      localStorage.setItem("token", verifyTokenDetail?.token);
+    }
   }, [verifyEmailSuccess, verifyTokenSuccess]);
 
   useEffect(() => {
     if (resetPasswordSuccess) {
       showSuccessMessage("Password reset successfully");
+      localStorage.clear();
       history.push("/login");
     }
   }, [resetPasswordSuccess]);

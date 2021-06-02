@@ -14,6 +14,7 @@ const initialState = {
   resendVerifyEmailSuccess: false,
   verifyTokenSuccess: false,
   resetPasswordSuccess: false,
+  verifyTokenDetail: {},
 };
 
 export const slice = createSlice({
@@ -56,10 +57,12 @@ export const slice = createSlice({
         state.status = "loading";
         state.errorMessage = null;
         state.verifyTokenSuccess = false;
+        state.verifyTokenDetail = {};
       })
-      .addCase(postVerifyToken.fulfilled, (state) => {
+      .addCase(postVerifyToken.fulfilled, (state, action) => {
         state.status = "idle";
         state.verifyTokenSuccess = true;
+        state.verifyTokenDetail = action.payload;
       })
       .addCase(postVerifyToken.rejected, (state, action) => {
         state.status = "failed";
@@ -95,6 +98,8 @@ export const selectVerifyTokenSuccess = (state) =>
   state.forgotPassword.verifyTokenSuccess;
 export const selectResetPasswordSuccess = (state) =>
   state.forgotPassword.resetPasswordSuccess;
+export const selectVerifyTokenDetail = (state) =>
+  state.forgotPassword.verifyTokenDetail;
 
 // export const { getSignup } = slice.actions;
 
