@@ -100,7 +100,7 @@ function JobSeekerSignUp() {
               <img src={require("../../assets/images/icons/signup-icons/sign-1.svg")} alt="img" />
               <span>
                 <h3 className="">One click apply</h3>
-                <p>Short list jobs and apply All to them with 1 click</p>
+                <p>Shortlist jobs and apply to all of them with 1 click</p>
               </span>
             </div>
 

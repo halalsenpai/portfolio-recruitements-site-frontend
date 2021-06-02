@@ -101,7 +101,7 @@ function Home() {
                       <img src={require("../../assets/images/icons/ea/ea-2.svg")} alt="img" />
                       <span>
                         <h3 className="a-text">Save up to 75%</h3>
-                        <p>Save up to 75% of to your annual recruitment budget</p>
+                        <p>Save up to 75% of your annual recruitment budget</p>
                       </span>
                     </div>
                     <div className="box">
@@ -149,7 +149,7 @@ function Home() {
                     <img src={require("../../assets/images/icons/ma/ma-1.svg")} alt="img" />
                     <span>
                       <h3 className="b-text">One click apply</h3>
-                      <p>Short list jobs and apply All to them with 1 click</p>
+                      <p>Shortlist jobs and apply to all of them with 1 click</p>
                     </span>
                   </div>
 

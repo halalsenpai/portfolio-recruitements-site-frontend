@@ -330,7 +330,7 @@ function EmployerSignUp() {
               <img src={require("../../assets/images/icons/employee-signup-icons/emp-signup-2.svg")} alt="img" />
               <span>
                 <h3 className="">Save up to 75%</h3>
-                <p>Save up to 75% of to your annual recruitment budget</p>
+                <p>Save up to 75% of your annual recruitment budget</p>
               </span>
             </div>
             <div className="box">
