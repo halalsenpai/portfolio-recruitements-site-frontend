@@ -76,19 +76,19 @@ function Login() {
           />
         </div>
         <div className="second-container">
-          <div className="user-type">
+          {/* <div className="user-type">
             {Object.keys(userTypes).map((ut) => (
               <span className={`${getIsActive(userTypes[ut].title)}`} onClick={() => setUserType(userTypes[ut].title)}>
                 {userTypes[ut].title}
               </span>
             ))}
-          </div>
+          </div> */}
 
           {/* Form */}
           <Form className="c-form login-form" layout="vertical" onFinish={onFinish}>
-            <h3 className="form-title w-100 mb-4">
+            {/* <h3 className="form-title w-100 mb-4">
               <mark>{getFormTitle(userType)}</mark>
-            </h3>
+            </h3> */}
 
             <label>Email *</label>
             <Form.Item name="email" className="c-input" rules={Rules.emailRule}>

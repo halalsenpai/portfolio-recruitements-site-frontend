@@ -19,6 +19,7 @@ import {
   employerSignup,
   getRole,
   getCountryByIp,
+  getCitiesByCountry,
 } from "./thunk";
 import {
   selectRole,
@@ -31,6 +32,7 @@ import {
   selectLoadingStatus,
   selectErrorMessage,
   selectCountryByIp,
+  selectCitiesByCountry,
 } from "./slice";
 import TermsConditions from "./TermsConditions";
 
@@ -45,7 +47,7 @@ function AgencySignUp() {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({});
   const [termsModalShow, setTermsModalShow] = useState(false);
-  const [countryCode, setCountryCode] = useState("uk");
+  const [countryCode, setCountryCode] = useState("gb");
 
   const roles = useAppSelector(selectRole);
   const findUsPlatforms = useAppSelector(selectFindUsPlatform);
@@ -57,6 +59,7 @@ function AgencySignUp() {
   const isLoading = useAppSelector(selectLoadingStatus);
   const errorMessage = useAppSelector(selectErrorMessage);
   const countryByIp = useAppSelector(selectCountryByIp);
+  const citiesByCountry = useAppSelector(selectCitiesByCountry);
 
   useEffect(() => {
     dispatch(getRole());
@@ -119,6 +122,15 @@ function AgencySignUp() {
       return;
     }
     setCreateCompany(false);
+  };
+
+  const handleLocationSelect = (v) => {
+    if (typeof v === "string") {
+      console.log("string");
+      form.setFieldsValue({ cityId: "" });
+    }
+    form.setFieldsValue({ cityId: "" });
+    dispatch(getCitiesByCountry(v));
   };
 
   return (
@@ -226,7 +238,7 @@ function AgencySignUp() {
               </div>
               <div className="c-row">
                 <Form.Item label="Company location" name="countryId" className="c-input" rules={Rules.requiredRule}>
-                  <Select size="large" defaultValue="">
+                  <Select size="large" defaultValue="" onSelect={handleLocationSelect}>
                     <Option value="">Select</Option>
                     {countries?.map((c) => (
                       <Option value={c.id}>{c.title}</Option>
@@ -236,7 +248,7 @@ function AgencySignUp() {
                 <Form.Item label="City" name="cityId" className="c-input" rules={Rules.requiredRule}>
                   <Select size="large" defaultValue="">
                     <Option value="">Select</Option>
-                    {cities?.map((c) => (
+                    {citiesByCountry?.map((c) => (
                       <Option value={c.id}>{c.title}</Option>
                     ))}
                   </Select>

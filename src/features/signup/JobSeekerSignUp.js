@@ -36,7 +36,7 @@ function JobSeekerSignUp() {
   const history = useHistory();
   const dispatch = useAppDispatch();
   const [termsModalShow, setTermsModalShow] = useState(false);
-  const [countryCode, setCountryCode] = useState("uk");
+  const [countryCode, setCountryCode] = useState("gb");
 
   const roles = useAppSelector(selectRole);
   const familyStatuses = useAppSelector(selectFamilyStatus);

@@ -13,6 +13,7 @@ import {
   employerSignup as employerSignupAPI,
   confirmEmail as confirmEmailAPI,
   getCountryByIp as getCountryByIpAPI,
+  getCitiesByCountry as getCitiesByCountryAPI,
 } from "./service";
 
 // GET APIs
@@ -48,6 +49,12 @@ export const getCountry = createAsyncThunk("signup/country", async () => {
 
 export const getCity = createAsyncThunk("signup/city", async () => {
   const response = await getCityAPI();
+  return response.data;
+});
+
+export const getCitiesByCountry = createAsyncThunk("signup/cities-by-country", async (id) => {
+  console.log(id);
+  const response = await getCitiesByCountryAPI(id);
   return response.data;
 });
 
