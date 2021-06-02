@@ -35,6 +35,7 @@ import {
   selectCitiesByCountry,
 } from "./slice";
 import TermsConditions from "./TermsConditions";
+import { showErrorMessage, showWarningMessage } from "../../utils/message";
 
 const { Option } = Select;
 
@@ -48,6 +49,7 @@ function AgencySignUp() {
   const [formData, setFormData] = useState({});
   const [termsModalShow, setTermsModalShow] = useState(false);
   const [countryCode, setCountryCode] = useState("gb");
+  const [agreeToTerms, setAgreeToTerms] = useState(false);
 
   const roles = useAppSelector(selectRole);
   const findUsPlatforms = useAppSelector(selectFindUsPlatform);
@@ -82,6 +84,10 @@ function AgencySignUp() {
   }, [signupSuccess]);
 
   const onFinish = (values) => {
+    if (agreeToTerms === false) {
+      showWarningMessage("Agree to terms and conditions to proceed");
+      return;
+    }
     if (values.companyProfileId === "create-company") {
       setFormData(values);
       setCurrentStep((prevValue) => prevValue + 1);
@@ -266,7 +272,7 @@ function AgencySignUp() {
           )}
 
           <Form.Item name="agreeTerms" className="mb-3" valuePropName="checked" rules={Rules.requiredRule}>
-            <Checkbox value="">
+            <Checkbox checked={agreeToTerms} onChange={(e) => setAgreeToTerms(e.target.checked)}>
               I agree with Jobsmideast.com{" "}
               <mark className="blue" onClick={() => setTermsModalShow(true)}>
                 terms &amp; conditions
