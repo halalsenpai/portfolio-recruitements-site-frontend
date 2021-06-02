@@ -41,6 +41,7 @@
     }
   }
   .second-container {
+    height: calc(100% - 170px);
     z-index: 22;
 
     .login-form {

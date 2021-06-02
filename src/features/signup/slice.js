@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, isPending, isRejected } from "@reduxjs/toolkit";
 
 import {
   getRole,
@@ -13,7 +13,10 @@ import {
   employerSignup,
   confirmEmail,
   getCountryByIp,
+  getCitiesByCountry,
 } from "./thunk";
+
+const thunks = [getCitiesByCountry];
 
 const initialState = {
   status: "idle",
@@ -31,6 +34,7 @@ const initialState = {
   confirmEmailResponse: {},
   errorMessage: null,
   countryByIp: {},
+  citiesByCountry: [],
 };
 
 function isPendingAction(action) {
@@ -75,6 +79,10 @@ export const slice = createSlice({
         state.status = "idle";
         state.cities = action.payload;
       })
+      .addCase(getCitiesByCountry.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.citiesByCountry = action.payload;
+      })
       .addCase(getJobTitle.fulfilled, (state, action) => {
         state.status = "idle";
         state.jobTitles = action.payload;
@@ -107,9 +115,13 @@ export const slice = createSlice({
         state.confirmEmailSuccess = false;
         state.errorMessage = action.error.message;
       })
-      .addMatcher(isPendingAction, (state) => {
+      .addMatcher(isPending(...thunks), (state) => {
         state.status = "loading";
         state.errorMessage = null;
+      })
+      .addMatcher(isRejected(...thunks), (state, action) => {
+        state.status = "failed";
+        state.errorMessage = action.error.message;
       });
   },
 });
@@ -130,6 +142,7 @@ export const selectConfirmEmailResponse = (state) => state.signup.confirmEmailRe
 export const selectJobseekerSignup = (state) => state.signup.jobseekerSignupSuccess;
 export const selectEmployerSignup = (state) => state.signup.employerSignupSuccess;
 export const selectCountryByIp = (state) => state.signup.countryByIp;
+export const selectCitiesByCountry = (state) => state.signup.citiesByCountry;
 
 // export const { getSignup } = slice.actions;
 

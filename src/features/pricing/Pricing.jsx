@@ -89,7 +89,10 @@ const Pricing = () => {
               <div className="pricing-header">
                 <div className="top-items-head">VIP package</div>
                 <div className="top-items-head">
-                  <Link to="/login">Customize</Link>
+                  <Popover content="coming soon">
+                    {" "}
+                    <Link>Customize</Link>
+                  </Popover>
                 </div>
               </div>
             </div>
@@ -122,7 +125,10 @@ const Pricing = () => {
           <p className="points">- Contact up to 20 companies of your choice per month -</p>
           <p className="points">- Follow your favorite companies and stay up to date with all of their jobs</p>
           <div className="btn-sec">
-            <Button onClick={() => history.push("/signup")}>&#163; 7.99 per month</Button>{" "}
+            <Popover content={"coming soon"}>
+              {" "}
+              <Button>&#163; 7.99 per month</Button>
+            </Popover>
             <p>No contracts, cancel at any time!</p>
           </div>
           <p className="direct-message">Direct messaging a company maximises your chances by up to 80%!</p>
