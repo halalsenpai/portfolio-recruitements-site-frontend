@@ -5,6 +5,7 @@ import login from "../features/login/slice";
 import jobs from "../features/jobs/slice";
 import pricing from "../features/pricing/slice";
 import services from "../features/services/slice";
+import forgotPassword from "../features/forgotPassword/slice";
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,6 @@ export const store = configureStore({
     login,
     jobs,
     pricing,
-    services,
+    forgotPassword,
   },
 });
