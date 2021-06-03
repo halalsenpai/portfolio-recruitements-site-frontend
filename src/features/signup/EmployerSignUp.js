@@ -54,7 +54,6 @@ function EmployerSignUp() {
   const signupSuccess = useAppSelector(selectEmployerSignup);
   const companies = useAppSelector(selectCompany);
   const countries = useAppSelector(selectCountry);
-  const cities = useAppSelector(selectCity);
   const jobTitles = useAppSelector(selectJobTitles);
   const isLoading = useAppSelector(selectLoadingStatus);
   const errorMessage = useAppSelector(selectErrorMessage);
@@ -125,7 +124,6 @@ function EmployerSignUp() {
 
   const handleLocationSelect = (v) => {
     if (typeof v === "string") {
-      console.log("string");
       form.setFieldsValue({ cityId: "" });
     }
 
@@ -135,7 +133,12 @@ function EmployerSignUp() {
   return (
     <div className="c-container auth-wrapper">
       <div className="signup-container with-form">
-        <Form form={form} layout="vertical" className="c-form second-container align-items-start" onFinish={onFinish}>
+        <Form
+          form={form}
+          layout="vertical"
+          className="c-form second-container align-items-start"
+          onFinish={onFinish}
+        >
           {currentStep === 1 ? (
             <>
               <h3 className="form-title">
@@ -146,17 +149,31 @@ function EmployerSignUp() {
               </div>
 
               <div className="c-row">
-                <Form.Item label="Company name" name="companyProfileId" className="c-input" rules={Rules.requiredRule}>
-                  <Select size="large" defaultValue="" onChange={onCompanyNameChange}>
+                <Form.Item
+                  label="Company name"
+                  name="companyProfileId"
+                  className="c-input"
+                  rules={Rules.requiredRule}
+                >
+                  <Select
+                    size="large"
+                    defaultValue=""
+                    onChange={onCompanyNameChange}
+                  >
                     <Option value="">Select</Option>
                     <Option value="create-company">Create new company</Option>
 
-                    {companies?.map((c) => (
+                    {companies?.items?.map((c) => (
                       <Option value={c.id}>{c.companyName}</Option>
                     ))}
                   </Select>
                 </Form.Item>
-                <Form.Item label="Job title" name="jobTitleId" className="c-input" rules={Rules.requiredRule}>
+                <Form.Item
+                  label="Job title"
+                  name="jobTitleId"
+                  className="c-input"
+                  rules={Rules.requiredRule}
+                >
                   {/* <SelectWithAddItem
                     options={["Software Engineer", "Accountant"]}
                     onItemChange={(e) => console.log(e)}
@@ -172,26 +189,74 @@ function EmployerSignUp() {
                 </Form.Item>
               </div>
               <div className="c-row">
-                <Form.Item label="First name" name="firstName" className="c-input" rules={Rules.firstNameRule}>
-                  <Input placeholder="Enter your first name" size="small" type="text" />
+                <Form.Item
+                  label="First name"
+                  name="firstName"
+                  className="c-input"
+                  rules={Rules.firstNameRule}
+                >
+                  <Input
+                    placeholder="Enter your first name"
+                    size="small"
+                    type="text"
+                  />
                 </Form.Item>
-                <Form.Item label="Last name" name="lastName" className="c-input" rules={Rules.lastNameRule}>
-                  <Input placeholder="Enter your last name" size="small" type="text" />
+                <Form.Item
+                  label="Last name"
+                  name="lastName"
+                  className="c-input"
+                  rules={Rules.lastNameRule}
+                >
+                  <Input
+                    placeholder="Enter your last name"
+                    size="small"
+                    type="text"
+                  />
                 </Form.Item>
               </div>
               <div className="c-row">
-                <Form.Item label="Mobile number" name="mobile" className="c-input" rules={Rules.phoneRule}>
-                  <PhoneInput placeholder="Enter your mobile no." country={countryCode} />
+                <Form.Item
+                  label="Mobile number"
+                  name="mobile"
+                  className="c-input"
+                  rules={Rules.phoneRule}
+                >
+                  <PhoneInput
+                    placeholder="Enter your mobile no."
+                    country={countryCode}
+                  />
                 </Form.Item>
-                <Form.Item label="Direct work phone" name="directWorkPhone" className="c-input" rules={Rules.phoneRule}>
-                  <PhoneInput placeholder="Enter your work phone." country={countryCode} />
+                <Form.Item
+                  label="Direct work phone"
+                  name="directWorkPhone"
+                  className="c-input"
+                  rules={Rules.phoneRule}
+                >
+                  <PhoneInput
+                    placeholder="Enter your work phone."
+                    country={countryCode}
+                  />
                 </Form.Item>
               </div>
               <div className="c-row">
-                <Form.Item label="Work email address" name="email" className="c-input" rules={Rules.emailRule}>
-                  <Input placeholder="Enter your email" size="small" type="text" />
+                <Form.Item
+                  label="Work email address"
+                  name="email"
+                  className="c-input"
+                  rules={Rules.emailRule}
+                >
+                  <Input
+                    placeholder="Enter your email"
+                    size="small"
+                    type="text"
+                  />
                 </Form.Item>
-                <Form.Item label="How did you find us?" name="findUsId" className="c-input" rules={Rules.requiredRule}>
+                <Form.Item
+                  label="How did you find us?"
+                  name="findUsId"
+                  className="c-input"
+                  rules={Rules.requiredRule}
+                >
                   <Select size="large" defaultValue="">
                     <Option value="">Select</Option>
 
@@ -202,8 +267,17 @@ function EmployerSignUp() {
                 </Form.Item>
               </div>
               <div className="c-row">
-                <Form.Item label="Password" name="password" className="c-input" rules={Rules.passwordRule}>
-                  <Input.Password placeholder="Enter password" size="small" type="password" />
+                <Form.Item
+                  label="Password"
+                  name="password"
+                  className="c-input"
+                  rules={Rules.passwordRule}
+                >
+                  <Input.Password
+                    placeholder="Enter password"
+                    size="small"
+                    type="password"
+                  />
                 </Form.Item>
 
                 <Form.Item
@@ -211,8 +285,12 @@ function EmployerSignUp() {
                   name="confirmPassword"
                   className="c-input"
                   rules={Rules.confirmPasswordRule}
-                  dependencies={["password"]}>
-                  <Input.Password placeholder="Enter password again" size="small" />
+                  dependencies={["password"]}
+                >
+                  <Input.Password
+                    placeholder="Enter password again"
+                    size="small"
+                  />
                 </Form.Item>
               </div>
             </>
@@ -222,7 +300,12 @@ function EmployerSignUp() {
                 <mark className="blue">Company details</mark>
               </h3>
               <div className="c-row">
-                <Form.Item label="I’m registering a" name="companyType" className="c-input" rules={Rules.requiredRule}>
+                <Form.Item
+                  label="I’m registering a"
+                  name="companyType"
+                  className="c-input"
+                  rules={Rules.requiredRule}
+                >
                   <Select size="large" defaultValue="">
                     <Option value="">Select</Option>
                     <Option value="single-company">Single company</Option>
@@ -230,21 +313,48 @@ function EmployerSignUp() {
                     <Option value="branch">Branch within the company</Option>
                   </Select>
                 </Form.Item>
-                <Form.Item label="Company name" name="companyName" className="c-input" rules={Rules.requiredRule}>
-                  <Input placeholder="Enter your company name" size="small" type="text" />
+                <Form.Item
+                  label="Company name"
+                  name="companyName"
+                  className="c-input"
+                  rules={Rules.requiredRule}
+                >
+                  <Input
+                    placeholder="Enter your company name"
+                    size="small"
+                    type="text"
+                  />
                 </Form.Item>
               </div>
               <div className="c-row">
-                <Form.Item label="Company location" name="countryId" className="c-input" rules={Rules.requiredRule}>
-                  <Select size="large" defaultValue="" onSelect={handleLocationSelect}>
+                <Form.Item
+                  label="Company location"
+                  name="countryId"
+                  className="c-input"
+                  rules={Rules.requiredRule}
+                >
+                  <Select
+                    size="large"
+                    defaultValue=""
+                    onSelect={handleLocationSelect}
+                  >
                     <Option value="">Select</Option>
                     {countries?.map((c) => (
                       <Option value={c.id}>{c.title}</Option>
                     ))}
                   </Select>
                 </Form.Item>
-                <Form.Item label="City" name="cityId" className="c-input" rules={Rules.requiredRule}>
-                  <Select disabled={citiesByCountry?.length < 1 ? true : false} size="large" defaultValue="">
+                <Form.Item
+                  label="City"
+                  name="cityId"
+                  className="c-input"
+                  rules={Rules.requiredRule}
+                >
+                  <Select
+                    disabled={citiesByCountry?.length < 1 ? true : false}
+                    size="large"
+                    defaultValue=""
+                  >
                     <Option value="">Select</Option>
                     {citiesByCountry?.map((c) => (
                       <Option value={c.id}>{c.title}</Option>
@@ -253,24 +363,46 @@ function EmployerSignUp() {
                 </Form.Item>
               </div>
               <div className="c-row">
-                <Form.Item label="Website https://" name="webUrl" className="c-input" rules={Rules.requiredRule}>
-                  <Input placeholder="Enter your website" size="small" type="text" />
+                <Form.Item
+                  label="Website https://"
+                  name="webUrl"
+                  className="c-input"
+                  rules={Rules.requiredRule}
+                >
+                  <Input
+                    placeholder="Enter your website"
+                    size="small"
+                    type="text"
+                  />
                 </Form.Item>
-                <Form.Item label="Company phone number" name="companyPhone" className="c-input" rules={Rules.phoneRule}>
-                  <PhoneInput placeholder="Enter your work phone." country={countryCode} />
+                <Form.Item
+                  label="Company phone number"
+                  name="companyPhone"
+                  className="c-input"
+                  rules={Rules.phoneRule}
+                >
+                  <PhoneInput
+                    placeholder="Enter your work phone."
+                    country={countryCode}
+                  />
                 </Form.Item>
               </div>
             </>
           )}
 
-          <Form.Item name="agreeTerms" className="mb-3" valuePropName="checked" rules={Rules.requiredRule}>
+          <Form.Item
+            name="agreeTerms"
+            className="mb-3"
+            valuePropName="checked"
+            rules={Rules.requiredRule}
+          >
             <Checkbox value="">
               I agree with Jobsmideast.com{" "}
               <mark className="blue" onClick={() => setTermsModalShow(true)}>
                 terms &amp; conditions
               </mark>{" "}
-              and <mark className="blue">privacy policy.</mark> and I agree to receive future emails, texts and
-              communications.{" "}
+              and <mark className="blue">privacy policy.</mark> and I agree to
+              receive future emails, texts and communications.{" "}
             </Checkbox>
           </Form.Item>
           <Modal show={termsModalShow} onHide={() => setTermsModalShow(false)}>
@@ -282,7 +414,13 @@ function EmployerSignUp() {
 
           {currentStep === 1 && (
             <Form.Item className="align-self-end">
-              <Button block type="large" htmlType="submit" themeColor="blue" loading={isLoading}>
+              <Button
+                block
+                type="large"
+                htmlType="submit"
+                themeColor="blue"
+                loading={isLoading}
+              >
                 {isCreateCompany && "Next"}
                 {!isCreateCompany && "Create my profile"}
               </Button>
@@ -299,10 +437,17 @@ function EmployerSignUp() {
                     htmlType="button"
                     themeColor="default"
                     onClick={onStepChange}
-                    disabled={isLoading}>
+                    disabled={isLoading}
+                  >
                     Back
                   </Button>
-                  <Button block type="large" htmlType="submit" themeColor="blue" loading={isLoading}>
+                  <Button
+                    block
+                    type="large"
+                    htmlType="submit"
+                    themeColor="blue"
+                    loading={isLoading}
+                  >
                     Create my profile
                   </Button>
                 </div>
@@ -311,34 +456,52 @@ function EmployerSignUp() {
           )}
         </Form>
         <div className="first-container on-right bg-2">
-          <img className="logo" src={require("../../assets/images/logo/logo-white.png")} alt="logo" />
+          <img
+            className="logo"
+            src={require("../../assets/images/logo/logo-white.png")}
+            alt="logo"
+          />
           <span className="inner-container">
             <div className="box">
-              <img src={require("../../assets/images/icons/employee-signup-icons/emp-signup-1.svg")} alt="img" />
+              <img
+                src={require("../../assets/images/icons/employee-signup-icons/emp-signup-1.svg")}
+                alt="img"
+              />
               <span>
                 <h3 className="">Free CRM</h3>
                 <p>Builtin CRM with drag and Drop function</p>
               </span>
             </div>
             <div className="box">
-              <img src={require("../../assets/images/icons/employee-signup-icons/emp-signup-2.svg")} alt="img" />
+              <img
+                src={require("../../assets/images/icons/employee-signup-icons/emp-signup-2.svg")}
+                alt="img"
+              />
               <span>
                 <h3 className="">Save up to 75%</h3>
                 <p>Save up to 75% of to your annual recruitment budget</p>
               </span>
             </div>
             <div className="box">
-              <img src={require("../../assets/images/icons/employee-signup-icons/emp-signup-3.svg")} alt="img" />
+              <img
+                src={require("../../assets/images/icons/employee-signup-icons/emp-signup-3.svg")}
+                alt="img"
+              />
               <span>
                 <h3 className="">Direct chat + Inbox</h3>
                 <p>Connect with candidates direct, no more emails!</p>
               </span>
             </div>
             <div className="box">
-              <img src={require("../../assets/images/icons/employee-signup-icons/emp-signup-4.svg")} alt="img" />
+              <img
+                src={require("../../assets/images/icons/employee-signup-icons/emp-signup-4.svg")}
+                alt="img"
+              />
               <span>
                 <h3 className="">Candidate Match</h3>
-                <p>Set accurate filters and let the system find you job seekers!</p>
+                <p>
+                  Set accurate filters and let the system find you job seekers!
+                </p>
               </span>
             </div>
           </span>
