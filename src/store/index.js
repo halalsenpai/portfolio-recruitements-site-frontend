@@ -13,6 +13,7 @@ export const store = configureStore({
     login,
     jobs,
     pricing,
+    services,
     forgotPassword,
   },
 });

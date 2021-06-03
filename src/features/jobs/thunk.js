@@ -33,10 +33,13 @@ export const getJobTitle = createAsyncThunk("jobs/get-jobtitle", async () => {
   return response.data;
 });
 
-export const getEmploymentType = createAsyncThunk("jobs/get-employment-type", async () => {
-  const response = await getEmploymentTypeAPI();
-  return response.data;
-});
+export const getEmploymentType = createAsyncThunk(
+  "jobs/get-employment-type",
+  async () => {
+    const response = await getEmploymentTypeAPI();
+    return response.data;
+  }
+);
 
 export const getCountry = createAsyncThunk("jobs/get-country", async () => {
   const response = await getCountryAPI();
@@ -48,15 +51,21 @@ export const getCity = createAsyncThunk("jobs/get-city", async () => {
   return response.data;
 });
 
-export const getQualification = createAsyncThunk("jobs/get-qualification", async () => {
-  const response = await getQualificationAPI();
-  return response.data;
-});
+export const getQualification = createAsyncThunk(
+  "jobs/get-qualification",
+  async () => {
+    const response = await getQualificationAPI();
+    return response.data;
+  }
+);
 
-export const getFieldOfStudy = createAsyncThunk("jobs/get-field-of-study", async () => {
-  const response = await getFieldOfStudyAPI();
-  return response.data;
-});
+export const getFieldOfStudy = createAsyncThunk(
+  "jobs/get-field-of-study",
+  async () => {
+    const response = await getFieldOfStudyAPI();
+    return response.data;
+  }
+);
 
 export const getGrade = createAsyncThunk("jobs/get-grade", async () => {
   const response = await getGradeAPI();
@@ -68,51 +77,78 @@ export const getCompany = createAsyncThunk("jobs/get-company", async () => {
   return response.data;
 });
 
-export const getAccommodation = createAsyncThunk("jobs/get-accommodation", async () => {
-  const response = await getAccommodationAPI();
-  return response.data;
-});
+export const getAccommodation = createAsyncThunk(
+  "jobs/get-accommodation",
+  async () => {
+    const response = await getAccommodationAPI();
+    return response.data;
+  }
+);
 export const getCategories = createAsyncThunk("jobs/get-category", async () => {
   const response = await getCategoriesAPI();
 
   return response.data;
 });
 
-export const getJobTitlesById = createAsyncThunk("jobs/get-jobtitles-by-id", async (id) => {
-  const response = await getJobTitlesByIdAPI(id);
-  return response.data;
-});
+export const getJobTitlesById = createAsyncThunk(
+  "jobs/get-jobtitles-by-id",
+  async (id) => {
+    const response = await getJobTitlesByIdAPI(id);
+    return response.data;
+  }
+);
 
-export const getSalaryType = createAsyncThunk("jobs/get-salarytype", async () => {
-  const response = await getSalaryTypeAPI();
-  return response.data;
-});
+export const getSalaryType = createAsyncThunk(
+  "jobs/get-salarytype",
+  async () => {
+    const response = await getSalaryTypeAPI();
+    return response.data;
+  }
+);
 
-export const getJobByCategory = createAsyncThunk("jobs/get-job-by-category", async (id) => {
-  const categoryId = `&categoriesId=${id}`;
-  const response = await getJobByCategoryAPI(categoryId);
-  return response.data;
-});
+export const getJobByCategory = createAsyncThunk(
+  "jobs/get-job-by-category",
+  async (id) => {
+    let categoryId = "";
+    if (id) {
+      categoryId = `&categoriesId=${id}`;
+    }
+    const response = await getJobByCategoryAPI(categoryId);
+    return response.data;
+  }
+);
 
-export const getJobsByCompany = createAsyncThunk("jobs/get-job-by-company-id", async (id) => {
-  const companyId = `&companyId=${id}`;
-  const response = await getJobsByCompanyAPI(companyId);
-  return response.data;
-});
+export const getJobsByCompany = createAsyncThunk(
+  "jobs/get-job-by-company-id",
+  async (id) => {
+    const companyId = `&companyId=${id}`;
+    const response = await getJobsByCompanyAPI(companyId);
+    return response.data;
+  }
+);
 
-export const getSuitableFor = createAsyncThunk("jobs/get-suitable-for", async () => {
-  const response = await getSuitableForAPI();
-  return response.data;
-});
+export const getSuitableFor = createAsyncThunk(
+  "jobs/get-suitable-for",
+  async () => {
+    const response = await getSuitableForAPI();
+    return response.data;
+  }
+);
 
-export const getFilteredJob = createAsyncThunk("jobs/get-filtered-job", async (params) => {
-  const newparams = String("&").concat(params);
-  console.log(newparams);
-  const response = await getFilteredJobAPI(newparams);
-  return response.data;
-});
+export const getFilteredJob = createAsyncThunk(
+  "jobs/get-filtered-job",
+  async (params) => {
+    const newparams = String("&").concat(params);
+    console.log(newparams);
+    const response = await getFilteredJobAPI(newparams);
+    return response.data;
+  }
+);
 
-export const getCitiesByCountry = createAsyncThunk("jobs/get-cities-by-country", async (id) => {
-  const response = await getCitiesByCountryAPI(id);
-  return response.data;
-});
+export const getCitiesByCountry = createAsyncThunk(
+  "jobs/get-cities-by-country",
+  async (id) => {
+    const response = await getCitiesByCountryAPI(id);
+    return response.data;
+  }
+);
