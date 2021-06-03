@@ -55,7 +55,7 @@ function SignUp() {
 
               <Radio value={userTypes.EMPLOYER.title}>I'm an employer</Radio>
 
-              {/* <Radio value={userTypes.AGENCY.title}>I'm a recruiter</Radio> */}
+              <Radio value={userTypes.AGENCY.title}>I'm a recruiter</Radio>
             </Radio.Group>
           </span>
 

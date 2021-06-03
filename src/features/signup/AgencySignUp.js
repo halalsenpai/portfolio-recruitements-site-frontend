@@ -35,6 +35,7 @@ import {
   selectCitiesByCountry,
 } from "./slice";
 import TermsConditions from "./TermsConditions";
+import { showErrorMessage, showWarningMessage } from "../../utils/message";
 
 const { Option } = Select;
 
@@ -48,6 +49,7 @@ function AgencySignUp() {
   const [formData, setFormData] = useState({});
   const [termsModalShow, setTermsModalShow] = useState(false);
   const [countryCode, setCountryCode] = useState("gb");
+  const [agreeToTerms, setAgreeToTerms] = useState(false);
 
   const roles = useAppSelector(selectRole);
   const findUsPlatforms = useAppSelector(selectFindUsPlatform);
@@ -81,6 +83,10 @@ function AgencySignUp() {
   }, [signupSuccess]);
 
   const onFinish = (values) => {
+    if (agreeToTerms === false) {
+      showWarningMessage("Agree to terms and conditions to proceed");
+      return;
+    }
     if (values.companyProfileId === "create-company") {
       setFormData(values);
       setCurrentStep((prevValue) => prevValue + 1);
@@ -395,7 +401,10 @@ function AgencySignUp() {
             valuePropName="checked"
             rules={Rules.requiredRule}
           >
-            <Checkbox value="">
+            <Checkbox
+              checked={agreeToTerms}
+              onChange={(e) => setAgreeToTerms(e.target.checked)}
+            >
               I agree with Jobsmideast.com{" "}
               <mark className="blue" onClick={() => setTermsModalShow(true)}>
                 terms &amp; conditions
@@ -479,7 +488,7 @@ function AgencySignUp() {
               />
               <span>
                 <h3 className="">Save up to 75%</h3>
-                <p>Save up to 75% of to your annual recruitment budget</p>
+                <p>Save up to 75% of your annual recruitment budget</p>
               </span>
             </div>
             <div className="box">
