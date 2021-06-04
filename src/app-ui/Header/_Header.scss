@@ -1,14 +1,14 @@
 .c-header {
   position: sticky;
   top: 0px;
-  height: 60px;
+  height: 90px;
   z-index: 100;
   .inner-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0px 50px 0px 50px;
-    height: 64px;
+    padding: 0px 64px;
+    height: 90px;
     background-color: $white;
   }
   nav {
@@ -21,8 +21,8 @@
     }
     a {
       list-style: none;
-      padding: 0px 12px;
-      // font-weight: 400;
+      padding: 0px 23px;
+      font-size: 16px;
       color: $secondary;
       &.active {
         color: $primary;
@@ -38,14 +38,15 @@
     }
   }
   .logo {
-    width: 230px;
+    width: 287px;
   }
   .shadow-box {
-    background: transparent radial-gradient(closest-side at 50% 75%, #9b9b8f -81%, #ffffff00 100%) 0% 0% no-repeat
-      padding-box;
+    background: transparent
+      radial-gradient(closest-side at 50% 75%, #9b9b8f -81%, #ffffff00 100%) 0%
+      0% no-repeat padding-box;
     height: 80px;
     position: absolute;
-    top: 0;
+    top: 35px;
     z-index: -1;
     width: 100%;
   }

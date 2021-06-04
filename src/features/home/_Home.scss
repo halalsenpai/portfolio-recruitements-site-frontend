@@ -2,28 +2,47 @@
 
 .home {
   position: relative;
-  top: 5px;
+  top: 0px;
   background: rgb(235, 235, 235);
-  background: -moz-linear-gradient(0deg, rgba(235, 235, 235, 1) 0%, rgba(255, 255, 255, 1) 100%);
-  background: -webkit-linear-gradient(0deg, rgba(235, 235, 235, 1) 0%, rgba(255, 255, 255, 1) 100%);
-  background: linear-gradient(0deg, rgba(235, 235, 235, 1) 0%, rgba(255, 255, 255, 1) 100%);
+  background: -moz-linear-gradient(
+    0deg,
+    rgba(235, 235, 235, 1) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  background: -webkit-linear-gradient(
+    0deg,
+    rgba(235, 235, 235, 1) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  background: linear-gradient(
+    0deg,
+    rgba(235, 235, 235, 1) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ebebeb",endColorstr="#ffffff",GradientType=1);
   .mobile-textalign {
     font-family: $font-medium;
     margin-top: 4px;
   }
 
+  .banner-spacing {
+    padding-left: calc(114px - 15px);
+  }
+
   .first-banner-heading-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 0px 50px 0px 100px;
+    padding: 124px 0 0 0;
+    // justify-content: center;
+    // align-items: center;
+    // padding: 0px 50px 0px 100px;
 
     .inner-container {
-      max-width: 600px;
-      p {
+      max-width: 730px;
+      .banner-content {
+        font-size: 16px;
         font-family: $font-light;
+        margin: 42px 0 68px 0;
       }
       .get-started-btn > span {
         font-family: $font-medium !important;
@@ -31,16 +50,20 @@
     }
   }
   .main-heading {
-    font-size: $font-size-x-lg;
+    font-size: 55px;
+    margin: 0 0 15px 0;
     font-family: $font-medium;
     color: $secondary;
-    mark {
-      font-family: $font-medium;
+    .banner-heading-highlight {
+      font-family: $font-subtitle;
+      font-size: 55px;
+      color: $blue;
     }
   }
 
   .sub-heading {
-    margin: 25px 0px;
+    margin: 53px 0px;
+    font-size: 30px;
     font-family: $font-medium;
     color: $secondary;
   }
