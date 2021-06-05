@@ -26,7 +26,7 @@
   }
 
   .banner-spacing {
-    padding-left: calc(114px - 15px);
+    padding-left: calc(114px);
   }
 
   .first-banner-heading-container {
@@ -68,9 +68,9 @@
     color: $secondary;
   }
 
-  .ea-container {
-    flex-direction: column;
-    justify-self: flex-start;
+  .container-benefit {
+    padding: 0 112px;
+    margin: 0 0 188px 0;
 
     h4 {
       font-size: $font-size-lg;
@@ -85,12 +85,17 @@
     }
     .inner-container {
       flex-direction: row;
+      justify-content: space-between;
       display: flex;
+      flex-wrap: wrap;
+      // justify-content: center;
       margin: 20px 0px 0px 0px;
       .box {
         display: flex;
+        width: max-content;
+        min-width: calc(281px + 87px);
         flex-direction: row;
-        margin-left: 30px;
+        // margin-left: 30px;
         align-items: center;
         &:first-of-type {
           margin-left: 0px;
@@ -102,9 +107,11 @@
         p {
           font-size: $font-size-sm;
           font-family: $font-light !important;
+          font-size: 18px;
+          max-width: 297px;
         }
         img {
-          width: 100px;
+          width: 88px;
         }
         span {
           padding: 20px 0px 0px 15px;
@@ -112,15 +119,81 @@
         }
         .b-text {
           color: $primary;
-          font-family: $font-medium !important;
+          font-size: 28px;
+          font-family: $font-bold;
         }
         .a-text {
           color: #1a1d3d;
-          font-family: $font-medium;
+          font-size: 23px;
+          font-family: $font-bold;
         }
       }
     }
   }
+
+  .container-filters {
+    padding: 0 112px;
+    margin: 0 0 216px 0;
+
+    h4 {
+      font-size: $font-size-lg;
+      text-decoration: underline;
+      text-underline-position: under;
+    }
+
+    &.primary {
+      h4 {
+        color: $primary;
+      }
+    }
+    .inner-container {
+      flex-direction: row;
+      justify-content: space-between;
+      display: flex;
+      flex-wrap: wrap;
+      // justify-content: center;
+      margin: 20px 0px 0px 0px;
+      .box {
+        display: flex;
+        width: max-content;
+        min-width: calc(281px + 87px);
+        flex-direction: row;
+        // margin-left: 30px;
+        align-items: center;
+        &:first-of-type {
+          margin-left: 0px;
+        }
+        h3 {
+          font-size: $font-size-md;
+          text-decoration: none;
+        }
+        p {
+          font-size: $font-size-sm;
+          font-family: $font-light !important;
+          font-size: 18px;
+          max-width: 297px;
+        }
+        img {
+          width: 88px;
+        }
+        span {
+          padding: 20px 0px 0px 15px;
+          flex: 1;
+        }
+        .b-text {
+          color: $primary;
+          font-size: 28px;
+          font-family: $font-bold;
+        }
+        .a-text {
+          color: #1a1d3d;
+          font-size: 23px;
+          font-family: $font-bold;
+        }
+      }
+    }
+  }
+
   .cv-container {
     position: relative;
     bottom: -50px;
@@ -129,21 +202,30 @@
     }
   }
   .small-paragraph p {
-    font-size: $font-size-sm !important;
-    font-family: $font-light;
+    font-size: 14px;
+    margin-bottom: 40px;
+    line-height: 30px;
+    max-width: 525px;
   }
   .bottom-container {
     .text-column {
       display: flex;
       align-items: flex-start;
-      justify-content: center;
+      // justify-content: center;
       flex-direction: column;
-      padding: 0 3.8em;
+      // padding: 0 3.8em;
+    }
+
+    .demo-btn {
+      margin-top: 41px;
     }
     .book-a-demo-btn {
       font-family: $font-medium;
       text-decoration: none;
     }
+  }
+  .bottom-text-section {
+    padding: 40px 0 0 62px;
   }
   .bottom-logo {
     max-width: 287px;
@@ -159,4 +241,18 @@
 .safari-fix {
   align-self: flex-start !important;
   justify-self: flex-start !important;
+}
+
+.home-content-container {
+  text-align: center;
+  margin: 157px 0 0 0;
+
+  .main-heading {
+    font-size: 65px;
+  }
+
+  h5 {
+    font-size: 40px;
+    text-transform: uppercase;
+  }
 }
