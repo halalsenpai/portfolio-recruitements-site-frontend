@@ -260,6 +260,27 @@
     .c-container-centered-content {
       margin: 100px 0px;
     }
+    .container-filters {
+      padding: 0 calc(112px / 2);
+      margin: 0 0 calc(216px / 2) 0;
+    }
+
+    .bottom-text-section {
+      padding: 40px 10px 0 10px;
+    }
+    .small-paragraph {
+      p {
+        font-size: 12px;
+        margin-bottom: 10px;
+        line-height: inherit;
+        max-width: unset;
+      }
+    }
+    .bottom-container {
+      .demo-btn {
+        margin-top: 10px;
+    }
+    }
   }
 }
 

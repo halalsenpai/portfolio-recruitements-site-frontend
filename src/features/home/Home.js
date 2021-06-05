@@ -222,7 +222,7 @@ function Home() {
         </div>
         <div className="container-fluid bottom-container">
           {/* <Fade bottom duration={1000}> */}
-          <div className="row">
+          <div className="row pb-5">
             <div className="padding-mobile bottom-text-section col-lg-4 text-column ">
               <img
                 className="bottom-logo"
