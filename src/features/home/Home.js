@@ -148,16 +148,16 @@ function Home() {
             </div>
           </Fade>
         </div>
-        <div className="space"></div>
+        {/* <div className="space"></div> */}
         <Fade bottom duration={1200}>
           <div>
-            <div className="c-container-centered-content small  mb-2">
+            <div className="home-content-container">
               <h2 className="main-heading">KEEP EVERYTHING IN ONE PLACE.</h2>
               <h5 className="mobile-textalign">
                 interviews, calls, connections and more.
               </h5>
             </div>
-            <div className="space"></div>
+            {/* <div className="space"></div> */}
 
             <div className="container-fluid p-0 d-flex justify-content-center">
               <img

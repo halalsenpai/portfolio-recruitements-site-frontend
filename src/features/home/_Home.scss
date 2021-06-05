@@ -70,7 +70,7 @@
 
   .container-benefit {
     padding: 0 112px;
-    margin: 0 0 188px 0;
+    margin: 0 0 157px 0;
 
     h4 {
       font-size: $font-size-lg;
@@ -109,6 +109,7 @@
           font-family: $font-light !important;
           font-size: 18px;
           max-width: 297px;
+          margin-bottom: 0;
         }
         img {
           width: 88px;
@@ -172,6 +173,7 @@
           font-family: $font-light !important;
           font-size: 18px;
           max-width: 297px;
+          margin-bottom: 0;
         }
         img {
           width: 88px;
@@ -248,11 +250,11 @@
   margin: 157px 0 0 0;
 
   .main-heading {
-    font-size: 65px;
+    font-size: 55px;
   }
 
   h5 {
-    font-size: 40px;
+    font-size: 34px;
     text-transform: uppercase;
   }
 }
