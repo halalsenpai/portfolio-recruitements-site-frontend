@@ -210,12 +210,29 @@
     max-width: 525px;
   }
   .bottom-container {
+    .bottom-container-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      margin: -10px 0 0 0;
+
+      .bottom-text-section {
+        flex: 1;
+        max-width: 600px;
+        min-width: 400px;
+        margin: 10px 0 0 0;
+      }
+
+      .btm-container-img {
+        flex: 2;
+        min-width: 400px;
+        margin: 10px 0 0 0;
+      }
+    }
     .text-column {
       display: flex;
       align-items: flex-start;
-      // justify-content: center;
       flex-direction: column;
-      // padding: 0 3.8em;
     }
 
     .demo-btn {

@@ -222,14 +222,13 @@ function Home() {
         </div>
         <div className="container-fluid bottom-container">
           {/* <Fade bottom duration={1000}> */}
-          <div className="row pb-5">
-            <div className="padding-mobile bottom-text-section col-lg-4 text-column ">
+          <div className="bottom-container-row pb-5">
+            <div className="padding-mobile bottom-text-section text-column ">
               <img
                 className="bottom-logo"
                 src={require("..//..//assets/images/logo/logo-md.png")}
                 alt=""
               />
-
               <span className="small-paragraph">
                 <p>
                   Jobsmideast.com is the most advanced job platform in the
@@ -265,7 +264,7 @@ function Home() {
               </Button>
             </div>
 
-            <div className="col-lg-8 p-0 d-flex align-items-center">
+            <div className="btm-container-img">
               <div className="container-fluid p-0 d-flex justify-content-center">
                 <img
                   className="w-100 safari-fix"
