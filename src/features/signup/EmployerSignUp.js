@@ -4,19 +4,21 @@ import { useHistory } from "react-router-dom";
 import { Input, Form, Select, Checkbox, Alert } from "antd";
 
 import * as Rules from "../../utils/rules";
+import TermsConditions from "./TermsConditions";
+import Modal from "../../shared-ui/Modal/Modal";
 import Button from "../../shared-ui/Button/Button";
+import { getCompany, getJobTitle } from "./service";
+import { showWarningMessage } from "../../utils/message";
 import PhoneInput from "react-phone-input-international";
 import MediaPicker from "../../shared-ui/MediaPicker/MediaPicker";
-import Modal from "../../shared-ui/Modal/Modal";
-// import SelectWithAddItem from "../../shared-ui/SelectWithAddItem/SelectWithAddItem";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { SuperSelect } from "../../shared-ui/SuperSelect/SuperSelect";
+// import SelectWithAddItem from "../../shared-ui/SelectWithAddItem/SelectWithAddItem";
 import {
   getRole,
-  getCompany,
   getFindUsPlatform,
   getCountry,
   getCity,
-  getJobTitle,
   employerSignup,
   getCountryByIp,
   getCitiesByCountry,
@@ -27,15 +29,12 @@ import {
   selectEmployerSignup,
   selectCompany,
   selectCountry,
-  selectCity,
   selectJobTitles,
   selectLoadingStatus,
   selectErrorMessage,
   selectCountryByIp,
   selectCitiesByCountry,
 } from "./slice";
-import TermsConditions from "./TermsConditions";
-import { showErrorMessage, showWarningMessage } from "../../utils/message";
 
 const { Option } = Select;
 
@@ -65,16 +64,15 @@ function EmployerSignUp() {
   useEffect(() => {
     dispatch(getRole());
     dispatch(getFindUsPlatform());
-    dispatch(getCompany());
     dispatch(getCountry());
     dispatch(getCity());
-    dispatch(getJobTitle());
     dispatch(getCountryByIp());
   }, []);
 
   useEffect(() => {
     setCountryCode(countryByIp?.countryCode?.toLowerCase());
   }, [countryByIp]);
+
   useEffect(() => {
     if (signupSuccess === true) {
       history.push("confirm-email");
@@ -161,18 +159,18 @@ function EmployerSignUp() {
                   className="c-input"
                   rules={Rules.requiredRule}
                 >
-                  <Select
-                    size="large"
+                  <SuperSelect
                     defaultValue=""
+                    fetchOptions={getCompany}
                     onChange={onCompanyNameChange}
-                  >
-                    <Option value="">Select</Option>
-                    <Option value="create-company">Create new company</Option>
-
-                    {companies?.items?.map((c) => (
-                      <Option value={c.id}>{c.companyName}</Option>
-                    ))}
-                  </Select>
+                    keys={["id", "companyName"]}
+                    fixedOptions={[
+                      {
+                        label: "Create New Company",
+                        value: "create-company",
+                      },
+                    ]}
+                  />
                 </Form.Item>
                 <Form.Item
                   label="Job title"
@@ -185,13 +183,7 @@ function EmployerSignUp() {
                     onItemChange={(e) => console.log(e)}
                     hintTextForAddItem={"Can't find your job title?"}
                   /> */}
-                  <Select size="large" defaultValue="">
-                    <Option value="">Select</Option>
-
-                    {jobTitles.map((jt) => (
-                      <Option value={jt.id}>{jt.title}</Option>
-                    ))}
-                  </Select>
+                  <SuperSelect defaultValue="" fetchOptions={getJobTitle} />
                 </Form.Item>
               </div>
               <div className="c-row">
