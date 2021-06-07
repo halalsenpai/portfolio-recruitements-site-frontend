@@ -282,7 +282,7 @@ p {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.4) !important;
     background: #ffffff !important;
     width: 300px;
-    height: 32px !important;
+    // height: 32px !important;
     margin: 0;
     input {
       font-size: $font-size-sm;
@@ -337,7 +337,6 @@ p {
   .flag-dropdown.open {
     border-radius: 20px 0 0 20px;
     background: transparent;
-
     .selected-flag {
       border-radius: 20px 0 0 20px;
       background: transparent;
