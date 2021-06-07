@@ -16,7 +16,7 @@ function Home() {
       <div className="home">
         <div className="container-fluid">
           <div className="row banner-spacing">
-            <div className="col-lg-6 first-banner-heading-container">
+            <div className="col-lg-7 first-banner-heading-container">
               <span className="inner-container">
                 {/* <Fade delay={300} bottom duration={1200}> */}
                 {/* <div> */}
@@ -37,11 +37,10 @@ function Home() {
 
                 <Fade bottom delay={500}>
                   <p className="banner-content mobile-textalign">
-                    We asked 97 companies, and 1000 job seekers what they
-                    struggle with when searching on job sites, and we got the
-                    answers, so we built the smartest and the most advanced
-                    recruitment platform, free to use for everyone across the
-                    globe!
+                    We asked 97 companies in the Middle East and 1000 job
+                    seekers across the globe to find out what they struggle with
+                    when searching on job sites, and based on your feedback we
+                    have built the most advanced hiring platform in the MidEast.
                   </p>
                 </Fade>
 
@@ -70,7 +69,7 @@ function Home() {
             </div>
 
             <Fade bottom duration={1200} delay={300}>
-              <div className="col-lg-6 p-0 margin-mobile">
+              <div className="col-lg-5 p-0 margin-mobile">
                 <BannerWithImages className="c-banner-responsive" />
               </div>
             </Fade>
@@ -103,9 +102,7 @@ function Home() {
                 />
                 <span>
                   <h3 className="a-text">Free CRM</h3>
-                  <p>
-                    Stay connected with your <br /> entire team.
-                  </p>
+                  <p>Stay connected with your entire team.</p>
                 </span>
               </div>
 
@@ -116,9 +113,7 @@ function Home() {
                 />
                 <span>
                   <h3 className="a-text">Save up to 75%</h3>
-                  <p>
-                    Save up to 75% of <br /> your annual recruitment budget
-                  </p>
+                  <p>Save up to 75% of your annual recruitment budget</p>
                 </span>
               </div>
               <div className="box">
@@ -128,9 +123,7 @@ function Home() {
                 />
                 <span>
                   <h3 className="a-text">Direct chat + Inbox</h3>
-                  <p>
-                    Keep all your conversations in <br /> one place.
-                  </p>
+                  <p>Keep all your conversations in one place.</p>
                 </span>
               </div>
               <div className="box">
@@ -140,9 +133,7 @@ function Home() {
                 />
                 <span>
                   <h3 className="a-text">Candidate Match</h3>
-                  <p>
-                    Find the suitable person for the <br /> job in a few clicks.
-                  </p>
+                  <p>Find the suitable person for the job in a few clicks.</p>
                 </span>
               </div>
             </div>

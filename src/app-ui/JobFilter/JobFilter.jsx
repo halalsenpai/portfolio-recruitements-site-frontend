@@ -131,8 +131,12 @@ const JobFilter = (props) => {
             </div>
           </div>
           <div className="filter-section">
-            <Row wrap={true}>
-              <Col className="jobs-grid" span={12}>
+            <Row justify="center" wrap={true}>
+              <Col
+                className="jobs-grid switch-grid"
+                lg={{ span: 12 }}
+                sm={{ span: 12 }}
+                xs={{ span: 24 }}>
                 <Form.Item
                   label="Job type"
                   name="jobType"
@@ -145,7 +149,12 @@ const JobFilter = (props) => {
                   </Select>
                 </Form.Item>
               </Col>
-              <Col className="jobs-grid" span={12}>
+              <Col
+                lg={{ span: 12 }}
+                sm={{ span: 12 }}
+                xs={{ span: 24 }}
+                className="jobs-grid"
+                span={12}>
                 <Form.Item
                   label="Add location"
                   name="addLocation"
@@ -180,8 +189,13 @@ const JobFilter = (props) => {
                 </Modal>
               </Col>
             </Row>
-            <Row wrap={true}>
-              <Col className="jobs-grid" span={12}>
+            <Row justify="center" wrap={true}>
+              <Col
+                lg={{ span: 12 }}
+                sm={{ span: 12 }}
+                xs={{ span: 24 }}
+                className="jobs-grid"
+                span={12}>
                 <Form.Item
                   label="Category"
                   placeholder="Select category"
@@ -195,7 +209,12 @@ const JobFilter = (props) => {
                   </Select>
                 </Form.Item>
               </Col>
-              <Col className="jobs-grid" span={12}>
+              <Col
+                lg={{ span: 12 }}
+                sm={{ span: 12 }}
+                xs={{ span: 24 }}
+                className="jobs-grid"
+                span={12}>
                 <Form.Item
                   label="Job title"
                   name="jobTitle"
@@ -212,8 +231,13 @@ const JobFilter = (props) => {
                 </Form.Item>
               </Col>
             </Row>
-            <Row wrap={true}>
-              <Col className="jobs-grid" span={12}>
+            <Row justify="center" wrap={true}>
+              <Col
+                lg={{ span: 12 }}
+                sm={{ span: 12 }}
+                xs={{ span: 24 }}
+                className="jobs-grid"
+                span={12}>
                 <Form.Item
                   label="Salary type"
                   name="salaryType"
@@ -238,7 +262,12 @@ const JobFilter = (props) => {
                 rules={null}>
                 <Slider range={{ draggableTrack: true }} defaultValue={[0, 5000]} />
               </Form.Item> */}
-              <Col className="jobs-grid" span={12}>
+              <Col
+                lg={{ span: 12 }}
+                sm={{ span: 12 }}
+                xs={{ span: 24 }}
+                className="jobs-grid"
+                span={12}>
                 <Form.Item
                   label={
                     <div className="d-flex justify-content-between w-100 align-items-center">
@@ -264,8 +293,13 @@ const JobFilter = (props) => {
                 </Form.Item>
               </Col>
             </Row>
-            <Row wrap={true}>
-              <Col className="jobs-grid" span={12}>
+            <Row justify="center" wrap={true}>
+              <Col
+                lg={{ span: 12 }}
+                sm={{ span: 12 }}
+                xs={{ span: 24 }}
+                className="jobs-grid"
+                span={12}>
                 <Form.Item
                   label="Gender"
                   name="gender"
@@ -278,7 +312,12 @@ const JobFilter = (props) => {
                   </Select>
                 </Form.Item>
               </Col>
-              <Col className="jobs-grid" span={12}>
+              <Col
+                lg={{ span: 12 }}
+                sm={{ span: 12 }}
+                xs={{ span: 24 }}
+                className="jobs-grid"
+                span={12}>
                 <Form.Item
                   label="Qualification"
                   name="qualification"
@@ -294,8 +333,13 @@ const JobFilter = (props) => {
                 </Form.Item>
               </Col>
             </Row>
-            <Row wrap={true}>
-              <Col className="jobs-grid" span={12}>
+            <Row justify="center" wrap={true}>
+              <Col
+                lg={{ span: 12 }}
+                sm={{ span: 12 }}
+                xs={{ span: 24 }}
+                className="jobs-grid"
+                span={12}>
                 <Form.Item
                   label="Accommodation"
                   name="accommodation"
@@ -310,7 +354,12 @@ const JobFilter = (props) => {
                   </Select>
                 </Form.Item>
               </Col>
-              <Col className="jobs-grid" span={12}>
+              <Col
+                lg={{ span: 12 }}
+                sm={{ span: 12 }}
+                xs={{ span: 24 }}
+                className="jobs-grid"
+                span={12}>
                 <Form.Item
                   label="Suitable for"
                   name="suitableFor"
@@ -329,8 +378,12 @@ const JobFilter = (props) => {
             </Row>
           </div>
           <div className="filter-section">
-            <Row wrap={true}>
-              <Col className="jobs-grid" span={8}>
+            <Row justify="center" wrap={true}>
+              <Col
+                className="jobs-grid switch-grid"
+                lg={{ span: 12 }}
+                sm={{ span: 12 }}
+                xs={{ span: 24 }}>
                 <Form.Item
                   className="switches"
                   valuePropName="checked"
@@ -353,7 +406,11 @@ const JobFilter = (props) => {
                   <Switch size="small" />
                 </Form.Item>
               </Col>
-              <Col className="jobs-grid" span={8}>
+              <Col
+                className="jobs-grid switch-grid"
+                lg={{ span: 12 }}
+                sm={{ span: 12 }}
+                xs={{ span: 24 }}>
                 <Form.Item
                   className="switches"
                   valuePropName="checked"

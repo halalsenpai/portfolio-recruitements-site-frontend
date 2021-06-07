@@ -19,7 +19,13 @@
       align-items: unset;
     }
     .jobs-grid {
-      min-width: 300px;
+      // min-width: 250px;
+      padding: 10px;
+    }
+    .switch-grid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .silder-equivalent {
@@ -29,13 +35,14 @@
     }
     .c-input-with-icon {
       width: 100%;
-      max-width: 300px;
+      // max-width: 300px;
     }
 
     .switches {
       padding: 6px 0;
       width: 100%;
-
+      max-width: 230px;
+      flex-wrap: nowrap !important;
       .ant-form-item-control {
         order: -1;
         max-width: 48px !important;

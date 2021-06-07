@@ -240,6 +240,10 @@ p {
     height: 36px !important;
     padding: 0 18px !important;
     background: #ffffff !important;
+
+    .ant-select-selection-placeholder {
+      line-height: 36px;
+    }
   }
   .ant-select-arrow {
     right: 15px;
@@ -720,38 +724,36 @@ p {
   }
 }
 
-// @media screen and (min-width: 541px) and (max-width: 1024px) {
-//   .c-input {
-//     width: 100%;
-//     max-width: 300px;
-//     min-width: 160px;
-//     margin: 10px;
+@media screen and (min-width: 541px) and (max-width: 1024px) {
+  .c-input {
+    width: 100%;
+    // max-width: 320px;
+    // min-width: 160px;
+    margin: 10px;
 
-//     input.ant-input-sm,
-//     input.ant-input-lg,
-//     input.ant-input-medium,
-//     .ant-picker {
-//       width: 100%;
-//     }
-//     .ant-select {
-//       width: 100% !important;
-//     }
-//     // input {
-//     //   &.ant-input-lg {
-//     //     width: 100%;
-//     //   }
+    input.ant-input-sm,
+    input.ant-input-lg,
+    input.ant-input-medium,
+    .ant-picker {
+      width: 100%;
+    }
+    input {
+      &.ant-input-lg {
+        width: 100%;
+      }
 
-//     //   &.ant-input-sm {
-//     //     width: 100%;
-
-//     //   }
-//     //   &.xs {
-//     //     width: 100%;
-
-//     //   }
-//     // }
-//   }
-// }
+      &.ant-input-sm {
+        width: 100%;
+      }
+      &.xs {
+        width: 100%;
+      }
+    }
+  }
+  .ant-select {
+    width: 100% !important;
+  }
+}
 @media screen and (max-width: 1024px) {
   .react-tel-input .form-control {
     width: unset !important;
@@ -760,17 +762,6 @@ p {
     width: 100%;
     height: 36px;
   }
-}
-// select placeholder
-.ant-select-single.ant-select-lg:not(.ant-select-customize-input)
-  .ant-select-selector::after,
-.ant-select-single.ant-select-lg:not(.ant-select-customize-input)
-  .ant-select-selector
-  .ant-select-selection-item,
-.ant-select-single.ant-select-lg:not(.ant-select-customize-input)
-  .ant-select-selector
-  .ant-select-selection-placeholder {
-  line-height: 34.4px;
 }
 
 html {

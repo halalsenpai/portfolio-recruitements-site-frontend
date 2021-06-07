@@ -483,17 +483,17 @@
     }
     .sub-heading {
       margin: calc(53px / 2) 0px;
-      font-size: 20px;
+      font-size: 28px;
     }
     .banner-spacing {
       padding-left: calc(124px / 2);
     }
     .main-heading {
-      font-size: 35px;
+      font-size: 40px;
       margin: 0 0 15px 0;
 
       .banner-heading-highlight {
-        font-size: 35px;
+        font-size: 40px;
       }
     }
     .home-content-container {
@@ -584,5 +584,23 @@
   }
   to {
     opacity: 0;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .home {
+    .banner-spacing {
+      padding-left: calc(116px);
+    }
+    .first-banner-heading-container {
+      .inner-container {
+        max-width: unset;
+
+        .banner-content {
+          font-size: 16px;
+          max-width: 700px;
+        }
+      }
+    }
   }
 }

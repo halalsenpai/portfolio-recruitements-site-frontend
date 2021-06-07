@@ -38,9 +38,10 @@
     // padding: 0px 50px 0px 100px;
 
     .inner-container {
-      max-width: 730px;
+      max-width: 620px;
       .banner-content {
-        font-size: 16px;
+        font-size: 14px;
+        line-height: 25px;
         font-family: $font-light;
         margin: 42px 0 68px 0;
       }
@@ -94,6 +95,7 @@
         display: flex;
         width: max-content;
         min-width: calc(281px + 87px);
+        max-width: 300px;
         flex-direction: row;
         // margin-left: 30px;
         align-items: center;
@@ -158,6 +160,7 @@
         display: flex;
         width: max-content;
         min-width: calc(281px + 87px);
+        max-width: 300px;
         flex-direction: row;
         // margin-left: 30px;
         align-items: center;

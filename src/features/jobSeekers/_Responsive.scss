@@ -33,7 +33,7 @@
           width: 100%;
           text-align: center;
         }
-        .cell-30 {
+        .auto-grow {
           width: 100%;
         }
       }
@@ -58,19 +58,30 @@
 @media screen and (min-width: 768px) and (max-width: 1200px) {
   .job-seekers-main {
     padding: 10px;
+
+    h1 {
+      font-family: $font-medium;
+      font-size: 20px;
+      margin: 0 0 20px 0;
+      line-height: 1;
+    }
+    p {
+      font-size: 18px;
+      max-width: 350px;
+      font-family: $font-light;
+    }
     .c-containers {
       padding: 0;
 
       .c-row {
         .text-section {
           width: 100%;
-          max-width: 280px;
+          max-width: 400px;
           flex: unset;
           padding: 0;
           min-width: unset;
-
           display: flex;
-          justify-content: center;
+          // justify-content: unset;
           align-items: center;
         }
       }
@@ -87,6 +98,25 @@
     .emp-heading {
       font-size: $font-size-lg;
       line-height: unset;
+    }
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .job-seekers-main {
+    padding: 70px 0;
+    .emp-heading {
+      font-size: 50px;
+      line-height: 1.4;
+    }
+    h1 {
+      font-size: 50px;
+      margin: 0 0 20px 0;
+      line-height: 1.4;
+    }
+    p {
+      font-size: 22px;
+      max-width: 650px;
     }
   }
 }
