@@ -21,6 +21,7 @@ const getOptions = (data, keys) => {
 };
 
 export const SuperSelect = ({
+  mode,
   fetchOptions,
   allowClear = true,
   showSearch = true,
@@ -119,7 +120,8 @@ export const SuperSelect = ({
 
   return (
     <Select
-      showArrow={false}
+      showArrow={mode ? false : true}
+      mode={mode}
       filterOption={false}
       showSearch={showSearch}
       placeholder={placeholder}
