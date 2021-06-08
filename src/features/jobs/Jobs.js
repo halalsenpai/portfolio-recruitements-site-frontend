@@ -124,13 +124,17 @@ function Jobs() {
 
           <Form onFinish={onSearchJob}>
             <span className="form-fields job-filter-section">
-              <Form.Item name="jobTitleName" className="c-input c-input-with-icon">
+              <Form.Item
+                name="jobTitleName"
+                className="c-input c-input-with-icon">
                 <Input
                   size="small"
                   className="xs"
                   type="text"
                   placeholder="Job title"
-                  prefix={<img className="input-icon" src={searchIcon} alt="ico" />}></Input>
+                  prefix={
+                    <img className="input-icon" src={searchIcon} alt="ico" />
+                  }></Input>
               </Form.Item>
               <Form.Item name="location" className="c-input c-input-with-icon">
                 <Input
@@ -138,15 +142,23 @@ function Jobs() {
                   className="xs"
                   type="text"
                   placeholder="Location"
-                  prefix={<img className="input-icon" src={locationIcon} alt="ico" />}></Input>
+                  prefix={
+                    <img className="input-icon" src={locationIcon} alt="ico" />
+                  }></Input>
               </Form.Item>
-              <Button type="small" htmlType="submit" themeColor="outlined" style={{ height: "32px", margin: "0 8px" }}>
-                Search
+              <Button
+                type="small"
+                htmlType="submit"
+                themeColor="rounded light"
+                style={{ height: "32px", margin: "0 8px" }}>
+                Go
               </Button>
 
-              <div style={{ marginLeft: "8px" }} className="filters" onClick={ShowFilter}>
-                <img className="filter-icon" src={filterIcon} alt="ico" />
-              </div>
+              <Button
+                icon={<img src={filterIcon} alt="ico" />}
+                className="white rounded shadowed"
+                style={{ marginLeft: "8px" }}
+                onClick={ShowFilter}></Button>
             </span>
           </Form>
 
@@ -164,7 +176,12 @@ function Jobs() {
                       setcategoryId(obj.categoriesId);
                       setcompanyId(obj.companyId);
                     }}
-                    job={transformJobData(obj, jobTitles, employmentTypes, countries)}
+                    job={transformJobData(
+                      obj,
+                      jobTitles,
+                      employmentTypes,
+                      countries
+                    )}
                   />
                 );
               }}
@@ -173,7 +190,9 @@ function Jobs() {
         </div>
 
         {/* Job Detail */}
-        <div ref={myRef} className={`job-details ${showJobDetails && "job-details-show"}`}>
+        <div
+          ref={myRef}
+          className={`job-details ${showJobDetails && "job-details-show"}`}>
           {isLoading && (
             <div className="preloader">
               <Spin />
@@ -185,7 +204,12 @@ function Jobs() {
           {jobDetails && (
             <JobDetails
               otherJobs={otherJobs}
-              data={transformJobData(jobDetails, jobTitles, employmentTypes, countries)}
+              data={transformJobData(
+                jobDetails,
+                jobTitles,
+                employmentTypes,
+                countries
+              )}
               extraData={{ accommodations }}
               setJobDetails={setJobDetails}
               executeScroll={executeScroll}
