@@ -30,7 +30,10 @@ function Header() {
           <Link
             to="/employee-and-agency"
             onClick={() => setCurrentPath("/employee-and-agency")}
-            className={getActiveClassForPath(currentPath, "/employee-and-agency")}>
+            className={getActiveClassForPath(
+              currentPath,
+              "/employee-and-agency"
+            )}>
             Employers & agencies
           </Link>
           <Link
@@ -74,7 +77,10 @@ function Header() {
                 setCurrentPath("/employee-and-agency");
                 setMenu(false);
               }}
-              className={getActiveClassForPath(currentPath, "/employee-and-agency")}>
+              className={getActiveClassForPath(
+                currentPath,
+                "/employee-and-agency"
+              )}>
               Employers & agencies
             </Link>
             <Link
@@ -134,7 +140,7 @@ function Header() {
               setCurrentPath("/signup");
               setMenu(false);
             }}>
-            <Button className="sign-up-btn">Sign Up</Button>
+            <Button className="sign-up-btn">Sign up</Button>
           </Link>
           <button onClick={() => setMenu(!menu)} className="toggle-button">
             {menu ? (
