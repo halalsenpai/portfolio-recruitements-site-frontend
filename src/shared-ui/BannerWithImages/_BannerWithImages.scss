@@ -54,3 +54,14 @@
     }
   }
 }
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .c-banner-with-images {
+    .imgs-row {
+      width: 100%;
+      .banner-img-main {
+        max-width: unset;
+      }
+    }
+  }
+}
