@@ -2,7 +2,7 @@
 
 @media screen and (max-width: 767px) {
   .emp-agncy-main {
-    padding: 10px;
+    padding: 0 10px;
     .c-containers {
       padding: 0;
       .c-row {
@@ -29,10 +29,14 @@
             font-size: $font-size-md;
           }
         }
-        .cell-half {
-          width: 100%;
-          text-align: center;
+        .interview-section {
+          padding-left: 0 !important;
         }
+        .w-45 {
+          width: 100%;
+          margin: 20px 0;
+        }
+
         .w-40 {
           width: 100%;
         }
@@ -40,6 +44,9 @@
       .column-rev {
         flex-direction: column-reverse !important;
       }
+    }
+    .interview-type {
+      margin-bottom: 20px;
     }
     .sections {
       padding-top: 40px;
@@ -57,7 +64,7 @@
 
 @media screen and (min-width: 768px) and (max-width: 1200px) {
   .emp-agncy-main {
-    padding: 10px;
+    padding: 10px 30px;
 
     h1 {
       font-family: $font-medium;
