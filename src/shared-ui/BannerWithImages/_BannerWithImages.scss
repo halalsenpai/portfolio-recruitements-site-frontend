@@ -49,8 +49,10 @@
       }
     }
 
-    .banner-img-main:hover .first {
-      opacity: 1;
+    .banner-img-main:hover {
+      .first {
+        opacity: 1;
+      }
     }
   }
 }
