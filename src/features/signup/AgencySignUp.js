@@ -431,6 +431,7 @@ function AgencySignUp() {
           {currentStep === 1 && (
             <Form.Item className="align-self-end">
               <Button
+                className="create-profile-button"
                 block
                 type="large"
                 htmlType="submit"

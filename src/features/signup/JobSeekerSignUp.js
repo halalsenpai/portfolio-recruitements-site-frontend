@@ -387,6 +387,7 @@ function JobSeekerSignUp() {
 
           <Form.Item className="mb-0 align-self-end">
             <Button
+              className="create-profile-button"
               themeColor="light"
               type="large"
               htmlType="submit"

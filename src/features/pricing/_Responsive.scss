@@ -24,9 +24,8 @@
               min-height: 500px;
 
               .pricing-header a {
-                font-size: 12px;
+                font-size: 10px;
                 position: relative;
-                top: -2px;
               }
               .pricing-items .pricing-typs {
                 display: flex;
@@ -45,6 +44,15 @@
           width: 100%;
         }
       }
+      .c-button {
+        padding: 4px 10px;
+        position: relative;
+        top: -4px;
+
+        a {
+          font-size: 10px;
+        }
+      }
     }
     .pricing-details {
       padding: 0 10px;
@@ -52,7 +60,7 @@
       flex-direction: column-reverse;
       .video-section {
         width: 100%;
-        min-height: 500px;
+        min-height: 350px;
       }
       .buy-premuim {
         padding: 0;
@@ -84,6 +92,11 @@
       }
       .interview-image {
         width: 100%;
+      }
+      .points {
+        display: flex;
+        align-items: flex-start;
+        margin: 20px 0;
       }
     }
   }
@@ -151,6 +164,19 @@
           .pricing-row {
             .pricing-card {
               min-height: 500px;
+
+              .pricing-items {
+                .pricings {
+                  min-height: 50px;
+                  display: flex;
+                  justify-content: center;
+                }
+                .pricing-typs {
+                  text-align: inherit;
+                  min-height: 50px;
+                  vertical-align: middle;
+                }
+              }
             }
           }
         }

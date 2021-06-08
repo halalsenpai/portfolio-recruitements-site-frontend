@@ -426,6 +426,7 @@ function EmployerSignUp() {
               <Button
                 block
                 type="large"
+                className="create-profile-button"
                 htmlType="submit"
                 themeColor="light"
                 loading={isLoading}>
