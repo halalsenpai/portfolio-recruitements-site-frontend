@@ -241,12 +241,23 @@ p {
     padding: 0 18px !important;
     background: #ffffff !important;
 
+    input {
+      box-shadow: none !important;
+    }
+
     .ant-select-selection-placeholder {
-      line-height: 36px;
+      line-height: 36px !important;
     }
   }
   .ant-select-arrow {
     right: 15px;
+  }
+}
+.ant-select-single {
+  .ant-select-selector {
+    .ant-select-selection-item {
+      line-height: 35px;
+    }
   }
 }
 .select-w100 {
