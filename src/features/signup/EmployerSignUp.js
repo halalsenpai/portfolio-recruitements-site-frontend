@@ -164,6 +164,7 @@ function EmployerSignUp() {
                     fetchOptions={getCompany}
                     onChange={onCompanyNameChange}
                     keys={["id", "companyName"]}
+                    searchKey={"searchValue"}
                     fixedOptions={[
                       {
                         label: "Create New Company",

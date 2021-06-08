@@ -3,6 +3,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Select, Spin } from "antd";
 import useRefState from "react-usestateref";
 
+import { Option } from "antd/lib/mentions";
 import { debounce } from "../../utils/powerFunctions";
 
 const initOptions = [
@@ -22,18 +23,20 @@ const getOptions = (data, keys) => {
 export const SuperSelect = ({
   fetchOptions,
   allowClear = true,
+  showSearch = true,
   placeholder = "Select options",
   debounceTimeout = 800,
   fixedOptions = [],
+  searchKey = "title",
   keys = ["id", "title"],
   ...props
 }) => {
   const fetchOnSearchRef = useRef(0);
   const fetchOnScrollRef = useRef(1);
   const totalPages = useRef(0);
-  const [options, setOptions, optionsRef] = useRefState([]);
 
   const [searchOptions, setSearchOptions] = useState([]);
+  const [options, setOptions, optionsRef] = useRefState([]);
   const [newOptions, setNewOptions] = useState([]);
   const [fetching, setFetching] = useState(false);
   const [params, setParams] = useState({
@@ -50,7 +53,9 @@ export const SuperSelect = ({
   }, [searchOptions]);
 
   useEffect(() => {
-    setOptions([...optionsRef.current, ...newOptions]);
+    const _options = optionsRef.current;
+    const _newOptions = newOptions;
+    setOptions([..._options, ..._newOptions]);
   }, [newOptions]);
 
   const debounceOnSearchFetcher = useMemo(() => {
@@ -62,7 +67,7 @@ export const SuperSelect = ({
       const _params = {
         page: 1,
         limit: 100,
-        title,
+        [searchKey]: title,
       };
       setParams(_params);
       fetchOptions(_params).then(({ data, meta }) => {
@@ -92,7 +97,7 @@ export const SuperSelect = ({
       if (totalPages && totalPages.current <= fetchId) {
         return;
       }
-      const _params = { ...params, page: fetchId };
+      const _params = { ...params, limit: 50, page: fetchId };
       setParams(_params);
       fetchOptions(_params).then(({ data, meta }) => {
         const _data = data.items || data;
@@ -101,11 +106,10 @@ export const SuperSelect = ({
           totalPages.current = _meta.totalPages;
         }
         const _options = getOptions(_data, keys);
-        if (fetchId !== fetchOnSearchRef.current) {
+        if (fetchId !== fetchOnScrollRef.current) {
           // for fetch callback order
           return;
         }
-
         setNewOptions(_options);
       });
     };
@@ -115,13 +119,29 @@ export const SuperSelect = ({
 
   return (
     <Select
-      showSearch={true}
+      showArrow={false}
+      filterOption={false}
+      showSearch={showSearch}
       placeholder={placeholder}
+      defaultActiveFirstOption={false}
       onSearch={debounceOnSearchFetcher}
       onPopupScroll={debounceOnScrollFetcher}
       notFoundContent={fetching ? <Spin size="small" /> : null}
       {...props}
-      options={[...initOptions, ...fixedOptions, ...optionsRef.current]}
-    />
+    >
+      {!fetching && (
+        <>
+          {initOptions.map((d) => (
+            <Option key={d.value}>{d.label}</Option>
+          ))}
+          {fixedOptions.map((d) => (
+            <Option key={d.value}>{d.label}</Option>
+          ))}
+          {optionsRef.current.map((d) => (
+            <Option key={d.value}>{d.label}</Option>
+          ))}
+        </>
+      )}
+    </Select>
   );
 };
