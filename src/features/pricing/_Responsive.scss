@@ -1,213 +1,83 @@
-@import "../../assets/scss/variables";
+@media screen and (max-width: 991px) {
+  .pricing-section-main {
+    .pricing-container {
+      padding: 0 10px;
+      .heading-section {
+        padding: 20px 0;
+        p {
+          font-size: 20px;
+        }
+      }
+      .pricing-main {
+        display: block;
 
-@media screen and (max-width: 480px) {
-  .pricing-container {
-    padding: 30px 10px;
+        .color-blue {
+          font-size: 10px;
+        }
 
-    .pricing-main {
-      display: block;
-      font-size: $font-size-sm;
+        .pricing-section {
+          width: 100%;
+          .pricing-row {
+            .pricing-card {
+              font-size: 10px;
+              padding: 0 2px;
+              min-height: 500px;
 
-      & .pricing-section {
-        width: 100%;
-
-        & .pricing-row {
-          & .pricing-card {
-            & .pricing-items {
-              & .pricings {
-                & .check-icon {
-                  color: #7ed957;
-                  font-size: 18px;
-                }
+              .pricing-header a {
+                font-size: 12px;
+                position: relative;
+                top: -2px;
               }
-            }
-          }
-        }
-      }
-
-      & .pricing-image {
-        width: auto;
-        padding: 0;
-
-        // & .image-section {
-        //   padding: 0;
-
-        //   & img {
-        //     margin: unset;
-        //     width: 100%;
-        //   }
-        // }
-      }
-
-      & .color-blue {
-        color: $blue;
-        font-size: $font-size-x-sm;
-      }
-    }
-
-    .pricing-page {
-      & .section-2 {
-        & .left-side {
-          left: 0;
-          padding: 0 10px;
-        }
-      }
-    }
-  }
-}
-
-@media screen and (min-width: 481px) and (max-width: 768px) {
-  .pricing-container {
-    padding: 30px 10px;
-
-    .pricing-main {
-      display: block;
-      font-size: $font-size-sm;
-
-      & .pricing-section {
-        width: 100%;
-      }
-
-      & .pricing-image {
-        width: auto;
-        padding: 0;
-
-        & .image-section {
-          padding: 0;
-
-          & img {
-            margin: unset;
-            width: 100%;
-          }
-        }
-      }
-
-      & .color-blue {
-        color: $blue;
-        font-size: $font-size-md;
-      }
-    }
-
-    .pricing-page {
-      & .section-2 {
-        & .left-side {
-          left: 0;
-          padding: 0 10px;
-        }
-      }
-    }
-  }
-}
-
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-  .pricing-container {
-    .pricing-details {
-      flex-direction: column-reverse;
-      .buy-premuim {
-        width: 100%;
-        .desc {
-          font-size: $font-size-lg;
-          line-height: unset;
-
-          span {
-            font-size: $font-size-lg;
-          }
-        }
-      }
-      .video-section {
-        width: 100%;
-        padding-bottom: 60%;
-      }
-    }
-    .interview-details {
-      width: 100%;
-    }
-    .interview-image {
-      width: 100%;
-    }
-  }
-}
-
-@media screen and (max-width: 767.5px) {
-  .pricing-container {
-    .heading-section {
-      padding: 0 0 20px 0;
-
-      P {
-        font-size: $font-size-lg;
-      }
-    }
-    .pricing-details {
-      padding-top: 50px;
-    }
-    .interview {
-      padding-top: 50px;
-    }
-    .pricing-main {
-      .pricing-section {
-        .pricing-row {
-          .pricing-card {
-            .pricing-items {
-              .pricing-typs {
-                font-size: $font-size-x-sm;
+              .pricing-items .pricing-typs {
+                display: flex;
+                align-items: center;
               }
               .pricings {
-                font-size: $font-size-x-sm;
+                display: flex;
+                align-items: center;
+                justify-content: center;
               }
-            }
-            .pricing-header {
-              // .customize {
-              a {
-                font-size: $font-size-x-sm;
-                text-decoration: none;
-              }
-              // }
-            }
-            .top-items-head {
-              font-size: $font-size-x-sm;
-              display: flex;
-              align-items: center;
-              justify-content: center;
             }
           }
         }
-      }
-      .pricing-image {
-        .image-section {
-          img {
-            margin: 40px 0 0 0;
-            width: 100%;
-          }
+        .pricing-image {
+          padding: 20px 0;
+          width: 100%;
         }
       }
     }
-
     .pricing-details {
+      padding: 0 10px;
       display: flex;
       flex-direction: column-reverse;
-
       .video-section {
         width: 100%;
-        padding-bottom: 100%;
+        min-height: 500px;
       }
       .buy-premuim {
-        width: 100%;
-        padding: 0 0 50px 0;
-      }
-      .buy-premuim {
+        padding: 0;
         .desc {
-          font-size: $font-size-lg;
-          line-height: unset;
+          font-size: 18px;
+          max-width: 100%;
+          margin: 0 0 20px 0;
 
           span {
-            font-size: $font-size-lg;
+            font-size: 18px;
           }
+        }
+        .premium-heading {
+          font-size: 18px;
         }
       }
     }
     .interview {
-      display: flex;
-      flex-direction: column;
+      padding: 0px 10px;
+      padding-top: 20px;
+      display: block;
+
+      .coming-soon {
+        font-size: 25px;
+      }
 
       .interview-details {
         width: 100%;
@@ -216,9 +86,143 @@
         width: 100%;
       }
     }
-    & .pricing-image {
-      width: auto;
-      padding: 0;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .pricing-section-main {
+    .pricing-container {
+      .heading-section {
+        padding: 30px 0;
+      }
+      .pricing-main {
+        .color-blue {
+          font-size: 14px;
+        }
+        .pricing-section {
+          .pricing-row {
+            .pricing-card {
+              font-size: 14px;
+              min-height: max-content;
+
+              .pricing-header a {
+                font-size: 14px;
+                position: relative;
+                top: -2px;
+              }
+            }
+          }
+        }
+        .pricing-image {
+          padding: 30px 0;
+        }
+      }
+    }
+    .pricing-details {
+      .buy-premuim {
+        // width: 100%;
+        // display: flex;
+        // flex-direction: column;
+        // align-items: center;
+        // text-align: center;
+        width: max-content;
+        // margin: auto;
+      }
+      .video-section {
+        width: 100%;
+        padding-bottom: 100%;
+        min-height: 800px;
+        max-width: unset;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  .pricing-section-main {
+    .pricing-container {
+      padding: 15px;
+
+      .bg {
+        height: 100%;
+      }
+      .pricing-main {
+        .pricing-section {
+          .pricing-row {
+            .pricing-card {
+              min-height: 500px;
+            }
+          }
+        }
+      }
+    }
+    .pricing-details {
+      padding-top: 100px;
+    }
+    .interview {
+      padding-top: 100px;
+
+      .interview-details {
+        .coming-soon {
+          font-size: 32px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .pricing-section-main {
+    .pricing-container {
+      .heading-section {
+        p {
+          font-size: 48px;
+        }
+      }
+      .pricing-main {
+        .pricing-section {
+          .pricing-row {
+            .pricing-card {
+              .pricing-items {
+                .pricings {
+                  min-height: 60px;
+                  font-size: 16px;
+                  .check-icon {
+                    font-size: 28px;
+                  }
+                }
+                .pricing-typs {
+                  min-height: 60px;
+                  font-size: 16px;
+                  vertical-align: middle;
+                }
+              }
+              .pricing-header {
+                .top-items-head {
+                  height: 60px;
+                  font-size: 16px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .pricing-details {
+      padding: 0 108px;
+      padding-top: 200px;
+    }
+    .interview {
+      p {
+        max-width: 560px;
+        line-height: 1.6;
+        font-size: 15px;
+      }
+      .interview-details {
+        .make-interview {
+          font-size: 20px;
+        }
+      }
     }
   }
 }

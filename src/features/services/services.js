@@ -46,8 +46,7 @@ const Services = () => {
       <div className="cust-reward-section">
         <h1 className="coming-soon">Coming soon...</h1>
         <h1 className="">
-          Our loyalty and customer reward section, <br /> built around what you
-          love.
+          Our loyalty and customer reward section, built around what you love.
         </h1>
         <p className="full-desc">
           This page will be for services such as restaurants, estate agencies,
@@ -94,38 +93,33 @@ const Services = () => {
             form={form}
             onFinish={onFinish}
             layout="vertical"
-            className="services-form-wrapper c-form"
-          >
+            className="services-form-wrapper c-form">
             <Form.Item
               label="Name"
               name="name"
               className="c-input"
-              rules={Rules.firstNameRule}
-            >
+              rules={Rules.firstNameRule}>
               <Input className="" size="" type="text" />
             </Form.Item>
             <Form.Item
               label="Work email adress"
               name="email"
               className="c-input"
-              rules={Rules.emailRule}
-            >
+              rules={Rules.emailRule}>
               <Input className="" size="" type="text" />
             </Form.Item>
             <Form.Item
               label="Mobile phone number"
               name="mobile"
               className="c-input"
-              rules={Rules.phoneRule}
-            >
+              rules={Rules.phoneRule}>
               <Input className="" size="" type="text" />
             </Form.Item>
             <Form.Item
               label="Category"
               name="categoryId"
               className="c-input select-w100"
-              rules={Rules.requiredRule}
-            >
+              rules={Rules.requiredRule}>
               <Select>
                 {categories?.map((d) => (
                   <Option value={d.id}>{d.title}</Option>
@@ -135,8 +129,7 @@ const Services = () => {
             <Form.Item
               label="Short Message (Optional)"
               name="message"
-              className="text-area"
-            >
+              className="text-area">
               <TextArea rows={4} />
             </Form.Item>
             <div className="submit-btn">

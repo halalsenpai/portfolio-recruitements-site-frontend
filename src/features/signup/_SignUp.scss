@@ -40,7 +40,8 @@
 
     .first-container {
       width: 380px !important;
-      background: transparent url("../../assets/images/auth/sign-up-back.png") 0% 0% no-repeat padding-box;
+      background: transparent url("../../assets/images/auth/sign-up-back.png")
+        0% 0% no-repeat padding-box;
       background-position: top;
       background-repeat: no-repeat;
       background-size: cover;
@@ -56,12 +57,15 @@
       }
 
       &.bg-2 {
-        background: transparent url("../../assets/images/auth/signup-ban-2.jpg") 0% 0% no-repeat padding-box;
+        background: transparent url("../../assets/images/auth/signup-ban-2.jpg")
+          0% 0% no-repeat padding-box;
         background-size: 100% 100%;
       }
 
       &.role-select {
-        background: transparent url("../../assets/images/auth/sign-up-main-back.png") 0% 0% no-repeat padding-box;
+        background: transparent
+          url("../../assets/images/auth/sign-up-main-back.png") 0% 0% no-repeat
+          padding-box;
         background-size: 100% 100%;
         padding: 40px 15px;
         justify-content: flex-start;
@@ -161,8 +165,8 @@
     border: none !important;
   }
   .c-input .ant-picker {
-    box-shadow: none !important;
-    border: 1px solid $primary;
+    // box-shadow: none !important;
+    // border: 1px solid $primary;
   }
   .react-tel-input {
     .c-input > input {
