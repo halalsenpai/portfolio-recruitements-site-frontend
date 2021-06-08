@@ -38,7 +38,10 @@
 
 @media only screen and (max-width: 480px) {
   .signup-container {
+    background-color: #fff;
     &.with-form {
+      background-color: #fff;
+
       max-width: 1020px;
       width: 100%;
       border-radius: 20px;
@@ -64,6 +67,9 @@
       .c-row {
         justify-content: space-evenly;
         flex-wrap: wrap;
+      }
+      .create-profile-button {
+        margin: 20px !important;
       }
     }
     .c-form {

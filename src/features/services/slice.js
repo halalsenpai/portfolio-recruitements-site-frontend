@@ -1,6 +1,9 @@
 import { createSlice, isPending, isRejected } from "@reduxjs/toolkit";
+
 import { comingSoon, getCategories } from "./thunk";
+
 const thunks = [getCategories, comingSoon];
+
 const initialState = {
   status: "idle",
   errorMessage: "",
@@ -36,7 +39,8 @@ export const slice = createSlice({
 });
 
 export const selectCategories = (state) => state.services.categories;
-export const selectComingSoonSuccess = (state) => state.services.comingSoonSuccess;
+export const selectComingSoonSuccess = (state) =>
+  state.services.comingSoonSuccess;
 export const selectStatus = (state) => state.services.status === "loading";
 
 export default slice.reducer;

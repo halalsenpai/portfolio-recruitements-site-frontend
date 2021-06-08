@@ -37,9 +37,15 @@ function SignUp() {
     <div className="c-container auth-wrapper">
       <div className="signup-container with-form role-container">
         <div className="first-container role-select">
-          <img className="logo" src={require("../../assets/images/logo/logo-white.png")} alt="logo" />
+          <img
+            className="logo"
+            src={require("../../assets/images/logo/logo-white.png")}
+            alt="logo"
+          />
         </div>
-        <Form className="second-container c-form w-100 signup-option" onFinish={onFinish}>
+        <Form
+          className="second-container c-form w-100 signup-option"
+          onFinish={onFinish}>
           {/* <img
             src={require("../../assets/images/auth/signup-illus.png")}
             alt="logo"
@@ -51,11 +57,13 @@ function SignUp() {
             </h3>
 
             <Radio.Group onChange={onChange} value={userType}>
-              <Radio value={userTypes.JOBSEEKER.title}>I'm looking for jobs</Radio>
+              <Radio value={userTypes.JOBSEEKER.title}>
+                I'm looking for jobs
+              </Radio>
 
               <Radio value={userTypes.EMPLOYER.title}>I'm an employer</Radio>
 
-              {/* <Radio value={userTypes.AGENCY.title}>I'm a recruiter</Radio> */}
+              <Radio value={userTypes.AGENCY.title}>I'm a recruiter</Radio>
             </Radio.Group>
           </span>
 

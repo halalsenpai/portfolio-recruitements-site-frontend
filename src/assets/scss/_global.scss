@@ -120,21 +120,11 @@ img {
 
   img {
     width: 600px;
-    // &.right-image {
-    //   // border-radius: 25px;
-    //   // &.lg-rad {
-    //   //   // border-radius: 60px;
-    //   // }
   }
-
-  // &.lg {
-  //   // width: 750px;
-  // }
 }
 
 p {
   margin-top: 12px;
-  // font-family: $font-medium !important;
   font-family: $font-medium;
 }
 
@@ -157,117 +147,8 @@ p {
   }
 }
 
-// custom input styling
-
 .ant-form-item-control {
   width: 100%;
-}
-
-.c-input {
-  position: relative;
-
-  .ant-picker {
-    box-shadow: $theme-shadow !important;
-  }
-
-  input {
-    font-size: $font-size-sm;
-    // box-shadow: $theme-shadow !important;
-    // border: none !important;
-    border-radius: 100px !important;
-    height: 32px !important;
-    padding: 0 18px !important;
-    // box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
-    border: 1px solid $primary !important;
-    background: $white !important;
-
-    &.ant-input-lg {
-      width: 400px;
-    }
-
-    &.ant-input-sm {
-      width: 300px;
-    }
-
-    &.xs {
-      width: 150px;
-    }
-
-    &:hover {
-      border: none;
-      border-right-width: 0px !important;
-    }
-
-    &:focus {
-      border-color: $primary;
-    }
-  }
-
-  // textarea {
-  //   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3) !important;
-  //   // border: solid 1px rgba($color: $primary, $alpha: 0.3);
-  //   border: none !important;
-  //   border-radius: 10px !important;
-  //   padding: 1em !important;
-  //   font-size: $font-size-sm;
-  // }
-
-  &.c-input-with-icon {
-    .ant-form-item-control-input-content {
-      position: relative;
-      display: flex;
-      align-items: center;
-      flex-direction: row;
-
-      .input-icon {
-        position: absolute;
-        left: 12px;
-        z-index: 1;
-        max-width: 17px;
-      }
-
-      input {
-        padding: 0 15px 0 35px !important;
-      }
-    }
-  }
-
-  .ant-form-item-explain-error {
-    div {
-      font-size: 12px;
-      margin-left: 1em;
-    }
-  }
-  .ant-form-item-extra {
-    margin-left: 0.5em;
-  }
-}
-
-// antd select
-
-.select-w100 {
-  .ant-select {
-    width: 100% !important;
-  }
-}
-
-.c-text-box {
-  width: 100%;
-
-  .c-text-area {
-    width: 100%;
-    resize: none;
-    height: 200px !important;
-    border-radius: 20px;
-    // border: $theme-border !important;
-    border: 1px solid $primary !important;
-    padding: 20px;
-  }
-
-  .ant-input:focus,
-  .ant-input-focused {
-    box-shadow: none !important;
-  }
 }
 
 .ant-input-password {
@@ -339,62 +220,110 @@ p {
   max-height: 100px;
 }
 
-// custom select
-.ant-select {
-  width: 300px !important;
-
-  .ant-select-selector {
-    font-size: $font-size-sm;
-    // box-shadow: $theme-shadow !important;
-    // border: none !important;
-    border: 1px solid $primary !important;
-    border-radius: 100px !important;
-    height: 32px !important;
-    padding: 0 18px !important;
-    background: #ffffff !important;
-  }
-
-  .ant-select-arrow {
-    right: 15px;
-  }
-}
-
-// custom date picker
-.ant-picker {
-  font-size: $font-size-sm;
-  // box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3) !important;
-  // border: none !important;
-  border: 1px solid $primary;
-  border-radius: 100px !important;
-  padding: 0 18px 0px 0px !important;
-  // box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
-  background: #ffffff !important;
-  width: 300px;
-  height: 32px !important;
-
-  input {
-    font-size: $font-size-sm;
-    box-shadow: none !important;
-    height: 30px !important;
-  }
-}
-
 .ant-btn-primary {
   span {
     color: $white;
   }
 }
 
-// custom date picker
+// * * * * * * * * * * * * * antd feilds  * * * * * * * * * * * * * * * //
+
+// custom select * * *
+
+.ant-select {
+  width: 300px !important;
+  z-index: 40 !important;
+
+  .ant-select-dropdown {
+    padding-top: 40px;
+    top: 0px !important;
+    z-index: -1 !important;
+    border-radius: 16px;
+    .ant-select-item-option-content {
+      font-size: $font-size-sm;
+    }
+  }
+
+  &.ant-select-multiple {
+    .ant-select-selection-item {
+      height: 25px;
+      line-height: 25px;
+      margin-top: 0;
+      margin-bottom: 6px;
+    }
+    .ant-select-selection-overflow-item {
+      opacity: 0;
+    }
+  }
+
+  .ant-select-selector {
+    font-size: $font-size-sm;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2) !important;
+    border: none !important;
+    border-radius: 100px !important;
+    height: 36px !important;
+    padding: 0 18px !important;
+    background: #ffffff !important;
+
+    input {
+      box-shadow: none !important;
+      padding: 0 6px !important;
+    }
+
+    .ant-select-selection-placeholder {
+      line-height: 36px !important;
+    }
+  }
+  .ant-select-arrow {
+    right: 15px;
+  }
+}
+.ant-select-single {
+  .ant-select-selector {
+    .ant-select-selection-item {
+      line-height: 35px;
+      font-size: 12px;
+    }
+  }
+}
+.select-w100 {
+  .ant-select {
+    width: 100% !important;
+  }
+}
+
+// custom text area * * *
+
+.c-text-box {
+  width: 100%;
+
+  .c-text-area {
+    width: 100%;
+    resize: none;
+    height: 200px !important;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border: none !important;
+    padding: 20px;
+  }
+
+  .ant-input:focus,
+  .ant-input-focused {
+    box-shadow: none !important;
+  }
+}
+
+// custom date picker * * *
+
 .c-date-picker {
   .ant-picker {
     font-size: $font-size-sm;
     border: none !important;
     border-radius: 100px !important;
-    box-shadow: $theme-shadow !important;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4) !important;
     background: #ffffff !important;
     width: 300px;
-    height: 32px !important;
+    // height: 32px !important;
     margin: 0;
     input {
       font-size: $font-size-sm;
@@ -418,19 +347,20 @@ p {
   }
 }
 
-// custom phone number input
+// custom phone number input * * *
+
 .react-tel-input {
   width: 300px;
   font-size: $font-size-md;
-  // box-shadow: $theme-shadow;
-  border: 1px solid $primary !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border-radius: 100px;
-  height: 35px;
+  height: 36px;
   padding: 0 18px 0px 0px;
   background: #ffffff;
 
   .flag-dropdown {
     background-color: transparent;
+    font-size: 12px;
     border: none;
     border-radius: 20px 0 0 20px;
     padding: 0 0px 0px 5px;
@@ -441,17 +371,14 @@ p {
     box-shadow: none !important;
     left: 30px;
     border: none !important;
-    height: 30px !important;
+    height: 36px !important;
   }
-
   .selected-flag:hover {
     background: transparent;
   }
-
   .flag-dropdown.open {
     border-radius: 20px 0 0 20px;
     background: transparent;
-
     .selected-flag {
       border-radius: 20px 0 0 20px;
       background: transparent;
@@ -460,12 +387,104 @@ p {
   }
 }
 
+// custom input styling * * *
+
+.c-input {
+  position: relative;
+
+  input {
+    font-size: $font-size-sm;
+    border: none !important;
+    border-radius: 100px !important;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2) !important;
+    height: 36px !important;
+    padding: 0 18px !important;
+    background: $white !important;
+
+    &.ant-input-lg {
+      width: 400px;
+    }
+
+    &.ant-input-sm {
+      width: 300px;
+    }
+
+    &.xs {
+      width: 150px;
+    }
+
+    &:hover {
+      border: none;
+      border-right-width: 0px !important;
+    }
+
+    &:focus {
+      border-color: $primary;
+    }
+  }
+
+  &.c-input-with-icon {
+    .ant-form-item-control-input-content {
+      position: relative;
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+
+      .input-icon {
+        position: absolute;
+        left: 12px;
+        z-index: 1;
+        max-width: 17px;
+      }
+
+      input {
+        padding: 0 15px 0 35px !important;
+      }
+    }
+  }
+
+  .ant-form-item-explain-error {
+    div {
+      font-size: 12px;
+      margin-left: 1em;
+    }
+  }
+  .ant-form-item-extra {
+    margin-left: 0.5em;
+  }
+}
+
+// custom date picker * * *
+
+.ant-picker {
+  font-size: $font-size-sm;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2) !important;
+  border: none !important;
+  border-radius: 100px !important;
+  padding: 0 18px 0px 0px !important;
+  background: #ffffff !important;
+  width: 300px;
+  height: 36px !important;
+
+  input {
+    font-size: $font-size-sm;
+    height: 30px !important;
+    box-shadow: none !important;
+  }
+}
+
+// * * * * * * * * * * * * * antd feilds end  * * * * * * * * * * * * * * * //
+
 .c-row {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+}
+
+.w-45 {
+  width: 45%;
 }
 
 // custom card container
@@ -483,10 +502,6 @@ p {
     justify-content: center;
     align-items: center;
     height: 170px;
-    // background: transparent url("../../assets/images/auth/login-background.png") 0% 0% no-repeat padding-box;
-    // background-position: top;
-    // background-repeat: no-repeat;
-    // background-size: 100% 100%;
 
     img {
       width: 320px;
@@ -524,6 +539,7 @@ p {
 }
 
 // custom form
+
 .c-form {
   display: flex;
   flex-direction: column;
@@ -532,7 +548,7 @@ p {
   padding: 40px 0px 40px 0px;
 
   .form-title {
-    font-family: $font-bold;
+    font-family: $font-medium;
     font-size: $font-size-lg;
     margin-bottom: 28px;
   }
@@ -581,7 +597,10 @@ p {
   height: 3px;
 }
 
-.ant-steps-item-finish > .ant-steps-item-container > .ant-steps-item-content > .ant-steps-item-title::after {
+.ant-steps-item-finish
+  > .ant-steps-item-container
+  > .ant-steps-item-content
+  > .ant-steps-item-title::after {
   background-color: $green;
 }
 
@@ -682,7 +701,7 @@ p {
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
   border-top: 6px solid #6c6c6c;
-  top: 19px;
+  top: 22px;
 }
 
 .ant-radio-group {
@@ -747,55 +766,56 @@ p {
   }
 }
 
-// @media screen and (min-width: 541px) and (max-width: 1024px) {
-//   .c-input {
-//     width: 100%;
-//     max-width: 300px;
-//     min-width: 160px;
-//     margin: 10px;
+@media screen and (min-width: 541px) and (max-width: 1024px) {
+  .c-input {
+    width: 100%;
+    // max-width: 320px;
+    // min-width: 160px;
+    margin: 10px;
 
-//     input.ant-input-sm,
-//     input.ant-input-lg,
-//     input.ant-input-medium,
-//     .ant-picker {
-//       width: 100%;
-//     }
-//     .ant-select {
-//       width: 100% !important;
-//     }
-//     // input {
-//     //   &.ant-input-lg {
-//     //     width: 100%;
-//     //   }
+    input.ant-input-sm,
+    input.ant-input-lg,
+    input.ant-input-medium,
+    .ant-picker {
+      width: 100%;
+    }
+    input {
+      &.ant-input-lg {
+        width: 100%;
+      }
 
-//     //   &.ant-input-sm {
-//     //     width: 100%;
-
-//     //   }
-//     //   &.xs {
-//     //     width: 100%;
-
-//     //   }
-//     // }
-//   }
-// }
+      &.ant-input-sm {
+        width: 100%;
+      }
+      &.xs {
+        width: 100%;
+      }
+    }
+  }
+  .ant-select {
+    width: 100% !important;
+  }
+}
 @media screen and (max-width: 1024px) {
   .react-tel-input .form-control {
     width: unset !important;
   }
   .react-tel-input {
     width: 100%;
-    height: 32px;
+    height: 36px;
   }
 }
 // select placeholder
-.ant-select-single.ant-select-lg:not(.ant-select-customize-input) .ant-select-selector::after,
-.ant-select-single.ant-select-lg:not(.ant-select-customize-input) .ant-select-selector .ant-select-selection-item,
-.ant-select-single.ant-select-lg:not(.ant-select-customize-input)
-  .ant-select-selector
-  .ant-select-selection-placeholder {
-  line-height: 34.4px;
-}
+// .ant-select-single.ant-select-lg:not(.ant-select-customize-input)
+//   .ant-select-selector::after,
+// .ant-select-single.ant-select-lg:not(.ant-select-customize-input)
+//   .ant-select-selector
+//   .ant-select-selection-item,
+// .ant-select-single.ant-select-lg:not(.ant-select-customize-input)
+//   .ant-select-selector
+//   .ant-select-selection-placeholder {
+//   line-height: 34.4px;
+// }
 
 html {
   image-rendering: -moz-crisp-edges !important; /* Firefox */
