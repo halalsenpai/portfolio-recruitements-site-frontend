@@ -16,7 +16,7 @@ function Home() {
       <div className="home">
         <div className="container-fluid">
           <div className="row banner-spacing">
-            <div className="col-lg-7 first-banner-heading-container">
+            <div className="col-lg-7 col-xl-6 px-xl-5 first-banner-heading-container">
               <span className="inner-container">
                 {/* <Fade delay={300} bottom duration={1200}> */}
                 {/* <div> */}
@@ -69,7 +69,7 @@ function Home() {
             </div>
 
             <Fade bottom duration={1200} delay={300}>
-              <div className="col-lg-5 p-0 margin-mobile">
+              <div className="col-lg-5 col-xl-6 p-0 margin-mobile">
                 <BannerWithImages className="c-banner-responsive" />
               </div>
             </Fade>
