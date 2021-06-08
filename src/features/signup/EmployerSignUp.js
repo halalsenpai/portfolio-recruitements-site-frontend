@@ -398,8 +398,9 @@ function EmployerSignUp() {
               <Button
                 block
                 type="large"
+                className="create-profile-button"
                 htmlType="submit"
-                themeColor="blue"
+                themeColor="light"
                 loading={isLoading}>
                 {isCreateCompany && "Next"}
                 {!isCreateCompany && "Create my profile"}
