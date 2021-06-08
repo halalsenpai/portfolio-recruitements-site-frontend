@@ -26,7 +26,7 @@
   }
 
   .banner-spacing {
-    padding-left: calc(114px);
+    // padding-left: calc(114px);
   }
 
   .first-banner-heading-container {
@@ -45,33 +45,37 @@
         font-family: $font-light;
         margin: 42px 0 68px 0;
       }
+
       .get-started-btn > span {
         font-family: $font-medium !important;
+        font-size: 18px;
       }
     }
   }
   .main-heading {
-    font-size: 55px;
-    margin: 0 0 15px 0;
+    font-size: 2.8vw;
+    line-height: 1.7;
     font-family: $font-medium;
     color: $secondary;
+    // padding-right: 5rem;
+
     .banner-heading-highlight {
-      font-family: $font-subtitle;
-      font-size: 55px;
+      font-family: $font-bold;
+      font-size: 2.8vw;
       color: $blue;
     }
   }
 
   .sub-heading {
-    margin: 53px 0px;
-    font-size: 30px;
+    margin: 32px 0px;
+    font-size: 1.5vw;
     font-family: $font-medium;
     color: $secondary;
   }
 
   .container-benefit {
-    padding: 0 112px;
-    margin: 0 0 157px 0;
+    padding: 0 90px;
+    margin: 0 0 100px 0;
 
     h4 {
       font-size: $font-size-lg;
@@ -94,8 +98,8 @@
       .box {
         display: flex;
         width: max-content;
-        min-width: calc(281px + 87px);
-        max-width: 300px;
+        // min-width: calc(281px + 87px);
+        max-width: 310px;
         flex-direction: row;
         // margin-left: 30px;
         align-items: center;
@@ -103,31 +107,33 @@
           margin-left: 0px;
         }
         h3 {
-          font-size: $font-size-md;
           text-decoration: none;
         }
         p {
-          font-size: $font-size-sm;
           font-family: $font-light !important;
-          font-size: 18px;
-          max-width: 297px;
+          font-size: 15px;
+          line-height: 1.2;
+
+          // max-width: 297px;
           margin-bottom: 0;
+          margin-top: 0;
         }
         img {
-          width: 88px;
+          width: 80px;
         }
         span {
-          padding: 20px 0px 0px 15px;
+          padding: 0 0px 0px 15px;
           flex: 1;
         }
         .b-text {
           color: $primary;
-          font-size: 28px;
+          font-size: 20px;
           font-family: $font-bold;
         }
         .a-text {
           color: #1a1d3d;
-          font-size: 23px;
+          margin-bottom: 0.3rem;
+          font-size: 20px;
           font-family: $font-bold;
         }
       }
@@ -135,8 +141,8 @@
   }
 
   .container-filters {
-    padding: 0 112px;
-    margin: 0 0 216px 0;
+    padding: 0 90px;
+    margin: 0 0 100px 0;
 
     h4 {
       font-size: $font-size-lg;
@@ -159,8 +165,7 @@
       .box {
         display: flex;
         width: max-content;
-        min-width: calc(281px + 87px);
-        max-width: 300px;
+        max-width: 310px;
         flex-direction: row;
         // margin-left: 30px;
         align-items: center;
@@ -172,14 +177,15 @@
           text-decoration: none;
         }
         p {
-          font-size: $font-size-sm;
           font-family: $font-light !important;
-          font-size: 18px;
-          max-width: 297px;
+          font-size: 15px;
+          line-height: 1.2;
+          // max-width: 297px;
           margin-bottom: 0;
+          margin-top: 0;
         }
         img {
-          width: 88px;
+          width: 80px;
         }
         span {
           padding: 20px 0px 0px 15px;
@@ -187,12 +193,12 @@
         }
         .b-text {
           color: $primary;
-          font-size: 28px;
+          font-size: 20px;
           font-family: $font-bold;
         }
         .a-text {
           color: #1a1d3d;
-          font-size: 23px;
+          font-size: 20px;
           font-family: $font-bold;
         }
       }
@@ -207,10 +213,11 @@
     }
   }
   .small-paragraph p {
-    font-size: 14px;
-    margin-bottom: 40px;
-    line-height: 30px;
+    font-size: 13px;
+    margin-bottom: 20px;
+    line-height: 2;
     max-width: 525px;
+    padding: 0 45px 0 0;
   }
   .bottom-container {
     .bottom-container-row {
@@ -218,18 +225,24 @@
       flex-wrap: wrap;
       align-items: center;
       margin: -10px 0 0 0;
+      padding-top: 70px;
 
       .bottom-text-section {
-        flex: 1;
-        max-width: 600px;
-        min-width: 400px;
+        flex-basis: 40%;
         margin: 10px 0 0 0;
+        flex-grow: 1;
       }
 
       .btm-container-img {
-        flex: 2;
-        min-width: 400px;
+        flex-basis: 60%;
+        flex-grow: 1;
         margin: 10px 0 0 0;
+        align-self: flex-end;
+
+        img {
+          width: 100%;
+          object-fit: cover;
+        }
       }
     }
     .text-column {
@@ -239,7 +252,7 @@
     }
 
     .demo-btn {
-      margin-top: 41px;
+      margin-top: 20px;
     }
     .book-a-demo-btn {
       font-family: $font-medium;
@@ -247,7 +260,7 @@
     }
   }
   .bottom-text-section {
-    padding: 40px 0 0 62px;
+    padding: 0px 0 0 62px;
   }
   .bottom-logo {
     max-width: 287px;
@@ -267,14 +280,22 @@
 
 .home-content-container {
   text-align: center;
-  margin: 157px 0 0 0;
+  padding: 90px 0 60px 0;
 
   .main-heading {
-    font-size: 55px;
+    font-size: 2.8vw;
   }
 
   h5 {
-    font-size: 34px;
+    font-size: 1.7vw;
     text-transform: uppercase;
+  }
+}
+
+.mid-image {
+  img {
+    width: 100%;
+    max-width: 1100px;
+    margin: auto;
   }
 }

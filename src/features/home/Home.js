@@ -1,11 +1,9 @@
 import React from "react";
 import { useHistory } from "react-router";
-
 import Fade from "react-reveal/Fade";
-
+import { Row, Col } from "antd";
 import Button from "../../shared-ui/Button/Button";
 import BannerWithImages from "../../shared-ui/BannerWithImages/BannerWithImages";
-
 import "./_Home.scss";
 import "./_Responsive.scss";
 
@@ -16,7 +14,7 @@ function Home() {
       <div className="home">
         <div className="container-fluid">
           <div className="row banner-spacing">
-            <div className="col-lg-7 col-xl-6 px-xl-5 first-banner-heading-container">
+            <div className="col-lg-6 col-xl-6 px-xl-5 first-banner-heading-container">
               <span className="inner-container">
                 {/* <Fade delay={300} bottom duration={1200}> */}
                 {/* <div> */}
@@ -24,11 +22,9 @@ function Home() {
                   <h2 className="main-heading">
                     THE{" "}
                     <span className="banner-heading-highlight">SMARTEST </span>{" "}
-                    JOB SITE
+                    JOB SITE IN THE MIDDLE EAST.
                   </h2>
-                  <h2 className="main-heading">IN THE MIDDLE EAST.</h2>
                 </Fade>
-
                 <Fade bottom delay={500}>
                   <h5 className="sub-heading color-text">
                     Be the best. Find the best. Choose the best.
@@ -69,7 +65,7 @@ function Home() {
             </div>
 
             <Fade bottom duration={1200} delay={300}>
-              <div className="col-lg-5 col-xl-6 p-0 margin-mobile">
+              <div className="col-lg-6 col-xl-6 p-0 margin-mobile">
                 <BannerWithImages className="c-banner-responsive" />
               </div>
             </Fade>
@@ -83,9 +79,9 @@ function Home() {
               <h5 className="mobile-textalign">connected in one platform.</h5>
             </div>
 
-            <div className="container-fluid p-0 d-flex justify-content-center">
+            <div className="container-fluid mid-image p-0 d-flex justify-content-center">
               <img
-                className="w-75 img-mobile"
+                className="img-mobile"
                 src={require("../../assets/images/home/1-homepage.png")}
                 alt=""
               />
@@ -132,7 +128,7 @@ function Home() {
                   alt="img"
                 />
                 <span>
-                  <h3 className="a-text">Candidate Match</h3>
+                  <h3 className="a-text">Profile Match</h3>
                   <p>Find the suitable person for the job in a few clicks.</p>
                 </span>
               </div>
@@ -211,9 +207,9 @@ function Home() {
             </span>
           </Fade>
         </div>
-        <div className="container-fluid bottom-container">
+        <div className="pr-0 bottom-container">
           {/* <Fade bottom duration={1000}> */}
-          <div className="bottom-container-row pb-5">
+          <div className="bottom-container-row">
             <div className="padding-mobile bottom-text-section text-column ">
               <img
                 className="bottom-logo"
@@ -256,13 +252,13 @@ function Home() {
             </div>
 
             <div className="btm-container-img">
-              <div className="container-fluid p-0 d-flex justify-content-center">
-                <img
-                  className="w-100 safari-fix"
-                  src={require("../../assets/images/home/20778407.png")}
-                  alt=""
-                />
-              </div>
+              {/* <div className="p-0 d-flex justify-content-center"> */}
+              <img
+                className="w-100 safari-fix"
+                src={require("../../assets/images/home/20778407.png")}
+                alt=""
+              />
+              {/* </div> */}
             </div>
           </div>
           {/* </Fade> */}

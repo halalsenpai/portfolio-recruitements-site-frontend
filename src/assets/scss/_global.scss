@@ -459,6 +459,10 @@ p {
   width: 100%;
 }
 
+.w-45 {
+  width: 45%;
+}
+
 // custom card container
 .c-card-container {
   max-width: 900px;
@@ -520,7 +524,7 @@ p {
   padding: 40px 0px 40px 0px;
 
   .form-title {
-    font-family: $font-bold;
+    font-family: $font-medium;
     font-size: $font-size-lg;
     margin-bottom: 28px;
   }

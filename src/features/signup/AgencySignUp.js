@@ -145,8 +145,7 @@ function AgencySignUp() {
           form={form}
           layout="vertical"
           className="c-form second-container align-items-start"
-          onFinish={onFinish}
-        >
+          onFinish={onFinish}>
           {currentStep === 1 ? (
             <>
               <h3 className="form-title">
@@ -161,13 +160,11 @@ function AgencySignUp() {
                   label="Company name"
                   name="companyProfileId"
                   className="c-input"
-                  rules={Rules.requiredRule}
-                >
+                  rules={Rules.requiredRule}>
                   <Select
                     size="large"
                     defaultValue=""
-                    onChange={onCompanyNameChange}
-                  >
+                    onChange={onCompanyNameChange}>
                     <Option value="">Select</Option>
                     <Option value="create-company">Create new company</Option>
 
@@ -180,8 +177,7 @@ function AgencySignUp() {
                   label="Job title"
                   name="jobTitleId"
                   className="c-input"
-                  rules={Rules.requiredRule}
-                >
+                  rules={Rules.requiredRule}>
                   {/* <SelectWithAddItem
                     options={["Software Engineer", "Accountant"]}
                     onItemChange={(e) => console.log(e)}
@@ -201,8 +197,7 @@ function AgencySignUp() {
                   label="First name"
                   name="firstName"
                   className="c-input"
-                  rules={Rules.firstNameRule}
-                >
+                  rules={Rules.firstNameRule}>
                   <Input
                     placeholder="Enter your first name"
                     size="small"
@@ -213,8 +208,7 @@ function AgencySignUp() {
                   label="Last name"
                   name="lastName"
                   className="c-input"
-                  rules={Rules.lastNameRule}
-                >
+                  rules={Rules.lastNameRule}>
                   <Input
                     placeholder="Enter your last name"
                     size="small"
@@ -227,8 +221,7 @@ function AgencySignUp() {
                   label="Mobile number"
                   name="mobile"
                   className="c-input"
-                  rules={Rules.phoneRule}
-                >
+                  rules={Rules.phoneRule}>
                   <PhoneInput
                     placeholder="Enter your mobile no."
                     country={countryCode}
@@ -238,8 +231,7 @@ function AgencySignUp() {
                   label="Direct work phone"
                   name="directWorkPhone"
                   className="c-input"
-                  rules={Rules.phoneRule}
-                >
+                  rules={Rules.phoneRule}>
                   <PhoneInput
                     placeholder="Enter your work phone."
                     country={countryCode}
@@ -251,8 +243,7 @@ function AgencySignUp() {
                   label="Work email address"
                   name="email"
                   className="c-input"
-                  rules={Rules.emailRule}
-                >
+                  rules={Rules.emailRule}>
                   <Input
                     placeholder="Enter your email"
                     size="small"
@@ -263,8 +254,7 @@ function AgencySignUp() {
                   label="How did you find us?"
                   name="findUsId"
                   className="c-input"
-                  rules={Rules.requiredRule}
-                >
+                  rules={Rules.requiredRule}>
                   <Select size="large" defaultValue="">
                     <Option value="">Select</Option>
 
@@ -279,8 +269,7 @@ function AgencySignUp() {
                   label="Password"
                   name="password"
                   className="c-input"
-                  rules={Rules.passwordRule}
-                >
+                  rules={Rules.passwordRule}>
                   <Input.Password
                     placeholder="Enter password"
                     size="small"
@@ -293,8 +282,7 @@ function AgencySignUp() {
                   name="confirmPassword"
                   className="c-input"
                   rules={Rules.confirmPasswordRule}
-                  dependencies={["password"]}
-                >
+                  dependencies={["password"]}>
                   <Input.Password
                     placeholder="Enter password again"
                     size="small"
@@ -313,8 +301,7 @@ function AgencySignUp() {
                   label="I’m registering a"
                   name="companyType"
                   className="c-input"
-                  rules={Rules.requiredRule}
-                >
+                  rules={Rules.requiredRule}>
                   <Select size="large" defaultValue="">
                     <Option value="">Select</Option>
                     <Option value="single-company">Single company</Option>
@@ -326,8 +313,7 @@ function AgencySignUp() {
                   label="Company name"
                   name="companyName"
                   className="c-input"
-                  rules={Rules.requiredRule}
-                >
+                  rules={Rules.requiredRule}>
                   <Input
                     placeholder="Enter your company name"
                     size="small"
@@ -340,13 +326,11 @@ function AgencySignUp() {
                   label="Company location"
                   name="countryId"
                   className="c-input"
-                  rules={Rules.requiredRule}
-                >
+                  rules={Rules.requiredRule}>
                   <Select
                     size="large"
                     defaultValue=""
-                    onSelect={handleLocationSelect}
-                  >
+                    onSelect={handleLocationSelect}>
                     <Option value="">Select</Option>
                     {countries?.map((c) => (
                       <Option value={c.id}>{c.title}</Option>
@@ -357,8 +341,7 @@ function AgencySignUp() {
                   label="City"
                   name="cityId"
                   className="c-input"
-                  rules={Rules.requiredRule}
-                >
+                  rules={Rules.requiredRule}>
                   <Select size="large" defaultValue="">
                     <Option value="">Select</Option>
                     {citiesByCountry?.map((c) => (
@@ -372,8 +355,7 @@ function AgencySignUp() {
                   label="Website https://"
                   name="webUrl"
                   className="c-input"
-                  rules={Rules.requiredRule}
-                >
+                  rules={Rules.requiredRule}>
                   <Input
                     placeholder="Enter your website"
                     size="small"
@@ -384,8 +366,7 @@ function AgencySignUp() {
                   label="Company phone number"
                   name="companyPhone"
                   className="c-input"
-                  rules={Rules.phoneRule}
-                >
+                  rules={Rules.phoneRule}>
                   <PhoneInput
                     placeholder="Enter your work phone."
                     country={countryCode}
@@ -399,12 +380,10 @@ function AgencySignUp() {
             name="agreeTerms"
             className="mb-3"
             valuePropName="checked"
-            rules={Rules.requiredRule}
-          >
+            rules={Rules.requiredRule}>
             <Checkbox
               checked={agreeToTerms}
-              onChange={(e) => setAgreeToTerms(e.target.checked)}
-            >
+              onChange={(e) => setAgreeToTerms(e.target.checked)}>
               I agree with Jobsmideast.com{" "}
               <mark className="blue" onClick={() => setTermsModalShow(true)}>
                 terms &amp; conditions
@@ -428,8 +407,7 @@ function AgencySignUp() {
                 type="large"
                 htmlType="submit"
                 themeColor="blue"
-                loading={isLoading}
-              >
+                loading={isLoading}>
                 {isCreateCompany && "Next"}
                 {!isCreateCompany && "Create my profile"}
               </Button>
@@ -446,17 +424,15 @@ function AgencySignUp() {
                     htmlType="button"
                     themeColor="default"
                     onClick={onStepChange}
-                    disabled={isLoading}
-                  >
+                    disabled={isLoading}>
                     Back
                   </Button>
                   <Button
                     block
                     type="large"
                     htmlType="submit"
-                    themeColor="blue"
-                    loading={isLoading}
-                  >
+                    themeColor="light"
+                    loading={isLoading}>
                     Create my profile
                   </Button>
                 </div>

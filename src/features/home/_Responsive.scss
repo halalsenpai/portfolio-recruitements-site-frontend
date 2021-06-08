@@ -85,7 +85,7 @@
     .bottom-container {
       padding: 0;
       .bottom-container-row {
-        flex-direction: column-reverse;
+        // flex-direction: column-reverse;
         .bottom-text-section {
           flex: 1 1;
           padding: 0 10px;
@@ -264,112 +264,101 @@
   }
 }
 
-@media screen and (min-width: 1025px) and (max-width: 1700px) {
-  .home {
-    .first-banner-heading-container {
-      padding: calc(124px / 2) 0 0 0;
-      .inner-container {
-        .banner-content {
-          margin: 20px 0;
-        }
-      }
-    }
-    .sub-heading {
-      margin: calc(53px / 2) 0px;
-      font-size: 28px;
-    }
-    .banner-spacing {
-      padding-left: calc(124px / 2);
-    }
-    .main-heading {
-      font-size: 40px;
-      margin: 0 0 15px 0;
+// @media screen and (min-width: 1025px) and (max-width: 1700px) {
+//   .home {
+//     .first-banner-heading-container {
+//       padding: calc(124px / 2) 0 0 0;
+//       .inner-container {
+//         .banner-content {
+//           margin: 20px 0;
+//         }
+//       }
+//     }
+//     .sub-heading {
+//       margin: calc(53px / 2) 0px;
+//       font-size: 28px;
+//     }
+//     .banner-spacing {
+//       padding-left: calc(124px / 2);
+//     }
+//     .main-heading {
+//       font-size: 40px;
+//       margin: 0 0 15px 0;
 
-      .banner-heading-highlight {
-        font-size: 40px;
-      }
-    }
-    .home-content-container {
-      text-align: center;
-      margin: calc(157px / 2) 0 0 0;
-      .main-heading {
-        font-size: 35px;
-        margin: 0 0 15px 0;
-      }
-      h5 {
-        font-size: 20px;
-      }
-    }
-    .container-benefit {
-      padding: 0 calc(112px / 2);
-      margin: 0 0 calc(188px / 2) 0;
+//       .banner-heading-highlight {
+//         font-size: 40px;
+//       }
+//     }
+//     .home-content-container {
+//       text-align: center;
+//       margin: calc(157px / 2) 0 0 0;
+//       .main-heading {
+//         font-size: 35px;
+//         margin: 0 0 15px 0;
+//       }
+//       h5 {
+//         font-size: 20px;
+//       }
+//     }
+//     .container-benefit {
+//       padding: 0 calc(112px / 2);
+//       margin: 0 0 calc(188px / 2) 0;
 
-      .inner-container {
-        .box {
-          min-width: 200px;
-          .a-text {
-            font-size: 18px;
-          }
-          p {
-            font-size: 14px;
-          }
-          img {
-            width: 70px;
-          }
-        }
-      }
-    }
-    .container-filters {
-      padding: 0 calc(112px / 2);
-      margin: 0 0 calc(188px / 2) 0;
+//       .inner-container {
+//         .box {
+//           min-width: 200px;
+//           .a-text {
+//             font-size: 18px;
+//           }
+//           p {
+//             font-size: 14px;
+//           }
+//           img {
+//             width: 70px;
+//           }
+//         }
+//       }
+//     }
+//     .container-filters {
+//       padding: 0 calc(112px / 2);
+//       margin: 0 0 calc(188px / 2) 0;
 
-      .inner-container {
-        .box {
-          min-width: 200px;
-          .b-text {
-            font-size: 18px;
-          }
-          p {
-            font-size: 14px;
-          }
-          img {
-            width: 70px;
-          }
-        }
-      }
-    }
-    .c-container-centered-content {
-      margin: 100px 0px;
-    }
-    // .container-filters {
-    //   padding: 0 calc(112px / 2);
-    //   margin: 0 0 calc(216px / 2) 0;
-
-    //   .inner-container .box .a-text {
-    //     color: #1a1d3d;
-    //     font-size: 18px;
-    //     font-family: "Gordita-Bold";
-    //   }
-    // }
-
-    .bottom-text-section {
-      padding: 40px 10px 0 10px;
-    }
-    .small-paragraph {
-      p {
-        font-size: 12px;
-        margin-bottom: 10px;
-        line-height: inherit;
-        max-width: unset;
-      }
-    }
-    .bottom-container {
-      .demo-btn {
-        margin-top: 10px;
-      }
-    }
-  }
-}
+//       .inner-container {
+//         .box {
+//           min-width: 200px;
+//           .b-text {
+//             font-size: 18px;
+//           }
+//           p {
+//             font-size: 14px;
+//           }
+//           img {
+//             width: 70px;
+//           }
+//         }
+//       }
+//     }
+//     .c-container-centered-content {
+//       margin: 100px 0px;
+//     }
+//     .bottom-text-section {
+//       padding: 40px 10px 0 10px;
+//     }
+//     .small-paragraph {
+//       p {
+//         font-size: 12px;
+//         margin-bottom: 10px;
+//         line-height: inherit;
+//         max-width: unset;
+//       }
+//     }
+//     .bottom-container {
+//       .demo-btn {
+//         margin-top: 10px;
+//       }
+//     }
+//   }
+// }
 
 @keyframes fade-in-out {
   from {

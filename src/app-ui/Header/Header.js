@@ -140,7 +140,7 @@ function Header() {
               setCurrentPath("/signup");
               setMenu(false);
             }}>
-            <Button className="sign-up-btn">Sign Up</Button>
+            <Button className="sign-up-btn">Sign up</Button>
           </Link>
           <button onClick={() => setMenu(!menu)} className="toggle-button">
             {menu ? (

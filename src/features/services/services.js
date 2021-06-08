@@ -133,7 +133,10 @@ const Services = () => {
               <TextArea rows={4} />
             </Form.Item>
             <div className="submit-btn">
-              <Button loading={isLoading} htmlType="submit">
+              <Button
+                themeColor={"green"}
+                loading={isLoading}
+                htmlType="submit">
                 Submit
               </Button>
             </div>

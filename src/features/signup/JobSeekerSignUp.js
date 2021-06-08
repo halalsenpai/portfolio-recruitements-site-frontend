@@ -375,7 +375,7 @@ function JobSeekerSignUp() {
 
           <Form.Item className="mb-0 align-self-end">
             <Button
-              themeColor="primary"
+              themeColor="light"
               type="large"
               htmlType="submit"
               loading={isLoading}
