@@ -237,4 +237,8 @@
     font-family: $font-subtitle;
     font-size: 16px !important;
   }
+  .ant-select {
+    width: unset !important;
+    width: 200px !important;
+  }
 }

@@ -8,14 +8,13 @@ import Button from "../../shared-ui/Button/Button";
 import PhoneInput from "react-phone-input-international";
 import MediaPicker from "../../shared-ui/MediaPicker/MediaPicker";
 import Modal from "../../shared-ui/Modal/Modal";
+import { SuperSelect } from "../../shared-ui/SuperSelect/SuperSelect";
 // import SelectWithAddItem from "../../shared-ui/SelectWithAddItem/SelectWithAddItem";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
-  getCompany,
   getFindUsPlatform,
   getCountry,
   getCity,
-  getJobTitle,
   employerSignup,
   getRole,
   getCountryByIp,
@@ -36,6 +35,7 @@ import {
 } from "./slice";
 import TermsConditions from "./TermsConditions";
 import { showErrorMessage, showWarningMessage } from "../../utils/message";
+import { getCompany, getJobTitle } from "./service";
 
 const { Option } = Select;
 
@@ -65,10 +65,8 @@ function AgencySignUp() {
   useEffect(() => {
     dispatch(getRole());
     dispatch(getFindUsPlatform());
-    dispatch(getCompany());
     dispatch(getCountry());
     dispatch(getCity());
-    dispatch(getJobTitle());
     dispatch(getCountryByIp());
   }, []);
 
@@ -142,6 +140,7 @@ function AgencySignUp() {
     <div className="c-container auth-wrapper">
       <div className="signup-container with-form">
         <Form
+          style={{ zIndex: "50" }}
           form={form}
           layout="vertical"
           className="c-form second-container align-items-start"
@@ -151,17 +150,16 @@ function AgencySignUp() {
               <h3 className="form-title">
                 <mark className="blue">Agency details</mark>
               </h3>
-              <div className="d-flex w-100 justify-content-end align-items-center">
-                <MediaPicker onPicked={(data) => console.log(data)} />
-              </div>
 
               <div className="c-row">
                 <Form.Item
+                  style={{ zIndex: "400" }}
                   label="Company name"
                   name="companyProfileId"
                   className="c-input"
                   rules={Rules.requiredRule}>
-                  <Select
+                  {/* <Select
+                    getPopupContainer={(trigger) => trigger.parentNode}
                     size="large"
                     defaultValue=""
                     onChange={onCompanyNameChange}>
@@ -171,9 +169,24 @@ function AgencySignUp() {
                     {companies?.items?.map((c) => (
                       <Option value={c.id}>{c.companyName}</Option>
                     ))}
-                  </Select>
+                  </Select> */}
+                  <SuperSelect
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    defaultValue=""
+                    fetchOptions={getCompany}
+                    onChange={onCompanyNameChange}
+                    keys={["id", "companyName"]}
+                    searchKey={"searchValue"}
+                    fixedOptions={[
+                      {
+                        label: "Create New Company",
+                        value: "create-company",
+                      },
+                    ]}
+                  />
                 </Form.Item>
                 <Form.Item
+                  style={{ zIndex: "390" }}
                   label="Job title"
                   name="jobTitleId"
                   className="c-input"
@@ -183,13 +196,11 @@ function AgencySignUp() {
                     onItemChange={(e) => console.log(e)}
                     hintTextForAddItem={"Can't find your job title?"}
                   /> */}
-                  <Select size="large" defaultValue="">
-                    <Option value="">Select</Option>
-
-                    {jobTitles.map((jt) => (
-                      <Option value={jt.id}>{jt.title}</Option>
-                    ))}
-                  </Select>
+                  <SuperSelect
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    defaultValue=""
+                    fetchOptions={getJobTitle}
+                  />
                 </Form.Item>
               </div>
               <div className="c-row">
@@ -251,11 +262,15 @@ function AgencySignUp() {
                   />
                 </Form.Item>
                 <Form.Item
+                  style={{ zIndex: "360" }}
                   label="How did you find us?"
                   name="findUsId"
                   className="c-input"
                   rules={Rules.requiredRule}>
-                  <Select size="large" defaultValue="">
+                  <Select
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    size="large"
+                    defaultValue="">
                     <Option value="">Select</Option>
 
                     {findUsPlatforms?.map((fu) => (
@@ -292,17 +307,24 @@ function AgencySignUp() {
             </>
           ) : (
             <>
-              <h3 className="form-title">
+              <h3 className="form-title w-100 d-flex justify-content-between">
                 <mark className="blue">Company details</mark>
+                <div className="d-flex justify-content-end align-items-center">
+                  <MediaPicker onPicked={(data) => console.log(data)} />
+                </div>
               </h3>
 
               <div className="c-row">
                 <Form.Item
+                  style={{ zIndex: "350" }}
                   label="I’m registering a"
                   name="companyType"
                   className="c-input"
                   rules={Rules.requiredRule}>
-                  <Select size="large" defaultValue="">
+                  <Select
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    size="large"
+                    defaultValue="">
                     <Option value="">Select</Option>
                     <Option value="single-company">Single company</Option>
                     <Option value="headquarters">Headquarters</Option>
@@ -323,11 +345,13 @@ function AgencySignUp() {
               </div>
               <div className="c-row">
                 <Form.Item
+                  style={{ zIndex: "340" }}
                   label="Company location"
                   name="countryId"
                   className="c-input"
                   rules={Rules.requiredRule}>
                   <Select
+                    getPopupContainer={(trigger) => trigger.parentNode}
                     size="large"
                     defaultValue=""
                     onSelect={handleLocationSelect}>
@@ -338,11 +362,15 @@ function AgencySignUp() {
                   </Select>
                 </Form.Item>
                 <Form.Item
+                  style={{ zIndex: "330" }}
                   label="City"
                   name="cityId"
                   className="c-input"
                   rules={Rules.requiredRule}>
-                  <Select size="large" defaultValue="">
+                  <Select
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    size="large"
+                    defaultValue="">
                     <Option value="">Select</Option>
                     {citiesByCountry?.map((c) => (
                       <Option value={c.id}>{c.title}</Option>
@@ -406,7 +434,7 @@ function AgencySignUp() {
                 block
                 type="large"
                 htmlType="submit"
-                themeColor="blue"
+                themeColor="light"
                 loading={isLoading}>
                 {isCreateCompany && "Next"}
                 {!isCreateCompany && "Create my profile"}

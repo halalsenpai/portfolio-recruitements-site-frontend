@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Link, useHistory } from "react-router-dom";
-import { Col, Popover, Row, Select } from "antd";
+import { Col, Divider, Popover, Row, Select } from "antd";
 import { BsFillChatFill } from "react-icons/bs";
 import { FaHeart, FaStar } from "react-icons/fa";
 
@@ -192,15 +192,17 @@ function JobDetails({
               </ul>
             </span>
 
+            <Divider className="divider" />
+
             {showAllDetails && (
               <>
                 <span className="content-block">
                   <h6 className="block-title d-flex justify-content-between align-items-center">
-                    <span style={{ fontSize: "12px" }}>
+                    <span>
                       About company:
-                      <mark className="ml-2 blue">
+                      <span style={{ color: "#2a8fff" }} className="ml-2 blue">
                         {data.company?.companyName || "N/A"}
-                      </mark>
+                      </span>
                     </span>
                     <Select
                       getPopupContainer={(trigger) => trigger.parentNode}
@@ -258,7 +260,12 @@ function JobDetails({
                     Other jobs in your sector
                   </h6>
 
-                  <Row gutter={16} style={{ margin: "0 auto", width: "100%" }}>
+                  <Row
+                    gutter={16}
+                    style={{ margin: "0 auto", width: "100%" }}
+                    justify={`${
+                      otherJobs?.length === 4 ? "space-around" : "flex-start"
+                    }`}>
                     {otherJobs?.map((otherJob) => (
                       <Col>
                         <JobCard
@@ -289,7 +296,13 @@ function JobDetails({
                   <h6 className="block-title thick-title">
                     Other jobs by this company
                   </h6>
-                  <Row gutter={16} style={{ margin: "0 auto", width: "100%" }}>
+                  <p>N/A</p>
+                  {/* <Row
+                    gutter={16}
+                    style={{ margin: "0 auto", width: "100%" }}
+                    justify={`${
+                      otherJobs?.length === 4 ? "space-around" : "flex-start"
+                    }`}>
                     {otherJobs?.map((otherJob) => (
                       <Col>
                         <JobCard
@@ -307,7 +320,7 @@ function JobDetails({
                         />
                       </Col>
                     ))}
-                  </Row>
+                  </Row> */}
                 </span>
               </span>
             </span>

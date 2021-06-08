@@ -6,20 +6,15 @@ import Modal from "../../shared-ui/Modal/Modal";
 import Button from "../../shared-ui/Button/Button";
 import * as Rules from "../../utils/rules";
 import {
-  getAccommodation,
   getCity,
   getCountry,
-  getEmploymentType,
   getFieldOfStudy,
   getGrade,
-  getJobTitle,
-  getQualification,
-  getCategories,
-  getJobTitlesById,
   getSalaryType,
   getSuitableFor,
   getFilteredJob,
   getJob,
+  getJobTitlesById,
 } from "../../features/jobs/thunk";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
@@ -37,6 +32,13 @@ import {
 import CountryCityModal from "../CountryCityModal/CountryCityModal";
 import { getTitleById } from "../../utils/helper";
 import { useForm } from "antd/lib/form/Form";
+import { SuperSelect } from "../../shared-ui/SuperSelect/SuperSelect";
+import {
+  getAccommodation,
+  getCategories,
+  getEmploymentType,
+  getQualification,
+} from "../../features/jobs/service";
 
 const { Option } = Select;
 
@@ -61,15 +63,12 @@ const JobFilter = (props) => {
   const filterApplySuccess = useAppSelector(selectFilterApplySuccess);
 
   useEffect(() => {
-    dispatch(getJobTitle());
-    dispatch(getEmploymentType());
     dispatch(getCountry());
     dispatch(getCity());
-    dispatch(getQualification());
+
     dispatch(getFieldOfStudy());
     dispatch(getGrade());
-    dispatch(getAccommodation());
-    dispatch(getCategories());
+
     dispatch(getSalaryType());
     dispatch(getSuitableFor());
   }, []);
@@ -124,7 +123,11 @@ const JobFilter = (props) => {
   return (
     <>
       <Modal className="center lg" show={props.show} onHide={props.onHide}>
-        <Form form={form} onFinish={onFinish} className="filter-main">
+        <Form
+          style={{ zIndex: "50" }}
+          form={form}
+          onFinish={onFinish}
+          className="filter-main">
           <div className="filter-header">
             <div className="filter-cell">
               <p>Filters</p>
@@ -133,6 +136,7 @@ const JobFilter = (props) => {
           <div className="filter-section">
             <Row justify="center" wrap={true}>
               <Col
+                style={{ zIndex: "400" }}
                 className="jobs-grid switch-grid"
                 lg={{ span: 12 }}
                 sm={{ span: 12 }}
@@ -142,11 +146,18 @@ const JobFilter = (props) => {
                   name="jobType"
                   className="c-input c-form p-0"
                   rules={null}>
-                  <Select placeholder="Select">
+                  {/* <Select
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    placeholder="Select">
                     {employmentTypes?.map((d) => (
                       <Option value={d.id}>{d.title}</Option>
                     ))}
-                  </Select>
+                  </Select> */}
+                  <SuperSelect
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    defaultValue=""
+                    fetchOptions={getEmploymentType}
+                  />
                 </Form.Item>
               </Col>
               <Col
@@ -191,6 +202,7 @@ const JobFilter = (props) => {
             </Row>
             <Row justify="center" wrap={true}>
               <Col
+                style={{ zIndex: "390" }}
                 lg={{ span: 12 }}
                 sm={{ span: 12 }}
                 xs={{ span: 24 }}
@@ -202,14 +214,23 @@ const JobFilter = (props) => {
                   name="category"
                   className="c-input c-form p-0"
                   rules={null}>
-                  <Select onSelect={(v) => dispatch(getJobTitlesById(v))}>
+                  {/* <Select
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    onSelect={(v) => dispatch(getJobTitlesById(v))}>
                     {categories?.map((d) => (
                       <Option value={d.id}>{d.title}</Option>
                     ))}
-                  </Select>
+                  </Select> */}
+                  <SuperSelect
+                    onSelect={(v) => dispatch(getJobTitlesById(v))}
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    defaultValue=""
+                    fetchOptions={getCategories}
+                  />
                 </Form.Item>
               </Col>
               <Col
+                style={{ zIndex: "380" }}
                 lg={{ span: 12 }}
                 sm={{ span: 12 }}
                 xs={{ span: 24 }}
@@ -220,7 +241,9 @@ const JobFilter = (props) => {
                   name="jobTitle"
                   className="c-input c-form p-0"
                   rules={null}>
-                  <Select placeholder="Select">
+                  <Select
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    placeholder="Select">
                     {" "}
                     {jobTitlesById?.map((d, i) => (
                       <Option key={i} value={d?.id}>
@@ -233,6 +256,7 @@ const JobFilter = (props) => {
             </Row>
             <Row justify="center" wrap={true}>
               <Col
+                style={{ zIndex: "370" }}
                 lg={{ span: 12 }}
                 sm={{ span: 12 }}
                 xs={{ span: 24 }}
@@ -244,6 +268,7 @@ const JobFilter = (props) => {
                   className="c-input c-form p-0"
                   rules={null}>
                   <Select
+                    getPopupContainer={(trigger) => trigger.parentNode}
                     placeholder="Select salary type"
                     onSelect={handleMaxSalaryLimit}>
                     {salaryType?.map((d, i) => (
@@ -295,6 +320,7 @@ const JobFilter = (props) => {
             </Row>
             <Row justify="center" wrap={true}>
               <Col
+                style={{ zIndex: "360" }}
                 lg={{ span: 12 }}
                 sm={{ span: 12 }}
                 xs={{ span: 24 }}
@@ -305,7 +331,9 @@ const JobFilter = (props) => {
                   name="gender"
                   className="c-input c-form p-0"
                   rules={null}>
-                  <Select placeholder="Select">
+                  <Select
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    placeholder="Select">
                     <Option value="Male">Male</Option>
                     <Option value="Female"> Female </Option>
                     <Option value="Other"> Other </Option>
@@ -313,6 +341,7 @@ const JobFilter = (props) => {
                 </Form.Item>
               </Col>
               <Col
+                style={{ zIndex: "350" }}
                 lg={{ span: 12 }}
                 sm={{ span: 12 }}
                 xs={{ span: 24 }}
@@ -323,18 +352,17 @@ const JobFilter = (props) => {
                   name="qualification"
                   className="c-input c-form p-0"
                   rules={null}>
-                  <Select placeholder="Select">
-                    {qualifications?.map((d, i) => (
-                      <Option key={i} value={d?.id}>
-                        {d?.title}
-                      </Option>
-                    ))}
-                  </Select>
+                  <SuperSelect
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    defaultValue=""
+                    fetchOptions={getQualification}
+                  />
                 </Form.Item>
               </Col>
             </Row>
             <Row justify="center" wrap={true}>
               <Col
+                style={{ zIndex: "340" }}
                 lg={{ span: 12 }}
                 sm={{ span: 12 }}
                 xs={{ span: 24 }}
@@ -345,16 +373,15 @@ const JobFilter = (props) => {
                   name="accommodation"
                   className="c-input c-form p-0"
                   rules={null}>
-                  <Select placeholder="Select">
-                    {accommodations?.map((d, i) => (
-                      <Option key={i} value={d?.id}>
-                        {d?.title}
-                      </Option>
-                    ))}
-                  </Select>
+                  <SuperSelect
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    defaultValue=""
+                    fetchOptions={getAccommodation}
+                  />
                 </Form.Item>
               </Col>
               <Col
+                style={{ zIndex: "330" }}
                 lg={{ span: 12 }}
                 sm={{ span: 12 }}
                 xs={{ span: 24 }}
@@ -365,7 +392,9 @@ const JobFilter = (props) => {
                   name="suitableFor"
                   className="c-input c-form p-0"
                   rules={null}>
-                  <Select placeholder="Select">
+                  <Select
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    placeholder="Select">
                     {" "}
                     {suitableFor?.map((d, i) => (
                       <Option key={i} value={d?.id}>
