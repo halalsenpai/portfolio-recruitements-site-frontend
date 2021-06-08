@@ -232,6 +232,30 @@ p {
 
 .ant-select {
   width: 300px !important;
+  z-index: 40 !important;
+
+  .ant-select-dropdown {
+    padding-top: 40px;
+    top: 0px !important;
+    z-index: -1 !important;
+    border-radius: 16px;
+    .ant-select-item-option-content {
+      font-size: $font-size-sm;
+    }
+  }
+
+  &.ant-select-multiple {
+    .ant-select-selection-item {
+      height: 25px;
+      line-height: 25px;
+      margin-top: 0;
+      margin-bottom: 6px;
+    }
+    .ant-select-selection-overflow-item {
+      opacity: 0;
+    }
+  }
+
   .ant-select-selector {
     font-size: $font-size-sm;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2) !important;
@@ -459,6 +483,10 @@ p {
   width: 100%;
 }
 
+.w-45 {
+  width: 45%;
+}
+
 // custom card container
 .c-card-container {
   max-width: 900px;
@@ -520,7 +548,7 @@ p {
   padding: 40px 0px 40px 0px;
 
   .form-title {
-    font-family: $font-bold;
+    font-family: $font-medium;
     font-size: $font-size-lg;
     margin-bottom: 28px;
   }
@@ -777,6 +805,17 @@ p {
     height: 36px;
   }
 }
+// select placeholder
+// .ant-select-single.ant-select-lg:not(.ant-select-customize-input)
+//   .ant-select-selector::after,
+// .ant-select-single.ant-select-lg:not(.ant-select-customize-input)
+//   .ant-select-selector
+//   .ant-select-selection-item,
+// .ant-select-single.ant-select-lg:not(.ant-select-customize-input)
+//   .ant-select-selector
+//   .ant-select-selection-placeholder {
+//   line-height: 34.4px;
+// }
 
 html {
   image-rendering: -moz-crisp-edges !important; /* Firefox */

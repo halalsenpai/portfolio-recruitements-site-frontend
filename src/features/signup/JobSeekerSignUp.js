@@ -242,6 +242,7 @@ function JobSeekerSignUp() {
           </div>
           <div className="c-row">
             <Form.Item
+              style={{ zIndex: "400" }}
               label={
                 <div className="c-label">
                   <label>Family status&nbsp;</label>
@@ -257,7 +258,10 @@ function JobSeekerSignUp() {
               name="familyStatusId"
               className="c-input"
               rules={Rules.requiredRule}>
-              <Select size="large" defaultValue="">
+              <Select
+                getPopupContainer={(trigger) => trigger.parentNode}
+                size="large"
+                defaultValue="">
                 <Option value="">Select</Option>
                 {familyStatuses?.map((fs) => (
                   <Option value={fs.id}>{fs.title}</Option>
@@ -266,6 +270,7 @@ function JobSeekerSignUp() {
             </Form.Item>
 
             <Form.Item
+              style={{ zIndex: "390" }}
               label={
                 <div className="c-label">
                   <label>Gender&nbsp;</label>
@@ -281,7 +286,10 @@ function JobSeekerSignUp() {
               name="gender"
               className="c-input"
               rules={Rules.requiredRule}>
-              <Select size="large" defaultValue="">
+              <Select
+                getPopupContainer={(trigger) => trigger.parentNode}
+                size="large"
+                defaultValue="">
                 <Option value="">Select</Option>
                 <Option value="male">Male</Option>
                 <Option value="female">Female</Option>
@@ -303,6 +311,7 @@ function JobSeekerSignUp() {
             </Form.Item>
 
             <Form.Item
+              style={{ zIndex: "380" }}
               label={
                 <div className="c-label">
                   <label>Passport nationality&nbsp;</label>
@@ -318,7 +327,10 @@ function JobSeekerSignUp() {
               name="nationalityId"
               className="c-input"
               rules={Rules.requiredRule}>
-              <Select size="large" defaultValue="">
+              <Select
+                getPopupContainer={(trigger) => trigger.parentNode}
+                size="large"
+                defaultValue="">
                 <Option value="">Select</Option>
                 {nationalities?.map((n) => (
                   <Option value={n.id}>{n.title}</Option>
@@ -375,7 +387,8 @@ function JobSeekerSignUp() {
 
           <Form.Item className="mb-0 align-self-end">
             <Button
-              themeColor="primary"
+              className="create-profile-button"
+              themeColor="light"
               type="large"
               htmlType="submit"
               loading={isLoading}

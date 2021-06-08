@@ -14,12 +14,12 @@ const EmployerAndAgency = () => {
       {" "}
       <div className="c-containers">
         <div className="c-row">
-          <div className="auto-grow">
-            <div className="emp-heading">
-              Discover a new way of hiring <br /> & make the right connections.
+          <div className="w-45">
+            <div className="emp-heading ">
+              Discover a new way of hiring & make the right connections.
             </div>
           </div>
-          <div className="cell-auto job-n-demo">
+          <div className="w-55 job-n-demo">
             <Button
               onClick={() => history.push("/login")}
               type="large"
@@ -39,21 +39,18 @@ const EmployerAndAgency = () => {
           </div>
         </div>
       </div>
-      <div style={{ paddingTop: 50 }} className="c-containers">
+      <div style={{ paddingTop: 80 }} className="c-containers">
         <div className="c-row">
-          <div className="auto-grow align-left text-section">
+          <div className="w-40 align-left pr-70 text-section">
             <div>
-              <h1>
-                Save up to 75% of your <br />
-                annual recruiment budget
-              </h1>
+              <h1>Save up to 75% of your annual recruiment budget</h1>
               <p>
                 Finding the right person can be costly, and we can help you
                 minimise those costs. Start your search with 2 free jobs on us.
               </p>
             </div>
           </div>
-          <div className="cell-auto align-right image-section">
+          <div className="w-60 align-right image-section">
             <img
               src={require("../../assets/images/employeeandagency/user-cards.png")}
               alt=""
@@ -63,13 +60,14 @@ const EmployerAndAgency = () => {
       </div>
       <div className="c-containers sections">
         <div className="c-row column-rev">
-          <div className="cell-auto align-left image-section">
+          <div className="w-60 align-left image-section">
             <img
+              style={{ width: "90%" }}
               src={require("../../assets/images/employeeandagency/Mask Group 37.png")}
               alt=""
             />
           </div>
-          <div className="auto-grow text-section">
+          <div className="w-40 text-section">
             <div>
               <h1>Smart profiles</h1>
               <p>
@@ -83,7 +81,7 @@ const EmployerAndAgency = () => {
       </div>
       <div className="c-containers sections">
         <div className="c-row">
-          <div className="auto-grow align-left text-section">
+          <div className="w-35 align-left pr-70 text-section">
             <div>
               <h1>Keep your team connected</h1>
               <p>
@@ -92,7 +90,7 @@ const EmployerAndAgency = () => {
               </p>
             </div>
           </div>
-          <div className="cell-auto align-right image-section">
+          <div className="w-70 align-right image-section">
             <img
               src={require("../../assets/images/employeeandagency/team-table.png")}
               alt=""
@@ -102,19 +100,23 @@ const EmployerAndAgency = () => {
       </div>
       <div className="c-containers sections">
         <div className="c-row column-rev ">
-          <div className="cell-auto align-left image-section">
+          <div className="w-60 align-left image-section">
             <img
               src={require("../../assets/images/employeeandagency/interview.png")}
               alt=""
             />
           </div>
-          <div className="auto-grow text-section">
+          <div
+            style={{ paddingLeft: 35 }}
+            className="w-40 text-section interview-section">
             <div>
-              <h1 className="blue" style={{ letterSpacing: "3px" }}>
+              <h1
+                className="blue comming-soon"
+                style={{ letterSpacing: "3px" }}>
                 COMING SOON...
               </h1>
-              <h1>
-                Make your interviews personal, <br /> without even being there!
+              <h1 className="interview-type">
+                Make your interviews personal, without even being there!
               </h1>
               <p>
                 Our video platform allows you to attend your interviews even if

@@ -7,7 +7,7 @@ import * as Rules from "../../utils/rules";
 import TermsConditions from "./TermsConditions";
 import Modal from "../../shared-ui/Modal/Modal";
 import Button from "../../shared-ui/Button/Button";
-import { getCompany, getJobTitle } from "./service";
+import { getCompany, getJobTitle, getCountry } from "./service";
 import { showWarningMessage } from "../../utils/message";
 import PhoneInput from "react-phone-input-international";
 import MediaPicker from "../../shared-ui/MediaPicker/MediaPicker";
@@ -17,7 +17,6 @@ import { SuperSelect } from "../../shared-ui/SuperSelect/SuperSelect";
 import {
   getRole,
   getFindUsPlatform,
-  getCountry,
   getCity,
   employerSignup,
   getCountryByIp,
@@ -64,7 +63,6 @@ function EmployerSignUp() {
   useEffect(() => {
     dispatch(getRole());
     dispatch(getFindUsPlatform());
-    dispatch(getCountry());
     dispatch(getCity());
     dispatch(getCountryByIp());
   }, []);
@@ -138,28 +136,29 @@ function EmployerSignUp() {
     <div className="c-container auth-wrapper">
       <div className="signup-container with-form">
         <Form
+          style={{ zIndex: "40" }}
           form={form}
           layout="vertical"
           className="c-form second-container align-items-start"
-          onFinish={onFinish}
-        >
+          onFinish={onFinish}>
           {currentStep === 1 ? (
             <>
               <h3 className="form-title">
                 <mark className="blue">Employer details</mark>
               </h3>
-              <div className="d-flex w-100 justify-content-end align-items-center">
+              {/* <div className="d-flex w-100 justify-content-end align-items-center">
                 <MediaPicker onPicked={(data) => console.log(data)} />
-              </div>
+              </div> */}
 
               <div className="c-row">
                 <Form.Item
+                  style={{ zIndex: "400" }}
                   label="Company name"
                   name="companyProfileId"
                   className="c-input"
-                  rules={Rules.requiredRule}
-                >
+                  rules={Rules.requiredRule}>
                   <SuperSelect
+                    getPopupContainer={(trigger) => trigger.parentNode}
                     defaultValue=""
                     fetchOptions={getCompany}
                     onChange={onCompanyNameChange}
@@ -174,17 +173,21 @@ function EmployerSignUp() {
                   />
                 </Form.Item>
                 <Form.Item
+                  style={{ zIndex: "390" }}
                   label="Job title"
                   name="jobTitleId"
                   className="c-input"
-                  rules={Rules.requiredRule}
-                >
+                  rules={Rules.requiredRule}>
                   {/* <SelectWithAddItem
                     options={["Software Engineer", "Accountant"]}
                     onItemChange={(e) => console.log(e)}
                     hintTextForAddItem={"Can't find your job title?"}
                   /> */}
-                  <SuperSelect defaultValue="" fetchOptions={getJobTitle} />
+                  <SuperSelect
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    defaultValue=""
+                    fetchOptions={getJobTitle}
+                  />
                 </Form.Item>
               </div>
               <div className="c-row">
@@ -192,8 +195,7 @@ function EmployerSignUp() {
                   label="First name"
                   name="firstName"
                   className="c-input"
-                  rules={Rules.firstNameRule}
-                >
+                  rules={Rules.firstNameRule}>
                   <Input
                     placeholder="Enter your first name"
                     size="small"
@@ -204,8 +206,7 @@ function EmployerSignUp() {
                   label="Last name"
                   name="lastName"
                   className="c-input"
-                  rules={Rules.lastNameRule}
-                >
+                  rules={Rules.lastNameRule}>
                   <Input
                     placeholder="Enter your last name"
                     size="small"
@@ -218,8 +219,7 @@ function EmployerSignUp() {
                   label="Mobile number"
                   name="mobile"
                   className="c-input"
-                  rules={Rules.phoneRule}
-                >
+                  rules={Rules.phoneRule}>
                   <PhoneInput
                     placeholder="Enter your mobile no."
                     country={countryCode}
@@ -229,8 +229,7 @@ function EmployerSignUp() {
                   label="Direct work phone"
                   name="directWorkPhone"
                   className="c-input"
-                  rules={Rules.phoneRule}
-                >
+                  rules={Rules.phoneRule}>
                   <PhoneInput
                     placeholder="Enter your work phone."
                     country={countryCode}
@@ -242,8 +241,7 @@ function EmployerSignUp() {
                   label="Work email address"
                   name="email"
                   className="c-input"
-                  rules={Rules.emailRule}
-                >
+                  rules={Rules.emailRule}>
                   <Input
                     placeholder="Enter your email"
                     size="small"
@@ -251,12 +249,15 @@ function EmployerSignUp() {
                   />
                 </Form.Item>
                 <Form.Item
+                  style={{ zIndex: "380" }}
                   label="How did you find us?"
                   name="findUsId"
                   className="c-input"
-                  rules={Rules.requiredRule}
-                >
-                  <Select size="large" defaultValue="">
+                  rules={Rules.requiredRule}>
+                  <Select
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    size="large"
+                    defaultValue="">
                     <Option value="">Select</Option>
 
                     {findUsPlatforms?.map((fu) => (
@@ -270,8 +271,7 @@ function EmployerSignUp() {
                   label="Password"
                   name="password"
                   className="c-input"
-                  rules={Rules.passwordRule}
-                >
+                  rules={Rules.passwordRule}>
                   <Input.Password
                     placeholder="Enter password"
                     size="small"
@@ -284,8 +284,7 @@ function EmployerSignUp() {
                   name="confirmPassword"
                   className="c-input"
                   rules={Rules.confirmPasswordRule}
-                  dependencies={["password"]}
-                >
+                  dependencies={["password"]}>
                   <Input.Password
                     placeholder="Enter password again"
                     size="small"
@@ -295,17 +294,24 @@ function EmployerSignUp() {
             </>
           ) : (
             <>
-              <h3 className="form-title">
+              <h3 className="form-title w-100 d-flex justify-content-between">
                 <mark className="blue">Company details</mark>
+                <div className="d-flex justify-content-end align-items-center">
+                  <MediaPicker onPicked={(data) => console.log(data)} />
+                </div>
               </h3>
+
               <div className="c-row">
                 <Form.Item
+                  style={{ zIndex: "370" }}
                   label="I’m registering a"
                   name="companyType"
                   className="c-input"
-                  rules={Rules.requiredRule}
-                >
-                  <Select size="large" defaultValue="">
+                  rules={Rules.requiredRule}>
+                  <Select
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    size="large"
+                    defaultValue="">
                     <Option value="">Select</Option>
                     <Option value="single-company">Single company</Option>
                     <Option value="headquarters">Headquarters</Option>
@@ -316,8 +322,7 @@ function EmployerSignUp() {
                   label="Company name"
                   name="companyName"
                   className="c-input"
-                  rules={Rules.requiredRule}
-                >
+                  rules={Rules.requiredRule}>
                   <Input
                     placeholder="Enter your company name"
                     size="small"
@@ -327,33 +332,39 @@ function EmployerSignUp() {
               </div>
               <div className="c-row">
                 <Form.Item
+                  style={{ zIndex: "360" }}
                   label="Company location"
                   name="countryId"
                   className="c-input"
-                  rules={Rules.requiredRule}
-                >
-                  <Select
+                  rules={Rules.requiredRule}>
+                  {/* <Select
+                    getPopupContainer={(trigger) => trigger.parentNode}
                     size="large"
                     defaultValue=""
-                    onSelect={handleLocationSelect}
-                  >
+                    onSelect={handleLocationSelect}>
                     <Option value="">Select</Option>
                     {countries?.map((c) => (
                       <Option value={c.id}>{c.title}</Option>
                     ))}
-                  </Select>
+                  </Select> */}
+                  <SuperSelect
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    defaultValue=""
+                    fetchOptions={getCountry}
+                    onSelect={handleLocationSelect}
+                  />
                 </Form.Item>
                 <Form.Item
+                  style={{ zIndex: "340" }}
                   label="City"
                   name="cityId"
                   className="c-input"
-                  rules={Rules.requiredRule}
-                >
+                  rules={Rules.requiredRule}>
                   <Select
+                    getPopupContainer={(trigger) => trigger.parentNode}
                     disabled={citiesByCountry?.length < 1 ? true : false}
                     size="large"
-                    defaultValue=""
-                  >
+                    defaultValue="">
                     <Option value="">Select</Option>
                     {citiesByCountry?.map((c) => (
                       <Option value={c.id}>{c.title}</Option>
@@ -366,8 +377,7 @@ function EmployerSignUp() {
                   label="Website https://"
                   name="webUrl"
                   className="c-input"
-                  rules={Rules.requiredRule}
-                >
+                  rules={Rules.requiredRule}>
                   <Input
                     placeholder="Enter your website"
                     size="small"
@@ -378,8 +388,7 @@ function EmployerSignUp() {
                   label="Company phone number"
                   name="companyPhone"
                   className="c-input"
-                  rules={Rules.phoneRule}
-                >
+                  rules={Rules.phoneRule}>
                   <PhoneInput
                     placeholder="Enter your work phone."
                     country={countryCode}
@@ -393,12 +402,10 @@ function EmployerSignUp() {
             name="agreeTerms"
             className="mb-3"
             valuePropName="checked"
-            rules={Rules.requiredRule}
-          >
+            rules={Rules.requiredRule}>
             <Checkbox
               checked={agreeToTerms}
-              onChange={(e) => setAgreeToTerms(e.target.checked)}
-            >
+              onChange={(e) => setAgreeToTerms(e.target.checked)}>
               I agree with Jobsmideast.com{" "}
               <mark className="blue" onClick={() => setTermsModalShow(true)}>
                 terms &amp; conditions
@@ -419,10 +426,10 @@ function EmployerSignUp() {
               <Button
                 block
                 type="large"
+                className="create-profile-button"
                 htmlType="submit"
-                themeColor="blue"
-                loading={isLoading}
-              >
+                themeColor="light"
+                loading={isLoading}>
                 {isCreateCompany && "Next"}
                 {!isCreateCompany && "Create my profile"}
               </Button>
@@ -439,17 +446,15 @@ function EmployerSignUp() {
                     htmlType="button"
                     themeColor="default"
                     onClick={onStepChange}
-                    disabled={isLoading}
-                  >
+                    disabled={isLoading}>
                     Back
                   </Button>
                   <Button
                     block
                     type="large"
                     htmlType="submit"
-                    themeColor="blue"
-                    loading={isLoading}
-                  >
+                    themeColor="light"
+                    loading={isLoading}>
                     Create my profile
                   </Button>
                 </div>

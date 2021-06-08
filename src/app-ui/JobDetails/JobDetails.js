@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Link, useHistory } from "react-router-dom";
-import { Col, Popover, Row } from "antd";
+import { Col, Divider, Popover, Row, Select } from "antd";
 import { BsFillChatFill } from "react-icons/bs";
 import { FaHeart, FaStar } from "react-icons/fa";
 
@@ -13,12 +13,26 @@ import ImagesGallery from "../../shared-ui/ImagesGallery/ImagesGallery";
 import defaultBanner from "../../assets/images/sample/job-banner.png";
 import "./_JobDetails.scss";
 import "./_Responsive.scss";
-import { selectCountries, selectEmploymentTypes, selectJobTitles, selectOtherJobs } from "../../features/jobs/slice";
+import {
+  selectCountries,
+  selectEmploymentTypes,
+  selectJobTitles,
+  selectOtherJobs,
+} from "../../features/jobs/slice";
 import JobCard from "../../shared-ui/JobCard/JobCard";
 import { transformJobData } from "../../features/jobs/transformers";
 import { useAppSelector } from "../../store/hooks";
 
-function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData = {}, otherJobs, executeScroll }) {
+const { Option } = Select;
+
+function JobDetails({
+  data = {},
+  showAllDetails = true,
+  setJobDetails,
+  extraData = {},
+  otherJobs,
+  executeScroll,
+}) {
   const countries = useAppSelector(selectCountries);
   const jobTitles = useAppSelector(selectJobTitles);
   const employmentTypes = useAppSelector(selectEmploymentTypes);
@@ -27,11 +41,19 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
     <div className="c-job-detail-card">
       {/* Header */}
       <div className="header">
-        <img className="job-banner-img" src={data.company?.companyBanner || defaultBanner} alt="banner-img" />
+        <img
+          className="job-banner-img"
+          src={data.company?.companyBanner || defaultBanner}
+          alt="banner-img"
+        />
         <span className="banner-img-overlay"></span>
 
         <span className="job-info-wrapper">
-          <img className="job-img" src={data.company?.companyLogo || defaultImage} alt="" />
+          <img
+            className="job-img"
+            src={data.company?.companyLogo || defaultImage}
+            alt=""
+          />
           <span className="job-info">
             <h6 className="job-title">{data.company?.tagLine}</h6>
             <h3 className="job-company">{data.company?.companyName}</h3>
@@ -44,7 +66,10 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
         )} */}
 
         <div onClick={() => setJobDetails(data)} className="back-btn">
-          <img src={require("../../assets/images/icons/back-button.svg")} alt="" />
+          <img
+            src={require("../../assets/images/icons/back-button.svg")}
+            alt=""
+          />
         </div>
       </div>
 
@@ -52,7 +77,7 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
       <div className="job-details-wrapper">
         <span className="details-header">
           <h3 className="job-title">
-            Job title: <mark className="title">{data.title || "N/A"}</mark>{" "}
+            Job title: <span className="title">{data.title || "N/A"}</span>{" "}
           </h3>
 
           <span className="actions-wrapper">
@@ -126,7 +151,11 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
                 Accommodation
                 {!data.accommodationListId && <mark>N/A</mark>}
                 {data.accommodationListId && (
-                  <mark>{data.accommodationListId?.map((d) => getTitleById(extraData.accommodations, d))}</mark>
+                  <mark>
+                    {data.accommodationListId?.map((d) =>
+                      getTitleById(extraData.accommodations, d)
+                    )}
+                  </mark>
                 )}
               </span>
               <span>
@@ -163,21 +192,39 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
               </ul>
             </span>
 
+            <Divider className="divider" />
+
             {showAllDetails && (
               <>
                 <span className="content-block">
-                  <h6 className="block-title">
-                    About company:
-                    <mark className="ml-2 blue">{data.company?.companyName || "N/A"}</mark>
+                  <h6 className="block-title d-flex justify-content-between align-items-center">
+                    <span>
+                      About company:
+                      <span style={{ color: "#2a8fff" }} className="ml-2 blue">
+                        {data.company?.companyName || "N/A"}
+                      </span>
+                    </span>
+                    <Select
+                      getPopupContainer={(trigger) => trigger.parentNode}
+                      dropdownAlign={{ pageYOffset: 0 }}
+                      dropdownMatchSelectWidth="true"
+                      placeholder="Other Branches">
+                      <Option>branches</Option>
+                      <Option>branches</Option>
+                    </Select>
                   </h6>
 
-                  <p className="block-text">{data.company?.introduction || "N/A"}</p>
+                  <p className="block-text">
+                    {data.company?.introduction || "N/A"}
+                  </p>
                 </span>
 
                 <ImagesGallery title="Company Photos" />
 
                 <span className="content-block mt-4 pr-0">
-                  <h6 className="block-title mb-3">Company Video </h6>
+                  <h6 className="block-title thick-title mb-3">
+                    Company Video{" "}
+                  </h6>
 
                   {!data.company?.videoUrl && "N/A"}
                   {data.company?.videoUrl && (
@@ -191,9 +238,12 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
                 </span>
 
                 <span className="content-block mt-4 pr-0">
-                  <h6 className="block-title mb-3">Map</h6>
+                  <h6 className="block-title thick-title mb-3">Map</h6>
                   <div className="block-map">
-                    <Map data={data?.company} location={data?.company?.companyLocation} />
+                    <Map
+                      data={data?.company}
+                      location={data?.company?.companyLocation}
+                    />
                   </div>
                 </span>
               </>
@@ -206,9 +256,16 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
             <span className="content-box first">
               <span className="content-section">
                 <span className="content-block">
-                  <h6 className="block-title mb-3">Other jobs in your sector</h6>
+                  <h6 className="block-title thick-title mb-3">
+                    Other jobs in your sector
+                  </h6>
 
-                  <Row gutter={16}>
+                  <Row
+                    gutter={16}
+                    style={{ margin: "0 auto", width: "100%" }}
+                    justify={`${
+                      otherJobs?.length === 4 ? "space-around" : "flex-start"
+                    }`}>
                     {otherJobs?.map((otherJob) => (
                       <Col>
                         <JobCard
@@ -216,7 +273,12 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
                             setJobDetails(otherJob);
                             executeScroll();
                           }}
-                          job={transformJobData(otherJob, jobTitles, employmentTypes, countries)}
+                          job={transformJobData(
+                            otherJob,
+                            jobTitles,
+                            employmentTypes,
+                            countries
+                          )}
                           type="box"
                         />
                       </Col>
@@ -231,9 +293,34 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
             <span className="content-box first">
               <span className="content-section">
                 <span className="content-block">
-                  <h6 className="block-title">Other jobs by this company</h6>
+                  <h6 className="block-title thick-title">
+                    Other jobs by this company
+                  </h6>
                   <p>N/A</p>
-                  {/* <JobsCarouselv2 jobs={jobs.slice(0, 5)} /> */}
+                  {/* <Row
+                    gutter={16}
+                    style={{ margin: "0 auto", width: "100%" }}
+                    justify={`${
+                      otherJobs?.length === 4 ? "space-around" : "flex-start"
+                    }`}>
+                    {otherJobs?.map((otherJob) => (
+                      <Col>
+                        <JobCard
+                          onClick={() => {
+                            setJobDetails(otherJob);
+                            executeScroll();
+                          }}
+                          job={transformJobData(
+                            otherJob,
+                            jobTitles,
+                            employmentTypes,
+                            countries
+                          )}
+                          type="box"
+                        />
+                      </Col>
+                    ))}
+                  </Row> */}
                 </span>
               </span>
             </span>

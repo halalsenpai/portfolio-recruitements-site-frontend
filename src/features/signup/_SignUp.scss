@@ -27,7 +27,7 @@
   }
 
   &.with-form {
-    width: 1020px;
+    width: 1100px;
     background-color: #fff;
 
     border-radius: 20px;
@@ -138,7 +138,7 @@
     .second-container {
       max-width: 740px;
       width: 100%;
-      padding: 0 50px;
+      padding: 0 90px;
       max-width: inherit;
 
       &.signup-option {
@@ -149,6 +149,9 @@
       }
       .c-input {
         width: 300px;
+      }
+      .create-profile-button {
+        margin: 40px 0;
       }
     }
 

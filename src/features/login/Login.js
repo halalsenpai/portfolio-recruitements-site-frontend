@@ -11,7 +11,12 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { login } from "./thunk";
 import { getRole } from "../signup/thunk";
 import { selectRole } from "../signup/slice";
-import { selectLogin, selectLoginError, selectLoginResponse, selectLoginStatus } from "./slice";
+import {
+  selectLogin,
+  selectLoginError,
+  selectLoginResponse,
+  selectLoginStatus,
+} from "./slice";
 import "./_Login.scss";
 import "./_Responsive.scss";
 
@@ -67,7 +72,10 @@ function Login() {
     <div className="c-container auth-wrapper">
       <div className="c-card-container login-container">
         <div className="first-container">
-          <img src={require("../../assets/images/logo/logo-white.png")} alt="logo" />
+          <img
+            src={require("../../assets/images/logo/logo-white.png")}
+            alt="logo"
+          />
           {/* <p className="ml-4">The <b>smartest</b> job site in the Middle East.</p> */}
           <img
             className="login-background-image"
@@ -85,7 +93,10 @@ function Login() {
           </div> */}
 
           {/* Form */}
-          <Form className="c-form login-form" layout="vertical" onFinish={onFinish}>
+          <Form
+            className="c-form login-form"
+            layout="vertical"
+            onFinish={onFinish}>
             {/* <h3 className="form-title w-100 mb-4">
               <mark>{getFormTitle(userType)}</mark>
             </h3> */}
@@ -96,11 +107,16 @@ function Login() {
             </Form.Item>
 
             <label>Password *</label>
-            <Form.Item name="password" className="c-input mb-0" rules={Rules.passwordRule}>
+            <Form.Item
+              name="password"
+              className="c-input mb-0"
+              rules={Rules.passwordRule}>
               <Input.Password
                 placeholder="Enter your password"
                 size="large"
-                iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+                iconRender={(visible) =>
+                  visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+                }
               />
             </Form.Item>
 
@@ -119,13 +135,15 @@ function Login() {
               </Button>
             </Form.Item>
 
-            {loginErrorMessage && <Alert message={loginErrorMessage} type="error" />}
+            {loginErrorMessage && (
+              <Alert message={loginErrorMessage} type="error" />
+            )}
 
             <Form.Item className="alt-text mb-0">
               <p className="mb-0">
                 Don't have an account?{" "}
                 <Link to="/signup">
-                  <mark> Sign up</mark>
+                  <span className="sign-up"> Signup</span>
                 </Link>
               </p>
             </Form.Item>

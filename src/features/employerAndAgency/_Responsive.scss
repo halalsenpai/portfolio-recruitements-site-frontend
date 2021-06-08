@@ -2,7 +2,7 @@
 
 @media screen and (max-width: 767px) {
   .emp-agncy-main {
-    padding: 10px;
+    padding: 0 10px;
     .c-containers {
       padding: 0;
       .c-row {
@@ -29,17 +29,24 @@
             font-size: $font-size-md;
           }
         }
-        .cell-half {
-          width: 100%;
-          text-align: center;
+        .interview-section {
+          padding-left: 0 !important;
         }
-        .auto-grow {
+        .w-45 {
+          width: 100%;
+          margin: 20px 0;
+        }
+
+        .w-40 {
           width: 100%;
         }
       }
       .column-rev {
         flex-direction: column-reverse !important;
       }
+    }
+    .interview-type {
+      margin-bottom: 20px;
     }
     .sections {
       padding-top: 40px;
@@ -57,7 +64,7 @@
 
 @media screen and (min-width: 768px) and (max-width: 1200px) {
   .emp-agncy-main {
-    padding: 10px;
+    padding: 10px 30px;
 
     h1 {
       font-family: $font-medium;
@@ -106,16 +113,16 @@
   .emp-agncy-main {
     padding: 70px 0;
     .emp-heading {
-      font-size: 50px;
+      // font-size: 50px;
       line-height: 1.4;
     }
     h1 {
-      font-size: 50px;
+      // font-size: 50px;
       margin: 0 0 20px 0;
       line-height: 1.4;
     }
     p {
-      font-size: 22px;
+      // font-size: 22px;
       max-width: 650px;
     }
   }

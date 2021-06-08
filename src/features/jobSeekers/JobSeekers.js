@@ -15,10 +15,10 @@ function JobSeekers() {
       {" "}
       <div className="c-containers">
         <div className="c-row">
-          <div className="auto-grow">
+          <div className="w-55">
             <h1 className="emp-heading">Make the right connections.</h1>
           </div>
-          <div className="cell-auto job-n-demo">
+          <div className="w-45 job-n-demo">
             <Button
               onClick={() => history.push("/signup")}
               type="large"
@@ -35,7 +35,7 @@ function JobSeekers() {
       </div>
       <div style={{ paddingTop: 50 }} className="c-containers">
         <div className="c-row">
-          <div className="align-left text-section auto-grow">
+          <div className="align-left ml text-section w-40">
             <div>
               <h1>Follow companies</h1>
               <p>
@@ -44,24 +44,30 @@ function JobSeekers() {
               </p>
             </div>
           </div>
-          <div className="cell-auto align-right image-section">
-            <img
-              className=""
-              src={require("../../assets/images/jobseekers/Screen.png")}
-              alt=""
-            />
+          <div className="w-60 align-right video-section">
+            <div className="box">
+              <video autoPlay loop="true" muted>
+                <source
+                  src={
+                    "https://jobsmideat-dev.s3.amazonaws.com/2b8679c9-3e0c-409c-86fc-a7313ef901e0-Comp%201.mp4"
+                  }
+                  type="video/mp4"
+                />
+                Your browser does not support the video tag.
+              </video>
+            </div>
           </div>
         </div>
       </div>
       <div className="c-containers sections">
         <div className="c-row column-rev">
-          <div className="cell-auto align-left image-section">
+          <div className="w-60 align-left image-section">
             <img
               src={require("../../assets/images/jobseekers/chat.png")}
               alt=""
             />
           </div>
-          <div className=" text-section auto-grow">
+          <div className=" text-section w-40">
             <div>
               <h1>Live chat + inbox</h1>
               <p>
@@ -74,7 +80,7 @@ function JobSeekers() {
       </div>
       <div className="c-containers sections">
         <div className="c-row">
-          <div className=" align-left text-section auto-grow">
+          <div className=" align-left text-section w-40">
             <div>
               <h1>Smart profile</h1>
               <p>
@@ -83,7 +89,7 @@ function JobSeekers() {
               </p>
             </div>
           </div>
-          <div className="cell-auto align-right image-section">
+          <div className="w-60 align-right image-section">
             <img
               src={require("../../assets/images/jobseekers/profile.png")}
               alt=""
@@ -93,13 +99,13 @@ function JobSeekers() {
       </div>
       <div className="c-containers sections">
         <div className="c-row column-rev ">
-          <div className="cell-auto align-left image-section">
+          <div className="w-60 align-left image-section">
             <img
               src={require("../../assets/images/jobseekers/laptop.png")}
               alt=""
             />
           </div>
-          <div className=" text-section auto-grow">
+          <div className=" text-section w-40">
             <div>
               <h1>Smart interview features</h1>
               <p>

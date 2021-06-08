@@ -11,8 +11,8 @@
     .banner-img-main {
       position: relative;
       width: 33.33%;
-      max-width: calc(280px - 2px);
-      max-height: 200px;
+      max-width: calc(240px);
+      // max-height: 200px;
       display: flex;
       flex-wrap: nowrap;
       justify-content: flex-end;
@@ -47,13 +47,37 @@
       > div {
         width: 32%;
       }
+
+      .showimglate {
+        z-index: 1;
+        opacity: 1;
+        transition: all 0.4s ease;
+        animation: move 0.4s both;
+      }
+      .showimg {
+        z-index: 1;
+        opacity: 1;
+        transition: all 0.4s ease;
+        animation: move 0.4s both;
+      }
     }
 
     .banner-img-main:hover {
-      .first {
-        opacity: 1;
-      }
+      // .first {
+      //   opacity: 1;
+      // }
     }
+  }
+}
+
+@keyframes move {
+  from {
+    opacity: 0;
+    // transform: translate(-10px);
+  }
+  to {
+    opacity: 1;
+    // transform: translate(0);
   }
 }
 

@@ -33,7 +33,7 @@ const Pricing = () => {
       <div className="pricing-container">
         <div className="bg"></div>
         <div className="heading-section">
-          <p>Choose the plan that's right for your business</p>
+          <p>Choose a plan that's right for your business.</p>
         </div>
         <div className="pricing-main">
           <div className="pricing-section">
@@ -99,7 +99,9 @@ const Pricing = () => {
                   <div className="top-items-head">
                     <Popover content="coming soon">
                       {" "}
-                      <Link>Customize</Link>
+                      <Button themeColor={""} className="m-auto" type="small">
+                        <Link>Customize</Link>
+                      </Button>
                     </Popover>
                   </div>
                 </div>
@@ -164,12 +166,12 @@ const Pricing = () => {
           <h1 className="make-interview mb-4">
             Make your interviews personal, without even being there!
           </h1>
-          <p>
+          <p className="py-2">
             Our video platform allows you to attend your interviews even if
             you're not there! Simply write your interview questions, record them
             as voice notes, or record them as a video.{" "}
           </p>
-          <p>
+          <p className="py-2">
             You can then save them as templates, and send them out to up to 200
             people per month, and recieve your answers back in video format!{" "}
             <br /> You can export all videos, or share them with team members

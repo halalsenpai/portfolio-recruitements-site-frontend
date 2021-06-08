@@ -6,6 +6,11 @@
     flex-direction: column;
     padding: 30px 10px;
 
+    h1 {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
     .cust-reward-section {
       width: 100%;
       padding: 0;
@@ -13,12 +18,15 @@
     .cust-reward-section {
       .coming-soon {
         font-size: $font-size-lg;
+        padding: 0;
+        margin: 0 0 20px 0;
       }
       .services-desc {
         font-size: $font-size-md;
       }
       .full-desc {
         font-size: $font-size-md;
+        padding: 0;
       }
       .icons {
         justify-content: center;
@@ -38,6 +46,7 @@
       padding: 10px;
 
       .services-form {
+        padding: 20px;
         p {
           font-size: $font-size-md;
         }
