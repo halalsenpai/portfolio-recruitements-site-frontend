@@ -38,7 +38,10 @@
 
 @media only screen and (max-width: 480px) {
   .signup-container {
+    background-color: #fff;
     &.with-form {
+      background-color: #fff;
+
       max-width: 1020px;
       width: 100%;
       border-radius: 20px;
