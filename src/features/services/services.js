@@ -120,7 +120,7 @@ const Services = () => {
               name="categoryId"
               className="c-input select-w100"
               rules={Rules.requiredRule}>
-              <Select>
+              <Select getPopupContainer={(trigger) => trigger.parentNode}>
                 {categories?.map((d) => (
                   <Option value={d.id}>{d.title}</Option>
                 ))}
