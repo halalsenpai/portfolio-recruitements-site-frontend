@@ -429,7 +429,7 @@ function AgencySignUp() {
           {errorMessage && <Alert message={errorMessage} type="error" />}
 
           {currentStep === 1 && (
-            <Form.Item className="align-self-end">
+            <Form.Item className="align-self-end mb-0">
               <Button
                 className="create-profile-button"
                 block

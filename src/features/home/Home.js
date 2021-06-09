@@ -14,7 +14,7 @@ function Home() {
       <div className="home">
         <div className="container-fluid">
           <div className="row banner-spacing">
-            <div className="col-lg-6 col-xl-6 px-xl-5 first-banner-heading-container">
+            <div className="col-lg-6 col-xl-6 px-xl-5 px-lg-3 first-banner-heading-container">
               <span className="inner-container">
                 {/* <Fade delay={300} bottom duration={1200}> */}
                 {/* <div> */}
