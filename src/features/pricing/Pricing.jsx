@@ -97,12 +97,12 @@ const Pricing = () => {
                 <div className="pricing-header">
                   <div className="top-items-head">VIP package</div>
                   <div className="top-items-head">
-                    <Popover content="coming soon">
-                      {" "}
-                      <Button themeColor={""} className="m-auto" type="small">
+                    {" "}
+                    <Button themeColor={""} className="m-auto" type="small">
+                      <Popover content="coming soon">
                         <Link>Customize</Link>
-                      </Button>
-                    </Popover>
+                      </Popover>
+                    </Button>
                   </div>
                 </div>
               </div>
