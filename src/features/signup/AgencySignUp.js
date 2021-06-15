@@ -173,6 +173,7 @@ function AgencySignUp() {
                     ))}
                   </Select> */}
                   <SuperSelect
+                    style={{ zIndex: 50 }}
                     getPopupContainer={(trigger) => trigger.parentNode}
                     defaultValue=""
                     fetchOptions={getCompany}
