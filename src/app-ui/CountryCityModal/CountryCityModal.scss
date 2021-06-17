@@ -31,6 +31,17 @@
   .countries-cities-selector {
     .country-city-wrapper {
       display: flex;
+      justify-content: space-between;
+      border-bottom: gray;
+    }
+    .title {
+      height: 68px;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      padding: 1em 2em;
+      font-size: 18px;
+      border-bottom: solid 1px rgba(42, 143, 255, 0.4);
     }
     .header {
       height: 60px;
@@ -40,6 +51,7 @@
       justify-content: center;
       align-items: center;
     }
+
     .country-list {
       height: calc(100vh - 220px);
       overflow-y: auto;
@@ -48,7 +60,7 @@
         display: flex;
         align-items: center;
         padding: 1em 2em;
-        // border-bottom: $theme-border;
+        border-bottom: solid 1px rgba(42, 143, 255, 0.4);
         cursor: pointer;
         img {
           width: 40px;
@@ -67,6 +79,16 @@
       height: calc(100vh - 220px);
       overflow-y: auto;
       flex-basis: 50%;
+
+      .title {
+        height: 68px;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 1em 2em;
+        font-size: 18px;
+        border-bottom: solid 1px rgba(42, 143, 255, 0.4);
+      }
       .Select-all {
         display: flex;
         padding: 1em 2em;
