@@ -1,5 +1,9 @@
 @import "../../assets/scss/variables";
 
+.container-fluid img {
+  cursor: default;
+}
+
 .home {
   position: relative;
   top: 0px;
@@ -243,6 +247,7 @@
         img {
           width: 100%;
           object-fit: cover;
+          cursor: default;
         }
       }
     }
