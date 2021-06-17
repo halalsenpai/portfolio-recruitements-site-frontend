@@ -84,19 +84,23 @@ function JobDetails({
             <Button themeColor="shadowed">
               <Link to="/login">Apply</Link>
             </Button>
-            <Button themeColor="shadowed rounded">
-              {" "}
+
+            <Button
+              icon={<span className="icon following-icon"></span>}
+              title="Follow the company"
+              themeColor="shadowed rounded">
+              {/* <span>sdnsdjvnsdnjv</span>{" "} */}
               <Link to="/login">
-                <FaHeart size="14px" className="highlighted" />{" "}
+                {/* <FaHeart size="14px" className="highlighted" />{" "} */}
               </Link>
             </Button>
             <Button
+              title="Shorlisted"
               onClick={() => history.push("/login")}
               themeColor="shadowed rounded"
               icon={<FaStar size="14px" className="highlighted" />}
             />
-
-            <Button themeColor="shadowed rounded">
+            <Button title="chat" themeColor="shadowed rounded">
               {" "}
               <Link to="/login">
                 {" "}
