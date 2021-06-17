@@ -3,7 +3,7 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Col, Divider, Popover, Row, Select } from "antd";
 import { BsFillChatFill } from "react-icons/bs";
-import { FaHeart, FaStar } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
 
 import { Map } from "../../shared-ui/Map/Map";
 import { getTitleById } from "../../utils/helper";
