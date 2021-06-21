@@ -149,9 +149,10 @@ const Pricing = () => {
             their jobs
           </p>
           <div className="btn-sec">
-            <Popover content={"coming soon"}>
+            <Popover content={"coming soon..."}>
               {" "}
-              <Button>&#163; 7.99 per month</Button>
+              {/* <Button>&#163; 7.99 per month</Button> */}
+              <Button>Coming soon...</Button>
             </Popover>
             <p>No contracts, cancel at any time!</p>
           </div>

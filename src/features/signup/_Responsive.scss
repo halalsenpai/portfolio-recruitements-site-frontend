@@ -28,6 +28,12 @@
       padding: 20px !important;
     }
   }
+  .auth-wrapper {
+    background-image: none !important;
+    .signup-container {
+      box-shadow: none !important;
+    }
+  }
   .react-tel-input {
     max-width: 400px;
     width: 100%;
@@ -83,5 +89,17 @@
     .form-control {
       width: calc(100% - 60px);
     }
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  // .auth-wrapper {
+  //   background-image: none;
+  //   .signup-container {
+  //     box-shadow: none;
+  //   }
+  // }
+  .signup-container.with-form .second-container .c-input {
+    width: 330px;
   }
 }
