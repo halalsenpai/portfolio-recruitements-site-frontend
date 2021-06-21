@@ -122,7 +122,10 @@ const JobFilter = (props) => {
   };
   return (
     <>
-      <Modal className="center lg" show={props.show} onHide={props.onHide}>
+      <Modal
+        className="center lg filter-modal"
+        show={props.show}
+        onHide={props.onHide}>
         <Form
           style={{ zIndex: "50" }}
           form={form}
@@ -467,10 +470,10 @@ const JobFilter = (props) => {
             </Row>
             <Divider></Divider>
             <divide className="d-flex justify-content-center">
-              <Button onClick={handleReset} themeColor="blue mr-3">
+              <Button onClick={handleReset} themeColor="light mr-3">
                 Reset Filter
               </Button>
-              <Button htmlType="submit" themeColor="green">
+              <Button htmlType="submit" themeColor="light">
                 Apply Filter
               </Button>
             </divide>

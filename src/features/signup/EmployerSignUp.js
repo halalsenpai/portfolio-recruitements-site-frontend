@@ -214,8 +214,9 @@ function EmployerSignUp() {
                   />
                 </Form.Item>
               </div>
-              <div className="c-row">
+              <div style={{ zIndex: 100 }} className="c-row">
                 <Form.Item
+                  style={{ zIndex: 200 }}
                   label="Mobile number"
                   name="mobile"
                   className="c-input"
@@ -226,6 +227,7 @@ function EmployerSignUp() {
                   />
                 </Form.Item>
                 <Form.Item
+                  style={{ zIndex: 180 }}
                   label="Direct work phone"
                   name="directWorkPhone"
                   className="c-input"
@@ -249,7 +251,6 @@ function EmployerSignUp() {
                   />
                 </Form.Item>
                 <Form.Item
-                  style={{ zIndex: "380" }}
                   label="How did you find us?"
                   name="findUsId"
                   className="c-input"

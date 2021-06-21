@@ -98,7 +98,7 @@ const Services = () => {
               label="Name"
               name="name"
               className="c-input"
-              rules={Rules.firstNameRule}>
+              rules={Rules.nameRule}>
               <Input className="" size="" type="text" />
             </Form.Item>
             <Form.Item
@@ -113,7 +113,7 @@ const Services = () => {
               name="mobile"
               className="c-input"
               rules={Rules.phoneRule}>
-              <Input className="" size="" type="text" />
+              <Input className="" size="" type="number" />
             </Form.Item>
             <Form.Item
               label="Category"
