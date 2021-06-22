@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { Input, Form, Checkbox, Alert } from "antd";
+import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 
 import * as Rules from "../../utils/rules";
 import { userTypes } from "../../utils/constants";
@@ -83,26 +84,22 @@ function Login() {
           />
         </div>
         <div className="second-container">
-          <div className="user-type">
+          {/* <div className="user-type">
             {Object.keys(userTypes).map((ut) => (
-              <span
-                className={`${getIsActive(userTypes[ut].title)}`}
-                onClick={() => setUserType(userTypes[ut].title)}
-              >
+              <span className={`${getIsActive(userTypes[ut].title)}`} onClick={() => setUserType(userTypes[ut].title)}>
                 {userTypes[ut].title}
               </span>
             ))}
-          </div>
+          </div> */}
 
           {/* Form */}
           <Form
             className="c-form login-form"
             layout="vertical"
-            onFinish={onFinish}
-          >
-            <h3 className="form-title w-100">
+            onFinish={onFinish}>
+            {/* <h3 className="form-title w-100 mb-4">
               <mark>{getFormTitle(userType)}</mark>
-            </h3>
+            </h3> */}
 
             <label>Email *</label>
             <Form.Item name="email" className="c-input" rules={Rules.emailRule}>
@@ -112,13 +109,18 @@ function Login() {
             <label>Password *</label>
             <Form.Item
               name="password"
-              className="c-input"
-              rules={Rules.passwordRule}
-            >
-              <Input.Password placeholder="Enter your password" size="large" />
+              className="c-input mb-0"
+              rules={Rules.passwordRule}>
+              <Input.Password
+                placeholder="Enter your password"
+                size="large"
+                iconRender={(visible) =>
+                  visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+                }
+              />
             </Form.Item>
 
-            <span className="d-flex justify-content-between align-items-center w-100 alt-text mt-2 forget-password-app">
+            <span className="d-flex justify-content-between align-items-center w-100 alt-text forget-password-app">
               <Form.Item name="remember" className="mb-0">
                 <Checkbox value="">Remember me</Checkbox>
               </Form.Item>
@@ -127,7 +129,7 @@ function Login() {
               </Link>
             </span>
 
-            <Form.Item>
+            <Form.Item className="mt-5">
               <Button type="large" htmlType="submit" loading={isLoading} block>
                 Login
               </Button>
@@ -141,7 +143,7 @@ function Login() {
               <p className="mb-0">
                 Don't have an account?{" "}
                 <Link to="/signup">
-                  <mark> Sign up</mark>
+                  <span className="sign-up"> Signup</span>
                 </Link>
               </p>
             </Form.Item>

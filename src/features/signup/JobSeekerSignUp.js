@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useHistory } from "react-router-dom";
 import PhoneInput from "react-phone-input-international";
@@ -14,12 +14,14 @@ import {
 
 import * as Rules from "../../utils/rules";
 import Button from "../../shared-ui/Button/Button";
+import Modal from "../../shared-ui/Modal/Modal";
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import {
   getRole,
   getFamilyStatus,
   getNationality,
   jobseekerSignup,
+  getCountryByIp,
 } from "./thunk";
 import {
   selectRole,
@@ -28,7 +30,9 @@ import {
   selectNationality,
   selectErrorMessage,
   selectLoadingStatus,
+  selectCountryByIp,
 } from "./slice";
+import TermsConditions from "./TermsConditions";
 
 const { Option } = Select;
 
@@ -40,8 +44,7 @@ const WithHintText = ({ children }) => (
     placement="topLeft"
     overlayInnerStyle={{ width: 400 }}
     content={helperText}
-    trigger="click"
-  >
+    trigger="click">
     {children}
   </Popover>
 );
@@ -50,6 +53,8 @@ function JobSeekerSignUp() {
   const [form] = Form.useForm();
   const history = useHistory();
   const dispatch = useAppDispatch();
+  const [termsModalShow, setTermsModalShow] = useState(false);
+  const [countryCode, setCountryCode] = useState("gb");
 
   const roles = useAppSelector(selectRole);
   const familyStatuses = useAppSelector(selectFamilyStatus);
@@ -58,11 +63,19 @@ function JobSeekerSignUp() {
   const isLoading = useAppSelector(selectLoadingStatus);
   const errorMessage = useAppSelector(selectErrorMessage);
 
+  const countryByIp = useAppSelector(selectCountryByIp);
+  console.log(countryByIp);
+
   useEffect(() => {
     dispatch(getRole());
     dispatch(getFamilyStatus());
     dispatch(getNationality());
+    dispatch(getCountryByIp());
   }, []);
+
+  useEffect(() => {
+    setCountryCode(countryByIp?.countryCode?.toLowerCase());
+  }, [countryByIp]);
 
   useEffect(() => {
     if (signupSuccess === true) {
@@ -73,7 +86,7 @@ function JobSeekerSignUp() {
   const onFinish = (values) => {
     delete values.confirmPassword;
     delete values.agreeTerms;
-    delete values.agreePrivacy;
+    // delete values.agreePrivacy;
 
     const role = roles.find((r) => r.title === "jobseeker");
 
@@ -111,8 +124,8 @@ function JobSeekerSignUp() {
                 alt="img"
               />
               <span>
-                <h3 className="b-text">One click apply</h3>
-                <p>Short list jobs and apply All to them with 1 click</p>
+                <h3 className="">One click apply</h3>
+                <p>Shortlist jobs and apply to all of them with 1 click</p>
               </span>
             </div>
 
@@ -123,7 +136,7 @@ function JobSeekerSignUp() {
               />
 
               <span>
-                <h3 className="b-text">Job Match</h3>
+                <h3 className="">Job Match</h3>
                 <p>Let our system do the work for you even while you sleep!</p>
               </span>
             </div>
@@ -133,7 +146,7 @@ function JobSeekerSignUp() {
                 alt="img"
               />
               <span>
-                <h3 className="b-text">Direct chat + Inbox</h3>
+                <h3 className="">Direct chat + Inbox</h3>
                 <p>Talk to employers & agencies in real time, no emails!</p>
               </span>
             </div>
@@ -143,7 +156,7 @@ function JobSeekerSignUp() {
                 alt="img"
               />
               <span>
-                <h3 className="b-text">Follow Companies</h3>
+                <h3 className="">Follow Companies</h3>
                 <p>Follow companies and stay up to date with all their jobs</p>
               </span>
             </div>
@@ -155,8 +168,7 @@ function JobSeekerSignUp() {
           form={form}
           layout="vertical"
           onFinish={onFinish}
-          className="second-container c-form align-items-start"
-        >
+          className="second-container c-form align-items-start">
           <h3 className="form-title">
             Discover a new way of hiring & make the right connections.
           </h3>
@@ -166,8 +178,7 @@ function JobSeekerSignUp() {
               label="First name"
               name="firstName"
               className="c-input"
-              rules={Rules.firstNameRule}
-            >
+              rules={Rules.firstNameRule}>
               <Input
                 placeholder="Enter your first name"
                 size="small"
@@ -179,8 +190,7 @@ function JobSeekerSignUp() {
               label="Last name"
               name="lastName"
               className="c-input"
-              rules={Rules.lastNameRule}
-            >
+              rules={Rules.lastNameRule}>
               <Input
                 placeholder="Enter your last name"
                 size="small"
@@ -193,17 +203,18 @@ function JobSeekerSignUp() {
               label="Mobile number"
               name="mobile"
               className="c-input"
-              rules={Rules.phoneRule}
-            >
-              <PhoneInput placeholder="Enter your mobile no." country={"us"} />
+              rules={Rules.phoneRule}>
+              <PhoneInput
+                placeholder="Enter your mobile no."
+                country={countryCode}
+              />
             </Form.Item>
 
             <Form.Item
               label="Email"
               name="email"
               className="c-input"
-              rules={Rules.emailRule}
-            >
+              rules={Rules.emailRule}>
               <Input placeholder="Enter your email" size="small" type="text" />
             </Form.Item>
           </div>
@@ -212,8 +223,7 @@ function JobSeekerSignUp() {
               label="Password"
               name="password"
               className="c-input"
-              rules={Rules.passwordRule}
-            >
+              rules={Rules.passwordRule}>
               <Input.Password
                 placeholder="Enter password"
                 size="small"
@@ -226,13 +236,13 @@ function JobSeekerSignUp() {
               name="confirmPassword"
               className="c-input"
               rules={Rules.confirmPasswordRule}
-              dependencies={["password"]}
-            >
+              dependencies={["password"]}>
               <Input.Password placeholder="Enter password again" size="small" />
             </Form.Item>
           </div>
           <div className="c-row">
             <Form.Item
+              style={{ zIndex: "400" }}
               label={
                 <div className="c-label">
                   <label>Family status&nbsp;</label>
@@ -247,9 +257,11 @@ function JobSeekerSignUp() {
               }
               name="familyStatusId"
               className="c-input"
-              rules={Rules.requiredRule}
-            >
-              <Select size="large" defaultValue="">
+              rules={Rules.requiredRule}>
+              <Select
+                getPopupContainer={(trigger) => trigger.parentNode}
+                size="large"
+                defaultValue="">
                 <Option value="">Select</Option>
                 {familyStatuses?.map((fs) => (
                   <Option value={fs.id}>{fs.title}</Option>
@@ -258,6 +270,7 @@ function JobSeekerSignUp() {
             </Form.Item>
 
             <Form.Item
+              style={{ zIndex: "390" }}
               label={
                 <div className="c-label">
                   <label>Gender&nbsp;</label>
@@ -272,9 +285,11 @@ function JobSeekerSignUp() {
               }
               name="gender"
               className="c-input"
-              rules={Rules.requiredRule}
-            >
-              <Select size="large" defaultValue="">
+              rules={Rules.requiredRule}>
+              <Select
+                getPopupContainer={(trigger) => trigger.parentNode}
+                size="large"
+                defaultValue="">
                 <Option value="">Select</Option>
                 <Option value="male">Male</Option>
                 <Option value="female">Female</Option>
@@ -284,15 +299,19 @@ function JobSeekerSignUp() {
           </div>
           <div className="c-row">
             <Form.Item
-              label="Date of birth"
+              label={
+                <div className="c-label">
+                  <label>Date of birth</label>
+                </div>
+              }
               name="dob"
               className="c-input"
-              rules={Rules.requiredRule}
-            >
+              rules={Rules.requiredRule}>
               <DatePicker />
             </Form.Item>
 
             <Form.Item
+              style={{ zIndex: "380" }}
               label={
                 <div className="c-label">
                   <label>Passport nationality&nbsp;</label>
@@ -307,9 +326,11 @@ function JobSeekerSignUp() {
               }
               name="nationalityId"
               className="c-input"
-              rules={Rules.requiredRule}
-            >
-              <Select size="large" defaultValue="">
+              rules={Rules.requiredRule}>
+              <Select
+                getPopupContainer={(trigger) => trigger.parentNode}
+                size="large"
+                defaultValue="">
                 <Option value="">Select</Option>
                 {nationalities?.map((n) => (
                   <Option value={n.id}>{n.title}</Option>
@@ -328,15 +349,24 @@ function JobSeekerSignUp() {
               ]}
               name="agreeTerms"
               className="mb-0"
-              valuePropName="checked"
-            >
+              valuePropName="checked">
               <Checkbox>
-                I agree with Jobsmideast.com <mark>terms &amp; conditions</mark>{" "}
+                I agree with Jobsmideast.com{" "}
+                <mark onClick={() => setTermsModalShow(true)}>
+                  terms &amp; conditions
+                </mark>{" "}
                 and <mark>privacy policy.</mark>
               </Checkbox>
             </Form.Item>
 
-            <Form.Item
+            <Modal
+              show={termsModalShow}
+              onHide={() => setTermsModalShow(false)}>
+              {" "}
+              <TermsConditions />
+            </Modal>
+
+            {/* <Form.Item
               rules={[
                 {
                   required: true,
@@ -345,25 +375,24 @@ function JobSeekerSignUp() {
               ]}
               name="agreePrivacy"
               className="mb-0"
-              valuePropName="checked"
-            >
+              valuePropName="checked">
               <Checkbox>
-                I agree to Jobsmideast T&C’s, the data privacy statement, and to
-                receive future emails, texts and communications.
+                I agree to Jobsmideast T&C’s, the data privacy statement, and to receive future emails, texts and
+                communications.
               </Checkbox>
-            </Form.Item>
+            </Form.Item> */}
           </span>
 
           {errorMessage && <Alert message={errorMessage} type="error" />}
 
           <Form.Item className="mb-0 align-self-end">
             <Button
-              themeColor="primary"
+              className="create-profile-button"
+              themeColor="light"
               type="large"
               htmlType="submit"
               loading={isLoading}
-              block
-            >
+              block>
               Create my profile
             </Button>
           </Form.Item>

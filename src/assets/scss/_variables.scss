@@ -2,7 +2,7 @@ $primary: #2a8fff;
 $secondary: #171c3c;
 $white: #ffffff;
 $black: #000000;
-$text-color: #2D2F44;
+$text-color: #2d2f44;
 $blue: #2a8fff;
 $green: #7ed957;
 $purple: #6c5984;
@@ -10,12 +10,14 @@ $light-purple: #cb6ce6;
 $brown: #f8b041;
 $border-color: rgba(0, 0, 0, 0.05);
 //font families
-$font-bold: "Gordita-Regular";
+$font-bold: "Gordita-Bold";
 $font-light: "Gordita-Light";
-$font-medium: "Gordita-Medium";
+$font-medium: "Gordita-Regular";
+$font-subtitle: "Gordita-Medium";
 
 //font-sizes
 $font-size-x-lg: 40px;
+$font-size-30: 30px;
 $font-size-lg: 20px;
 $font-size-md: 14px;
 $font-size-sm: 12px;

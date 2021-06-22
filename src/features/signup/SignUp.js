@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import { Form, Radio } from "antd";
@@ -45,12 +45,11 @@ function SignUp() {
         </div>
         <Form
           className="second-container c-form w-100 signup-option"
-          onFinish={onFinish}
-        >
-          <img
+          onFinish={onFinish}>
+          {/* <img
             src={require("../../assets/images/auth/signup-illus.png")}
             alt="logo"
-          />
+          /> */}
 
           <span class="mt-3">
             <h3 className="form-title">
@@ -74,8 +73,7 @@ function SignUp() {
               htmlType="submit"
               // loading={true}
               block
-              themeColor="primary"
-            >
+              themeColor="primary">
               Next
             </Button>
           </Form.Item>

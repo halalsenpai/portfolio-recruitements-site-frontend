@@ -1,125 +1,155 @@
 .filter-main {
+  .filter-header {
+    align-items: baseline;
+    display: flex;
+    border-bottom: 1px solid $border-color;
 
-    // padding: 0 10px;
-    .filter-header {
-        align-items: baseline;
-        display: flex;
-        border-bottom: 1px solid $border-color;
-
-        p {
-            margin: 0;
-        }
-
-        .filter-cell {
-            &:first-child {
-                padding: 0 20px 0 0;
-            }
-
-            &:last-child {
-                width: 100%;
-            }
-        }
-
-        .ant-select {
-            width: 100% !important;
-            margin: 0 0 20px 0;
-
-        }
+    p {
+      margin: 0;
     }
 
-    .filter-section {
-        .filters-row {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
+    .ant-select {
+      width: 100% !important;
+      margin: 0 0 20px 0;
+    }
+  }
 
-            .silder-equivalent {
-                color: $green;
-                position: absolute;
-                bottom: -30px;
-            }
-        }
-
-        .margin-y {
-            margin: 20px 0;
-        }
-
-        .filter-cell {
-            flex: auto;
-
-            .switches {
-                padding: 6px 0;
-                width: 210px;
-
-                .ant-switch-small {
-                    min-width: 38px;
-                }
-
-                .ant-switch-checked {
-                    background-color: $green;
-                }
-            }
-        }
-
-        .column {
-            display: flex;
-            flex-wrap: wrap;
-            flex-direction: column;
-            align-items: center;
-
-        }
-
-        .al-around {
-            justify-content: space-around;
-        }
-
-        .marging-a {
-            margin: 0 auto;
-        }
-
-        .ant-select {
-            width: 280px !important;
-            margin: 0 0 20px 0;
-
-        }
-
-        .ant-slider {
-            margin: 0 5px;
-        }
-
-        .ant-slider-handle {
-            background-color: $blue;
-            border: solid 4px $white;
-            box-shadow: 0 0 10px #c3c3c3;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            margin-top: -5px;
-        }
-
-        .ant-slider-track {
-            height: 8px;
-            background-color: $blue;
-        }
-
-        .ant-slider-rail {
-            height: 8px;
-            border-radius: 50px;
-            background-color: #e0e0e0;
-        }
-        .ant-slider-step {
-            height: 8px;
-        }
-        .ant-slider:hover .ant-slider-handle:not(.ant-tooltip-open) {
-            border-color: #eee;
-        }
-
-        .ant-select-show-search.ant-select:not(.ant-select-customize-input) .ant-select-selector input {
-            cursor: auto;
-            visibility: hidden;
-        }
-
+  .filter-section {
+    .c-form {
+      align-items: unset;
+    }
+    .jobs-grid {
+      // min-width: 250px;
+      padding: 10px;
+    }
+    .switch-grid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
+    .silder-equivalent {
+      color: $green;
+      position: absolute;
+      bottom: -30px;
+    }
+    .c-input-with-icon {
+      width: 100%;
+      // max-width: 300px;
+    }
+
+    .switches {
+      margin-bottom: 0;
+      padding: 6px 0;
+      width: 100%;
+      max-width: 230px;
+      flex-wrap: nowrap !important;
+      .ant-form-item-control {
+        order: -1;
+        max-width: 48px !important;
+        padding-right: 8px;
+      }
+      .ant-form-item-label {
+        label {
+          margin-bottom: 1px;
+        }
+      }
+
+      .ant-switch-small {
+        min-width: 38px;
+        max-width: 38px;
+      }
+
+      .ant-switch-checked {
+        background-color: $green;
+      }
+    }
+
+    .column {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      .ant-form-item {
+        margin-bottom: 1px;
+        align-items: center;
+        label {
+          margin-bottom: 0px;
+        }
+      }
+    }
+
+    .al-around {
+      justify-content: space-around;
+    }
+
+    .marging-a {
+      margin: 0 auto;
+    }
+
+    // .ant-select {
+    //     // width: 280px !important;
+    //     margin: 0 0 20px 0;
+    // }
+
+    .ant-slider {
+      margin: 0 5px;
+      width: 290px;
+    }
+
+    .ant-slider-handle {
+      background-color: $blue;
+      border: solid 4px $white;
+      box-shadow: 0 0 10px #c3c3c3;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      margin-top: -5px;
+    }
+
+    .ant-slider-track {
+      height: 8px;
+      background-color: $blue;
+    }
+
+    .ant-slider-rail {
+      height: 8px;
+      border-radius: 50px;
+      background-color: #e0e0e0;
+    }
+    .ant-slider-step {
+      height: 8px;
+    }
+    .ant-slider:hover .ant-slider-handle:not(.ant-tooltip-open) {
+      border-color: #eee;
+    }
+
+    .ant-select-show-search.ant-select:not(.ant-select-customize-input)
+      .ant-select-selector
+      input {
+      cursor: unset;
+      visibility: unset;
+    }
+  }
+
+  divide {
+    padding: 0 45px !important;
+    padding-bottom: 20px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+
+    button {
+      background: linear-gradient(
+        90deg,
+        #020024 0%,
+        #6ad259 0%,
+        #00b0fa 100%
+      ) !important;
+    }
+  }
+}
+
+.country-city-modal-backdrop {
+  z-index: 1050;
 }

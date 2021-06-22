@@ -1,6 +1,9 @@
 import React from "react";
 
 import Slider from "react-slick";
+import { selectCountries, selectEmploymentTypes, selectJobTitles } from "../../features/jobs/slice";
+import { transformJobData } from "../../features/jobs/transformers";
+import { useAppSelector } from "../../store/hooks";
 
 import JobCard from "../JobCard/JobCard";
 
@@ -68,13 +71,17 @@ const JobsCarouselv2 = ({ jobs = [], responsiveSlides = 2 }) => {
     ],
   };
 
+  const countries = useAppSelector(selectCountries);
+  const jobTitles = useAppSelector(selectJobTitles);
+  const employmentTypes = useAppSelector(selectEmploymentTypes);
+
   return (
     <div>
       <Slider {...settings}>
         {jobs.map((obj, index) => {
           return (
             <div className="d-flex justify-content-center align-items-center">
-              <JobCard job={obj} type="box" />
+              <JobCard job={transformJobData(obj, jobTitles, employmentTypes, countries)} type="box" />
             </div>
           );
         })}
