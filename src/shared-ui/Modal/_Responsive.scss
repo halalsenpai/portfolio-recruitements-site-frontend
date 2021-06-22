@@ -47,3 +47,21 @@
     }
   }
 }
+
+@media screen and (max-width: 580px) {
+  .modal-dialog {
+    padding-top: 36px !important;
+    .modal-content {
+      width: 95% !important;
+      .terms {
+        height: 700px;
+        padding: 0 !important;
+        overflow-y: auto;
+      }
+      .close {
+        right: 0 !important;
+        top: -30px !important;
+      }
+    }
+  }
+}
