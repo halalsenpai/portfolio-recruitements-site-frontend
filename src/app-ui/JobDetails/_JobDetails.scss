@@ -111,6 +111,23 @@
           margin: 0px 2px;
         }
       }
+      .icon {
+        height: 18px;
+        width: 18px;
+      }
+      .following-icon {
+        // display: none;
+        background-image: url("./../../assets/images/icons/following-blue-icon.svg");
+        background-repeat: no-repeat;
+        background-size: 100%;
+        background-position: center;
+      }
+      .c-button:hover > .following-icon {
+        background-image: url("./../../assets/images/icons/following-white-icon.svg") !important;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        background-position: center;
+      }
     }
 
     .content-box {

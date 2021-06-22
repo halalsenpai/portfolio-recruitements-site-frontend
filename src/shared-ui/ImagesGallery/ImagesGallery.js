@@ -8,11 +8,11 @@ import Modal from "../Modal/Modal";
 function ImagesGallery({
   title = "Photos",
   images = [
-    { src: require("../../assets/images/sample/cmp-img-1.png") },
-    { src: require("../../assets/images/sample/cmp-img-2.png") },
-    { src: require("../../assets/images/sample/cmp-img-3.png") },
-    { src: require("../../assets/images/sample/cmp-img-1.png") },
-    { src: require("../../assets/images/sample/cmp-img-3.png") },
+    { src: require("../../assets/images/sample/01.png") },
+    { src: require("../../assets/images/sample/02.png") },
+    { src: require("../../assets/images/sample/03.png") },
+    { src: require("../../assets/images/sample/04.png") },
+    // { src: require("../../assets/images/sample/01.png") },
   ],
 }) {
   const [openAllImages, setOpenAllImages] = useState(false);
@@ -46,8 +46,7 @@ function ImagesGallery({
         className="center lg c-media-picker"
         backdrop="static"
         keyboard={false}
-        onHide={() => setOpenAllImages(false)}
-      >
+        onHide={() => setOpenAllImages(false)}>
         <span className="images-container-modal">
           <MappedElement
             data={images}

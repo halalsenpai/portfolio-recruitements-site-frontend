@@ -1,5 +1,9 @@
 @import "../../assets/scss/variables";
 
+.container-fluid img {
+  cursor: default;
+}
+
 .home {
   position: relative;
   top: 0px;
@@ -92,7 +96,7 @@
       flex-direction: row;
       justify-content: space-between;
       display: flex;
-      flex-wrap: wrap;
+      // flex-wrap: wrap;
       // justify-content: center;
       margin: 20px 0px 0px 0px;
       .box {
@@ -160,7 +164,7 @@
       flex-direction: row;
       justify-content: space-between;
       display: flex;
-      flex-wrap: wrap;
+      // flex-wrap: wrap;
       // justify-content: center;
       margin: 20px 0px 0px 0px;
       .box {
@@ -243,6 +247,7 @@
         img {
           width: 100%;
           object-fit: cover;
+          cursor: default;
         }
       }
     }

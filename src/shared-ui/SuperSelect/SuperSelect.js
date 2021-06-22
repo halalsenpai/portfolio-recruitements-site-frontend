@@ -21,13 +21,14 @@ const getOptions = (data, keys) => {
 };
 
 export const SuperSelect = ({
+  mode,
   fetchOptions,
   allowClear = true,
   showSearch = true,
   placeholder = "Select options",
   debounceTimeout = 800,
   fixedOptions = [],
-  searchKey = "title",
+  searchKey = "search",
   keys = ["id", "title"],
   ...props
 }) => {
@@ -59,7 +60,7 @@ export const SuperSelect = ({
   }, [newOptions]);
 
   const debounceOnSearchFetcher = useMemo(() => {
-    const loadOptions = (title) => {
+    const loadOptions = (search) => {
       fetchOnSearchRef.current += 1;
       const fetchId = fetchOnSearchRef.current;
       setSearchOptions([]);
@@ -67,7 +68,7 @@ export const SuperSelect = ({
       const _params = {
         page: 1,
         limit: 100,
-        [searchKey]: title,
+        [searchKey]: search,
       };
       setParams(_params);
       fetchOptions(_params).then(({ data, meta }) => {
@@ -119,7 +120,8 @@ export const SuperSelect = ({
 
   return (
     <Select
-      showArrow={false}
+      showArrow={mode ? false : true}
+      mode={mode}
       filterOption={false}
       showSearch={showSearch}
       placeholder={placeholder}

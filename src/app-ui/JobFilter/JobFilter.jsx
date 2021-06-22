@@ -37,12 +37,15 @@ import {
   getAccommodation,
   getCategories,
   getEmploymentType,
+  getJobTitles,
   getQualification,
 } from "../../features/jobs/service";
+import { useRef } from "react";
 
 const { Option } = Select;
 
 const JobFilter = (props) => {
+  const jobFilterRef = useRef();
   const [salaryStart, setSalaryStart] = useState(null);
   const [salaryEnd, setSalaryEnd] = useState(null);
   const [selectedCitiesIds, setSelectedCitiesIds] = useState(null);
@@ -120,6 +123,17 @@ const JobFilter = (props) => {
     dispatch(getJob());
     props.onHide();
   };
+
+  const jobFilterModal = document.querySelector(".job-filter-modal");
+
+  const handleSetCountriesCitiesModal = () => {
+    const modalBackdrop = document.querySelector(".modal-backdrop");
+    // props.onHide();
+    console.log(modalBackdrop.style);
+    // jobFilterRef.current.style.opacity = "0";
+    // console.log(jobFilterRef.current.style);
+    setCountriesCitiesModal(true);
+  };
   return (
     <>
       <Modal
@@ -180,7 +194,7 @@ const JobFilter = (props) => {
                     alt=""
                   />
                   <Input
-                    onClick={() => setCountriesCitiesModal(true)}
+                    onClick={handleSetCountriesCitiesModal}
                     placeholder="Select countires and cities"
                     value={`${
                       selectedCountryId
@@ -190,7 +204,7 @@ const JobFilter = (props) => {
                 </Form.Item>
                 <Modal
                   className="rm-padding medium country-city-modal-parent"
-                  backdropClassName="country-city-modal"
+                  backdropClassName="country-city-modal-backdrop"
                   show={countriesCitiesModal}
                   onHide={() => setCountriesCitiesModal(false)}>
                   <CountryCityModal
@@ -244,7 +258,13 @@ const JobFilter = (props) => {
                   name="jobTitle"
                   className="c-input c-form p-0"
                   rules={null}>
-                  <Select
+                  <SuperSelect
+                    onSelect={(v) => dispatch(getJobTitlesById(v))}
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    defaultValue=""
+                    fetchOptions={getJobTitles}
+                  />
+                  {/* <Select
                     getPopupContainer={(trigger) => trigger.parentNode}
                     placeholder="Select">
                     {" "}
@@ -253,7 +273,7 @@ const JobFilter = (props) => {
                         {d?.title}
                       </Option>
                     ))}
-                  </Select>
+                  </Select> */}
                 </Form.Item>
               </Col>
             </Row>
@@ -297,6 +317,11 @@ const JobFilter = (props) => {
                 className="jobs-grid"
                 span={12}>
                 <Form.Item
+                  extra={
+                    <span style={{ color: "green" }}>
+                      Equivalent to 2,000 GBP
+                    </span>
+                  }
                   label={
                     <div className="d-flex justify-content-between w-100 align-items-center">
                       <span>Select Salary Range</span>
@@ -480,7 +505,7 @@ const JobFilter = (props) => {
           </div>
         </Form>
       </Modal>
-    </>
+      </>
   );
 };
 

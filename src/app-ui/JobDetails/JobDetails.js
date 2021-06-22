@@ -3,7 +3,7 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Col, Divider, Popover, Row, Select } from "antd";
 import { BsFillChatFill } from "react-icons/bs";
-import { FaHeart, FaStar } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
 
 import { Map } from "../../shared-ui/Map/Map";
 import { getTitleById } from "../../utils/helper";
@@ -84,19 +84,20 @@ function JobDetails({
             <Button themeColor="shadowed">
               <Link to="/login">Apply</Link>
             </Button>
-            <Button themeColor="shadowed rounded">
-              {" "}
-              <Link to="/login">
-                <FaHeart size="14px" className="highlighted" />{" "}
-              </Link>
+
+            <Button
+              icon={<span className="icon following-icon"></span>}
+              title="Follow Company"
+              themeColor="shadowed rounded">
+              <Link to="/login"></Link>
             </Button>
             <Button
+              title="Shorlist Job"
               onClick={() => history.push("/login")}
               themeColor="shadowed rounded"
               icon={<FaStar size="14px" className="highlighted" />}
             />
-
-            <Button themeColor="shadowed rounded">
+            <Button title="Chat" themeColor="shadowed rounded">
               {" "}
               <Link to="/login">
                 {" "}
