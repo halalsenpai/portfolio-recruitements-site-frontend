@@ -140,7 +140,7 @@ function AgencySignUp() {
     <div className="c-container auth-wrapper">
       <div className="signup-container with-form">
         <Form
-          style={{ zIndex: "50" }}
+          style={{ zIndex: 50 }}
           form={form}
           layout="vertical"
           className="c-form second-container align-items-start"
@@ -154,7 +154,7 @@ function AgencySignUp() {
 
               <div className="c-row">
                 <Form.Item
-                  style={{ zIndex: "400" }}
+                  style={{ zIndex: 400 }}
                   label="Company name"
                   name="companyProfileId"
                   className="c-input"
@@ -188,7 +188,7 @@ function AgencySignUp() {
                   />
                 </Form.Item>
                 <Form.Item
-                  style={{ zIndex: "390" }}
+                  style={{ zindex: 390 }}
                   label="Job title"
                   name="jobTitleId"
                   className="c-input"
@@ -232,8 +232,9 @@ function AgencySignUp() {
                   />
                 </Form.Item>
               </div>
-              <div className="c-row">
+              <div style={{ zIndex: 10 }} className="c-row">
                 <Form.Item
+                  style={{ zIndex: 90 }}
                   label="Mobile number"
                   name="mobile"
                   className="c-input"
@@ -245,6 +246,7 @@ function AgencySignUp() {
                   />
                 </Form.Item>
                 <Form.Item
+                  style={{ zIndex: 80 }}
                   label="Direct work phone"
                   name="directWorkPhone"
                   className="c-input"
@@ -270,7 +272,7 @@ function AgencySignUp() {
                   />
                 </Form.Item>
                 <Form.Item
-                  style={{ zIndex: "360" }}
+                  style={{ zIndex: 9 }}
                   label="How did you find us?"
                   name="findUsId"
                   className="c-input"
@@ -328,7 +330,7 @@ function AgencySignUp() {
 
               <div className="c-row">
                 <Form.Item
-                  style={{ zIndex: "350" }}
+                  style={{ zIndex: 180 }}
                   label="I’m registering a"
                   name="companyType"
                   className="c-input"
@@ -360,7 +362,7 @@ function AgencySignUp() {
               </div>
               <div className="c-row">
                 <Form.Item
-                  style={{ zIndex: "340" }}
+                  style={{ zIndex: 170 }}
                   label="Company location"
                   name="countryId"
                   className="c-input"
@@ -379,7 +381,7 @@ function AgencySignUp() {
                   </Select>
                 </Form.Item>
                 <Form.Item
-                  style={{ zIndex: "330" }}
+                  style={{ zIndex: 160 }}
                   label="City"
                   name="cityId"
                   className="c-input"

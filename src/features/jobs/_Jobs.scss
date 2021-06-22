@@ -131,13 +131,16 @@
       .filter-icon {
         width: 32px;
         &:hover {
-          background-color: $white;
+          background-color: white;
+          filter: brightness(100%);
         }
         &:active {
-          background-color: $white;
+          background-color: white;
+          filter: brightness(100%);
         }
         &:focus {
-          background-color: $white;
+          background-color: white;
+          filter: brightness(100%);
         }
       }
     }
