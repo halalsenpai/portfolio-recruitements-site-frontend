@@ -4,7 +4,7 @@ import { jsonToQueryString } from "../../utils/helper";
 const SERVICE_URLS = {
   getRole: () => `/role`,
   getFamilyStatus: () => `/family-status`,
-  getNationality: () => `/nationality`,
+  getNationality: (qs) => `/nationality${qs}`,
   getFindUsPlatform: () => `/find-us`,
   getCompany: (qs) => `/company-profile/name/list${qs}`,
   getCountry: () => `/country`,
@@ -25,6 +25,10 @@ export const getCompany = (params) => {
   const qs = jsonToQueryString(params);
   return get(SERVICE_URLS.getCompany(qs));
 };
+export const getNationalities = (params) => {
+  const qs = jsonToQueryString(params);
+  return get(SERVICE_URLS.getNationality(qs))
+}
 export const getCountry = () => get(SERVICE_URLS.getCountry());
 export const getCity = () => get(SERVICE_URLS.getCity());
 export const getCitiesByCountry = (id) =>

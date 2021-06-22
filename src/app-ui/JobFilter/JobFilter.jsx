@@ -135,9 +135,9 @@ const JobFilter = (props) => {
     setCountriesCitiesModal(true);
   };
   return (
-    <div className="">
+    <>
       <Modal
-        className="center lg job-filter-modal"
+        className="center lg filter-modal"
         show={props.show}
         onHide={props.onHide}>
         <Form
@@ -494,18 +494,18 @@ const JobFilter = (props) => {
               </Col>
             </Row>
             <Divider></Divider>
-            <divide className="d-flex">
-              <Button onClick={handleReset} themeColor="blue mr-3">
+            <divide className="d-flex justify-content-center">
+              <Button onClick={handleReset} themeColor="light mr-3">
                 Reset Filter
               </Button>
-              <Button htmlType="submit" themeColor="green">
+              <Button htmlType="submit" themeColor="light">
                 Apply Filter
               </Button>
             </divide>
           </div>
         </Form>
       </Modal>
-    </div>
+    </>
   );
 };
 

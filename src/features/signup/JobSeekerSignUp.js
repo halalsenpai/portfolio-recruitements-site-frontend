@@ -33,6 +33,8 @@ import {
   selectCountryByIp,
 } from "./slice";
 import TermsConditions from "./TermsConditions";
+import { getNationalities } from "./service";
+import { SuperSelect } from "../../shared-ui/SuperSelect/SuperSelect";
 
 const { Option } = Select;
 
@@ -165,6 +167,7 @@ function JobSeekerSignUp() {
 
         {/* form */}
         <Form
+          style={{ zIndex: 90, padding: "24px" }}
           form={form}
           layout="vertical"
           onFinish={onFinish}
@@ -200,6 +203,7 @@ function JobSeekerSignUp() {
           </div>
           <div className="c-row">
             <Form.Item
+              style={{ zIndex: 300 }}
               label="Mobile number"
               name="mobile"
               className="c-input"
@@ -242,7 +246,7 @@ function JobSeekerSignUp() {
           </div>
           <div className="c-row">
             <Form.Item
-              style={{ zIndex: "400" }}
+              style={{ zIndex: 140 }}
               label={
                 <div className="c-label">
                   <label>Family status&nbsp;</label>
@@ -270,7 +274,7 @@ function JobSeekerSignUp() {
             </Form.Item>
 
             <Form.Item
-              style={{ zIndex: "390" }}
+              style={{ zIndex: 120 }}
               label={
                 <div className="c-label">
                   <label>Gender&nbsp;</label>
@@ -311,7 +315,7 @@ function JobSeekerSignUp() {
             </Form.Item>
 
             <Form.Item
-              style={{ zIndex: "380" }}
+              style={{ zIndex: 100 }}
               label={
                 <div className="c-label">
                   <label>Passport nationality&nbsp;</label>
@@ -327,15 +331,31 @@ function JobSeekerSignUp() {
               name="nationalityId"
               className="c-input"
               rules={Rules.requiredRule}>
-              <Select
+              {/* <Select
                 getPopupContainer={(trigger) => trigger.parentNode}
                 size="large"
+                dropdownClassName="nationality-dropdown"
                 defaultValue="">
                 <Option value="">Select</Option>
                 {nationalities?.map((n) => (
                   <Option value={n.id}>{n.title}</Option>
                 ))}
-              </Select>
+              </Select> */}
+              <SuperSelect
+                    style={{ zIndex: 50 }}
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    defaultValue=""
+                    fetchOptions={getNationalities}
+                    // onChange={onCompanyNameChange}
+                    // keys={['nationality']}
+                    // keys={["title"]}
+                    // fixedOptions={[
+                    //   {
+                    //     label: "Create New Company",
+                    //     value: "create-company",
+                    //   },
+                    // ]}
+                  />
             </Form.Item>
           </div>
 
