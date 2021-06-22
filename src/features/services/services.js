@@ -56,27 +56,27 @@ const Services = () => {
         </p>
         <dinv className="icons">
           <img
-            src={require("../../assets/images/Services/glass.png")}
+            src={require("../../assets/images/Services/glass.svg")}
             alt=""
             className="icons"
           />
           <img
-            src={require("../../assets/images/Services/restaurants.png")}
+            src={require("../../assets/images/Services/restaurants.svg")}
             alt=""
             className="icons"
           />
           <img
-            src={require("../../assets/images/Services/home.png")}
+            src={require("../../assets/images/Services/home.svg")}
             alt=""
             className="icons"
           />
           <img
-            src={require("../../assets/images/Services/airplane.png")}
+            src={require("../../assets/images/Services/airplane.svg")}
             alt=""
             className="icons"
           />
           <img
-            src={require("../../assets/images/Services/construction.png")}
+            src={require("../../assets/images/Services/construction.svg")}
             alt=""
             className="icons"
           />
