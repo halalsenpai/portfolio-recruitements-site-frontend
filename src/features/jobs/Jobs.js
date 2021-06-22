@@ -156,7 +156,7 @@ function Jobs() {
 
               <Button
                 icon={<img src={filterIcon} alt="ico" />}
-                className=" filter-icon white rounded shadowed"
+                className=" filter-icon rounded shadowed"
                 style={{ marginLeft: "8px" }}
                 onClick={ShowFilter}></Button>
             </span>
