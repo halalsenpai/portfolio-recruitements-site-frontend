@@ -165,7 +165,7 @@ function JobSeekerSignUp() {
 
         {/* form */}
         <Form
-          style={{ zIndex: 90 }}
+          style={{ zIndex: 90, padding: "24px" }}
           form={form}
           layout="vertical"
           onFinish={onFinish}
@@ -201,6 +201,7 @@ function JobSeekerSignUp() {
           </div>
           <div className="c-row">
             <Form.Item
+              style={{ zIndex: 300 }}
               label="Mobile number"
               name="mobile"
               className="c-input"

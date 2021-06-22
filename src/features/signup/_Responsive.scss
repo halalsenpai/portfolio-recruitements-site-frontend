@@ -11,6 +11,7 @@
       height: max-content;
       position: relative;
       box-shadow: 0 0 16px #00000026;
+      overflow: unset;
     }
     .first-container {
       display: none !important;
@@ -56,7 +57,7 @@
       padding: 0px !important;
       height: max-content;
       position: relative;
-      box-shadow: 0 0 16px #00000026;
+      box-shadow: none;
     }
     .first-container {
       display: none !important;
@@ -82,6 +83,16 @@
     }
     .c-form {
       height: fit-content;
+      .form-actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        button:last-of-type {
+          margin-top: 16px;
+          margin-left: 0;
+        }
+      }
     }
   }
   .react-tel-input {

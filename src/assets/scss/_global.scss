@@ -481,7 +481,7 @@ p {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
   width: 100%;
 }
 
@@ -804,6 +804,13 @@ p {
   .ant-select {
     width: 100% !important;
   }
+}
+
+.ant-upload-list-text .ant-upload-list-item-name,
+.ant-upload-list-picture .ant-upload-list-item-name {
+  font-size: 10px;
+  white-space: break-spaces;
+  word-break: break-all;
 }
 @media screen and (max-width: 1024px) {
   .react-tel-input .form-control {

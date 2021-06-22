@@ -38,6 +38,7 @@
     height: 720px;
     position: relative;
     overflow: hidden;
+    overflow-y: unset;
     box-shadow: 0 0 16px #00000026;
 
     .first-container {
@@ -138,7 +139,7 @@
     .second-container {
       max-width: 740px;
       width: 100%;
-      padding: 0 90px;
+      padding: 0 30px;
       max-width: inherit;
 
       &.signup-option {
@@ -182,6 +183,7 @@
 
 .form-actions {
   display: flex;
+
   button:last-of-type {
     margin-left: 1em;
   }

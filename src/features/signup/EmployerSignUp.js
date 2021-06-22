@@ -152,7 +152,7 @@ function EmployerSignUp() {
 
               <div className="c-row">
                 <Form.Item
-                  style={{ zIndex: "400" }}
+                  style={{ zIndex: 400 }}
                   label="Company name"
                   name="companyProfileId"
                   className="c-input"
@@ -173,7 +173,7 @@ function EmployerSignUp() {
                   />
                 </Form.Item>
                 <Form.Item
-                  style={{ zIndex: "390" }}
+                  style={{ zIndex: 390 }}
                   label="Job title"
                   name="jobTitleId"
                   className="c-input"

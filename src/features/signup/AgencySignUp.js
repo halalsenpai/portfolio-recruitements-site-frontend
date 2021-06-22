@@ -153,7 +153,7 @@ function AgencySignUp() {
 
               <div className="c-row">
                 <Form.Item
-                  style={{ zIndex: 230 }}
+                  style={{ zIndex: 400 }}
                   label="Company name"
                   name="companyProfileId"
                   className="c-input"
@@ -186,7 +186,7 @@ function AgencySignUp() {
                   />
                 </Form.Item>
                 <Form.Item
-                  style={{ zindex: 220 }}
+                  style={{ zindex: 390 }}
                   label="Job title"
                   name="jobTitleId"
                   className="c-input"
@@ -227,25 +227,25 @@ function AgencySignUp() {
                   />
                 </Form.Item>
               </div>
-              <div className="c-row">
+              <div style={{ zIndex: 10 }} className="c-row">
                 <Form.Item
+                  style={{ zIndex: 90 }}
                   label="Mobile number"
                   name="mobile"
                   className="c-input"
                   rules={Rules.phoneRule}>
                   <PhoneInput
-                    style={{ zIndex: 100 }}
                     placeholder="Enter your mobile no."
                     country={countryCode}
                   />
                 </Form.Item>
                 <Form.Item
+                  style={{ zIndex: 80 }}
                   label="Direct work phone"
                   name="directWorkPhone"
                   className="c-input"
                   rules={Rules.phoneRule}>
                   <PhoneInput
-                    style={{ zIndex: 90 }}
                     placeholder="Enter your work phone."
                     country={countryCode}
                   />
