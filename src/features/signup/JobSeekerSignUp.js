@@ -165,7 +165,7 @@ function JobSeekerSignUp() {
 
         {/* form */}
         <Form
-          style={{ zIndex: 90, padding: "24px" }}
+          style={{ zIndex: 90 }}
           form={form}
           layout="vertical"
           onFinish={onFinish}
