@@ -17,7 +17,11 @@ const getTagByType = (type) => {
     case JobTagTypes.FEATURED:
       return (
         <span className="featured-tag">
-          <img className="tag-icon" src={require("../../assets/images/icons/diamond_white_icon.svg")} alt="" />
+          <img
+            className="tag-icon"
+            src={require("../../assets/images/icons/diamond_white_icon.svg")}
+            alt=""
+          />
 
           <p className="tag-text">Featured</p>
         </span>
@@ -26,7 +30,11 @@ const getTagByType = (type) => {
     case JobTagTypes.APPLIED:
       return (
         <span className="job-tag">
-          <img className="tag-icon" src={require("../../assets/images/icons/check-icon-green.svg")} alt="" />
+          <img
+            className="tag-icon"
+            src={require("../../assets/images/icons/check-icon-green.svg")}
+            alt=""
+          />
 
           <p className="tag-text">Applied</p>
         </span>
@@ -35,7 +43,11 @@ const getTagByType = (type) => {
     case JobTagTypes.SHORTLISTED:
       return (
         <span className="job-tag">
-          <img className="tag-icon" src={require("../../assets/images/icons/shortlisted-job-icon.svg")} alt="" />
+          <img
+            className="tag-icon"
+            src={require("../../assets/images/icons/shortlisted-job-icon.svg")}
+            alt=""
+          />
 
           <p className="tag-text">Shorlisted</p>
         </span>
@@ -44,7 +56,11 @@ const getTagByType = (type) => {
     case JobTagTypes.MESSAGED:
       return (
         <span className="job-tag">
-          <img className="tag-icon" src={require("../../assets/images/icons/messaged-job-icon.svg")} alt="" />
+          <img
+            className="tag-icon"
+            src={require("../../assets/images/icons/messaged-job-icon.svg")}
+            alt=""
+          />
 
           <p className="tag-text">Messaged</p>
         </span>
@@ -56,10 +72,17 @@ const getTagByType = (type) => {
 };
 
 function JobCard({ job = {}, type, onClick }) {
+  console.log(job?.featured);
   return (
-    <div onClick={onClick} className={`c-job-card ${job.featured && "featured"} ${type}`}>
+    <div
+      onClick={onClick}
+      className={`c-job-card ${job.featured && "featured"} ${type}`}>
       <div className="job-card-first-container">
-        <img className="job-thumbnail" src={job?.company?.companyLogo || defaultImage} alt="logo" />
+        <img
+          className="job-thumbnail"
+          src={job?.company?.companyLogo || defaultImage}
+          alt="logo"
+        />
 
         <span className={type === "box" ? "" : "info-wrapper"}>
           <span className={type === "box" ? "" : "info"}>
@@ -107,8 +130,15 @@ function JobCard({ job = {}, type, onClick }) {
         </span>
       </div>
 
-      <div className={type === "box" ? "details-container-box" : "details-container"}>
-        {type !== "box" ? <p>{job?.jobBrief ? String(job?.jobBrief).slice(0, 145) + "..." : ""}</p> : null}
+      <div
+        className={
+          type === "box" ? "details-container-box" : "details-container"
+        }>
+        {type !== "box" ? (
+          <p>
+            {job?.jobBrief ? String(job?.jobBrief).slice(0, 145) + "..." : ""}
+          </p>
+        ) : null}
 
         {type === "box" && (
           <div>
@@ -121,17 +151,17 @@ function JobCard({ job = {}, type, onClick }) {
         )}
       </div>
 
-      {/* <span className="tag-container">
+      <span className="tag-container">
         <Checkbox className="jobcard-checkbox-mobile job-tag" />
 
-        {type !== "box" && getTagByType(job.messaged)}
+        {/* {type !== "box" && getTagByType(job.MESSAGE)} */}
 
-        {type !== "box" && getTagByType(JobTagTypes.SHORTLISTED)}
+        {/* {type !== "box" && getTagByType(JobTagTypes.SHORTLISTED)}
+        
+        {type !== "box" && getTagByType(JobTagTypes.APPLIED)} */}
 
-        {type !== "box" && getTagByType(job.applied)}
-
-        {job?.featured && getTagByType(JobTagTypes.FEATURED)}
-      </span> */}
+        {/* {job?.featured && getTagByType(JobTagTypes.FEATURED)} */}
+      </span>
     </div>
   );
 }

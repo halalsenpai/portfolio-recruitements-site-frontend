@@ -91,3 +91,14 @@
     }
   }
 }
+
+@media screen and (max-width: 768px) {
+  .c-banner-with-images {
+    .imgs-row {
+      width: 100%;
+      .banner-img-main {
+        max-width: unset;
+      }
+    }
+  }
+}

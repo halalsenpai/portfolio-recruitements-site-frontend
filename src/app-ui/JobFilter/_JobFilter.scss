@@ -132,6 +132,26 @@
       visibility: unset;
     }
   }
+
+  divide {
+    padding: 0 45px !important;
+    padding-bottom: 20px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+
+    button {
+      background: linear-gradient(
+        90deg,
+        #020024 0%,
+        #6ad259 0%,
+        #00b0fa 100%
+      ) !important;
+    }
+  }
+}
+
+.country-city-modal-backdrop {
+  z-index: 1050;
 }
 
 // @media screen and (max-width: 580px) {
