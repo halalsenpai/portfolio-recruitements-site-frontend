@@ -1,15 +1,40 @@
 @media only screen and (max-width: 991px) {
   .c-form {
-    max-width: 400px;
-    width: 100%;
+    // max-width: 400px;
+    // width: 100%;
   }
   .forget-password-app {
     width: 300px !important;
   }
+  .c-card-container {
+    .first-container {
+    }
+    .second-container {
+      .login-form {
+        padding: 0 14px;
+        width: 100%;
+        max-width: 400px;
+      }
+    }
+  }
 }
 
 @media only screen and (max-width: 480px) {
+  .auth-wrapper {
+    background-image: none;
+    padding-top: 0 !important;
+  }
   .c-form {
     padding: 0 5px;
+  }
+  .c-card-container {
+    .first-container {
+    }
+    .second-container {
+      .login-form {
+        padding: 0 14px;
+        width: 100%;
+      }
+    }
   }
 }

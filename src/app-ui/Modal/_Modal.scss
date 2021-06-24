@@ -78,6 +78,71 @@
     &.lg {
       .modal-dialog {
         .modal-content {
+          width: 700px;
+        }
+      }
+    }
+
+    .modal-dialog {
+      margin: auto;
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 65px 0;
+
+      .modal-content {
+        height: 100%;
+        border: none;
+        position: relative;
+        padding: 30px;
+        border-radius: 16px;
+        background: $white;
+
+        .close {
+          position: absolute;
+          top: -25px;
+          right: -25px;
+          width: 24px;
+          height: 24px;
+          border-radius: 12px;
+          background-color: $white;
+          outline: none;
+          opacity: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          svg {
+            font-size: 14px;
+            color: $text-color;
+          }
+        }
+      }
+    }
+  }
+
+  &.rm-padding {
+    &.show {
+      display: flex !important;
+    }
+    &.medium {
+      .modal-dialog {
+        .modal-content {
+          width: 660px;
+        }
+      }
+    }
+
+    &.small {
+      .modal-dialog {
+        .modal-content {
+          width: 460px;
+        }
+      }
+    }
+    &.lg {
+      .modal-dialog {
+        .modal-content {
           width: 800px;
         }
       }
@@ -94,16 +159,15 @@
       .modal-content {
         height: 100%;
         border: none;
-
         position: relative;
-        padding: 30px;
+        padding: 30px 0;
         border-radius: 16px;
         background: $white;
 
         .close {
           position: absolute;
-          top: -25px;
-          right: -25px;
+          top: -20px;
+          right: -20px;
           width: 24px;
           height: 24px;
           border-radius: 12px;

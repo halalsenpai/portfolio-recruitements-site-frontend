@@ -17,6 +17,7 @@ import * as serviceWorker from "./serviceWorker";
 import { store } from "./store";
 
 function Root() {
+  console.log(`code works`);
   return (
     <React.StrictMode>
       <Provider store={store}>

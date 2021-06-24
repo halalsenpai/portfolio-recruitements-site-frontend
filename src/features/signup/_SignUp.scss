@@ -8,10 +8,17 @@
       }
 
       &.logo {
+        position: relative;
+        top: 30px;
         width: 500px;
       }
 
       width: 100px;
+    }
+    .inner-container {
+      h3 span {
+        font-family: $font-light !important;
+      }
     }
   }
 
@@ -20,7 +27,9 @@
   }
 
   &.with-form {
-    width: 1020px;
+    width: 1100px;
+    background-color: #fff;
+
     border-radius: 20px;
     display: flex;
     justify-content: flex-start;
@@ -28,7 +37,6 @@
     padding: 0px !important;
     height: 720px;
     position: relative;
-    overflow: hidden;
     box-shadow: 0 0 16px #00000026;
 
     .first-container {
@@ -43,6 +51,9 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      border-radius: 20px;
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
 
       &.role-container {
         width: 200px;
@@ -65,6 +76,8 @@
       }
 
       .logo {
+        position: absolute;
+        top: 60px;
         width: 200px;
       }
 
@@ -75,8 +88,8 @@
         span {
           font-size: $font-size-md;
           color: $white;
-          font-family: $font-bold !important;
-          border-bottom: 3px solid $white;
+          font-family: $font-medium !important;
+          border-bottom: 1px solid $white;
           padding-bottom: 6px;
         }
       }
@@ -96,7 +109,7 @@
           margin: 5px 0px 0px 0px;
 
           &:first-of-type {
-            margin-top: 15px;
+            margin-top: 24px;
           }
 
           h3 {
@@ -107,8 +120,10 @@
           }
 
           p {
-            font-size: $font-size-sm;
+            font-size: $font-size-x-sm;
             color: $white;
+            margin: 0px 0 20px 0 !important;
+            font-family: $font-light !important;
           }
 
           img {
@@ -125,7 +140,7 @@
     .second-container {
       max-width: 740px;
       width: 100%;
-      padding: 0 50px;
+      padding: 0 90px;
       max-width: inherit;
 
       &.signup-option {
@@ -137,22 +152,39 @@
       .c-input {
         width: 300px;
       }
+      .create-profile-button {
+        // margin: 40px 0;
+      }
     }
 
     &.role-container {
-      width: 800px;
-      height: 550px;
+      max-width: 1024px;
+      height: 720px;
 
       .second-container {
         height: 500px;
-        justify-content: space-between;
+        justify-content: center;
       }
+    }
+  }
+  .ant-picker-input > input:placeholder-shown {
+    text-overflow: ellipsis;
+    border: none !important;
+  }
+  .c-input .ant-picker {
+    // box-shadow: none !important;
+    // border: 1px solid $primary;
+  }
+  .react-tel-input {
+    .c-input > input {
+      background-color: transparent !important;
     }
   }
 }
 
 .form-actions {
   display: flex;
+
   button:last-of-type {
     margin-left: 1em;
   }

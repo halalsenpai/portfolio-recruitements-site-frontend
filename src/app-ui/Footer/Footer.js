@@ -26,46 +26,23 @@ function Footer() {
             </span>
           </ul>
           <ul>
-            <a href="/">
-              <h3 className="green">Site Map</h3>
-            </a>
-            <a href="/">About us</a>
-            <a href="/">Attestation</a>
-            <a href="/">Agencies</a>
-            <a href="/">Employers</a>
-            <a href="/">Job seekers</a>
-            <a href="/">Work with us</a>
-            <a href="/">Pricing</a>
-            <a href="/">T&C’s</a>
+            <a href="/">Home</a>
+            <a href="/">Login</a>
             <a href="/">Services</a>
+            <a href="/">Report a problem</a>
           </ul>
           <ul>
-            <a href="/">
-              <h3 className="red">Job Seekers</h3>
-            </a>
-            <a href="/">About us</a>
-            <a href="/">Attestation</a>
-            <a href="/">Agencies</a>
-            <a href="/">Employers</a>
             <a href="/">Job seekers</a>
-            <a href="/">Work with us</a>
-            <a href="/">Pricing</a>
-            <a href="/">T&C’s</a>
-            <a href="/">Services</a>
+            <a href="/">Job</a>
+            <a href="/">Employer & Agencies</a>
           </ul>
           <ul>
-            <a href="/">
+            {/* <a href="/">
               <h3 className="blue">Employers & Agencies</h3>
-            </a>
-            <a href="/">About us</a>
-            <a href="/">Attestation</a>
-            <a href="/">Agencies</a>
-            <a href="/">Employers</a>
-            <a href="/">Job seekers</a>
-            <a href="/">Work with us</a>
+            </a> */}
             <a href="/">Pricing</a>
-            <a href="/">T&C’s</a>
-            <a href="/">Services</a>
+            <a href="/">T&C's</a>
+            <a href="/">Privacy policy</a>
           </ul>
           <ul>
             <a href="/">
@@ -80,6 +57,12 @@ function Footer() {
           </ul>
         </div>
       </span>
+      <div className="footer-bottom">
+        Copyright © 2021 Jobsmideast Ltd (<a>Jobsmideast.com</a>) Inc. All
+        rights reserved.
+        <br />
+        <a>Terms of use </a>| <a>Privacy policy </a>- Company number 13283704{" "}
+      </div>
     </div>
   );
 }

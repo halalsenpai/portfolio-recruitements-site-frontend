@@ -11,6 +11,7 @@
       height: max-content;
       position: relative;
       box-shadow: 0 0 16px #00000026;
+      overflow: unset;
     }
     .first-container {
       display: none !important;
@@ -22,9 +23,13 @@
         justify-content: space-evenly;
         flex-wrap: wrap;
       }
+      .c-input {
+        width: 260px !important;
+      }
     }
     .c-form {
       height: fit-content;
+      padding-top: 24px !important;
     }
   }
   .react-tel-input {
@@ -38,7 +43,11 @@
 
 @media only screen and (max-width: 480px) {
   .signup-container {
+    background-color: #fff;
+    overflow-y: unset;
     &.with-form {
+      background-color: #fff;
+
       max-width: 1020px;
       width: 100%;
       border-radius: 20px;
@@ -48,7 +57,7 @@
       padding: 0px !important;
       height: max-content;
       position: relative;
-      box-shadow: 0 0 16px #00000026;
+      box-shadow: none;
     }
     .first-container {
       display: none !important;
@@ -65,9 +74,25 @@
         justify-content: space-evenly;
         flex-wrap: wrap;
       }
+      .create-profile-button {
+        margin: 20px !important;
+      }
+      .c-input {
+        width: 100% !important;
+      }
     }
     .c-form {
       height: fit-content;
+      .form-actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        button:last-of-type {
+          margin-top: 16px;
+          margin-left: 0;
+        }
+      }
     }
   }
   .react-tel-input {

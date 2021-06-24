@@ -21,49 +21,54 @@ function Header() {
           <img className="logo" src={LogoImage} alt="Logo" />
         </Link>
         <nav className="menu">
-          <Link to="/">Post a free job</Link>
+          <Link
+            onClick={() => setCurrentPath("/signup")}
+            to="/signup"
+            className={getActiveClassForPath(currentPath, "/signup")}>
+            Post a free job
+          </Link>
           <Link
             to="/employee-and-agency"
             onClick={() => setCurrentPath("/employee-and-agency")}
             className={getActiveClassForPath(
               currentPath,
               "/employee-and-agency"
-            )}
-          >
+            )}>
             Employers & agencies
           </Link>
           <Link
             to="/job-seekers"
             onClick={() => setCurrentPath("/job-seekers")}
-            className={getActiveClassForPath(currentPath, "/job-seekers")}
-          >
+            className={getActiveClassForPath(currentPath, "/job-seekers")}>
             Job Seekers
           </Link>
           <Link
             to="/jobs"
             onClick={() => setCurrentPath("/jobs")}
-            className={getActiveClassForPath(currentPath, "/jobs")}
-          >
+            className={getActiveClassForPath(currentPath, "/jobs")}>
             Jobs
           </Link>
-          <Link to="/">Services</Link>
+          <Link
+            to="/services"
+            onClick={() => setCurrentPath("/services")}
+            className={getActiveClassForPath(currentPath, "/services")}>
+            Services
+          </Link>
           <Link
             to="/pricing"
             onClick={() => setCurrentPath("/pricing")}
-            className={getActiveClassForPath(currentPath, "/pricing")}
-          >
+            className={getActiveClassForPath(currentPath, "/pricing")}>
             Pricing
           </Link>
         </nav>
         <div className={`mobile-menu ${menu ? "menu-open" : ""}`}>
           <div className="links-wrapper">
             <Link
-              to="/"
+              to="/signup"
               onClick={() => {
                 setCurrentPath("/");
                 setMenu(false);
-              }}
-            >
+              }}>
               Post a free job
             </Link>
             <Link
@@ -75,8 +80,7 @@ function Header() {
               className={getActiveClassForPath(
                 currentPath,
                 "/employee-and-agency"
-              )}
-            >
+              )}>
               Employers & agencies
             </Link>
             <Link
@@ -85,8 +89,7 @@ function Header() {
                 setCurrentPath("/job-seekers");
                 setMenu(false);
               }}
-              className={getActiveClassForPath(currentPath, "/job-seekers")}
-            >
+              className={getActiveClassForPath(currentPath, "/job-seekers")}>
               Job Seekers
             </Link>
             <Link
@@ -95,19 +98,24 @@ function Header() {
                 setCurrentPath("/jobs");
                 setMenu(false);
               }}
-              className={getActiveClassForPath(currentPath, "/jobs")}
-            >
+              className={getActiveClassForPath(currentPath, "/jobs")}>
               Jobs
             </Link>
-            <Link to="/">Services</Link>
+            <Link
+              to="/services"
+              onClick={() => {
+                setCurrentPath("/services");
+                setMenu(false);
+              }}>
+              Services
+            </Link>
             <Link
               to="/pricing"
               onClick={() => {
                 setCurrentPath("/pricing");
                 setMenu(false);
               }}
-              className={getActiveClassForPath(currentPath, "/pricing")}
-            >
+              className={getActiveClassForPath(currentPath, "/pricing")}>
               Pricing
             </Link>
             <Link
@@ -116,8 +124,7 @@ function Header() {
                 setCurrentPath("/login");
                 setMenu(false);
               }}
-              className="login"
-            >
+              className="login">
               Login
             </Link>
           </div>
@@ -132,9 +139,8 @@ function Header() {
             onClick={() => {
               setCurrentPath("/signup");
               setMenu(false);
-            }}
-          >
-            <Button className="sign-up-btn">Sign Up</Button>
+            }}>
+            <Button className="sign-up-btn">Sign up</Button>
           </Link>
           <button onClick={() => setMenu(!menu)} className="toggle-button">
             {menu ? (

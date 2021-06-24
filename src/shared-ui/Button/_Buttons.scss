@@ -5,7 +5,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 6px 25px;
+  padding: 8px 25px;
   font-size: 14px;
   border-radius: 32px;
   width: max-content;
@@ -16,7 +16,7 @@
   span {
     color: $white;
     transition: 0.2s all linear;
-    font-family: $font-bold !important;
+    // font-family: $font-bold !important;
   }
 
   .animated-icon {
@@ -35,7 +35,6 @@
 
   &:focus {
     background: $primary;
-    filter: brightness(90%);
   }
 
   // themes
@@ -50,14 +49,52 @@
     }
     color: $white;
   }
+  &.outlined {
+    background: $white;
+    border: 1px solid $primary;
+
+    span {
+      color: $primary;
+    }
+
+    &:hover {
+      background: $primary;
+
+      span {
+        color: $white;
+      }
+    }
+
+    &:focus {
+      background: $primary;
+      span {
+        color: $white;
+      }
+    }
+  }
 
   &.light {
-    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(106, 210, 89, 1) 0%, rgba(0, 176, 250, 1) 100%);
+    background: linear-gradient(
+      90deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(106, 210, 89, 1) 0%,
+      rgba(0, 176, 250, 1) 100%
+    );
     &:hover {
-      background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(106, 210, 89, 1) 0%, rgba(0, 176, 250, 1) 100%);
+      background: linear-gradient(
+        90deg,
+        rgba(2, 0, 36, 1) 0%,
+        rgba(106, 210, 89, 1) 0%,
+        rgba(0, 176, 250, 1) 100%
+      );
     }
     &:focus {
-      background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(106, 210, 89, 1) 0%, rgba(0, 176, 250, 1) 100%);
+      background: linear-gradient(
+        90deg,
+        rgba(2, 0, 36, 1) 0%,
+        rgba(106, 210, 89, 1) 0%,
+        rgba(0, 176, 250, 1) 100%
+      );
     }
     color: $white;
   }
@@ -174,8 +211,11 @@
   }
 
   &.rounded {
-    width: 35px;
-    height: 35px;
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
+
     padding: 0px !important;
     border-radius: 20px !important;
     font-size: 18px;

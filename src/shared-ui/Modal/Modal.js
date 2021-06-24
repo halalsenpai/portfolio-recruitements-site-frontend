@@ -4,6 +4,7 @@ import { IoMdClose } from "react-icons/io";
 
 const Modal = ({
   show = false,
+  backdropClassName = "",
   className = "center lg c-media-picker",
   backdrop = "static",
   keyboard = false,
@@ -12,12 +13,12 @@ const Modal = ({
 }) => {
   return (
     <BSModal
+      backdropClassName={backdropClassName}
       show={show}
       backdrop={backdrop}
       onHide={onHide}
       keyboard={keyboard}
-      className={`c-modal ${className}`}
-    >
+      className={`c-modal ${className}`}>
       <button type="button" className="close" onClick={onHide}>
         <IoMdClose />
       </button>

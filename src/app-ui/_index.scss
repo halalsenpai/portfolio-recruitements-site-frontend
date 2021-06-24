@@ -1,6 +1,8 @@
 @import "Header/Header";
 @import "Footer/Footer";
 @import "JobFilter/JobFilter";
+@import "JobDetails/JobDetails";
+@import "JobFilter/JobFilter";
 
 @import "../shared-ui/Button/Buttons";
 @import "../shared-ui/JobCard/JobCard";
@@ -11,7 +13,6 @@
 @import "../shared-ui/AvatarPicker/AvatarPicker";
 @import "../shared-ui/BannerWithImages/BannerWithImages";
 @import "../shared-ui/CardWithLines/CardWithLines";
-@import "../shared-ui/JobDetailsCard/JobDetailsCard";
 @import "../shared-ui/ImagesGallery/ImagesGallery";
 @import "../shared-ui/JobsCarousel/JobsCarousel";
 
@@ -28,3 +29,4 @@
 @import "Footer/Responsive";
 @import "Header/Responsive";
 @import "../shared-ui/Modal/Responsive";
+@import "../app-ui/JobFilter/Responsive";
