@@ -87,6 +87,47 @@
       .c-input {
         width: 100% !important;
       }
+      &.employer-sign-up {
+        display: flex;
+        padding: 40px;
+        align-items: unset;
+
+        .ant-select {
+          width: 100% !important;
+        }
+        .next-btn {
+          margin: 0 auto;
+          padding: 5px 46px;
+        }
+        .create-new-company {
+          margin-top: 24px;
+          margin-bottom: 48px;
+          text-align: center;
+          .create-new-btn {
+            color: #2a8fff;
+            cursor: pointer;
+          }
+        }
+        .second-step {
+          padding: 40px 0;
+          position: relative;
+          display: flex;
+          align-items: center;
+          .header {
+            position: absolute;
+            top: 0;
+            .back-btn {
+              width: 40px;
+            }
+          }
+          .c-input {
+            width: 100%;
+            .react-tel-input {
+              width: 100%;
+            }
+          }
+        }
+      }
     }
     .c-form {
       height: fit-content;

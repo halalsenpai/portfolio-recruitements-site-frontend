@@ -40,7 +40,7 @@
     box-shadow: 0 0 16px #00000026;
 
     .first-container {
-      width: 380px !important;
+      width: 480px !important;
       background: transparent url("../../assets/images/auth/sign-up-back.png")
         0% 0% no-repeat padding-box;
       background-position: top;
@@ -51,9 +51,9 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      border-radius: 20px;
-      border-bottom-right-radius: 0;
-      border-top-right-radius: 0;
+      // border-radius: 20px;
+      // border-bottom-right-radius: 0;
+      // border-top-right-radius: 0;
 
       &.role-container {
         width: 200px;
@@ -152,8 +152,50 @@
       .c-input {
         width: 300px;
       }
-      .create-profile-button {
-        // margin: 40px 0;
+      &.employer-sign-up {
+        display: flex;
+        height: 100%;
+        padding: 40px;
+        align-items: unset;
+
+        .ant-select {
+          width: 100% !important;
+        }
+        .next-btn {
+          margin: 0 auto;
+          padding: 5px 46px;
+        }
+        .create-new-company {
+          margin-top: 24px;
+          margin-bottom: 48px;
+          text-align: center;
+          .create-new-btn {
+            color: $primary;
+            cursor: pointer;
+          }
+        }
+        .second-step {
+          height: 100%;
+          position: relative;
+          display: flex;
+          align-items: center;
+          .header {
+            position: absolute;
+            top: 0;
+            .back-btn {
+              width: 40px;
+            }
+          }
+          .c-input {
+            width: 100%;
+            .react-tel-input {
+              width: 100%;
+            }
+          }
+        }
+        .hidden {
+          display: none;
+        }
       }
     }
 

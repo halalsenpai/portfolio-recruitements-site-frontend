@@ -29,6 +29,12 @@ h1 {
   font-family: $font-medium;
 }
 
+div {
+  &.blue {
+    color: $primary;
+  }
+}
+
 .color-text {
   color: $text-color;
 }

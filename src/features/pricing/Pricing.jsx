@@ -4,7 +4,6 @@ import { FaCheckCircle } from "react-icons/fa";
 import "./_Pricing.scss";
 import "./_Responsive.scss";
 import { HiCheck } from "react-icons/hi";
-import video from "../../assets/videos/Inbox Video.mp4";
 import { getPackages } from "./thunk";
 import { selectError, selectPackages, selectStatus } from "./slice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
