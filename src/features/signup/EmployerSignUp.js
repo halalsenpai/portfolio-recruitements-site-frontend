@@ -119,156 +119,116 @@ function EmployerSignUp() {
     }
     setCreateCompany(false);
   };
-  // const renderSteps = (currentStep) => {
-  //   switch (currentStep) {
-  //     case 1:
-  //       return (
-  //         <>
-  //           <Row justify="center">
-  //             <Col span={18}>
-  //               <Form.Item
-  //                 label="Company name"
-  //                 name="companyProfileId"
-  //                 rules={Rules.requiredRule}>
-  //                 {/* <SuperSelect
-  //                   getPopupContainer={(trigger) => trigger.parentNode}
-  //                   defaultValue=""
-  //                   fetchOptions={getCompany}
-  //                   onChange={onCompanyNameChange}
-  //                   keys={["id", "companyName"]}
-  //                 /> */}
-  //                 <Input />
-  //               </Form.Item>
-  //             </Col>
-  //           </Row>
-  //           <div className="create-new-company">
-  //             Can't find your company?{" "}
-  //             <span className="create-new-btn"> Create new</span>
-  //           </div>
-  //         </>
-  //       );
-  //     case 2:
-  //       return (
+  const renderSteps = (currentStep) => {
+    switch (currentStep) {
+      case 1:
+        return (
+          <>
+            <Row justify="center">
+              <Col span={18}>
+                <Form.Item
+                  label="Company name"
+                  name="companyProfileId"
+                  rules={Rules.requiredRule}>
+                  <SuperSelect
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    defaultValue=""
+                    fetchOptions={getCompany}
+                    onChange={onCompanyNameChange}
+                    keys={["id", "companyName"]}
+                  />
+                </Form.Item>
+              </Col>
+            </Row>
+            <div className="create-new-company">
+              Can't find your company?{" "}
+              <span className="create-new-btn"> Create new</span>
+            </div>
+          </>
+        );
+      case 2:
+        return (
+          <div className="second-step">
+            <div className="header">
+              <img
+                onClick={onStepChange}
+                className="back-btn"
+                src={require("../../assets/images/icons/back.svg")}
+                alt=""
+              />
+            </div>
+            <Row gutter={[32, 0]}>
+              <Col xs={{ span: 24 }} span={12}>
+                <Form.Item
+                  className="c-input"
+                  label="First name"
+                  rules={Rules.firstNameRule}
+                  name="firstName">
+                  <Input />
+                </Form.Item>
+              </Col>
+              <Col xs={{ span: 24 }} span={12}>
+                <Form.Item
+                  className="c-input"
+                  label="Last name"
+                  rules={Rules.lastNameRule}
+                  name="lastName">
+                  <Input />
+                </Form.Item>
+              </Col>
+              <Col xs={{ span: 24 }} span={12}>
+                <Form.Item
+                  label="Mobile number"
+                  className="c-input"
+                  rules={Rules.phoneRule}>
+                  <PhoneInput
+                    placeholder="Enter your phone number."
+                    country={countryCode}
+                  />
+                </Form.Item>
+              </Col>
+              <Col xs={{ span: 24 }} span={12}>
+                <Form.Item
+                  label="Direct work phone"
+                  name="directWorkPhone"
+                  className="c-input"
+                  rules={Rules.phoneRule}>
+                  <PhoneInput
+                    placeholder="Enter your work phone."
+                    country={countryCode}
+                  />
+                </Form.Item>
+              </Col>
+              <Col xs={{ span: 24 }} span={12}>
+                <Form.Item
+                  label="Work email address"
+                  name="email"
+                  className="c-input"
+                  rules={Rules.emailRule}>
+                  <Input placeholder="Enter your email" type="text" />
+                </Form.Item>
+              </Col>
+              <Col xs={{ span: 24 }} span={12}>
+                <Form.Item label="How did you find us?" rules={Rules.emailRule}>
+                  <Select
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    defaultValue="">
+                    <Option value="">Select</Option>
 
-  //       );
-  //     case 3:
-  //     default:
-  //       return <></>;
-  //   }
-  // };
-
-  const steps = [
-    {
-      step: 0,
-      title: "Step1",
-      content: (
-        <>
-          <Row justify="center">
-            <Col span={18}>
-              <Form.Item
-                label="Company name"
-                name="companyProfileId"
-                rules={Rules.requiredRule}>
-                {/* <SuperSelect
-              getPopupContainer={(trigger) => trigger.parentNode}
-              defaultValue=""
-              fetchOptions={getCompany}
-              onChange={onCompanyNameChange}
-              keys={["id", "companyName"]}
-            /> */}
-                <Input />
-              </Form.Item>
-            </Col>
-          </Row>
-          <div className="create-new-company">
-            Can't find your company?{" "}
-            <span className="create-new-btn"> Create new</span>
+                    {findUsPlatforms?.map((fu) => (
+                      <Option value={fu.id}>{fu.title}</Option>
+                    ))}
+                  </Select>
+                </Form.Item>
+              </Col>
+            </Row>
           </div>
-        </>
-      ),
-    },
-    {
-      step: 1,
-      title: "Step2",
-      content: (
-        <div className="second-step">
-          <div className="header">
-            <img
-              onClick={onStepChange}
-              className="back-btn"
-              src={require("../../assets/images/icons/back.svg")}
-              alt=""
-            />
-          </div>
-          <Row gutter={[32, 0]}>
-            <Col xs={{ span: 24 }} span={12}>
-              <Form.Item
-                className="c-input"
-                label="First name"
-                rules={Rules.firstNameRule}
-                name="firstName">
-                <Input />
-              </Form.Item>
-            </Col>
-            <Col xs={{ span: 24 }} span={12}>
-              <Form.Item
-                className="c-input"
-                label="Last name"
-                rules={Rules.lastNameRule}
-                name="lastName">
-                <Input />
-              </Form.Item>
-            </Col>
-            <Col xs={{ span: 24 }} span={12}>
-              <Form.Item
-                label="Mobile number"
-                className="c-input"
-                rules={Rules.phoneRule}>
-                <PhoneInput
-                  placeholder="Enter your phone number."
-                  country={countryCode}
-                />
-              </Form.Item>
-            </Col>
-            <Col xs={{ span: 24 }} span={12}>
-              <Form.Item
-                label="Direct work phone"
-                name="directWorkPhone"
-                className="c-input"
-                rules={Rules.phoneRule}>
-                <PhoneInput
-                  placeholder="Enter your work phone."
-                  country={countryCode}
-                />
-              </Form.Item>
-            </Col>
-            <Col xs={{ span: 24 }} span={12}>
-              <Form.Item
-                label="Work email address"
-                name="email"
-                className="c-input"
-                rules={Rules.emailRule}>
-                <Input placeholder="Enter your email" type="text" />
-              </Form.Item>
-            </Col>
-            <Col xs={{ span: 24 }} span={12}>
-              <Form.Item label="How did you find us?" rules={Rules.emailRule}>
-                <Select
-                  getPopupContainer={(trigger) => trigger.parentNode}
-                  defaultValue="">
-                  <Option value="">Select</Option>
-
-                  {findUsPlatforms?.map((fu) => (
-                    <Option value={fu.id}>{fu.title}</Option>
-                  ))}
-                </Select>
-              </Form.Item>
-            </Col>
-          </Row>
-        </div>
-      ),
-    },
-  ];
+        );
+      case 3:
+      default:
+        return <></>;
+    }
+  };
 
   return (
     <div className="c-container auth-wrapper">
@@ -279,16 +239,7 @@ function EmployerSignUp() {
           layout="vertical"
           className="employer-sign-up c-form second-container"
           onFinish={onFinish}>
-          {/* {renderSteps(currentStep)} */}
-
-          {steps.map((item) => (
-            <div
-              className={`steps-content ${
-                item.step !== currentStep + 1 && "hidden"
-              }`}>
-              {item.content}
-            </div>
-          ))}
+          {renderSteps(currentStep)}
 
           {currentStep == 2 && (
             <>
