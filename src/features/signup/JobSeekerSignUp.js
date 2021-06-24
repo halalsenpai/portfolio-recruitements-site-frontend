@@ -309,7 +309,7 @@ function JobSeekerSignUp() {
               name="dob"
               className="c-input"
               rules={Rules.requiredRule}>
-              <DatePicker />
+              <DatePicker inputReadOnly/>
             </Form.Item>
 
             <Form.Item
