@@ -22,6 +22,7 @@ const getOptions = (data, keys) => {
 
 export const SuperSelect = ({
   mode,
+  disabled,
   fetchOptions,
   allowClear = true,
   showSearch = true,
@@ -29,6 +30,7 @@ export const SuperSelect = ({
   debounceTimeout = 800,
   fixedOptions = [],
   searchKey = "search",
+  categoryId,
   keys = ["id", "title"],
   ...props
 }) => {
@@ -40,6 +42,7 @@ export const SuperSelect = ({
   const [options, setOptions, optionsRef] = useRefState([]);
   const [newOptions, setNewOptions] = useState([]);
   const [fetching, setFetching] = useState(false);
+  const [category, setCategory] = useState(2);
   const [params, setParams] = useState({
     page: 1,
     limit: 100,
@@ -48,6 +51,11 @@ export const SuperSelect = ({
   useEffect(() => {
     debounceOnSearchFetcher();
   }, []);
+
+  useEffect(() => {
+    setCategory(categoryId);
+    console.log("category id in super select", categoryId);
+  }, [categoryId]);
 
   useEffect(() => {
     setOptions(searchOptions);
@@ -70,8 +78,11 @@ export const SuperSelect = ({
         limit: 100,
         [searchKey]: search,
       };
+      const _categoryId = categoryId;
       setParams(_params);
-      fetchOptions(_params).then(({ data, meta }) => {
+      setCategory(_categoryId);
+      fetchOptions(_params, 192).then(({ data, meta }) => {
+        console.log("catefioehowiehio", _params, category);
         const _data = data.items || data;
         const _meta = data.meta || meta;
         if (_meta) {
@@ -120,6 +131,7 @@ export const SuperSelect = ({
 
   return (
     <Select
+      disabled={disabled}
       showArrow={mode ? false : true}
       mode={mode}
       filterOption={false}
@@ -129,8 +141,7 @@ export const SuperSelect = ({
       onSearch={debounceOnSearchFetcher}
       onPopupScroll={debounceOnScrollFetcher}
       notFoundContent={fetching ? <Spin size="small" /> : null}
-      {...props}
-    >
+      {...props}>
       {!fetching && (
         <>
           {initOptions.map((d) => (

@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from "react";
+import useRefState from "react-usestateref";
 
 import { useHistory } from "react-router-dom";
-import { Input, Form, Select, Checkbox, Alert, Row, Col } from "antd";
+import { Input, Form, Select, Checkbox, Alert, Row, Col, Upload } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
 
 import * as Rules from "../../utils/rules";
 import TermsConditions from "./TermsConditions";
 import Modal from "../../shared-ui/Modal/Modal";
 import Button from "../../shared-ui/Button/Button";
-import { getCompany, getJobTitle, getCountry } from "./service";
+import {
+  getCompany,
+  getJobTitle,
+  getCountry,
+  getSector,
+  getCitiesByCountry,
+} from "./service";
 import { showWarningMessage } from "../../utils/message";
 import PhoneInput from "react-phone-input-international";
 import MediaPicker from "../../shared-ui/MediaPicker/MediaPicker";
@@ -20,7 +28,7 @@ import {
   getCity,
   employerSignup,
   getCountryByIp,
-  getCitiesByCountry,
+  uploadProfileImage,
 } from "./thunk";
 import {
   selectRole,
@@ -33,7 +41,9 @@ import {
   selectErrorMessage,
   selectCountryByIp,
   selectCitiesByCountry,
+  selectProfileImage,
 } from "./slice";
+import AvatarPicker from "../../shared-ui/AvatarPicker/AvatarPicker";
 
 const { Option } = Select;
 
@@ -48,6 +58,7 @@ function EmployerSignUp() {
   const [termsModalShow, setTermsModalShow] = useState(false);
   const [countryCode, setCountryCode] = useState("gb");
   const [agreeToTerms, setAgreeToTerms] = useState(false);
+  const [categoryId, setCategoryId, CategoryIdRef] = useRefState(1);
 
   const roles = useAppSelector(selectRole);
   const findUsPlatforms = useAppSelector(selectFindUsPlatform);
@@ -59,6 +70,7 @@ function EmployerSignUp() {
   const errorMessage = useAppSelector(selectErrorMessage);
   const countryByIp = useAppSelector(selectCountryByIp);
   const citiesByCountry = useAppSelector(selectCitiesByCountry);
+  const profileImage = useAppSelector(selectProfileImage);
 
   useEffect(() => {
     dispatch(getRole());
@@ -78,11 +90,13 @@ function EmployerSignUp() {
   }, [signupSuccess]);
 
   const onFinish = (values) => {
-    if (values.companyProfileId === "create-company") {
-      setFormData(values);
-      setCurrentStep((prevValue) => prevValue + 1);
+    setFormData(values);
+
+    if (agreeToTerms === false && (currentStep === 2 || currentStep === 3)) {
+      showWarningMessage("Agree to terms and conditions to proceed");
       return;
     }
+    setCurrentStep((prevValue) => prevValue + 1);
 
     const role = roles.find((r) => r.title === "employer");
 
@@ -95,16 +109,18 @@ function EmployerSignUp() {
       ...formData,
       ...values,
     };
+    console.log("form data", payload);
 
     if (payload.companyProfileId === "create-company") {
       delete payload.companyProfileId;
     }
     delete payload.agreeTerms;
-    dispatch(employerSignup(payload));
+    // dispatch(employerSignup(payload));
+    console.log(payload);
   };
 
   const onStepChange = () => {
-    if (currentStep < 2) {
+    if (currentStep < 3) {
       setCurrentStep((prevValue) => prevValue + 1);
     } else {
       setFormData({});
@@ -112,29 +128,55 @@ function EmployerSignUp() {
     }
   };
 
-  const onCompanyNameChange = (value) => {
-    if (value === "create-company") {
-      setCreateCompany(true);
-      return;
-    }
-    setCreateCompany(false);
+  // const onCompanyNameChange = (value) => {
+  //   if (value === "create-company") {
+  //     setCreateCompany(true);
+  //     return;
+  //   }
+  //   setCreateCompany(false);
+  // };
+
+  const handleLocationSelect = (v) => {
+    setCategoryId(Number(v));
   };
+
+  // useEffect(() => {
+  //   const _CId = CategoryIdRef.current;
+  //   setCategoryId(Number(_CId));
+  // }, [categoryId]);
+
+  const profileImageBeforeUpload = (file) => {
+    const payload = new FormData();
+    payload.append("file", file, file.name);
+    dispatch(uploadProfileImage({ payload }));
+    return false;
+  };
+
+  const handleCreateNewCompany = () => {
+    setCreateCompany(true);
+    setCurrentStep(2);
+  };
+
+  useEffect(() => {
+    setCategoryId(categoryId);
+    console.log("useeffect", categoryId);
+  }, [categoryId]);
+
   const renderSteps = (currentStep) => {
     switch (currentStep) {
       case 1:
         return (
           <>
             <Row justify="center">
-              <Col span={18}>
+              <Col span={18} md={{ span: 12 }} lg={{ span: 12 }}>
                 <Form.Item
                   label="Company name"
                   name="companyProfileId"
                   rules={Rules.requiredRule}>
                   <SuperSelect
                     getPopupContainer={(trigger) => trigger.parentNode}
-                    defaultValue=""
                     fetchOptions={getCompany}
-                    onChange={onCompanyNameChange}
+                    // onChange={onCompanyNameChange}
                     keys={["id", "companyName"]}
                   />
                 </Form.Item>
@@ -142,7 +184,10 @@ function EmployerSignUp() {
             </Row>
             <div className="create-new-company">
               Can't find your company?{" "}
-              <span className="create-new-btn"> Create new</span>
+              <span onClick={handleCreateNewCompany} className="create-new-btn">
+                {" "}
+                Create new
+              </span>
             </div>
           </>
         );
@@ -151,82 +196,303 @@ function EmployerSignUp() {
           <div className="second-step">
             <div className="header">
               <img
-                onClick={onStepChange}
+                onClick={() => setCurrentStep(1)}
                 className="back-btn"
                 src={require("../../assets/images/icons/back.svg")}
                 alt=""
               />
             </div>
-            <Row gutter={[32, 0]}>
-              <Col xs={{ span: 24 }} span={12}>
-                <Form.Item
-                  className="c-input"
-                  label="First name"
-                  rules={Rules.firstNameRule}
-                  name="firstName">
-                  <Input />
-                </Form.Item>
-              </Col>
-              <Col xs={{ span: 24 }} span={12}>
-                <Form.Item
-                  className="c-input"
-                  label="Last name"
-                  rules={Rules.lastNameRule}
-                  name="lastName">
-                  <Input />
-                </Form.Item>
-              </Col>
-              <Col xs={{ span: 24 }} span={12}>
-                <Form.Item
-                  label="Mobile number"
-                  className="c-input"
-                  rules={Rules.phoneRule}>
-                  <PhoneInput
-                    placeholder="Enter your phone number."
-                    country={countryCode}
-                  />
-                </Form.Item>
-              </Col>
-              <Col xs={{ span: 24 }} span={12}>
-                <Form.Item
-                  label="Direct work phone"
-                  name="directWorkPhone"
-                  className="c-input"
-                  rules={Rules.phoneRule}>
-                  <PhoneInput
-                    placeholder="Enter your work phone."
-                    country={countryCode}
-                  />
-                </Form.Item>
-              </Col>
-              <Col xs={{ span: 24 }} span={12}>
-                <Form.Item
-                  label="Work email address"
-                  name="email"
-                  className="c-input"
-                  rules={Rules.emailRule}>
-                  <Input placeholder="Enter your email" type="text" />
-                </Form.Item>
-              </Col>
-              <Col xs={{ span: 24 }} span={12}>
-                <Form.Item label="How did you find us?" rules={Rules.emailRule}>
-                  <Select
-                    getPopupContainer={(trigger) => trigger.parentNode}
-                    defaultValue="">
-                    <Option value="">Select</Option>
+            {!isCreateCompany && (
+              <Row gutter={[32, 32]}>
+                <Col
+                  xs={{ span: 24 }}
+                  span={12}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    className="c-input"
+                    label="First name"
+                    rules={Rules.firstNameRule}
+                    name="firstName">
+                    <Input />
+                  </Form.Item>
+                </Col>
+                <Col
+                  xs={{ span: 24 }}
+                  span={12}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    className="c-input"
+                    label="Last name"
+                    rules={Rules.lastNameRule}
+                    name="lastName">
+                    <Input />
+                  </Form.Item>
+                </Col>
+                <Col
+                  xs={{ span: 24 }}
+                  span={12}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    name="mobile"
+                    label="Mobile number"
+                    className="c-input"
+                    rules={Rules.phoneRule}>
+                    <PhoneInput
+                      placeholder="Enter your phone number."
+                      country={countryCode}
+                    />
+                  </Form.Item>
+                </Col>
+                <Col
+                  style={{ zIndex: 200 }}
+                  xs={{ span: 24 }}
+                  span={12}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    label="Direct work phone"
+                    name="directWorkPhone"
+                    className="c-input"
+                    rules={Rules.phoneRule}>
+                    <PhoneInput
+                      placeholder="Enter your work phone."
+                      country={countryCode}
+                    />
+                  </Form.Item>
+                </Col>
+                <Col
+                  xs={{ span: 24 }}
+                  span={12}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    label="Work email address"
+                    name="email"
+                    className="c-input"
+                    rules={Rules.emailRule}>
+                    <Input placeholder="Enter your email" type="text" />
+                  </Form.Item>
+                </Col>
+                <Col
+                  style={{ zIndex: 100 }}
+                  xs={{ span: 24 }}
+                  span={12}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    className="c-input"
+                    name="findUsId"
+                    label="How did you find us?"
+                    rules={Rules.requiredRule}>
+                    <Select
+                      getPopupContainer={(trigger) => trigger.parentNode}
+                      defaultValue="">
+                      <Option value="">Select</Option>
 
-                    {findUsPlatforms?.map((fu) => (
-                      <Option value={fu.id}>{fu.title}</Option>
-                    ))}
-                  </Select>
+                      {findUsPlatforms?.map((fu) => (
+                        <Option value={fu.id}>{fu.title}</Option>
+                      ))}
+                    </Select>
+                  </Form.Item>
+                </Col>
+              </Row>
+            )}
+            {isCreateCompany && (
+              <Row gutter={[32, 32]}>
+                <Col style={{ marginBottom: "24px" }} span={24}>
+                  <Upload
+                    beforeUpload={profileImageBeforeUpload}
+                    showUploadList={false}>
+                    <div className="avatar-upload">
+                      <div className="photo-square">
+                        {profileImage && <img src={profileImage?.url} alt="" />}
+                      </div>
+                      {!profileImage && (
+                        <Button>
+                          <PlusOutlined />
+                        </Button>
+                      )}
+                    </div>
+                    <div style={{ fontSize: "12px", marginTop: "12px" }}>
+                      Upload profile photo
+                    </div>
+                  </Upload>
+                </Col>
+                <Col
+                  span={12}
+                  xs={{ span: 24 }}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    label="I’m registering a"
+                    name="companyType"
+                    className="c-input"
+                    rules={Rules.requiredRule}>
+                    <Select
+                      getPopupContainer={(trigger) => trigger.parentNode}
+                      defaultValue="">
+                      <Option value="">Select</Option>
+                      <Option value="single-company">Single company</Option>
+                      <Option value="headquarters">Headquarters</Option>
+                      <Option value="branch">Branch within the company</Option>
+                    </Select>
+                  </Form.Item>
+                </Col>
+
+                <Col
+                  span={12}
+                  xs={{ span: 24 }}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    style={{ zIndex: 170 }}
+                    label="Company location"
+                    name="countryId"
+                    className="c-input"
+                    rules={Rules.requiredRule}>
+                    <SuperSelect
+                      getPopupContainer={(trigger) => trigger.parentNode}
+                      fetchOptions={getCountry}
+                      onSelect={handleLocationSelect}
+                    />
+                  </Form.Item>
+                </Col>
+
+                <Col
+                  span={12}
+                  xs={{ span: 24 }}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    style={{ zIndex: 170 }}
+                    label="City"
+                    name="cityId"
+                    className="c-input"
+                    rules={Rules.requiredRule}>
+                    <SuperSelect
+                      disabled={categoryId ? false : true}
+                      categoryId={categoryId}
+                      getPopupContainer={(trigger) => trigger.parentNode}
+                      fetchOptions={getCitiesByCountry}
+                      onSelect={handleLocationSelect}
+                    />
+                  </Form.Item>
+                </Col>
+                <Col
+                  span={12}
+                  xs={{ span: 24 }}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    label="Confirm password"
+                    name="ConfirmPassword"
+                    className="c-input"
+                    rules={Rules.confirmPasswordRule}>
+                    <Input.Password type="password" />
+                  </Form.Item>
+                </Col>
+              </Row>
+            )}
+          </div>
+        );
+      case 3:
+      default:
+        return (
+          <div className="third-step">
+            <div className="header">
+              <img
+                onClick={() => setCurrentStep(2)}
+                className="back-btn"
+                src={require("../../assets/images/icons/back.svg")}
+                alt=""
+              />
+            </div>
+            <Row gutter={[32, 32]}>
+              <Col style={{ marginBottom: "24px" }} span={24}>
+                <Upload
+                  beforeUpload={profileImageBeforeUpload}
+                  showUploadList={false}>
+                  <div className="avatar-upload">
+                    <div className="photo-square">
+                      {profileImage && <img src={profileImage?.url} alt="" />}
+                    </div>
+                    {!profileImage && (
+                      <Button>
+                        <PlusOutlined />
+                      </Button>
+                    )}
+                  </div>
+                  <div style={{ fontSize: "12px", marginTop: "12px" }}>
+                    Upload profile photo
+                  </div>
+                </Upload>
+              </Col>
+              <Col
+                span={12}
+                xs={{ span: 24 }}
+                md={{ span: 12 }}
+                lg={{ span: 12 }}>
+                <Form.Item
+                  label="Sector"
+                  name="jobTitleId"
+                  className="c-input"
+                  rules={Rules.requiredRule}>
+                  <SuperSelect
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    defaultValue=""
+                    fetchOptions={getSector}
+                  />
+                </Form.Item>
+              </Col>
+              <Col
+                span={12}
+                xs={{ span: 24 }}
+                md={{ span: 12 }}
+                lg={{ span: 12 }}>
+                <Form.Item
+                  label="Job title"
+                  name="jobTitleId"
+                  className="c-input"
+                  rules={Rules.requiredRule}>
+                  <SuperSelect
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    defaultValue=""
+                    fetchOptions={getJobTitle}
+                  />
+                </Form.Item>
+              </Col>
+              <Col
+                span={12}
+                xs={{ span: 24 }}
+                md={{ span: 12 }}
+                lg={{ span: 12 }}>
+                <Form.Item
+                  label="Password"
+                  name="password"
+                  className="c-input"
+                  rules={Rules.passwordRule}>
+                  <Input.Password type="password" />
+                </Form.Item>
+              </Col>
+              <Col
+                span={12}
+                xs={{ span: 24 }}
+                md={{ span: 12 }}
+                lg={{ span: 12 }}>
+                <Form.Item
+                  label="Confirm password"
+                  name="ConfirmPassword"
+                  className="c-input"
+                  rules={Rules.confirmPasswordRule}>
+                  <Input.Password type="password" />
                 </Form.Item>
               </Col>
             </Row>
           </div>
         );
-      case 3:
-      default:
-        return <></>;
     }
   };
 
@@ -241,7 +507,7 @@ function EmployerSignUp() {
           onFinish={onFinish}>
           {renderSteps(currentStep)}
 
-          {currentStep == 2 && (
+          {(currentStep === 2 || currentStep == 3) && (
             <>
               <Form.Item
                 name="agreeTerms"
@@ -272,29 +538,37 @@ function EmployerSignUp() {
           {currentStep === 1 && (
             <Button
               block
-              onClick={onStepChange}
               className="next-btn"
-              htmlType="button"
+              htmlType="submit"
               themeColor="light"
               loading={isLoading}>
-              {!isCreateCompany && "Next"}
+              Next
             </Button>
           )}
 
           {currentStep === 2 && (
-            <>
-              <Form.Item className="align-self-end">
-                <div className="form-actions">
-                  <Button
-                    block
-                    htmlType="submit"
-                    themeColor="light"
-                    loading={isLoading}>
-                    Next
-                  </Button>
-                </div>
-              </Form.Item>
-            </>
+            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+              <Button
+                block
+                className="next-btn-2"
+                htmlType="submit"
+                themeColor="light"
+                loading={isLoading}>
+                Next
+              </Button>
+            </div>
+          )}
+          {currentStep === 3 && (
+            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+              <Button
+                block
+                className="next-btn-2"
+                htmlType="submit"
+                themeColor="light"
+                loading={isLoading}>
+                Submit
+              </Button>
+            </div>
           )}
         </Form>
         <div className="first-container on-right bg-2">

@@ -14,9 +14,10 @@ import {
   confirmEmail,
   getCountryByIp,
   getCitiesByCountry,
+  uploadProfileImage,
 } from "./thunk";
 
-const thunks = [getCitiesByCountry];
+const thunks = [getCitiesByCountry, uploadProfileImage];
 
 const initialState = {
   status: "idle",
@@ -35,6 +36,7 @@ const initialState = {
   errorMessage: null,
   countryByIp: {},
   citiesByCountry: [],
+  profileImage: null,
 };
 
 function isPendingAction(action) {
@@ -115,6 +117,13 @@ export const slice = createSlice({
         state.confirmEmailSuccess = false;
         state.errorMessage = action.error.message;
       })
+      .addCase(uploadProfileImage.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.profileImage = action.payload;
+      })
+      .addCase(uploadProfileImage.pending, (state) => {
+        state.isProfileImageLoading = true;
+      })
       .addMatcher(isPending(...thunks), (state) => {
         state.status = "loading";
         state.errorMessage = null;
@@ -122,6 +131,7 @@ export const slice = createSlice({
       .addMatcher(isRejected(...thunks), (state, action) => {
         state.status = "failed";
         state.errorMessage = action.error.message;
+        state.isProfileImageLoading = false;
       });
   },
 });
@@ -138,11 +148,17 @@ export const selectCountry = (state) => state.signup.countries;
 export const selectCity = (state) => state.signup.cities;
 export const selectJobTitles = (state) => state.signup.jobTitles;
 export const selectConfirmEmail = (state) => state.signup.confirmEmailSuccess;
-export const selectConfirmEmailResponse = (state) => state.signup.confirmEmailResponse;
-export const selectJobseekerSignup = (state) => state.signup.jobseekerSignupSuccess;
-export const selectEmployerSignup = (state) => state.signup.employerSignupSuccess;
+export const selectConfirmEmailResponse = (state) =>
+  state.signup.confirmEmailResponse;
+export const selectJobseekerSignup = (state) =>
+  state.signup.jobseekerSignupSuccess;
+export const selectEmployerSignup = (state) =>
+  state.signup.employerSignupSuccess;
 export const selectCountryByIp = (state) => state.signup.countryByIp;
 export const selectCitiesByCountry = (state) => state.signup.citiesByCountry;
+export const selectIsProfileImageLoading = (state) =>
+  state.signup.isProfileImageLoading;
+export const selectProfileImage = (state) => state.signup.profileImage;
 
 // export const { getSignup } = slice.actions;
 

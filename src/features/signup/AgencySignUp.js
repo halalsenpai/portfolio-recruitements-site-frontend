@@ -120,8 +120,8 @@ function AgencySignUp() {
   };
 
   const onCompanyNameChange = (value) => {
-    if (value === "create-company") {
-      setCreateCompany(true);
+    if (value !== "") {
+      setCreateCompany(false);
       return;
     }
     setCreateCompany(false);
@@ -158,18 +158,6 @@ function AgencySignUp() {
                   name="companyProfileId"
                   className="c-input"
                   rules={Rules.requiredRule}>
-                  {/* <Select
-                    getPopupContainer={(trigger) => trigger.parentNode}
-                    size="large"
-                    defaultValue=""
-                    onChange={onCompanyNameChange}>
-                    <Option value="">Select</Option>
-                    <Option value="create-company">Create new company</Option>
-
-                    {companies?.items?.map((c) => (
-                      <Option value={c.id}>{c.companyName}</Option>
-                    ))}
-                  </Select> */}
                   <SuperSelect
                     style={{ zIndex: 50 }}
                     getPopupContainer={(trigger) => trigger.parentNode}
@@ -191,11 +179,6 @@ function AgencySignUp() {
                   name="jobTitleId"
                   className="c-input"
                   rules={Rules.requiredRule}>
-                  {/* <SelectWithAddItem
-                    options={["Software Engineer", "Accountant"]}
-                    onItemChange={(e) => console.log(e)}
-                    hintTextForAddItem={"Can't find your job title?"}
-                  /> */}
                   <SuperSelect
                     getPopupContainer={(trigger) => trigger.parentNode}
                     defaultValue=""

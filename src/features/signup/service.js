@@ -7,14 +7,17 @@ const SERVICE_URLS = {
   getNationality: () => `/nationality`,
   getFindUsPlatform: () => `/find-us`,
   getCompany: (qs) => `/company-profile/name/list${qs}`,
-  getCountry: () => `/country`,
+  getCountry: (qs) => `/country${qs}`,
   getCity: () => `/city?page=1&limit=100`,
-  getCitiesByCountry: (id) => `/city/by-country-id/${id}?page=1&limit=200`,
+  getCitiesByCountry: (qs, categoryId) =>
+    `/city/by-country-id/${categoryId}${qs}`,
   getJobTitle: (qs) => `/jobtitle${qs}`,
   jobseekerSignup: () => `/auth/jobseeker/signup`,
   employerSignup: () => `/auth/employer/signup`,
   confirmEmail: () => `/auth/verify`,
   getCountryByIp: () => `http://ip-api.com/json'`,
+  getSector: (qs) => `/categories${qs}`,
+  uploadProfileImage: () => `/file-handle/avatar`,
 };
 
 export const getRole = () => get(SERVICE_URLS.getRole());
@@ -25,13 +28,24 @@ export const getCompany = (params) => {
   const qs = jsonToQueryString(params);
   return get(SERVICE_URLS.getCompany(qs));
 };
-export const getCountry = () => get(SERVICE_URLS.getCountry());
+export const getCountry = (params) => {
+  const qs = jsonToQueryString(params);
+  return get(SERVICE_URLS.getCountry(qs));
+};
 export const getCity = () => get(SERVICE_URLS.getCity());
-export const getCitiesByCountry = (id) =>
-  get(SERVICE_URLS.getCitiesByCountry(id));
+export const getCitiesByCountry = (params, categoryId) => {
+  console.log("id from service", categoryId);
+  const qs = jsonToQueryString(params);
+  return get(SERVICE_URLS.getCitiesByCountry(qs, categoryId));
+};
 export const getJobTitle = (params) => {
   const qs = jsonToQueryString(params);
   return get(SERVICE_URLS.getJobTitle(qs));
+};
+
+export const getSector = (params) => {
+  const qs = jsonToQueryString(params);
+  return get(SERVICE_URLS.getSector(qs));
 };
 export const confirmEmail = () => get(SERVICE_URLS.confirmEmail());
 
@@ -41,3 +55,6 @@ export const employerSignup = (body) =>
   post(SERVICE_URLS.employerSignup(), body);
 
 export const getCountryByIp = () => fetch("http://ip-api.com/json");
+
+export const uploadProfileImage = (body, params) =>
+  post(SERVICE_URLS.uploadProfileImage(), body, params);
