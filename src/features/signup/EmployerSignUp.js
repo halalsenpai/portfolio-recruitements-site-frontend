@@ -137,7 +137,6 @@ function EmployerSignUp() {
   };
 
   const handleLocationSelect = (v) => {
-    setCreateCompany(true);
     setCategoryId(Number(v));
   };
 
@@ -395,7 +394,6 @@ function EmployerSignUp() {
                       dependencyId={categoryId}
                       getPopupContainer={(trigger) => trigger.parentNode}
                       fetchOptions={getCitiesByCountry}
-                      onSelect={handleLocationSelect}
                     />
                   </Form.Item>
                 </Col>
