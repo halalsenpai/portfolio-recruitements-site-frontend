@@ -35,6 +35,9 @@ export const getCountry = (params) => {
 export const getCity = () => get(SERVICE_URLS.getCity());
 export const getCitiesByCountry = (params, categoryId) => {
   console.log("id from service", categoryId);
+  if (!categoryId) {
+    return null;
+  }
   const qs = jsonToQueryString(params);
   return get(SERVICE_URLS.getCitiesByCountry(qs, categoryId));
 };

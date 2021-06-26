@@ -36,13 +36,6 @@ function SignUp() {
   return (
     <div className="c-container auth-wrapper">
       <div className="signup-container with-form role-container">
-        <div className="first-container role-select">
-          <img
-            className="logo"
-            src={require("../../assets/images/logo/logo-white.png")}
-            alt="logo"
-          />
-        </div>
         <Form
           className="second-container c-form w-100 signup-option"
           onFinish={onFinish}>
@@ -78,6 +71,13 @@ function SignUp() {
             </Button>
           </Form.Item>
         </Form>
+        <div className="first-container role-select">
+          <img
+            className="logo"
+            src={require("../../assets/images/logo/logo-white.png")}
+            alt="logo"
+          />
+        </div>
       </div>
     </div>
   );

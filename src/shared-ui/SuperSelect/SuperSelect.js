@@ -24,13 +24,13 @@ export const SuperSelect = ({
   mode,
   disabled,
   fetchOptions,
+  dependencyId,
   allowClear = true,
   showSearch = true,
   placeholder = "Select options",
   debounceTimeout = 800,
   fixedOptions = [],
   searchKey = "search",
-  categoryId,
   keys = ["id", "title"],
   ...props
 }) => {
@@ -42,20 +42,22 @@ export const SuperSelect = ({
   const [options, setOptions, optionsRef] = useRefState([]);
   const [newOptions, setNewOptions] = useState([]);
   const [fetching, setFetching] = useState(false);
-  const [category, setCategory] = useState(2);
   const [params, setParams] = useState({
     page: 1,
     limit: 100,
   });
 
   useEffect(() => {
-    debounceOnSearchFetcher();
+    if (!dependencyId) {
+      debounceOnSearchFetcher();
+    }
   }, []);
 
   useEffect(() => {
-    setCategory(categoryId);
-    console.log("category id in super select", categoryId);
-  }, [categoryId]);
+    if (dependencyId) {
+      debounceOnSearchFetcher();
+    }
+  }, [dependencyId]);
 
   useEffect(() => {
     setOptions(searchOptions);
@@ -78,11 +80,17 @@ export const SuperSelect = ({
         limit: 100,
         [searchKey]: search,
       };
-      const _categoryId = categoryId;
       setParams(_params);
-      setCategory(_categoryId);
-      fetchOptions(_params, 192).then(({ data, meta }) => {
-        console.log("catefioehowiehio", _params, category);
+      let request = null;
+      if (dependencyId) {
+        request = fetchOptions(_params, dependencyId);
+      } else {
+        request = fetchOptions(_params);
+      }
+      if (!request) {
+        return;
+      }
+      request.then(({ data, meta }) => {
         const _data = data.items || data;
         const _meta = data.meta || meta;
         if (_meta) {
@@ -100,7 +108,7 @@ export const SuperSelect = ({
     };
 
     return debounce(loadOptions, debounceTimeout);
-  }, [fetchOptions, debounceTimeout]);
+  }, [fetchOptions, debounceTimeout, dependencyId]);
 
   const debounceOnScrollFetcher = useMemo(() => {
     const loadOptions = () => {
