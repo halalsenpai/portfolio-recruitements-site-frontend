@@ -1,6 +1,9 @@
 import Button from "../../shared-ui/Button/Button";
 import React, { useEffect, useState } from "react";
-import { selectCountries, selectCitiesByCountry } from "../../features/jobs/slice";
+import {
+  selectCountries,
+  selectCitiesByCountry,
+} from "../../features/jobs/slice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import "./CountryCityModal.scss";
 
@@ -43,8 +46,10 @@ const CountryCityModal = ({
     <div className="countries-cities-selector">
       <Form onFinish={onSave}>
         <div className="header">Where would you like to work?</div>
+
         <div className="country-city-wrapper">
           <div className="country-list">
+            <div className="title">Countries</div>
             {countries.map((country, index) => (
               <div
                 key={index}
@@ -52,13 +57,18 @@ const CountryCityModal = ({
                   setActiveCountry(country);
                   setSelectedCountryId(country?.id);
                 }}
-                className={`country-list-item ${activeCountry === country ? "active" : null}`}>
-                <img src={`https://purecatamphetamine.github.io/country-flag-icons/1x1/${country.code}.svg`} />
+                className={`country-list-item ${
+                  activeCountry === country ? "active" : null
+                }`}>
+                <img
+                  src={`https://purecatamphetamine.github.io/country-flag-icons/1x1/${country.code}.svg`}
+                />
                 <div className="country-name">{country?.title}</div>
               </div>
             ))}
           </div>
           <div className="city-list">
+            <div className="title">Select Cities</div>
             <Checkbox.Group onChange={handleSelectedCities}>
               {cities?.map((city, index) => (
                 <div className="city-list-item">

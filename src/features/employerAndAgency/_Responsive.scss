@@ -62,6 +62,21 @@
   }
 }
 
+@media screen and (max-width: 480px) {
+  .emp-agncy-main {
+    .c-row {
+      .job-n-demo {
+        width: 100% !important;
+        .c-button {
+          padding: 8px 20px;
+          width: unset !important;
+          width: 140px !important;
+        }
+      }
+    }
+  }
+}
+
 @media screen and (min-width: 768px) and (max-width: 1200px) {
   .emp-agncy-main {
     padding: 10px 30px;

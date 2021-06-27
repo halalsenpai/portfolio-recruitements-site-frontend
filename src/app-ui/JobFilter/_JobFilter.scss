@@ -132,4 +132,39 @@
       visibility: unset;
     }
   }
+
+  divide {
+    padding: 0 45px !important;
+    padding-bottom: 20px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+
+    button {
+      background: linear-gradient(
+        90deg,
+        #020024 0%,
+        #6ad259 0%,
+        #00b0fa 100%
+      ) !important;
+    }
+  }
 }
+
+.country-city-modal-backdrop {
+  z-index: 1050;
+}
+
+// @media screen and (max-width: 580px) {
+//   .filter-modal {
+//     .modal-dialog {
+//       padding-top: 36px !important;
+//       .modal-content {
+//         width: 95% !important;
+//         .close {
+//           right: 0 !important;
+//           top: -30px !important;
+//         }
+//       }
+//     }
+//   }
+// }

@@ -165,6 +165,7 @@ function JobSeekerSignUp() {
 
         {/* form */}
         <Form
+          style={{ zIndex: 90 }}
           form={form}
           layout="vertical"
           onFinish={onFinish}
@@ -200,6 +201,7 @@ function JobSeekerSignUp() {
           </div>
           <div className="c-row">
             <Form.Item
+              style={{ zIndex: 300 }}
               label="Mobile number"
               name="mobile"
               className="c-input"
@@ -242,7 +244,7 @@ function JobSeekerSignUp() {
           </div>
           <div className="c-row">
             <Form.Item
-              style={{ zIndex: "400" }}
+              style={{ zIndex: 140 }}
               label={
                 <div className="c-label">
                   <label>Family status&nbsp;</label>
@@ -270,7 +272,7 @@ function JobSeekerSignUp() {
             </Form.Item>
 
             <Form.Item
-              style={{ zIndex: "390" }}
+              style={{ zIndex: 120 }}
               label={
                 <div className="c-label">
                   <label>Gender&nbsp;</label>
@@ -311,7 +313,7 @@ function JobSeekerSignUp() {
             </Form.Item>
 
             <Form.Item
-              style={{ zIndex: "380" }}
+              style={{ zIndex: 100 }}
               label={
                 <div className="c-label">
                   <label>Passport nationality&nbsp;</label>
@@ -330,6 +332,7 @@ function JobSeekerSignUp() {
               <Select
                 getPopupContainer={(trigger) => trigger.parentNode}
                 size="large"
+                dropdownClassName="nationality-dropdown"
                 defaultValue="">
                 <Option value="">Select</Option>
                 {nationalities?.map((n) => (
