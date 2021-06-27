@@ -4,19 +4,23 @@ import { useHistory } from "react-router-dom";
 import { Input, Form, Select, Checkbox, Alert } from "antd";
 
 import * as Rules from "../../utils/rules";
+import TermsConditions from "./TermsConditions";
+import Modal from "../../shared-ui/Modal/Modal";
 import Button from "../../shared-ui/Button/Button";
+import { getCompany, getJobTitle, getCountry } from "./service";
+import { showWarningMessage } from "../../utils/message";
 import PhoneInput from "react-phone-input-international";
 import MediaPicker from "../../shared-ui/MediaPicker/MediaPicker";
-// import SelectWithAddItem from "../../shared-ui/SelectWithAddItem/SelectWithAddItem";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { SuperSelect } from "../../shared-ui/SuperSelect/SuperSelect";
+// import SelectWithAddItem from "../../shared-ui/SelectWithAddItem/SelectWithAddItem";
 import {
   getRole,
-  getCompany,
   getFindUsPlatform,
-  getCountry,
   getCity,
-  getJobTitle,
   employerSignup,
+  getCountryByIp,
+  getCitiesByCountry,
 } from "./thunk";
 import {
   selectRole,
@@ -24,10 +28,11 @@ import {
   selectEmployerSignup,
   selectCompany,
   selectCountry,
-  selectCity,
   selectJobTitles,
   selectLoadingStatus,
   selectErrorMessage,
+  selectCountryByIp,
+  selectCitiesByCountry,
 } from "./slice";
 
 const { Option } = Select;
@@ -40,25 +45,31 @@ function EmployerSignUp() {
   const [isCreateCompany, setCreateCompany] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({});
+  const [termsModalShow, setTermsModalShow] = useState(false);
+  const [countryCode, setCountryCode] = useState("gb");
+  const [agreeToTerms, setAgreeToTerms] = useState(false);
 
   const roles = useAppSelector(selectRole);
   const findUsPlatforms = useAppSelector(selectFindUsPlatform);
   const signupSuccess = useAppSelector(selectEmployerSignup);
   const companies = useAppSelector(selectCompany);
   const countries = useAppSelector(selectCountry);
-  const cities = useAppSelector(selectCity);
   const jobTitles = useAppSelector(selectJobTitles);
   const isLoading = useAppSelector(selectLoadingStatus);
   const errorMessage = useAppSelector(selectErrorMessage);
+  const countryByIp = useAppSelector(selectCountryByIp);
+  const citiesByCountry = useAppSelector(selectCitiesByCountry);
 
   useEffect(() => {
     dispatch(getRole());
     dispatch(getFindUsPlatform());
-    dispatch(getCompany());
-    dispatch(getCountry());
     dispatch(getCity());
-    dispatch(getJobTitle());
+    dispatch(getCountryByIp());
   }, []);
+
+  useEffect(() => {
+    setCountryCode(countryByIp?.countryCode?.toLowerCase());
+  }, [countryByIp]);
 
   useEffect(() => {
     if (signupSuccess === true) {
@@ -67,6 +78,10 @@ function EmployerSignUp() {
   }, [signupSuccess]);
 
   const onFinish = (values) => {
+    if (agreeToTerms === false) {
+      showWarningMessage("Agree to terms and conditions to proceed");
+      return;
+    }
     if (values.companyProfileId === "create-company") {
       setFormData(values);
       setCurrentStep((prevValue) => prevValue + 1);
@@ -109,10 +124,19 @@ function EmployerSignUp() {
     setCreateCompany(false);
   };
 
+  const handleLocationSelect = (v) => {
+    if (typeof v === "string") {
+      form.setFieldsValue({ cityId: "" });
+    }
+
+    dispatch(getCitiesByCountry(v));
+  };
+
   return (
     <div className="c-container auth-wrapper">
       <div className="signup-container with-form">
         <Form
+          style={{ zIndex: "40" }}
           form={form}
           layout="vertical"
           className="c-form second-container align-items-start"
@@ -123,31 +147,34 @@ function EmployerSignUp() {
               <h3 className="form-title">
                 <mark className="blue">Employer details</mark>
               </h3>
-              <div className="d-flex w-100 justify-content-end align-items-center">
+              {/* <div className="d-flex w-100 justify-content-end align-items-center">
                 <MediaPicker onPicked={(data) => console.log(data)} />
-              </div>
+              </div> */}
 
               <div className="c-row">
                 <Form.Item
+                  style={{ zIndex: 400 }}
                   label="Company name"
                   name="companyProfileId"
                   className="c-input"
                   rules={Rules.requiredRule}
                 >
-                  <Select
-                    size="large"
+                  <SuperSelect
+                    getPopupContainer={(trigger) => trigger.parentNode}
                     defaultValue=""
+                    fetchOptions={getCompany}
                     onChange={onCompanyNameChange}
-                  >
-                    <Option value="">Select</Option>
-                    <Option value="create-company">Create new company</Option>
-
-                    {companies?.map((c) => (
-                      <Option value={c.id}>{c.companyName}</Option>
-                    ))}
-                  </Select>
+                    keys={["id", "companyName"]}
+                    fixedOptions={[
+                      {
+                        label: "Create New Company",
+                        value: "create-company",
+                      },
+                    ]}
+                  />
                 </Form.Item>
                 <Form.Item
+                  style={{ zIndex: 390 }}
                   label="Job title"
                   name="jobTitleId"
                   className="c-input"
@@ -158,13 +185,11 @@ function EmployerSignUp() {
                     onItemChange={(e) => console.log(e)}
                     hintTextForAddItem={"Can't find your job title?"}
                   /> */}
-                  <Select size="large" defaultValue="">
-                    <Option value="">Select</Option>
-
-                    {jobTitles.map((jt) => (
-                      <Option value={jt.id}>{jt.title}</Option>
-                    ))}
-                  </Select>
+                  <SuperSelect
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    defaultValue=""
+                    fetchOptions={getJobTitle}
+                  />
                 </Form.Item>
               </div>
               <div className="c-row">
@@ -193,8 +218,9 @@ function EmployerSignUp() {
                   />
                 </Form.Item>
               </div>
-              <div className="c-row">
+              <div style={{ zIndex: 100 }} className="c-row">
                 <Form.Item
+                  style={{ zIndex: 200 }}
                   label="Mobile number"
                   name="mobile"
                   className="c-input"
@@ -202,10 +228,11 @@ function EmployerSignUp() {
                 >
                   <PhoneInput
                     placeholder="Enter your mobile no."
-                    country={"us"}
+                    country={countryCode}
                   />
                 </Form.Item>
                 <Form.Item
+                  style={{ zIndex: 180 }}
                   label="Direct work phone"
                   name="directWorkPhone"
                   className="c-input"
@@ -213,7 +240,7 @@ function EmployerSignUp() {
                 >
                   <PhoneInput
                     placeholder="Enter your work phone."
-                    country={"us"}
+                    country={countryCode}
                   />
                 </Form.Item>
               </div>
@@ -236,7 +263,11 @@ function EmployerSignUp() {
                   className="c-input"
                   rules={Rules.requiredRule}
                 >
-                  <Select size="large" defaultValue="">
+                  <Select
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    size="large"
+                    defaultValue=""
+                  >
                     <Option value="">Select</Option>
 
                     {findUsPlatforms?.map((fu) => (
@@ -275,17 +306,26 @@ function EmployerSignUp() {
             </>
           ) : (
             <>
-              <h3 className="form-title">
+              <h3 className="form-title w-100 d-flex justify-content-between">
                 <mark className="blue">Company details</mark>
+                <div className="d-flex justify-content-end align-items-center">
+                  <MediaPicker onPicked={(data) => console.log(data)} />
+                </div>
               </h3>
+
               <div className="c-row">
                 <Form.Item
+                  style={{ zIndex: "370" }}
                   label="I’m registering a"
                   name="companyType"
                   className="c-input"
                   rules={Rules.requiredRule}
                 >
-                  <Select size="large" defaultValue="">
+                  <Select
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    size="large"
+                    defaultValue=""
+                  >
                     <Option value="">Select</Option>
                     <Option value="single-company">Single company</Option>
                     <Option value="headquarters">Headquarters</Option>
@@ -307,27 +347,44 @@ function EmployerSignUp() {
               </div>
               <div className="c-row">
                 <Form.Item
+                  style={{ zIndex: "360" }}
                   label="Company location"
                   name="countryId"
                   className="c-input"
                   rules={Rules.requiredRule}
                 >
-                  <Select size="large" defaultValue="">
+                  {/* <Select
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    size="large"
+                    defaultValue=""
+                    onSelect={handleLocationSelect}>
                     <Option value="">Select</Option>
                     {countries?.map((c) => (
                       <Option value={c.id}>{c.title}</Option>
                     ))}
-                  </Select>
+                  </Select> */}
+                  <SuperSelect
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    defaultValue=""
+                    fetchOptions={getCountry}
+                    onSelect={handleLocationSelect}
+                  />
                 </Form.Item>
                 <Form.Item
+                  style={{ zIndex: "340" }}
                   label="City"
                   name="cityId"
                   className="c-input"
                   rules={Rules.requiredRule}
                 >
-                  <Select size="large" defaultValue="">
+                  <Select
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    disabled={citiesByCountry?.length < 1 ? true : false}
+                    size="large"
+                    defaultValue=""
+                  >
                     <Option value="">Select</Option>
-                    {cities?.map((c) => (
+                    {citiesByCountry?.map((c) => (
                       <Option value={c.id}>{c.title}</Option>
                     ))}
                   </Select>
@@ -354,7 +411,7 @@ function EmployerSignUp() {
                 >
                   <PhoneInput
                     placeholder="Enter your work phone."
-                    country={"us"}
+                    country={countryCode}
                   />
                 </Form.Item>
               </div>
@@ -367,23 +424,33 @@ function EmployerSignUp() {
             valuePropName="checked"
             rules={Rules.requiredRule}
           >
-            <Checkbox value="">
+            <Checkbox
+              checked={agreeToTerms}
+              onChange={(e) => setAgreeToTerms(e.target.checked)}
+            >
               I agree with Jobsmideast.com{" "}
-              <mark className="blue">terms &amp; conditions</mark> and{" "}
-              <mark className="blue">privacy policy.</mark> and I agree to
+              <mark className="blue" onClick={() => setTermsModalShow(true)}>
+                terms &amp; conditions
+              </mark>{" "}
+              and <mark className="blue">privacy policy.</mark> and I agree to
               receive future emails, texts and communications.{" "}
             </Checkbox>
           </Form.Item>
+          <Modal show={termsModalShow} onHide={() => setTermsModalShow(false)}>
+            {" "}
+            <TermsConditions />
+          </Modal>
 
           {errorMessage && <Alert message={errorMessage} type="error" />}
 
           {currentStep === 1 && (
-            <Form.Item className="align-self-end">
+            <Form.Item className="align-self-end mb-0">
               <Button
                 block
                 type="large"
+                className="create-profile-button"
                 htmlType="submit"
-                themeColor="blue"
+                themeColor="light"
                 loading={isLoading}
               >
                 {isCreateCompany && "Next"}
@@ -410,7 +477,7 @@ function EmployerSignUp() {
                     block
                     type="large"
                     htmlType="submit"
-                    themeColor="blue"
+                    themeColor="light"
                     loading={isLoading}
                   >
                     Create my profile
@@ -433,7 +500,7 @@ function EmployerSignUp() {
                 alt="img"
               />
               <span>
-                <h3 className="b-text">Free CRM</h3>
+                <h3 className="">Free CRM</h3>
                 <p>Builtin CRM with drag and Drop function</p>
               </span>
             </div>
@@ -443,8 +510,8 @@ function EmployerSignUp() {
                 alt="img"
               />
               <span>
-                <h3 className="b-text">Save up to 75%</h3>
-                <p>Save up to 75% of to your annual recruitment budget</p>
+                <h3 className="">Save up to 75%</h3>
+                <p>Save up to 75% of your annual recruitment budget</p>
               </span>
             </div>
             <div className="box">
@@ -453,7 +520,7 @@ function EmployerSignUp() {
                 alt="img"
               />
               <span>
-                <h3 className="b-text">Direct chat + Inbox</h3>
+                <h3 className="">Direct chat + Inbox</h3>
                 <p>Connect with candidates direct, no more emails!</p>
               </span>
             </div>
@@ -463,7 +530,7 @@ function EmployerSignUp() {
                 alt="img"
               />
               <span>
-                <h3 className="b-text">Candidate Match</h3>
+                <h3 className="">Candidate Match</h3>
                 <p>
                   Set accurate filters and let the system find you job seekers!
                 </p>

@@ -10,6 +10,7 @@ import Pricing from "./pricing/Pricing";
 import JobSeekers from "./jobSeekers/JobSeekers";
 import ForgotPassword from "./forgotPassword/ForgotPassword";
 import EmployerAndAgency from "./employerAndAgency/EmployerAndAgency";
+import Services from "./services/services";
 
 import Test from "./test/Test";
 
@@ -27,4 +28,5 @@ export {
   ConfirmEmail,
   EmployerSignUp,
   JobSeekerSignUp,
+  Services,
 };
