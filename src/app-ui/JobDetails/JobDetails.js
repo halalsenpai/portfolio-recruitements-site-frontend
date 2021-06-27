@@ -77,7 +77,7 @@ function JobDetails({
       <div className="job-details-wrapper">
         <span className="details-header">
           <h3 className="job-title">
-            Job title: <span className="title">{data.title || "N/A"}</span>{" "}
+            Job title: <span className="title">{data?.jobTitle?.title || "N/A"}</span>{" "}
           </h3>
 
           <span className="actions-wrapper">
