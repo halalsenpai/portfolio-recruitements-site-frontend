@@ -33,6 +33,8 @@ import {
   selectCountryByIp,
 } from "./slice";
 import TermsConditions from "./TermsConditions";
+import { getNationalities } from "./service";
+import { SuperSelect } from "../../shared-ui/SuperSelect/SuperSelect";
 
 const { Option } = Select;
 
@@ -329,7 +331,7 @@ function JobSeekerSignUp() {
               name="nationalityId"
               className="c-input"
               rules={Rules.requiredRule}>
-              <Select
+              {/* <Select
                 getPopupContainer={(trigger) => trigger.parentNode}
                 size="large"
                 dropdownClassName="nationality-dropdown"
@@ -338,7 +340,22 @@ function JobSeekerSignUp() {
                 {nationalities?.map((n) => (
                   <Option value={n.id}>{n.title}</Option>
                 ))}
-              </Select>
+              </Select> */}
+              <SuperSelect
+                    style={{ zIndex: 50 }}
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    defaultValue=""
+                    fetchOptions={getNationalities}
+                    // onChange={onCompanyNameChange}
+                    // keys={['nationality']}
+                    // keys={["title"]}
+                    // fixedOptions={[
+                    //   {
+                    //     label: "Create New Company",
+                    //     value: "create-company",
+                    //   },
+                    // ]}
+                  />
             </Form.Item>
           </div>
 

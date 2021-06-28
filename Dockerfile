@@ -6,7 +6,6 @@ COPY package*.json ./
 RUN yarn
 ENV PATH="./node_modules/.bin:$PATH"
 ENV REACT_APP_VERSION=0.1.0
-
 ENV REACT_APP_BASE_URL=https://develop-backend.jobsmideast.com
 ENV REACT_APP_MAP_KEY=AIzaSyDxfSNbgNkKIDu45-aJdQpfHwMd7Dft3T4
 ENV REACT_APP_HOMEPAGE_URL=https://develop-homepage.jobsmideast.com
