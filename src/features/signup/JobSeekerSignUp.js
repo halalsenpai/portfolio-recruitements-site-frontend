@@ -21,7 +21,6 @@ import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import {
   getRole,
   getFamilyStatus,
-  getNationality,
   jobseekerSignup,
   getCountryByIp,
 } from "./thunk";
@@ -35,6 +34,8 @@ import {
   selectCountryByIp,
 } from "./slice";
 import TermsConditions from "./TermsConditions";
+import { getNationality } from "./service";
+import { SuperSelect } from "../../shared-ui/SuperSelect/SuperSelect";
 
 const { Option } = Select;
 
@@ -71,7 +72,7 @@ function JobSeekerSignUp() {
   useEffect(() => {
     dispatch(getRole());
     dispatch(getFamilyStatus());
-    dispatch(getNationality());
+
     dispatch(getCountryByIp());
   }, []);
 
@@ -276,7 +277,7 @@ function JobSeekerSignUp() {
                 name="nationalityId"
                 className="c-input"
                 rules={Rules.requiredRule}>
-                <Select
+                {/* <Select
                   getPopupContainer={(trigger) => trigger.parentNode}
                   size="large"
                   dropdownClassName="nationality-dropdown"
@@ -285,7 +286,12 @@ function JobSeekerSignUp() {
                   {nationalities?.map((n) => (
                     <Option value={n.id}>{n.title}</Option>
                   ))}
-                </Select>
+                </Select> */}
+                <SuperSelect
+                  defaultValue=""
+                  getPopupContainer={(trigger) => trigger.parentNode}
+                  fetchOptions={getNationality}
+                />
               </Form.Item>
             </Col>
 

@@ -33,7 +33,7 @@ export const getGrade = () => get(SERVICE_URLS.getGrade());
 export const getCompany = () => get(SERVICE_URLS.getCompany());
 export const getAccommodation = () => get(SERVICE_URLS.getAccommodation());
 export const getCategories = () => get(SERVICE_URLS.getCategory());
-export const getJobTitles = () => get(SERVICE_URLS.getJobTitle());
+// export const getJobTitles = () => get(SERVICE_URLS.getJobTitle());
 export const getJobTitlesById = (id) => get(SERVICE_URLS.getJobTitles(id));
 export const getSalaryType = () => get(SERVICE_URLS.getSalaryType());
 export const getJobByCategory = (id) => get(SERVICE_URLS.getJobByCategory(id));

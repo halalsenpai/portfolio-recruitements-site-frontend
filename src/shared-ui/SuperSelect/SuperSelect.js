@@ -22,6 +22,7 @@ const getOptions = (data, keys) => {
 
 export const SuperSelect = ({
   mode,
+  maxTagCount,
   disabled,
   fetchOptions,
   dependencyId,
@@ -139,7 +140,7 @@ export const SuperSelect = ({
 
   return (
     <Select
-      aria-autocomplete="none"
+      maxTagCount={maxTagCount}
       disabled={disabled}
       showArrow={mode ? false : true}
       mode={mode}
@@ -154,13 +155,19 @@ export const SuperSelect = ({
       {!fetching && (
         <>
           {initOptions.map((d) => (
-            <Option key={d.value}>{d.label}</Option>
+            <Option key={d.value} value={d.value}>
+              {d.label}
+            </Option>
           ))}
           {fixedOptions.map((d) => (
-            <Option key={d.value}>{d.label}</Option>
+            <Option key={d.value} value={d.value}>
+              {d.label}
+            </Option>
           ))}
           {optionsRef.current.map((d) => (
-            <Option key={d.value}>{d.label}</Option>
+            <Option key={d.value} value={d.value}>
+              {d.label}
+            </Option>
           ))}
         </>
       )}

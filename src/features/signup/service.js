@@ -4,7 +4,7 @@ import { jsonToQueryString } from "../../utils/helper";
 const SERVICE_URLS = {
   getRole: () => `/role`,
   getFamilyStatus: () => `/family-status`,
-  getNationality: () => `/nationality`,
+  getNationality: (qs) => `/nationality${qs}`,
   getFindUsPlatform: () => `/find-us`,
   getCompany: (qs) => `/company-profile/name/list${qs}`,
   getCountry: (qs) => `/country${qs}`,
@@ -23,7 +23,7 @@ const SERVICE_URLS = {
 
 export const getRole = () => get(SERVICE_URLS.getRole());
 export const getFamilyStatus = () => get(SERVICE_URLS.getFamilyStatus());
-export const getNationality = () => get(SERVICE_URLS.getNationality());
+// export const getNationality = () => get(SERVICE_URLS.getNationality());
 export const getFindUsPlatform = () => get(SERVICE_URLS.getFindUsPlatform());
 export const getCompany = (params) => {
   const qs = jsonToQueryString(params);
@@ -33,6 +33,11 @@ export const getCountry = (params) => {
   const qs = jsonToQueryString(params);
   return get(SERVICE_URLS.getCountry(qs));
 };
+export const getNationalities = (params) => {
+  const qs = jsonToQueryString(params);
+  return get(SERVICE_URLS.getNationality(qs));
+};
+
 export const getCity = () => get(SERVICE_URLS.getCity());
 export const getCitiesByCountry = (params, categoryId) => {
   console.log("id from service", categoryId);
@@ -48,6 +53,11 @@ export const getJobTitle = (params, id) => {
   }
   const qs = jsonToQueryString(params);
   return get(SERVICE_URLS.getJobTitle(qs, id));
+};
+
+export const getNationality = (params) => {
+  const qs = jsonToQueryString(params);
+  return get(SERVICE_URLS.getNationality(qs));
 };
 
 export const getSector = (params) => {
