@@ -37,10 +37,10 @@ import {
   getAccommodation,
   getCategories,
   getEmploymentType,
-  getJobTitles,
   getQualification,
 } from "../../features/jobs/service";
 import { useRef } from "react";
+import { getCategory, getJobTitles, getJobtype } from "./service";
 
 const { Option } = Select;
 
@@ -51,6 +51,7 @@ const JobFilter = (props) => {
   const [selectedCitiesIds, setSelectedCitiesIds] = useState(null);
   const [selectedCountryId, setSelectedCountryId] = useState(null);
   const [maxSalaryLimit, setMaxSalaryLimit] = useState(1000000);
+  const [jobInfoForm] = Form.useForm();
 
   const dispatch = useAppDispatch();
   const jobTitles = useAppSelector(selectJobTitles);
@@ -64,6 +65,8 @@ const JobFilter = (props) => {
   const salaryType = useAppSelector(selectSalaryType);
   const suitableFor = useAppSelector(selectSuitableFor);
   const filterApplySuccess = useAppSelector(selectFilterApplySuccess);
+  const [categoryId, setCategoryId] = useState(null);
+  const [selectedSector, setSelectedSector] = useState(true);
 
   useEffect(() => {
     dispatch(getCountry());
@@ -196,11 +199,10 @@ const JobFilter = (props) => {
                   <Input
                     onClick={handleSetCountriesCitiesModal}
                     placeholder="Select countires and cities"
-                    value={`${
-                      selectedCountryId
+                    value={`${selectedCountryId
                         ? getTitleById(countries, selectedCountryId)
                         : ""
-                    }`}></Input>
+                      }`}></Input>
                 </Form.Item>
                 <Modal
                   className="rm-padding medium country-city-modal-parent"
@@ -238,11 +240,31 @@ const JobFilter = (props) => {
                       <Option value={d.id}>{d.title}</Option>
                     ))}
                   </Select> */}
-                  <SuperSelect
+                  {/* <SuperSelect
                     onSelect={(v) => dispatch(getJobTitlesById(v))}
                     getPopupContainer={(trigger) => trigger.parentNode}
                     defaultValue=""
                     fetchOptions={getCategories}
+                  /> */}
+                  {/* <SuperSelect
+                  onSelect={(v) => {
+                    jobInfoForm.resetFields(["jobTitleId"]);
+                    setSelectedSector(false);
+                    setCategoryId(v);
+                  }}
+                  // style={{ zIndex: 500 }}
+                  getPopupContainer={(trigger) => trigger.parentNode}
+                  fetchOptions={getSectors}
+                /> */}
+                  <SuperSelect
+                    onSelect={(v) => {
+                      jobInfoForm.resetFields(["jobTitleId"]);
+                      setSelectedSector(false);
+                      setCategoryId(v);
+                    }}
+                    // style={{ zIndex: 500 }}
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    fetchOptions={getCategory}
                   />
                 </Form.Item>
               </Col>
@@ -259,9 +281,9 @@ const JobFilter = (props) => {
                   className="c-input c-form p-0"
                   rules={null}>
                   <SuperSelect
-                    onSelect={(v) => dispatch(getJobTitlesById(v))}
+                    disabled={selectedSector}
+                    dependencyId={categoryId}
                     getPopupContainer={(trigger) => trigger.parentNode}
-                    defaultValue=""
                     fetchOptions={getJobTitles}
                   />
                   {/* <Select
@@ -505,7 +527,7 @@ const JobFilter = (props) => {
           </div>
         </Form>
       </Modal>
-      </>
+    </>
   );
 };
 

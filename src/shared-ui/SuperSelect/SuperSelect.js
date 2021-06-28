@@ -22,7 +22,10 @@ const getOptions = (data, keys) => {
 
 export const SuperSelect = ({
   mode,
+  maxTagCount,
+  disabled,
   fetchOptions,
+  dependencyId,
   allowClear = true,
   showSearch = true,
   placeholder = "Select options",
@@ -46,8 +49,16 @@ export const SuperSelect = ({
   });
 
   useEffect(() => {
-    debounceOnSearchFetcher();
+    if (!dependencyId) {
+      debounceOnSearchFetcher();
+    }
   }, []);
+
+  useEffect(() => {
+    if (dependencyId) {
+      debounceOnSearchFetcher();
+    }
+  }, [dependencyId]);
 
   useEffect(() => {
     setOptions(searchOptions);
@@ -71,7 +82,16 @@ export const SuperSelect = ({
         [searchKey]: search,
       };
       setParams(_params);
-      fetchOptions(_params).then(({ data, meta }) => {
+      let request = null;
+      if (dependencyId) {
+        request = fetchOptions(_params, dependencyId);
+      } else {
+        request = fetchOptions(_params);
+      }
+      if (!request) {
+        return;
+      }
+      request.then(({ data, meta }) => {
         const _data = data.items || data;
         const _meta = data.meta || meta;
         if (_meta) {
@@ -89,7 +109,7 @@ export const SuperSelect = ({
     };
 
     return debounce(loadOptions, debounceTimeout);
-  }, [fetchOptions, debounceTimeout]);
+  }, [fetchOptions, debounceTimeout, dependencyId]);
 
   const debounceOnScrollFetcher = useMemo(() => {
     const loadOptions = () => {
@@ -120,6 +140,8 @@ export const SuperSelect = ({
 
   return (
     <Select
+      maxTagCount={maxTagCount}
+      disabled={disabled}
       showArrow={mode ? false : true}
       mode={mode}
       filterOption={false}
@@ -129,18 +151,23 @@ export const SuperSelect = ({
       onSearch={debounceOnSearchFetcher}
       onPopupScroll={debounceOnScrollFetcher}
       notFoundContent={fetching ? <Spin size="small" /> : null}
-      {...props}
-    >
+      {...props}>
       {!fetching && (
         <>
           {initOptions.map((d) => (
-            <Option key={d.value}>{d.label}</Option>
+            <Option key={d.value} value={d.value}>
+              {d.label}
+            </Option>
           ))}
           {fixedOptions.map((d) => (
-            <Option key={d.value}>{d.label}</Option>
+            <Option key={d.value} value={d.value}>
+              {d.label}
+            </Option>
           ))}
           {optionsRef.current.map((d) => (
-            <Option key={d.value}>{d.label}</Option>
+            <Option key={d.value} value={d.value}>
+              {d.label}
+            </Option>
           ))}
         </>
       )}
