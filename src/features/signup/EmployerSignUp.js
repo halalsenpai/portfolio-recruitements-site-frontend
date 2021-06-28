@@ -90,13 +90,23 @@ function EmployerSignUp() {
   }, [signupSuccess]);
 
   const onFinish = (values) => {
-    setFormData(values);
+    setFormData({ ...formData, ...values });
 
     if (agreeToTerms === false && (currentStep === 2 || currentStep === 3)) {
       showWarningMessage("Agree to terms and conditions to proceed");
       return;
     }
-    setCurrentStep((prevValue) => prevValue + 1);
+    if (isCreateCompany && currentStep === 2 && !profileImage?.url) {
+      showWarningMessage("profile photo is required");
+      return;
+    }
+    if (!isCreateCompany && currentStep === 3 && !profileImage?.url) {
+      showWarningMessage("profile photo is required");
+      return;
+    }
+    if (currentStep < 3) {
+      setCurrentStep((prevValue) => prevValue + 1);
+    }
 
     const role = roles.find((r) => r.title === "employer");
 
@@ -109,14 +119,18 @@ function EmployerSignUp() {
       ...formData,
       ...values,
     };
-    console.log("form data", payload);
+
+    if (currentStep < 3) {
+      return;
+    }
 
     if (payload.companyProfileId === "create-company") {
       delete payload.companyProfileId;
     }
     delete payload.agreeTerms;
-    // dispatch(employerSignup(payload));
+    payload.profilePhoto = profileImage?.url;
     console.log(payload);
+    dispatch(employerSignup(payload));
   };
 
   const onStepChange = () => {
@@ -405,7 +419,7 @@ function EmployerSignUp() {
                   lg={{ span: 12 }}>
                   <Form.Item
                     label="Company phone number"
-                    name="companyPhoneNumber"
+                    name="companyPhone"
                     className="c-input"
                     rules={Rules.phoneRule}>
                     <PhoneInput
@@ -421,7 +435,7 @@ function EmployerSignUp() {
                   lg={{ span: 12 }}>
                   <Form.Item
                     label="Website http://"
-                    name="website"
+                    name="webUrl"
                     className="c-input"
                     rules={Rules.requiredRule}>
                     <Input />
@@ -471,10 +485,14 @@ function EmployerSignUp() {
                   lg={{ span: 12 }}>
                   <Form.Item
                     label="Sector"
-                    name="jobTitleId"
+                    name="categoryId"
                     className="c-input"
                     rules={Rules.requiredRule}>
                     <SuperSelect
+                      onSelect={(v) => {
+                        setCategoryId(v);
+                        form.resetFields(["jobTitleId"]);
+                      }}
                       getPopupContainer={(trigger) => trigger.parentNode}
                       defaultValue=""
                       fetchOptions={getSector}
@@ -492,6 +510,7 @@ function EmployerSignUp() {
                     className="c-input"
                     rules={Rules.requiredRule}>
                     <SuperSelect
+                      dependencyId={categoryId}
                       getPopupContainer={(trigger) => trigger.parentNode}
                       defaultValue=""
                       fetchOptions={getJobTitle}
@@ -601,16 +620,21 @@ function EmployerSignUp() {
                   </Form.Item>
                 </Col>
                 <Col
+                  style={{ zIndex: 160 }}
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
                   lg={{ span: 12 }}>
                   <Form.Item
                     label="Sector"
-                    name="jobTitleId"
+                    name="categoryId"
                     className="c-input"
                     rules={Rules.requiredRule}>
                     <SuperSelect
+                      onSelect={(v) => {
+                        setCategoryId(v);
+                        form.resetFields(["jobTitleId"]);
+                      }}
                       getPopupContainer={(trigger) => trigger.parentNode}
                       defaultValue=""
                       fetchOptions={getSector}
@@ -618,6 +642,7 @@ function EmployerSignUp() {
                   </Form.Item>
                 </Col>
                 <Col
+                  style={{ zIndex: 140 }}
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
@@ -628,6 +653,7 @@ function EmployerSignUp() {
                     className="c-input"
                     rules={Rules.requiredRule}>
                     <SuperSelect
+                      dependencyId={categoryId}
                       getPopupContainer={(trigger) => trigger.parentNode}
                       defaultValue=""
                       fetchOptions={getJobTitle}

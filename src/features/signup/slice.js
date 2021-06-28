@@ -15,6 +15,7 @@ import {
   getCountryByIp,
   getCitiesByCountry,
   uploadProfileImage,
+  agencySignup,
 } from "./thunk";
 
 const thunks = [getCitiesByCountry, uploadProfileImage];
@@ -31,6 +32,7 @@ const initialState = {
   jobTitles: [],
   jobseekerSignupSuccess: false,
   employerSignupSuccess: false,
+  agencySignupSuccess: false,
   confirmEmailSuccess: false,
   confirmEmailResponse: {},
   errorMessage: null,
@@ -97,6 +99,10 @@ export const slice = createSlice({
         state.status = "idle";
         state.employerSignupSuccess = true;
       })
+      .addCase(agencySignup.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.agencySignupSuccess = true;
+      })
       .addCase(confirmEmail.fulfilled, (state, action) => {
         state.status = "idle";
         state.confirmEmailSuccess = true;
@@ -110,6 +116,11 @@ export const slice = createSlice({
       .addCase(employerSignup.rejected, (state, action) => {
         state.status = "failed";
         state.employerSignupSuccess = false;
+        state.errorMessage = action.error.message;
+      })
+      .addCase(agencySignup.rejected, (state, action) => {
+        state.status = "failed";
+        state.agencySignupSuccess = false;
         state.errorMessage = action.error.message;
       })
       .addCase(confirmEmail.rejected, (state, action) => {
@@ -139,6 +150,10 @@ export const slice = createSlice({
 export const selectLoadingStatus = (state) => state.signup.status === "loading";
 export const selectErrorMessage = (state) => state.signup.errorMessage;
 export const selectSignupStatus = (state) => state.signup.status;
+export const selectEmployerSignUpSuccess = (state) =>
+  state.signup.employerSignupSuccess;
+export const selectAgencySignUpSuccess = (state) =>
+  state.signup.agencySignupSuccess;
 export const selectRole = (state) => state.signup.roles;
 export const selectFamilyStatus = (state) => state.signup.familyStatuses;
 export const selectNationality = (state) => state.signup.nationalities;

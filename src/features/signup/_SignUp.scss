@@ -151,6 +151,8 @@
       }
       .c-button {
         align-self: flex-end;
+        margin-left: auto;
+        margin-right: 16px;
       }
       .c-input {
         width: 300px;
@@ -295,6 +297,169 @@
             justify-content: center;
             text-align: center;
           }
+        }
+      }
+      &.agency-sign-up {
+        display: flex;
+        height: 100%;
+        padding: 40px;
+        align-items: unset;
+
+        .ant-select {
+          width: 100% !important;
+        }
+        .next-btn {
+          margin: 0 auto;
+          padding: 5px 46px;
+        }
+        .next-btn-2 {
+          padding: 5px 46px;
+        }
+        .create-new-company {
+          margin-top: 24px;
+          margin-bottom: 48px;
+          text-align: center;
+          .create-new-btn {
+            color: $primary;
+            cursor: pointer;
+          }
+        }
+        .second-step {
+          height: 100%;
+          position: relative;
+          display: flex;
+          align-items: center;
+          padding-top: 40px;
+          padding-bottom: 20px;
+          .header {
+            position: absolute;
+            top: 0;
+            .back-btn {
+              width: 30px;
+            }
+          }
+          .c-input {
+            width: 100% !important;
+            margin: 0;
+            .react-tel-input {
+              width: 100%;
+            }
+          }
+          .react-tel-input {
+            max-width: unset;
+          }
+          .c-media-picker {
+            justify-content: center;
+            flex-direction: column-reverse;
+          }
+          .avatar-upload {
+            position: relative;
+            .photo-square {
+              width: 140px;
+              height: 140px;
+              box-shadow: 0 0 10px rgba($color: black, $alpha: 0.1);
+              border-radius: 24px;
+              overflow: hidden;
+              img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+              }
+            }
+            .c-button {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              padding: 0;
+              height: 36px;
+              width: 36px;
+            }
+          }
+          .ant-upload-select {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+          }
+        }
+        .third-step {
+          height: 100%;
+          position: relative;
+          display: flex;
+          align-items: center;
+          padding-top: 40px;
+          padding-bottom: 20px;
+          .header {
+            position: absolute;
+            top: 0;
+            .back-btn {
+              width: 30px;
+            }
+          }
+          .c-input {
+            width: 100% !important;
+            margin: 0;
+            .react-tel-input {
+              width: 100%;
+            }
+          }
+          .react-tel-input {
+            max-width: unset;
+          }
+          .c-media-picker {
+            justify-content: center;
+            flex-direction: column-reverse;
+          }
+          .avatar-upload {
+            position: relative;
+            .photo-square {
+              width: 140px;
+              height: 140px;
+              box-shadow: 0 0 10px rgba($color: black, $alpha: 0.1);
+              border-radius: 24px;
+              overflow: hidden;
+              img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+              }
+            }
+            .c-button {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              padding: 0;
+              height: 36px;
+              width: 36px;
+            }
+          }
+          .ant-upload-select {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+          }
+        }
+      }
+      &.jobseeker-sign-up-form {
+        .ant-select {
+          width: 100% !important;
+        }
+        .c-input {
+          width: 100% !important;
+        }
+        .ant-picker {
+          width: 100% !important;
+        }
+        .react-tel-input {
+          width: 100% !important;
+          max-width: unset !important;
+        }
+        .responsive-bottom-section {
+          flex-wrap: wrap;
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
         }
       }
     }

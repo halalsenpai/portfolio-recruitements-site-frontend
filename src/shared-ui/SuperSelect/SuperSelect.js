@@ -139,6 +139,7 @@ export const SuperSelect = ({
 
   return (
     <Select
+      aria-autocomplete="none"
       disabled={disabled}
       showArrow={mode ? false : true}
       mode={mode}

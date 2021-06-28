@@ -11,9 +11,10 @@ const SERVICE_URLS = {
   getCity: () => `/city?page=1&limit=100`,
   getCitiesByCountry: (qs, categoryId) =>
     `/city/by-country-id/${categoryId}${qs}`,
-  getJobTitle: (qs) => `/jobtitle${qs}`,
+  getJobTitle: (qs, id) => `/jobtitle/${id}${qs}`,
   jobseekerSignup: () => `/auth/jobseeker/signup`,
   employerSignup: () => `/auth/employer/signup`,
+  agencySignup: () => "/auth/agency/signup",
   confirmEmail: () => `/auth/verify`,
   getCountryByIp: () => `http://ip-api.com/json'`,
   getSector: (qs) => `/categories${qs}`,
@@ -41,9 +42,12 @@ export const getCitiesByCountry = (params, categoryId) => {
   const qs = jsonToQueryString(params);
   return get(SERVICE_URLS.getCitiesByCountry(qs, categoryId));
 };
-export const getJobTitle = (params) => {
+export const getJobTitle = (params, id) => {
+  if (!id) {
+    return null;
+  }
   const qs = jsonToQueryString(params);
-  return get(SERVICE_URLS.getJobTitle(qs));
+  return get(SERVICE_URLS.getJobTitle(qs, id));
 };
 
 export const getSector = (params) => {
@@ -56,6 +60,7 @@ export const jobseekerSignup = (body) =>
   post(SERVICE_URLS.jobseekerSignup(), body);
 export const employerSignup = (body) =>
   post(SERVICE_URLS.employerSignup(), body);
+export const agencySignup = (body) => post(SERVICE_URLS.agencySignup(), body);
 
 export const getCountryByIp = () => fetch("http://ip-api.com/json");
 

@@ -25,9 +25,9 @@
     align-items: flex-end;
 
     .job-thumbnail {
-      max-width: 85px;
-
-      max-height: 85px;
+      width: 85px;
+      height: 85px;
+      object-fit: cover;
       border-radius: 5px;
       margin: 0px 12px 0px 0px;
       padding: 5px;
@@ -200,8 +200,8 @@
       flex-direction: column;
 
       .job-thumbnail {
-        max-width: 80px;
-        max-height: 80px;
+        width: 80px;
+        height: 80px;
       }
 
       .info {
@@ -257,9 +257,9 @@
       align-items: flex-end;
 
       .job-thumbnail {
-        max-width: 85px;
+        width: 85px;
 
-        max-height: 85px;
+        height: 85px;
         border-radius: 5px;
         margin: 0px 12px 0px 0px;
         padding: 5px;
@@ -432,8 +432,8 @@
         flex-direction: column;
 
         .job-thumbnail {
-          max-width: 80px;
-          max-height: 80px;
+          width: 80px;
+          height: 80px;
         }
 
         .info {

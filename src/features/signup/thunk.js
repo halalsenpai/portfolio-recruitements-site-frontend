@@ -15,6 +15,7 @@ import {
   getCountryByIp as getCountryByIpAPI,
   getCitiesByCountry as getCitiesByCountryAPI,
   uploadProfileImage as uploadProfileImageAPI,
+  agencySignup as agencySignupAPI,
 } from "./service";
 
 // GET APIs
@@ -101,6 +102,13 @@ export const employerSignup = createAsyncThunk(
   }
 );
 
+export const agencySignup = createAsyncThunk(
+  "signup/agency",
+  async (payload) => {
+    const response = await agencySignupAPI(payload);
+    return response.data;
+  }
+);
 export const getCountryByIp = createAsyncThunk(
   "signup/country-by-ip",
   async () => {

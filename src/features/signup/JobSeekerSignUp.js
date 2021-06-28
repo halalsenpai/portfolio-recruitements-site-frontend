@@ -110,214 +110,223 @@ function JobSeekerSignUp() {
         {/* left container */}
         {/* form */}
         <Form
+          autoComplete={false}
           style={{ zIndex: 90 }}
           form={form}
           layout="vertical"
           onFinish={onFinish}
-          className="second-container c-form align-items-start">
-          <h3 className="form-title">
+          className="second-container c-form align-items-start jobseeker-sign-up-form">
+          {/* <h3 className="form-title">
             Discover a new way of hiring & make the right connections.
-          </h3>
+          </h3> */}
 
-          <Row gutter={[32, 32]}>
-            <Col span={12}>
+          <Row gutter={[32, 0]}>
+            <Col xs={{ span: 24 }} span={12} md={{ span: 12 }}>
               <Form.Item
                 label="First name"
                 name="firstName"
                 className="c-input"
                 rules={Rules.firstNameRule}>
-                <Input
-                  placeholder="Enter your first name"
-                  size="small"
-                  type="text"
+                <Input placeholder="Enter your first name" type="text" />
+              </Form.Item>
+            </Col>
+
+            <Col xs={{ span: 24 }} span={12} md={{ span: 12 }}>
+              <Form.Item
+                label="Last name"
+                name="lastName"
+                className="c-input"
+                rules={Rules.lastNameRule}>
+                <Input placeholder="Enter your last name" type="text" />
+              </Form.Item>
+            </Col>
+
+            <Col xs={{ span: 24 }} span={12} md={{ span: 12 }}>
+              <Form.Item
+                style={{ zIndex: 300 }}
+                label="Mobile number"
+                name="mobile"
+                className="c-input"
+                rules={Rules.phoneRule}>
+                <PhoneInput
+                  placeholder="Enter your mobile no."
+                  country={countryCode}
                 />
               </Form.Item>
             </Col>
-          </Row>
 
-          <Form.Item
-            label="Last name"
-            name="lastName"
-            className="c-input"
-            rules={Rules.lastNameRule}>
-            <Input
-              placeholder="Enter your last name"
-              size="small"
-              type="text"
-            />
-          </Form.Item>
+            <Col xs={{ span: 24 }} span={12} md={{ span: 12 }}>
+              <Form.Item
+                label="Email"
+                name="email"
+                className="c-input"
+                rules={Rules.emailRule}>
+                <Input placeholder="Enter your email" type="text" />
+              </Form.Item>
+            </Col>
 
-          <div className="c-row">
-            <Form.Item
-              style={{ zIndex: 300 }}
-              label="Mobile number"
-              name="mobile"
-              className="c-input"
-              rules={Rules.phoneRule}>
-              <PhoneInput
-                placeholder="Enter your mobile no."
-                country={countryCode}
-              />
-            </Form.Item>
+            <Col xs={{ span: 24 }} span={12} md={{ span: 12 }}>
+              <Form.Item
+                label="Password"
+                name="password"
+                className="c-input"
+                rules={Rules.passwordRule}>
+                <Input.Password placeholder="Enter password" type="password" />
+              </Form.Item>
+            </Col>
 
-            <Form.Item
-              label="Email"
-              name="email"
-              className="c-input"
-              rules={Rules.emailRule}>
-              <Input placeholder="Enter your email" size="small" type="text" />
-            </Form.Item>
-          </div>
-          <div className="c-row">
-            <Form.Item
-              label="Password"
-              name="password"
-              className="c-input"
-              rules={Rules.passwordRule}>
-              <Input.Password
-                placeholder="Enter password"
-                size="small"
-                type="password"
-              />
-            </Form.Item>
+            <Col xs={{ span: 24 }} span={12} md={{ span: 12 }}>
+              <Form.Item
+                label="Confirm Password"
+                name="confirmPassword"
+                className="c-input"
+                rules={Rules.confirmPasswordRule}
+                dependencies={["password"]}>
+                <Input.Password placeholder="Enter password again" />
+              </Form.Item>
+            </Col>
 
-            <Form.Item
-              label="Confirm Password"
-              name="confirmPassword"
-              className="c-input"
-              rules={Rules.confirmPasswordRule}
-              dependencies={["password"]}>
-              <Input.Password placeholder="Enter password again" size="small" />
-            </Form.Item>
-          </div>
-          <div className="c-row">
-            <Form.Item
-              style={{ zIndex: 140 }}
-              label={
-                <div className="c-label">
-                  <label>Family status&nbsp;</label>
-                  <WithHintText>
-                    <img
-                      class="label-icon"
-                      src={require("../../assets/images/icons/information-icon.svg")}
-                      alt=""
-                    />
-                  </WithHintText>
-                </div>
-              }
-              name="familyStatusId"
-              className="c-input"
-              rules={Rules.requiredRule}>
-              <Select
-                getPopupContainer={(trigger) => trigger.parentNode}
-                size="large"
-                defaultValue="">
-                <Option value="">Select</Option>
-                {familyStatuses?.map((fs) => (
-                  <Option value={fs.id}>{fs.title}</Option>
-                ))}
-              </Select>
-            </Form.Item>
+            <Col xs={{ span: 24 }} span={12} md={{ span: 12 }}>
+              <Form.Item
+                style={{ zIndex: 140 }}
+                label={
+                  <div className="c-label">
+                    <label>Family status&nbsp;</label>
+                    <WithHintText>
+                      <img
+                        class="label-icon"
+                        src={require("../../assets/images/icons/information-icon.svg")}
+                        alt=""
+                      />
+                    </WithHintText>
+                  </div>
+                }
+                name="familyStatusId"
+                className="c-input"
+                rules={Rules.requiredRule}>
+                <Select
+                  getPopupContainer={(trigger) => trigger.parentNode}
+                  size="large"
+                  defaultValue="">
+                  <Option value="">Select</Option>
+                  {familyStatuses?.map((fs) => (
+                    <Option value={fs.id}>{fs.title}</Option>
+                  ))}
+                </Select>
+              </Form.Item>
+            </Col>
 
-            <Form.Item
-              style={{ zIndex: 120 }}
-              label={
-                <div className="c-label">
-                  <label>Gender&nbsp;</label>
-                  <WithHintText>
-                    <img
-                      class="label-icon"
-                      src={require("../../assets/images/icons/information-icon.svg")}
-                      alt=""
-                    />
-                  </WithHintText>
-                </div>
-              }
-              name="gender"
-              className="c-input"
-              rules={Rules.requiredRule}>
-              <Select
-                getPopupContainer={(trigger) => trigger.parentNode}
-                size="large"
-                defaultValue="">
-                <Option value="">Select</Option>
-                <Option value="male">Male</Option>
-                <Option value="female">Female</Option>
-                <Option value="other">Other</Option>
-              </Select>
-            </Form.Item>
-          </div>
-          <div className="c-row">
-            <Form.Item
-              label={
-                <div className="c-label">
-                  <label>Date of birth</label>
-                </div>
-              }
-              name="dob"
-              className="c-input"
-              rules={Rules.requiredRule}>
-              <DatePicker inputReadOnly />
-            </Form.Item>
+            <Col xs={{ span: 24 }} span={12} md={{ span: 12 }}>
+              <Form.Item
+                style={{ zIndex: 120 }}
+                label={
+                  <div className="c-label">
+                    <label>Gender&nbsp;</label>
+                    <WithHintText>
+                      <img
+                        class="label-icon"
+                        src={require("../../assets/images/icons/information-icon.svg")}
+                        alt=""
+                      />
+                    </WithHintText>
+                  </div>
+                }
+                name="gender"
+                className="c-input"
+                rules={Rules.requiredRule}>
+                <Select
+                  getPopupContainer={(trigger) => trigger.parentNode}
+                  defaultValue="">
+                  <Option value="">Select</Option>
+                  <Option value="male">Male</Option>
+                  <Option value="female">Female</Option>
+                  <Option value="other">Other</Option>
+                </Select>
+              </Form.Item>
+            </Col>
 
-            <Form.Item
-              style={{ zIndex: 100 }}
-              label={
-                <div className="c-label">
-                  <label>Passport nationality&nbsp;</label>
-                  <WithHintText>
-                    <img
-                      class="label-icon"
-                      src={require("../../assets/images/icons/information-icon.svg")}
-                      alt=""
-                    />
-                  </WithHintText>
-                </div>
-              }
-              name="nationalityId"
-              className="c-input"
-              rules={Rules.requiredRule}>
-              <Select
-                getPopupContainer={(trigger) => trigger.parentNode}
-                size="large"
-                dropdownClassName="nationality-dropdown"
-                defaultValue="">
-                <Option value="">Select</Option>
-                {nationalities?.map((n) => (
-                  <Option value={n.id}>{n.title}</Option>
-                ))}
-              </Select>
-            </Form.Item>
-          </div>
+            <Col xs={{ span: 24 }} span={12} md={{ span: 12 }}>
+              <Form.Item
+                label={
+                  <div className="c-label">
+                    <label>Date of birth</label>
+                  </div>
+                }
+                name="dob"
+                className="c-input"
+                rules={Rules.requiredRule}>
+                <DatePicker inputReadOnly />
+              </Form.Item>
+            </Col>
+            <Col xs={{ span: 24 }} span={12} md={{ span: 12 }}>
+              <Form.Item
+                style={{ zIndex: 100 }}
+                label={
+                  <div className="c-label">
+                    <label>Passport nationality&nbsp;</label>
+                    <WithHintText>
+                      <img
+                        class="label-icon"
+                        src={require("../../assets/images/icons/information-icon.svg")}
+                        alt=""
+                      />
+                    </WithHintText>
+                  </div>
+                }
+                name="nationalityId"
+                className="c-input"
+                rules={Rules.requiredRule}>
+                <Select
+                  getPopupContainer={(trigger) => trigger.parentNode}
+                  size="large"
+                  dropdownClassName="nationality-dropdown"
+                  defaultValue="">
+                  <Option value="">Select</Option>
+                  {nationalities?.map((n) => (
+                    <Option value={n.id}>{n.title}</Option>
+                  ))}
+                </Select>
+              </Form.Item>
+            </Col>
 
-          <span className="responsive-bottom-section">
-            <Form.Item
-              rules={[
-                {
-                  required: true,
-                  message: "Please select our terms & conditions",
-                },
-              ]}
-              name="agreeTerms"
-              className="mb-0"
-              valuePropName="checked">
-              <Checkbox>
-                I agree with Jobsmideast.com{" "}
-                <mark onClick={() => setTermsModalShow(true)}>
-                  terms &amp; conditions
-                </mark>{" "}
-                and <mark>privacy policy.</mark>
-              </Checkbox>
-            </Form.Item>
+            <span className="responsive-bottom-section">
+              <Form.Item
+                rules={[
+                  {
+                    required: true,
+                    message: "Please select our terms & conditions",
+                  },
+                ]}
+                name="agreeTerms"
+                className="mb-0"
+                style={{ marginLeft: "16px", marginTop: "16px" }}
+                valuePropName="checked">
+                <Checkbox>
+                  I agree with Jobsmideast.com{" "}
+                  <mark onClick={() => setTermsModalShow(true)}>
+                    terms &amp; conditions
+                  </mark>{" "}
+                  and <mark>privacy policy.</mark>
+                </Checkbox>
+              </Form.Item>
+              <Button
+                className="create-profile-button"
+                themeColor="light"
+                type="large"
+                htmlType="submit"
+                loading={isLoading}
+                block>
+                Create my profile
+              </Button>
 
-            <Modal
-              show={termsModalShow}
-              onHide={() => setTermsModalShow(false)}>
-              {" "}
-              <TermsConditions />
-            </Modal>
+              <Modal
+                show={termsModalShow}
+                onHide={() => setTermsModalShow(false)}>
+                {" "}
+                <TermsConditions />
+              </Modal>
 
-            {/* <Form.Item
+              {/* <Form.Item
               rules={[
                 {
                   required: true,
@@ -332,21 +341,10 @@ function JobSeekerSignUp() {
                 communications.
               </Checkbox>
             </Form.Item> */}
-          </span>
+            </span>
 
-          {errorMessage && <Alert message={errorMessage} type="error" />}
-
-          <Form.Item className="mb-0 align-self-end">
-            <Button
-              className="create-profile-button"
-              themeColor="light"
-              type="large"
-              htmlType="submit"
-              loading={isLoading}
-              block>
-              Create my profile
-            </Button>
-          </Form.Item>
+            {errorMessage && <Alert message={errorMessage} type="error" />}
+          </Row>
         </Form>
         <div className="first-container on-right bg-2">
           <img
