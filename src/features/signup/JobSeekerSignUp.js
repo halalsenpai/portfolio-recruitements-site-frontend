@@ -10,6 +10,8 @@ import {
   DatePicker,
   Select,
   Alert,
+  Row,
+  Col,
 } from "antd";
 
 import * as Rules from "../../utils/rules";
@@ -106,63 +108,6 @@ function JobSeekerSignUp() {
     <div className="c-container auth-wrapper">
       <div className="signup-container with-form">
         {/* left container */}
-        <div className="first-container">
-          <img
-            className="logo"
-            src={require("../../assets/images/logo/logo-white.png")}
-            alt="logo"
-          />
-
-          <span className="inner-container">
-            <h3>
-              <span>Looking for a new job?</span>
-            </h3>
-
-            <div className="box">
-              <img
-                src={require("../../assets/images/icons/signup-icons/sign-1.svg")}
-                alt="img"
-              />
-              <span>
-                <h3 className="">One click apply</h3>
-                <p>Shortlist jobs and apply to all of them with 1 click</p>
-              </span>
-            </div>
-
-            <div className="box">
-              <img
-                src={require("../../assets/images/icons/signup-icons/sign-2.svg")}
-                alt="img"
-              />
-
-              <span>
-                <h3 className="">Job Match</h3>
-                <p>Let our system do the work for you even while you sleep!</p>
-              </span>
-            </div>
-            <div className="box">
-              <img
-                src={require("../../assets/images/icons/signup-icons/sign-3.svg")}
-                alt="img"
-              />
-              <span>
-                <h3 className="">Direct chat + Inbox</h3>
-                <p>Talk to employers & agencies in real time, no emails!</p>
-              </span>
-            </div>
-            <div className="box">
-              <img
-                src={require("../../assets/images/icons/signup-icons/sign-4.svg")}
-                alt="img"
-              />
-              <span>
-                <h3 className="">Follow Companies</h3>
-                <p>Follow companies and stay up to date with all their jobs</p>
-              </span>
-            </div>
-          </span>
-        </div>
-
         {/* form */}
         <Form
           style={{ zIndex: 90 }}
@@ -174,31 +119,34 @@ function JobSeekerSignUp() {
             Discover a new way of hiring & make the right connections.
           </h3>
 
-          <div className="c-row">
-            <Form.Item
-              label="First name"
-              name="firstName"
-              className="c-input"
-              rules={Rules.firstNameRule}>
-              <Input
-                placeholder="Enter your first name"
-                size="small"
-                type="text"
-              />
-            </Form.Item>
+          <Row gutter={[32, 32]}>
+            <Col span={12}>
+              <Form.Item
+                label="First name"
+                name="firstName"
+                className="c-input"
+                rules={Rules.firstNameRule}>
+                <Input
+                  placeholder="Enter your first name"
+                  size="small"
+                  type="text"
+                />
+              </Form.Item>
+            </Col>
+          </Row>
 
-            <Form.Item
-              label="Last name"
-              name="lastName"
-              className="c-input"
-              rules={Rules.lastNameRule}>
-              <Input
-                placeholder="Enter your last name"
-                size="small"
-                type="text"
-              />
-            </Form.Item>
-          </div>
+          <Form.Item
+            label="Last name"
+            name="lastName"
+            className="c-input"
+            rules={Rules.lastNameRule}>
+            <Input
+              placeholder="Enter your last name"
+              size="small"
+              type="text"
+            />
+          </Form.Item>
+
           <div className="c-row">
             <Form.Item
               style={{ zIndex: 300 }}
@@ -309,7 +257,7 @@ function JobSeekerSignUp() {
               name="dob"
               className="c-input"
               rules={Rules.requiredRule}>
-              <DatePicker inputReadOnly/>
+              <DatePicker inputReadOnly />
             </Form.Item>
 
             <Form.Item
@@ -400,6 +348,57 @@ function JobSeekerSignUp() {
             </Button>
           </Form.Item>
         </Form>
+        <div className="first-container on-right bg-2">
+          <img
+            className="logo"
+            src={require("../../assets/images/logo/logo-white.png")}
+            alt="logo"
+          />
+          <span className="inner-container">
+            <div className="box">
+              <img
+                src={require("../../assets/images/icons/employee-signup-icons/emp-signup-1.svg")}
+                alt="img"
+              />
+              <span>
+                <h3 className="">Free CRM</h3>
+                <p>Builtin CRM with drag and Drop function</p>
+              </span>
+            </div>
+            <div className="box">
+              <img
+                src={require("../../assets/images/icons/employee-signup-icons/emp-signup-2.svg")}
+                alt="img"
+              />
+              <span>
+                <h3 className="">Save up to 75%</h3>
+                <p>Save up to 75% of your annual recruitment budget</p>
+              </span>
+            </div>
+            <div className="box">
+              <img
+                src={require("../../assets/images/icons/employee-signup-icons/emp-signup-3.svg")}
+                alt="img"
+              />
+              <span>
+                <h3 className="">Direct chat + Inbox</h3>
+                <p>Connect with candidates direct, no more emails!</p>
+              </span>
+            </div>
+            <div className="box">
+              <img
+                src={require("../../assets/images/icons/employee-signup-icons/emp-signup-4.svg")}
+                alt="img"
+              />
+              <span>
+                <h3 className="">Candidate Match</h3>
+                <p>
+                  Set accurate filters and let the system find you job seekers!
+                </p>
+              </span>
+            </div>
+          </span>
+        </div>{" "}
       </div>
     </div>
   );

@@ -71,13 +71,57 @@ function SignUp() {
             </Button>
           </Form.Item>
         </Form>
-        <div className="first-container role-select">
+        <div className="first-container on-right bg-2">
           <img
             className="logo"
             src={require("../../assets/images/logo/logo-white.png")}
             alt="logo"
           />
-        </div>
+          <span className="inner-container">
+            <div className="box">
+              <img
+                src={require("../../assets/images/icons/employee-signup-icons/emp-signup-1.svg")}
+                alt="img"
+              />
+              <span>
+                <h3 className="">Free CRM</h3>
+                <p>Builtin CRM with drag and Drop function</p>
+              </span>
+            </div>
+            <div className="box">
+              <img
+                src={require("../../assets/images/icons/employee-signup-icons/emp-signup-2.svg")}
+                alt="img"
+              />
+              <span>
+                <h3 className="">Save up to 75%</h3>
+                <p>Save up to 75% of your annual recruitment budget</p>
+              </span>
+            </div>
+            <div className="box">
+              <img
+                src={require("../../assets/images/icons/employee-signup-icons/emp-signup-3.svg")}
+                alt="img"
+              />
+              <span>
+                <h3 className="">Direct chat + Inbox</h3>
+                <p>Connect with candidates direct, no more emails!</p>
+              </span>
+            </div>
+            <div className="box">
+              <img
+                src={require("../../assets/images/icons/employee-signup-icons/emp-signup-4.svg")}
+                alt="img"
+              />
+              <span>
+                <h3 className="">Candidate Match</h3>
+                <p>
+                  Set accurate filters and let the system find you job seekers!
+                </p>
+              </span>
+            </div>
+          </span>
+        </div>{" "}
       </div>
     </div>
   );
