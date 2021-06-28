@@ -37,8 +37,6 @@
     padding: 0px !important;
     height: 720px;
     position: relative;
-    overflow: hidden;
-    overflow-y: unset;
     box-shadow: 0 0 16px #00000026;
 
     .first-container {
@@ -53,7 +51,9 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      border-radius: 20px 0 0 20px;
+      border-radius: 20px;
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
 
       &.role-container {
         width: 200px;

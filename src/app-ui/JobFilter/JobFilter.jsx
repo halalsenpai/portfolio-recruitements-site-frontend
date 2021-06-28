@@ -505,7 +505,7 @@ const JobFilter = (props) => {
           </div>
         </Form>
       </Modal>
-    </>
+      </>
   );
 };
 
