@@ -88,7 +88,7 @@ function JobCard({ job = {}, type, onClick }) {
           <span className={type === "box" ? "" : "info"}>
             {type !== "box" && (
               <span className="title-row">
-                <h6 className="title">{job?.jobTitle?.title || "N/A"}</h6>
+                <h6 className="title">{job?.jobTitle?.title || ""}</h6>
 
                 <span className="location-container">
                   <img
@@ -97,7 +97,7 @@ function JobCard({ job = {}, type, onClick }) {
                     alt="icon"
                   />
 
-                  <p className="location-text">{job.country || "N/A"}</p>
+                  <p className="location-text">{job.country || ""}</p>
                 </span>
               </span>
             )}
