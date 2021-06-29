@@ -479,6 +479,7 @@ function EmployerSignUp() {
                   </Upload>
                 </Col>
                 <Col
+                  style={{ zIndex: 300 }}
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
@@ -500,6 +501,7 @@ function EmployerSignUp() {
                   </Form.Item>
                 </Col>
                 <Col
+                  style={{ zIndex: 100 }}
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
@@ -642,7 +644,7 @@ function EmployerSignUp() {
                   </Form.Item>
                 </Col>
                 <Col
-                  style={{ zIndex: 140 }}
+                  style={{ zIndex: 100 }}
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}

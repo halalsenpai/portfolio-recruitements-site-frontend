@@ -18,7 +18,7 @@ const SERVICE_URLS = {
   confirmEmail: () => `/auth/verify`,
   getCountryByIp: () => `http://ip-api.com/json'`,
   getSector: (qs) => `/categories${qs}`,
-  uploadProfileImage: () => `/file-handle/avatar`,
+  uploadProfileImage: () => `/file-handle/signup-profile-picture`,
 };
 
 export const getRole = () => get(SERVICE_URLS.getRole());
