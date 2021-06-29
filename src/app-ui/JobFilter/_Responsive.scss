@@ -43,3 +43,13 @@
     }
   }
 }
+@media only screen and (max-width: 410px) {
+  .filter-main {
+    divide {
+      padding: 0 !important;
+      padding-bottom: 20px !important;
+      display: flex !important;
+      justify-content: space-between !important;
+    }
+  }
+}
