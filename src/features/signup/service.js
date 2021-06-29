@@ -16,9 +16,9 @@ const SERVICE_URLS = {
   employerSignup: () => `/auth/employer/signup`,
   agencySignup: () => "/auth/agency/signup",
   confirmEmail: () => `/auth/verify`,
-  getCountryByIp: () => `http://ip-api.com/json'`,
+  getCountryByIp: () => `https://pro.ip-api.com/json?key=YQnoAYJbrHbV7qS`,
   getSector: (qs) => `/categories${qs}`,
-  uploadProfileImage: () => `/file-handle/avatar`,
+  uploadProfileImage: () => `/file-handle/signup-profile-picture`,
 };
 
 export const getRole = () => get(SERVICE_URLS.getRole());
@@ -72,7 +72,7 @@ export const employerSignup = (body) =>
   post(SERVICE_URLS.employerSignup(), body);
 export const agencySignup = (body) => post(SERVICE_URLS.agencySignup(), body);
 
-export const getCountryByIp = () => fetch("http://ip-api.com/json");
+export const getCountryByIp = () => fetch("https://pro.ip-api.com/json?key=YQnoAYJbrHbV7qS");
 
 export const uploadProfileImage = (body, params) =>
   post(SERVICE_URLS.uploadProfileImage(), body, params);
