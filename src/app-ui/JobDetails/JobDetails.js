@@ -77,7 +77,8 @@ function JobDetails({
       <div className="job-details-wrapper">
         <span className="details-header">
           <h3 className="job-title">
-            Job title: <span className="title">{data.title || "N/A"}</span>{" "}
+            Job title:{" "}
+            <span className="title">{data?.jobTitle?.title || "N/A"}</span>{" "}
           </h3>
 
           <span className="actions-wrapper">
@@ -220,7 +221,10 @@ function JobDetails({
                   </p>
                 </span>
 
-                <ImagesGallery title="Company Photos" />
+                <ImagesGallery
+                  images={data?.company?.photoUrl}
+                  title="Company Photos"
+                />
 
                 <span className="content-block mt-4 pr-0">
                   <h6 className="block-title thick-title mb-3">

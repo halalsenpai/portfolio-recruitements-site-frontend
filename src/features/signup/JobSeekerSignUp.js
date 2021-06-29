@@ -10,6 +10,8 @@ import {
   DatePicker,
   Select,
   Alert,
+  Row,
+  Col,
 } from "antd";
 
 import * as Rules from "../../utils/rules";
@@ -19,7 +21,6 @@ import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import {
   getRole,
   getFamilyStatus,
-  getNationality,
   jobseekerSignup,
   getCountryByIp,
 } from "./thunk";
@@ -33,6 +34,8 @@ import {
   selectCountryByIp,
 } from "./slice";
 import TermsConditions from "./TermsConditions";
+import { getNationality } from "./service";
+import { SuperSelect } from "../../shared-ui/SuperSelect/SuperSelect";
 
 const { Option } = Select;
 
@@ -69,7 +72,7 @@ function JobSeekerSignUp() {
   useEffect(() => {
     dispatch(getRole());
     dispatch(getFamilyStatus());
-    dispatch(getNationality());
+
     dispatch(getCountryByIp());
   }, []);
 
@@ -106,270 +109,230 @@ function JobSeekerSignUp() {
     <div className="c-container auth-wrapper">
       <div className="signup-container with-form">
         {/* left container */}
-        <div className="first-container">
-          <img
-            className="logo"
-            src={require("../../assets/images/logo/logo-white.png")}
-            alt="logo"
-          />
-
-          <span className="inner-container">
-            <h3>
-              <span>Looking for a new job?</span>
-            </h3>
-
-            <div className="box">
-              <img
-                src={require("../../assets/images/icons/signup-icons/sign-1.svg")}
-                alt="img"
-              />
-              <span>
-                <h3 className="">One click apply</h3>
-                <p>Shortlist jobs and apply to all of them with 1 click</p>
-              </span>
-            </div>
-
-            <div className="box">
-              <img
-                src={require("../../assets/images/icons/signup-icons/sign-2.svg")}
-                alt="img"
-              />
-
-              <span>
-                <h3 className="">Job Match</h3>
-                <p>Let our system do the work for you even while you sleep!</p>
-              </span>
-            </div>
-            <div className="box">
-              <img
-                src={require("../../assets/images/icons/signup-icons/sign-3.svg")}
-                alt="img"
-              />
-              <span>
-                <h3 className="">Direct chat + Inbox</h3>
-                <p>Talk to employers & agencies in real time, no emails!</p>
-              </span>
-            </div>
-            <div className="box">
-              <img
-                src={require("../../assets/images/icons/signup-icons/sign-4.svg")}
-                alt="img"
-              />
-              <span>
-                <h3 className="">Follow Companies</h3>
-                <p>Follow companies and stay up to date with all their jobs</p>
-              </span>
-            </div>
-          </span>
-        </div>
-
         {/* form */}
         <Form
+          autoComplete={false}
           style={{ zIndex: 90 }}
           form={form}
           layout="vertical"
           onFinish={onFinish}
-          className="second-container c-form align-items-start">
-          <h3 className="form-title">
+          className="second-container c-form align-items-start jobseeker-sign-up-form">
+          {/* <h3 className="form-title">
             Discover a new way of hiring & make the right connections.
-          </h3>
+          </h3> */}
 
-          <div className="c-row">
-            <Form.Item
-              label="First name"
-              name="firstName"
-              className="c-input"
-              rules={Rules.firstNameRule}>
-              <Input
-                placeholder="Enter your first name"
-                size="small"
-                type="text"
-              />
-            </Form.Item>
+          <Row gutter={[32, 0]}>
+            <Col xs={{ span: 24 }} span={12} md={{ span: 12 }}>
+              <Form.Item
+                label="First name"
+                name="firstName"
+                className="c-input"
+                rules={Rules.firstNameRule}>
+                <Input placeholder="Enter your first name" type="text" />
+              </Form.Item>
+            </Col>
 
-            <Form.Item
-              label="Last name"
-              name="lastName"
-              className="c-input"
-              rules={Rules.lastNameRule}>
-              <Input
-                placeholder="Enter your last name"
-                size="small"
-                type="text"
-              />
-            </Form.Item>
-          </div>
-          <div className="c-row">
-            <Form.Item
-              style={{ zIndex: 300 }}
-              label="Mobile number"
-              name="mobile"
-              className="c-input"
-              rules={Rules.phoneRule}>
-              <PhoneInput
-                placeholder="Enter your mobile no."
-                country={countryCode}
-              />
-            </Form.Item>
+            <Col xs={{ span: 24 }} span={12} md={{ span: 12 }}>
+              <Form.Item
+                label="Last name"
+                name="lastName"
+                className="c-input"
+                rules={Rules.lastNameRule}>
+                <Input placeholder="Enter your last name" type="text" />
+              </Form.Item>
+            </Col>
 
-            <Form.Item
-              label="Email"
-              name="email"
-              className="c-input"
-              rules={Rules.emailRule}>
-              <Input placeholder="Enter your email" size="small" type="text" />
-            </Form.Item>
-          </div>
-          <div className="c-row">
-            <Form.Item
-              label="Password"
-              name="password"
-              className="c-input"
-              rules={Rules.passwordRule}>
-              <Input.Password
-                placeholder="Enter password"
-                size="small"
-                type="password"
-              />
-            </Form.Item>
+            <Col xs={{ span: 24 }} span={12} md={{ span: 12 }}>
+              <Form.Item
+                style={{ zIndex: 300 }}
+                label="Mobile number"
+                name="mobile"
+                className="c-input"
+                rules={Rules.phoneRule}>
+                <PhoneInput
+                  placeholder="Enter your mobile no."
+                  country={countryCode}
+                />
+              </Form.Item>
+            </Col>
 
-            <Form.Item
-              label="Confirm Password"
-              name="confirmPassword"
-              className="c-input"
-              rules={Rules.confirmPasswordRule}
-              dependencies={["password"]}>
-              <Input.Password placeholder="Enter password again" size="small" />
-            </Form.Item>
-          </div>
-          <div className="c-row">
-            <Form.Item
-              style={{ zIndex: 140 }}
-              label={
-                <div className="c-label">
-                  <label>Family status&nbsp;</label>
-                  <WithHintText>
-                    <img
-                      class="label-icon"
-                      src={require("../../assets/images/icons/information-icon.svg")}
-                      alt=""
-                    />
-                  </WithHintText>
-                </div>
-              }
-              name="familyStatusId"
-              className="c-input"
-              rules={Rules.requiredRule}>
-              <Select
-                getPopupContainer={(trigger) => trigger.parentNode}
-                size="large"
-                defaultValue="">
-                <Option value="">Select</Option>
-                {familyStatuses?.map((fs) => (
-                  <Option value={fs.id}>{fs.title}</Option>
-                ))}
-              </Select>
-            </Form.Item>
+            <Col xs={{ span: 24 }} span={12} md={{ span: 12 }}>
+              <Form.Item
+                label="Email"
+                name="email"
+                className="c-input"
+                rules={Rules.emailRule}>
+                <Input placeholder="Enter your email" type="text" />
+              </Form.Item>
+            </Col>
 
-            <Form.Item
-              style={{ zIndex: 120 }}
-              label={
-                <div className="c-label">
-                  <label>Gender&nbsp;</label>
-                  <WithHintText>
-                    <img
-                      class="label-icon"
-                      src={require("../../assets/images/icons/information-icon.svg")}
-                      alt=""
-                    />
-                  </WithHintText>
-                </div>
-              }
-              name="gender"
-              className="c-input"
-              rules={Rules.requiredRule}>
-              <Select
-                getPopupContainer={(trigger) => trigger.parentNode}
-                size="large"
-                defaultValue="">
-                <Option value="">Select</Option>
-                <Option value="male">Male</Option>
-                <Option value="female">Female</Option>
-                <Option value="other">Other</Option>
-              </Select>
-            </Form.Item>
-          </div>
-          <div className="c-row">
-            <Form.Item
-              label={
-                <div className="c-label">
-                  <label>Date of birth</label>
-                </div>
-              }
-              name="dob"
-              className="c-input"
-              rules={Rules.requiredRule}>
-              <DatePicker inputReadOnly/>
-            </Form.Item>
+            <Col xs={{ span: 24 }} span={12} md={{ span: 12 }}>
+              <Form.Item
+                label="Password"
+                name="password"
+                className="c-input"
+                rules={Rules.passwordRule}>
+                <Input.Password placeholder="Enter password" type="password" />
+              </Form.Item>
+            </Col>
 
-            <Form.Item
-              style={{ zIndex: 100 }}
-              label={
-                <div className="c-label">
-                  <label>Passport nationality&nbsp;</label>
-                  <WithHintText>
-                    <img
-                      class="label-icon"
-                      src={require("../../assets/images/icons/information-icon.svg")}
-                      alt=""
-                    />
-                  </WithHintText>
-                </div>
-              }
-              name="nationalityId"
-              className="c-input"
-              rules={Rules.requiredRule}>
-              <Select
-                getPopupContainer={(trigger) => trigger.parentNode}
-                size="large"
-                dropdownClassName="nationality-dropdown"
-                defaultValue="">
-                <Option value="">Select</Option>
-                {nationalities?.map((n) => (
-                  <Option value={n.id}>{n.title}</Option>
-                ))}
-              </Select>
-            </Form.Item>
-          </div>
+            <Col xs={{ span: 24 }} span={12} md={{ span: 12 }}>
+              <Form.Item
+                label="Confirm Password"
+                name="confirmPassword"
+                className="c-input"
+                rules={Rules.confirmPasswordRule}
+                dependencies={["password"]}>
+                <Input.Password placeholder="Enter password again" />
+              </Form.Item>
+            </Col>
 
-          <span className="responsive-bottom-section">
-            <Form.Item
-              rules={[
-                {
-                  required: true,
-                  message: "Please select our terms & conditions",
-                },
-              ]}
-              name="agreeTerms"
-              className="mb-0"
-              valuePropName="checked">
-              <Checkbox>
-                I agree with Jobsmideast.com{" "}
-                <mark onClick={() => setTermsModalShow(true)}>
-                  terms &amp; conditions
-                </mark>{" "}
-                and <mark>privacy policy.</mark>
-              </Checkbox>
-            </Form.Item>
+            <Col xs={{ span: 24 }} span={12} md={{ span: 12 }}>
+              <Form.Item
+                style={{ zIndex: 140 }}
+                label={
+                  <div className="c-label">
+                    <label>Family status&nbsp;</label>
+                    <WithHintText>
+                      <img
+                        class="label-icon"
+                        src={require("../../assets/images/icons/information-icon.svg")}
+                        alt=""
+                      />
+                    </WithHintText>
+                  </div>
+                }
+                name="familyStatusId"
+                className="c-input"
+                rules={Rules.requiredRule}>
+                <Select
+                  getPopupContainer={(trigger) => trigger.parentNode}
+                  size="large"
+                  defaultValue="">
+                  <Option value="">Select</Option>
+                  {familyStatuses?.map((fs) => (
+                    <Option value={fs.id}>{fs.title}</Option>
+                  ))}
+                </Select>
+              </Form.Item>
+            </Col>
 
-            <Modal
-              show={termsModalShow}
-              onHide={() => setTermsModalShow(false)}>
-              {" "}
-              <TermsConditions />
-            </Modal>
+            <Col xs={{ span: 24 }} span={12} md={{ span: 12 }}>
+              <Form.Item
+                style={{ zIndex: 120 }}
+                label={
+                  <div className="c-label">
+                    <label>Gender&nbsp;</label>
+                    <WithHintText>
+                      <img
+                        class="label-icon"
+                        src={require("../../assets/images/icons/information-icon.svg")}
+                        alt=""
+                      />
+                    </WithHintText>
+                  </div>
+                }
+                name="gender"
+                className="c-input"
+                rules={Rules.requiredRule}>
+                <Select
+                  getPopupContainer={(trigger) => trigger.parentNode}
+                  defaultValue="">
+                  <Option value="">Select</Option>
+                  <Option value="male">Male</Option>
+                  <Option value="female">Female</Option>
+                  <Option value="other">Other</Option>
+                </Select>
+              </Form.Item>
+            </Col>
 
-            {/* <Form.Item
+            <Col xs={{ span: 24 }} span={12} md={{ span: 12 }}>
+              <Form.Item
+                label={
+                  <div className="c-label">
+                    <label>Date of birth</label>
+                  </div>
+                }
+                name="dob"
+                className="c-input"
+                rules={Rules.requiredRule}>
+                <DatePicker inputReadOnly />
+              </Form.Item>
+            </Col>
+            <Col xs={{ span: 24 }} span={12} md={{ span: 12 }}>
+              <Form.Item
+                style={{ zIndex: 100 }}
+                label={
+                  <div className="c-label">
+                    <label>Passport nationality&nbsp;</label>
+                    <WithHintText>
+                      <img
+                        class="label-icon"
+                        src={require("../../assets/images/icons/information-icon.svg")}
+                        alt=""
+                      />
+                    </WithHintText>
+                  </div>
+                }
+                name="nationalityId"
+                className="c-input"
+                rules={Rules.requiredRule}>
+                {/* <Select
+                  getPopupContainer={(trigger) => trigger.parentNode}
+                  size="large"
+                  dropdownClassName="nationality-dropdown"
+                  defaultValue="">
+                  <Option value="">Select</Option>
+                  {nationalities?.map((n) => (
+                    <Option value={n.id}>{n.title}</Option>
+                  ))}
+                </Select> */}
+                <SuperSelect
+                  defaultValue=""
+                  getPopupContainer={(trigger) => trigger.parentNode}
+                  fetchOptions={getNationality}
+                />
+              </Form.Item>
+            </Col>
+
+            <span className="responsive-bottom-section">
+              <Form.Item
+                rules={[
+                  {
+                    required: true,
+                    message: "Please select our terms & conditions",
+                  },
+                ]}
+                name="agreeTerms"
+                className="mb-0"
+                style={{ marginLeft: "16px", marginTop: "16px" }}
+                valuePropName="checked">
+                <Checkbox>
+                  I agree with Jobsmideast.com{" "}
+                  <mark onClick={() => setTermsModalShow(true)}>
+                    terms &amp; conditions
+                  </mark>{" "}
+                  and <mark>privacy policy.</mark>
+                </Checkbox>
+              </Form.Item>
+              <Button
+                className="create-profile-button"
+                themeColor="light"
+                type="large"
+                htmlType="submit"
+                loading={isLoading}
+                block>
+                Create my profile
+              </Button>
+
+              <Modal
+                show={termsModalShow}
+                onHide={() => setTermsModalShow(false)}>
+                {" "}
+                <TermsConditions />
+              </Modal>
+
+              {/* <Form.Item
               rules={[
                 {
                   required: true,
@@ -384,22 +347,62 @@ function JobSeekerSignUp() {
                 communications.
               </Checkbox>
             </Form.Item> */}
-          </span>
+            </span>
 
-          {errorMessage && <Alert message={errorMessage} type="error" />}
-
-          <Form.Item className="mb-0 align-self-end">
-            <Button
-              className="create-profile-button"
-              themeColor="light"
-              type="large"
-              htmlType="submit"
-              loading={isLoading}
-              block>
-              Create my profile
-            </Button>
-          </Form.Item>
+            {errorMessage && <Alert message={errorMessage} type="error" />}
+          </Row>
         </Form>
+        <div className="first-container on-right bg-2">
+          <img
+            className="logo"
+            src={require("../../assets/images/logo/logo-white.png")}
+            alt="logo"
+          />
+          <span className="inner-container">
+            <div className="box">
+              <img
+                src={require("../../assets/images/icons/employee-signup-icons/emp-signup-1.svg")}
+                alt="img"
+              />
+              <span>
+                <h3 className="">Free CRM</h3>
+                <p>Builtin CRM with drag and Drop function</p>
+              </span>
+            </div>
+            <div className="box">
+              <img
+                src={require("../../assets/images/icons/employee-signup-icons/emp-signup-2.svg")}
+                alt="img"
+              />
+              <span>
+                <h3 className="">Save up to 75%</h3>
+                <p>Save up to 75% of your annual recruitment budget</p>
+              </span>
+            </div>
+            <div className="box">
+              <img
+                src={require("../../assets/images/icons/employee-signup-icons/emp-signup-3.svg")}
+                alt="img"
+              />
+              <span>
+                <h3 className="">Direct chat + Inbox</h3>
+                <p>Connect with candidates direct, no more emails!</p>
+              </span>
+            </div>
+            <div className="box">
+              <img
+                src={require("../../assets/images/icons/employee-signup-icons/emp-signup-4.svg")}
+                alt="img"
+              />
+              <span>
+                <h3 className="">Candidate Match</h3>
+                <p>
+                  Set accurate filters and let the system find you job seekers!
+                </p>
+              </span>
+            </div>
+          </span>
+        </div>{" "}
       </div>
     </div>
   );

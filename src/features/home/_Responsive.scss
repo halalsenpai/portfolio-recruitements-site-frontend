@@ -107,7 +107,7 @@
         .btm-container-img {
           flex: 2 1;
           min-width: 100%;
-          margin: 40px 0;
+          margin: 40px 0 0 0;
         }
       }
       .demo-btn {
@@ -294,7 +294,7 @@
             margin-bottom: 10px;
             line-height: inherit;
             padding-right: 20px;
-            max-width: 525px;
+            // max-width: 525px;
           }
         }
       }
@@ -423,4 +423,31 @@
       }
     }
   }
+}
+
+@media only screen and (max-width: 1334px) {
+  .home{
+    
+    .bottom-container {
+      .bottom-container-row {
+        .bottom-text-section {
+          padding: 20px 0 20px 20px;
+          // padding-left: 20px;
+          flex: 1 1;
+          // max-width: 600px;
+          min-width: 400px;
+          margin: 10px 0 30px 0;
+
+          .small-paragraph p {
+            font-size: 12px;
+            margin-bottom: 10px;
+            line-height: inherit;
+            padding-right: 20px;
+            max-width: 525px;
+          }
+        }
+      }
+    }
+  }
+  
 }

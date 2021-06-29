@@ -29,6 +29,12 @@ h1 {
   font-family: $font-medium;
 }
 
+div {
+  &.blue {
+    color: $primary;
+  }
+}
+
 .color-text {
   color: $text-color;
 }
@@ -375,6 +381,7 @@ p {
     left: 30px;
     border: none !important;
     height: 36px !important;
+    font-size: 12px;
   }
   .selected-flag:hover {
     background: transparent;

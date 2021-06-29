@@ -14,6 +14,8 @@ import {
   confirmEmail as confirmEmailAPI,
   getCountryByIp as getCountryByIpAPI,
   getCitiesByCountry as getCitiesByCountryAPI,
+  uploadProfileImage as uploadProfileImageAPI,
+  agencySignup as agencySignupAPI,
 } from "./service";
 
 // GET APIs
@@ -22,20 +24,29 @@ export const getRole = createAsyncThunk("signup/role", async () => {
   return response.data;
 });
 
-export const getFamilyStatus = createAsyncThunk("signup/family-status", async () => {
-  const response = await getFamilyStatusAPI();
-  return response.data;
-});
+export const getFamilyStatus = createAsyncThunk(
+  "signup/family-status",
+  async () => {
+    const response = await getFamilyStatusAPI();
+    return response.data;
+  }
+);
 
-export const getNationality = createAsyncThunk("signup/nationality", async () => {
-  const response = await getNationalityAPI();
-  return response.data;
-});
+export const getNationality = createAsyncThunk(
+  "signup/nationality",
+  async () => {
+    const response = await getNationalityAPI();
+    return response.data;
+  }
+);
 
-export const getFindUsPlatform = createAsyncThunk("signup/find-us", async () => {
-  const response = await getFindUsPlatformAPI();
-  return response.data;
-});
+export const getFindUsPlatform = createAsyncThunk(
+  "signup/find-us",
+  async () => {
+    const response = await getFindUsPlatformAPI();
+    return response.data;
+  }
+);
 
 export const getCompany = createAsyncThunk("signup/company", async () => {
   const response = await getCompanyAPI();
@@ -52,34 +63,71 @@ export const getCity = createAsyncThunk("signup/city", async () => {
   return response.data;
 });
 
-export const getCitiesByCountry = createAsyncThunk("signup/cities-by-country", async (id) => {
-  console.log(id);
-  const response = await getCitiesByCountryAPI(id);
-  return response.data;
-});
+export const getCitiesByCountry = createAsyncThunk(
+  "signup/cities-by-country",
+  async (id) => {
+    console.log(id);
+    const response = await getCitiesByCountryAPI(id);
+    return response.data;
+  }
+);
 
 export const getJobTitle = createAsyncThunk("signup/job-title", async () => {
   const response = await getJobTitleAPI();
   return response.data;
 });
 
-export const confirmEmail = createAsyncThunk("signup/confirm-email", async () => {
-  const response = await confirmEmailAPI();
-  return response.data;
-});
+export const confirmEmail = createAsyncThunk(
+  "signup/confirm-email",
+  async () => {
+    const response = await confirmEmailAPI();
+    return response.data;
+  }
+);
 
 // POST APIs
-export const jobseekerSignup = createAsyncThunk("signup/jobseeker", async (payload) => {
-  const response = await jobseekerSignupAPI(payload);
-  return response.data;
-});
+export const jobseekerSignup = createAsyncThunk(
+  "signup/jobseeker",
+  async (payload) => {
+    const response = await jobseekerSignupAPI(payload);
+    return response.data;
+  }
+);
 
-export const employerSignup = createAsyncThunk("signup/employer", async (payload) => {
-  const response = await employerSignupAPI(payload);
-  return response.data;
-});
+export const employerSignup = createAsyncThunk(
+  "signup/employer",
+  async (payload) => {
+    const response = await employerSignupAPI(payload);
+    return response.data;
+  }
+);
 
-export const getCountryByIp = createAsyncThunk("signup/country-by-ip", async () => {
-  const response = await getCountryByIpAPI();
-  return response.json();
-});
+export const agencySignup = createAsyncThunk(
+  "signup/agency",
+  async (payload) => {
+    const response = await agencySignupAPI(payload);
+    return response.data;
+  }
+);
+export const getCountryByIp = createAsyncThunk(
+  "signup/country-by-ip",
+  async () => {
+    const response = await getCountryByIpAPI();
+    return response.json();
+  }
+);
+
+// profile image uploader
+
+export const uploadProfileImage = createAsyncThunk(
+  "signup/upload-image",
+  async ({ payload }) => {
+    const params = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    };
+    const response = await uploadProfileImageAPI(payload, params);
+    return response.data;
+  }
+);
