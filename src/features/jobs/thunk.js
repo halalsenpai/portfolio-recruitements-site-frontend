@@ -6,6 +6,7 @@ import {
   getJobTitle as getJobTitleAPI,
   getEmploymentType as getEmploymentTypeAPI,
   getCountry as getCountryAPI,
+  getCountryisDesired as getCountryisDesiredAPI,
   getCity as getCityAPI,
   getQualification as getQualificationAPI,
   getFieldOfStudy as getFieldOfStudyAPI,
@@ -43,6 +44,11 @@ export const getEmploymentType = createAsyncThunk(
 
 export const getCountry = createAsyncThunk("jobs/get-country", async () => {
   const response = await getCountryAPI();
+  return response.data;
+});
+
+export const getCountryisDesired = createAsyncThunk("jobs/get-country-isDesired", async () => {
+  const response = await getCountryisDesiredAPI();
   return response.data;
 });
 

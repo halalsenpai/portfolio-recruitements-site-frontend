@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import useRefState from "react-usestateref";
 
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { Input, Form, Select, Checkbox, Alert, Row, Col, Upload } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
+import queryString from 'query-string';
 
 import * as Rules from "../../utils/rules";
 import TermsConditions from "./TermsConditions";
@@ -50,6 +51,7 @@ const { Option } = Select;
 function EmployerSignUp() {
   const [form] = Form.useForm();
   const history = useHistory();
+  const location = useLocation();
   const dispatch = useAppDispatch();
 
   const [isCreateCompany, setCreateCompany] = useState(false);
@@ -59,6 +61,8 @@ function EmployerSignUp() {
   const [countryCode, setCountryCode] = useState("gb");
   const [agreeToTerms, setAgreeToTerms] = useState(false);
   const [categoryId, setCategoryId] = useState(null);
+  const [QS, set_QS] = useState(queryString.parse(location.search));
+
 
   const roles = useAppSelector(selectRole);
   const findUsPlatforms = useAppSelector(selectFindUsPlatform);
@@ -72,12 +76,31 @@ function EmployerSignUp() {
   const citiesByCountry = useAppSelector(selectCitiesByCountry);
   const profileImage = useAppSelector(selectProfileImage);
 
+
+
+
   useEffect(() => {
+    // let params = queryString.parse(location.search);
     dispatch(getRole());
     dispatch(getFindUsPlatform());
     dispatch(getCity());
     dispatch(getCountryByIp());
-  }, []);
+    if ('companyProfileId' in QS) {
+      form.setFieldsValue({
+        companyProfileId: QS.companyProfileId,
+        firstName: QS.name,
+        email: QS.email
+      });
+      setCurrentStep(2);
+    }
+  }, [QS]);
+
+  // const Demo = ({ form: { setFieldsValue } }) => {
+  //   React.useEffect(() => {
+  //     setFieldsValue({
+  //       username: 'Bamboo',
+  //     });
+  //   }, []);
 
   useEffect(() => {
     setCountryCode(countryByIp?.countryCode?.toLowerCase());
@@ -90,6 +113,7 @@ function EmployerSignUp() {
   }, [signupSuccess]);
 
   const onFinish = (values) => {
+    console.log("onFinish", values)
     setFormData({ ...formData, ...values });
 
     if (agreeToTerms === false && (currentStep === 2 || currentStep === 3)) {
@@ -122,6 +146,10 @@ function EmployerSignUp() {
 
     if (currentStep < 3) {
       return;
+    }
+
+    if ('companyProfileId' in QS) {
+      payload.companyProfileId = Number(QS.companyProfileId)
     }
 
     if (payload.companyProfileId === "create-company") {
@@ -209,14 +237,15 @@ function EmployerSignUp() {
       case 2:
         return (
           <div className="second-step">
-            <div className="header">
-              <img
-                onClick={() => setCurrentStep(1)}
-                className="back-btn"
-                src={require("../../assets/images/icons/back.svg")}
-                alt=""
-              />
-            </div>
+            {!QS?.companyProfileId ?
+              <div className="header">
+                <img
+                  onClick={() => setCurrentStep(1)}
+                  className="back-btn"
+                  src={require("../../assets/images/icons/back.svg")}
+                  alt=""
+                />
+              </div> : null}
             {!isCreateCompany && (
               <Row gutter={[32, 32]}>
                 <Col
@@ -228,8 +257,9 @@ function EmployerSignUp() {
                     className="c-input"
                     label="First name"
                     rules={Rules.firstNameRule}
+                    placeholder="Enter first name"
                     name="firstName">
-                    <Input />
+                    <Input placeholder="Enter first name" />
                   </Form.Item>
                 </Col>
                 <Col
@@ -242,7 +272,7 @@ function EmployerSignUp() {
                     label="Last name"
                     rules={Rules.lastNameRule}
                     name="lastName">
-                    <Input />
+                    <Input placeholder="Enter last name" />
                   </Form.Item>
                 </Col>
                 <Col
@@ -434,7 +464,7 @@ function EmployerSignUp() {
                   md={{ span: 12 }}
                   lg={{ span: 12 }}>
                   <Form.Item
-                    label="Website http://"
+                    label="Website https://"
                     name="webUrl"
                     className="c-input"
                     rules={Rules.requiredRule}>

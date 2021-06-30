@@ -12,11 +12,13 @@ import searchIcon from "../../assets/images/icons/search_icon.svg";
 import locationIcon from "../../assets/images/icons/location_icon.svg";
 import filterIcon from "../../assets/images/icons/filter_icon.svg";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
+
 import {
   getJob,
   getAccommodation,
   getCity,
   getCountry,
+  getCountryisDesired,
   getEmploymentType,
   getFieldOfStudy,
   getGrade,
@@ -25,6 +27,11 @@ import {
   getJobByCategory,
   getJobsByCompany,
 } from "./thunk";
+
+import {
+  getCountryisDesired as countryisDesired,
+  getCityisDesired as cityisDesired
+} from './service';
 import { selectJobs, selectStatus } from "./slice";
 import {
   selectCountries,
@@ -37,9 +44,11 @@ import {
 
 import "./_Jobs.scss";
 import "./_Responsive.scss";
+import { SuperSelect } from "../../shared-ui/SuperSelect/SuperSelect";
 
 function Jobs() {
   const myRef = useRef(null);
+  const formRef = useRef();
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(selectStatus);
   const jobTitles = useAppSelector(selectJobTitles);
@@ -63,7 +72,8 @@ function Jobs() {
     dispatch(getJob());
     dispatch(getJobTitle());
     dispatch(getEmploymentType());
-    dispatch(getCountry());
+    // dispatch(getCountry());
+    dispatch(getCountryisDesired());
     dispatch(getCity());
     dispatch(getQualification());
     dispatch(getFieldOfStudy());
@@ -102,12 +112,22 @@ function Jobs() {
     });
 
   const onSearchJob = (values) => {
+    console.log("onSearchJob", values)
     const qs = { ...queryParams, ...values };
     setQueryParams(qs);
     dispatch(getJob({ qs }));
   };
-
+  let timeout = 0;
   // const onFinish = () => {};
+  const doSearch = (evt) => {
+    if ((evt.target.value).length > 1 || evt.target.value == "") {
+      if (timeout) clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        //search function
+        formRef.current.submit();
+      }, 500);
+    }
+  }
 
   return (
     <div className="jobs-page">
@@ -122,7 +142,7 @@ function Jobs() {
             </div>
           )}
 
-          <Form onFinish={onSearchJob}>
+          <Form onFinish={onSearchJob} ref={formRef}>
             <span className="form-fields job-filter-section">
               <Form.Item
                 name="jobTitleName"
@@ -132,19 +152,26 @@ function Jobs() {
                   className="xs"
                   type="text"
                   placeholder="Job title"
+                  onChange={doSearch}
                   prefix={
                     <img className="input-icon" src={searchIcon} alt="ico" />
                   }></Input>
               </Form.Item>
               <Form.Item name="location" className="c-input c-input-with-icon">
-                <Input
+                {/* <Input
                   size="small"
                   className="xs"
                   type="text"
                   placeholder="Location"
                   prefix={
                     <img className="input-icon" src={locationIcon} alt="ico" />
-                  }></Input>
+                  }></Input> */}
+                <SuperSelect
+                  getPopupContainer={(trigger) => trigger.parentNode}
+                  defaultValue=""
+                  style={{ width: 200 }}
+                  fetchOptions={cityisDesired}
+                />
               </Form.Item>
               <Button
                 type="small"
@@ -163,7 +190,8 @@ function Jobs() {
           </Form>
 
           <div className="jobs-list">
-            {!jobs.length && <Empty description={"No jobs"} />}
+            {!jobs.length && <CEmpty
+              description={"No jobs"} />}
 
             <MappedElement
               data={jobs}
@@ -199,7 +227,8 @@ function Jobs() {
             </div>
           )}
 
-          {!jobDetails && <Empty description={"please select a job"} />}
+          {!jobDetails && <CEmpty
+            description={"please select a job"} />}
 
           {jobDetails && (
             <JobDetails
@@ -217,8 +246,25 @@ function Jobs() {
           )}
         </div>
       </div>
-    </div>
+    </div >
   );
 }
 
 export default Jobs;
+
+
+
+const CEmpty = ({ description }) => (
+  <Empty
+    style={{
+      display: "flex",
+      flexDirection: "column",
+      height: "100%",
+      justifyContent: "center",
+    }}
+    image={require('../../assets/images/icons/noData.png')}
+    imageStyle={{
+      height: 150,
+    }}
+    description={description} />
+);
