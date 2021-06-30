@@ -20,7 +20,7 @@ const getOptions = (data, keys) => {
   }));
 };
 
-export const SuperSelect = ({
+export const SuperSelectWithSelect = ({
   mode,
   maxTagCount,
   disabled,
@@ -156,11 +156,11 @@ export const SuperSelect = ({
       {...props}>
       {!fetching && (
         <>
-          {/* {initOptions.map((d) => (
+          {initOptions.map((d) => (
             <Option key={d.value} value={d.value}>
               {d.label}
             </Option>
-          ))} */}
+          ))}
           {fixedOptions.map((d) => (
             <Option key={d.value} value={d.value}>
               {d.label}
