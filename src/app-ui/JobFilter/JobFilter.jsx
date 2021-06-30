@@ -34,6 +34,7 @@ import CountryCityModal from "../CountryCityModal/CountryCityModal";
 import { getTitleById } from "../../utils/helper";
 import { useForm } from "antd/lib/form/Form";
 import { SuperSelect } from "../../shared-ui/SuperSelect/SuperSelect";
+import { SuperSelectWithSelect } from "../../shared-ui/SuperSelect/SuperSelect-withSelect";
 import {
   getAccommodation,
   getCategories,
@@ -177,7 +178,7 @@ const JobFilter = (props) => {
                       <Option value={d.id}>{d.title}</Option>
                     ))}
                   </Select> */}
-                  <SuperSelect
+                  <SuperSelectWithSelect
                     getPopupContainer={(trigger) => trigger.parentNode}
                     defaultValue=""
                     fetchOptions={getEmploymentType}
@@ -260,7 +261,8 @@ const JobFilter = (props) => {
                   getPopupContainer={(trigger) => trigger.parentNode}
                   fetchOptions={getSectors}
                 /> */}
-                  <SuperSelect
+                  <SuperSelectWithSelect
+                  placeholder="Select Category"
                     onSelect={(v) => {
                       jobInfoForm.resetFields(["jobTitleId"]);
                       setSelectedSector(false);
@@ -284,7 +286,7 @@ const JobFilter = (props) => {
                   name="jobTitle"
                   className="c-input c-form p-0"
                   rules={null}>
-                  <SuperSelect
+                  <SuperSelectWithSelect
                     disabled={selectedSector}
                     dependencyId={categoryId}
                     getPopupContainer={(trigger) => trigger.parentNode}
@@ -406,7 +408,7 @@ const JobFilter = (props) => {
                   name="qualification"
                   className="c-input c-form p-0"
                   rules={null}>
-                  <SuperSelect
+                  <SuperSelectWithSelect
                     getPopupContainer={(trigger) => trigger.parentNode}
                     defaultValue=""
                     fetchOptions={getQualification}
@@ -427,7 +429,7 @@ const JobFilter = (props) => {
                   name="accommodation"
                   className="c-input c-form p-0"
                   rules={null}>
-                  <SuperSelect
+                  <SuperSelectWithSelect
                     getPopupContainer={(trigger) => trigger.parentNode}
                     defaultValue=""
                     fetchOptions={getAccommodation}
