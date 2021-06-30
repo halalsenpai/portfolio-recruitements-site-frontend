@@ -8,6 +8,7 @@ import * as Rules from "../../utils/rules";
 import {
   getCity,
   getCountry,
+  getCountryisDesired,
   getFieldOfStudy,
   getGrade,
   getSalaryType,
@@ -69,7 +70,8 @@ const JobFilter = (props) => {
   const [selectedSector, setSelectedSector] = useState(true);
 
   useEffect(() => {
-    dispatch(getCountry());
+    // dispatch(getCountry());
+    dispatch(getCountryisDesired());
     dispatch(getCity());
 
     dispatch(getFieldOfStudy());
@@ -123,8 +125,10 @@ const JobFilter = (props) => {
 
   const handleReset = () => {
     form.resetFields();
+    setCategoryId(null)
+    setSelectedCountryId(null)
     dispatch(getJob());
-    props.onHide();
+    // props.onHide();
   };
 
   const jobFilterModal = document.querySelector(".job-filter-modal");
@@ -200,8 +204,8 @@ const JobFilter = (props) => {
                     onClick={handleSetCountriesCitiesModal}
                     placeholder="Select countires and cities"
                     value={`${selectedCountryId
-                        ? getTitleById(countries, selectedCountryId)
-                        : ""
+                      ? getTitleById(countries, selectedCountryId)
+                      : ""
                       }`}></Input>
                 </Form.Item>
                 <Modal

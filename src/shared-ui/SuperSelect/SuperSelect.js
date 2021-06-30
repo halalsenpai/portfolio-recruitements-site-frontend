@@ -33,6 +33,7 @@ export const SuperSelect = ({
   fixedOptions = [],
   searchKey = "search",
   keys = ["id", "title"],
+  style,
   ...props
 }) => {
   const fetchOnSearchRef = useRef(0);
@@ -140,6 +141,7 @@ export const SuperSelect = ({
 
   return (
     <Select
+      style={style}
       maxTagCount={maxTagCount}
       disabled={disabled}
       showArrow={mode ? false : true}

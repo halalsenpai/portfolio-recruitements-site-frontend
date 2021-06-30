@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 import LogoImage from "../../assets/images/logo/logo-md.png";
 
@@ -26,28 +27,28 @@ function Footer() {
             </span>
           </ul>
           <ul>
-            <a href="/">Home</a>
-            <a href="/">Login</a>
-            <a href="/">Services</a>
-            <a href="/">Report a problem</a>
+            <Link to="/">Home</Link>
+            <Link to="/login">Login</Link>
+            <Link to="/services">Services</Link>
+            <Link to="/">Report a problem</Link>
           </ul>
           <ul>
-            <a href="/">Job seekers</a>
-            <a href="/">Job</a>
-            <a href="/">Employer & Agencies</a>
+            <Link to="/job-seekers">Job seekers</Link>
+            <Link to="/jobs">Job</Link>
+            <Link to="/employee-and-agency">Employer & Agencies</Link>
           </ul>
           <ul>
-            {/* <a href="/">
+            {/*<Link>
               <h3 className="blue">Employers & Agencies</h3>
             </a> */}
-            <a href="/">Pricing</a>
-            <a href="/">T&C's</a>
-            <a href="/">Privacy policy</a>
+            <Link to="/pricing">Pricing</Link>
+            <Link to="/">T&C's</Link>
+            <Link to="/">Privacy policy</Link>
           </ul>
           <ul>
-            <a href="/">
+            <Link to="/">
               <h3>Head Office </h3>
-            </a>
+            </Link>
             <p>
               Buckinghamshire <br /> United Kingdom
             </p>
