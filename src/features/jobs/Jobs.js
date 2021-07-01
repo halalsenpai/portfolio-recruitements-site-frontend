@@ -172,7 +172,7 @@ function Jobs() {
                 <SuperSelect
                 defaultValue="Desired City"
                   getPopupContainer={(trigger) => trigger.parentNode}
-                  // defaultValue=""
+                  defaultValue="Desired City"
                   style={{ width: 200 }}
                   fetchOptions={cityisDesired}
                 />
