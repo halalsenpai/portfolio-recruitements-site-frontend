@@ -86,7 +86,6 @@
 
     .jobs-list {
       padding: 15px 30px;
-      // padding: 15px;
       height: calc(100vh - 124px);
       overflow-y: scroll;
     }
@@ -97,7 +96,7 @@
       height: calc(100vh - 64px);
       overflow-y: auto;
       // background: #efefef;
-
+      z-index: 200 !important;
       .ant-empty {
         display: flex;
         flex-direction: column;
@@ -136,6 +135,18 @@
         width: 15px;
         height: 15px;
       }
+      .jobs-filter-header-secrion {
+        display: flex;
+      }
+
+      .jobs-button-section {
+        display: flex;
+        flex-direction: row;
+
+        .filter-btns {
+          margin: 0 5px;
+        }
+      }
     }
     //     &:first-child {
     //       margin: 0 8px 0 0;
@@ -173,8 +184,8 @@
   // }
 }
 
-.find-job-super-select{
-  .ant-select{
+.find-job-super-select {
+  .ant-select {
     width: 100% !important;
   }
 }
