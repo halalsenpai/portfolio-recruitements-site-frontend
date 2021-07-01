@@ -82,9 +82,65 @@
     .jobs-wrapper {
       .find-jobs-section {
         flex-basis: 50%;
+
+        // .jobs-filter-header-secrion {
+        //   flex-grow: 1;
+        //   padding: 0 20px 0 0;
+        //   height: auto;
+        //   flex-direction: column;
+
+        //   .c-input {
+        //     width: 100%;
+        //     margin: 0 0 10px 0;
+        //   }
+        // }
+
+        // .jobs-button-section {
+        //   display: flex;
+        //   flex-direction: column-reverse;
+        //   justify-content: center;
+        //   position: relative;
+        //   top: -4px;
+
+        //   .filter-btns {
+        //     margin: 6px 0;
+        //   }
+        // }
       }
       .job-details {
         flex-basis: 50%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .jobs-page {
+    .jobs-wrapper {
+      .find-jobs-section {
+        .jobs-filter-header-secrion {
+          flex-grow: 1;
+          padding: 0 20px 0 0;
+          height: auto;
+          flex-direction: column;
+
+          .c-input {
+            width: 100%;
+            margin: 0 0 10px 0;
+          }
+        }
+
+        .jobs-button-section {
+          display: flex;
+          flex-direction: column-reverse;
+          justify-content: center;
+          position: relative;
+          top: -4px;
+
+          .filter-btns {
+            margin: 6px 0;
+          }
+        }
       }
     }
   }
