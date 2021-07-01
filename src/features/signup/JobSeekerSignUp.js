@@ -18,6 +18,7 @@ import * as Rules from "../../utils/rules";
 import Button from "../../shared-ui/Button/Button";
 import Modal from "../../shared-ui/Modal/Modal";
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
+import moment from "moment";
 import {
   getRole,
   getFamilyStatus,
@@ -36,6 +37,7 @@ import {
 import TermsConditions from "./TermsConditions";
 import { getNationality } from "./service";
 import { SuperSelect } from "../../shared-ui/SuperSelect/SuperSelect";
+import { DobChecker } from "../../utils/helper";
 
 const { Option } = Select;
 
@@ -256,7 +258,11 @@ function JobSeekerSignUp() {
                 name="dob"
                 className="c-input"
                 rules={Rules.requiredRule}>
-                <DatePicker inputReadOnly />
+                <DatePicker
+                  inputReadOnly
+                  disabledDate={(d) => !d || d.isAfter("2004-12-01") || d.isSameOrBefore("1960-01-01")}
+                  defaultPickerValue={moment("2000-01-01")}
+                />
               </Form.Item>
             </Col>
             <Col xs={{ span: 24 }} span={12} md={{ span: 12 }}>
