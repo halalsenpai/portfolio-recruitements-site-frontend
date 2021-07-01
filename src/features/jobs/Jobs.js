@@ -157,7 +157,10 @@ function Jobs() {
                     <img className="input-icon" src={searchIcon} alt="ico" />
                   }></Input>
               </Form.Item>
-              <Form.Item name="location" className="c-input c-input-with-icon">
+              <Form.Item name="location" 
+              className="c-input 
+              "
+              >
                 {/* <Input
                   size="small"
                   className="xs"
@@ -167,8 +170,9 @@ function Jobs() {
                     <img className="input-icon" src={locationIcon} alt="ico" />
                   }></Input> */}
                 <SuperSelect
+                defaultValue="Desired City"
                   getPopupContainer={(trigger) => trigger.parentNode}
-                  defaultValue=""
+                  // defaultValue=""
                   style={{ width: 200 }}
                   fetchOptions={cityisDesired}
                 />

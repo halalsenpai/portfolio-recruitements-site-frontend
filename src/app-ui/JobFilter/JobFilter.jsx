@@ -170,7 +170,10 @@ const JobFilter = (props) => {
                   label="Job type"
                   name="jobType"
                   className="c-input c-form p-0"
-                  rules={null}>
+                  rules={null}
+                  placeholder="Bla Bla Bla" 
+                  >
+                    
                   {/* <Select
                     getPopupContainer={(trigger) => trigger.parentNode}
                     placeholder="Select">
@@ -180,7 +183,8 @@ const JobFilter = (props) => {
                   </Select> */}
                   <SuperSelectWithSelect
                     getPopupContainer={(trigger) => trigger.parentNode}
-                    defaultValue=""
+                    // defaultValue="Select Employment Type"
+                    // placeholder="Bla Bla Bla"
                     fetchOptions={getEmploymentType}
                   />
                 </Form.Item>
@@ -262,6 +266,7 @@ const JobFilter = (props) => {
                   fetchOptions={getSectors}
                 /> */}
                   <SuperSelectWithSelect
+                  defaultValue="Select Category"
                   placeholder="Select Category"
                     onSelect={(v) => {
                       jobInfoForm.resetFields(["jobTitleId"]);
@@ -287,6 +292,7 @@ const JobFilter = (props) => {
                   className="c-input c-form p-0"
                   rules={null}>
                   <SuperSelectWithSelect
+                  defaultValue="Select Job Title"
                     disabled={selectedSector}
                     dependencyId={categoryId}
                     getPopupContainer={(trigger) => trigger.parentNode}
@@ -410,7 +416,7 @@ const JobFilter = (props) => {
                   rules={null}>
                   <SuperSelectWithSelect
                     getPopupContainer={(trigger) => trigger.parentNode}
-                    defaultValue=""
+                    defaultValue="Select Qualification"
                     fetchOptions={getQualification}
                   />
                 </Form.Item>
