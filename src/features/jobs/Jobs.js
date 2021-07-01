@@ -158,7 +158,7 @@ function Jobs() {
                   }></Input>
               </Form.Item>
               <Form.Item name="location" 
-              className="c-input 
+              className="c-input c-input-with-icon find-job-super-select
               "
               >
                 {/* <Input

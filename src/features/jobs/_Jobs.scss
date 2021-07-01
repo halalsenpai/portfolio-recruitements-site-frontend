@@ -28,6 +28,7 @@
 
         .c-input {
           margin: 0px;
+          // max-width: 200px;
 
           &:first-of-type {
             margin: 0px 30px 0px 0px;
@@ -112,43 +113,68 @@
       // height: 60px;
       justify-content: space-around;
       width: 100%;
-      padding: 30px 36px 10px 32px;
+      padding-inline: 25px;
+      padding-top: 24px;
+      padding-bottom: 6px;
       input {
         width: 100%;
+      }
+      :first-child {
+        margin-left: 0 !important;
       }
       .c-input {
         width: 100%;
         margin: 0 8px;
-
-        &:first-child {
-          margin: 0 8px 0 0;
-        }
-
+      }
+      .ant-input-affix-wrapper {
+        border: 0;
         .ant-input-prefix {
-          margin: 0;
+          margin-right: 0;
         }
       }
       .filter-icon {
-        width: 32px;
-        &:hover {
-          background-color: white;
-          filter: brightness(100%);
-        }
-        &:active {
-          background-color: white;
-          filter: brightness(100%);
-        }
-        &:focus {
-          background-color: white;
-          filter: brightness(100%);
-        }
+        width: 15px;
+        height: 15px;
       }
     }
-    .ant-input-prefix {
-      margin-right: 0;
-    }
+    //     &:first-child {
+    //       margin: 0 8px 0 0;
+    //     }
+
+    //     .ant-input-prefix {
+    //       margin: 0;
+    //     }
+    //   }
+    //   .filter-icon {
+    //     width: 32px;
+    //     &:hover {
+    //       background-color: white;
+    //       filter: brightness(100%);
+    //     }
+    //     &:active {
+    //       background-color: white;
+    //       filter: brightness(100%);
+    //     }
+    //     &:focus {
+    //       background-color: white;
+    //       filter: brightness(100%);
+    //     }
+    //   }
+    // }
+    // .ant-input-prefix {
+    //   margin-right: 0;
+    // }
   }
-  .ant-input-affix-wrapper {
-    border: none !important;
+  .close-btn {
+    display: none;
+  }
+  // .ant-input-affix-wrapper {
+  //   border: none !important;
+  // }
+}
+
+.find-job-super-select{
+  .ant-select{
+    width: 100% !important;
   }
 }
