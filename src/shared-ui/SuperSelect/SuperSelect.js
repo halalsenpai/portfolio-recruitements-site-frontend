@@ -28,7 +28,7 @@ export const SuperSelect = ({
   dependencyId,
   allowClear = true,
   showSearch = true,
-  placeholder = "Select options",
+  placeholder = "Select option(s)",
   debounceTimeout = 800,
   fixedOptions = [],
   searchKey = "search",
