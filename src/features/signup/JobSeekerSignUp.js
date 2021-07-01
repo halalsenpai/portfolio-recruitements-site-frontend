@@ -296,7 +296,7 @@ function JobSeekerSignUp() {
             </Col>
 
             <span className="responsive-bottom-section">
-              <Form.Item
+              <Form.Item 
                 rules={[
                   {
                     required: true,
