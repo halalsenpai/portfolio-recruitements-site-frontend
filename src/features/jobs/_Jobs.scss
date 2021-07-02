@@ -112,7 +112,7 @@
       // height: 60px;
       justify-content: space-around;
       width: 100%;
-      padding-inline: 25px;
+      padding-inline: 30px;
       padding-top: 24px;
       padding-bottom: 6px;
       input {
@@ -138,6 +138,10 @@
       .jobs-filter-header-secrion {
         display: flex;
         flex-grow: 1;
+
+        input#location {
+          padding: 0 7px !important;
+        }
       }
 
       .jobs-button-section {
@@ -146,6 +150,11 @@
 
         .filter-btns {
           margin: 0 5px;
+        }
+
+        .c-button.shadowed:hover,
+        .c-button.shadowed:focus {
+          background: #fff;
         }
       }
     }
