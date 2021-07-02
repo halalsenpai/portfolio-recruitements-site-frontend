@@ -142,6 +142,21 @@
         input#location {
           padding: 0 7px !important;
         }
+        .icon-in-super-select{
+          position: relative;
+          width: 100%;
+          img{
+            position:absolute;
+            left : 0;
+            top: 7px;
+            z-index: 41;
+            padding-left: 12px;
+          }
+          .ant-select-single.ant-select-show-arrow .ant-select-selection-item, .ant-select-single.ant-select-show-arrow .ant-select-selection-placeholder {
+            padding-right: 18px;
+            padding-left: 14px;
+        }
+        }
       }
 
       .jobs-button-section {
