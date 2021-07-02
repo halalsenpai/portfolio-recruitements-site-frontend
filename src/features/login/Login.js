@@ -23,6 +23,7 @@ import "./_Responsive.scss";
 function Login() {
   const dispatch = useAppDispatch();
   const [userType, setUserType] = useState(userTypes.JOBSEEKER.title);
+  const [rememberMe, setRememberMe] = useState(false);
   const isLoading = useAppSelector(selectLoginStatus);
   const loginSuccess = useAppSelector(selectLogin);
   const loginErrorMessage = useAppSelector(selectLoginError);
@@ -35,9 +36,14 @@ function Login() {
 
   useEffect(() => {
     if (loginSuccess === true) {
+      debugger;
       const token = loginResponse.token;
       const roleId = loginResponse.roleId;
       const role = roles.find((r) => r.id === roleId);
+      if (rememberMe) {
+        localStorage.setItem("token", token);
+        localStorage.setItem("role", JSON.stringify(role));
+      }
 
       const url = userTypes[role.title.toUpperCase()].url;
       if (url) {
@@ -65,6 +71,12 @@ function Login() {
 
   const onFinish = (values) => {
     console.log("values: ", values);
+    if (values.remember) {
+      setRememberMe(true);
+    } else {
+      setRememberMe(false);
+    }
+
     dispatch(login(values));
   };
 
@@ -121,8 +133,11 @@ function Login() {
             </Form.Item>
 
             <span className="d-flex justify-content-between align-items-center w-100 alt-text forget-password-app">
-              <Form.Item name="remember" className="mb-0">
-                <Checkbox value="">Remember me</Checkbox>
+              <Form.Item
+                valuePropName="checked"
+                name="remember"
+                className="mb-0">
+                <Checkbox>Remember me</Checkbox>
               </Form.Item>
               <Link to="/forgot-password" className="alt-text">
                 Forgot Password
