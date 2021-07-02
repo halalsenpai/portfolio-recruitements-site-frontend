@@ -351,11 +351,11 @@ const JobFilter = (props) => {
                 className="jobs-grid"
                 span={12}>
                 <Form.Item
-                  extra={
-                    <span style={{ color: "green" }}>
-                      Equivalent to 2,000 GBP
-                    </span>
-                  }
+                  // extra={
+                  //   <span style={{ color: "green" }}>
+                  //     Equivalent to 2,000 GBP
+                  //   </span>
+                  // }
                   label={
                     <div className="d-flex justify-content-between w-100 align-items-center">
                       <span>Select Salary Range</span>
