@@ -5,7 +5,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import { Input, Form, Select, Checkbox, Alert, Row, Col, Upload } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import queryString from 'query-string';
-
+import { DobChecker } from "../../utils/helper";
 import * as Rules from "../../utils/rules";
 import TermsConditions from "./TermsConditions";
 import Modal from "../../shared-ui/Modal/Modal";
@@ -746,7 +746,6 @@ function EmployerSignUp() {
         );
     }
   };
-
   return (
     <div className="c-container auth-wrapper">
       <div className="signup-container with-form">
