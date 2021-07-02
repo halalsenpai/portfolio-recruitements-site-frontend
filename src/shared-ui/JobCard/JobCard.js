@@ -77,7 +77,7 @@ function JobCard({ job = {}, type, onClick }) {
     <div
       onClick={onClick}
       className={`c-job-card ${job.featured && "featured"} ${type}`}>
-      <div className="job-card-first-container">
+      <div id="for-flex" className="job-card-first-container">
         <img
           className="job-thumbnail"
           src={job?.company?.companyLogo || defaultImage}
@@ -88,7 +88,7 @@ function JobCard({ job = {}, type, onClick }) {
           <span className={type === "box" ? "" : "info"}>
             {type !== "box" && (
               <span className="title-row">
-                <h6 className="title">{job.title || "N/A"}</h6>
+                <h6 className="title">{job?.jobTitle?.title || ""}</h6>
 
                 <span className="location-container">
                   <img
@@ -97,7 +97,7 @@ function JobCard({ job = {}, type, onClick }) {
                     alt="icon"
                   />
 
-                  <p className="location-text">{job.country || "N/A"}</p>
+                  <p className="location-text">{job.country || ""}</p>
                 </span>
               </span>
             )}
@@ -142,17 +142,27 @@ function JobCard({ job = {}, type, onClick }) {
 
         {type === "box" && (
           <div>
-            <p style={{ fontSize: "12px" }}>{job?.title}</p>
+            <p style={{ fontSize: "14px" }}>{job?.title}</p>
             <p>{job?.company?.companyName}</p>
             <p>{job?.employmentType}</p>
             <p>{job?.salaryRangeUpto} AED-month</p>
-            <p>{job.country}</p>
+            <p style={{ color: "#2a8fff" }}>{job.country}</p>
           </div>
         )}
       </div>
 
       <span className="tag-container">
-        <Checkbox className="jobcard-checkbox-mobile job-tag" />
+      {type !== "box" && getTagByType(job.messaged)}
+
+{type !== "box" &&
+  getTagByType(
+    job?.shortListJob?.length ? JobTagTypes.SHORTLISTED : null
+  )}
+
+{type !== "box" && getTagByType(job.applied)}
+
+{job?.isFeature && getTagByType(JobTagTypes.FEATURED)}
+        {/* <Checkbox className="jobcard-checkbox-mobile job-tag" /> */}
 
         {/* {type !== "box" && getTagByType(job.MESSAGE)} */}
 

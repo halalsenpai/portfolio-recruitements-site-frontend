@@ -56,27 +56,27 @@ const Services = () => {
         </p>
         <dinv className="icons">
           <img
-            src={require("../../assets/images/Services/glass.png")}
+            src={require("../../assets/images/Services/glass.svg")}
             alt=""
             className="icons"
           />
           <img
-            src={require("../../assets/images/Services/restaurants.png")}
+            src={require("../../assets/images/Services/restaurants.svg")}
             alt=""
             className="icons"
           />
           <img
-            src={require("../../assets/images/Services/home.png")}
+            src={require("../../assets/images/Services/home.svg")}
             alt=""
             className="icons"
           />
           <img
-            src={require("../../assets/images/Services/airplane.png")}
+            src={require("../../assets/images/Services/airplane.svg")}
             alt=""
             className="icons"
           />
           <img
-            src={require("../../assets/images/Services/construction.png")}
+            src={require("../../assets/images/Services/construction.svg")}
             alt=""
             className="icons"
           />
@@ -98,7 +98,7 @@ const Services = () => {
               label="Name"
               name="name"
               className="c-input"
-              rules={Rules.firstNameRule}>
+              rules={Rules.nameRule}>
               <Input className="" size="" type="text" />
             </Form.Item>
             <Form.Item
@@ -113,7 +113,7 @@ const Services = () => {
               name="mobile"
               className="c-input"
               rules={Rules.phoneRule}>
-              <Input className="" size="" type="text" />
+              <Input className="" size="" type="number" />
             </Form.Item>
             <Form.Item
               label="Category"

@@ -77,7 +77,8 @@ function JobDetails({
       <div className="job-details-wrapper">
         <span className="details-header">
           <h3 className="job-title">
-            Job title: <span className="title">{data.title || "N/A"}</span>{" "}
+            Job title:{" "}
+            <span className="title">{data?.jobTitle?.title || ""}</span>{" "}
           </h3>
 
           <span className="actions-wrapper">
@@ -150,7 +151,7 @@ function JobDetails({
               </span>
               <span>
                 Accommodation
-                {!data.accommodationListId && <mark>N/A</mark>}
+                {!data.accommodationListId && <mark></mark>}
                 {data.accommodationListId && (
                   <mark>
                     {data.accommodationListId?.map((d) =>
@@ -202,7 +203,7 @@ function JobDetails({
                     <span>
                       About company:
                       <span style={{ color: "#2a8fff" }} className="ml-2 blue">
-                        {data.company?.companyName || "N/A"}
+                        {data.company?.companyName || ""}
                       </span>
                     </span>
                     <Select
@@ -216,18 +217,21 @@ function JobDetails({
                   </h6>
 
                   <p className="block-text">
-                    {data.company?.introduction || "N/A"}
+                    {data.company?.introduction || ""}
                   </p>
                 </span>
 
-                <ImagesGallery title="Company Photos" />
+                <ImagesGallery
+                  images={data?.company?.photoUrl}
+                  title="Company Photos"
+                />
 
                 <span className="content-block mt-4 pr-0">
                   <h6 className="block-title thick-title mb-3">
                     Company Video{" "}
                   </h6>
 
-                  {!data.company?.videoUrl && "N/A"}
+                  {!data.company?.videoUrl && ""}
                   {data.company?.videoUrl && (
                     <div className="block-video">
                       <video className="w-100" controls>
@@ -297,7 +301,7 @@ function JobDetails({
                   <h6 className="block-title thick-title">
                     Other jobs by this company
                   </h6>
-                  <p>N/A</p>
+                  <p></p>
                   {/* <Row
                     gutter={16}
                     style={{ margin: "0 auto", width: "100%" }}

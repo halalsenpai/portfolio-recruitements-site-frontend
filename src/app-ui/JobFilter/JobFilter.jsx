@@ -8,6 +8,7 @@ import * as Rules from "../../utils/rules";
 import {
   getCity,
   getCountry,
+  getCountryisDesired,
   getFieldOfStudy,
   getGrade,
   getSalaryType,
@@ -33,14 +34,15 @@ import CountryCityModal from "../CountryCityModal/CountryCityModal";
 import { getTitleById } from "../../utils/helper";
 import { useForm } from "antd/lib/form/Form";
 import { SuperSelect } from "../../shared-ui/SuperSelect/SuperSelect";
+import { SuperSelectWithSelect } from "../../shared-ui/SuperSelect/SuperSelect-withSelect";
 import {
   getAccommodation,
   getCategories,
   getEmploymentType,
-  getJobTitles,
   getQualification,
 } from "../../features/jobs/service";
 import { useRef } from "react";
+import { getCategory, getJobTitles, getJobtype } from "./service";
 
 const { Option } = Select;
 
@@ -51,6 +53,7 @@ const JobFilter = (props) => {
   const [selectedCitiesIds, setSelectedCitiesIds] = useState(null);
   const [selectedCountryId, setSelectedCountryId] = useState(null);
   const [maxSalaryLimit, setMaxSalaryLimit] = useState(1000000);
+  const [jobInfoForm] = Form.useForm();
 
   const dispatch = useAppDispatch();
   const jobTitles = useAppSelector(selectJobTitles);
@@ -64,9 +67,12 @@ const JobFilter = (props) => {
   const salaryType = useAppSelector(selectSalaryType);
   const suitableFor = useAppSelector(selectSuitableFor);
   const filterApplySuccess = useAppSelector(selectFilterApplySuccess);
+  const [categoryId, setCategoryId] = useState(null);
+  const [selectedSector, setSelectedSector] = useState(true);
 
   useEffect(() => {
-    dispatch(getCountry());
+    // dispatch(getCountry());
+    dispatch(getCountryisDesired());
     dispatch(getCity());
 
     dispatch(getFieldOfStudy());
@@ -120,8 +126,10 @@ const JobFilter = (props) => {
 
   const handleReset = () => {
     form.resetFields();
+    setCategoryId(null)
+    setSelectedCountryId(null)
     dispatch(getJob());
-    props.onHide();
+    // props.onHide();
   };
 
   const jobFilterModal = document.querySelector(".job-filter-modal");
@@ -135,9 +143,9 @@ const JobFilter = (props) => {
     setCountriesCitiesModal(true);
   };
   return (
-    <div className="">
+    <>
       <Modal
-        className="center lg job-filter-modal"
+        className="center lg filter-modal"
         show={props.show}
         onHide={props.onHide}>
         <Form
@@ -162,7 +170,10 @@ const JobFilter = (props) => {
                   label="Job type"
                   name="jobType"
                   className="c-input c-form p-0"
-                  rules={null}>
+                  rules={null}
+                  placeholder="Bla Bla Bla" 
+                  >
+                    
                   {/* <Select
                     getPopupContainer={(trigger) => trigger.parentNode}
                     placeholder="Select">
@@ -170,9 +181,10 @@ const JobFilter = (props) => {
                       <Option value={d.id}>{d.title}</Option>
                     ))}
                   </Select> */}
-                  <SuperSelect
+                  <SuperSelectWithSelect
                     getPopupContainer={(trigger) => trigger.parentNode}
-                    defaultValue=""
+                    // defaultValue="Select Employment Type"
+                    // placeholder="Bla Bla Bla"
                     fetchOptions={getEmploymentType}
                   />
                 </Form.Item>
@@ -196,11 +208,10 @@ const JobFilter = (props) => {
                   <Input
                     onClick={handleSetCountriesCitiesModal}
                     placeholder="Select countires and cities"
-                    value={`${
-                      selectedCountryId
-                        ? getTitleById(countries, selectedCountryId)
-                        : ""
-                    }`}></Input>
+                    value={`${selectedCountryId
+                      ? getTitleById(countries, selectedCountryId)
+                      : ""
+                      }`}></Input>
                 </Form.Item>
                 <Modal
                   className="rm-padding medium country-city-modal-parent"
@@ -238,11 +249,33 @@ const JobFilter = (props) => {
                       <Option value={d.id}>{d.title}</Option>
                     ))}
                   </Select> */}
-                  <SuperSelect
+                  {/* <SuperSelect
                     onSelect={(v) => dispatch(getJobTitlesById(v))}
                     getPopupContainer={(trigger) => trigger.parentNode}
                     defaultValue=""
                     fetchOptions={getCategories}
+                  /> */}
+                  {/* <SuperSelect
+                  onSelect={(v) => {
+                    jobInfoForm.resetFields(["jobTitleId"]);
+                    setSelectedSector(false);
+                    setCategoryId(v);
+                  }}
+                  // style={{ zIndex: 500 }}
+                  getPopupContainer={(trigger) => trigger.parentNode}
+                  fetchOptions={getSectors}
+                /> */}
+                  <SuperSelectWithSelect
+                  defaultValue="Select Category"
+                  placeholder="Select Category"
+                    onSelect={(v) => {
+                      jobInfoForm.resetFields(["jobTitleId"]);
+                      setSelectedSector(false);
+                      setCategoryId(v);
+                    }}
+                    // style={{ zIndex: 500 }}
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    fetchOptions={getCategory}
                   />
                 </Form.Item>
               </Col>
@@ -258,10 +291,11 @@ const JobFilter = (props) => {
                   name="jobTitle"
                   className="c-input c-form p-0"
                   rules={null}>
-                  <SuperSelect
-                    onSelect={(v) => dispatch(getJobTitlesById(v))}
+                  <SuperSelectWithSelect
+                  defaultValue="Select Job Title"
+                    disabled={selectedSector}
+                    dependencyId={categoryId}
                     getPopupContainer={(trigger) => trigger.parentNode}
-                    defaultValue=""
                     fetchOptions={getJobTitles}
                   />
                   {/* <Select
@@ -317,11 +351,11 @@ const JobFilter = (props) => {
                 className="jobs-grid"
                 span={12}>
                 <Form.Item
-                  extra={
-                    <span style={{ color: "green" }}>
-                      Equivalent to 2,000 GBP
-                    </span>
-                  }
+                  // extra={
+                  //   <span style={{ color: "green" }}>
+                  //     Equivalent to 2,000 GBP
+                  //   </span>
+                  // }
                   label={
                     <div className="d-flex justify-content-between w-100 align-items-center">
                       <span>Select Salary Range</span>
@@ -380,9 +414,9 @@ const JobFilter = (props) => {
                   name="qualification"
                   className="c-input c-form p-0"
                   rules={null}>
-                  <SuperSelect
+                  <SuperSelectWithSelect
                     getPopupContainer={(trigger) => trigger.parentNode}
-                    defaultValue=""
+                    defaultValue="Select Qualification"
                     fetchOptions={getQualification}
                   />
                 </Form.Item>
@@ -401,7 +435,7 @@ const JobFilter = (props) => {
                   name="accommodation"
                   className="c-input c-form p-0"
                   rules={null}>
-                  <SuperSelect
+                  <SuperSelectWithSelect
                     getPopupContainer={(trigger) => trigger.parentNode}
                     defaultValue=""
                     fetchOptions={getAccommodation}
@@ -494,18 +528,18 @@ const JobFilter = (props) => {
               </Col>
             </Row>
             <Divider></Divider>
-            <divide className="d-flex">
-              <Button onClick={handleReset} themeColor="blue mr-3">
+            <divide className="d-flex justify-content-center">
+              <Button onClick={handleReset} themeColor="light mr-3">
                 Reset Filter
               </Button>
-              <Button htmlType="submit" themeColor="green">
+              <Button htmlType="submit" themeColor="light">
                 Apply Filter
               </Button>
             </divide>
           </div>
         </Form>
       </Modal>
-    </div>
+    </>
   );
 };
 

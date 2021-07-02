@@ -29,6 +29,12 @@ h1 {
   font-family: $font-medium;
 }
 
+div {
+  &.blue {
+    color: $primary;
+  }
+}
+
 .color-text {
   color: $text-color;
 }
@@ -59,11 +65,9 @@ a {
 
 img {
   cursor: pointer;
+  user-select: none;
   -webkit-user-drag: none;
-  -khtml-user-drag: none;
-  -moz-user-drag: none;
-  -o-user-drag: none;
-  user-drag: none;
+  user-select: none !important;
 }
 
 .preloader {
@@ -377,6 +381,7 @@ p {
     left: 30px;
     border: none !important;
     height: 36px !important;
+    font-size: 12px;
   }
   .selected-flag:hover {
     background: transparent;
@@ -484,7 +489,7 @@ p {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
   width: 100%;
 }
 
@@ -576,7 +581,7 @@ p {
 
   .c-label {
     display: flex;
-    align-items: end;
+    align-items: flex-start;
   }
 
   .alt-text {
@@ -745,6 +750,13 @@ p {
   z-index: 1;
 }
 
+// error msg css
+.ant-form-item-explain, .ant-form-item-extra {
+  
+  font-size: 12px;
+  
+}
+
 @media screen and (max-width: 540px) {
   .c-input {
     width: 100%;
@@ -767,6 +779,13 @@ p {
     .ant-picker-sm,
     .ant-picker-xs {
       width: 100%;
+    }
+  }
+  .ant-popover {
+    z-index: 90;
+    .ant-popover-inner {
+      width: calc(100% - 12px) !important;
+      margin: 0 auto;
     }
   }
 }
@@ -800,6 +819,13 @@ p {
   .ant-select {
     width: 100% !important;
   }
+}
+
+.ant-upload-list-text .ant-upload-list-item-name,
+.ant-upload-list-picture .ant-upload-list-item-name {
+  font-size: 10px;
+  white-space: break-spaces;
+  word-break: break-all;
 }
 @media screen and (max-width: 1024px) {
   .react-tel-input .form-control {

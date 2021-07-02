@@ -11,7 +11,7 @@ const emailRule = [
 const phoneRule = [
   {
     required: true,
-    message: "Please enter phone number",
+    message: "Please enter your phone number",
   },
   {
     pattern: new RegExp(/^[0-9]+[0-9]*$/i),

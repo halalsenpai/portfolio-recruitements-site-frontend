@@ -14,9 +14,11 @@ import {
   confirmEmail,
   getCountryByIp,
   getCitiesByCountry,
+  uploadProfileImage,
+  agencySignup,
 } from "./thunk";
 
-const thunks = [getCitiesByCountry];
+const thunks = [getCitiesByCountry, uploadProfileImage];
 
 const initialState = {
   status: "idle",
@@ -30,11 +32,13 @@ const initialState = {
   jobTitles: [],
   jobseekerSignupSuccess: false,
   employerSignupSuccess: false,
+  agencySignupSuccess: false,
   confirmEmailSuccess: false,
   confirmEmailResponse: {},
   errorMessage: null,
   countryByIp: {},
   citiesByCountry: [],
+  profileImage: null,
 };
 
 function isPendingAction(action) {
@@ -95,6 +99,10 @@ export const slice = createSlice({
         state.status = "idle";
         state.employerSignupSuccess = true;
       })
+      .addCase(agencySignup.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.agencySignupSuccess = true;
+      })
       .addCase(confirmEmail.fulfilled, (state, action) => {
         state.status = "idle";
         state.confirmEmailSuccess = true;
@@ -110,10 +118,22 @@ export const slice = createSlice({
         state.employerSignupSuccess = false;
         state.errorMessage = action.error.message;
       })
+      .addCase(agencySignup.rejected, (state, action) => {
+        state.status = "failed";
+        state.agencySignupSuccess = false;
+        state.errorMessage = action.error.message;
+      })
       .addCase(confirmEmail.rejected, (state, action) => {
         state.status = "failed";
         state.confirmEmailSuccess = false;
         state.errorMessage = action.error.message;
+      })
+      .addCase(uploadProfileImage.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.profileImage = action.payload;
+      })
+      .addCase(uploadProfileImage.pending, (state) => {
+        state.isProfileImageLoading = true;
       })
       .addMatcher(isPending(...thunks), (state) => {
         state.status = "loading";
@@ -122,6 +142,7 @@ export const slice = createSlice({
       .addMatcher(isRejected(...thunks), (state, action) => {
         state.status = "failed";
         state.errorMessage = action.error.message;
+        state.isProfileImageLoading = false;
       });
   },
 });
@@ -129,6 +150,10 @@ export const slice = createSlice({
 export const selectLoadingStatus = (state) => state.signup.status === "loading";
 export const selectErrorMessage = (state) => state.signup.errorMessage;
 export const selectSignupStatus = (state) => state.signup.status;
+export const selectEmployerSignUpSuccess = (state) =>
+  state.signup.employerSignupSuccess;
+export const selectAgencySignUpSuccess = (state) =>
+  state.signup.agencySignupSuccess;
 export const selectRole = (state) => state.signup.roles;
 export const selectFamilyStatus = (state) => state.signup.familyStatuses;
 export const selectNationality = (state) => state.signup.nationalities;
@@ -138,11 +163,17 @@ export const selectCountry = (state) => state.signup.countries;
 export const selectCity = (state) => state.signup.cities;
 export const selectJobTitles = (state) => state.signup.jobTitles;
 export const selectConfirmEmail = (state) => state.signup.confirmEmailSuccess;
-export const selectConfirmEmailResponse = (state) => state.signup.confirmEmailResponse;
-export const selectJobseekerSignup = (state) => state.signup.jobseekerSignupSuccess;
-export const selectEmployerSignup = (state) => state.signup.employerSignupSuccess;
+export const selectConfirmEmailResponse = (state) =>
+  state.signup.confirmEmailResponse;
+export const selectJobseekerSignup = (state) =>
+  state.signup.jobseekerSignupSuccess;
+export const selectEmployerSignup = (state) =>
+  state.signup.employerSignupSuccess;
 export const selectCountryByIp = (state) => state.signup.countryByIp;
 export const selectCitiesByCountry = (state) => state.signup.citiesByCountry;
+export const selectIsProfileImageLoading = (state) =>
+  state.signup.isProfileImageLoading;
+export const selectProfileImage = (state) => state.signup.profileImage;
 
 // export const { getSignup } = slice.actions;
 
