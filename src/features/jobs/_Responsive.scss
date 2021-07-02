@@ -114,9 +114,15 @@
   }
 }
 
-@media screen and (max-width: 540px) {
+@media screen and (max-width: 991px) {
   .jobs-page {
     .jobs-wrapper {
+      .job-filter-section {
+        padding-inline: 11px;
+      }
+      .jobs-list {
+        padding: 15px 11px;
+      }
       .find-jobs-section {
         .jobs-filter-header-secrion {
           flex-grow: 1;
