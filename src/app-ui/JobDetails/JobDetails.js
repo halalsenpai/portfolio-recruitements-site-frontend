@@ -37,6 +37,9 @@ function JobDetails({
   const jobTitles = useAppSelector(selectJobTitles);
   const employmentTypes = useAppSelector(selectEmploymentTypes);
   const history = useHistory();
+  const createMarkup = (html) => {
+    return { __html: html };
+  };
   return (
     <div className="c-job-detail-card">
       {/* Header */}
@@ -119,9 +122,14 @@ function JobDetails({
               <h6 className="block-title">Requirements</h6>
 
               <ul className="c-list">
-                {data.additionalRequirement?.map((d) => (
+                {/* {data.additionalRequirement?.map((d) => (
                   <li>{d}</li>
-                ))}
+                ))} */}
+                <div
+                  dangerouslySetInnerHTML={createMarkup(
+                    data?.additionalRequirement
+                  )}
+                />
               </ul>
             </span>
           </span>
@@ -154,8 +162,9 @@ function JobDetails({
                 {!data.accommodationListId && <mark></mark>}
                 {data.accommodationListId && (
                   <mark>
-                    {data.accommodationListId?.map((d) =>
-                      getTitleById(extraData.accommodations, d)
+                    {getTitleById(
+                      extraData.accommodations,
+                      data?.accommodationListId
                     )}
                   </mark>
                 )}
@@ -181,10 +190,11 @@ function JobDetails({
             <span className="content-block">
               <h6 className="block-title">Jobs description</h6>
 
-              <p className="block-text">{data.description}</p>
+              {/* <p className="block-text">{data.description}</p> */}
+              <div dangerouslySetInnerHTML={createMarkup(data?.description)} />
             </span>
 
-            <span className="content-block">
+            {/* <span className="content-block">
               <h6 className="block-title">Skills required</h6>
 
               <ul className="c-list">
@@ -192,6 +202,11 @@ function JobDetails({
                   <li>{d}</li>
                 ))}
               </ul>
+            </span> */}
+             <span className="content-block">
+              <h6 className="block-title">Skills required</h6>
+
+              <div dangerouslySetInnerHTML={createMarkup(data?.skills)} />
             </span>
 
             <Divider className="divider" />
@@ -268,9 +283,8 @@ function JobDetails({
                   <Row
                     gutter={16}
                     style={{ margin: "0 auto", width: "100%" }}
-                    justify={`${
-                      otherJobs?.length === 4 ? "space-around" : "flex-start"
-                    }`}>
+                    justify={`${otherJobs?.length === 4 ? "space-around" : "flex-start"
+                      }`}>
                     {otherJobs?.map((otherJob) => (
                       <Col>
                         <JobCard
