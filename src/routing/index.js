@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useLocation } from "react-router-dom";
 
 import {
   Home,
@@ -20,8 +20,29 @@ import {
 
 import Footer from "../app-ui/Footer/Footer";
 import Header from "../app-ui/Header/Header";
+import { userTypes } from "../utils/constants";
 
 function Routing() {
+  const param = useLocation().search;
+  const logout = new URLSearchParams(param).get("logout");
+  console.log(logout);
+  if (logout == "true") {
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+  } else {
+    const token = localStorage.getItem("token");
+    const r = localStorage.getItem("role");
+    debugger;
+    if (token && r) {
+      const role = JSON.parse(r);
+      if (role) {
+        const url = userTypes[role.title.toUpperCase()].url;
+        if (url) {
+          window.location = `${url}/?token=${token}`;
+        }
+      }
+    }
+  }
   return (
     <Fragment>
       <Header />
@@ -37,7 +58,11 @@ function Routing() {
         <Route exact path="/confirm-email" component={ConfirmEmail} />
         <Route exact path="/employer-signup" component={EmployerSignUp} />
         <Route exact path="/signup" component={SignUp} />
-        <Route exact path="/employee-and-agency" component={EmployerAndAgency} />
+        <Route
+          exact
+          path="/employee-and-agency"
+          component={EmployerAndAgency}
+        />
         <Route exact path="/job-seekers" component={JobSeekers} />
         <Route exact path="/pricing" component={Pricing} />
         <Route exact path="/jobs" component={Jobs} />
