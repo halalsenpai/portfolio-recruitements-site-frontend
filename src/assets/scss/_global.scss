@@ -750,6 +750,13 @@ p {
   z-index: 1;
 }
 
+// error msg css
+.ant-form-item-explain, .ant-form-item-extra {
+  
+  font-size: 12px;
+  
+}
+
 @media screen and (max-width: 540px) {
   .c-input {
     width: 100%;

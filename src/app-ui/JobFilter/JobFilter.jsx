@@ -34,6 +34,7 @@ import CountryCityModal from "../CountryCityModal/CountryCityModal";
 import { getTitleById } from "../../utils/helper";
 import { useForm } from "antd/lib/form/Form";
 import { SuperSelect } from "../../shared-ui/SuperSelect/SuperSelect";
+import { SuperSelectWithSelect } from "../../shared-ui/SuperSelect/SuperSelect-withSelect";
 import {
   getAccommodation,
   getCategories,
@@ -169,7 +170,10 @@ const JobFilter = (props) => {
                   label="Job type"
                   name="jobType"
                   className="c-input c-form p-0"
-                  rules={null}>
+                  rules={null}
+                  placeholder="Bla Bla Bla" 
+                  >
+                    
                   {/* <Select
                     getPopupContainer={(trigger) => trigger.parentNode}
                     placeholder="Select">
@@ -177,9 +181,10 @@ const JobFilter = (props) => {
                       <Option value={d.id}>{d.title}</Option>
                     ))}
                   </Select> */}
-                  <SuperSelect
+                  <SuperSelectWithSelect
                     getPopupContainer={(trigger) => trigger.parentNode}
-                    defaultValue=""
+                    // defaultValue="Select Employment Type"
+                    // placeholder="Bla Bla Bla"
                     fetchOptions={getEmploymentType}
                   />
                 </Form.Item>
@@ -260,7 +265,9 @@ const JobFilter = (props) => {
                   getPopupContainer={(trigger) => trigger.parentNode}
                   fetchOptions={getSectors}
                 /> */}
-                  <SuperSelect
+                  <SuperSelectWithSelect
+                  defaultValue="Select Category"
+                  placeholder="Select Category"
                     onSelect={(v) => {
                       jobInfoForm.resetFields(["jobTitleId"]);
                       setSelectedSector(false);
@@ -284,7 +291,8 @@ const JobFilter = (props) => {
                   name="jobTitle"
                   className="c-input c-form p-0"
                   rules={null}>
-                  <SuperSelect
+                  <SuperSelectWithSelect
+                  defaultValue="Select Job Title"
                     disabled={selectedSector}
                     dependencyId={categoryId}
                     getPopupContainer={(trigger) => trigger.parentNode}
@@ -343,11 +351,11 @@ const JobFilter = (props) => {
                 className="jobs-grid"
                 span={12}>
                 <Form.Item
-                  extra={
-                    <span style={{ color: "green" }}>
-                      Equivalent to 2,000 GBP
-                    </span>
-                  }
+                  // extra={
+                  //   <span style={{ color: "green" }}>
+                  //     Equivalent to 2,000 GBP
+                  //   </span>
+                  // }
                   label={
                     <div className="d-flex justify-content-between w-100 align-items-center">
                       <span>Select Salary Range</span>
@@ -406,9 +414,9 @@ const JobFilter = (props) => {
                   name="qualification"
                   className="c-input c-form p-0"
                   rules={null}>
-                  <SuperSelect
+                  <SuperSelectWithSelect
                     getPopupContainer={(trigger) => trigger.parentNode}
-                    defaultValue=""
+                    defaultValue="Select Qualification"
                     fetchOptions={getQualification}
                   />
                 </Form.Item>
@@ -427,7 +435,7 @@ const JobFilter = (props) => {
                   name="accommodation"
                   className="c-input c-form p-0"
                   rules={null}>
-                  <SuperSelect
+                  <SuperSelectWithSelect
                     getPopupContainer={(trigger) => trigger.parentNode}
                     defaultValue=""
                     fetchOptions={getAccommodation}
