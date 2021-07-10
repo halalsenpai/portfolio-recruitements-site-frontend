@@ -35,7 +35,7 @@ function Routing() {
     debugger;
     if (token && r) {
       const role = JSON.parse(r);
-      if (role) {
+      if (role && role.title) {
         const url = userTypes[role.title.toUpperCase()].url;
         if (url) {
           window.location = `${url}/?token=${token}`;
