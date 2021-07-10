@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { Route, Switch, useLocation } from "react-router-dom";
 
 import {
@@ -32,7 +32,6 @@ function Routing() {
   } else {
     const token = localStorage.getItem("token");
     const r = localStorage.getItem("role");
-    debugger;
     if (token && r) {
       const role = JSON.parse(r);
       if (role && role.title) {

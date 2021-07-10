@@ -99,21 +99,21 @@ const Services = () => {
               name="name"
               className="c-input"
               rules={Rules.nameRule}>
-              <Input className="" size="" type="text" />
+              <Input autoComplete={'' + Math.random()} className="" size="" type="text" />
             </Form.Item>
             <Form.Item
               label="Work email adress"
               name="email"
               className="c-input"
               rules={Rules.emailRule}>
-              <Input className="" size="" type="text" />
+              <Input autoComplete={'' + Math.random()} className="" size="" type="text" />
             </Form.Item>
             <Form.Item
               label="Mobile phone number"
               name="mobile"
               className="c-input"
               rules={Rules.phoneRule}>
-              <Input className="" size="" type="number" />
+              <Input autoComplete={'' + Math.random()} className="" size="" type="number" />
             </Form.Item>
             <Form.Item
               label="Category"

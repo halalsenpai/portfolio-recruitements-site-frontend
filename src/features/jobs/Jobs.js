@@ -149,6 +149,7 @@ function Jobs() {
                   name="jobTitleName"
                   className="c-input c-input-with-icon">
                   <Input
+                    autoComplete="off"
                     size="small"
                     className="xs"
                     type="text"
