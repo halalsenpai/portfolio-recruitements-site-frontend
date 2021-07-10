@@ -54,7 +54,7 @@ const Services = () => {
           providing you with discount codes and the best offers on the market
           exclusively available to Jobsmideast.com users.
         </p>
-        <dinv className="icons">
+        <div className="icons">
           <img
             src={require("../../assets/images/Services/glass.svg")}
             alt=""
@@ -80,7 +80,7 @@ const Services = () => {
             alt=""
             className="icons"
           />
-        </dinv>
+        </div>
       </div>
       <div className="user-services">
         <div className="services-form">
