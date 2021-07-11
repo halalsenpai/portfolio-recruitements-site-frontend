@@ -29,6 +29,8 @@ function Routing() {
   if (logout == "true") {
     localStorage.removeItem("token");
     localStorage.removeItem("role");
+    localStorage.removeItem('signup');
+    localStorage.removeItem('_persist')
   } else {
     const token = localStorage.getItem("token");
     const r = localStorage.getItem("role");
