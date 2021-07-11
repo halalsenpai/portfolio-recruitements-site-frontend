@@ -21,16 +21,16 @@ import {
 import Footer from "../app-ui/Footer/Footer";
 import Header from "../app-ui/Header/Header";
 import { userTypes } from "../utils/constants";
+import { persistor } from '../store'; // or w/e
+
 
 function Routing() {
   const param = useLocation().search;
   const logout = new URLSearchParams(param).get("logout");
   console.log(logout);
   if (logout == "true") {
-    localStorage.removeItem("token");
-    localStorage.removeItem("role");
-    localStorage.removeItem('signup');
-    localStorage.removeItem('_persist')
+    localStorage.clear();
+    persistor.flush();
   } else {
     const token = localStorage.getItem("token");
     const r = localStorage.getItem("role");
