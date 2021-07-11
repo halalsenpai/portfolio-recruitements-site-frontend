@@ -1,5 +1,7 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment } from "react";
 import { Route, Switch, useLocation } from "react-router-dom";
+import storage from 'redux-persist/lib/storage'
+
 
 import {
   Home,
@@ -24,6 +26,7 @@ import { userTypes } from "../utils/constants";
 import { persistor } from '../store'; // or w/e
 
 
+
 function Routing() {
   const param = useLocation().search;
   const logout = new URLSearchParams(param).get("logout");
@@ -31,6 +34,7 @@ function Routing() {
   if (logout == "true") {
     localStorage.clear();
     persistor.flush();
+    storage.removeItem('persist:root')
   } else {
     const token = localStorage.getItem("token");
     const r = localStorage.getItem("role");
