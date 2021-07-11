@@ -106,6 +106,7 @@ function Login() {
 
           {/* Form */}
           <Form
+            autoComplete={'' + Math.random()}
             className="c-form login-form"
             layout="vertical"
             onFinish={onFinish}>
@@ -115,7 +116,10 @@ function Login() {
 
             <label>Email *</label>
             <Form.Item name="email" className="c-input" rules={Rules.emailRule}>
-              <Input placeholder="Enter your email" size="large" />
+              <Input 
+              autoComplete="off"
+              placeholder="Enter your email" size="large" />
+
             </Form.Item>
 
             <label>Password *</label>
@@ -124,6 +128,7 @@ function Login() {
               className="c-input mb-0"
               rules={Rules.passwordRule}>
               <Input.Password
+                autoComplete={'' + Math.random()}
                 placeholder="Enter your password"
                 size="large"
                 iconRender={(visible) =>

@@ -130,7 +130,7 @@ function JobSeekerSignUp() {
                 name="firstName"
                 className="c-input"
                 rules={Rules.firstNameRule}>
-                <Input placeholder="Enter your first name" type="text" />
+                <Input autoComplete={'' + Math.random()} placeholder="Enter your first name" type="text" />
               </Form.Item>
             </Col>
 
@@ -140,7 +140,7 @@ function JobSeekerSignUp() {
                 name="lastName"
                 className="c-input"
                 rules={Rules.lastNameRule}>
-                <Input placeholder="Enter your last name" type="text" />
+                <Input autoComplete={'' + Math.random()} placeholder="Enter your last name" type="text" />
               </Form.Item>
             </Col>
 
@@ -164,7 +164,7 @@ function JobSeekerSignUp() {
                 name="email"
                 className="c-input"
                 rules={Rules.emailRule}>
-                <Input placeholder="Enter your email" type="text" />
+                <Input autoComplete={'' + Math.random()} placeholder="Enter your email" type="text" />
               </Form.Item>
             </Col>
 
@@ -174,7 +174,7 @@ function JobSeekerSignUp() {
                 name="password"
                 className="c-input"
                 rules={Rules.passwordRule}>
-                <Input.Password placeholder="Enter password" type="password" />
+                <Input.Password autoComplete={'' + Math.random()} placeholder="Enter password" type="password" />
               </Form.Item>
             </Col>
 
@@ -185,7 +185,7 @@ function JobSeekerSignUp() {
                 className="c-input"
                 rules={Rules.confirmPasswordRule}
                 dependencies={["password"]}>
-                <Input.Password placeholder="Enter password again" />
+                <Input.Password autoComplete={'' + Math.random()} placeholder="Enter password again" />
               </Form.Item>
             </Col>
 
@@ -305,7 +305,7 @@ secure visas for everyone.">
             </Col>
 
             <span className="responsive-bottom-section">
-              <Form.Item 
+              <Form.Item
                 rules={[
                   {
                     required: true,

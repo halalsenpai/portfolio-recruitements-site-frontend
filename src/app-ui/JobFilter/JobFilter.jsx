@@ -82,6 +82,13 @@ const JobFilter = (props) => {
     dispatch(getSuitableFor());
   }, []);
 
+  useEffect(()=>{
+    document.querySelectorAll(".ant-select-selector input").forEach((e) => {
+      e.setAttribute("autocomplete", "off");
+     //you can put any value but NOT "off" or "false" because they DO NOT works
+   })
+  })
+
   useEffect(() => {
     if (filterApplySuccess === true) {
       props.onHide();
@@ -171,9 +178,9 @@ const JobFilter = (props) => {
                   name="jobType"
                   className="c-input c-form p-0"
                   rules={null}
-                  placeholder="Bla Bla Bla" 
-                  >
-                    
+                  placeholder="Bla Bla Bla"
+                >
+
                   {/* <Select
                     getPopupContainer={(trigger) => trigger.parentNode}
                     placeholder="Select">
@@ -206,6 +213,7 @@ const JobFilter = (props) => {
                     alt=""
                   />
                   <Input
+                    autoComplete={'' + Math.random()}
                     onClick={handleSetCountriesCitiesModal}
                     placeholder="Select countires and cities"
                     value={`${selectedCountryId
@@ -266,8 +274,8 @@ const JobFilter = (props) => {
                   fetchOptions={getSectors}
                 /> */}
                   <SuperSelectWithSelect
-                  defaultValue="Select Category"
-                  placeholder="Select Category"
+                    defaultValue="Select Category"
+                    placeholder="Select Category"
                     onSelect={(v) => {
                       jobInfoForm.resetFields(["jobTitleId"]);
                       setSelectedSector(false);
@@ -292,7 +300,7 @@ const JobFilter = (props) => {
                   className="c-input c-form p-0"
                   rules={null}>
                   <SuperSelectWithSelect
-                  defaultValue="Select Job Title"
+                    defaultValue="Select Job Title"
                     disabled={selectedSector}
                     dependencyId={categoryId}
                     getPopupContainer={(trigger) => trigger.parentNode}
