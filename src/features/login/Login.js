@@ -36,7 +36,7 @@ function Login() {
 
   useEffect(() => {
     if (loginSuccess === true) {
-      debugger;
+      // debugger;
       const token = loginResponse.token;
       const roleId = loginResponse.roleId;
       const role = roles.find((r) => r.id === roleId);

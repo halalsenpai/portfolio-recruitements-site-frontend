@@ -44,11 +44,11 @@ const { Option } = Select;
 let helperText = `This helps employers understand your family needs and accommodate accordingly such as booking you flights, 
   providing accommodation and benefits such as free or discounted tuition fees.`;
 
-const WithHintText = ({ children }) => (
+const WithHintText = ({ content,children }) => (
   <Popover
     placement="topLeft"
     overlayInnerStyle={{ width: 400 }}
-    content={helperText}
+    content={content}
     trigger="click">
     {children}
   </Popover>
@@ -195,7 +195,7 @@ function JobSeekerSignUp() {
                 label={
                   <div className="c-label">
                     <label>Family status&nbsp;</label>
-                    <WithHintText>
+                    <WithHintText content="This helps employers understand your family needs and accommodate accordingly such as booking you flights, providing accommodation and benefits such as free or discounted tuition fees.">
                       <img
                         class="label-icon"
                         src={require("../../assets/images/icons/information-icon.svg")}
@@ -225,7 +225,8 @@ function JobSeekerSignUp() {
                 label={
                   <div className="c-label">
                     <label>Gender&nbsp;</label>
-                    <WithHintText>
+                    <WithHintText content="Some jobs in the Middle East are gender specific, e.g. a female swimming instructor
+for an all girls school.">
                       <img
                         class="label-icon"
                         src={require("../../assets/images/icons/information-icon.svg")}
@@ -271,7 +272,9 @@ function JobSeekerSignUp() {
                 label={
                   <div className="c-label">
                     <label>Passport nationality&nbsp;</label>
-                    <WithHintText>
+                    <WithHintText content="Certain countries require more documents and verifications in order to issue visas.
+Knowing your nationality will help employers take the necessary steps in order to
+secure visas for everyone.">
                       <img
                         class="label-icon"
                         src={require("../../assets/images/icons/information-icon.svg")}
