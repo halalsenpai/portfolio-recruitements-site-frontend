@@ -32,7 +32,7 @@ function Routing() {
   } else {
     const token = localStorage.getItem("token");
     const r = localStorage.getItem("role");
-    if (token && r) {
+    if (token != null && r != null) {
       const role = JSON.parse(r);
       if (role && role.title) {
         const url = userTypes[role.title.toUpperCase()].url;
