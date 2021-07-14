@@ -48,11 +48,11 @@ export const SuperSelect = ({
     page: 1,
     limit: 100,
   });
-  const [selected, setSelected] = useState()
+  const [selected, setSelected] = useState();
 
   const clearSelected = () => {
-    setSelected(null)
-  }
+    setSelected(null);
+  };
 
   useEffect(() => {
     if (!dependencyId) {
@@ -146,8 +146,7 @@ export const SuperSelect = ({
 
   return (
     <Select
-      clearIcon={<img src={require('../../assets/images/icons/close-icon.svg')} />}
-      value={selected}
+      autoComplete={"" + Math.random()}
       style={style}
       maxTagCount={maxTagCount}
       disabled={disabled}

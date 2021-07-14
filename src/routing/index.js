@@ -1,5 +1,7 @@
 import React, { Fragment } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useLocation } from "react-router-dom";
+import storage from 'redux-persist/lib/storage'
+
 
 import {
   Home,
@@ -20,8 +22,32 @@ import {
 
 import Footer from "../app-ui/Footer/Footer";
 import Header from "../app-ui/Header/Header";
+import { userTypes } from "../utils/constants";
+import { persistor } from '../store'; // or w/e
+
+
 
 function Routing() {
+  const param = useLocation().search;
+  const logout = new URLSearchParams(param).get("logout");
+  console.log(logout);
+  if (logout == "true") {
+    localStorage.clear();
+    persistor.flush();
+    storage.removeItem('persist:root')
+  } else {
+    const token = localStorage.getItem("token");
+    const r = localStorage.getItem("role");
+    if (token != null && r != null) {
+      const role = JSON.parse(r);
+      if (role && role.title) {
+        const url = userTypes[role.title.toUpperCase()].url;
+        if (url) {
+          window.location = `${url}/?token=${token}`;
+        }
+      }
+    }
+  }
   return (
     <Fragment>
       <Header />
@@ -37,7 +63,11 @@ function Routing() {
         <Route exact path="/confirm-email" component={ConfirmEmail} />
         <Route exact path="/employer-signup" component={EmployerSignUp} />
         <Route exact path="/signup" component={SignUp} />
-        <Route exact path="/employee-and-agency" component={EmployerAndAgency} />
+        <Route
+          exact
+          path="/employee-and-agency"
+          component={EmployerAndAgency}
+        />
         <Route exact path="/job-seekers" component={JobSeekers} />
         <Route exact path="/pricing" component={Pricing} />
         <Route exact path="/jobs" component={Jobs} />

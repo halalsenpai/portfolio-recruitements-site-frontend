@@ -69,6 +69,7 @@ const DashboardFrom = () => {
               >
                 <label className="required">Desired locations to work in</label>
                 <Input
+                  autoComplete={'' + Math.random()}
                   className="w-100"
                   placeholder=""
                   size="large"
