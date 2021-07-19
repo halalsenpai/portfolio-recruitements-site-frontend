@@ -22,6 +22,7 @@ const ModalCertificateForm = () => {
               >
                 <label className="required">Certificate</label>
                 <Input
+                  autoComplete={'' + Math.random()}
                   className="w-100"
                   placeholder="e.g. PGCE, QTS, Fork lift driver license, TEFL"
                   size="large"

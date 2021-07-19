@@ -20,7 +20,7 @@ const getOptions = (data, keys) => {
   }));
 };
 
-export const SuperSelect = ({
+export const SuperSelectWithSelect = ({
   mode,
   maxTagCount,
   disabled,
@@ -28,7 +28,7 @@ export const SuperSelect = ({
   dependencyId,
   allowClear = true,
   showSearch = true,
-  placeholder = "Select option(s)",
+  placeholder = "Select options",
   debounceTimeout = 800,
   fixedOptions = [],
   searchKey = "search",
@@ -141,7 +141,7 @@ export const SuperSelect = ({
 
   return (
     <Select
-      autoComplete={'' + Math.random()}
+      autoComplete="off"
       style={style}
       maxTagCount={maxTagCount}
       disabled={disabled}
@@ -157,11 +157,11 @@ export const SuperSelect = ({
       {...props}>
       {!fetching && (
         <>
-          {/* {initOptions.map((d) => (
+          {initOptions.map((d) => (
             <Option key={d.value} value={d.value}>
               {d.label}
             </Option>
-          ))} */}
+          ))}
           {fixedOptions.map((d) => (
             <Option key={d.value} value={d.value}>
               {d.label}

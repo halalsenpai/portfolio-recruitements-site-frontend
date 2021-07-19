@@ -145,3 +145,13 @@ export const jsonToQueryString = (data) => {
   const params = Object.fromEntries(Object.entries(data).filter(([_, v]) => v != null));
   return "?" + new URLSearchParams(params).toString();
 };
+
+export const DobChecker = (current) => {
+  // let customDate = '2018-11-25'
+  // console.log(current)
+  // return current && current > moment(customDate, "YYY-MM-DD")
+  var myCurrentDate = new Date();
+  var myPastDate = new Date(myCurrentDate);
+  return myPastDate.setDate(myPastDate.getDate() - 8)
+}
+

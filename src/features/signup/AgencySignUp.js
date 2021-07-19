@@ -1,24 +1,34 @@
 import React, { useEffect, useState } from "react";
+import useRefState from "react-usestateref";
 
 import { useHistory } from "react-router-dom";
-import { Input, Form, Select, Checkbox, Alert } from "antd";
+import { Input, Form, Select, Checkbox, Alert, Row, Col, Upload } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
 
 import * as Rules from "../../utils/rules";
+import TermsConditions from "./TermsConditions";
+import Modal from "../../shared-ui/Modal/Modal";
 import Button from "../../shared-ui/Button/Button";
+import {
+  getCompany,
+  getJobTitle,
+  getCountry,
+  getSector,
+  getCitiesByCountry,
+} from "./service";
+import { showWarningMessage } from "../../utils/message";
 import PhoneInput from "react-phone-input-international";
 import MediaPicker from "../../shared-ui/MediaPicker/MediaPicker";
-import Modal from "../../shared-ui/Modal/Modal";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { SuperSelect } from "../../shared-ui/SuperSelect/SuperSelect";
 // import SelectWithAddItem from "../../shared-ui/SelectWithAddItem/SelectWithAddItem";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
-  getFindUsPlatform,
-  getCountry,
-  getCity,
-  employerSignup,
   getRole,
+  getFindUsPlatform,
+  getCity,
   getCountryByIp,
-  getCitiesByCountry,
+  uploadProfileImage,
+  agencySignup,
 } from "./thunk";
 import {
   selectRole,
@@ -26,16 +36,15 @@ import {
   selectEmployerSignup,
   selectCompany,
   selectCountry,
-  selectCity,
   selectJobTitles,
   selectLoadingStatus,
   selectErrorMessage,
   selectCountryByIp,
   selectCitiesByCountry,
+  selectProfileImage,
+  selectAgencySignUpSuccess,
 } from "./slice";
-import TermsConditions from "./TermsConditions";
-import { showErrorMessage, showWarningMessage } from "../../utils/message";
-import { getCompany, getJobTitle } from "./service";
+import AvatarPicker from "../../shared-ui/AvatarPicker/AvatarPicker";
 
 const { Option } = Select;
 
@@ -50,10 +59,11 @@ function AgencySignUp() {
   const [termsModalShow, setTermsModalShow] = useState(false);
   const [countryCode, setCountryCode] = useState("gb");
   const [agreeToTerms, setAgreeToTerms] = useState(false);
+  const [categoryId, setCategoryId] = useState(null);
 
   const roles = useAppSelector(selectRole);
   const findUsPlatforms = useAppSelector(selectFindUsPlatform);
-  const signupSuccess = useAppSelector(selectEmployerSignup);
+  const signupSuccess = useAppSelector(selectAgencySignUpSuccess);
   const companies = useAppSelector(selectCompany);
   const countries = useAppSelector(selectCountry);
   const jobTitles = useAppSelector(selectJobTitles);
@@ -61,11 +71,11 @@ function AgencySignUp() {
   const errorMessage = useAppSelector(selectErrorMessage);
   const countryByIp = useAppSelector(selectCountryByIp);
   const citiesByCountry = useAppSelector(selectCitiesByCountry);
+  const profileImage = useAppSelector(selectProfileImage);
 
   useEffect(() => {
     dispatch(getRole());
     dispatch(getFindUsPlatform());
-    dispatch(getCountry());
     dispatch(getCity());
     dispatch(getCountryByIp());
   }, []);
@@ -81,19 +91,24 @@ function AgencySignUp() {
   }, [signupSuccess]);
 
   const onFinish = (values) => {
-    if (agreeToTerms === false) {
+    setFormData({ ...formData, ...values });
+
+    if (agreeToTerms === false && (currentStep === 2 || currentStep === 3)) {
       showWarningMessage("Agree to terms and conditions to proceed");
       return;
     }
-    if (values.companyProfileId === "create-company") {
-      setFormData(values);
+    if (currentStep < 3) {
       setCurrentStep((prevValue) => prevValue + 1);
-      return;
     }
 
     const role = roles.find((r) => r.title === "agency");
 
     if (!role && !role.length) {
+      return;
+    }
+
+    if (!profileImage?.url) {
+      showWarningMessage("profile photo is required");
       return;
     }
 
@@ -103,15 +118,21 @@ function AgencySignUp() {
       ...values,
     };
 
+    if (currentStep < 3) {
+      return;
+    }
+
     if (payload.companyProfileId === "create-company") {
       delete payload.companyProfileId;
     }
     delete payload.agreeTerms;
-    dispatch(employerSignup(payload));
+    payload.profilePhoto = profileImage?.url;
+    console.log(payload);
+    dispatch(agencySignup(payload));
   };
 
   const onStepChange = () => {
-    if (currentStep < 2) {
+    if (currentStep < 3) {
       setCurrentStep((prevValue) => prevValue + 1);
     } else {
       setFormData({});
@@ -120,7 +141,7 @@ function AgencySignUp() {
   };
 
   const onCompanyNameChange = (value) => {
-    if (value === "create-company") {
+    if (value === "") {
       setCreateCompany(true);
       return;
     }
@@ -128,371 +149,643 @@ function AgencySignUp() {
   };
 
   const handleLocationSelect = (v) => {
-    if (typeof v === "string") {
-      console.log("string");
-      form.setFieldsValue({ cityId: "" });
+    setCategoryId(Number(v));
+  };
+
+  // useEffect(() => {
+  //   const _CId = CategoryIdRef.current;
+  //   setCategoryId(Number(_CId));
+  // }, [categoryId]);
+
+  const profileImageBeforeUpload = (file) => {
+    const payload = new FormData();
+    payload.append("file", file, file.name);
+    dispatch(uploadProfileImage({ payload }));
+    return false;
+  };
+
+  const handleCreateNewCompany = () => {
+    form.resetFields();
+    setCreateCompany(true);
+    setCurrentStep(2);
+  };
+
+  // useEffect(() => {
+  //   setCategoryId(categoryId);
+  //   console.log("useeffect", categoryId);
+  // }, [categoryId]);
+
+  const renderSteps = (currentStep) => {
+    switch (currentStep) {
+      case 1:
+        return (
+          <>
+            <Row justify="center">
+              <Col span={18} md={{ span: 12 }} lg={{ span: 12 }}>
+                <Form.Item
+                  label="Company name"
+                  name="companyProfileId"
+                  rules={Rules.requiredRule}>
+                  <SuperSelect
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    fetchOptions={getCompany}
+                    onChange={onCompanyNameChange}
+                    keys={["id", "companyName"]}
+                  />
+                </Form.Item>
+              </Col>
+            </Row>
+            <div className="create-new-company">
+              Can't find your company?{" "}
+              <span onClick={handleCreateNewCompany} className="create-new-btn">
+                {" "}
+                Create new
+              </span>
+            </div>
+          </>
+        );
+      case 2:
+        return (
+          <div className="second-step">
+            <div className="header">
+              <img
+                onClick={() => setCurrentStep(1)}
+                className="back-btn"
+                src={require("../../assets/images/icons/back.svg")}
+                alt=""
+              />
+            </div>
+            {!isCreateCompany && (
+              <Row gutter={[32, 32]}>
+                <Col
+                  xs={{ span: 24 }}
+                  span={12}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    className="c-input"
+                    label="First name"
+                    rules={Rules.firstNameRule}
+                    name="firstName">
+                    <Input autoComplete={'' + Math.random()} />
+                  </Form.Item>
+                </Col>
+                <Col
+                  xs={{ span: 24 }}
+                  span={12}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    className="c-input"
+                    label="Last name"
+                    rules={Rules.lastNameRule}
+                    name="lastName">
+                    <Input autoComplete={'' + Math.random()} />
+                  </Form.Item>
+                </Col>
+                <Col
+                  xs={{ span: 24 }}
+                  span={12}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    name="mobile"
+                    label="Mobile number"
+                    className="c-input"
+                    rules={Rules.phoneRule}>
+                    <PhoneInput
+                      placeholder="Enter your phone number."
+                      country={countryCode}
+                    />
+                  </Form.Item>
+                </Col>
+                <Col
+                  style={{ zIndex: 200 }}
+                  xs={{ span: 24 }}
+                  span={12}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    label="Direct work phone"
+                    name="directWorkPhone"
+                    className="c-input"
+                    rules={Rules.phoneRule}>
+                    <PhoneInput
+                      placeholder="Enter your work phone."
+                      country={countryCode}
+                    />
+                  </Form.Item>
+                </Col>
+                <Col
+                  xs={{ span: 24 }}
+                  span={12}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    label="Work email address"
+                    name="email"
+                    className="c-input"
+                    rules={Rules.emailRule}>
+                    <Input autoComplete={'' + Math.random()} placeholder="Enter your email" type="text" />
+                  </Form.Item>
+                </Col>
+                <Col
+                  style={{ zIndex: 100 }}
+                  xs={{ span: 24 }}
+                  span={12}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    className="c-input"
+                    name="findUsId"
+                    label="How did you find us?"
+                    rules={Rules.requiredRule}>
+                    <Select
+                      getPopupContainer={(trigger) => trigger.parentNode}
+                      defaultValue="">
+                      <Option value="">Select</Option>
+
+                      {findUsPlatforms?.map((fu) => (
+                        <Option value={fu.id}>{fu.title}</Option>
+                      ))}
+                    </Select>
+                  </Form.Item>
+                </Col>
+              </Row>
+            )}
+            {isCreateCompany && (
+              <Row gutter={[32, 32]}>
+                <Col style={{ marginBottom: "24px", zIndex: 300 }} span={24}>
+                  <Upload
+                    beforeUpload={profileImageBeforeUpload}
+                    showUploadList={false}>
+                    <div className="avatar-upload">
+                      <div className="photo-square">
+                        {profileImage && <img src={profileImage?.url} alt="" />}
+                      </div>
+                      {!profileImage && (
+                        <Button>
+                          <PlusOutlined />
+                        </Button>
+                      )}
+                    </div>
+                    <div style={{ fontSize: "12px", marginTop: "12px" }}>
+                      Upload profile photo
+                    </div>
+                  </Upload>
+                </Col>
+                <Col
+                  style={{ zIndex: 290 }}
+                  span={12}
+                  xs={{ span: 24 }}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    label="I’m registering a"
+                    name="companyType"
+                    className="c-input"
+                    rules={Rules.requiredRule}>
+                    <Select
+                      getPopupContainer={(trigger) => trigger.parentNode}
+                      defaultValue="">
+                      <Option value="">Select</Option>
+                      <Option value="single-company">Single company</Option>
+                      <Option value="headquarters">Headquarters</Option>
+                      <Option value="branch">Branch within the company</Option>
+                    </Select>
+                  </Form.Item>
+                </Col>
+                <Col
+                  span={12}
+                  xs={{ span: 24 }}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    label="Company name"
+                    name="companyName"
+                    className="c-input"
+                    rules={Rules.requiredRule}>
+                     <Input autoComplete={'' + Math.random()} />
+                  </Form.Item>
+                </Col>
+
+                <Col
+                  style={{ zIndex: 270 }}
+                  span={12}
+                  xs={{ span: 24 }}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    style={{ zIndex: 170 }}
+                    label="Company location"
+                    name="countryId"
+                    className="c-input"
+                    rules={Rules.requiredRule}>
+                    <SuperSelect
+                      getPopupContainer={(trigger) => trigger.parentNode}
+                      fetchOptions={getCountry}
+                      onSelect={handleLocationSelect}
+                    />
+                  </Form.Item>
+                </Col>
+
+                <Col
+                  style={{ zIndex: 260 }}
+                  span={12}
+                  xs={{ span: 24 }}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    style={{ zIndex: 170 }}
+                    label="City"
+                    name="cityId"
+                    className="c-input"
+                    rules={Rules.requiredRule}>
+                    <SuperSelect
+                      disabled={categoryId ? false : true}
+                      dependencyId={categoryId}
+                      getPopupContainer={(trigger) => trigger.parentNode}
+                      fetchOptions={getCitiesByCountry}
+                    />
+                  </Form.Item>
+                </Col>
+                <Col
+                  style={{ zIndex: 200 }}
+                  span={12}
+                  xs={{ span: 24 }}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    label="Company phone number"
+                    name="companyPhone"
+                    className="c-input"
+                    rules={Rules.phoneRule}>
+                    <PhoneInput
+                      placeholder="Enter your phone number."
+                      country={countryCode}
+                    />
+                  </Form.Item>
+                </Col>
+                <Col
+                  span={12}
+                  xs={{ span: 24 }}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    label="Website http://"
+                    name="webUrl"
+                    className="c-input"
+                    rules={Rules.requiredRule}>
+                     <Input autoComplete={'' + Math.random()} />
+                  </Form.Item>
+                </Col>
+              </Row>
+            )}
+          </div>
+        );
+      case 3:
+      default:
+        return (
+          <div className="third-step">
+            <div className="header">
+              <img
+                onClick={() => setCurrentStep(2)}
+                className="back-btn"
+                src={require("../../assets/images/icons/back.svg")}
+                alt=""
+              />
+            </div>
+            {!isCreateCompany && (
+              <Row gutter={[32, 32]}>
+                <Col style={{ marginBottom: "24px" }} span={24}>
+                  <Upload
+                    beforeUpload={profileImageBeforeUpload}
+                    showUploadList={false}>
+                    <div className="avatar-upload">
+                      <div className="photo-square">
+                        {profileImage && <img src={profileImage?.url} alt="" />}
+                      </div>
+                      {!profileImage && (
+                        <Button>
+                          <PlusOutlined />
+                        </Button>
+                      )}
+                    </div>
+                    <div style={{ fontSize: "12px", marginTop: "12px" }}>
+                      Upload profile photo
+                    </div>
+                  </Upload>
+                </Col>
+                <Col
+                  span={12}
+                  xs={{ span: 24 }}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    label="Sector"
+                    name="categoryId"
+                    className="c-input"
+                    rules={Rules.requiredRule}>
+                    <SuperSelect
+                      onSelect={(v) => {
+                        setCategoryId(v);
+                        form.resetFields(["jobTitleId"]);
+                      }}
+                      getPopupContainer={(trigger) => trigger.parentNode}
+                      defaultValue=""
+                      fetchOptions={getSector}
+                    />
+                  </Form.Item>
+                </Col>
+                <Col
+                  span={12}
+                  xs={{ span: 24 }}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    label="Job title"
+                    name="jobTitleId"
+                    className="c-input"
+                    rules={Rules.requiredRule}>
+                    <SuperSelect
+                      dependencyId={categoryId}
+                      getPopupContainer={(trigger) => trigger.parentNode}
+                      defaultValue=""
+                      fetchOptions={getJobTitle}
+                    />
+                  </Form.Item>
+                </Col>
+                <Col
+                  span={12}
+                  xs={{ span: 24 }}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    label="Password"
+                    name="password"
+                    className="c-input"
+                    rules={Rules.passwordRule}>
+                    <Input.Password autoComplete={'' + Math.random()} type="password" />
+                  </Form.Item>
+                </Col>
+                <Col
+                  span={12}
+                  xs={{ span: 24 }}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    label="Confirm password"
+                    name="ConfirmPassword"
+                    className="c-input"
+                    rules={Rules.confirmPasswordRule}>
+                    <Input.Password autoComplete={'' + Math.random()} type="password" />
+                  </Form.Item>
+                </Col>
+              </Row>
+            )}
+            {isCreateCompany && (
+              <Row gutter={[32, 32]}>
+                <Col
+                  xs={{ span: 24 }}
+                  span={12}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    className="c-input"
+                    label="First name"
+                    rules={Rules.firstNameRule}
+                    name="firstName">
+                     <Input autoComplete={'' + Math.random()} />
+                  </Form.Item>
+                </Col>
+                <Col
+                  xs={{ span: 24 }}
+                  span={12}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    className="c-input"
+                    label="Last name"
+                    rules={Rules.lastNameRule}
+                    name="lastName">
+                     <Input autoComplete={'' + Math.random()} />
+                  </Form.Item>
+                </Col>
+                <Col
+                  xs={{ span: 24 }}
+                  span={12}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    name="mobile"
+                    label="Mobile number"
+                    className="c-input"
+                    rules={Rules.phoneRule}>
+                    <PhoneInput
+                      placeholder="Enter your phone number."
+                      country={countryCode}
+                    />
+                  </Form.Item>
+                </Col>
+                <Col
+                  style={{ zIndex: 200 }}
+                  xs={{ span: 24 }}
+                  span={12}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    label="Direct work phone"
+                    name="directWorkPhone"
+                    className="c-input"
+                    rules={Rules.phoneRule}>
+                    <PhoneInput
+                      placeholder="Enter your work phone."
+                      country={countryCode}
+                    />
+                  </Form.Item>
+                </Col>
+                <Col
+                  xs={{ span: 24 }}
+                  span={12}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    label="Work email address"
+                    name="email"
+                    className="c-input"
+                    rules={Rules.emailRule}>
+                    <Input autoComplete={'' + Math.random()} placeholder="Enter your email" type="text" />
+                  </Form.Item>
+                </Col>
+                <Col
+                  style={{ zIndex: 160 }}
+                  span={12}
+                  xs={{ span: 24 }}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    label="Sector"
+                    name="categoryId"
+                    className="c-input"
+                    rules={Rules.requiredRule}>
+                    <SuperSelect
+                      onSelect={(v) => {
+                        setCategoryId(v);
+                        form.resetFields(["jobTitleId"]);
+                      }}
+                      getPopupContainer={(trigger) => trigger.parentNode}
+                      defaultValue=""
+                      fetchOptions={getSector}
+                    />
+                  </Form.Item>
+                </Col>
+                <Col
+                  style={{ zIndex: 140 }}
+                  span={12}
+                  xs={{ span: 24 }}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    label="Job title"
+                    name="jobTitleId"
+                    className="c-input"
+                    rules={Rules.requiredRule}>
+                    <SuperSelect
+                      dependencyId={categoryId}
+                      getPopupContainer={(trigger) => trigger.parentNode}
+                      defaultValue=""
+                      fetchOptions={getJobTitle}
+                    />
+                  </Form.Item>
+                </Col>
+                <Col
+                  style={{ zIndex: 100 }}
+                  xs={{ span: 24 }}
+                  span={12}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    className="c-input"
+                    name="findUsId"
+                    label="How did you find us?"
+                    rules={Rules.requiredRule}>
+                    <Select
+                      getPopupContainer={(trigger) => trigger.parentNode}
+                      defaultValue="">
+                      <Option value="">Select</Option>
+
+                      {findUsPlatforms?.map((fu) => (
+                        <Option value={fu.id}>{fu.title}</Option>
+                      ))}
+                    </Select>
+                  </Form.Item>
+                </Col>
+                <Col
+                  span={12}
+                  xs={{ span: 24 }}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    label="Password"
+                    name="password"
+                    className="c-input"
+                    rules={Rules.passwordRule}>
+                    <Input.Password autoComplete={'' + Math.random()} type="password" />
+                  </Form.Item>
+                </Col>
+                <Col
+                  span={12}
+                  xs={{ span: 24 }}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    label="Confirm password"
+                    name="ConfirmPassword"
+                    className="c-input"
+                    rules={Rules.confirmPasswordRule}>
+                    <Input.Password autoComplete={'' + Math.random()} type="password" />
+                  </Form.Item>
+                </Col>
+              </Row>
+            )}
+          </div>
+        );
     }
-    form.setFieldsValue({ cityId: "" });
-    dispatch(getCitiesByCountry(v));
   };
 
   return (
     <div className="c-container auth-wrapper">
       <div className="signup-container with-form">
         <Form
-          style={{ zIndex: "50" }}
+          style={{ zIndex: "40" }}
           form={form}
           layout="vertical"
-          className="c-form second-container align-items-start"
-          onFinish={onFinish}
-        >
-          {currentStep === 1 ? (
+          className="agency-sign-up c-form second-container"
+          onFinish={onFinish}>
+          {renderSteps(currentStep)}
+
+          {(currentStep === 2 || currentStep == 3) && (
             <>
-              <h3 className="form-title">
-                <mark className="blue">Agency details</mark>
-              </h3>
-
-              <div className="c-row">
-                <Form.Item
-                  style={{ zIndex: "400" }}
-                  label="Company name"
-                  name="companyProfileId"
-                  className="c-input"
-                  rules={Rules.requiredRule}
-                >
-                  {/* <Select
-                    getPopupContainer={(trigger) => trigger.parentNode}
-                    size="large"
-                    defaultValue=""
-                    onChange={onCompanyNameChange}>
-                    <Option value="">Select</Option>
-                    <Option value="create-company">Create new company</Option>
-
-                    {companies?.items?.map((c) => (
-                      <Option value={c.id}>{c.companyName}</Option>
-                    ))}
-                  </Select> */}
-                  <SuperSelect
-                    style={{ zIndex: 50 }}
-                    getPopupContainer={(trigger) => trigger.parentNode}
-                    defaultValue=""
-                    fetchOptions={getCompany}
-                    onChange={onCompanyNameChange}
-                    keys={["id", "companyName"]}
-                    fixedOptions={[
-                      {
-                        label: "Create New Company",
-                        value: "create-company",
-                      },
-                    ]}
-                  />
-                </Form.Item>
-                <Form.Item
-                  style={{ zIndex: "390" }}
-                  label="Job title"
-                  name="jobTitleId"
-                  className="c-input"
-                  rules={Rules.requiredRule}
-                >
-                  {/* <SelectWithAddItem
-                    options={["Software Engineer", "Accountant"]}
-                    onItemChange={(e) => console.log(e)}
-                    hintTextForAddItem={"Can't find your job title?"}
-                  /> */}
-                  <SuperSelect
-                    getPopupContainer={(trigger) => trigger.parentNode}
-                    defaultValue=""
-                    fetchOptions={getJobTitle}
-                  />
-                </Form.Item>
-              </div>
-              <div className="c-row">
-                <Form.Item
-                  label="First name"
-                  name="firstName"
-                  className="c-input"
-                  rules={Rules.firstNameRule}
-                >
-                  <Input
-                    placeholder="Enter your first name"
-                    size="small"
-                    type="text"
-                  />
-                </Form.Item>
-                <Form.Item
-                  label="Last name"
-                  name="lastName"
-                  className="c-input"
-                  rules={Rules.lastNameRule}
-                >
-                  <Input
-                    placeholder="Enter your last name"
-                    size="small"
-                    type="text"
-                  />
-                </Form.Item>
-              </div>
-              <div className="c-row">
-                <Form.Item
-                  label="Mobile number"
-                  name="mobile"
-                  className="c-input"
-                  rules={Rules.phoneRule}
-                >
-                  <PhoneInput
-                    placeholder="Enter your mobile no."
-                    country={countryCode}
-                  />
-                </Form.Item>
-                <Form.Item
-                  label="Direct work phone"
-                  name="directWorkPhone"
-                  className="c-input"
-                  rules={Rules.phoneRule}
-                >
-                  <PhoneInput
-                    placeholder="Enter your work phone."
-                    country={countryCode}
-                  />
-                </Form.Item>
-              </div>
-              <div className="c-row">
-                <Form.Item
-                  label="Work email address"
-                  name="email"
-                  className="c-input"
-                  rules={Rules.emailRule}
-                >
-                  <Input
-                    placeholder="Enter your email"
-                    size="small"
-                    type="text"
-                  />
-                </Form.Item>
-                <Form.Item
-                  style={{ zIndex: "360" }}
-                  label="How did you find us?"
-                  name="findUsId"
-                  className="c-input"
-                  rules={Rules.requiredRule}
-                >
-                  <Select
-                    getPopupContainer={(trigger) => trigger.parentNode}
-                    size="large"
-                    defaultValue=""
-                  >
-                    <Option value="">Select</Option>
-
-                    {findUsPlatforms?.map((fu) => (
-                      <Option value={fu.id}>{fu.title}</Option>
-                    ))}
-                  </Select>
-                </Form.Item>
-              </div>
-              <div className="c-row">
-                <Form.Item
-                  label="Password"
-                  name="password"
-                  className="c-input"
-                  rules={Rules.passwordRule}
-                >
-                  <Input.Password
-                    placeholder="Enter password"
-                    size="small"
-                    type="password"
-                  />
-                </Form.Item>
-
-                <Form.Item
-                  label="Confirm Password"
-                  name="confirmPassword"
-                  className="c-input"
-                  rules={Rules.confirmPasswordRule}
-                  dependencies={["password"]}
-                >
-                  <Input.Password
-                    placeholder="Enter password again"
-                    size="small"
-                  />
-                </Form.Item>
-              </div>
-            </>
-          ) : (
-            <>
-              <h3 className="form-title w-100 d-flex justify-content-between">
-                <mark className="blue">Company details</mark>
-                <div className="d-flex justify-content-end align-items-center">
-                  <MediaPicker onPicked={(data) => console.log(data)} />
-                </div>
-              </h3>
-
-              <div className="c-row">
-                <Form.Item
-                  style={{ zIndex: "350" }}
-                  label="I’m registering a"
-                  name="companyType"
-                  className="c-input"
-                  rules={Rules.requiredRule}
-                >
-                  <Select
-                    getPopupContainer={(trigger) => trigger.parentNode}
-                    size="large"
-                    defaultValue=""
-                  >
-                    <Option value="">Select</Option>
-                    <Option value="single-company">Single company</Option>
-                    <Option value="headquarters">Headquarters</Option>
-                    <Option value="branch">Branch within the company</Option>
-                  </Select>
-                </Form.Item>
-                <Form.Item
-                  label="Company name"
-                  name="companyName"
-                  className="c-input"
-                  rules={Rules.requiredRule}
-                >
-                  <Input
-                    placeholder="Enter your company name"
-                    size="small"
-                    type="text"
-                  />
-                </Form.Item>
-              </div>
-              <div className="c-row">
-                <Form.Item
-                  style={{ zIndex: "340" }}
-                  label="Company location"
-                  name="countryId"
-                  className="c-input"
-                  rules={Rules.requiredRule}
-                >
-                  <Select
-                    getPopupContainer={(trigger) => trigger.parentNode}
-                    size="large"
-                    defaultValue=""
-                    onSelect={handleLocationSelect}
-                  >
-                    <Option value="">Select</Option>
-                    {countries?.map((c) => (
-                      <Option value={c.id}>{c.title}</Option>
-                    ))}
-                  </Select>
-                </Form.Item>
-                <Form.Item
-                  style={{ zIndex: "330" }}
-                  label="City"
-                  name="cityId"
-                  className="c-input"
-                  rules={Rules.requiredRule}
-                >
-                  <Select
-                    getPopupContainer={(trigger) => trigger.parentNode}
-                    size="large"
-                    defaultValue=""
-                  >
-                    <Option value="">Select</Option>
-                    {citiesByCountry?.map((c) => (
-                      <Option value={c.id}>{c.title}</Option>
-                    ))}
-                  </Select>
-                </Form.Item>
-              </div>
-              <div className="c-row">
-                <Form.Item
-                  label="Website https://"
-                  name="webUrl"
-                  className="c-input"
-                  rules={Rules.requiredRule}
-                >
-                  <Input
-                    placeholder="Enter your website"
-                    size="small"
-                    type="text"
-                  />
-                </Form.Item>
-                <Form.Item
-                  label="Company phone number"
-                  name="companyPhone"
-                  className="c-input"
-                  rules={Rules.phoneRule}
-                >
-                  <PhoneInput
-                    placeholder="Enter your work phone."
-                    country={countryCode}
-                  />
-                </Form.Item>
-              </div>
+              <Form.Item
+                name="agreeTerms"
+                className="mb-3"
+                valuePropName="checked"
+                rules={Rules.requiredRule}>
+                <Checkbox
+                  checked={agreeToTerms}
+                  onChange={(e) => setAgreeToTerms(e.target.checked)}>
+                  <div className="blue" onClick={() => setTermsModalShow(true)}>
+                    I agree with Jobsmideast.com{" "}
+                    <mark className="blue">terms &amp; conditions</mark> and I
+                    agree to receive future emails, texts and communications.{" "}
+                  </div>
+                </Checkbox>
+              </Form.Item>
+              <Modal
+                show={termsModalShow}
+                onHide={() => setTermsModalShow(false)}>
+                {" "}
+                <TermsConditions />
+              </Modal>
             </>
           )}
-
-          <Form.Item
-            name="agreeTerms"
-            className="mb-3"
-            valuePropName="checked"
-            rules={Rules.requiredRule}
-          >
-            <Checkbox
-              checked={agreeToTerms}
-              onChange={(e) => setAgreeToTerms(e.target.checked)}
-            >
-              I agree with Jobsmideast.com{" "}
-              <mark className="blue" onClick={() => setTermsModalShow(true)}>
-                terms &amp; conditions
-              </mark>{" "}
-              and <mark className="blue">privacy policy.</mark> and I agree to
-              receive future emails, texts and communications.{" "}
-            </Checkbox>
-          </Form.Item>
-
-          <Modal show={termsModalShow} onHide={() => setTermsModalShow(false)}>
-            {" "}
-            <TermsConditions />
-          </Modal>
 
           {errorMessage && <Alert message={errorMessage} type="error" />}
 
           {currentStep === 1 && (
-            <Form.Item className="align-self-end mb-0">
-              <Button
-                className="create-profile-button"
-                block
-                type="large"
-                htmlType="submit"
-                themeColor="light"
-                loading={isLoading}
-              >
-                {isCreateCompany && "Next"}
-                {!isCreateCompany && "Create my profile"}
-              </Button>
-            </Form.Item>
+            <Button
+              block
+              className="next-btn"
+              htmlType="submit"
+              themeColor="light"
+              loading={isLoading}>
+              Next
+            </Button>
           )}
 
           {currentStep === 2 && (
-            <>
-              <Form.Item className="align-self-end">
-                <div className="form-actions">
-                  <Button
-                    block
-                    type="large"
-                    htmlType="button"
-                    themeColor="default"
-                    onClick={onStepChange}
-                    disabled={isLoading}
-                  >
-                    Back
-                  </Button>
-                  <Button
-                    block
-                    type="large"
-                    htmlType="submit"
-                    themeColor="light"
-                    loading={isLoading}
-                  >
-                    Create my profile
-                  </Button>
-                </div>
-              </Form.Item>
-            </>
+            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+              <Button
+                block
+                className="next-btn-2"
+                htmlType="submit"
+                themeColor="light"
+                loading={isLoading}>
+                Next
+              </Button>
+            </div>
+          )}
+          {currentStep === 3 && (
+            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+              <Button
+                block
+                className="next-btn-2"
+                htmlType="submit"
+                themeColor="light"
+                loading={isLoading}>
+                Submit
+              </Button>
+            </div>
           )}
         </Form>
         <div className="first-container on-right bg-2">

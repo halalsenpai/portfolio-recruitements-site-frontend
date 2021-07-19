@@ -9,6 +9,7 @@ import Button from "../Button/Button";
 const { Dragger } = Upload;
 
 function MediaPicker({
+  type = "default",
   multiple = false,
   onPicked,
   hintText = "Upload Profile Photo",
@@ -38,8 +39,7 @@ function MediaPicker({
       <button
         type="button"
         onClick={() => setShowModal(true)}
-        className="upload-button"
-      >
+        className="upload-button">
         <PlusOutlined />
       </button>
       <Modal
@@ -47,8 +47,7 @@ function MediaPicker({
         className="center lg c-media-picker"
         backdrop="static"
         keyboard={false}
-        onHide={handleClose}
-      >
+        onHide={handleClose}>
         <Dragger
           name={"file"}
           multiple={multiple}
@@ -66,8 +65,7 @@ function MediaPicker({
             } else if (status === "error") {
               message.error(`${info.file.name} file upload failed.`);
             }
-          }}
-        >
+          }}>
           <img
             id="upload-icon"
             src={require("../../assets/images/icons/imgupload-icon.svg")}

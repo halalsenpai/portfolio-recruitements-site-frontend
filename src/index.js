@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 
 import App from "./App";
 import { interceptor } from "./utils/intercepter";
@@ -14,14 +15,16 @@ import "antd/dist/antd.css";
 import "./assets/scss/index.scss";
 
 import * as serviceWorker from "./serviceWorker";
-import { store } from "./store";
+import { store, persistor } from "./store";
 
 function Root() {
   console.log(`code works`);
   return (
     <React.StrictMode>
       <Provider store={store}>
-        <App />
+        <PersistGate loading={null} persistor={persistor}>
+          <App />
+        </PersistGate>
       </Provider>
     </React.StrictMode>
   );

@@ -39,7 +39,7 @@ const renderSteps = (currentStep, onResendCode, isResendLoading) => {
           className="c-input"
           rules={rules.requiredRule}
         >
-          <Input placeholder="Enter your email" size="large" type="email" />
+          <Input autoComplete={'' + Math.random()} placeholder="Enter your email" size="large" type="email" />
         </Form.Item>
       );
     case 1:
@@ -53,6 +53,7 @@ const renderSteps = (currentStep, onResendCode, isResendLoading) => {
             rules={rules.requiredRule}
           >
             <Input
+              autoComplete={'' + Math.random()}
               placeholder="Enter the verification code"
               size="large"
               type="text"
@@ -88,6 +89,7 @@ const renderSteps = (currentStep, onResendCode, isResendLoading) => {
             rules={rules.passwordRule}
           >
             <Input
+              autoComplete={'' + Math.random()}
               placeholder="Enter your new password"
               size="large"
               type="password"
@@ -101,6 +103,7 @@ const renderSteps = (currentStep, onResendCode, isResendLoading) => {
             dependencies={["password"]}
           >
             <Input
+              autoComplete={'' + Math.random()}
               placeholder="Confirm your password"
               size="large"
               type="password"

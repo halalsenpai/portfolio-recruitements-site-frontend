@@ -8,11 +8,10 @@ import Modal from "../Modal/Modal";
 function ImagesGallery({
   title = "Photos",
   images = [
-    { src: require("../../assets/images/sample/01.png") },
-    { src: require("../../assets/images/sample/02.png") },
-    { src: require("../../assets/images/sample/03.png") },
-    { src: require("../../assets/images/sample/04.png") },
-    // { src: require("../../assets/images/sample/01.png") },
+    "require('../../assets/images/sample/01.png')",
+    "require('../../assets/images/sample/02.png')",
+    "require('../../assets/images/sample/03.png')",
+    "require('../../assets/images/sample/04.png')",
   ],
 }) {
   const [openAllImages, setOpenAllImages] = useState(false);
@@ -34,9 +33,9 @@ function ImagesGallery({
 
       <span className="images-container">
         <MappedElement
-          data={images.slice(0, 3)}
+          data={images?.slice(0, 3)}
           renderElement={(obj, index) => {
-            return <Image src={obj.src} />;
+            return <Image key={index} src={obj} />;
           }}
         />
       </span>
@@ -51,7 +50,7 @@ function ImagesGallery({
           <MappedElement
             data={images}
             renderElement={(obj, index) => {
-              return <Image key={index} src={obj.src} />;
+              return <Image key={index} src={obj} />;
             }}
           />
         </span>

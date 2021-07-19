@@ -5,6 +5,7 @@ import {
   getJobTitle,
   getEmploymentType,
   getCountry,
+  getCountryisDesired,
   getCity,
   getQualification,
   getFieldOfStudy,
@@ -26,6 +27,7 @@ const thunks = [
   getJobTitle,
   getEmploymentType,
   getCountry,
+  getCountryisDesired,
   getCity,
   getQualification,
   getFieldOfStudy,
@@ -90,6 +92,10 @@ export const slice = createSlice({
         state.employmentTypes = action.payload;
       })
       .addCase(getCountry.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.countries = action.payload;
+      })
+      .addCase(getCountryisDesired.fulfilled, (state, action) => {
         state.status = "idle";
         state.countries = action.payload;
       })
