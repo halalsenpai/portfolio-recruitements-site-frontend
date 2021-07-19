@@ -194,6 +194,7 @@
             top: 0;
             .back-btn {
               width: 30px;
+              margin-top: 10px;
             }
           }
           .c-input {
@@ -252,6 +253,7 @@
             top: 0;
             .back-btn {
               width: 30px;
+              margin-top: 10px;
             }
           }
           .c-input {
@@ -336,6 +338,7 @@
             top: 0;
             .back-btn {
               width: 30px;
+              margin-top: 10px;
             }
           }
           .c-input {
@@ -393,6 +396,7 @@
             position: absolute;
             top: 0;
             .back-btn {
+              margin-top: 10px;
               width: 30px;
             }
           }
@@ -522,4 +526,11 @@
       text-decoration: underline;
     }
   }
+}
+
+
+// GLOBAL CSS 
+.ant-form-item-explain.ant-form-item-explain-error {
+  color: #ff4d4f;
+  min-height: 0px;
 }
