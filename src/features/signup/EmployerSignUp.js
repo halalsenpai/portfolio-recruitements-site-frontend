@@ -30,6 +30,7 @@ import {
   employerSignup,
   getCountryByIp,
   uploadProfileImage,
+  uploadCompanyLogo,
 } from "./thunk";
 import {
   selectRole,
@@ -43,6 +44,7 @@ import {
   selectCountryByIp,
   selectCitiesByCountry,
   selectProfileImage,
+  selectCompanyLogo,
 } from "./slice";
 import AvatarPicker from "../../shared-ui/AvatarPicker/AvatarPicker";
 
@@ -75,6 +77,10 @@ function EmployerSignUp() {
   const countryByIp = useAppSelector(selectCountryByIp);
   const citiesByCountry = useAppSelector(selectCitiesByCountry);
   const profileImage = useAppSelector(selectProfileImage);
+  const companyLogo = useAppSelector(selectCompanyLogo);
+
+
+  
 
 
 
@@ -116,14 +122,14 @@ function EmployerSignUp() {
     console.log("onFinish", values)
     setFormData({ ...formData, ...values });
 
-    if (agreeToTerms === false && (currentStep === 2 || currentStep === 3)) {
+    if (agreeToTerms === false && (currentStep === 3)) {
       showWarningMessage("Agree to terms and conditions to proceed");
       return;
     }
-    if (isCreateCompany && currentStep === 2 && !profileImage?.url) {
-      showWarningMessage("profile photo is required");
-      return;
-    }
+    // if (isCreateCompany && currentStep === 2 && !profileImage?.url) {
+    //   showWarningMessage("profile photo is required");
+    //   return;
+    // }
     if (!isCreateCompany && currentStep === 3 && !profileImage?.url) {
       showWarningMessage("profile photo is required");
       return;
@@ -191,9 +197,18 @@ function EmployerSignUp() {
     const payload = new FormData();
     payload.append("file", file, file.name);
     dispatch(uploadProfileImage({ payload }));
+    console.log("ahzam salik", uploadProfileImage)
+
     return false;
   };
 
+  const companyLogoBeforeUpload = (file) => {
+    const payload = new FormData();
+    payload.append("file", file, file.name);
+    dispatch(uploadCompanyLogo({ payload }));
+    console.log("ahzam", uploadCompanyLogo)
+    return false;
+  };
   const handleCreateNewCompany = () => {
     form.resetFields();
     setCreateCompany(true);
@@ -248,6 +263,8 @@ function EmployerSignUp() {
               </div> : null}
             {!isCreateCompany && (
               <Row gutter={[32, 32]}>
+                {/* <Col>
+                <h1>sdfkoisdfiohsdkjfhkj ahzam </h1></Col> */}
                 <Col
                   xs={{ span: 24 }}
                   span={12}
@@ -345,24 +362,30 @@ function EmployerSignUp() {
                 </Col>
               </Row>
             )}
+            {/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+            {/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+            {/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+
             {isCreateCompany && (
               <Row gutter={[32, 32]}>
                 <Col style={{ marginBottom: "24px", zIndex: 300 }} span={24}>
                   <Upload
-                    beforeUpload={profileImageBeforeUpload}
+                    beforeUpload={companyLogoBeforeUpload}
+                    // beforeUpload={profileImageBeforeUpload}
+
                     showUploadList={false}>
                     <div className="avatar-upload">
                       <div className="photo-square">
-                        {profileImage && <img src={profileImage?.url} alt="" />}
+                        {companyLogo && <img src={companyLogo?.url} alt="" />}
                       </div>
-                      {!profileImage && (
+                      {!companyLogo && (
                         <Button>
                           <PlusOutlined />
                         </Button>
                       )}
                     </div>
                     <div style={{ fontSize: "12px", marginTop: "12px" }}>
-                      Upload profile photo
+                      Upload Company Logo
                     </div>
                   </Upload>
                 </Col>
@@ -578,8 +601,30 @@ function EmployerSignUp() {
                 </Col>
               </Row>
             )}
+            {/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+            {/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+
             {isCreateCompany && (
               <Row gutter={[32, 32]}>
+                 <Col style={{ marginBottom: "24px", zIndex: 300 }} span={24}>
+                  <Upload
+                    beforeUpload={profileImageBeforeUpload}
+                    showUploadList={false}>
+                    <div className="avatar-upload">
+                      <div className="photo-square">
+                        {profileImage && <img src={profileImage?.url} alt="" />}
+                      </div>
+                      {!profileImage && (
+                        <Button>
+                          <PlusOutlined />
+                        </Button>
+                      )}
+                    </div>
+                    <div style={{ fontSize: "12px", marginTop: "12px" }}>
+                      Upload profile photo
+                    </div>
+                  </Upload>
+                </Col>
                 <Col
                   xs={{ span: 24 }}
                   span={12}
@@ -758,7 +803,7 @@ function EmployerSignUp() {
           onFinish={onFinish}>
           {renderSteps(currentStep)}
 
-          {(currentStep === 2 || currentStep == 3) && (
+          {( currentStep == 3) && (
             <>
               <Form.Item
                 name="agreeTerms"

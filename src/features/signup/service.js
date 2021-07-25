@@ -19,6 +19,7 @@ const SERVICE_URLS = {
   getCountryByIp: () => `https://pro.ip-api.com/json?key=YQnoAYJbrHbV7qS`,
   getSector: (qs) => `/categories${qs}`,
   uploadProfileImage: () => `/file-handle/signup/profile-picture`,
+  uploadCompanyLogo: () => `/file-handle/signup/profile-picture`,
 };
 
 export const getRole = () => get(SERVICE_URLS.getRole());
@@ -76,3 +77,6 @@ export const getCountryByIp = () => fetch("https://pro.ip-api.com/json?key=YQnoA
 
 export const uploadProfileImage = (body, params) =>
   post(SERVICE_URLS.uploadProfileImage(), body, params);
+
+export const uploadCompanyLogo = (body, params) =>
+  post(SERVICE_URLS.uploadCompanyLogo(), body, params);
