@@ -22,7 +22,7 @@ import jobs from "../features/jobs/slice";
 import pricing from "../features/pricing/slice";
 import services from "../features/services/slice";
 import forgotPassword from "../features/forgotPassword/slice";
-
+// write the default state as a function
 const persistConfig = {
   key: "root",
   version: 1,

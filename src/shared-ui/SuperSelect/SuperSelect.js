@@ -146,8 +146,7 @@ export const SuperSelect = ({
 
   return (
     <Select
-      clearIcon={<img src={require('../../assets/images/icons/close-icon.svg')} />}
-      value={selected}
+      autoComplete={'' + Math.random()}
       style={style}
       maxTagCount={maxTagCount}
       disabled={disabled}

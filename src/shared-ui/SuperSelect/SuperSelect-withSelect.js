@@ -141,6 +141,7 @@ export const SuperSelectWithSelect = ({
 
   return (
     <Select
+      autoComplete="off"
       style={style}
       maxTagCount={maxTagCount}
       disabled={disabled}
