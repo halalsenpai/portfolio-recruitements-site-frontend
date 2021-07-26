@@ -48,11 +48,12 @@ export const SuperSelect = ({
     page: 1,
     limit: 100,
   });
+
   const [selected, setSelected] = useState()
 
   const clearSelected = () => {
     setSelected(null)
-  }
+  };
 
   useEffect(() => {
     if (!dependencyId) {
@@ -146,7 +147,7 @@ export const SuperSelect = ({
 
   return (
     <Select
-      autoComplete={'' + Math.random()}
+      autoComplete={"" + Math.random()}
       style={style}
       maxTagCount={maxTagCount}
       disabled={disabled}

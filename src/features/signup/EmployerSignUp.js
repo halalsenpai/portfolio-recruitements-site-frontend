@@ -4,7 +4,7 @@ import useRefState from "react-usestateref";
 import { useHistory, useLocation } from "react-router-dom";
 import { Input, Form, Select, Checkbox, Alert, Row, Col, Upload } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
-import queryString from 'query-string';
+import queryString from "query-string";
 import { DobChecker } from "../../utils/helper";
 import * as Rules from "../../utils/rules";
 import TermsConditions from "./TermsConditions";
@@ -65,7 +65,6 @@ function EmployerSignUp() {
   const [categoryId, setCategoryId] = useState(null);
   const [QS, set_QS] = useState(queryString.parse(location.search));
 
-
   const roles = useAppSelector(selectRole);
   const findUsPlatforms = useAppSelector(selectFindUsPlatform);
   const signupSuccess = useAppSelector(selectEmployerSignup);
@@ -82,20 +81,17 @@ function EmployerSignUp() {
 
   
 
-
-
-
   useEffect(() => {
     // let params = queryString.parse(location.search);
     dispatch(getRole());
     dispatch(getFindUsPlatform());
     dispatch(getCity());
     dispatch(getCountryByIp());
-    if ('companyProfileId' in QS) {
+    if ("companyProfileId" in QS) {
       form.setFieldsValue({
         companyProfileId: QS.companyProfileId,
         firstName: QS.name,
-        email: QS.email
+        email: QS.email,
       });
       setCurrentStep(2);
     }
@@ -119,6 +115,7 @@ function EmployerSignUp() {
   }, [signupSuccess]);
 
   const onFinish = (values) => {
+
     console.log("onFinish", values)
     setFormData({ ...formData, ...values, companyLogo: companyLogo?.url });
 
@@ -154,8 +151,8 @@ function EmployerSignUp() {
       return;
     }
 
-    if ('companyProfileId' in QS) {
-      payload.companyProfileId = Number(QS.companyProfileId)
+    if ("companyProfileId" in QS) {
+      payload.companyProfileId = Number(QS.companyProfileId);
     }
 
     if (payload.companyProfileId === "create-company") {
@@ -255,7 +252,7 @@ function EmployerSignUp() {
       case 2:
         return (
           <div className="second-step">
-            {!QS?.companyProfileId ?
+            {!QS?.companyProfileId ? (
               <div className="header">
                 <img
                   onClick={() => setCurrentStep(1)}
@@ -263,7 +260,8 @@ function EmployerSignUp() {
                   src={require("../../assets/images/icons/back.svg")}
                   alt=""
                 />
-              </div> : null}
+              </div>
+            ) : null}
             {!isCreateCompany && (
               <Row gutter={[32, 32]}>
                 <Col style={{ marginBottom: "24px", zIndex: 300 }} span={24}>
@@ -296,7 +294,10 @@ function EmployerSignUp() {
                     rules={Rules.firstNameRule}
                     placeholder="Enter first name"
                     name="firstName">
-                    <Input autoComplete={'' + Math.random()} placeholder="Enter first name" />
+                    <Input
+                      autoComplete={"" + Math.random()}
+                      placeholder="Enter first name"
+                    />
                   </Form.Item>
                 </Col>
                 <Col
@@ -309,7 +310,10 @@ function EmployerSignUp() {
                     label="Last name"
                     rules={Rules.lastNameRule}
                     name="lastName">
-                    <Input autoComplete={'' + Math.random()} placeholder="Enter last name" />
+                    <Input
+                      autoComplete={"" + Math.random()}
+                      placeholder="Enter last name"
+                    />
                   </Form.Item>
                 </Col>
                 <Col
@@ -355,7 +359,11 @@ function EmployerSignUp() {
                     name="email"
                     className="c-input"
                     rules={Rules.emailRule}>
-                    <Input autoComplete={'' + Math.random()} placeholder="Enter your email" type="text" />
+                    <Input
+                      autoComplete={"" + Math.random()}
+                      placeholder="Enter your email"
+                      type="text"
+                    />
                   </Form.Item>
                 </Col>
                 <Col
@@ -440,7 +448,7 @@ function EmployerSignUp() {
                     name="companyName"
                     className="c-input"
                     rules={Rules.requiredRule}>
-                    <Input autoComplete={'' + Math.random()} />
+                    <Input autoComplete={"" + Math.random()} />
                   </Form.Item>
                 </Col>
 
@@ -451,7 +459,7 @@ function EmployerSignUp() {
                   md={{ span: 12 }}
                   lg={{ span: 12 }}>
                   <Form.Item
-                    autoComplete={'' + Math.random()}
+                    autoComplete={"" + Math.random()}
                     style={{ zIndex: 170 }}
                     label="Company location"
                     name="countryId"
@@ -512,7 +520,7 @@ function EmployerSignUp() {
                     name="webUrl"
                     className="c-input"
                     rules={Rules.requiredRule}>
-                    <Input autoComplete={'' + Math.random()} />
+                    <Input autoComplete={"" + Math.random()} />
                   </Form.Item>
                 </Col>
               </Row>
@@ -603,7 +611,10 @@ function EmployerSignUp() {
                     name="password"
                     className="c-input"
                     rules={Rules.passwordRule}>
-                    <Input.Password autoComplete={'' + Math.random()} type="password" />
+                    <Input.Password
+                      autoComplete={"" + Math.random()}
+                      type="password"
+                    />
                   </Form.Item>
                 </Col>
                 <Col
@@ -616,7 +627,10 @@ function EmployerSignUp() {
                     name="ConfirmPassword"
                     className="c-input"
                     rules={Rules.confirmPasswordRule}>
-                    <Input.Password autoComplete={'' + Math.random()} type="password" />
+                    <Input.Password
+                      autoComplete={"" + Math.random()}
+                      type="password"
+                    />
                   </Form.Item>
                 </Col>
               </Row>
@@ -655,7 +669,7 @@ function EmployerSignUp() {
                     label="First name"
                     rules={Rules.firstNameRule}
                     name="firstName">
-                    <Input autoComplete={'' + Math.random()} />
+                    <Input autoComplete={"" + Math.random()} />
                   </Form.Item>
                 </Col>
                 <Col
@@ -668,7 +682,7 @@ function EmployerSignUp() {
                     label="Last name"
                     rules={Rules.lastNameRule}
                     name="lastName">
-                    <Input autoComplete={'' + Math.random()} />
+                    <Input autoComplete={"" + Math.random()} />
                   </Form.Item>
                 </Col>
                 <Col
@@ -714,7 +728,11 @@ function EmployerSignUp() {
                     name="email"
                     className="c-input"
                     rules={Rules.emailRule}>
-                    <Input autoComplete={'' + Math.random()} placeholder="Enter your email" type="text" />
+                    <Input
+                      autoComplete={"" + Math.random()}
+                      placeholder="Enter your email"
+                      type="text"
+                    />
                   </Form.Item>
                 </Col>
                 <Col
@@ -790,7 +808,10 @@ function EmployerSignUp() {
                     name="password"
                     className="c-input"
                     rules={Rules.passwordRule}>
-                    <Input.Password autoComplete={'' + Math.random()} type="password" />
+                    <Input.Password
+                      autoComplete={"" + Math.random()}
+                      type="password"
+                    />
                   </Form.Item>
                 </Col>
                 <Col
@@ -803,7 +824,10 @@ function EmployerSignUp() {
                     name="ConfirmPassword"
                     className="c-input"
                     rules={Rules.confirmPasswordRule}>
-                    <Input.Password autoComplete={'' + Math.random()} type="password" />
+                    <Input.Password
+                      autoComplete={"" + Math.random()}
+                      type="password"
+                    />
                   </Form.Item>
                 </Col>
               </Row>
