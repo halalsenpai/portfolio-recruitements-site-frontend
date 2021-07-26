@@ -120,7 +120,7 @@ function EmployerSignUp() {
 
   const onFinish = (values) => {
     console.log("onFinish", values)
-    setFormData({ ...formData, ...values });
+    setFormData({ ...formData, ...values, companyLogo: companyLogo?.url });
 
     if (agreeToTerms === false && (currentStep === 3)) {
       showWarningMessage("Agree to terms and conditions to proceed");
@@ -161,9 +161,12 @@ function EmployerSignUp() {
     if (payload.companyProfileId === "create-company") {
       delete payload.companyProfileId;
     }
+
     delete payload.agreeTerms;
     payload.profilePhoto = profileImage?.url;
-    console.log(payload);
+    payload.companyLogo = companyLogo?.url;
+    console.log("profile photo", profileImage);
+    console.log("payload", payload);
     dispatch(employerSignup(payload));
   };
 
@@ -197,7 +200,7 @@ function EmployerSignUp() {
     const payload = new FormData();
     payload.append("file", file, file.name);
     dispatch(uploadProfileImage({ payload }));
-    console.log("ahzam salik", uploadProfileImage)
+    console.log("uploadProfileImage", uploadProfileImage)
 
     return false;
   };
@@ -206,7 +209,7 @@ function EmployerSignUp() {
     const payload = new FormData();
     payload.append("file", file, file.name);
     dispatch(uploadCompanyLogo({ payload }));
-    console.log("ahzam", uploadCompanyLogo)
+    console.log("uploadCompanyLogo", uploadCompanyLogo)
     return false;
   };
   const handleCreateNewCompany = () => {
@@ -263,8 +266,25 @@ function EmployerSignUp() {
               </div> : null}
             {!isCreateCompany && (
               <Row gutter={[32, 32]}>
-                {/* <Col>
-                <h1>sdfkoisdfiohsdkjfhkj ahzam </h1></Col> */}
+                <Col style={{ marginBottom: "24px", zIndex: 300 }} span={24}>
+                  <Upload
+                    beforeUpload={profileImageBeforeUpload}
+                    showUploadList={false}>
+                    <div className="avatar-upload">
+                      <div className="photo-square">
+                        {profileImage && <img src={profileImage?.url} alt="" />}
+                      </div>
+                      {!profileImage && (
+                        <Button>
+                          <PlusOutlined />
+                        </Button>
+                      )}
+                    </div>
+                    <div style={{ fontSize: "12px", marginTop: "12px" }}>
+                      Upload profile photo
+                    </div>
+                  </Upload>
+                </Col>
                 <Col
                   xs={{ span: 24 }}
                   span={12}
