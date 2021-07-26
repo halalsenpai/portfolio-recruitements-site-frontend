@@ -202,7 +202,7 @@ function EmployerSignUp() {
     dispatch(uploadProfileImage({ payload }));
     console.log("uploadProfileImage", uploadProfileImage)
     return false;
-    
+
   };
 
   const companyLogoBeforeUpload = (file) => {
@@ -575,7 +575,7 @@ function EmployerSignUp() {
                   </Form.Item>
                 </Col>
                 <Col
-                  style={{ zIndex: 100 }}
+                  style={{ zIndex: 200 }}
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
@@ -718,7 +718,7 @@ function EmployerSignUp() {
                   </Form.Item>
                 </Col>
                 <Col
-                  style={{ zIndex: 160 }}
+                  style={{ zIndex: 170 }}
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
@@ -740,7 +740,7 @@ function EmployerSignUp() {
                   </Form.Item>
                 </Col>
                 <Col
-                  style={{ zIndex: 100 }}
+                  style={{ zIndex: 160 }}
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
