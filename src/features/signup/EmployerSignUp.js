@@ -201,7 +201,6 @@ function EmployerSignUp() {
     payload.append("file", file, file.name);
     dispatch(uploadProfileImage({ payload }));
     console.log("uploadProfileImage", uploadProfileImage)
-
     return false;
   };
 
