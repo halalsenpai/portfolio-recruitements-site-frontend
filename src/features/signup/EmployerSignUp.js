@@ -202,6 +202,7 @@ function EmployerSignUp() {
     dispatch(uploadProfileImage({ payload }));
     console.log("uploadProfileImage", uploadProfileImage)
     return false;
+    
   };
 
   const companyLogoBeforeUpload = (file) => {
