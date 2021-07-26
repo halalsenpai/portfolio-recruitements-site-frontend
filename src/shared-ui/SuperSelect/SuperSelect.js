@@ -48,6 +48,11 @@ export const SuperSelect = ({
     page: 1,
     limit: 100,
   });
+  const [selected, setSelected] = useState()
+
+  const clearSelected = () => {
+    setSelected(null)
+  }
 
   useEffect(() => {
     if (!dependencyId) {

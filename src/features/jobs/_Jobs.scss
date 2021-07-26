@@ -112,7 +112,7 @@
       // height: 60px;
       justify-content: space-around;
       width: 100%;
-      padding-inline: 25px;
+      padding-inline: 30px;
       padding-top: 24px;
       padding-bottom: 6px;
       input {
@@ -138,6 +138,25 @@
       .jobs-filter-header-secrion {
         display: flex;
         flex-grow: 1;
+
+        input#location {
+          padding: 0 7px !important;
+        }
+        .icon-in-super-select{
+          position: relative;
+          width: 100%;
+          img{
+            position:absolute;
+            left : 0;
+            top: 7px;
+            z-index: 41;
+            padding-left: 12px;
+          }
+          .ant-select-single.ant-select-show-arrow .ant-select-selection-item, .ant-select-single.ant-select-show-arrow .ant-select-selection-placeholder {
+            padding-right: 18px;
+            padding-left: 14px;
+        }
+        }
       }
 
       .jobs-button-section {
@@ -146,6 +165,11 @@
 
         .filter-btns {
           margin: 0 5px;
+        }
+
+        .c-button.shadowed:hover,
+        .c-button.shadowed:focus {
+          background: #fff;
         }
       }
     }

@@ -15,10 +15,11 @@ import {
   getCountryByIp,
   getCitiesByCountry,
   uploadProfileImage,
+  uploadCompanyLogo,
   agencySignup,
 } from "./thunk";
 
-const thunks = [getCitiesByCountry, uploadProfileImage];
+const thunks = [getCitiesByCountry, uploadProfileImage, uploadCompanyLogo];
 
 const initialState = {
   status: "idle",
@@ -39,6 +40,7 @@ const initialState = {
   countryByIp: {},
   citiesByCountry: [],
   profileImage: null,
+  companyLogo: null,
 };
 
 function isPendingAction(action) {
@@ -135,6 +137,13 @@ export const slice = createSlice({
       .addCase(uploadProfileImage.pending, (state) => {
         state.isProfileImageLoading = true;
       })
+      .addCase(uploadCompanyLogo.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.companyLogo = action.payload;
+      })
+      .addCase(uploadCompanyLogo.pending, (state) => {
+        state.isCompanyLogoLoading = true;
+      })
       .addMatcher(isPending(...thunks), (state) => {
         state.status = "loading";
         state.errorMessage = null;
@@ -172,8 +181,12 @@ export const selectEmployerSignup = (state) =>
 export const selectCountryByIp = (state) => state.signup.countryByIp;
 export const selectCitiesByCountry = (state) => state.signup.citiesByCountry;
 export const selectIsProfileImageLoading = (state) =>
-  state.signup.isProfileImageLoading;
+state.signup.isProfileImageLoading;
 export const selectProfileImage = (state) => state.signup.profileImage;
+export const selectIsCompanyLogoLoading= (state) =>
+state.signup.isCompanyLogoLoading;
+export const selectCompanyLogo = (state) => state.signup.companyLogo;
+
 
 // export const { getSignup } = slice.actions;
 
