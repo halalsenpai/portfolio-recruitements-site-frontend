@@ -78,9 +78,6 @@ function EmployerSignUp() {
   const profileImage = useAppSelector(selectProfileImage);
   const companyLogo = useAppSelector(selectCompanyLogo);
 
-
-  
-
   useEffect(() => {
     // let params = queryString.parse(location.search);
     dispatch(getRole());
@@ -115,11 +112,10 @@ function EmployerSignUp() {
   }, [signupSuccess]);
 
   const onFinish = (values) => {
-
-    console.log("onFinish", values)
+    console.log("onFinish", values);
     setFormData({ ...formData, ...values, companyLogo: companyLogo?.url });
 
-    if (agreeToTerms === false && (currentStep === 3)) {
+    if (agreeToTerms === false && currentStep === 3) {
       showWarningMessage("Agree to terms and conditions to proceed");
       return;
     }
@@ -197,16 +193,15 @@ function EmployerSignUp() {
     const payload = new FormData();
     payload.append("file", file, file.name);
     dispatch(uploadProfileImage({ payload }));
-    console.log("uploadProfileImage", uploadProfileImage)
+    console.log("uploadProfileImage", uploadProfileImage);
     return false;
-
   };
 
   const companyLogoBeforeUpload = (file) => {
     const payload = new FormData();
     payload.append("file", file, file.name);
     dispatch(uploadCompanyLogo({ payload }));
-    console.log("uploadCompanyLogo", uploadCompanyLogo)
+    console.log("uploadCompanyLogo", uploadCompanyLogo);
     return false;
   };
   const handleCreateNewCompany = () => {
@@ -640,7 +635,7 @@ function EmployerSignUp() {
 
             {isCreateCompany && (
               <Row gutter={[32, 32]}>
-                 <Col style={{ marginBottom: "24px", zIndex: 300 }} span={24}>
+                <Col style={{ marginBottom: "24px", zIndex: 300 }} span={24}>
                   <Upload
                     beforeUpload={profileImageBeforeUpload}
                     showUploadList={false}>
@@ -838,7 +833,9 @@ function EmployerSignUp() {
   };
   return (
     <div className="c-container auth-wrapper">
-      <div className="signup-container with-form">
+      <div
+        className="signup-container with-form"
+        style={currentStep == 3 ? { height: 880 } : { height: 750 }}>
         <Form
           style={{ zIndex: "40" }}
           form={form}
@@ -847,7 +844,7 @@ function EmployerSignUp() {
           onFinish={onFinish}>
           {renderSteps(currentStep)}
 
-          {( currentStep == 3) && (
+          {currentStep == 3 && (
             <>
               <Form.Item
                 name="agreeTerms"

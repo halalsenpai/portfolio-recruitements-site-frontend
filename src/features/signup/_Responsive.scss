@@ -52,9 +52,12 @@
   .signup-container {
     background-color: #fff;
     overflow-y: unset;
+    &.with-form.height-720 {
+      height: unset !important;
+    }
     &.with-form {
       background-color: #fff;
-
+      height: unset !important;
       max-width: 1020px;
       width: 100%;
       border-radius: 20px;
