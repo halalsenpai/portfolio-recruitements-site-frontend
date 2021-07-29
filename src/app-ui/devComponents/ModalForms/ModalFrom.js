@@ -42,7 +42,6 @@ const DashboardFrom = () => {
                 </div>
 
                 <Select size="large" defaultValue="" style={{ width: 120 }}>
-                  <Option value="">Select</Option>
                 </Select>
               </Form.Item>
 
@@ -56,7 +55,6 @@ const DashboardFrom = () => {
                 </div>
 
                 <Select size="large" defaultValue="" style={{ width: 120 }}>
-                  <Option value="">Select</Option>
                 </Select>
               </Form.Item>
             </div>
@@ -107,7 +105,6 @@ const DashboardFrom = () => {
                 </div>
 
                 <Select size="large" defaultValue="" style={{ width: 120 }}>
-                  <Option value="">Select</Option>
                 </Select>
               </Form.Item>
             </div>

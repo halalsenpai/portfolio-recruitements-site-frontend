@@ -44,6 +44,7 @@ import {
   selectCountryByIp,
   selectCitiesByCountry,
   selectProfileImage,
+  removePreUploadedProfileImage,
   selectCompanyLogo,
 } from "./slice";
 import AvatarPicker from "../../shared-ui/AvatarPicker/AvatarPicker";
@@ -207,6 +208,7 @@ function EmployerSignUp() {
   const handleCreateNewCompany = () => {
     form.resetFields();
     setCreateCompany(true);
+    dispatch(removePreUploadedProfileImage());
     setCurrentStep(2);
   };
 
@@ -375,8 +377,6 @@ function EmployerSignUp() {
                     <Select
                       getPopupContainer={(trigger) => trigger.parentNode}
                       defaultValue="">
-                      <Option value="">Select</Option>
-
                       {findUsPlatforms?.map((fu) => (
                         <Option value={fu.id}>{fu.title}</Option>
                       ))}
@@ -426,7 +426,6 @@ function EmployerSignUp() {
                     <Select
                       getPopupContainer={(trigger) => trigger.parentNode}
                       defaultValue="">
-                      <Option value="">Select</Option>
                       <Option value="single-company">Single company</Option>
                       <Option value="headquarters">Headquarters</Option>
                       <Option value="branch">Branch within the company</Option>
@@ -500,6 +499,7 @@ function EmployerSignUp() {
                     className="c-input"
                     rules={Rules.phoneRule}>
                     <PhoneInput
+                      onChange={(e) => console.log(e)}
                       placeholder="Enter your phone number."
                       country={countryCode}
                     />
@@ -513,8 +513,7 @@ function EmployerSignUp() {
                   <Form.Item
                     label="Website https://"
                     name="webUrl"
-                    className="c-input"
-                    rules={Rules.requiredRule}>
+                    className="c-input">
                     <Input autoComplete={"" + Math.random()} />
                   </Form.Item>
                 </Col>
@@ -538,6 +537,7 @@ function EmployerSignUp() {
               <Row gutter={[32, 32]}>
                 <Col style={{ marginBottom: "24px" }} span={24}>
                   <Upload
+                    accept="image/*"
                     beforeUpload={profileImageBeforeUpload}
                     showUploadList={false}>
                     <div className="avatar-upload">
@@ -785,8 +785,6 @@ function EmployerSignUp() {
                     <Select
                       getPopupContainer={(trigger) => trigger.parentNode}
                       defaultValue="">
-                      <Option value="">Select</Option>
-
                       {findUsPlatforms?.map((fu) => (
                         <Option value={fu.id}>{fu.title}</Option>
                       ))}
@@ -884,7 +882,12 @@ function EmployerSignUp() {
           )}
 
           {currentStep === 2 && (
-            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                marginBottom: "20px",
+              }}>
               <Button
                 block
                 className="next-btn-2"
@@ -896,7 +899,12 @@ function EmployerSignUp() {
             </div>
           )}
           {currentStep === 3 && (
-            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                marginBottom: "20px",
+              }}>
               <Button
                 block
                 className="next-btn-2"

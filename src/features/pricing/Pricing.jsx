@@ -148,7 +148,7 @@ const Pricing = () => {
             their jobs
           </p>
           <div className="btn-sec">
-            <Popover content={"coming soon"}>
+            <Popover content={"coming soon..."}>
               {" "}
               <Button>Coming Soon</Button>
             </Popover>
