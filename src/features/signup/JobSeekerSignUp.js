@@ -185,7 +185,7 @@ function JobSeekerSignUp() {
                 className="c-input"
                 rules={Rules.confirmPasswordRule}
                 dependencies={["password"]}>
-                <Input.Password autoComplete={'' + Math.random()} placeholder="Enter password again" />
+                <Input.Password autoComplete={'' + Math.random()} placeholder="Confirm password" />
               </Form.Item>
             </Col>
 
@@ -208,10 +208,11 @@ function JobSeekerSignUp() {
                 className="c-input"
                 rules={Rules.requiredRule}>
                 <Select
+                allowClear
+                placeholder="Select family status"
                   getPopupContainer={(trigger) => trigger.parentNode}
                   size="large"
-                  defaultValue="">
-                  <Option value="">Select</Option>
+                  >
                   {familyStatuses?.map((fs) => (
                     <Option value={fs.id}>{fs.title}</Option>
                   ))}
@@ -239,9 +240,11 @@ for an all girls school.">
                 className="c-input"
                 rules={Rules.requiredRule}>
                 <Select
+                allowClear
+                placeholder="Select gender"
                   getPopupContainer={(trigger) => trigger.parentNode}
-                  defaultValue="">
-                  <Option value="">Select</Option>
+                  >
+                  
                   <Option value="male">Male</Option>
                   <Option value="female">Female</Option>
                   <Option value="other">Other</Option>
@@ -297,7 +300,8 @@ secure visas for everyone.">
                   ))}
                 </Select> */}
                 <SuperSelect
-                  defaultValue=""
+                  allowClear
+                  placeholder="Select passport nationality"
                   getPopupContainer={(trigger) => trigger.parentNode}
                   fetchOptions={getNationality}
                 />
