@@ -231,8 +231,8 @@ function AgencySignUp() {
                     className="c-input"
                     label="First name"
                     rules={Rules.firstNameRule}
-                    name="firstName"
-                  >
+                    name="firstName">
+
                     <Input autoComplete={"" + Math.random()} />
                   </Form.Item>
                 </Col>
@@ -246,8 +246,7 @@ function AgencySignUp() {
                     className="c-input"
                     label="Last name"
                     rules={Rules.lastNameRule}
-                    name="lastName"
-                  >
+                    name="lastName">
                     <Input autoComplete={"" + Math.random()} />
                   </Form.Item>
                 </Col>
@@ -298,8 +297,7 @@ function AgencySignUp() {
                     label="Work email address"
                     name="email"
                     className="c-input"
-                    rules={Rules.emailRule}
-                  >
+                    rules={Rules.emailRule}>
                     <Input
                       autoComplete={"" + Math.random()}
                       placeholder="Enter your email"
@@ -389,8 +387,7 @@ function AgencySignUp() {
                     label="Company name"
                     name="companyName"
                     className="c-input"
-                    rules={Rules.requiredRule}
-                  >
+                    rules={Rules.requiredRule}>
                     <Input autoComplete={"" + Math.random()} />
                   </Form.Item>
                 </Col>
@@ -468,7 +465,7 @@ function AgencySignUp() {
                     label="Website http://"
                     name="webUrl"
                     className="c-input"
-                  >
+                    rules={Rules.requiredRule}>
                     <Input autoComplete={"" + Math.random()} />
                   </Form.Item>
                 </Col>
@@ -564,8 +561,7 @@ function AgencySignUp() {
                     label="Password"
                     name="password"
                     className="c-input"
-                    rules={Rules.passwordRule}
-                  >
+                    rules={Rules.passwordRule}>
                     <Input.Password
                       autoComplete={"" + Math.random()}
                       type="password"
@@ -582,8 +578,7 @@ function AgencySignUp() {
                     label="Confirm password"
                     name="ConfirmPassword"
                     className="c-input"
-                    rules={Rules.confirmPasswordRule}
-                  >
+                    rules={Rules.confirmPasswordRule}>
                     <Input.Password
                       autoComplete={"" + Math.random()}
                       type="password"
@@ -604,8 +599,7 @@ function AgencySignUp() {
                     className="c-input"
                     label="First name"
                     rules={Rules.firstNameRule}
-                    name="firstName"
-                  >
+                    name="firstName">
                     <Input autoComplete={"" + Math.random()} />
                   </Form.Item>
                 </Col>
@@ -619,8 +613,8 @@ function AgencySignUp() {
                     className="c-input"
                     label="Last name"
                     rules={Rules.lastNameRule}
-                    name="lastName"
-                  >
+                    name="lastName">
+
                     <Input autoComplete={"" + Math.random()} />
                   </Form.Item>
                 </Col>
@@ -671,8 +665,7 @@ function AgencySignUp() {
                     label="Work email address"
                     name="email"
                     className="c-input"
-                    rules={Rules.emailRule}
-                  >
+                    rules={Rules.emailRule}>
                     <Input
                       autoComplete={"" + Math.random()}
                       placeholder="Enter your email"
@@ -759,8 +752,8 @@ function AgencySignUp() {
                     label="Password"
                     name="password"
                     className="c-input"
-                    rules={Rules.passwordRule}
-                  >
+                    rules={Rules.passwordRule}>
+
                     <Input.Password
                       autoComplete={"" + Math.random()}
                       type="password"
@@ -777,8 +770,8 @@ function AgencySignUp() {
                     label="Confirm password"
                     name="ConfirmPassword"
                     className="c-input"
-                    rules={Rules.confirmPasswordRule}
-                  >
+                    rules={Rules.confirmPasswordRule}>
+
                     <Input.Password
                       autoComplete={"" + Math.random()}
                       type="password"
@@ -794,7 +787,7 @@ function AgencySignUp() {
 
   return (
     <div className="c-container auth-wrapper">
-      <div className="signup-container with-form">
+      <div className="signup-container with-form height-720">
         <Form
           style={{ zIndex: "40" }}
           form={form}

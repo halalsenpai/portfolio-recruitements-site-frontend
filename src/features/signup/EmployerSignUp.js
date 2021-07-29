@@ -80,11 +80,6 @@ function EmployerSignUp() {
   const companyLogo = useAppSelector(selectCompanyLogo);
 
   useEffect(() => {
-    // CDM
-    console.log("Remove profile image n CDM");
-  }, []);
-
-  useEffect(() => {
     // let params = queryString.parse(location.search);
     dispatch(getRole());
     dispatch(getFindUsPlatform());
@@ -836,7 +831,9 @@ function EmployerSignUp() {
   };
   return (
     <div className="c-container auth-wrapper">
-      <div className="signup-container with-form">
+      <div
+        className="signup-container with-form"
+        style={currentStep == 3 ? { height: 880 } : { height: 750 }}>
         <Form
           style={{ zIndex: "40" }}
           form={form}

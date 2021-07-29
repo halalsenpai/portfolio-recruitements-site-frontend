@@ -82,12 +82,12 @@ const JobFilter = (props) => {
     dispatch(getSuitableFor());
   }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     document.querySelectorAll(".ant-select-selector input").forEach((e) => {
       e.setAttribute("autocomplete", "off");
-     //you can put any value but NOT "off" or "false" because they DO NOT works
-   })
-  })
+      //you can put any value but NOT "off" or "false" because they DO NOT works
+    });
+  });
 
   useEffect(() => {
     if (filterApplySuccess === true) {
@@ -133,8 +133,8 @@ const JobFilter = (props) => {
 
   const handleReset = () => {
     form.resetFields();
-    setCategoryId(null)
-    setSelectedCountryId(null)
+    setCategoryId(null);
+    setSelectedCountryId(null);
     dispatch(getJob());
     // props.onHide();
   };
@@ -152,7 +152,7 @@ const JobFilter = (props) => {
   return (
     <>
       <Modal
-        className="center lg filter-modal"
+        className="center lg filter-modal override-width"
         show={props.show}
         onHide={props.onHide}>
         <Form
@@ -168,9 +168,10 @@ const JobFilter = (props) => {
           <div className="filter-section">
             <Row justify="center" wrap={true}>
               <Col
+                span={8}
                 style={{ zIndex: "400" }}
                 className="jobs-grid switch-grid"
-                lg={{ span: 12 }}
+                lg={{ span: 8 }}
                 sm={{ span: 12 }}
                 xs={{ span: 24 }}>
                 <Form.Item
@@ -178,9 +179,7 @@ const JobFilter = (props) => {
                   name="jobType"
                   className="c-input c-form p-0"
                   rules={null}
-                  placeholder="Bla Bla Bla"
-                >
-
+                  placeholder="Bla Bla Bla">
                   {/* <Select
                     getPopupContainer={(trigger) => trigger.parentNode}
                     placeholder="Select">
@@ -197,11 +196,11 @@ const JobFilter = (props) => {
                 </Form.Item>
               </Col>
               <Col
-                lg={{ span: 12 }}
+                lg={{ span: 8 }}
                 sm={{ span: 12 }}
                 xs={{ span: 24 }}
                 className="jobs-grid"
-                span={12}>
+                span={8}>
                 <Form.Item
                   label="Add location"
                   name="addLocation"
@@ -213,13 +212,14 @@ const JobFilter = (props) => {
                     alt=""
                   />
                   <Input
-                    autoComplete={'' + Math.random()}
+                    autoComplete={"" + Math.random()}
                     onClick={handleSetCountriesCitiesModal}
                     placeholder="Select countires and cities"
-                    value={`${selectedCountryId
-                      ? getTitleById(countries, selectedCountryId)
-                      : ""
-                      }`}></Input>
+                    value={`${
+                      selectedCountryId
+                        ? getTitleById(countries, selectedCountryId)
+                        : ""
+                    }`}></Input>
                 </Form.Item>
                 <Modal
                   className="rm-padding medium country-city-modal-parent"
@@ -235,15 +235,13 @@ const JobFilter = (props) => {
                   />
                 </Modal>
               </Col>
-            </Row>
-            <Row justify="center" wrap={true}>
               <Col
                 style={{ zIndex: "390" }}
-                lg={{ span: 12 }}
+                lg={{ span: 8 }}
                 sm={{ span: 12 }}
                 xs={{ span: 24 }}
                 className="jobs-grid"
-                span={12}>
+                span={8}>
                 <Form.Item
                   label="Category"
                   placeholder="Select category"
@@ -289,11 +287,11 @@ const JobFilter = (props) => {
               </Col>
               <Col
                 style={{ zIndex: "380" }}
-                lg={{ span: 12 }}
+                lg={{ span: 8 }}
                 sm={{ span: 12 }}
                 xs={{ span: 24 }}
                 className="jobs-grid"
-                span={12}>
+                span={8}>
                 <Form.Item
                   label="Job title"
                   name="jobTitle"
@@ -318,11 +316,49 @@ const JobFilter = (props) => {
                   </Select> */}
                 </Form.Item>
               </Col>
-            </Row>
-            <Row justify="center" wrap={true}>
+              <Col
+                style={{ zIndex: "360" }}
+                lg={{ span: 8 }}
+                sm={{ span: 12 }}
+                xs={{ span: 24 }}
+                className="jobs-grid"
+                span={8}>
+                <Form.Item
+                  label="Gender"
+                  name="gender"
+                  className="c-input c-form p-0"
+                  rules={null}>
+                  <Select
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    placeholder="Select">
+                    <Option value="Male">Male</Option>
+                    <Option value="Female"> Female </Option>
+                    <Option value="Other"> Other </Option>
+                  </Select>
+                </Form.Item>
+              </Col>
+              <Col
+                style={{ zIndex: "350" }}
+                lg={{ span: 8 }}
+                sm={{ span: 12 }}
+                xs={{ span: 24 }}
+                className="jobs-grid"
+                span={8}>
+                <Form.Item
+                  label="Qualification"
+                  name="qualification"
+                  className="c-input c-form p-0"
+                  rules={null}>
+                  <SuperSelectWithSelect
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    defaultValue="Select Qualification"
+                    fetchOptions={getQualification}
+                  />
+                </Form.Item>
+              </Col>
               <Col
                 style={{ zIndex: "370" }}
-                lg={{ span: 12 }}
+                lg={{ span: 8 }}
                 sm={{ span: 12 }}
                 xs={{ span: 24 }}
                 className="jobs-grid"
@@ -352,12 +388,12 @@ const JobFilter = (props) => {
                 rules={null}>
                 <Slider range={{ draggableTrack: true }} defaultValue={[0, 5000]} />
               </Form.Item> */}
-              <Col
+              {/* <Col
                 lg={{ span: 12 }}
                 sm={{ span: 12 }}
                 xs={{ span: 24 }}
                 className="jobs-grid"
-                span={12}>
+                span={8}>
                 <Form.Item
                   // extra={
                   //   <span style={{ color: "green" }}>
@@ -386,54 +422,10 @@ const JobFilter = (props) => {
                     defaultValue={[0, 1000]}
                   />
                 </Form.Item>
-              </Col>
-            </Row>
-            <Row justify="center" wrap={true}>
-              <Col
-                style={{ zIndex: "360" }}
-                lg={{ span: 12 }}
-                sm={{ span: 12 }}
-                xs={{ span: 24 }}
-                className="jobs-grid"
-                span={12}>
-                <Form.Item
-                  label="Gender"
-                  name="gender"
-                  className="c-input c-form p-0"
-                  rules={null}>
-                  <Select
-                    getPopupContainer={(trigger) => trigger.parentNode}
-                    placeholder="Select">
-                    <Option value="Male">Male</Option>
-                    <Option value="Female"> Female </Option>
-                    <Option value="Other"> Other </Option>
-                  </Select>
-                </Form.Item>
-              </Col>
-              <Col
-                style={{ zIndex: "350" }}
-                lg={{ span: 12 }}
-                sm={{ span: 12 }}
-                xs={{ span: 24 }}
-                className="jobs-grid"
-                span={12}>
-                <Form.Item
-                  label="Qualification"
-                  name="qualification"
-                  className="c-input c-form p-0"
-                  rules={null}>
-                  <SuperSelectWithSelect
-                    getPopupContainer={(trigger) => trigger.parentNode}
-                    defaultValue="Select Qualification"
-                    fetchOptions={getQualification}
-                  />
-                </Form.Item>
-              </Col>
-            </Row>
-            <Row justify="center" wrap={true}>
+              </Col> */}
               <Col
                 style={{ zIndex: "340" }}
-                lg={{ span: 12 }}
+                lg={{ span: 8 }}
                 sm={{ span: 12 }}
                 xs={{ span: 24 }}
                 className="jobs-grid"
@@ -452,7 +444,7 @@ const JobFilter = (props) => {
               </Col>
               <Col
                 style={{ zIndex: "330" }}
-                lg={{ span: 12 }}
+                lg={{ span: 8 }}
                 sm={{ span: 12 }}
                 xs={{ span: 24 }}
                 className="jobs-grid"
@@ -475,12 +467,17 @@ const JobFilter = (props) => {
                 </Form.Item>
               </Col>
             </Row>
+            {/* <Row justify="center" wrap={true}></Row>
+            <Row justify="center" wrap={true}></Row> */}
+            <Row justify="center" wrap={true}></Row>
+            {/* <Row justify="center" wrap={true}></Row> */}
           </div>
-          <div className="filter-section">
+          <div className="filter-section width-auto">
             <Row justify="center" wrap={true}>
               <Col
-                className="jobs-grid switch-grid"
-                lg={{ span: 12 }}
+                span={8}
+                className="jobs-grid switch-grid cent"
+                lg={{ span: 8 }}
                 sm={{ span: 12 }}
                 xs={{ span: 24 }}>
                 <Form.Item
@@ -490,6 +487,13 @@ const JobFilter = (props) => {
                   label="Anual flight provided">
                   <Switch size="small" />
                 </Form.Item>
+              </Col>
+              <Col
+                span={8}
+                className="jobs-grid switch-grid cent"
+                lg={{ span: 8 }}
+                sm={{ span: 12 }}
+                xs={{ span: 24 }}>
                 <Form.Item
                   className="switches"
                   valuePropName="checked"
@@ -497,6 +501,13 @@ const JobFilter = (props) => {
                   label="Include family flights">
                   <Switch size="small" />{" "}
                 </Form.Item>
+              </Col>
+              <Col
+                span={8}
+                className="jobs-grid switch-grid cent"
+                lg={{ span: 8 }}
+                sm={{ span: 12 }}
+                xs={{ span: 24 }}>
                 <Form.Item
                   className="switches"
                   label="Include utility bills"
@@ -506,8 +517,9 @@ const JobFilter = (props) => {
                 </Form.Item>
               </Col>
               <Col
-                className="jobs-grid switch-grid"
-                lg={{ span: 12 }}
+                span={8}
+                className="jobs-grid switch-grid cent"
+                lg={{ span: 8 }}
                 sm={{ span: 12 }}
                 xs={{ span: 24 }}>
                 <Form.Item
@@ -517,6 +529,13 @@ const JobFilter = (props) => {
                   name="isTuitionFee">
                   <Switch size="small" />
                 </Form.Item>
+              </Col>
+              <Col
+                span={8}
+                className="jobs-grid switch-grid cent"
+                lg={{ span: 8 }}
+                sm={{ span: 12 }}
+                xs={{ span: 24 }}>
                 <Form.Item
                   className="switches"
                   valuePropName="checked"
@@ -525,6 +544,13 @@ const JobFilter = (props) => {
                   {" "}
                   <Switch size="small" />
                 </Form.Item>
+              </Col>
+              <Col
+                span={8}
+                className="jobs-grid switch-grid cent"
+                lg={{ span: 8 }}
+                sm={{ span: 12 }}
+                xs={{ span: 24 }}>
                 <Form.Item
                   className="switches"
                   valuePropName="checked"

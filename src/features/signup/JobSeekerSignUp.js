@@ -44,7 +44,7 @@ const { Option } = Select;
 let helperText = `This helps employers understand your family needs and accommodate accordingly such as booking you flights, 
   providing accommodation and benefits such as free or discounted tuition fees.`;
 
-const WithHintText = ({ content,children }) => (
+const WithHintText = ({ content, children }) => (
   <Popover
     placement="topLeft"
     overlayInnerStyle={{ width: 400 }}
@@ -109,7 +109,7 @@ function JobSeekerSignUp() {
 
   return (
     <div className="c-container auth-wrapper">
-      <div className="signup-container with-form">
+      <div className="signup-container with-form height-720">
         {/* left container */}
         {/* form */}
         <Form
@@ -130,7 +130,11 @@ function JobSeekerSignUp() {
                 name="firstName"
                 className="c-input"
                 rules={Rules.firstNameRule}>
-                <Input autoComplete={'' + Math.random()} placeholder="Enter your first name" type="text" />
+                <Input
+                  autoComplete={"" + Math.random()}
+                  placeholder="Enter your first name"
+                  type="text"
+                />
               </Form.Item>
             </Col>
 
@@ -140,7 +144,11 @@ function JobSeekerSignUp() {
                 name="lastName"
                 className="c-input"
                 rules={Rules.lastNameRule}>
-                <Input autoComplete={'' + Math.random()} placeholder="Enter your last name" type="text" />
+                <Input
+                  autoComplete={"" + Math.random()}
+                  placeholder="Enter your last name"
+                  type="text"
+                />
               </Form.Item>
             </Col>
 
@@ -164,7 +172,11 @@ function JobSeekerSignUp() {
                 name="email"
                 className="c-input"
                 rules={Rules.emailRule}>
-                <Input autoComplete={'' + Math.random()} placeholder="Enter your email" type="text" />
+                <Input
+                  autoComplete={"" + Math.random()}
+                  placeholder="Enter your email"
+                  type="text"
+                />
               </Form.Item>
             </Col>
 
@@ -174,7 +186,11 @@ function JobSeekerSignUp() {
                 name="password"
                 className="c-input"
                 rules={Rules.passwordRule}>
-                <Input.Password autoComplete={'' + Math.random()} placeholder="Enter password" type="password" />
+                <Input.Password
+                  autoComplete={"" + Math.random()}
+                  placeholder="Enter password"
+                  type="password"
+                />
               </Form.Item>
             </Col>
 
@@ -185,7 +201,10 @@ function JobSeekerSignUp() {
                 className="c-input"
                 rules={Rules.confirmPasswordRule}
                 dependencies={["password"]}>
-                <Input.Password autoComplete={'' + Math.random()} placeholder="Enter password again" />
+                <Input.Password
+                  autoComplete={"" + Math.random()}
+                  placeholder="Enter password again"
+                />
               </Form.Item>
             </Col>
 
@@ -224,7 +243,8 @@ function JobSeekerSignUp() {
                 label={
                   <div className="c-label">
                     <label>Gender&nbsp;</label>
-                    <WithHintText content="Some jobs in the Middle East are gender specific, e.g. a female swimming instructor
+                    <WithHintText
+                      content="Some jobs in the Middle East are gender specific, e.g. a female swimming instructor
 for an all girls school.">
                       <img
                         class="label-icon"
@@ -259,7 +279,11 @@ for an all girls school.">
                 rules={Rules.requiredRule}>
                 <DatePicker
                   inputReadOnly
-                  disabledDate={(d) => !d || d.isAfter("2004-12-01") || d.isSameOrBefore("1960-01-01")}
+                  disabledDate={(d) =>
+                    !d ||
+                    d.isAfter("2004-12-01") ||
+                    d.isSameOrBefore("1960-01-01")
+                  }
                   defaultPickerValue={moment("2000-01-01")}
                 />
               </Form.Item>
@@ -270,7 +294,8 @@ for an all girls school.">
                 label={
                   <div className="c-label">
                     <label>Passport nationality&nbsp;</label>
-                    <WithHintText content="Certain countries require more documents and verifications in order to issue visas.
+                    <WithHintText
+                      content="Certain countries require more documents and verifications in order to issue visas.
 Knowing your nationality will help employers take the necessary steps in order to
 secure visas for everyone.">
                       <img
