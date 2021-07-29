@@ -44,6 +44,7 @@ import {
   selectCountryByIp,
   selectCitiesByCountry,
   selectProfileImage,
+  removePreUploadedProfileImage,
   selectCompanyLogo,
 } from "./slice";
 import AvatarPicker from "../../shared-ui/AvatarPicker/AvatarPicker";
@@ -78,8 +79,10 @@ function EmployerSignUp() {
   const profileImage = useAppSelector(selectProfileImage);
   const companyLogo = useAppSelector(selectCompanyLogo);
 
-
-  
+  useEffect(() => {
+    // CDM
+    console.log("Remove profile image n CDM");
+  }, []);
 
   useEffect(() => {
     // let params = queryString.parse(location.search);
@@ -115,11 +118,10 @@ function EmployerSignUp() {
   }, [signupSuccess]);
 
   const onFinish = (values) => {
-
-    console.log("onFinish", values)
+    console.log("onFinish", values);
     setFormData({ ...formData, ...values, companyLogo: companyLogo?.url });
 
-    if (agreeToTerms === false && (currentStep === 3)) {
+    if (agreeToTerms === false && currentStep === 3) {
       showWarningMessage("Agree to terms and conditions to proceed");
       return;
     }
@@ -197,21 +199,21 @@ function EmployerSignUp() {
     const payload = new FormData();
     payload.append("file", file, file.name);
     dispatch(uploadProfileImage({ payload }));
-    console.log("uploadProfileImage", uploadProfileImage)
+    console.log("uploadProfileImage", uploadProfileImage);
     return false;
-
   };
 
   const companyLogoBeforeUpload = (file) => {
     const payload = new FormData();
     payload.append("file", file, file.name);
     dispatch(uploadCompanyLogo({ payload }));
-    console.log("uploadCompanyLogo", uploadCompanyLogo)
+    console.log("uploadCompanyLogo", uploadCompanyLogo);
     return false;
   };
   const handleCreateNewCompany = () => {
     form.resetFields();
     setCreateCompany(true);
+    dispatch(removePreUploadedProfileImage());
     setCurrentStep(2);
   };
 
@@ -380,8 +382,6 @@ function EmployerSignUp() {
                     <Select
                       getPopupContainer={(trigger) => trigger.parentNode}
                       defaultValue="">
-                      <Option value="">Select</Option>
-
                       {findUsPlatforms?.map((fu) => (
                         <Option value={fu.id}>{fu.title}</Option>
                       ))}
@@ -431,7 +431,6 @@ function EmployerSignUp() {
                     <Select
                       getPopupContainer={(trigger) => trigger.parentNode}
                       defaultValue="">
-                      <Option value="">Select</Option>
                       <Option value="single-company">Single company</Option>
                       <Option value="headquarters">Headquarters</Option>
                       <Option value="branch">Branch within the company</Option>
@@ -505,6 +504,7 @@ function EmployerSignUp() {
                     className="c-input"
                     rules={Rules.phoneRule}>
                     <PhoneInput
+                      onChange={(e) => console.log(e)}
                       placeholder="Enter your phone number."
                       country={countryCode}
                     />
@@ -518,8 +518,7 @@ function EmployerSignUp() {
                   <Form.Item
                     label="Website https://"
                     name="webUrl"
-                    className="c-input"
-                    rules={Rules.requiredRule}>
+                    className="c-input">
                     <Input autoComplete={"" + Math.random()} />
                   </Form.Item>
                 </Col>
@@ -543,6 +542,7 @@ function EmployerSignUp() {
               <Row gutter={[32, 32]}>
                 <Col style={{ marginBottom: "24px" }} span={24}>
                   <Upload
+                    accept="image/*"
                     beforeUpload={profileImageBeforeUpload}
                     showUploadList={false}>
                     <div className="avatar-upload">
@@ -640,7 +640,7 @@ function EmployerSignUp() {
 
             {isCreateCompany && (
               <Row gutter={[32, 32]}>
-                 <Col style={{ marginBottom: "24px", zIndex: 300 }} span={24}>
+                <Col style={{ marginBottom: "24px", zIndex: 300 }} span={24}>
                   <Upload
                     beforeUpload={profileImageBeforeUpload}
                     showUploadList={false}>
@@ -790,8 +790,6 @@ function EmployerSignUp() {
                     <Select
                       getPopupContainer={(trigger) => trigger.parentNode}
                       defaultValue="">
-                      <Option value="">Select</Option>
-
                       {findUsPlatforms?.map((fu) => (
                         <Option value={fu.id}>{fu.title}</Option>
                       ))}
@@ -847,7 +845,7 @@ function EmployerSignUp() {
           onFinish={onFinish}>
           {renderSteps(currentStep)}
 
-          {( currentStep == 3) && (
+          {currentStep == 3 && (
             <>
               <Form.Item
                 name="agreeTerms"
@@ -887,7 +885,12 @@ function EmployerSignUp() {
           )}
 
           {currentStep === 2 && (
-            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                marginBottom: "20px",
+              }}>
               <Button
                 block
                 className="next-btn-2"
@@ -899,7 +902,12 @@ function EmployerSignUp() {
             </div>
           )}
           {currentStep === 3 && (
-            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                marginBottom: "20px",
+              }}>
               <Button
                 block
                 className="next-btn-2"

@@ -69,7 +69,6 @@ const SelectWithAddItem = ({
         </div>
       )}
     >
-      <Option value={""}>Select</Option>
       {items.map((item) => (
         <>
           <Option key={item}>{item}</Option>

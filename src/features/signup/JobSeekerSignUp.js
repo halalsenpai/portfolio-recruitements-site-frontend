@@ -211,7 +211,6 @@ function JobSeekerSignUp() {
                   getPopupContainer={(trigger) => trigger.parentNode}
                   size="large"
                   defaultValue="">
-                  <Option value="">Select</Option>
                   {familyStatuses?.map((fs) => (
                     <Option value={fs.id}>{fs.title}</Option>
                   ))}
@@ -241,7 +240,6 @@ for an all girls school.">
                 <Select
                   getPopupContainer={(trigger) => trigger.parentNode}
                   defaultValue="">
-                  <Option value="">Select</Option>
                   <Option value="male">Male</Option>
                   <Option value="female">Female</Option>
                   <Option value="other">Other</Option>
@@ -291,7 +289,6 @@ secure visas for everyone.">
                   size="large"
                   dropdownClassName="nationality-dropdown"
                   defaultValue="">
-                  <Option value="">Select</Option>
                   {nationalities?.map((n) => (
                     <Option value={n.id}>{n.title}</Option>
                   ))}
