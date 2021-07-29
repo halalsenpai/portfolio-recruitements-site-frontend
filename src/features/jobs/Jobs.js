@@ -163,6 +163,8 @@ function Jobs() {
                   className="c-input c-input-with-icon find-job-super-select
                 "
                 >
+                  
+                  
                   {/* <Input
                     size="small"
                     className="xs"
@@ -171,13 +173,26 @@ function Jobs() {
                     prefix={
                       <img className="input-icon" src={locationIcon} alt="ico" />
                     }></Input> */}
+                  <div className="icon-in-super-select">
+                  <img
+                      className="location-icon"
+                      src={require("../../assets/images/icons/location_icon.svg")}
+                      alt="icon"
+                    />
                   <SuperSelect
                     defaultValue="Desired City"
                     getPopupContainer={(trigger) => trigger.parentNode}
                     // defaultValue=""
                     style={{ width: 200 }}
                     fetchOptions={cityisDesired}
+                   
                   />
+                  </div>
+                  {/* icon={<img
+                      className="location-icon"
+                      src={require("../../assets/images/icons/location_icon.svg")}
+                      alt="icon"
+                    />} */}
                 </Form.Item>
               </div>
               <div className="jobs-button-section">

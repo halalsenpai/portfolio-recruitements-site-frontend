@@ -49,6 +49,12 @@ export const SuperSelect = ({
     limit: 100,
   });
 
+  const [selected, setSelected] = useState()
+
+  const clearSelected = () => {
+    setSelected(null)
+  };
+
   useEffect(() => {
     if (!dependencyId) {
       debounceOnSearchFetcher();
