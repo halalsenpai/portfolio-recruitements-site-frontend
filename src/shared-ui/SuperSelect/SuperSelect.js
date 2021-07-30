@@ -146,6 +146,7 @@ export const SuperSelect = ({
 
   return (
     <Select
+    allowClear
       autoComplete={'' + Math.random()}
       style={style}
       maxTagCount={maxTagCount}

@@ -300,7 +300,6 @@ secure visas for everyone.">
                   ))}
                 </Select> */}
                 <SuperSelect
-                  allowClear
                   placeholder="Select passport nationality"
                   getPopupContainer={(trigger) => trigger.parentNode}
                   fetchOptions={getNationality}

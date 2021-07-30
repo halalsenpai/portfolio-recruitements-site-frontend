@@ -897,5 +897,9 @@ html {
   right: 16px;
 }
 .ant-select-selection-placeholder{
-  content-visibility: auto
+  content-visibility: auto,
+}
+.ant-select-clear {
+  margin-top: -7px;
+  line-height: 0;
 }
