@@ -231,6 +231,7 @@ function EmployerSignUp() {
                   <SuperSelect
                     getPopupContainer={(trigger) => trigger.parentNode}
                     fetchOptions={getCompany}
+                    placeholder="Enter company name"
                     onChange={onCompanyNameChange}
                     keys={["id", "companyName"]}
                   />
@@ -289,7 +290,6 @@ function EmployerSignUp() {
                     className="c-input"
                     label="First name"
                     rules={Rules.firstNameRule}
-                    placeholder="Enter first name"
                     name="firstName">
                     <Input
                       autoComplete={"" + Math.random()}
@@ -375,8 +375,10 @@ function EmployerSignUp() {
                     label="How did you find us?"
                     rules={Rules.requiredRule}>
                     <Select
+                    allowClear
                       getPopupContainer={(trigger) => trigger.parentNode}
-                      defaultValue="">
+                      placeholder="Select platform">
+
                       {findUsPlatforms?.map((fu) => (
                         <Option value={fu.id}>{fu.title}</Option>
                       ))}
@@ -424,8 +426,11 @@ function EmployerSignUp() {
                     className="c-input"
                     rules={Rules.requiredRule}>
                     <Select
+                    allowClear
+                    placeholder="I’m registering a"
                       getPopupContainer={(trigger) => trigger.parentNode}
-                      defaultValue="">
+                      >
+
                       <Option value="single-company">Single company</Option>
                       <Option value="headquarters">Headquarters</Option>
                       <Option value="branch">Branch within the company</Option>
@@ -442,7 +447,8 @@ function EmployerSignUp() {
                     name="companyName"
                     className="c-input"
                     rules={Rules.requiredRule}>
-                    <Input autoComplete={"" + Math.random()} />
+                    <Input autoComplete={'' + Math.random()} placeholder="Enter company name"/>
+
                   </Form.Item>
                 </Col>
 
@@ -513,8 +519,9 @@ function EmployerSignUp() {
                   <Form.Item
                     label="Website https://"
                     name="webUrl"
-                    className="c-input">
-                    <Input autoComplete={"" + Math.random()} />
+                    className="c-input"
+                    rules={Rules.requiredRule}>
+                    <Input autoComplete={'' + Math.random()} placeholder="Enter Website" />
                   </Form.Item>
                 </Col>
               </Row>
@@ -572,7 +579,7 @@ function EmployerSignUp() {
                         form.resetFields(["jobTitleId"]);
                       }}
                       getPopupContainer={(trigger) => trigger.parentNode}
-                      defaultValue=""
+                      placeholder="Select sector"
                       fetchOptions={getSector}
                     />
                   </Form.Item>
@@ -591,7 +598,7 @@ function EmployerSignUp() {
                     <SuperSelect
                       dependencyId={categoryId}
                       getPopupContainer={(trigger) => trigger.parentNode}
-                      defaultValue=""
+                      placeholder="Select job title"
                       fetchOptions={getJobTitle}
                     />
                   </Form.Item>
@@ -606,10 +613,8 @@ function EmployerSignUp() {
                     name="password"
                     className="c-input"
                     rules={Rules.passwordRule}>
-                    <Input.Password
-                      autoComplete={"" + Math.random()}
-                      type="password"
-                    />
+                    <Input.Password autoComplete={'' + Math.random()} type="password" placeholder="Enter password"/>
+
                   </Form.Item>
                 </Col>
                 <Col
@@ -622,10 +627,7 @@ function EmployerSignUp() {
                     name="ConfirmPassword"
                     className="c-input"
                     rules={Rules.confirmPasswordRule}>
-                    <Input.Password
-                      autoComplete={"" + Math.random()}
-                      type="password"
-                    />
+                    <Input.Password autoComplete={'' + Math.random()} type="password" placeholder="Confirm password" />
                   </Form.Item>
                 </Col>
               </Row>
@@ -664,7 +666,7 @@ function EmployerSignUp() {
                     label="First name"
                     rules={Rules.firstNameRule}
                     name="firstName">
-                    <Input autoComplete={"" + Math.random()} />
+                    <Input autoComplete={'' + Math.random()}  placeholder="Enter first name"/>
                   </Form.Item>
                 </Col>
                 <Col
@@ -677,7 +679,8 @@ function EmployerSignUp() {
                     label="Last name"
                     rules={Rules.lastNameRule}
                     name="lastName">
-                    <Input autoComplete={"" + Math.random()} />
+                    <Input autoComplete={'' + Math.random()} placeholder="Enter last name" />
+
                   </Form.Item>
                 </Col>
                 <Col
@@ -747,7 +750,7 @@ function EmployerSignUp() {
                         form.resetFields(["jobTitleId"]);
                       }}
                       getPopupContainer={(trigger) => trigger.parentNode}
-                      defaultValue=""
+                      placeholder="Select sector"
                       fetchOptions={getSector}
                     />
                   </Form.Item>
@@ -766,7 +769,7 @@ function EmployerSignUp() {
                     <SuperSelect
                       dependencyId={categoryId}
                       getPopupContainer={(trigger) => trigger.parentNode}
-                      defaultValue=""
+                      placeholder="Select job title"
                       fetchOptions={getJobTitle}
                     />
                   </Form.Item>
@@ -783,8 +786,10 @@ function EmployerSignUp() {
                     label="How did you find us?"
                     rules={Rules.requiredRule}>
                     <Select
+                    allowClear
                       getPopupContainer={(trigger) => trigger.parentNode}
-                      defaultValue="">
+                      placeholder="Select platform">
+
                       {findUsPlatforms?.map((fu) => (
                         <Option value={fu.id}>{fu.title}</Option>
                       ))}
@@ -801,10 +806,8 @@ function EmployerSignUp() {
                     name="password"
                     className="c-input"
                     rules={Rules.passwordRule}>
-                    <Input.Password
-                      autoComplete={"" + Math.random()}
-                      type="password"
-                    />
+                    <Input.Password autoComplete={'' + Math.random()} type="password" placeholder="Enter password" />
+
                   </Form.Item>
                 </Col>
                 <Col
@@ -817,10 +820,8 @@ function EmployerSignUp() {
                     name="ConfirmPassword"
                     className="c-input"
                     rules={Rules.confirmPasswordRule}>
-                    <Input.Password
-                      autoComplete={"" + Math.random()}
-                      type="password"
-                    />
+                    <Input.Password autoComplete={'' + Math.random()} type="password" placeholder="Confirm password"/>
+
                   </Form.Item>
                 </Col>
               </Row>

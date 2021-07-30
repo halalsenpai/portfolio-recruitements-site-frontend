@@ -193,6 +193,7 @@ function AgencySignUp() {
                   <SuperSelect
                     getPopupContainer={(trigger) => trigger.parentNode}
                     fetchOptions={getCompany}
+                    placeholder="Enter company name"
                     onChange={onCompanyNameChange}
                     keys={["id", "companyName"]}
                   />
@@ -232,8 +233,7 @@ function AgencySignUp() {
                     label="First name"
                     rules={Rules.firstNameRule}
                     name="firstName">
-
-                    <Input autoComplete={"" + Math.random()} />
+                    <Input autoComplete={'' + Math.random()} placeholder="Enter first name" />
                   </Form.Item>
                 </Col>
                 <Col
@@ -247,7 +247,7 @@ function AgencySignUp() {
                     label="Last name"
                     rules={Rules.lastNameRule}
                     name="lastName">
-                    <Input autoComplete={"" + Math.random()} />
+                    <Input autoComplete={'' + Math.random()} placeholder="Enter last name" />
                   </Form.Item>
                 </Col>
                 <Col
@@ -319,10 +319,9 @@ function AgencySignUp() {
                     rules={Rules.requiredRule}
                   >
                     <Select
+                    allowClear
                       getPopupContainer={(trigger) => trigger.parentNode}
-                      defaultValue=""
-                    >
-
+                      placeholder="Select platform">
                       {findUsPlatforms?.map((fu) => (
                         <Option value={fu.id}>{fu.title}</Option>
                       ))}
@@ -368,9 +367,11 @@ function AgencySignUp() {
                     rules={Rules.requiredRule}
                   >
                     <Select
+                    allowClear
+                    placeholder="I’m registering a"
                       getPopupContainer={(trigger) => trigger.parentNode}
-                      defaultValue=""
-                    >
+                      >
+
                       <Option value="single-company">Single company</Option>
                       <Option value="headquarters">Headquarters</Option>
                       <Option value="branch">Branch within the company</Option>
@@ -388,7 +389,7 @@ function AgencySignUp() {
                     name="companyName"
                     className="c-input"
                     rules={Rules.requiredRule}>
-                    <Input autoComplete={"" + Math.random()} />
+                     <Input autoComplete={'' + Math.random()} placeholder="Enter company name"/>
                   </Form.Item>
                 </Col>
 
@@ -466,7 +467,7 @@ function AgencySignUp() {
                     name="webUrl"
                     className="c-input"
                     rules={Rules.requiredRule}>
-                    <Input autoComplete={"" + Math.random()} />
+                     <Input autoComplete={'' + Math.random()} placeholder="Enter your website" />
                   </Form.Item>
                 </Col>
               </Row>
@@ -526,7 +527,7 @@ function AgencySignUp() {
                         form.resetFields(["jobTitleId"]);
                       }}
                       getPopupContainer={(trigger) => trigger.parentNode}
-                      defaultValue=""
+                      placeholder="Select sector"
                       fetchOptions={getSector}
                     />
                   </Form.Item>
@@ -546,7 +547,7 @@ function AgencySignUp() {
                     <SuperSelect
                       dependencyId={categoryId}
                       getPopupContainer={(trigger) => trigger.parentNode}
-                      defaultValue=""
+                      placeholder="Select job title"
                       fetchOptions={getJobTitle}
                     />
                   </Form.Item>
@@ -562,10 +563,8 @@ function AgencySignUp() {
                     name="password"
                     className="c-input"
                     rules={Rules.passwordRule}>
-                    <Input.Password
-                      autoComplete={"" + Math.random()}
-                      type="password"
-                    />
+                    <Input.Password autoComplete={'' + Math.random()} type="password" placeholder="Enter password" />
+
                   </Form.Item>
                 </Col>
                 <Col
@@ -579,10 +578,8 @@ function AgencySignUp() {
                     name="ConfirmPassword"
                     className="c-input"
                     rules={Rules.confirmPasswordRule}>
-                    <Input.Password
-                      autoComplete={"" + Math.random()}
-                      type="password"
-                    />
+                    <Input.Password autoComplete={'' + Math.random()} type="password"  placeholder="Confirm password"/>
+
                   </Form.Item>
                 </Col>
               </Row>
@@ -600,7 +597,8 @@ function AgencySignUp() {
                     label="First name"
                     rules={Rules.firstNameRule}
                     name="firstName">
-                    <Input autoComplete={"" + Math.random()} />
+                     <Input autoComplete={'' + Math.random()} placeholder="Enter first name"/>
+
                   </Form.Item>
                 </Col>
                 <Col
@@ -614,8 +612,7 @@ function AgencySignUp() {
                     label="Last name"
                     rules={Rules.lastNameRule}
                     name="lastName">
-
-                    <Input autoComplete={"" + Math.random()} />
+                     <Input autoComplete={'' + Math.random()} placeholder="Enter last name" />
                   </Form.Item>
                 </Col>
                 <Col
@@ -692,7 +689,7 @@ function AgencySignUp() {
                         form.resetFields(["jobTitleId"]);
                       }}
                       getPopupContainer={(trigger) => trigger.parentNode}
-                      defaultValue=""
+                      placeholder="Select sector"
                       fetchOptions={getSector}
                     />
                   </Form.Item>
@@ -713,7 +710,7 @@ function AgencySignUp() {
                     <SuperSelect
                       dependencyId={categoryId}
                       getPopupContainer={(trigger) => trigger.parentNode}
-                      defaultValue=""
+                      placeholder="Select job title"
                       fetchOptions={getJobTitle}
                     />
                   </Form.Item>
@@ -732,9 +729,9 @@ function AgencySignUp() {
                     rules={Rules.requiredRule}
                   >
                     <Select
+                    allowClear
                       getPopupContainer={(trigger) => trigger.parentNode}
-                      defaultValue=""
-                    >
+                      placeholder="Select platform">
 
                       {findUsPlatforms?.map((fu) => (
                         <Option value={fu.id}>{fu.title}</Option>
@@ -753,11 +750,7 @@ function AgencySignUp() {
                     name="password"
                     className="c-input"
                     rules={Rules.passwordRule}>
-
-                    <Input.Password
-                      autoComplete={"" + Math.random()}
-                      type="password"
-                    />
+                    <Input.Password autoComplete={'' + Math.random()} type="password" placeholder="Enter password"/>
                   </Form.Item>
                 </Col>
                 <Col
@@ -771,11 +764,8 @@ function AgencySignUp() {
                     name="ConfirmPassword"
                     className="c-input"
                     rules={Rules.confirmPasswordRule}>
+                    <Input.Password autoComplete={'' + Math.random()} type="password" placeholder="Confirm password"/>
 
-                    <Input.Password
-                      autoComplete={"" + Math.random()}
-                      type="password"
-                    />
                   </Form.Item>
                 </Col>
               </Row>
