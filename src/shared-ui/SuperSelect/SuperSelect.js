@@ -48,11 +48,12 @@ export const SuperSelect = ({
     page: 1,
     limit: 100,
   });
+
   const [selected, setSelected] = useState()
 
   const clearSelected = () => {
     setSelected(null)
-  }
+  };
 
   useEffect(() => {
     if (!dependencyId) {
@@ -160,7 +161,9 @@ export const SuperSelect = ({
       onSearch={debounceOnSearchFetcher}
       onPopupScroll={debounceOnScrollFetcher}
       notFoundContent={fetching ? <Spin size="small" /> : null}
-      {...props}>
+      allowClear={true}
+      {...props}
+    >
       {!fetching && (
         <>
           {/* {initOptions.map((d) => (

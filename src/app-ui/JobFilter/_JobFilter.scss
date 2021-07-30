@@ -168,3 +168,30 @@
 //     }
 //   }
 // }
+.override-width {
+  .modal-dialog {
+    max-width: 1010px !important;
+    .modal-content {
+      width: 1010px !important;
+      .width-auto {
+        margin: 0 auto;
+        width: 80%;
+        .cent {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+  }
+  .filter-cell {
+    .switches {
+      display: inline-flex !important;
+      flex-direction: row !important;
+    }
+  }
+  .ant-form-item-label {
+    width: 175px !important;
+    display: flex !important;
+  }
+}

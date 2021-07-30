@@ -50,7 +50,11 @@ function isPendingAction(action) {
 export const slice = createSlice({
   name: "signup",
   initialState,
-  reducers: {},
+  reducers: {
+    removePreUploadedProfileImage: (state) => {
+      state.profileImage = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getRole.fulfilled, (state, action) => {
@@ -188,6 +192,6 @@ state.signup.isCompanyLogoLoading;
 export const selectCompanyLogo = (state) => state.signup.companyLogo;
 
 
-// export const { getSignup } = slice.actions;
+export const { removePreUploadedProfileImage } = slice.actions;
 
 export default slice.reducer;
