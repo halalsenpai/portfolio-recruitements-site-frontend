@@ -144,52 +144,73 @@ function Jobs() {
 
           <Form onFinish={onSearchJob} ref={formRef}>
             <span className="form-fields job-filter-section">
-              <Form.Item
-                name="jobTitleName"
-                className="c-input c-input-with-icon">
-                <Input
-                  size="small"
-                  className="xs"
-                  type="text"
-                  placeholder="Job title"
-                  onChange={doSearch}
-                  prefix={
-                    <img className="input-icon" src={searchIcon} alt="ico" />
-                  }></Input>
-              </Form.Item>
-              <Form.Item name="location" 
-              className="c-input 
-              "
-              >
-                {/* <Input
-                  size="small"
-                  className="xs"
-                  type="text"
-                  placeholder="Location"
-                  prefix={
-                    <img className="input-icon" src={locationIcon} alt="ico" />
-                  }></Input> */}
-                <SuperSelect
-                defaultValue="Desired City"
-                  getPopupContainer={(trigger) => trigger.parentNode}
-                  // defaultValue=""
-                  style={{ width: 200 }}
-                  fetchOptions={cityisDesired}
-                />
-              </Form.Item>
-              <Button
-                type="small"
-                htmlType="submit"
-                themeColor="rounded light"
-                style={{ height: "32px", margin: "0 8px" }}>
-                Go
-              </Button>
+              <div className="jobs-filter-header-secrion">
+                <Form.Item
+                  name="jobTitleName"
+                  className="c-input c-input-with-icon">
+                  <Input
+                    autoComplete="off"
+                    size="small"
+                    className="xs"
+                    type="text"
+                    placeholder="Job title"
+                    onChange={doSearch}
+                    prefix={
+                      <img className="input-icon" src={searchIcon} alt="ico" />
+                    }></Input>
+                </Form.Item>
+                <Form.Item name="location"
+                  className="c-input c-input-with-icon find-job-super-select
+                "
+                >
+                  
+                  
+                  {/* <Input
+                    size="small"
+                    className="xs"
+                    type="text"
+                    placeholder="Location"
+                    prefix={
+                      <img className="input-icon" src={locationIcon} alt="ico" />
+                    }></Input> */}
+                  <div className="icon-in-super-select">
+                  <img
+                      className="location-icon"
+                      src={require("../../assets/images/icons/location_icon.svg")}
+                      alt="icon"
+                    />
+                  <SuperSelect
+                    defaultValue="Desired City"
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    // defaultValue=""
+                    style={{ width: 200 }}
+                    fetchOptions={cityisDesired}
+                   
+                  />
+                  </div>
+                  {/* icon={<img
+                      className="location-icon"
+                      src={require("../../assets/images/icons/location_icon.svg")}
+                      alt="icon"
+                    />} */}
+                </Form.Item>
+              </div>
+              <div className="jobs-button-section">
+                <Button
+                  type="small"
+                  htmlType="submit"
+                  className="filter-btns"
+                  themeColor="rounded light"
+                  style={{ height: "32px", }}>
+                  Go
+                </Button>
 
-              <Button
-                icon={<img src={filterIcon} alt="ico" />}
-                className=" filter-icon rounded shadowed"
-                style={{ marginLeft: "8px" }}
-                onClick={ShowFilter}></Button>
+                <Button
+                  icon={<img src={filterIcon} alt="ico" />}
+                  className=" filter-icon rounded shadowed filter-btns"
+
+                  onClick={ShowFilter}></Button>
+              </div>
             </span>
           </Form>
 
@@ -205,6 +226,7 @@ function Jobs() {
                     key={index}
                     onClick={() => {
                       setJobDetails(obj);
+                      setShowJobDetails(true)
                       setcategoryId(obj.categoriesId);
                       setcompanyId(obj.companyId);
                     }}

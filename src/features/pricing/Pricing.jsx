@@ -92,7 +92,7 @@ const Pricing = () => {
                   </div>
                 </div>
               ))}
-              <div className="pricing-card">
+              {/* <div className="pricing-card">
                 <div className="pricing-header">
                   <div className="top-items-head">VIP package</div>
                   <div className="top-items-head">
@@ -104,17 +104,17 @@ const Pricing = () => {
                     </Button>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
-          <div className="pricing-image">
+          {/* <div className="pricing-image">
             <div className="image-section">
               <img
                 src={require("../../assets/images/pricing/an-african-friends_197531-3755.png")}
                 alt=""
               />
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="pricing-details">
@@ -148,9 +148,9 @@ const Pricing = () => {
             their jobs
           </p>
           <div className="btn-sec">
-            <Popover content={"coming soon"}>
+            <Popover content={"coming soon..."}>
               {" "}
-              <Button>&#163; 7.99 per month</Button>
+              <Button>Coming Soon</Button>
             </Popover>
             <p>No contracts, cancel at any time!</p>
           </div>

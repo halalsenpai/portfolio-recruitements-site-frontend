@@ -35,7 +35,7 @@ function SignUp() {
 
   return (
     <div className="c-container auth-wrapper">
-      <div className="signup-container with-form role-container">
+      <div className="signup-container with-form role-container height-720">
         <Form
           className="second-container c-form w-100 signup-option"
           onFinish={onFinish}>

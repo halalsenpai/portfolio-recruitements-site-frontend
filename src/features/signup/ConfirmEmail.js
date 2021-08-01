@@ -34,6 +34,8 @@ function ConfirmEmail() {
 
   useEffect(() => {
     if (confirmEmailSuccess && roles.length) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('role');
       const token = confirmEmailResponse.token;
       const roleId = confirmEmailResponse.roleId;
       const role = roles.find((r) => r.id === roleId);
