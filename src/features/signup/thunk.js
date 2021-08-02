@@ -15,6 +15,7 @@ import {
   getCountryByIp as getCountryByIpAPI,
   getCitiesByCountry as getCitiesByCountryAPI,
   uploadProfileImage as uploadProfileImageAPI,
+  uploadCompanyLogo as uploadCompanyLogoAPI,
   agencySignup as agencySignupAPI,
 } from "./service";
 
@@ -128,6 +129,19 @@ export const uploadProfileImage = createAsyncThunk(
       },
     };
     const response = await uploadProfileImageAPI(payload, params);
+    return response.data;
+  }
+);
+
+export const uploadCompanyLogo = createAsyncThunk(
+  "signup/Company-Logo",
+  async ({ payload }) => {
+    const params = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    };
+    const response = await uploadCompanyLogoAPI(payload, params);
     return response.data;
   }
 );

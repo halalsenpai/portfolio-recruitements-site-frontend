@@ -54,7 +54,7 @@ const Services = () => {
           providing you with discount codes and the best offers on the market
           exclusively available to Jobsmideast.com users.
         </p>
-        <dinv className="icons">
+        <div className="icons">
           <img
             src={require("../../assets/images/Services/glass.svg")}
             alt=""
@@ -80,7 +80,7 @@ const Services = () => {
             alt=""
             className="icons"
           />
-        </dinv>
+        </div>
       </div>
       <div className="user-services">
         <div className="services-form">
@@ -99,21 +99,21 @@ const Services = () => {
               name="name"
               className="c-input"
               rules={Rules.nameRule}>
-              <Input className="" size="" type="text" />
+              <Input autoComplete={'' + Math.random()} className="" size="" type="text" />
             </Form.Item>
             <Form.Item
               label="Work email adress"
               name="email"
               className="c-input"
               rules={Rules.emailRule}>
-              <Input className="" size="" type="text" />
+              <Input autoComplete={'' + Math.random()} className="" size="" type="text" />
             </Form.Item>
             <Form.Item
               label="Mobile phone number"
               name="mobile"
               className="c-input"
               rules={Rules.phoneRule}>
-              <Input className="" size="" type="number" />
+              <Input autoComplete={'' + Math.random()} className="" size="" type="number" />
             </Form.Item>
             <Form.Item
               label="Category"

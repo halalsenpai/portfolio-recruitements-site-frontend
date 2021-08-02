@@ -44,11 +44,11 @@ const { Option } = Select;
 let helperText = `This helps employers understand your family needs and accommodate accordingly such as booking you flights, 
   providing accommodation and benefits such as free or discounted tuition fees.`;
 
-const WithHintText = ({ children }) => (
+const WithHintText = ({ content, children }) => (
   <Popover
     placement="topLeft"
     overlayInnerStyle={{ width: 400 }}
-    content={helperText}
+    content={content}
     trigger="click">
     {children}
   </Popover>
@@ -109,7 +109,7 @@ function JobSeekerSignUp() {
 
   return (
     <div className="c-container auth-wrapper">
-      <div className="signup-container with-form">
+      <div className="signup-container with-form height-720">
         {/* left container */}
         {/* form */}
         <Form
@@ -130,7 +130,11 @@ function JobSeekerSignUp() {
                 name="firstName"
                 className="c-input"
                 rules={Rules.firstNameRule}>
-                <Input placeholder="Enter your first name" type="text" />
+                <Input
+                  autoComplete={"" + Math.random()}
+                  placeholder="Enter your first name"
+                  type="text"
+                />
               </Form.Item>
             </Col>
 
@@ -140,7 +144,11 @@ function JobSeekerSignUp() {
                 name="lastName"
                 className="c-input"
                 rules={Rules.lastNameRule}>
-                <Input placeholder="Enter your last name" type="text" />
+                <Input
+                  autoComplete={"" + Math.random()}
+                  placeholder="Enter your last name"
+                  type="text"
+                />
               </Form.Item>
             </Col>
 
@@ -164,7 +172,11 @@ function JobSeekerSignUp() {
                 name="email"
                 className="c-input"
                 rules={Rules.emailRule}>
-                <Input placeholder="Enter your email" type="text" />
+                <Input
+                  autoComplete={"" + Math.random()}
+                  placeholder="Enter your email"
+                  type="text"
+                />
               </Form.Item>
             </Col>
 
@@ -174,7 +186,11 @@ function JobSeekerSignUp() {
                 name="password"
                 className="c-input"
                 rules={Rules.passwordRule}>
-                <Input.Password placeholder="Enter password" type="password" />
+                <Input.Password
+                  autoComplete={"" + Math.random()}
+                  placeholder="Enter password"
+                  type="password"
+                />
               </Form.Item>
             </Col>
 
@@ -185,7 +201,7 @@ function JobSeekerSignUp() {
                 className="c-input"
                 rules={Rules.confirmPasswordRule}
                 dependencies={["password"]}>
-                <Input.Password placeholder="Enter password again" />
+                <Input.Password autoComplete={'' + Math.random()} placeholder="Confirm password" />
               </Form.Item>
             </Col>
 
@@ -195,7 +211,7 @@ function JobSeekerSignUp() {
                 label={
                   <div className="c-label">
                     <label>Family status&nbsp;</label>
-                    <WithHintText>
+                    <WithHintText content="This helps employers understand your family needs and accommodate accordingly such as booking you flights, providing accommodation and benefits such as free or discounted tuition fees.">
                       <img
                         class="label-icon"
                         src={require("../../assets/images/icons/information-icon.svg")}
@@ -208,10 +224,11 @@ function JobSeekerSignUp() {
                 className="c-input"
                 rules={Rules.requiredRule}>
                 <Select
+                allowClear
+                placeholder="Select family status"
                   getPopupContainer={(trigger) => trigger.parentNode}
                   size="large"
-                  defaultValue="">
-                  <Option value="">Select</Option>
+                  >
                   {familyStatuses?.map((fs) => (
                     <Option value={fs.id}>{fs.title}</Option>
                   ))}
@@ -225,7 +242,9 @@ function JobSeekerSignUp() {
                 label={
                   <div className="c-label">
                     <label>Gender&nbsp;</label>
-                    <WithHintText>
+                    <WithHintText
+                      content="Some jobs in the Middle East are gender specific, e.g. a female swimming instructor
+for an all girls school.">
                       <img
                         class="label-icon"
                         src={require("../../assets/images/icons/information-icon.svg")}
@@ -238,9 +257,11 @@ function JobSeekerSignUp() {
                 className="c-input"
                 rules={Rules.requiredRule}>
                 <Select
+                allowClear
+                placeholder="Select gender"
                   getPopupContainer={(trigger) => trigger.parentNode}
-                  defaultValue="">
-                  <Option value="">Select</Option>
+                  >
+                  
                   <Option value="male">Male</Option>
                   <Option value="female">Female</Option>
                   <Option value="other">Other</Option>
@@ -260,7 +281,11 @@ function JobSeekerSignUp() {
                 rules={Rules.requiredRule}>
                 <DatePicker
                   inputReadOnly
-                  disabledDate={(d) => !d || d.isAfter("2004-12-01") || d.isSameOrBefore("1960-01-01")}
+                  disabledDate={(d) =>
+                    !d ||
+                    d.isAfter("2004-12-01") ||
+                    d.isSameOrBefore("1960-01-01")
+                  }
                   defaultPickerValue={moment("2000-01-01")}
                 />
               </Form.Item>
@@ -271,7 +296,10 @@ function JobSeekerSignUp() {
                 label={
                   <div className="c-label">
                     <label>Passport nationality&nbsp;</label>
-                    <WithHintText>
+                    <WithHintText
+                      content="Certain countries require more documents and verifications in order to issue visas.
+Knowing your nationality will help employers take the necessary steps in order to
+secure visas for everyone.">
                       <img
                         class="label-icon"
                         src={require("../../assets/images/icons/information-icon.svg")}
@@ -288,13 +316,12 @@ function JobSeekerSignUp() {
                   size="large"
                   dropdownClassName="nationality-dropdown"
                   defaultValue="">
-                  <Option value="">Select</Option>
                   {nationalities?.map((n) => (
                     <Option value={n.id}>{n.title}</Option>
                   ))}
                 </Select> */}
                 <SuperSelect
-                  defaultValue=""
+                  placeholder="Select passport nationality"
                   getPopupContainer={(trigger) => trigger.parentNode}
                   fetchOptions={getNationality}
                 />
@@ -302,7 +329,7 @@ function JobSeekerSignUp() {
             </Col>
 
             <span className="responsive-bottom-section">
-              <Form.Item 
+              <Form.Item
                 rules={[
                   {
                     required: true,

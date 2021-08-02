@@ -714,6 +714,41 @@ p {
   top: 22px;
 }
 
+// label with icon
+
+.ant-col.ant-form-item-label {
+  width: 100%;
+}
+
+label.ant-form-item-required {
+  width: 100%;
+}
+
+.c-label {
+  position: relative;
+
+  label {
+    margin: 0;
+  }
+
+  img.label-icon {
+    position: absolute !important;
+    right: -34px !important;
+  }
+
+  img.ant-popover-open {
+    position: absolute !important;
+    right: -34px !important;
+  }
+
+  img {
+    position: absolute;
+    right: -34px;
+  }
+}
+
+//
+
 .ant-radio-group {
   display: flex;
   flex-direction: column;
@@ -722,6 +757,8 @@ p {
 .ant-radio-wrapper {
   margin: 0px 0px 10px 0px;
 }
+
+
 
 // notification-count
 
@@ -854,4 +891,15 @@ html {
   image-rendering: -webkit-optimize-contrast !important; /* Webkit (non-standard naming) */
   image-rendering: crisp-edges !important;
   -ms-interpolation-mode: nearest-neighbor !important;
+}
+
+.ant-select-clear {
+  right: 16px;
+}
+.ant-select-selection-placeholder{
+  content-visibility: auto,
+}
+.ant-select-clear {
+  margin-top: -7px;
+  line-height: 0;
 }

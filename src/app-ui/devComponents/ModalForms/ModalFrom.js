@@ -42,7 +42,6 @@ const DashboardFrom = () => {
                 </div>
 
                 <Select size="large" defaultValue="" style={{ width: 120 }}>
-                  <Option value="">Select</Option>
                 </Select>
               </Form.Item>
 
@@ -56,7 +55,6 @@ const DashboardFrom = () => {
                 </div>
 
                 <Select size="large" defaultValue="" style={{ width: 120 }}>
-                  <Option value="">Select</Option>
                 </Select>
               </Form.Item>
             </div>
@@ -69,6 +67,7 @@ const DashboardFrom = () => {
               >
                 <label className="required">Desired locations to work in</label>
                 <Input
+                  autoComplete={'' + Math.random()}
                   className="w-100"
                   placeholder=""
                   size="large"
@@ -106,7 +105,6 @@ const DashboardFrom = () => {
                 </div>
 
                 <Select size="large" defaultValue="" style={{ width: 120 }}>
-                  <Option value="">Select</Option>
                 </Select>
               </Form.Item>
             </div>

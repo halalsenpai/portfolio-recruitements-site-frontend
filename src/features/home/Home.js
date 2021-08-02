@@ -55,8 +55,9 @@ function Home() {
                       />
                     </Button>
                     <p className="small-txt mobile-textalign">
-                      Join us for free. Launch date: June 2021.
+                    It’s free to join, for everyone!
                     </p>
+                      {/* /Join us for free. Launch date: June 2021. */}
                   </div>
                 </Fade>
                 {/* </div> */}

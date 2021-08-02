@@ -57,7 +57,6 @@ const DashboardFrom = () => {
                 </div>
 
                 <Select size="large" defaultValue="">
-                  <Option value="">Select</Option>
                   <Option value="jack">Jack</Option>
                   <Option value="lucy">Lucy</Option>
                   <Option value="Yiminghe">yiminghe</Option>
@@ -114,7 +113,6 @@ const DashboardFrom = () => {
                 </div>
 
                 <Select size="large" defaultValue="" style={{ width: 120 }}>
-                  <Option value="">Select</Option>
                   <Option value="asfd">US </Option>
                   <Option value="lucy">Canada</Option>
                 </Select>
@@ -154,7 +152,7 @@ const DashboardFrom = () => {
                 rules={Rules.firstNameRule}
               >
                 <label className="required">Email address</label>
-                <Input placeholder="" size="small" type="text" />
+                <Input autoComplete={'' + Math.random()} placeholder="" size="small" type="text" />
               </Form.Item>
 
               <Form.Item
@@ -163,7 +161,7 @@ const DashboardFrom = () => {
                 rules={Rules.firstNameRule}
               >
                 <label className="">Facebook profile link</label>
-                <Input placeholder="" size="small" type="text" />
+                <Input autoComplete={'' + Math.random()} placeholder="" size="small" type="text" />
               </Form.Item>
 
               <Form.Item
@@ -172,7 +170,7 @@ const DashboardFrom = () => {
                 rules={Rules.firstNameRule}
               >
                 <label className="">LinkedIn profile link</label>
-                <Input placeholder="" size="small" type="text" />
+                <Input autoComplete={'' + Math.random()} placeholder="" size="small" type="text" />
               </Form.Item>
             </div>
 
@@ -201,7 +199,6 @@ const DashboardFrom = () => {
                 </div>
 
                 <Select size="large" defaultValue="">
-                  <Option value="">Select</Option>
                   <Option value="jack">Jack</Option>
                   <Option value="lucy">Lucy</Option>
                   <Option value="Yiminghe">yiminghe</Option>
@@ -361,7 +358,7 @@ const DashboardFrom = () => {
                 rules={Rules.firstNameRule}
               >
                 <label className="required">Desired locations to work in</label>
-                <Input placeholder="" size="small" type="text" />
+                <Input autoComplete={'' + Math.random()} placeholder="" size="small" type="text" />
               </Form.Item>
             </div>
 

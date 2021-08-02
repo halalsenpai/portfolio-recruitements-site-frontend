@@ -39,6 +39,12 @@
       height: fit-content;
     }
   }
+  .auth-wrapper {
+    background-image: none !important;
+    .signup-container {
+      box-shadow: none !important;
+    }
+  }
   .react-tel-input {
     max-width: 400px;
     width: 100%;
@@ -52,9 +58,12 @@
   .signup-container {
     background-color: #fff;
     overflow-y: unset;
+    &.with-form.height-720 {
+      height: unset !important;
+    }
     &.with-form {
       background-color: #fff;
-
+      height: unset !important;
       max-width: 1020px;
       width: 100%;
       border-radius: 20px;
@@ -120,6 +129,7 @@
             top: 0;
             .back-btn {
               width: 40px;
+              margin-top: 0px !important;
             }
           }
           .c-input {
@@ -151,5 +161,11 @@
     .form-control {
       width: calc(100% - 60px);
     }
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .signup-container.with-form .second-container .c-input {
+    width: 330px;
   }
 }

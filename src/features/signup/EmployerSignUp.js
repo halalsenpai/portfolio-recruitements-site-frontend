@@ -4,7 +4,7 @@ import useRefState from "react-usestateref";
 import { useHistory, useLocation } from "react-router-dom";
 import { Input, Form, Select, Checkbox, Alert, Row, Col, Upload } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
-import queryString from 'query-string';
+import queryString from "query-string";
 import { DobChecker } from "../../utils/helper";
 import * as Rules from "../../utils/rules";
 import TermsConditions from "./TermsConditions";
@@ -30,6 +30,7 @@ import {
   employerSignup,
   getCountryByIp,
   uploadProfileImage,
+  uploadCompanyLogo,
 } from "./thunk";
 import {
   selectRole,
@@ -43,6 +44,8 @@ import {
   selectCountryByIp,
   selectCitiesByCountry,
   selectProfileImage,
+  removePreUploadedProfileImage,
+  selectCompanyLogo,
 } from "./slice";
 import AvatarPicker from "../../shared-ui/AvatarPicker/AvatarPicker";
 
@@ -63,7 +66,6 @@ function EmployerSignUp() {
   const [categoryId, setCategoryId] = useState(null);
   const [QS, set_QS] = useState(queryString.parse(location.search));
 
-
   const roles = useAppSelector(selectRole);
   const findUsPlatforms = useAppSelector(selectFindUsPlatform);
   const signupSuccess = useAppSelector(selectEmployerSignup);
@@ -75,9 +77,7 @@ function EmployerSignUp() {
   const countryByIp = useAppSelector(selectCountryByIp);
   const citiesByCountry = useAppSelector(selectCitiesByCountry);
   const profileImage = useAppSelector(selectProfileImage);
-
-
-
+  const companyLogo = useAppSelector(selectCompanyLogo);
 
   useEffect(() => {
     // let params = queryString.parse(location.search);
@@ -85,11 +85,11 @@ function EmployerSignUp() {
     dispatch(getFindUsPlatform());
     dispatch(getCity());
     dispatch(getCountryByIp());
-    if ('companyProfileId' in QS) {
+    if ("companyProfileId" in QS) {
       form.setFieldsValue({
         companyProfileId: QS.companyProfileId,
         firstName: QS.name,
-        email: QS.email
+        email: QS.email,
       });
       setCurrentStep(2);
     }
@@ -113,17 +113,17 @@ function EmployerSignUp() {
   }, [signupSuccess]);
 
   const onFinish = (values) => {
-    console.log("onFinish", values)
-    setFormData({ ...formData, ...values });
+    console.log("onFinish", values);
+    setFormData({ ...formData, ...values, companyLogo: companyLogo?.url });
 
-    if (agreeToTerms === false && (currentStep === 2 || currentStep === 3)) {
+    if (agreeToTerms === false && currentStep === 3) {
       showWarningMessage("Agree to terms and conditions to proceed");
       return;
     }
-    if (isCreateCompany && currentStep === 2 && !profileImage?.url) {
-      showWarningMessage("profile photo is required");
-      return;
-    }
+    // if (isCreateCompany && currentStep === 2 && !profileImage?.url) {
+    //   showWarningMessage("profile photo is required");
+    //   return;
+    // }
     if (!isCreateCompany && currentStep === 3 && !profileImage?.url) {
       showWarningMessage("profile photo is required");
       return;
@@ -148,16 +148,19 @@ function EmployerSignUp() {
       return;
     }
 
-    if ('companyProfileId' in QS) {
-      payload.companyProfileId = Number(QS.companyProfileId)
+    if ("companyProfileId" in QS) {
+      payload.companyProfileId = Number(QS.companyProfileId);
     }
 
     if (payload.companyProfileId === "create-company") {
       delete payload.companyProfileId;
     }
+
     delete payload.agreeTerms;
     payload.profilePhoto = profileImage?.url;
-    console.log(payload);
+    payload.companyLogo = companyLogo?.url;
+    console.log("profile photo", profileImage);
+    console.log("payload", payload);
     dispatch(employerSignup(payload));
   };
 
@@ -191,12 +194,21 @@ function EmployerSignUp() {
     const payload = new FormData();
     payload.append("file", file, file.name);
     dispatch(uploadProfileImage({ payload }));
+    console.log("uploadProfileImage", uploadProfileImage);
     return false;
   };
 
+  const companyLogoBeforeUpload = (file) => {
+    const payload = new FormData();
+    payload.append("file", file, file.name);
+    dispatch(uploadCompanyLogo({ payload }));
+    console.log("uploadCompanyLogo", uploadCompanyLogo);
+    return false;
+  };
   const handleCreateNewCompany = () => {
     form.resetFields();
     setCreateCompany(true);
+    dispatch(removePreUploadedProfileImage());
     setCurrentStep(2);
   };
 
@@ -219,6 +231,7 @@ function EmployerSignUp() {
                   <SuperSelect
                     getPopupContainer={(trigger) => trigger.parentNode}
                     fetchOptions={getCompany}
+                    placeholder="Enter company name"
                     onChange={onCompanyNameChange}
                     keys={["id", "companyName"]}
                   />
@@ -237,7 +250,7 @@ function EmployerSignUp() {
       case 2:
         return (
           <div className="second-step">
-            {!QS?.companyProfileId ?
+            {!QS?.companyProfileId ? (
               <div className="header">
                 <img
                   onClick={() => setCurrentStep(1)}
@@ -245,9 +258,29 @@ function EmployerSignUp() {
                   src={require("../../assets/images/icons/back.svg")}
                   alt=""
                 />
-              </div> : null}
+              </div>
+            ) : null}
             {!isCreateCompany && (
               <Row gutter={[32, 32]}>
+                <Col style={{ marginBottom: "24px", zIndex: 300 }} span={24}>
+                  <Upload
+                    beforeUpload={profileImageBeforeUpload}
+                    showUploadList={false}>
+                    <div className="avatar-upload">
+                      <div className="photo-square">
+                        {profileImage && <img src={profileImage?.url} alt="" />}
+                      </div>
+                      {!profileImage && (
+                        <Button>
+                          <PlusOutlined />
+                        </Button>
+                      )}
+                    </div>
+                    <div style={{ fontSize: "12px", marginTop: "12px" }}>
+                      Upload profile photo
+                    </div>
+                  </Upload>
+                </Col>
                 <Col
                   xs={{ span: 24 }}
                   span={12}
@@ -257,9 +290,11 @@ function EmployerSignUp() {
                     className="c-input"
                     label="First name"
                     rules={Rules.firstNameRule}
-                    placeholder="Enter first name"
                     name="firstName">
-                    <Input placeholder="Enter first name" />
+                    <Input
+                      autoComplete={"" + Math.random()}
+                      placeholder="Enter first name"
+                    />
                   </Form.Item>
                 </Col>
                 <Col
@@ -272,7 +307,10 @@ function EmployerSignUp() {
                     label="Last name"
                     rules={Rules.lastNameRule}
                     name="lastName">
-                    <Input placeholder="Enter last name" />
+                    <Input
+                      autoComplete={"" + Math.random()}
+                      placeholder="Enter last name"
+                    />
                   </Form.Item>
                 </Col>
                 <Col
@@ -318,7 +356,11 @@ function EmployerSignUp() {
                     name="email"
                     className="c-input"
                     rules={Rules.emailRule}>
-                    <Input placeholder="Enter your email" type="text" />
+                    <Input
+                      autoComplete={"" + Math.random()}
+                      placeholder="Enter your email"
+                      type="text"
+                    />
                   </Form.Item>
                 </Col>
                 <Col
@@ -333,9 +375,9 @@ function EmployerSignUp() {
                     label="How did you find us?"
                     rules={Rules.requiredRule}>
                     <Select
+                    allowClear
                       getPopupContainer={(trigger) => trigger.parentNode}
-                      defaultValue="">
-                      <Option value="">Select</Option>
+                      placeholder="Select platform">
 
                       {findUsPlatforms?.map((fu) => (
                         <Option value={fu.id}>{fu.title}</Option>
@@ -345,24 +387,30 @@ function EmployerSignUp() {
                 </Col>
               </Row>
             )}
+            {/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+            {/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+            {/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+
             {isCreateCompany && (
               <Row gutter={[32, 32]}>
                 <Col style={{ marginBottom: "24px", zIndex: 300 }} span={24}>
                   <Upload
-                    beforeUpload={profileImageBeforeUpload}
+                    beforeUpload={companyLogoBeforeUpload}
+                    // beforeUpload={profileImageBeforeUpload}
+
                     showUploadList={false}>
                     <div className="avatar-upload">
                       <div className="photo-square">
-                        {profileImage && <img src={profileImage?.url} alt="" />}
+                        {companyLogo && <img src={companyLogo?.url} alt="" />}
                       </div>
-                      {!profileImage && (
+                      {!companyLogo && (
                         <Button>
                           <PlusOutlined />
                         </Button>
                       )}
                     </div>
                     <div style={{ fontSize: "12px", marginTop: "12px" }}>
-                      Upload profile photo
+                      Upload Company Logo
                     </div>
                   </Upload>
                 </Col>
@@ -378,9 +426,11 @@ function EmployerSignUp() {
                     className="c-input"
                     rules={Rules.requiredRule}>
                     <Select
+                    allowClear
+                    placeholder="I’m registering a"
                       getPopupContainer={(trigger) => trigger.parentNode}
-                      defaultValue="">
-                      <Option value="">Select</Option>
+                      >
+
                       <Option value="single-company">Single company</Option>
                       <Option value="headquarters">Headquarters</Option>
                       <Option value="branch">Branch within the company</Option>
@@ -397,7 +447,8 @@ function EmployerSignUp() {
                     name="companyName"
                     className="c-input"
                     rules={Rules.requiredRule}>
-                    <Input />
+                    <Input autoComplete={'' + Math.random()} placeholder="Enter company name"/>
+
                   </Form.Item>
                 </Col>
 
@@ -408,6 +459,7 @@ function EmployerSignUp() {
                   md={{ span: 12 }}
                   lg={{ span: 12 }}>
                   <Form.Item
+                    autoComplete={"" + Math.random()}
                     style={{ zIndex: 170 }}
                     label="Company location"
                     name="countryId"
@@ -453,6 +505,7 @@ function EmployerSignUp() {
                     className="c-input"
                     rules={Rules.phoneRule}>
                     <PhoneInput
+                      onChange={(e) => console.log(e)}
                       placeholder="Enter your phone number."
                       country={countryCode}
                     />
@@ -468,7 +521,7 @@ function EmployerSignUp() {
                     name="webUrl"
                     className="c-input"
                     rules={Rules.requiredRule}>
-                    <Input />
+                    <Input autoComplete={'' + Math.random()} placeholder="Enter Website" />
                   </Form.Item>
                 </Col>
               </Row>
@@ -491,6 +544,7 @@ function EmployerSignUp() {
               <Row gutter={[32, 32]}>
                 <Col style={{ marginBottom: "24px" }} span={24}>
                   <Upload
+                    accept="image/*"
                     beforeUpload={profileImageBeforeUpload}
                     showUploadList={false}>
                     <div className="avatar-upload">
@@ -525,13 +579,13 @@ function EmployerSignUp() {
                         form.resetFields(["jobTitleId"]);
                       }}
                       getPopupContainer={(trigger) => trigger.parentNode}
-                      defaultValue=""
+                      placeholder="Select sector"
                       fetchOptions={getSector}
                     />
                   </Form.Item>
                 </Col>
                 <Col
-                  style={{ zIndex: 100 }}
+                  style={{ zIndex: 200 }}
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
@@ -544,7 +598,7 @@ function EmployerSignUp() {
                     <SuperSelect
                       dependencyId={categoryId}
                       getPopupContainer={(trigger) => trigger.parentNode}
-                      defaultValue=""
+                      placeholder="Select job title"
                       fetchOptions={getJobTitle}
                     />
                   </Form.Item>
@@ -559,7 +613,8 @@ function EmployerSignUp() {
                     name="password"
                     className="c-input"
                     rules={Rules.passwordRule}>
-                    <Input.Password type="password" />
+                    <Input.Password autoComplete={'' + Math.random()} type="password" placeholder="Enter password"/>
+
                   </Form.Item>
                 </Col>
                 <Col
@@ -572,13 +627,35 @@ function EmployerSignUp() {
                     name="ConfirmPassword"
                     className="c-input"
                     rules={Rules.confirmPasswordRule}>
-                    <Input.Password type="password" />
+                    <Input.Password autoComplete={'' + Math.random()} type="password" placeholder="Confirm password" />
                   </Form.Item>
                 </Col>
               </Row>
             )}
+            {/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+            {/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+
             {isCreateCompany && (
               <Row gutter={[32, 32]}>
+                <Col style={{ marginBottom: "24px", zIndex: 300 }} span={24}>
+                  <Upload
+                    beforeUpload={profileImageBeforeUpload}
+                    showUploadList={false}>
+                    <div className="avatar-upload">
+                      <div className="photo-square">
+                        {profileImage && <img src={profileImage?.url} alt="" />}
+                      </div>
+                      {!profileImage && (
+                        <Button>
+                          <PlusOutlined />
+                        </Button>
+                      )}
+                    </div>
+                    <div style={{ fontSize: "12px", marginTop: "12px" }}>
+                      Upload profile photo
+                    </div>
+                  </Upload>
+                </Col>
                 <Col
                   xs={{ span: 24 }}
                   span={12}
@@ -589,7 +666,7 @@ function EmployerSignUp() {
                     label="First name"
                     rules={Rules.firstNameRule}
                     name="firstName">
-                    <Input />
+                    <Input autoComplete={'' + Math.random()}  placeholder="Enter first name"/>
                   </Form.Item>
                 </Col>
                 <Col
@@ -602,7 +679,8 @@ function EmployerSignUp() {
                     label="Last name"
                     rules={Rules.lastNameRule}
                     name="lastName">
-                    <Input />
+                    <Input autoComplete={'' + Math.random()} placeholder="Enter last name" />
+
                   </Form.Item>
                 </Col>
                 <Col
@@ -648,11 +726,15 @@ function EmployerSignUp() {
                     name="email"
                     className="c-input"
                     rules={Rules.emailRule}>
-                    <Input placeholder="Enter your email" type="text" />
+                    <Input
+                      autoComplete={"" + Math.random()}
+                      placeholder="Enter your email"
+                      type="text"
+                    />
                   </Form.Item>
                 </Col>
                 <Col
-                  style={{ zIndex: 160 }}
+                  style={{ zIndex: 170 }}
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
@@ -668,13 +750,13 @@ function EmployerSignUp() {
                         form.resetFields(["jobTitleId"]);
                       }}
                       getPopupContainer={(trigger) => trigger.parentNode}
-                      defaultValue=""
+                      placeholder="Select sector"
                       fetchOptions={getSector}
                     />
                   </Form.Item>
                 </Col>
                 <Col
-                  style={{ zIndex: 100 }}
+                  style={{ zIndex: 160 }}
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
@@ -687,7 +769,7 @@ function EmployerSignUp() {
                     <SuperSelect
                       dependencyId={categoryId}
                       getPopupContainer={(trigger) => trigger.parentNode}
-                      defaultValue=""
+                      placeholder="Select job title"
                       fetchOptions={getJobTitle}
                     />
                   </Form.Item>
@@ -704,9 +786,9 @@ function EmployerSignUp() {
                     label="How did you find us?"
                     rules={Rules.requiredRule}>
                     <Select
+                    allowClear
                       getPopupContainer={(trigger) => trigger.parentNode}
-                      defaultValue="">
-                      <Option value="">Select</Option>
+                      placeholder="Select platform">
 
                       {findUsPlatforms?.map((fu) => (
                         <Option value={fu.id}>{fu.title}</Option>
@@ -724,7 +806,8 @@ function EmployerSignUp() {
                     name="password"
                     className="c-input"
                     rules={Rules.passwordRule}>
-                    <Input.Password type="password" />
+                    <Input.Password autoComplete={'' + Math.random()} type="password" placeholder="Enter password" />
+
                   </Form.Item>
                 </Col>
                 <Col
@@ -737,7 +820,8 @@ function EmployerSignUp() {
                     name="ConfirmPassword"
                     className="c-input"
                     rules={Rules.confirmPasswordRule}>
-                    <Input.Password type="password" />
+                    <Input.Password autoComplete={'' + Math.random()} type="password" placeholder="Confirm password"/>
+
                   </Form.Item>
                 </Col>
               </Row>
@@ -748,7 +832,9 @@ function EmployerSignUp() {
   };
   return (
     <div className="c-container auth-wrapper">
-      <div className="signup-container with-form">
+      <div
+        className="signup-container with-form"
+        style={currentStep == 3 ? { height: 880 } : { height: 750 }}>
         <Form
           style={{ zIndex: "40" }}
           form={form}
@@ -757,7 +843,7 @@ function EmployerSignUp() {
           onFinish={onFinish}>
           {renderSteps(currentStep)}
 
-          {(currentStep === 2 || currentStep == 3) && (
+          {currentStep == 3 && (
             <>
               <Form.Item
                 name="agreeTerms"
@@ -797,7 +883,12 @@ function EmployerSignUp() {
           )}
 
           {currentStep === 2 && (
-            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                marginBottom: "20px",
+              }}>
               <Button
                 block
                 className="next-btn-2"
@@ -809,7 +900,12 @@ function EmployerSignUp() {
             </div>
           )}
           {currentStep === 3 && (
-            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                marginBottom: "20px",
+              }}>
               <Button
                 block
                 className="next-btn-2"
