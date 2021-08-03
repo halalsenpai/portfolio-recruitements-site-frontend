@@ -93,33 +93,38 @@ const Services = () => {
             form={form}
             onFinish={onFinish}
             layout="vertical"
-            className="services-form-wrapper c-form">
+            className="services-form-wrapper c-form"
+          >
             <Form.Item
               label="Name"
               name="name"
               className="c-input"
-              rules={Rules.nameRule}>
-              <Input autoComplete={'' + Math.random()} className="" size="" type="text" />
+              rules={Rules.nameRule}
+            >
+              <Input autoComplete="off" className="" size="" type="text" />
             </Form.Item>
             <Form.Item
               label="Work email adress"
               name="email"
               className="c-input"
-              rules={Rules.emailRule}>
-              <Input autoComplete={'' + Math.random()} className="" size="" type="text" />
+              rules={Rules.emailRule}
+            >
+              <Input autoComplete="off" className="" size="" type="text" />
             </Form.Item>
             <Form.Item
               label="Mobile phone number"
               name="mobile"
               className="c-input"
-              rules={Rules.phoneRule}>
-              <Input autoComplete={'' + Math.random()} className="" size="" type="number" />
+              rules={Rules.phoneRule}
+            >
+              <Input autoComplete="off" className="" size="" type="number" />
             </Form.Item>
             <Form.Item
               label="Category"
               name="categoryId"
               className="c-input select-w100"
-              rules={Rules.requiredRule}>
+              rules={Rules.requiredRule}
+            >
               <Select getPopupContainer={(trigger) => trigger.parentNode}>
                 {categories?.map((d) => (
                   <Option value={d.id}>{d.title}</Option>
@@ -129,14 +134,16 @@ const Services = () => {
             <Form.Item
               label="Short Message (Optional)"
               name="message"
-              className="text-area">
+              className="text-area"
+            >
               <TextArea rows={4} />
             </Form.Item>
             <div className="submit-btn">
               <Button
                 themeColor={"green"}
                 loading={isLoading}
-                htmlType="submit">
+                htmlType="submit"
+              >
                 Submit
               </Button>
             </div>

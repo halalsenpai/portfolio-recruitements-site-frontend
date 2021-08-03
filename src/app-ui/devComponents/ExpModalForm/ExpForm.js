@@ -24,7 +24,7 @@ const ExpForm = () => {
               >
                 <label className="required">Job title</label>
                 <Input
-                  autoComplete={'' + Math.random()}
+                  autoComplete="off"
                   className=""
                   placeholder="Real Estate Manager"
                   size="small"
@@ -55,7 +55,7 @@ const ExpForm = () => {
               >
                 <label className="required">Company</label>
                 <Input
-                  autoComplete={'' + Math.random()}
+                  autoComplete="off"
                   className="w-100"
                   placeholder=""
                   size="large"
@@ -71,7 +71,13 @@ const ExpForm = () => {
                 rules={Rules.firstNameRule}
               >
                 <label className="required">Company location</label>
-                <Input autoComplete={'' + Math.random()} className="" placeholder="" size="small" type="text" />
+                <Input
+                  autoComplete="off"
+                  className=""
+                  placeholder=""
+                  size="small"
+                  type="text"
+                />
               </Form.Item>
 
               <Form.Item
@@ -124,7 +130,7 @@ const ExpForm = () => {
               >
                 <label className="">Achievements (Optional)</label>
                 <Input
-                  autoComplete={'' + Math.random()}
+                  autoComplete="off"
                   className="w-100"
                   placeholder=""
                   size="large"
@@ -143,7 +149,7 @@ const ExpForm = () => {
                   Reason for leaving / looking for a new position (optional)
                 </label>
                 <Input
-                  autoComplete={'' + Math.random()}
+                  autoComplete="off"
                   className="w-100"
                   placeholder=""
                   size="large"

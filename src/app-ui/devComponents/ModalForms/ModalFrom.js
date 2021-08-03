@@ -41,8 +41,11 @@ const DashboardFrom = () => {
                   <label className="required">Qualification</label>
                 </div>
 
-                <Select size="large" defaultValue="" style={{ width: 120 }}>
-                </Select>
+                <Select
+                  size="large"
+                  defaultValue=""
+                  style={{ width: 120 }}
+                ></Select>
               </Form.Item>
 
               <Form.Item
@@ -54,8 +57,11 @@ const DashboardFrom = () => {
                   <label className="required">Subject / Field of study</label>
                 </div>
 
-                <Select size="large" defaultValue="" style={{ width: 120 }}>
-                </Select>
+                <Select
+                  size="large"
+                  defaultValue=""
+                  style={{ width: 120 }}
+                ></Select>
               </Form.Item>
             </div>
 
@@ -67,7 +73,7 @@ const DashboardFrom = () => {
               >
                 <label className="required">Desired locations to work in</label>
                 <Input
-                  autoComplete={'' + Math.random()}
+                  autoComplete="off"
                   className="w-100"
                   placeholder=""
                   size="large"
@@ -104,8 +110,11 @@ const DashboardFrom = () => {
                   <label className="required">Grade</label>
                 </div>
 
-                <Select size="large" defaultValue="" style={{ width: 120 }}>
-                </Select>
+                <Select
+                  size="large"
+                  defaultValue=""
+                  style={{ width: 120 }}
+                ></Select>
               </Form.Item>
             </div>
 

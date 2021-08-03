@@ -232,8 +232,9 @@ function AgencySignUp() {
                     className="c-input"
                     label="First name"
                     rules={Rules.firstNameRule}
-                    name="firstName">
-                    <Input autoComplete={'' + Math.random()} placeholder="Enter first name" />
+                    name="firstName"
+                  >
+                    <Input autoComplete="off" placeholder="Enter first name" />
                   </Form.Item>
                 </Col>
                 <Col
@@ -246,8 +247,9 @@ function AgencySignUp() {
                     className="c-input"
                     label="Last name"
                     rules={Rules.lastNameRule}
-                    name="lastName">
-                    <Input autoComplete={'' + Math.random()} placeholder="Enter last name" />
+                    name="lastName"
+                  >
+                    <Input autoComplete="off" placeholder="Enter last name" />
                   </Form.Item>
                 </Col>
                 <Col
@@ -297,7 +299,8 @@ function AgencySignUp() {
                     label="Work email address"
                     name="email"
                     className="c-input"
-                    rules={Rules.emailRule}>
+                    rules={Rules.emailRule}
+                  >
                     <Input
                       autoComplete={"" + Math.random()}
                       placeholder="Enter your email"
@@ -319,9 +322,10 @@ function AgencySignUp() {
                     rules={Rules.requiredRule}
                   >
                     <Select
-                    allowClear
+                      allowClear
                       getPopupContainer={(trigger) => trigger.parentNode}
-                      placeholder="Select platform">
+                      placeholder="Select platform"
+                    >
                       {findUsPlatforms?.map((fu) => (
                         <Option value={fu.id}>{fu.title}</Option>
                       ))}
@@ -367,11 +371,10 @@ function AgencySignUp() {
                     rules={Rules.requiredRule}
                   >
                     <Select
-                    allowClear
-                    placeholder="I’m registering a"
+                      allowClear
+                      placeholder="I’m registering a"
                       getPopupContainer={(trigger) => trigger.parentNode}
-                      >
-
+                    >
                       <Option value="single-company">Single company</Option>
                       <Option value="headquarters">Headquarters</Option>
                       <Option value="branch">Branch within the company</Option>
@@ -388,8 +391,12 @@ function AgencySignUp() {
                     label="Company name"
                     name="companyName"
                     className="c-input"
-                    rules={Rules.requiredRule}>
-                     <Input autoComplete={'' + Math.random()} placeholder="Enter company name"/>
+                    rules={Rules.requiredRule}
+                  >
+                    <Input
+                      autoComplete="off"
+                      placeholder="Enter company name"
+                    />
                   </Form.Item>
                 </Col>
 
@@ -466,8 +473,12 @@ function AgencySignUp() {
                     label="Website http://"
                     name="webUrl"
                     className="c-input"
-                    rules={Rules.requiredRule}>
-                     <Input autoComplete={'' + Math.random()} placeholder="Enter your website" />
+                    rules={Rules.requiredRule}
+                  >
+                    <Input
+                      autoComplete="off"
+                      placeholder="Enter your website"
+                    />
                   </Form.Item>
                 </Col>
               </Row>
@@ -562,9 +573,13 @@ function AgencySignUp() {
                     label="Password"
                     name="password"
                     className="c-input"
-                    rules={Rules.passwordRule}>
-                    <Input.Password autoComplete={'' + Math.random()} type="password" placeholder="Enter password" />
-
+                    rules={Rules.passwordRule}
+                  >
+                    <Input.Password
+                      autoComplete="off"
+                      type="password"
+                      placeholder="Enter password"
+                    />
                   </Form.Item>
                 </Col>
                 <Col
@@ -577,9 +592,13 @@ function AgencySignUp() {
                     label="Confirm password"
                     name="ConfirmPassword"
                     className="c-input"
-                    rules={Rules.confirmPasswordRule}>
-                    <Input.Password autoComplete={'' + Math.random()} type="password"  placeholder="Confirm password"/>
-
+                    rules={Rules.confirmPasswordRule}
+                  >
+                    <Input.Password
+                      autoComplete="off"
+                      type="password"
+                      placeholder="Confirm password"
+                    />
                   </Form.Item>
                 </Col>
               </Row>
@@ -596,9 +615,9 @@ function AgencySignUp() {
                     className="c-input"
                     label="First name"
                     rules={Rules.firstNameRule}
-                    name="firstName">
-                     <Input autoComplete={'' + Math.random()} placeholder="Enter first name"/>
-
+                    name="firstName"
+                  >
+                    <Input autoComplete="off" placeholder="Enter first name" />
                   </Form.Item>
                 </Col>
                 <Col
@@ -611,8 +630,9 @@ function AgencySignUp() {
                     className="c-input"
                     label="Last name"
                     rules={Rules.lastNameRule}
-                    name="lastName">
-                     <Input autoComplete={'' + Math.random()} placeholder="Enter last name" />
+                    name="lastName"
+                  >
+                    <Input autoComplete="off" placeholder="Enter last name" />
                   </Form.Item>
                 </Col>
                 <Col
@@ -662,7 +682,8 @@ function AgencySignUp() {
                     label="Work email address"
                     name="email"
                     className="c-input"
-                    rules={Rules.emailRule}>
+                    rules={Rules.emailRule}
+                  >
                     <Input
                       autoComplete={"" + Math.random()}
                       placeholder="Enter your email"
@@ -729,10 +750,10 @@ function AgencySignUp() {
                     rules={Rules.requiredRule}
                   >
                     <Select
-                    allowClear
+                      allowClear
                       getPopupContainer={(trigger) => trigger.parentNode}
-                      placeholder="Select platform">
-
+                      placeholder="Select platform"
+                    >
                       {findUsPlatforms?.map((fu) => (
                         <Option value={fu.id}>{fu.title}</Option>
                       ))}
@@ -749,8 +770,13 @@ function AgencySignUp() {
                     label="Password"
                     name="password"
                     className="c-input"
-                    rules={Rules.passwordRule}>
-                    <Input.Password autoComplete={'' + Math.random()} type="password" placeholder="Enter password"/>
+                    rules={Rules.passwordRule}
+                  >
+                    <Input.Password
+                      autoComplete="off"
+                      type="password"
+                      placeholder="Enter password"
+                    />
                   </Form.Item>
                 </Col>
                 <Col
@@ -763,9 +789,13 @@ function AgencySignUp() {
                     label="Confirm password"
                     name="ConfirmPassword"
                     className="c-input"
-                    rules={Rules.confirmPasswordRule}>
-                    <Input.Password autoComplete={'' + Math.random()} type="password" placeholder="Confirm password"/>
-
+                    rules={Rules.confirmPasswordRule}
+                  >
+                    <Input.Password
+                      autoComplete="off"
+                      type="password"
+                      placeholder="Confirm password"
+                    />
                   </Form.Item>
                 </Col>
               </Row>

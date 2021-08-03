@@ -9,7 +9,7 @@ const TaskEdit = () => {
       <Form classname="c-form">
         <Form.Item name="task" className="c-input">
           <Input
-            autoComplete={'' + Math.random()}
+            autoComplete="off"
             className="w-100"
             placeholder="This is your task list, edit this text and press save"
             size="large"

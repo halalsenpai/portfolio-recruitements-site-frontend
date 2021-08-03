@@ -152,7 +152,13 @@ const DashboardFrom = () => {
                 rules={Rules.firstNameRule}
               >
                 <label className="required">Email address</label>
-                <Input autoComplete={'' + Math.random()} placeholder="" size="small" type="text" />
+                <Input
+                  autoComplete="off"
+                  placeholder=""
+                  size="small"
+                  type="text"
+                />
+                direc
               </Form.Item>
 
               <Form.Item
@@ -161,7 +167,12 @@ const DashboardFrom = () => {
                 rules={Rules.firstNameRule}
               >
                 <label className="">Facebook profile link</label>
-                <Input autoComplete={'' + Math.random()} placeholder="" size="small" type="text" />
+                <Input
+                  autoComplete="off"
+                  placeholder=""
+                  size="small"
+                  type="text"
+                />
               </Form.Item>
 
               <Form.Item
@@ -170,7 +181,12 @@ const DashboardFrom = () => {
                 rules={Rules.firstNameRule}
               >
                 <label className="">LinkedIn profile link</label>
-                <Input autoComplete={'' + Math.random()} placeholder="" size="small" type="text" />
+                <Input
+                  autoComplete="off"
+                  placeholder=""
+                  size="small"
+                  type="text"
+                />
               </Form.Item>
             </div>
 
@@ -358,7 +374,12 @@ const DashboardFrom = () => {
                 rules={Rules.firstNameRule}
               >
                 <label className="required">Desired locations to work in</label>
-                <Input autoComplete={'' + Math.random()} placeholder="" size="small" type="text" />
+                <Input
+                  autoComplete="off"
+                  placeholder=""
+                  size="small"
+                  type="text"
+                />
               </Form.Item>
             </div>
 

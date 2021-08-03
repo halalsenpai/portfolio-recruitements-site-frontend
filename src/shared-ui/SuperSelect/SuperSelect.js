@@ -148,7 +148,6 @@ export const SuperSelect = ({
   return (
     <Select
       allowClear
-      autoComplete={"" + Math.random()}
       style={style}
       maxTagCount={maxTagCount}
       disabled={disabled}
@@ -163,6 +162,7 @@ export const SuperSelect = ({
       onPopupScroll={debounceOnScrollFetcher}
       notFoundContent={fetching ? <Spin size="small" /> : null}
       allowClear={true}
+      internalProps={{ autoComplete: "off" }}
       {...props}
     >
       {!fetching && (

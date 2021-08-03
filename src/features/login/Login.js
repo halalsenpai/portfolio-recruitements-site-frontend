@@ -106,29 +106,32 @@ function Login() {
 
           {/* Form */}
           <Form
-            autoComplete={'' + Math.random()}
+            autoComplete="off"
             className="c-form login-form"
             layout="vertical"
-            onFinish={onFinish}>
+            onFinish={onFinish}
+          >
             {/* <h3 className="form-title w-100 mb-4">
               <mark>{getFormTitle(userType)}</mark>
             </h3> */}
 
             <label>Email *</label>
             <Form.Item name="email" className="c-input" rules={Rules.emailRule}>
-              <Input 
-              autoComplete="off"
-              placeholder="Enter your email" size="large" />
-
+              <Input
+                autoComplete="off"
+                placeholder="Enter your email"
+                size="large"
+              />
             </Form.Item>
 
             <label>Password *</label>
             <Form.Item
               name="password"
               className="c-input mb-0"
-              rules={Rules.passwordRule}>
+              rules={Rules.passwordRule}
+            >
               <Input.Password
-                autoComplete={'' + Math.random()}
+                autoComplete="off"
                 placeholder="Enter your password"
                 size="large"
                 iconRender={(visible) =>
@@ -141,7 +144,8 @@ function Login() {
               <Form.Item
                 valuePropName="checked"
                 name="remember"
-                className="mb-0">
+                className="mb-0"
+              >
                 <Checkbox>Remember me</Checkbox>
               </Form.Item>
               <Link to="/forgot-password" className="alt-text">
