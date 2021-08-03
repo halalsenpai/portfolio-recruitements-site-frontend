@@ -52,7 +52,7 @@ export const getCitiesByCountry = (id) =>
 export const getCityisDesired = (params) => {
   console.log("getCityisDesired", params)
   // const qs = jsonToQueryString(params);
-  const qs = params?.search ? params.search : false;
+  const qs = params?.search ? params.search : params?.title ? params.title: false;
   return get(SERVICE_URLS.getCityisDesired(qs));
 };
 

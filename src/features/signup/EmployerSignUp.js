@@ -47,7 +47,8 @@ import {
   removePreUploadedProfileImage,
   selectCompanyLogo,
 } from "./slice";
-import AvatarPicker from "../../shared-ui/AvatarPicker/AvatarPicker";
+// import AvatarPicker from "../../shared-ui/AvatarPicker/AvatarPicker";
+import { SuperSelectFindJobs } from "../../shared-ui/superselectfindjobs/superselectfindjobs";
 
 const { Option } = Select;
 
@@ -229,7 +230,8 @@ function EmployerSignUp() {
                   label="Company name"
                   name="companyProfileId"
                   rules={Rules.requiredRule}>
-                  <SuperSelect
+                  <SuperSelectFindJobs
+                    mode={true}
                     getPopupContainer={(trigger) => trigger.parentNode}
                     fetchOptions={getCompany}
                     placeholder="Enter company name"
@@ -449,7 +451,7 @@ function EmployerSignUp() {
                     className="c-input"
                     rules={Rules.requiredRule}>
                     <Input
-                      autoComplete="off"
+                      autoComplete={"" + Math.random()}
                       placeholder="Enter company name"
                     />
                   </Form.Item>
@@ -462,7 +464,6 @@ function EmployerSignUp() {
                   md={{ span: 12 }}
                   lg={{ span: 12 }}>
                   <Form.Item
-                    autoComplete={"" + Math.random()}
                     style={{ zIndex: 170 }}
                     label="Company location"
                     name="countryId"

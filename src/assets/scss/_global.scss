@@ -927,3 +927,19 @@ html {
     }
   }
 }
+.find-job-super-select {
+  .ant-select {
+    width: 100% !important;
+  }
+  input {
+    padding: 0 15px 0 0px !important;
+  }
+  span.anticon.anticon-close-circle {
+    position: relative;
+    top: -3px;
+  }
+  .ant-select-clear {
+    margin-top: -4px !important;
+    line-height: 0;
+  }
+}

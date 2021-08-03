@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import { Input, Form, Empty, Spin } from "antd";
+import { Form, Empty, Spin } from "antd";
 import { SuperSelectFindJobs } from "../../shared-ui/superselectfindjobs/superselectfindjobs";
 import { transformJobData } from "./transformers";
 import Button from "../../shared-ui/Button/Button";
@@ -8,8 +8,6 @@ import { MappedElement } from "../../utils/helper";
 import JobCard from "../../shared-ui/JobCard/JobCard";
 import JobFilter from "../../app-ui/JobFilter/JobFilter";
 import JobDetails from "../../app-ui/JobDetails/JobDetails";
-import searchIcon from "../../assets/images/icons/search_icon.svg";
-import locationIcon from "../../assets/images/icons/location_icon.svg";
 import filterIcon from "../../assets/images/icons/filter_icon.svg";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
@@ -17,7 +15,6 @@ import {
   getJob,
   getAccommodation,
   getCity,
-  getCountry,
   getCountryisDesired,
   getEmploymentType,
   getFieldOfStudy,
@@ -147,7 +144,8 @@ function Jobs() {
               <div className="jobs-filter-header-secrion">
                 <Form.Item
                   name="jobTitleName"
-                  className="c-input c-input-with-icon"
+                  className="find-job-super-select c-input"
+                  
                 >
                   <SuperSelectFindJobs
                     placeholder="Job title"
@@ -156,13 +154,12 @@ function Jobs() {
                     onChange={() => formRef.current.submit()}
                     getPopupContainer={(trigger) => trigger.parentNode}
                     fetchOptions={jobTitlesFindJobs}
-                    className="small"
+                    // className="small"
                   />
                 </Form.Item>
                 <Form.Item
                   name="location"
-                  className="c-input c-input-with-icon find-job-super-select
-                "
+                  className="find-job-super-select c-input"
                 >
                   {/* <Input
                     size="small"
@@ -172,13 +169,23 @@ function Jobs() {
                     prefix={
                       <img className="input-icon" src={locationIcon} alt="ico" />
                     }></Input> */}
-                  <SuperSelect
+                  {/* <SuperSelect
                     placeholder="Desired location"
                     allowClear={true}
+                    mode={true}
                     getPopupContainer={(trigger) => trigger.parentNode}
                     // style={{ width: 200 }}
                     fetchOptions={cityisDesired}
-                    className="super-select small"
+                    // className="super-select"
+                  /> */}
+                   <SuperSelectFindJobs
+                    placeholder="Desired location"
+                    allowClear={true}
+                    onType={false}
+                    onChange={() => formRef.current.submit()}
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    fetchOptions={cityisDesired}
+                    // className="small"
                   />
                 </Form.Item>
               </div>
