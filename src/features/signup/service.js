@@ -27,7 +27,13 @@ export const getFamilyStatus = () => get(SERVICE_URLS.getFamilyStatus());
 // export const getNationality = () => get(SERVICE_URLS.getNationality());
 export const getFindUsPlatform = () => get(SERVICE_URLS.getFindUsPlatform());
 export const getCompany = (params) => {
+  console.log(params);
+  if(params.title) {
+    params.search = params.title;
+    // delete params.title;
+  }
   const qs = jsonToQueryString(params);
+  // const qs = params?.search ? params.search : params?.title ? params.title: false;
   return get(SERVICE_URLS.getCompany(qs));
 };
 export const getCountry = (params) => {
