@@ -13,11 +13,6 @@ import { removePreUploadedProfileImage } from "./slice";
 function SignUp() {
   const [userType, setUserType] = useState(userTypes.JOBSEEKER.title);
   const history = useHistory();
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(removePreUploadedProfileImage());
-  }, []);
 
   const onFinish = useCallback(() => {
     switch (userType) {

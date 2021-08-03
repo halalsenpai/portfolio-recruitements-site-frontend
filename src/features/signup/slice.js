@@ -53,7 +53,6 @@ export const slice = createSlice({
   reducers: {
     removePreUploadedProfileImage: (state) => {
       state.profileImage = null;
-      state.signup.profileImage = null;
     },
   },
   extraReducers: (builder) => {
