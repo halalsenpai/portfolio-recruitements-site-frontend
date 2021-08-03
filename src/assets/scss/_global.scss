@@ -758,8 +758,6 @@ label.ant-form-item-required {
   margin: 0px 0px 10px 0px;
 }
 
-
-
 // notification-count
 
 .c-notification-count {
@@ -788,10 +786,9 @@ label.ant-form-item-required {
 }
 
 // error msg css
-.ant-form-item-explain, .ant-form-item-extra {
-  
+.ant-form-item-explain,
+.ant-form-item-extra {
   font-size: 12px;
-  
 }
 
 @media screen and (max-width: 540px) {
@@ -896,8 +893,8 @@ html {
 .ant-select-clear {
   right: 16px;
 }
-.ant-select-selection-placeholder{
-  content-visibility: auto,
+.ant-select-selection-placeholder {
+  content-visibility: auto;
 }
 .ant-select-clear {
   margin-top: -7px;
@@ -905,4 +902,28 @@ html {
 }
 .ant-select .ant-select-selector .ant-select-selection-placeholder {
   font-size: 12px;
+}
+
+.super-select {
+  input {
+    background: transparent !important;
+  }
+
+  &.small {
+    width: 145px !important;
+    z-index: 40 !important;
+
+    &.ant-select:not(.ant-select-customize-input)
+      .ant-select-selector
+      .ant-select-selection-search-input {
+      padding: 0px 6px !important;
+    }
+
+    .ant-select-selection-placeholder {
+      padding-left: 0px;
+    }
+    .ant-select-arrow {
+      display: none;
+    }
+  }
 }

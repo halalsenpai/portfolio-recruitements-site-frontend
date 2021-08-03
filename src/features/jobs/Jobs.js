@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import { Input, Form, Empty, Spin } from "antd";
-
+import { SuperSelectFindJobs } from "../../shared-ui/superselectfindjobs/superselectfindjobs";
 import { transformJobData } from "./transformers";
 import Button from "../../shared-ui/Button/Button";
 import { MappedElement } from "../../utils/helper";
@@ -30,8 +30,9 @@ import {
 
 import {
   getCountryisDesired as countryisDesired,
-  getCityisDesired as cityisDesired
-} from './service';
+  getCityisDesired as cityisDesired,
+  jobTitlesFindJobs,
+} from "./service";
 import { selectJobs, selectStatus } from "./slice";
 import {
   selectCountries,
@@ -112,7 +113,6 @@ function Jobs() {
     });
 
   const onSearchJob = (values) => {
-    console.log("onSearchJob", values)
     const qs = { ...queryParams, ...values };
     setQueryParams(qs);
     dispatch(getJob({ qs }));
@@ -120,14 +120,14 @@ function Jobs() {
   let timeout = 0;
   // const onFinish = () => {};
   const doSearch = (evt) => {
-    if ((evt.target.value).length > 1 || evt.target.value == "") {
+    if (evt.target.value.length > 1 || evt.target.value == "") {
       if (timeout) clearTimeout(timeout);
       timeout = setTimeout(() => {
         //search function
         formRef.current.submit();
       }, 500);
     }
-  }
+  };
 
   return (
     <div className="jobs-page">
@@ -147,24 +147,23 @@ function Jobs() {
               <div className="jobs-filter-header-secrion">
                 <Form.Item
                   name="jobTitleName"
-                  className="c-input c-input-with-icon">
-                  <Input
-                    autoComplete="off"
-                    size="small"
-                    className="xs"
-                    type="text"
+                  className="c-input c-input-with-icon"
+                >
+                  <SuperSelectFindJobs
                     placeholder="Job title"
-                    onChange={doSearch}
-                    prefix={
-                      <img className="input-icon" src={searchIcon} alt="ico" />
-                    }></Input>
+                    allowClear={true}
+                    onType={false}
+                    onChange={() => formRef.current.submit()}
+                    getPopupContainer={(trigger) => trigger.parentNode}
+                    fetchOptions={jobTitlesFindJobs}
+                    className="small"
+                  />
                 </Form.Item>
-                <Form.Item name="location"
+                <Form.Item
+                  name="location"
                   className="c-input c-input-with-icon find-job-super-select
                 "
                 >
-                  
-                  
                   {/* <Input
                     size="small"
                     className="xs"
@@ -173,26 +172,14 @@ function Jobs() {
                     prefix={
                       <img className="input-icon" src={locationIcon} alt="ico" />
                     }></Input> */}
-                  <div className="icon-in-super-select">
-                  <img
-                      className="location-icon"
-                      src={require("../../assets/images/icons/location_icon.svg")}
-                      alt="icon"
-                    />
                   <SuperSelect
-                    defaultValue="Desired City"
+                    placeholder="Desired location"
+                    allowClear={true}
                     getPopupContainer={(trigger) => trigger.parentNode}
-                    // defaultValue=""
-                    style={{ width: 200 }}
+                    // style={{ width: 200 }}
                     fetchOptions={cityisDesired}
-                   
+                    className="super-select small"
                   />
-                  </div>
-                  {/* icon={<img
-                      className="location-icon"
-                      src={require("../../assets/images/icons/location_icon.svg")}
-                      alt="icon"
-                    />} */}
                 </Form.Item>
               </div>
               <div className="jobs-button-section">
@@ -201,22 +188,22 @@ function Jobs() {
                   htmlType="submit"
                   className="filter-btns"
                   themeColor="rounded light"
-                  style={{ height: "32px", }}>
+                  style={{ height: "32px" }}
+                >
                   Go
                 </Button>
 
                 <Button
                   icon={<img src={filterIcon} alt="ico" />}
                   className=" filter-icon rounded shadowed filter-btns"
-
-                  onClick={ShowFilter}></Button>
+                  onClick={ShowFilter}
+                ></Button>
               </div>
             </span>
           </Form>
 
           <div className="jobs-list">
-            {!jobs.length && <CEmpty
-              description={"No jobs"} />}
+            {!jobs.length && <CEmpty description={"No jobs"} />}
 
             <MappedElement
               data={jobs}
@@ -226,7 +213,7 @@ function Jobs() {
                     key={index}
                     onClick={() => {
                       setJobDetails(obj);
-                      setShowJobDetails(true)
+                      setShowJobDetails(true);
                       setcategoryId(obj.categoriesId);
                       setcompanyId(obj.companyId);
                     }}
@@ -246,15 +233,15 @@ function Jobs() {
         {/* Job Detail */}
         <div
           ref={myRef}
-          className={`job-details ${showJobDetails && "job-details-show"}`}>
+          className={`job-details ${showJobDetails && "job-details-show"}`}
+        >
           {isLoading && (
             <div className="preloader">
               <Spin />
             </div>
           )}
 
-          {!jobDetails && <CEmpty
-            description={"please select a job"} />}
+          {!jobDetails && <CEmpty description={"please select a job"} />}
 
           {jobDetails && (
             <JobDetails
@@ -272,13 +259,11 @@ function Jobs() {
           )}
         </div>
       </div>
-    </div >
+    </div>
   );
 }
 
 export default Jobs;
-
-
 
 const CEmpty = ({ description }) => (
   <Empty
@@ -288,9 +273,10 @@ const CEmpty = ({ description }) => (
       height: "100%",
       justifyContent: "center",
     }}
-    image={require('../../assets/images/icons/noData.png')}
+    image={require("../../assets/images/icons/noData.png")}
     imageStyle={{
       height: 150,
     }}
-    description={description} />
+    description={description}
+  />
 );

@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
-import { Select, Spin } from "antd";
+import { Select, Spin, Space } from "antd";
 import useRefState from "react-usestateref";
 
 import { Option } from "antd/lib/mentions";
@@ -20,20 +20,21 @@ const getOptions = (data, keys) => {
   }));
 };
 
-export const SuperSelect = ({
+export const SuperSelectFindJobs = ({
+  onType = true,
   mode,
   maxTagCount,
+  className = "",
   disabled,
   fetchOptions,
   dependencyId,
   allowClear = true,
   showSearch = true,
-  placeholder = "Select option(s)",
+  placeholder = "Select options",
   debounceTimeout = 800,
   fixedOptions = [],
-  searchKey = "search",
+  searchKey = "title",
   keys = ["id", "title"],
-  style,
   ...props
 }) => {
   const fetchOnSearchRef = useRef(0);
@@ -49,21 +50,12 @@ export const SuperSelect = ({
     limit: 100,
   });
 
-  const [selected, setSelected] = useState();
-
-  const clearSelected = () => {
-    setSelected(null);
-  };
-
-  useEffect(() => {
-    if (!dependencyId) {
-      debounceOnSearchFetcher();
-    }
-  }, []);
-
   useEffect(() => {
     if (dependencyId) {
-      debounceOnSearchFetcher();
+      fetchOptions(dependencyId);
+      if (onType) {
+        debounceOnSearchFetcher();
+      }
     }
   }, [dependencyId]);
 
@@ -147,13 +139,12 @@ export const SuperSelect = ({
 
   return (
     <Select
-      allowClear
-      autoComplete={"" + Math.random()}
-      style={style}
+      className={`super-select ${className}`}
+      allowClear={allowClear}
       maxTagCount={maxTagCount}
       disabled={disabled}
-      autoComplete="off"
-      showArrow={mode ? false : true}
+      showArrow={false}
+      // showArrow={mode ? false : true}
       mode={mode}
       filterOption={false}
       showSearch={showSearch}
@@ -162,23 +153,17 @@ export const SuperSelect = ({
       onSearch={debounceOnSearchFetcher}
       onPopupScroll={debounceOnScrollFetcher}
       notFoundContent={fetching ? <Spin size="small" /> : null}
-      allowClear={true}
       {...props}
     >
       {!fetching && (
         <>
-          {/* {initOptions.map((d) => (
-            <Option key={d.value} value={d.value}>
-              {d.label}
-            </Option>
-          ))} */}
           {fixedOptions.map((d) => (
-            <Option key={d.value} value={d.value}>
+            <Option key={d.value} value={d.label}>
               {d.label}
             </Option>
           ))}
           {optionsRef.current.map((d) => (
-            <Option key={d.value} value={d.value}>
+            <Option key={d.value} value={d.label}>
               {d.label}
             </Option>
           ))}
