@@ -42,6 +42,34 @@
       bottom: -4px !important;
     }
   }
+  .override-width {
+    .modal-dialog {
+      .modal-content {
+        width: unset !important;
+      }
+    }
+  }
+  .country-city-modal-parent {
+    .modal-dialog {
+      padding-top: 36px !important;
+    }
+  }
+  .ant-row {
+    &.ant-form-item {
+      &.c-input {
+        &.c-form {
+          &.p-0 {
+            flex-direction: row;
+          }
+        }
+      }
+    }
+  }
+  .super-select {
+    &.small {
+      width: 100% !important;
+    }
+  }
 }
 @media only screen and (max-width: 410px) {
   .filter-main {

@@ -380,6 +380,44 @@ const JobFilter = (props) => {
                   </Select>
                 </Form.Item>
               </Col>
+              <Col
+                style={{ zIndex: "370" }}
+                lg={{ span: 8 }}
+                sm={{ span: 12 }}
+                xs={{ span: 24 }}
+                className="jobs-grid"
+                span={12}>
+                <Form.Item
+                  label="Salary range from 0"
+                  name="range"
+                  className="c-input c-form p-0"
+                  rules={null}>
+                  <Input
+                    type="number"
+                    autoComplete={"" + Math.random()}
+                    placeholder="Enter first name"
+                  />
+                </Form.Item>
+              </Col>
+              <Col
+                style={{ zIndex: "370" }}
+                lg={{ span: 8 }}
+                sm={{ span: 12 }}
+                xs={{ span: 24 }}
+                className="jobs-grid"
+                span={12}>
+                <Form.Item
+                  label="Upto 0"
+                  name="upto"
+                  className="c-input c-form p-0"
+                  rules={null}>
+                  <Input
+                    type="number"
+                    autoComplete={"" + Math.random()}
+                    placeholder="Enter first name"
+                  />
+                </Form.Item>
+              </Col>
               {/* <Form.Item
                 extra={<span>Equivalent to 2,000 GBP</span>}
                 label="Salary range"
@@ -469,11 +507,10 @@ const JobFilter = (props) => {
             </Row>
             {/* <Row justify="center" wrap={true}></Row>
             <Row justify="center" wrap={true}></Row> */}
-            <Row justify="center" wrap={true}></Row>
             {/* <Row justify="center" wrap={true}></Row> */}
           </div>
-          <div className="filter-section width-auto">
-            <Row justify="center" wrap={true}>
+          <div className="filter-section ">
+            <Row justify="center" wrap={true} className="width-auto">
               <Col
                 span={8}
                 className="jobs-grid switch-grid cent"

@@ -195,3 +195,16 @@
     display: flex !important;
   }
 }
+.ant-row-center {
+  justify-content: flex-start;
+}
+.filter-main {
+  .filter-section {
+    .switches {
+      .ant-switch-small {
+        min-width: 26px;
+        max-width: 26px;
+      }
+    }
+  }
+}
