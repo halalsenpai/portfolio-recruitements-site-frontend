@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { message } from "antd";
 
 import {
   getRole as getRoleAPI,
@@ -67,7 +68,6 @@ export const getCity = createAsyncThunk("signup/city", async () => {
 export const getCitiesByCountry = createAsyncThunk(
   "signup/cities-by-country",
   async (id) => {
-    console.log(id);
     const response = await getCitiesByCountryAPI(id);
     return response.data;
   }
@@ -82,6 +82,9 @@ export const confirmEmail = createAsyncThunk(
   "signup/confirm-email",
   async () => {
     const response = await confirmEmailAPI();
+    localStorage.removeItem("token");
+    message.success("Email verified!");
+    window.location.href = "/login";
     return response.data;
   }
 );

@@ -27,7 +27,7 @@ function ConfirmEmail() {
     dispatch(getRole());
     const token = query.get("token");
     if (token) {
-      // localStorage.setItem("token", token);
+      localStorage.setItem("token", token);
       dispatch(confirmEmail());
     }
   }, []);
