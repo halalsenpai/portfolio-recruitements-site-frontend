@@ -124,10 +124,11 @@ function EmployerSignUp() {
     //   showWarningMessage("profile photo is required");
     //   return;
     // }
-    if (!isCreateCompany && currentStep === 3 && !profileImage?.url) {
-      showWarningMessage("profile photo is required");
-      return;
-    }
+    // if (!isCreateCompany && currentStep === 3 && !profileImage?.url) {
+    //   showWarningMessage("profile photo is required");
+    //   return;
+    // }
+
     if (currentStep < 3) {
       setCurrentStep((prevValue) => prevValue + 1);
     }

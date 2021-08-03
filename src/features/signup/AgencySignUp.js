@@ -108,10 +108,10 @@ function AgencySignUp() {
       return;
     }
 
-    if (!profileImage?.url) {
-      showWarningMessage("profile photo is required");
-      return;
-    }
+    // if (!profileImage?.url) {
+    //   showWarningMessage("profile photo is required");
+    //   return;
+    // }
 
     const payload = {
       roleId: role.id,

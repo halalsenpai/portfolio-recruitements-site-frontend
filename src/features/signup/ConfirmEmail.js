@@ -25,17 +25,17 @@ function ConfirmEmail() {
 
   useEffect(() => {
     dispatch(getRole());
-    const token = query.get("token");
-    if (token) {
-      localStorage.setItem("token", token);
-      dispatch(confirmEmail());
-    }
+    // const token = query.get("token");
+    // if (token) {
+    //   localStorage.setItem("token", token);
+    //   dispatch(confirmEmail());
+    // }
   }, []);
 
   useEffect(() => {
     if (confirmEmailSuccess && roles.length) {
-      localStorage.removeItem('token');
-      localStorage.removeItem('role');
+      localStorage.removeItem("token");
+      localStorage.removeItem("role");
       const token = confirmEmailResponse.token;
       const roleId = confirmEmailResponse.roleId;
       const role = roles.find((r) => r.id === roleId);
