@@ -7,6 +7,8 @@ import { userTypes } from "../../utils/constants";
 import Button from "../../shared-ui/Button/Button";
 import "./_SignUp.scss";
 import "./_Responsive.scss";
+import { useAppDispatch } from "../../store/hooks";
+import { removePreUploadedProfileImage } from "./slice";
 
 function SignUp() {
   const [userType, setUserType] = useState(userTypes.JOBSEEKER.title);
@@ -38,7 +40,8 @@ function SignUp() {
       <div className="signup-container with-form role-container height-720">
         <Form
           className="second-container c-form w-100 signup-option"
-          onFinish={onFinish}>
+          onFinish={onFinish}
+        >
           {/* <img
             src={require("../../assets/images/auth/signup-illus.png")}
             alt="logo"
@@ -66,7 +69,8 @@ function SignUp() {
               htmlType="submit"
               // loading={true}
               block
-              themeColor="primary">
+              themeColor="primary"
+            >
               Next
             </Button>
           </Form.Item>

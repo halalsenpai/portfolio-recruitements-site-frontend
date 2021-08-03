@@ -23,6 +23,7 @@ const SERVICE_URLS = {
   getJobsByCompany: (id) => `/jobs/public?page=1&limit=4${id}`,
   getSuitableFor: (id) => `/suitable-job-list`,
   getCitiesByCountry: (id) => `/city/by-country-id/${id}?page=1&limit=500`,
+  getFindJobTitle: (qs) => `/jobtitle/for-find-job${qs}`,
 };
 
 export const getJob = (qs) => get(SERVICE_URLS.getJob(qs));
@@ -54,3 +55,9 @@ export const getCityisDesired = (params) => {
   const qs = params?.search ? params.search : false;
   return get(SERVICE_URLS.getCityisDesired(qs));
 };
+
+export const jobTitlesFindJobs = (params) => {
+  const qs = jsonToQueryString(params);
+  return get(SERVICE_URLS.getFindJobTitle(qs));
+};
+

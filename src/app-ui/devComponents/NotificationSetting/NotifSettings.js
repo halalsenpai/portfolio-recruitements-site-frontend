@@ -133,7 +133,12 @@ const DashboardFrom = () => {
                           className="c-input form-padding"
                           rules={Rules.emailRule}
                         >
-                          <Input autoComplete={'' + Math.random()} placeholder="" size="small" type="text" />
+                          <Input
+                            autoComplete="off"
+                            placeholder=""
+                            size="small"
+                            type="text"
+                          />
                         </Form.Item>
 
                         <Form.Item
@@ -141,7 +146,12 @@ const DashboardFrom = () => {
                           className="c-input form-padding"
                           rules={Rules.passwordRule}
                         >
-                          <Input autoComplete={'' + Math.random()} placeholder="" size="small" type="password" />
+                          <Input
+                            autoComplete="off"
+                            placeholder=""
+                            size="small"
+                            type="password"
+                          />
                         </Form.Item>
 
                         <p className="items-desc item-desc-width">

@@ -44,7 +44,7 @@ const SelectWithAddItem = ({
               <a>{hintTextForAddItem}</a>
               <span className="d-flex">
                 <Input
-                  autoComplete={'' + Math.random()}
+                  autoComplete="off"
                   style={{ flex: "auto" }}
                   value={newItemName}
                   onChange={onNameChange}

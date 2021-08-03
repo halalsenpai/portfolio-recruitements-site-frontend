@@ -124,10 +124,11 @@ function EmployerSignUp() {
     //   showWarningMessage("profile photo is required");
     //   return;
     // }
-    if (!isCreateCompany && currentStep === 3 && !profileImage?.url) {
-      showWarningMessage("profile photo is required");
-      return;
-    }
+    // if (!isCreateCompany && currentStep === 3 && !profileImage?.url) {
+    //   showWarningMessage("profile photo is required");
+    //   return;
+    // }
+
     if (currentStep < 3) {
       setCurrentStep((prevValue) => prevValue + 1);
     }
@@ -343,6 +344,9 @@ function EmployerSignUp() {
                     <PhoneInput
                       placeholder="Enter your work phone."
                       country={countryCode}
+                      autoComplete="off"
+                      autocompleteSearch={false}
+                      inputProps={{}}
                     />
                   </Form.Item>
                 </Col>
@@ -375,10 +379,9 @@ function EmployerSignUp() {
                     label="How did you find us?"
                     rules={Rules.requiredRule}>
                     <Select
-                    allowClear
+                      allowClear
                       getPopupContainer={(trigger) => trigger.parentNode}
                       placeholder="Select platform">
-
                       {findUsPlatforms?.map((fu) => (
                         <Option value={fu.id}>{fu.title}</Option>
                       ))}
@@ -426,11 +429,9 @@ function EmployerSignUp() {
                     className="c-input"
                     rules={Rules.requiredRule}>
                     <Select
-                    allowClear
-                    placeholder="I’m registering a"
-                      getPopupContainer={(trigger) => trigger.parentNode}
-                      >
-
+                      allowClear
+                      placeholder="I’m registering a"
+                      getPopupContainer={(trigger) => trigger.parentNode}>
                       <Option value="single-company">Single company</Option>
                       <Option value="headquarters">Headquarters</Option>
                       <Option value="branch">Branch within the company</Option>
@@ -447,8 +448,10 @@ function EmployerSignUp() {
                     name="companyName"
                     className="c-input"
                     rules={Rules.requiredRule}>
-                    <Input autoComplete={'' + Math.random()} placeholder="Enter company name"/>
-
+                    <Input
+                      autoComplete="off"
+                      placeholder="Enter company name"
+                    />
                   </Form.Item>
                 </Col>
 
@@ -521,7 +524,7 @@ function EmployerSignUp() {
                     name="webUrl"
                     className="c-input"
                     rules={Rules.requiredRule}>
-                    <Input autoComplete={'' + Math.random()} placeholder="Enter Website" />
+                    <Input autoComplete="off" placeholder="Enter Website" />
                   </Form.Item>
                 </Col>
               </Row>
@@ -613,8 +616,11 @@ function EmployerSignUp() {
                     name="password"
                     className="c-input"
                     rules={Rules.passwordRule}>
-                    <Input.Password autoComplete={'' + Math.random()} type="password" placeholder="Enter password"/>
-
+                    <Input.Password
+                      autoComplete="off"
+                      type="password"
+                      placeholder="Enter password"
+                    />
                   </Form.Item>
                 </Col>
                 <Col
@@ -627,7 +633,12 @@ function EmployerSignUp() {
                     name="ConfirmPassword"
                     className="c-input"
                     rules={Rules.confirmPasswordRule}>
-                    <Input.Password autoComplete={'' + Math.random()} type="password" placeholder="Confirm password" />
+                    <Input.Password
+                      autoComplete="off"
+                      type="password"
+                      itemProp={{ autoComplete: "off" }}
+                      placeholder="Confirm password"
+                    />
                   </Form.Item>
                 </Col>
               </Row>
@@ -666,7 +677,7 @@ function EmployerSignUp() {
                     label="First name"
                     rules={Rules.firstNameRule}
                     name="firstName">
-                    <Input autoComplete={'' + Math.random()}  placeholder="Enter first name"/>
+                    <Input autoComplete="off" placeholder="Enter first name" />
                   </Form.Item>
                 </Col>
                 <Col
@@ -679,8 +690,7 @@ function EmployerSignUp() {
                     label="Last name"
                     rules={Rules.lastNameRule}
                     name="lastName">
-                    <Input autoComplete={'' + Math.random()} placeholder="Enter last name" />
-
+                    <Input autoComplete="off" placeholder="Enter last name" />
                   </Form.Item>
                 </Col>
                 <Col
@@ -786,10 +796,9 @@ function EmployerSignUp() {
                     label="How did you find us?"
                     rules={Rules.requiredRule}>
                     <Select
-                    allowClear
+                      allowClear
                       getPopupContainer={(trigger) => trigger.parentNode}
                       placeholder="Select platform">
-
                       {findUsPlatforms?.map((fu) => (
                         <Option value={fu.id}>{fu.title}</Option>
                       ))}
@@ -806,8 +815,11 @@ function EmployerSignUp() {
                     name="password"
                     className="c-input"
                     rules={Rules.passwordRule}>
-                    <Input.Password autoComplete={'' + Math.random()} type="password" placeholder="Enter password" />
-
+                    <Input.Password
+                      autoComplete="off"
+                      type="password"
+                      placeholder="Enter password"
+                    />
                   </Form.Item>
                 </Col>
                 <Col
@@ -820,8 +832,11 @@ function EmployerSignUp() {
                     name="ConfirmPassword"
                     className="c-input"
                     rules={Rules.confirmPasswordRule}>
-                    <Input.Password autoComplete={'' + Math.random()} type="password" placeholder="Confirm password"/>
-
+                    <Input.Password
+                      autoComplete="off"
+                      type="password"
+                      placeholder="Confirm password"
+                    />
                   </Form.Item>
                 </Col>
               </Row>
@@ -840,7 +855,8 @@ function EmployerSignUp() {
           form={form}
           layout="vertical"
           className="employer-sign-up c-form second-container"
-          onFinish={onFinish}>
+          onFinish={onFinish}
+          autoComplete="off">
           {renderSteps(currentStep)}
 
           {currentStep == 3 && (
