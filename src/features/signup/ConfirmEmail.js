@@ -25,11 +25,11 @@ function ConfirmEmail() {
 
   useEffect(() => {
     dispatch(getRole());
-    // const token = query.get("token");
-    // if (token) {
-    //   localStorage.setItem("token", token);
-    //   dispatch(confirmEmail());
-    // }
+    const token = query.get("token");
+    if (token) {
+      // localStorage.setItem("token", token);
+      dispatch(confirmEmail());
+    }
   }, []);
 
   useEffect(() => {
