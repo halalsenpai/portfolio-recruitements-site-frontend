@@ -13,6 +13,8 @@ import {
   selectLoadingStatus,
   selectRole,
 } from "./slice";
+import { persistor } from '../../store'; // or w/e
+import storage from 'redux-persist/lib/storage'
 
 function ConfirmEmail() {
   let query = useQuery();
@@ -27,7 +29,7 @@ function ConfirmEmail() {
     dispatch(getRole());
     const token = query.get("token");
     if (token) {
-      // localStorage.setItem("token", token);
+      localStorage.setItem("token", token);
       dispatch(confirmEmail());
     }
   }, []);
@@ -43,6 +45,9 @@ function ConfirmEmail() {
         const url = userTypes[role.title.toUpperCase()].url;
         localStorage.removeItem("token");
         if (url) {
+          localStorage.clear();
+          persistor.flush();
+          storage.removeItem('persist:root')
           window.location = `${url}/?token=${token}`;
         }
       }
