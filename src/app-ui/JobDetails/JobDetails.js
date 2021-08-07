@@ -221,14 +221,14 @@ function JobDetails({
                         {data.company?.companyName || ""}
                       </span>
                     </span>
-                    <Select
+                    {/* <Select
                       getPopupContainer={(trigger) => trigger.parentNode}
                       dropdownAlign={{ pageYOffset: 0 }}
                       dropdownMatchSelectWidth="true"
                       placeholder="Other Branches">
                       <Option>branches</Option>
                       <Option>branches</Option>
-                    </Select>
+                    </Select> */}
                   </h6>
 
                   <p className="block-text">
@@ -286,7 +286,11 @@ function JobDetails({
                     justify={`${otherJobs?.length === 4 ? "space-around" : "flex-start"
                       }`}>
                     {otherJobs?.map((otherJob) => (
-                      <Col>
+                      <Col
+                      span={8}
+                      lg={{ span: 8 }}
+                      sm={{ span: 12 }}
+                      xs={{ span: 24 }}>
                         <JobCard
                           onClick={() => {
                             setJobDetails(otherJob);
