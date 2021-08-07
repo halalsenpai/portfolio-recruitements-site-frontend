@@ -55,9 +55,9 @@ function Home() {
                       />
                     </Button>
                     <p className="small-txt mobile-textalign">
-                    It’s free to join, for everyone!
+                      It’s free to join, for everyone!
                     </p>
-                      {/* /Join us for free. Launch date: June 2021. */}
+                    {/* /Join us for free. Launch date: June 2021. */}
                   </div>
                 </Fade>
                 {/* </div> */}
@@ -211,7 +211,7 @@ function Home() {
         <div className="pr-0 bottom-container">
           {/* <Fade bottom duration={1000}> */}
           <div className="bottom-container-row">
-            <div className="padding-mobile bottom-text-section text-column ">
+            {/* <div className="padding-mobile bottom-text-section text-column ">
               <img
                 className="bottom-logo"
                 src={require("..//..//assets/images/logo/logo-md.png")}
@@ -250,7 +250,7 @@ function Home() {
                   Book a Demo
                 </a>
               </Button>
-            </div>
+            </div> */}
 
             <div className="btm-container-img">
               {/* <div className="p-0 d-flex justify-content-center"> */}
