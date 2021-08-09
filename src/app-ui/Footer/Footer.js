@@ -34,7 +34,7 @@ function Footer() {
           </ul>
           <ul>
             <Link to="/job-seekers">Job seekers</Link>
-            <Link to="/jobs">Job</Link>
+            <Link to="/jobs">Jobs</Link>
             <Link to="/employee-and-agency">Employer & Agencies</Link>
           </ul>
           <ul>
