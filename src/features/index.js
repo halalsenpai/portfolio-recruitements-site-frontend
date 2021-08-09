@@ -11,6 +11,9 @@ import JobSeekers from "./jobSeekers/JobSeekers";
 import ForgotPassword from "./forgotPassword/ForgotPassword";
 import EmployerAndAgency from "./employerAndAgency/EmployerAndAgency";
 import Services from "./services/services";
+import TermsAndCondition from "./termsAndCondition/TermsAndCondition";
+import CookiePolicy from "./cookiePolicy/CookiePolicy";
+import PrivacyPolicy from "./privacyPolicy/PrivacyPolicy";
 
 import Test from "./test/Test";
 
@@ -29,4 +32,7 @@ export {
   EmployerSignUp,
   JobSeekerSignUp,
   Services,
+  TermsAndCondition,
+  CookiePolicy,
+  PrivacyPolicy,
 };
