@@ -53,7 +53,9 @@
     }
   }
   .shadow-box {
-    background: transparent radial-gradient(closest-side at 50% 68%, #4b4b55 -133%, #ffffff00 200%) -22% 0 no-repeat padding-box;
+    background: transparent
+      radial-gradient(closest-side at 50% 68%, #4b4b55 -133%, #ffffff00 200%) -22%
+      0 no-repeat padding-box;
     position: absolute;
     z-index: 3;
     width: 100%;
