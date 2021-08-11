@@ -81,7 +81,7 @@
     .second-container {
       width: 100%;
       // padding: 2em 1em !important;
-      padding: 2em 16px !important;
+      padding: 1em 16px !important;
       .responsive-bottom-section {
         justify-content: center !important;
         // max-width: 300px;
@@ -171,7 +171,7 @@
 }
 @media only screen and (max-width: 540px) {
   .c-container {
-    padding: 50px 15px 50px 15px !important;
+    padding: 0px 15px 0px 15px !important;
     .c-card-with-lines {
       min-width: unset !important;
       width: 100% !important;
