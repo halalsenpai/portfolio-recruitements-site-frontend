@@ -8,7 +8,7 @@ function Footer() {
     <div className="c-footer">
       <span className="shadow-box"></span>
       <span className=" inner-container ">
-        <div className="container-lg container-fluid d-flex flex-wrap">
+        <div className="container-lg container-fluid d-flex flex-wrap margin-top-10">
           <ul className="info">
             <img className="logo" src={LogoImage} alt="Logo" />
             <span>
@@ -34,7 +34,7 @@ function Footer() {
           </ul>
           <ul>
             <Link to="/job-seekers">Job seekers</Link>
-            <Link to="/jobs">Job</Link>
+            <Link to="/jobs">Jobs</Link>
             <Link to="/employee-and-agency">Employer & Agencies</Link>
           </ul>
           <ul>

@@ -225,7 +225,11 @@ function EmployerSignUp() {
         return (
           <>
             <Row justify="center">
-              <Col span={18} md={{ span: 12 }} lg={{ span: 12 }}>
+              <Col
+                span={24}
+                md={{ span: 12 }}
+                lg={{ span: 12 }}
+                sm={{ span: 24 }}>
                 <Form.Item
                   label="Company name"
                   name="companyProfileId"
