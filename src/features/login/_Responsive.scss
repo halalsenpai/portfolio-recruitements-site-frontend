@@ -38,3 +38,21 @@
     }
   }
 }
+@media only screen and (max-width: 767px) {
+  .c-card-container {
+    height: 647px !important;
+    box-shadow: none !important;
+    .display {
+      display: none !important;
+    }
+    &.login-container {
+      .second-container {
+        // height: calc(100% - 70px) !important;
+        padding-top: 8em;
+      }
+    }
+    .c-button {
+      border-radius: 8px !important;
+    }
+  }
+}

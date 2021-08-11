@@ -95,7 +95,7 @@
           flex: 1 1;
           padding: 0 10px;
           max-width: 100%;
-          min-width: 100%;
+          min-width: 100% !important;
           margin: 10px 0 0 0;
 
           .small-paragraph {
@@ -426,8 +426,7 @@
 }
 
 @media only screen and (max-width: 1334px) {
-  .home{
-    
+  .home {
     .bottom-container {
       .bottom-container-row {
         .bottom-text-section {
@@ -449,5 +448,4 @@
       }
     }
   }
-  
 }
