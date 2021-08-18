@@ -203,7 +203,7 @@ function JobDetails({
                 ))}
               </ul>
             </span> */}
-             <span className="content-block">
+            <span className="content-block">
               <h6 className="block-title">Skills required</h6>
 
               <div dangerouslySetInnerHTML={createMarkup(data?.skills)} />
@@ -217,7 +217,7 @@ function JobDetails({
                   <h6 className="block-title d-flex justify-content-between align-items-center">
                     <span>
                       About company:
-                      <span style={{ color: "#2a8fff" }} className="ml-2 blue">
+                      <span style={{ color: "#5271FF" }} className="ml-2 blue">
                         {data.company?.companyName || ""}
                       </span>
                     </span>
@@ -283,14 +283,15 @@ function JobDetails({
                   <Row
                     gutter={16}
                     style={{ margin: "0 auto", width: "100%" }}
-                    justify={`${otherJobs?.length === 4 ? "space-around" : "flex-start"
-                      }`}>
+                    justify={`${
+                      otherJobs?.length === 4 ? "space-around" : "flex-start"
+                    }`}>
                     {otherJobs?.map((otherJob) => (
                       <Col
-                      span={8}
-                      lg={{ span: 8 }}
-                      sm={{ span: 12 }}
-                      xs={{ span: 24 }}>
+                        span={8}
+                        lg={{ span: 8 }}
+                        sm={{ span: 12 }}
+                        xs={{ span: 24 }}>
                         <JobCard
                           onClick={() => {
                             setJobDetails(otherJob);
