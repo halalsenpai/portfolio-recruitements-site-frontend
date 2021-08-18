@@ -212,6 +212,7 @@ function JobDetails({
                 Skills required
               </h6>
 
+
               <div dangerouslySetInnerHTML={createMarkup(data?.skills)} />
             </span>
 
@@ -298,6 +299,7 @@ function JobDetails({
                       otherJobs?.length === 4 ? "space-around" : "flex-start"
                     }`}
                   >
+
                     {otherJobs?.map((otherJob) => (
                       <Col
                         span={8}
@@ -305,6 +307,7 @@ function JobDetails({
                         sm={{ span: 12 }}
                         xs={{ span: 24 }}
                       >
+
                         <JobCard
                           onClick={() => {
                             setJobDetails(otherJob);
