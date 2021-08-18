@@ -146,22 +146,22 @@ function JobCard({ job = {}, type, onClick }) {
             <p>{job?.company?.companyName}</p>
             <p>{job?.employmentType}</p>
             <p>{job?.salaryRangeUpto} AED-month</p>
-            <p style={{ color: "#2a8fff" }}>{job.country}</p>
+            <p style={{ color: "#5271FF" }}>{job.country}</p>
           </div>
         )}
       </div>
 
       <span className="tag-container">
-      {type !== "box" && getTagByType(job.messaged)}
+        {type !== "box" && getTagByType(job.messaged)}
 
-{type !== "box" &&
-  getTagByType(
-    job?.shortListJob?.length ? JobTagTypes.SHORTLISTED : null
-  )}
+        {type !== "box" &&
+          getTagByType(
+            job?.shortListJob?.length ? JobTagTypes.SHORTLISTED : null
+          )}
 
-{type !== "box" && getTagByType(job.applied)}
+        {type !== "box" && getTagByType(job.applied)}
 
-{job?.isFeature && getTagByType(JobTagTypes.FEATURED)}
+        {job?.isFeature && getTagByType(JobTagTypes.FEATURED)}
         {/* <Checkbox className="jobcard-checkbox-mobile job-tag" /> */}
 
         {/* {type !== "box" && getTagByType(job.MESSAGE)} */}

@@ -829,11 +829,12 @@ function AgencySignUp() {
                   checked={agreeToTerms}
                   onChange={(e) => setAgreeToTerms(e.target.checked)}
                 >
-                  <div className="blue" onClick={() => setTermsModalShow(true)}>
-                    I agree with Jobsmideast.com{" "}
-                    <mark className="blue">terms &amp; conditions</mark> and I
-                    agree to receive future emails, texts and communications.{" "}
-                  </div>
+                  I agree with Jobsmideast.com{" "}
+                  <mark onClick={() => setTermsModalShow(true)}>
+                    T&C's, Cookie &amp; Privacy Policy,
+                  </mark>
+                  and agree to receive advertising, notifications and marketing
+                  communications.
                 </Checkbox>
               </Form.Item>
               <Modal

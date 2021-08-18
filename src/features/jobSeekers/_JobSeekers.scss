@@ -1,4 +1,4 @@
-@import "../../assets/scss/variables";
+@import '../../assets/scss/variables';
 
 .job-seekers-main {
   h1 {
@@ -84,7 +84,7 @@
   }
   .job-n-demo {
     display: flex;
-    justify-content: center;
+    justify-content: start;
   }
   .sections {
     padding-top: 200px;
