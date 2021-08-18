@@ -103,7 +103,10 @@ export const setTimeToZero = (d) => {
   if (!d) {
     return null;
   }
-  return moment(d).utcOffset(0).set({ hour: 0, minute: 0, second: 0, millisecond: 0 }).toISOString();
+  return moment(d)
+    .utcOffset(0)
+    .set({ hour: 0, minute: 0, second: 0, millisecond: 0 })
+    .toISOString();
 };
 
 export const checkDisabledDate = (d) => {
@@ -142,7 +145,9 @@ export const jsonToQueryString = (data) => {
   if (!data) {
     return "";
   }
-  const params = Object.fromEntries(Object.entries(data).filter(([_, v]) => v != null));
+  const params = Object.fromEntries(
+    Object.entries(data).filter(([_, v]) => v != null)
+  );
   return "?" + new URLSearchParams(params).toString();
 };
 
@@ -152,6 +157,9 @@ export const DobChecker = (current) => {
   // return current && current > moment(customDate, "YYY-MM-DD")
   var myCurrentDate = new Date();
   var myPastDate = new Date(myCurrentDate);
-  return myPastDate.setDate(myPastDate.getDate() - 8)
-}
+  return myPastDate.setDate(myPastDate.getDate() - 8);
+};
 
+export const createMarkup = (mutahhir) => {
+  return { __html: mutahhir };
+};
