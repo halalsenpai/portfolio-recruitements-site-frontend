@@ -5,8 +5,11 @@ import { Col, Divider, Popover, Row, Select } from "antd";
 import { BsFillChatFill } from "react-icons/bs";
 import { FaStar } from "react-icons/fa";
 
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+
 import { Map } from "../../shared-ui/Map/Map";
-import { getTitleById } from "../../utils/helper";
+import { getTitleById, useWindowSize } from "../../utils/helper";
 import Button from "../../shared-ui/Button/Button";
 import defaultImage from "../../assets/images/default.png";
 import ImagesGallery from "../../shared-ui/ImagesGallery/ImagesGallery";
@@ -40,6 +43,25 @@ function JobDetails({
   const history = useHistory();
   const createMarkup = (html) => {
     return { __html: html };
+  };
+  const { width, height } = useWindowSize();
+
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3,
+      slidesToSlide: 3, // optional, default to 1.
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+      slidesToSlide: 2, // optional, default to 1.
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+      slidesToSlide: 1, // optional, default to 1.
+    },
   };
   return (
     <div className="c-job-detail-card">
@@ -78,23 +100,36 @@ function JobDetails({
       </div>
 
       {/* Content */}
-      <div className="job-details-wrapper">
-        <span className="details-header">
-          <h3 className="job-title">
-            Job title:{" "}
-            <span className="title">{data?.jobTitle?.title || ""}</span>{" "}
-          </h3>
+      <div className="job-details-wrapper content-box">
+        <span className="content-box first">
+          <span className="content-section">
+            {width > 1025 && (
+              <>
+                <span className="details-header">
+                  <span className="job-title content-block">
+                    <h6 className="company-page-heading">Job title:</h6>
+                    <span className="title">
+                      {data?.jobTitle?.title || ""}
+                    </span>{" "}
+                  </span>
 
-          <span className="actions-wrapper">
-            <Button themeColor="shadowed">
+                  <span className="actions-wrapper">
+                    {/* <Button themeColor="shadowed">
               <Link to="/login">Apply</Link>
-            </Button>
-
-            <Button
+            </Button> */}
+                    <Button className="applied" themeColor="outlined">
+                      <Link to="/login">Apply</Link>
+                    </Button>
+                    <Button className="applied" themeColor="outlined">
+                      <Link to="/login">Follow Company</Link>
+                    </Button>
+                    <Button className="applied" themeColor="outlined">
+                      <Link to="/login">Shorlist Job</Link>
+                    </Button>
+                    {/* <Button
               icon={<span className="icon following-icon"></span>}
               title="Follow Company"
-              themeColor="shadowed rounded"
-            >
+              themeColor="shadowed rounded">
               <Link to="/login"></Link>
             </Button>
             <Button
@@ -109,16 +144,17 @@ function JobDetails({
                 {" "}
                 <BsFillChatFill size="14px" className="highlighted" />{" "}
               </Link>
-            </Button>
-          </span>
-        </span>
-
-        <span className="content-box first">
-          <span className="content-section">
-            <span className="content-block">
-              <h6 className="block-title company-page-heading">Job brief</h6>
-              <p className="block-text">{data.jobBrief}</p>
-            </span>
+            </Button> */}
+                  </span>
+                </span>
+                <span className="content-block">
+                  <h6 className="block-title company-page-heading">
+                    Job brief
+                  </h6>
+                  <p className="block-text">{data.jobBrief}</p>
+                </span>
+              </>
+            )}
 
             <span className="content-block ">
               <h6 className="block-title company-page-heading">Requirements</h6>
@@ -135,7 +171,37 @@ function JobDetails({
               </ul>
             </span>
           </span>
-
+          {width < 1025 && (
+            <>
+              <span className="mobile-button">
+                <span className="content-section">
+                  <span className="job-title content-block">
+                    <h6 className="company-page-heading">Job title:</h6>
+                    <span className="title">
+                      {data?.jobTitle?.title || ""}
+                    </span>{" "}
+                  </span>
+                  <span className="content-block">
+                    <h6 className="block-title company-page-heading">
+                      Job brief
+                    </h6>
+                    <p className="block-text">{data.jobBrief}</p>
+                  </span>
+                </span>
+                <span className="actions-wrapper">
+                  <Button className="applied" themeColor="outlined">
+                    <Link to="/login">Apply</Link>
+                  </Button>
+                  <Button className="applied" themeColor="outlined">
+                    <Link to="/login">Follow Company</Link>
+                  </Button>
+                  <Button className="applied" themeColor="outlined">
+                    <Link to="/login">Shorlist Job</Link>
+                  </Button>
+                </span>
+              </span>
+            </>
+          )}
           {showAllDetails && (
             <div className="benefits-list">
               <span>
@@ -212,7 +278,6 @@ function JobDetails({
                 Skills required
               </h6>
 
-
               <div dangerouslySetInnerHTML={createMarkup(data?.skills)} />
             </span>
 
@@ -242,14 +307,38 @@ function JobDetails({
                     className="block-text markup"
                     dangerouslySetInnerHTML={createMarkup(
                       data?.company?.introduction
-                    )}
-                  ></span>
+                    )}></span>
                 </span>
 
-                <ImagesGallery
+                {/* <ImagesGallery
                   images={data?.company?.photoUrl}
                   title="Company Photos"
-                />
+                /> */}
+                <Carousel
+                  className="company-photos-carousel"
+                  swipeable={false}
+                  draggable={false}
+                  showDots
+                  responsive={responsive}
+                  ssr={true} // means to render carousel on server-side.
+                  infinite={true}
+                  autoPlaySpeed={1000}
+                  keyBoardControl={true}
+                  customTransition="all 1s"
+                  transitionDuration={1000}
+                  containerClass="carousel-container"
+                  dotListClass="custom-dot-list-style">
+                  {data?.company?.photoUrl.map((img, i) => (
+                    <img
+                      style={{ borderRadius: "20px" }}
+                      className="company-single-photo"
+                      src={img}
+                      alt={`image ${i}`}
+                      height={250}
+                      width="100%"
+                    />
+                  ))}
+                </Carousel>
 
                 <span className="content-block mt-4 pr-0">
                   <h6 className="block-title company-page-heading thick-title mb-3">
@@ -297,17 +386,13 @@ function JobDetails({
                     style={{ margin: "0 auto", width: "100%" }}
                     justify={`${
                       otherJobs?.length === 4 ? "space-around" : "flex-start"
-                    }`}
-                  >
-
+                    }`}>
                     {otherJobs?.map((otherJob) => (
                       <Col
                         span={8}
                         lg={{ span: 8 }}
                         sm={{ span: 12 }}
-                        xs={{ span: 24 }}
-                      >
-
+                        xs={{ span: 24 }}>
                         <JobCard
                           onClick={() => {
                             setJobDetails(otherJob);

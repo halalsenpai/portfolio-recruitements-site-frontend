@@ -1,3 +1,17 @@
+@media screen and (max-width: 1400px) {
+  .c-job-detail-card {
+    .job-details-wrapper {
+      .details-header {
+        flex-direction: column-reverse;
+        justify-content: flex-start !important;
+        align-items: flex-start !important;
+        .actions-wrapper {
+          min-width: 375px;
+        }
+      }
+    }
+  }
+}
 @media screen and (max-width: 1024px) {
   .c-job-detail-card {
     .header {
@@ -17,6 +31,27 @@
     }
     .job-details-wrapper .content-box.first {
       flex-wrap: wrap;
+      .mobile-button {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        flex-direction: row-reverse;
+        width: 100%;
+        button {
+          &.ant-btn {
+            &.c-button {
+              &.outlined {
+                &.applied {
+                  width: 135px;
+                  font-size: 12px;
+                  padding: 4px 8px;
+                  margin-bottom: 5px;
+                }
+              }
+            }
+          }
+        }
+      }
 
       .content-section {
         order: 2;
@@ -64,32 +99,32 @@
   }
 }
 @media screen and (max-width: 540px) {
-  .c-job-detail-card{
-    .header{
+  .c-job-detail-card {
+    .header {
       justify-content: center !important;
-      .job-info-wrapper{
+      .job-info-wrapper {
         // padding-top: 20px;
-        .job-info{
+        .job-info {
           align-items: center !important;
         }
-      } 
+      }
     }
     .job-details-wrapper {
       padding: 15px 0px !important;
-      span.content-box{
-        padding: 25px 10px 0px 10px !important;
+      span.content-box {
+        padding: 0px 10px 0px 10px !important;
         .content-section {
           .content-block {
             .c-list {
               padding: 0px 0px 0px 20px !important;
-            } 
+            }
           }
         }
       }
       .details-header {
         .actions-wrapper {
           max-width: unset !important;
-        } 
+        }
       }
       span.details-header {
         padding: 0px 10px;
@@ -97,14 +132,14 @@
     }
   }
   .block-video {
-  height: 200px !important;
+    height: 200px !important;
   }
-  .c-job-card{
-    &.box{
+  .c-job-card {
+    &.box {
       width: 100% !important;
     }
   }
-  .content-block{
+  .content-block {
     padding-right: 0px !important;
   }
   .jobs-page .jobs-wrapper .jobs-list {

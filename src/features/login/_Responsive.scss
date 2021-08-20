@@ -23,6 +23,7 @@
   .auth-wrapper {
     background-image: none;
     padding-top: 0 !important;
+    min-height: calc(100vh - 60px) !important;
   }
   .c-form {
     padding: 0 5px;
