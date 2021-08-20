@@ -1,4 +1,4 @@
-@import "../../assets/scss/variables";
+@import '../../assets/scss/variables';
 
 @media screen and (max-width: 767px) {
   .job-seekers-main {
@@ -58,6 +58,13 @@
       font-size: $font-size-lg;
       line-height: unset;
       text-align: center;
+    }
+    .job-n-demo {
+      display: flex;
+      justify-content: center;
+    }
+    .w-45 {
+      width: 100%;
     }
   }
 }

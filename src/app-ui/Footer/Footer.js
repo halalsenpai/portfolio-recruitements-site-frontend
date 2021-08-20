@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import LogoImage from "../../assets/images/logo/logo-md.png";
+import LogoImage from "../../assets/images/logo/jobsmideast-logo.png";
 
 function Footer() {
   return (

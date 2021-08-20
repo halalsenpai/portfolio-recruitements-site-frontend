@@ -18,19 +18,20 @@ function JobSeekers() {
           <div className="w-55">
             <h1 className="emp-heading">Make the right connections.</h1>
           </div>
-          <div className="w-45 job-n-demo">
-            <Button
-              onClick={() => history.push("/signup")}
-              type="large"
-              className="blue">
-              Get started
-              <img
-                className="animated-icon"
-                src={require("../../assets/images/icons/right-arrow-icon.svg")}
-                alt="->"
-              />
-            </Button>
-          </div>
+        </div>
+        <div className="w-45 job-n-demo">
+          <Button
+            onClick={() => history.push("/signup")}
+            type="large"
+            className="blue"
+          >
+            Get started
+            <img
+              className="animated-icon"
+              src={require("../../assets/images/icons/right-arrow-icon.svg")}
+              alt="->"
+            />
+          </Button>
         </div>
       </div>
       <div style={{ paddingTop: 50 }} className="c-containers">

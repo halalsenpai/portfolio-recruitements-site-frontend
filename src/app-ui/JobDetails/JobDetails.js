@@ -25,6 +25,7 @@ import {
 import JobCard from "../../shared-ui/JobCard/JobCard";
 import { transformJobData } from "../../features/jobs/transformers";
 import { useAppSelector } from "../../store/hooks";
+// import { createMarkup } from "../../utils/helper";
 
 const { Option } = Select;
 
@@ -113,7 +114,8 @@ function JobDetails({
             <Button
               icon={<span className="icon following-icon"></span>}
               title="Follow Company"
-              themeColor="shadowed rounded">
+              themeColor="shadowed rounded"
+            >
               <Link to="/login"></Link>
             </Button>
             <Button
@@ -135,12 +137,12 @@ function JobDetails({
         <span className="content-box first">
           <span className="content-section">
             <span className="content-block">
-              <h6 className="block-title">Job brief</h6>
+              <h6 className="block-title company-page-heading">Job brief</h6>
               <p className="block-text">{data.jobBrief}</p>
             </span>
 
-            <span className="content-block">
-              <h6 className="block-title">Requirements</h6>
+            <span className="content-block ">
+              <h6 className="block-title company-page-heading">Requirements</h6>
 
               <ul className="c-list">
                 {/* {data.additionalRequirement?.map((d) => (
@@ -209,7 +211,9 @@ function JobDetails({
         <span className="content-box">
           <span className="content-section">
             <span className="content-block">
-              <h6 className="block-title">Jobs description</h6>
+              <h6 className="block-title company-page-heading">
+                Jobs description
+              </h6>
 
               {/* <p className="block-text">{data.description}</p> */}
               <div dangerouslySetInnerHTML={createMarkup(data?.description)} />
@@ -225,7 +229,10 @@ function JobDetails({
               </ul>
             </span> */}
             <span className="content-block">
-              <h6 className="block-title">Skills required</h6>
+              <h6 className="block-title company-page-heading">
+                Skills required
+              </h6>
+
 
               <div dangerouslySetInnerHTML={createMarkup(data?.skills)} />
             </span>
@@ -235,13 +242,13 @@ function JobDetails({
             {showAllDetails && (
               <>
                 <span className="content-block">
-                  <h6 className="block-title d-flex justify-content-between align-items-center">
-                    <span>
+                  <h6 className="block-title  d-flex justify-content-between align-items-center">
+                    <h6 className="company-page-heading">
                       About company:
-                      <span style={{ color: "#5271FF" }} className="ml-2 blue">
-                        {data.company?.companyName || ""}
+                      <span style={{ color: "#2a8fff" }} className="ml-2 blue">
+                        {data?.company?.companyName || ""}
                       </span>
-                    </span>
+                    </h6>
                     {/* <Select
                       getPopupContainer={(trigger) => trigger.parentNode}
                       dropdownAlign={{ pageYOffset: 0 }}
@@ -252,9 +259,12 @@ function JobDetails({
                     </Select> */}
                   </h6>
 
-                  <p className="block-text">
-                    {data.company?.introduction || ""}
-                  </p>
+                  <span
+                    className="block-text markup"
+                    dangerouslySetInnerHTML={createMarkup(
+                      data?.company?.introduction
+                    )}
+                  ></span>
                 </span>
 
                 {/* <ImagesGallery
@@ -297,7 +307,7 @@ function JobDetails({
                 </Carousel>
 
                 <span className="content-block mt-4 pr-0">
-                  <h6 className="block-title thick-title mb-3">
+                  <h6 className="block-title company-page-heading thick-title mb-3">
                     Company Video{" "}
                   </h6>
 
@@ -313,7 +323,9 @@ function JobDetails({
                 </span>
 
                 <span className="content-block mt-4 pr-0">
-                  <h6 className="block-title thick-title mb-3">Map</h6>
+                  <h6 className="block-title company-page-heading thick-title mb-3">
+                    Map
+                  </h6>
                   <div className="block-map">
                     <Map
                       data={data?.company}
@@ -331,7 +343,7 @@ function JobDetails({
             <span className="content-box first">
               <span className="content-section">
                 <span className="content-block">
-                  <h6 className="block-title thick-title mb-3">
+                  <h6 className="block-title company-page-heading thick-title mb-3">
                     Other jobs in your sector
                   </h6>
 
@@ -340,13 +352,17 @@ function JobDetails({
                     style={{ margin: "0 auto", width: "100%" }}
                     justify={`${
                       otherJobs?.length === 4 ? "space-around" : "flex-start"
-                    }`}>
+                    }`}
+                  >
+
                     {otherJobs?.map((otherJob) => (
                       <Col
                         span={8}
                         lg={{ span: 8 }}
                         sm={{ span: 12 }}
-                        xs={{ span: 24 }}>
+                        xs={{ span: 24 }}
+                      >
+
                         <JobCard
                           onClick={() => {
                             setJobDetails(otherJob);
@@ -372,7 +388,7 @@ function JobDetails({
             <span className="content-box first">
               <span className="content-section">
                 <span className="content-block">
-                  <h6 className="block-title thick-title">
+                  <h6 className="block-title company-page-heading thick-title">
                     Other jobs by this company
                   </h6>
                   <p></p>
