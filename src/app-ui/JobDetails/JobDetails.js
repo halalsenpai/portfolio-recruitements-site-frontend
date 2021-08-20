@@ -5,6 +5,9 @@ import { Col, Divider, Popover, Row, Select } from "antd";
 import { BsFillChatFill } from "react-icons/bs";
 import { FaStar } from "react-icons/fa";
 
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+
 import { Map } from "../../shared-ui/Map/Map";
 import { getTitleById } from "../../utils/helper";
 import Button from "../../shared-ui/Button/Button";
@@ -39,6 +42,24 @@ function JobDetails({
   const history = useHistory();
   const createMarkup = (html) => {
     return { __html: html };
+  };
+
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3,
+      slidesToSlide: 3, // optional, default to 1.
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+      slidesToSlide: 2, // optional, default to 1.
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+      slidesToSlide: 1, // optional, default to 1.
+    },
   };
   return (
     <div className="c-job-detail-card">
@@ -236,10 +257,44 @@ function JobDetails({
                   </p>
                 </span>
 
-                <ImagesGallery
+                {/* <ImagesGallery
                   images={data?.company?.photoUrl}
                   title="Company Photos"
-                />
+                /> */}
+                <Carousel
+                  className="company-photos-carousel"
+                  swipeable={false}
+                  draggable={false}
+                  showDots
+                  responsive={responsive}
+                  ssr={true} // means to render carousel on server-side.
+                  infinite={true}
+                  autoPlaySpeed={1000}
+                  keyBoardControl={true}
+                  customTransition="all 1s"
+                  transitionDuration={1000}
+                  containerClass="carousel-container"
+                  // autoPlay={this.props.deviceType !== "mobile" ? true : false}
+                  // removeArrowOnDeviceType={["tablet", "mobile"]}
+                  // deviceType={this.props.deviceType}
+                  dotListClass="custom-dot-list-style"
+                  // itemClass="carousel-item-padding-40-px"
+                >
+                  {data?.company?.photoUrl.map((img, i) => (
+                    <img
+                      style={{ borderRadius: "20px" }}
+                      className="company-single-photo"
+                      src={img}
+                      alt={`image ${i}`}
+                      height={250}
+                      width="100%"
+                    />
+                  ))}
+                  {/* <div>Item 1</div>
+                <div>Item 2</div>
+                <div>Item 3</div>
+                <div>Item 4</div> */}
+                </Carousel>
 
                 <span className="content-block mt-4 pr-0">
                   <h6 className="block-title thick-title mb-3">
