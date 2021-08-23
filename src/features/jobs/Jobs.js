@@ -132,8 +132,9 @@ function Jobs() {
           <Form className="job-sc" onFinish={onSearchJob} ref={formRef}>
             <span className="form-fields job-filter-section">
               <div className="jobs-filter-header-secrion">
-                <Form.Item name="jobTitleName" className="find-job-super-select c-input">
+                <Form.Item style={{ zIndex: "390" }} name="jobTitleName" className="find-job-super-select c-input">
                   <SuperSelectFindJobs
+                    style={{ zIndex: "390" }}
                     placeholder="Job title"
                     allowClear={true}
                     onType={false}
