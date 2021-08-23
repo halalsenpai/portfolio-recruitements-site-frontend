@@ -102,6 +102,7 @@
         display: flex;
         padding: 40px;
         align-items: unset;
+        margin-bottom: 8rem;
 
         .ant-select {
           width: 100% !important;
@@ -115,7 +116,7 @@
           margin-bottom: 48px;
           text-align: center;
           .create-new-btn {
-            color: #2a8fff;
+            color: #5271ff;
             cursor: pointer;
           }
         }
@@ -132,10 +133,25 @@
               margin-top: 0px !important;
             }
           }
+
           .c-input {
             width: 100%;
             .react-tel-input {
               width: 100%;
+            }
+          }
+        }
+        .third-step {
+          // padding: 40px 0;
+          // position: relative;
+          // display: flex;
+          // align-items: center;
+          .header {
+            position: absolute;
+            top: 0;
+            .back-btn {
+              width: 40px;
+              margin-top: 0px !important;
             }
           }
         }

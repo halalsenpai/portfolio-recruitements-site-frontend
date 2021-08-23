@@ -5,8 +5,11 @@ import { Col, Divider, Popover, Row, Select } from "antd";
 import { BsFillChatFill } from "react-icons/bs";
 import { FaStar } from "react-icons/fa";
 
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+
 import { Map } from "../../shared-ui/Map/Map";
-import { getTitleById } from "../../utils/helper";
+import { getTitleById, useWindowSize } from "../../utils/helper";
 import Button from "../../shared-ui/Button/Button";
 import defaultImage from "../../assets/images/default.png";
 import ImagesGallery from "../../shared-ui/ImagesGallery/ImagesGallery";
@@ -22,6 +25,7 @@ import {
 import JobCard from "../../shared-ui/JobCard/JobCard";
 import { transformJobData } from "../../features/jobs/transformers";
 import { useAppSelector } from "../../store/hooks";
+// import { createMarkup } from "../../utils/helper";
 
 const { Option } = Select;
 
@@ -39,6 +43,25 @@ function JobDetails({
   const history = useHistory();
   const createMarkup = (html) => {
     return { __html: html };
+  };
+  const { width, height } = useWindowSize();
+
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3,
+      slidesToSlide: 3, // optional, default to 1.
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+      slidesToSlide: 2, // optional, default to 1.
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+      slidesToSlide: 1, // optional, default to 1.
+    },
   };
   return (
     <div className="c-job-detail-card">
@@ -77,19 +100,33 @@ function JobDetails({
       </div>
 
       {/* Content */}
-      <div className="job-details-wrapper">
-        <span className="details-header">
-          <h3 className="job-title">
-            Job title:{" "}
-            <span className="title">{data?.jobTitle?.title || ""}</span>{" "}
-          </h3>
+      <div className="job-details-wrapper content-box">
+        <span className="content-box first">
+          <span className="content-section">
+            {width > 1025 && (
+              <>
+                <span className="details-header">
+                  <span className="job-title content-block">
+                    <h6 className="company-page-heading">Job title:</h6>
+                    <span className="title">
+                      {data?.jobTitle?.title || ""}
+                    </span>{" "}
+                  </span>
 
-          <span className="actions-wrapper">
-            <Button themeColor="shadowed">
+                  <span className="actions-wrapper">
+                    {/* <Button themeColor="shadowed">
               <Link to="/login">Apply</Link>
-            </Button>
-
-            <Button
+            </Button> */}
+                    <Button className="applied" themeColor="outlined">
+                      <Link to="/login">Apply</Link>
+                    </Button>
+                    <Button className="applied" themeColor="outlined">
+                      <Link to="/login">Follow Company</Link>
+                    </Button>
+                    <Button className="applied" themeColor="outlined">
+                      <Link to="/login">Shorlist Job</Link>
+                    </Button>
+                    {/* <Button
               icon={<span className="icon following-icon"></span>}
               title="Follow Company"
               themeColor="shadowed rounded">
@@ -107,19 +144,20 @@ function JobDetails({
                 {" "}
                 <BsFillChatFill size="14px" className="highlighted" />{" "}
               </Link>
-            </Button>
-          </span>
-        </span>
+            </Button> */}
+                  </span>
+                </span>
+                <span className="content-block">
+                  <h6 className="block-title company-page-heading">
+                    Job brief
+                  </h6>
+                  <p className="block-text">{data.jobBrief}</p>
+                </span>
+              </>
+            )}
 
-        <span className="content-box first">
-          <span className="content-section">
-            <span className="content-block">
-              <h6 className="block-title">Job brief</h6>
-              <p className="block-text">{data.jobBrief}</p>
-            </span>
-
-            <span className="content-block">
-              <h6 className="block-title">Requirements</h6>
+            <span className="content-block ">
+              <h6 className="block-title company-page-heading">Requirements</h6>
 
               <ul className="c-list">
                 {/* {data.additionalRequirement?.map((d) => (
@@ -133,7 +171,37 @@ function JobDetails({
               </ul>
             </span>
           </span>
-
+          {width < 1025 && (
+            <>
+              <span className="mobile-button">
+                <span className="content-section">
+                  <span className="job-title content-block">
+                    <h6 className="company-page-heading">Job title:</h6>
+                    <span className="title">
+                      {data?.jobTitle?.title || ""}
+                    </span>{" "}
+                  </span>
+                  <span className="content-block">
+                    <h6 className="block-title company-page-heading">
+                      Job brief
+                    </h6>
+                    <p className="block-text">{data.jobBrief}</p>
+                  </span>
+                </span>
+                <span className="actions-wrapper">
+                  <Button className="applied" themeColor="outlined">
+                    <Link to="/login">Apply</Link>
+                  </Button>
+                  <Button className="applied" themeColor="outlined">
+                    <Link to="/login">Follow Company</Link>
+                  </Button>
+                  <Button className="applied" themeColor="outlined">
+                    <Link to="/login">Shorlist Job</Link>
+                  </Button>
+                </span>
+              </span>
+            </>
+          )}
           {showAllDetails && (
             <div className="benefits-list">
               <span>
@@ -188,7 +256,9 @@ function JobDetails({
         <span className="content-box">
           <span className="content-section">
             <span className="content-block">
-              <h6 className="block-title">Jobs description</h6>
+              <h6 className="block-title company-page-heading">
+                Jobs description
+              </h6>
 
               {/* <p className="block-text">{data.description}</p> */}
               <div dangerouslySetInnerHTML={createMarkup(data?.description)} />
@@ -203,8 +273,10 @@ function JobDetails({
                 ))}
               </ul>
             </span> */}
-             <span className="content-block">
-              <h6 className="block-title">Skills required</h6>
+            <span className="content-block">
+              <h6 className="block-title company-page-heading">
+                Skills required
+              </h6>
 
               <div dangerouslySetInnerHTML={createMarkup(data?.skills)} />
             </span>
@@ -214,13 +286,13 @@ function JobDetails({
             {showAllDetails && (
               <>
                 <span className="content-block">
-                  <h6 className="block-title d-flex justify-content-between align-items-center">
-                    <span>
+                  <h6 className="block-title  d-flex justify-content-between align-items-center">
+                    <h6 className="company-page-heading">
                       About company:
                       <span style={{ color: "#2a8fff" }} className="ml-2 blue">
-                        {data.company?.companyName || ""}
+                        {data?.company?.companyName || ""}
                       </span>
-                    </span>
+                    </h6>
                     {/* <Select
                       getPopupContainer={(trigger) => trigger.parentNode}
                       dropdownAlign={{ pageYOffset: 0 }}
@@ -231,18 +303,45 @@ function JobDetails({
                     </Select> */}
                   </h6>
 
-                  <p className="block-text">
-                    {data.company?.introduction || ""}
-                  </p>
+                  <span
+                    className="block-text markup"
+                    dangerouslySetInnerHTML={createMarkup(
+                      data?.company?.introduction
+                    )}></span>
                 </span>
 
-                <ImagesGallery
+                {/* <ImagesGallery
                   images={data?.company?.photoUrl}
                   title="Company Photos"
-                />
+                /> */}
+                <Carousel
+                  className="company-photos-carousel"
+                  swipeable={false}
+                  draggable={false}
+                  showDots
+                  responsive={responsive}
+                  ssr={true} // means to render carousel on server-side.
+                  infinite={true}
+                  autoPlaySpeed={1000}
+                  keyBoardControl={true}
+                  customTransition="all 1s"
+                  transitionDuration={1000}
+                  containerClass="carousel-container"
+                  dotListClass="custom-dot-list-style">
+                  {data?.company?.photoUrl.map((img, i) => (
+                    <img
+                      style={{ borderRadius: "20px" }}
+                      className="company-single-photo"
+                      src={img}
+                      alt={`image ${i}`}
+                      height={250}
+                      width="100%"
+                    />
+                  ))}
+                </Carousel>
 
                 <span className="content-block mt-4 pr-0">
-                  <h6 className="block-title thick-title mb-3">
+                  <h6 className="block-title company-page-heading thick-title mb-3">
                     Company Video{" "}
                   </h6>
 
@@ -258,7 +357,9 @@ function JobDetails({
                 </span>
 
                 <span className="content-block mt-4 pr-0">
-                  <h6 className="block-title thick-title mb-3">Map</h6>
+                  <h6 className="block-title company-page-heading thick-title mb-3">
+                    Map
+                  </h6>
                   <div className="block-map">
                     <Map
                       data={data?.company}
@@ -276,21 +377,22 @@ function JobDetails({
             <span className="content-box first">
               <span className="content-section">
                 <span className="content-block">
-                  <h6 className="block-title thick-title mb-3">
+                  <h6 className="block-title company-page-heading thick-title mb-3">
                     Other jobs in your sector
                   </h6>
 
                   <Row
                     gutter={16}
                     style={{ margin: "0 auto", width: "100%" }}
-                    justify={`${otherJobs?.length === 4 ? "space-around" : "flex-start"
-                      }`}>
+                    justify={`${
+                      otherJobs?.length === 4 ? "space-around" : "flex-start"
+                    }`}>
                     {otherJobs?.map((otherJob) => (
                       <Col
-                      span={8}
-                      lg={{ span: 8 }}
-                      sm={{ span: 12 }}
-                      xs={{ span: 24 }}>
+                        span={8}
+                        lg={{ span: 8 }}
+                        sm={{ span: 12 }}
+                        xs={{ span: 24 }}>
                         <JobCard
                           onClick={() => {
                             setJobDetails(otherJob);
@@ -316,7 +418,7 @@ function JobDetails({
             <span className="content-box first">
               <span className="content-section">
                 <span className="content-block">
-                  <h6 className="block-title thick-title">
+                  <h6 className="block-title company-page-heading thick-title">
                     Other jobs by this company
                   </h6>
                   <p></p>

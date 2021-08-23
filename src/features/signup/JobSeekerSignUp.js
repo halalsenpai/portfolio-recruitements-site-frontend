@@ -360,9 +360,10 @@ secure visas for everyone."
                 <Checkbox>
                   I agree with Jobsmideast.com{" "}
                   <mark onClick={() => setTermsModalShow(true)}>
-                    terms &amp; conditions
-                  </mark>{" "}
-                  and <mark>privacy policy.</mark>
+                    T&C's, Cookie &amp; Privacy Policy,
+                  </mark>
+                  and agree to receive advertising, notifications and marketing
+                  communications.
                 </Checkbox>
               </Form.Item>
               <Button

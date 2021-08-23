@@ -36,7 +36,7 @@
     justify-content: flex-start;
     align-items: center;
     padding: 0px !important;
-    height: 880px;
+    height: 950px;
     position: relative;
     box-shadow: 0 0 16px #00000026;
 
@@ -529,9 +529,30 @@
   }
 }
 
-
-// GLOBAL CSS 
+// GLOBAL CSS
 .ant-form-item-explain.ant-form-item-explain-error {
   color: #ff4d4f;
   min-height: 0px;
+}
+
+// checkbox under component change
+.ant-checkbox-checked {
+  .ant-checkbox-inner {
+    &:after {
+      transform: rotate(0deg) scale(1) translate(-50%, -50%) !important;
+      width: 10px;
+      height: 10px !important;
+      background: #5271ff !important;
+      left: 50%;
+      border: none !important;
+    }
+    background-color: #ffffff !important;
+    border-color: #5271ff !important;
+  }
+}
+.ant-radio-inner {
+  border-radius: 0px !important;
+  &:after {
+    border-radius: 0px !important;
+  }
 }
