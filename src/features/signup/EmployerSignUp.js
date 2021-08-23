@@ -104,6 +104,10 @@ function EmployerSignUp() {
   //   }, []);
 
   useEffect(() => {
+    dispatch(removePreUploadedProfileImage());
+  }, []);
+
+  useEffect(() => {
     setCountryCode(countryByIp?.countryCode?.toLowerCase());
   }, [countryByIp]);
 
@@ -260,7 +264,10 @@ function EmployerSignUp() {
             {!QS?.companyProfileId ? (
               <div className="header">
                 <img
-                  onClick={() => setCurrentStep(1)}
+                  onClick={() => {
+                    setCurrentStep(1);
+                    // dispatch(removePreUploadedProfileImage());
+                  }}
                   className="back-btn"
                   src={require("../../assets/images/icons/back.svg")}
                   alt=""
@@ -550,11 +557,12 @@ function EmployerSignUp() {
             </div>
             {!isCreateCompany && (
               <Row gutter={[32, 32]}>
-                <Col style={{ marginBottom: "24px" }} span={24}>
+                {/* <Col style={{ marginBottom: "24px" }} span={24}>
                   <Upload
                     accept="image/*"
                     beforeUpload={profileImageBeforeUpload}
-                    showUploadList={false}>
+                    showUploadList={false}
+                  >
                     <div className="avatar-upload">
                       <div className="photo-square">
                         {profileImage && <img src={profileImage?.url} alt="" />}
@@ -569,7 +577,7 @@ function EmployerSignUp() {
                       Upload profile photo
                     </div>
                   </Upload>
-                </Col>
+                </Col> */}
                 <Col
                   style={{ zIndex: 300 }}
                   span={12}
@@ -854,7 +862,7 @@ function EmployerSignUp() {
     <div className="c-container auth-wrapper">
       <div
         className="signup-container with-form"
-        style={currentStep == 3 ? { height: 880 } : { height: 750 }}>
+        style={currentStep == 3 ? {} : { height: 750 }}>
         <Form
           style={{ zIndex: "40" }}
           form={form}
@@ -874,11 +882,12 @@ function EmployerSignUp() {
                 <Checkbox
                   checked={agreeToTerms}
                   onChange={(e) => setAgreeToTerms(e.target.checked)}>
-                  <div className="blue" onClick={() => setTermsModalShow(true)}>
-                    I agree with Jobsmideast.com{" "}
-                    <mark className="blue">terms &amp; conditions</mark> and I
-                    agree to receive future emails, texts and communications.{" "}
-                  </div>
+                  I agree with Jobsmideast.com{" "}
+                  <mark onClick={() => setTermsModalShow(true)}>
+                    T&C's, Cookie &amp; Privacy Policy,
+                  </mark>
+                  and agree to receive advertising, notifications and marketing
+                  communications.
                 </Checkbox>
               </Form.Item>
               <Modal

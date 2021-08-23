@@ -84,3 +84,24 @@
     }
   }
 }
+@media only screen and (max-width: 768px) {
+  .user-guid-main {
+    .guid-wrapper {
+      .main-heading {
+        font-size: 20px;
+      }
+      & > h1 {
+        font-size: 16px !important;
+      }
+      & > h4 {
+        font-size: 14px !important;
+      }
+      & > h3 {
+        font-size: 14px !important;
+      }
+      & > h2 {
+        font-size: 14px !important;
+      }
+    }
+  }
+}
