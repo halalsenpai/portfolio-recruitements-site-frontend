@@ -63,18 +63,10 @@ function Routing() {
         <Route exact path="/confirm-email" component={ConfirmEmail} />
         <Route exact path="/employer-signup" component={EmployerSignUp} />
         <Route exact path="/signup" component={SignUp} />
-        <Route
-          exact
-          path="/terms-and-condition"
-          component={TermsAndCondition}
-        />
+        <Route exact path="/terms-and-condition" component={TermsAndCondition} />
         <Route exact path="/cookie-policy" component={CookiePolicy} />
         <Route exact path="/privacy-policy" component={PrivacyPolicy} />
-        <Route
-          exact
-          path="/employee-and-agency"
-          component={EmployerAndAgency}
-        />
+        <Route exact path="/employee-and-agency" component={EmployerAndAgency} />
         <Route exact path="/job-seekers" component={JobSeekers} />
         <Route exact path="/pricing" component={Pricing} />
         <Route exact path="/jobs" component={Jobs} />

@@ -10,6 +10,7 @@ import JobFilter from "../../app-ui/JobFilter/JobFilter";
 import JobDetails from "../../app-ui/JobDetails/JobDetails";
 import filterIcon from "../../assets/images/icons/filter_icon.svg";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { RiCloseCircleLine } from "react-icons/ri";
 
 import {
   getJob,
@@ -25,20 +26,9 @@ import {
   getJobsByCompany,
 } from "./thunk";
 
-import {
-  getCountryisDesired as countryisDesired,
-  getCityisDesired as cityisDesired,
-  jobTitlesFindJobs,
-} from "./service";
+import { getCountryisDesired as countryisDesired, getCityisDesired as cityisDesired, jobTitlesFindJobs } from "./service";
 import { selectJobs, selectStatus } from "./slice";
-import {
-  selectCountries,
-  selectEmploymentTypes,
-  selectJobTitles,
-  selectAccommodations,
-  selectOtherJobs,
-  selectOtherJobsByCompany,
-} from "./slice";
+import { selectCountries, selectEmploymentTypes, selectJobTitles, selectAccommodations, selectOtherJobs, selectOtherJobsByCompany } from "./slice";
 
 import "./_Jobs.scss";
 import "./_Responsive.scss";
@@ -139,14 +129,10 @@ function Jobs() {
             </div>
           )}
 
-          <Form onFinish={onSearchJob} ref={formRef}>
+          <Form className="job-sc" onFinish={onSearchJob} ref={formRef}>
             <span className="form-fields job-filter-section">
               <div className="jobs-filter-header-secrion">
-                <Form.Item
-                  name="jobTitleName"
-                  className="find-job-super-select c-input"
-                  
-                >
+                <Form.Item name="jobTitleName" className="find-job-super-select c-input">
                   <SuperSelectFindJobs
                     placeholder="Job title"
                     allowClear={true}
@@ -157,10 +143,7 @@ function Jobs() {
                     // className="small"
                   />
                 </Form.Item>
-                <Form.Item
-                  name="location"
-                  className="find-job-super-select c-input"
-                >
+                <Form.Item name="location" className="find-job-super-select c-input">
                   {/* <Input
                     size="small"
                     className="xs"
@@ -178,7 +161,7 @@ function Jobs() {
                     fetchOptions={cityisDesired}
                     // className="super-select"
                   /> */}
-                   <SuperSelectFindJobs
+                  <SuperSelectFindJobs
                     placeholder="Desired location"
                     allowClear={true}
                     onType={false}
@@ -190,21 +173,11 @@ function Jobs() {
                 </Form.Item>
               </div>
               <div className="jobs-button-section">
-                <Button
-                  type="small"
-                  htmlType="submit"
-                  className="filter-btns"
-                  themeColor="rounded light"
-                  style={{ height: "32px" }}
-                >
+                <Button type="small" htmlType="submit" className="filter-btns" themeColor="rounded light" style={{ height: "32px" }}>
                   Go
                 </Button>
 
-                <Button
-                  icon={<img src={filterIcon} alt="ico" />}
-                  className=" filter-icon rounded shadowed filter-btns"
-                  onClick={ShowFilter}
-                ></Button>
+                <Button icon={<img src={filterIcon} alt="ico" />} className=" filter-icon rounded shadowed filter-btns" onClick={ShowFilter}></Button>
               </div>
             </span>
           </Form>
@@ -224,12 +197,7 @@ function Jobs() {
                       setcategoryId(obj.categoriesId);
                       setcompanyId(obj.companyId);
                     }}
-                    job={transformJobData(
-                      obj,
-                      jobTitles,
-                      employmentTypes,
-                      countries
-                    )}
+                    job={transformJobData(obj, jobTitles, employmentTypes, countries)}
                   />
                 );
               }}
@@ -238,27 +206,22 @@ function Jobs() {
         </div>
 
         {/* Job Detail */}
-        <div
-          ref={myRef}
-          className={`job-details ${showJobDetails && "job-details-show"}`}
-        >
+        <div ref={myRef} className={`job-details ${showJobDetails ? "job-details-show" : ""}`}>
           {isLoading && (
             <div className="preloader">
               <Spin />
             </div>
           )}
 
+          <RiCloseCircleLine className="back-icon-job" onClick={() => setShowJobDetails(false)} />
+
           {!jobDetails && <CEmpty description={"please select a job"} />}
 
           {jobDetails && (
             <JobDetails
+              setShowJobDetails={() => setJobDetails(false)}
               otherJobs={otherJobs}
-              data={transformJobData(
-                jobDetails,
-                jobTitles,
-                employmentTypes,
-                countries
-              )}
+              data={transformJobData(jobDetails, jobTitles, employmentTypes, countries)}
               extraData={{ accommodations }}
               setJobDetails={setJobDetails}
               executeScroll={executeScroll}
