@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 import LogoImage from "../../assets/images/logo/logo-md.png";
 
@@ -8,7 +8,7 @@ function Footer() {
     <div className="c-footer">
       <span className="shadow-box"></span>
       <span className=" inner-container ">
-        <div className="container-lg container-fluid d-flex flex-wrap">
+        <div className="container-lg container-fluid d-flex flex-wrap margin-top-10">
           <ul className="info">
             <img className="logo" src={LogoImage} alt="Logo" />
             <span>
@@ -30,7 +30,7 @@ function Footer() {
             <Link to="/">Home</Link>
             <Link to="/login">Login</Link>
             <Link to="/services">Services</Link>
-            <Link to="/">Report a problem</Link>
+            {/* <Link to="/">Report a problem</Link> */}
           </ul>
           <ul>
             <Link to="/job-seekers">Job seekers</Link>
@@ -42,8 +42,9 @@ function Footer() {
               <h3 className="blue">Employers & Agencies</h3>
             </a> */}
             <Link to="/pricing">Pricing</Link>
-            <Link to="/">T&C's</Link>
-            <Link to="/">Privacy policy</Link>
+            <Link to="/terms-and-condition">T&C's</Link>
+            <Link to="/privacy-policy">Privacy policy</Link>
+            <Link to="cookie-policy">Cookie policy</Link>
           </ul>
           <ul>
             <Link to="/">

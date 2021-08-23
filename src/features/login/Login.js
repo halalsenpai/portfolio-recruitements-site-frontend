@@ -83,7 +83,7 @@ function Login() {
   return (
     <div className="c-container auth-wrapper">
       <div className="c-card-container login-container">
-        <div className="first-container">
+        <div className="first-container display">
           <img
             src={require("../../assets/images/logo/logo-white.png")}
             alt="logo"
@@ -109,8 +109,7 @@ function Login() {
             autoComplete="off"
             className="c-form login-form"
             layout="vertical"
-            onFinish={onFinish}
-          >
+            onFinish={onFinish}>
             {/* <h3 className="form-title w-100 mb-4">
               <mark>{getFormTitle(userType)}</mark>
             </h3> */}
@@ -128,8 +127,7 @@ function Login() {
             <Form.Item
               name="password"
               className="c-input mb-0"
-              rules={Rules.passwordRule}
-            >
+              rules={Rules.passwordRule}>
               <Input.Password
                 autoComplete="off"
                 placeholder="Enter your password"
@@ -144,8 +142,7 @@ function Login() {
               <Form.Item
                 valuePropName="checked"
                 name="remember"
-                className="mb-0"
-              >
+                className="mb-0">
                 <Checkbox>Remember me</Checkbox>
               </Form.Item>
               <Link to="/forgot-password" className="alt-text">
