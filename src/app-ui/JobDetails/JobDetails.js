@@ -16,12 +16,7 @@ import ImagesGallery from "../../shared-ui/ImagesGallery/ImagesGallery";
 import defaultBanner from "../../assets/images/sample/job-banner.png";
 import "./_JobDetails.scss";
 import "./_Responsive.scss";
-import {
-  selectCountries,
-  selectEmploymentTypes,
-  selectJobTitles,
-  selectOtherJobs,
-} from "../../features/jobs/slice";
+import { selectCountries, selectEmploymentTypes, selectJobTitles, selectOtherJobs } from "../../features/jobs/slice";
 import JobCard from "../../shared-ui/JobCard/JobCard";
 import { transformJobData } from "../../features/jobs/transformers";
 import { useAppSelector } from "../../store/hooks";
@@ -29,14 +24,7 @@ import { useAppSelector } from "../../store/hooks";
 
 const { Option } = Select;
 
-function JobDetails({
-  data = {},
-  showAllDetails = true,
-  setJobDetails,
-  extraData = {},
-  otherJobs,
-  executeScroll,
-}) {
+function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData = {}, otherJobs, executeScroll, setShowJobDetails }) {
   const countries = useAppSelector(selectCountries);
   const jobTitles = useAppSelector(selectJobTitles);
   const employmentTypes = useAppSelector(selectEmploymentTypes);
@@ -67,19 +55,11 @@ function JobDetails({
     <div className="c-job-detail-card">
       {/* Header */}
       <div className="header">
-        <img
-          className="job-banner-img"
-          src={data.company?.companyBanner || defaultBanner}
-          alt="banner-img"
-        />
+        <img className="job-banner-img" src={data.company?.companyBanner || defaultBanner} alt="banner-img" />
         <span className="banner-img-overlay"></span>
 
         <span className="job-info-wrapper">
-          <img
-            className="job-img"
-            src={data.company?.companyLogo || defaultImage}
-            alt=""
-          />
+          <img className="job-img" src={data.company?.companyLogo || defaultImage} alt="" />
           <span className="job-info">
             <h6 className="job-title">{data.company?.tagLine}</h6>
             <h3 className="job-company">{data.company?.companyName}</h3>
@@ -92,10 +72,7 @@ function JobDetails({
         )} */}
 
         <div onClick={() => setJobDetails(data)} className="back-btn">
-          <img
-            src={require("../../assets/images/icons/back-button.svg")}
-            alt=""
-          />
+          <img src={require("../../assets/images/icons/back-button.svg")} alt="" />
         </div>
       </div>
 
@@ -108,9 +85,7 @@ function JobDetails({
                 <span className="details-header">
                   <span className="job-title content-block">
                     <h6 className="company-page-heading">Job title:</h6>
-                    <span className="title">
-                      {data?.jobTitle?.title || ""}
-                    </span>{" "}
+                    <span className="title">{data?.jobTitle?.title || ""}</span>{" "}
                   </span>
 
                   <span className="actions-wrapper">
@@ -148,9 +123,7 @@ function JobDetails({
                   </span>
                 </span>
                 <span className="content-block">
-                  <h6 className="block-title company-page-heading">
-                    Job brief
-                  </h6>
+                  <h6 className="block-title company-page-heading">Job brief</h6>
                   <p className="block-text">{data.jobBrief}</p>
                 </span>
               </>
@@ -163,11 +136,7 @@ function JobDetails({
                 {/* {data.additionalRequirement?.map((d) => (
                   <li>{d}</li>
                 ))} */}
-                <div
-                  dangerouslySetInnerHTML={createMarkup(
-                    data?.additionalRequirement
-                  )}
-                />
+                <div dangerouslySetInnerHTML={createMarkup(data?.additionalRequirement)} />
               </ul>
             </span>
           </span>
@@ -177,14 +146,10 @@ function JobDetails({
                 <span className="content-section">
                   <span className="job-title content-block">
                     <h6 className="company-page-heading">Job title:</h6>
-                    <span className="title">
-                      {data?.jobTitle?.title || ""}
-                    </span>{" "}
+                    <span className="title">{data?.jobTitle?.title || ""}</span>{" "}
                   </span>
                   <span className="content-block">
-                    <h6 className="block-title company-page-heading">
-                      Job brief
-                    </h6>
+                    <h6 className="block-title company-page-heading">Job brief</h6>
                     <p className="block-text">{data.jobBrief}</p>
                   </span>
                 </span>
@@ -228,14 +193,7 @@ function JobDetails({
               <span>
                 Accommodation
                 {!data.accommodationListId && <mark></mark>}
-                {data.accommodationListId && (
-                  <mark>
-                    {getTitleById(
-                      extraData.accommodations,
-                      data?.accommodationListId
-                    )}
-                  </mark>
-                )}
+                {data.accommodationListId && <mark>{getTitleById(extraData.accommodations, data?.accommodationListId)}</mark>}
               </span>
               <span>
                 Utility bills
@@ -256,9 +214,7 @@ function JobDetails({
         <span className="content-box">
           <span className="content-section">
             <span className="content-block">
-              <h6 className="block-title company-page-heading">
-                Jobs description
-              </h6>
+              <h6 className="block-title company-page-heading">Jobs description</h6>
 
               {/* <p className="block-text">{data.description}</p> */}
               <div dangerouslySetInnerHTML={createMarkup(data?.description)} />
@@ -274,9 +230,7 @@ function JobDetails({
               </ul>
             </span> */}
             <span className="content-block">
-              <h6 className="block-title company-page-heading">
-                Skills required
-              </h6>
+              <h6 className="block-title company-page-heading">Skills required</h6>
 
               <div dangerouslySetInnerHTML={createMarkup(data?.skills)} />
             </span>
@@ -303,11 +257,7 @@ function JobDetails({
                     </Select> */}
                   </h6>
 
-                  <span
-                    className="block-text markup"
-                    dangerouslySetInnerHTML={createMarkup(
-                      data?.company?.introduction
-                    )}></span>
+                  <span className="block-text markup" dangerouslySetInnerHTML={createMarkup(data?.company?.introduction)}></span>
                 </span>
 
                 {/* <ImagesGallery
@@ -329,21 +279,12 @@ function JobDetails({
                   containerClass="carousel-container"
                   dotListClass="custom-dot-list-style">
                   {data?.company?.photoUrl.map((img, i) => (
-                    <img
-                      style={{ borderRadius: "20px" }}
-                      className="company-single-photo"
-                      src={img}
-                      alt={`image ${i}`}
-                      height={250}
-                      width="100%"
-                    />
+                    <img style={{ borderRadius: "20px" }} className="company-single-photo" src={img} alt={`image ${i}`} height={250} width="100%" />
                   ))}
                 </Carousel>
 
                 <span className="content-block mt-4 pr-0">
-                  <h6 className="block-title company-page-heading thick-title mb-3">
-                    Company Video{" "}
-                  </h6>
+                  <h6 className="block-title company-page-heading thick-title mb-3">Company Video </h6>
 
                   {!data.company?.videoUrl && ""}
                   {data.company?.videoUrl && (
@@ -357,14 +298,9 @@ function JobDetails({
                 </span>
 
                 <span className="content-block mt-4 pr-0">
-                  <h6 className="block-title company-page-heading thick-title mb-3">
-                    Map
-                  </h6>
+                  <h6 className="block-title company-page-heading thick-title mb-3">Map</h6>
                   <div className="block-map">
-                    <Map
-                      data={data?.company}
-                      location={data?.company?.companyLocation}
-                    />
+                    <Map data={data?.company} location={data?.company?.companyLocation} />
                   </div>
                 </span>
               </>
@@ -377,33 +313,17 @@ function JobDetails({
             <span className="content-box first">
               <span className="content-section">
                 <span className="content-block">
-                  <h6 className="block-title company-page-heading thick-title mb-3">
-                    Other jobs in your sector
-                  </h6>
+                  <h6 className="block-title company-page-heading thick-title mb-3">Other jobs in your sector</h6>
 
-                  <Row
-                    gutter={16}
-                    style={{ margin: "0 auto", width: "100%" }}
-                    justify={`${
-                      otherJobs?.length === 4 ? "space-around" : "flex-start"
-                    }`}>
+                  <Row gutter={16} style={{ margin: "0 auto", width: "100%" }} justify={`${otherJobs?.length === 4 ? "space-around" : "flex-start"}`}>
                     {otherJobs?.map((otherJob) => (
-                      <Col
-                        span={8}
-                        lg={{ span: 8 }}
-                        sm={{ span: 12 }}
-                        xs={{ span: 24 }}>
+                      <Col span={8} lg={{ span: 8 }} sm={{ span: 12 }} xs={{ span: 24 }}>
                         <JobCard
                           onClick={() => {
                             setJobDetails(otherJob);
                             executeScroll();
                           }}
-                          job={transformJobData(
-                            otherJob,
-                            jobTitles,
-                            employmentTypes,
-                            countries
-                          )}
+                          job={transformJobData(otherJob, jobTitles, employmentTypes, countries)}
                           type="box"
                         />
                       </Col>
@@ -418,9 +338,7 @@ function JobDetails({
             <span className="content-box first">
               <span className="content-section">
                 <span className="content-block">
-                  <h6 className="block-title company-page-heading thick-title">
-                    Other jobs by this company
-                  </h6>
+                  <h6 className="block-title company-page-heading thick-title">Other jobs by this company</h6>
                   <p></p>
                   {/* <Row
                     gutter={16}

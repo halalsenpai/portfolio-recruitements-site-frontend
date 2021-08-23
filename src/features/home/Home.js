@@ -82,7 +82,7 @@ function Home() {
 
             <div className="container-fluid mid-image p-0 d-flex justify-content-center">
               <img
-                className="img-mobile"
+                className="img-mobile h-100"
                 src={require("../../assets/images/home/1-homepage.png")}
                 alt=""
               />
@@ -149,7 +149,7 @@ function Home() {
 
             <div className="container-fluid p-0 d-flex justify-content-center">
               <img
-                className="w-75 img-mobile"
+                className="w-75 img-mobile h-50"
                 src={require("../../assets/images/home/8.png")}
                 alt=""
               />

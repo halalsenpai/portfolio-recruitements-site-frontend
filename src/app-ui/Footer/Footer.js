@@ -63,7 +63,9 @@ function Footer() {
         Copyright © 2021 Jobsmideast Ltd (<a>Jobsmideast.com</a>) Inc. All
         rights reserved.
         <br />
-        <a>Terms of use </a>| <a>Privacy policy </a>- Company number 13283704{" "}
+        <Link to="/terms-and-condition">Terms of use</Link> |{" "}
+        <Link to="/privacy-policy">Privacy policy</Link>- Company number
+        13283704{" "}
       </div>
     </div>
   );
