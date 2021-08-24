@@ -236,11 +236,11 @@ function Home() {
                 </p>
 
                 <p>
-                  Jobsmideast.com will be operating in Bahrain, Egypt, Kuwait,
-                  Oman, Qatar, Saudi Arabia & United Arab Emirates providing the
-                  most advanced recruitment tools, communication systems and API
-                  capabilities which will cater for 38 sectors and over 439 sub
-                  sectors.
+                  Jobsmideast.com will be operating in Bahrain, Egypt, India,
+                  Kuwait, Oman, Pakistan, Qatar, Saudi Arabia & United Arab
+                  Emirates providing the most advanced recruitment tools,
+                  communication systems and API capabilities which will cater
+                  for 38 sectors and over 439 sub sectors.
                 </p>
               </span>
               <Button className="demo-btn" themeColor="blue">
