@@ -8,17 +8,17 @@ const PrivacyPolicy = () => {
       <div className="guid-wrapper">
         <div className="main-heading">PRIVACY POLICY – JOBSMIDEAST.COM</div>
         <p>
-          This privacy policy applies between you, the User of this Website
-          andJobsmideast Ltd, the owner and provider of this Website.Jobsmideast
+          This privacy policy applies between you, the User of this Website and
+          Jobsmideast Ltd, the owner and provider of this Website.Jobsmideast
           Ltdtakes the privacy of your information very seriously. This privacy
           policy applies to our use of any and all Data collected by us or
           provided by you in relation to your use of the Website.
         </p>
         <p>
           This privacy policy should be read alongside, and in addition to, our
-          Terms and Conditions, which can be found at:
+          Terms and Conditions, which can be found at.
           <Link to="/terms-and-condition">
-            https://jobsmideast.com/terms-and-conditions
+            https.//jobsmideast.com/terms-and-conditions
           </Link>
         </p>
 
@@ -28,12 +28,12 @@ const PrivacyPolicy = () => {
           <ul>
             <li>
               <div>1.</div>
-              In this privacy policy, the following definitions are used:
+              In this privacy policy, the following definitions are used.
             </li>
             <li>
               <div>2.</div>
               In this privacy policy, unless the context requires a different
-              interpretation:
+              interpretation.
             </li>
             <div className="abc-point">
               <ul>
@@ -92,7 +92,7 @@ const PrivacyPolicy = () => {
             <li>
               <div>5.</div>
               We may collect the following Data, which includes personal Data,
-              from you:
+              from you.
             </li>
             <div className="abc-point">
               <ul>
@@ -154,7 +154,7 @@ const PrivacyPolicy = () => {
           <ul>
             <li>
               <div>6.</div>
-              We collect Data in the following ways:
+              We collect Data in the following ways.
             </li>
             <div className="abc-point">
               <ul>
@@ -179,7 +179,7 @@ const PrivacyPolicy = () => {
             <li>
               <div>7.</div>
               Jobsmideast Ltdwill collect your Data in a number of ways, for
-              example:
+              example.
             </li>
             <div className="abc-point">
               <ul>
@@ -218,7 +218,7 @@ const PrivacyPolicy = () => {
             <li>
               <div>8.</div>
               Jobsmideast Ltdwill receive Data about you from the following
-              third parties:
+              third parties.
             </li>
             <div className="abc-point">
               <ul>
@@ -248,7 +248,7 @@ const PrivacyPolicy = () => {
             <li>
               <div>8.</div>
               We will receive Data about you from the following publicly
-              available third party sources:
+              available third party sources.
             </li>
             <div className="abc-point">
               <ul>
@@ -274,7 +274,7 @@ const PrivacyPolicy = () => {
             <li>
               <div>9.</div>
               To the extent that you access the Website, we will collect your
-              Data automatically, for example:
+              Data automatically, for example.
             </li>
             <div className="abc-point">
               <ul>
@@ -298,7 +298,7 @@ const PrivacyPolicy = () => {
               Any or all of the above Data may be required by us from time to
               time in order to provide you with the best possible service and
               experience when using our Website. Specifically, Data may be used
-              by us for the following reasons:
+              by us for the following reasons.
             </li>
             <div className="abc-point">
               <ul>
@@ -335,7 +335,7 @@ const PrivacyPolicy = () => {
             <li>
               <div>13.</div>
               For the delivery of direct marketing to you via e-mail, we'll need
-              your consent, whether via an opt-in or soft-opt-in:
+              your consent, whether via an opt-in or soft-opt-in.
             </li>
             <div className="abc-point">
               <ul>
@@ -379,7 +379,7 @@ const PrivacyPolicy = () => {
         </div>
 
         <p>
-          By using the Site, you represent and warrant that:(1) all registration
+          By using the Site, you represent and warrant that.(1) all registration
           information you submit will be true, accurate, current, and complete;
           (2) you will maintain the accuracy of such information and promptly
           update such registration information as necessary;(3) you have the
@@ -412,48 +412,48 @@ const PrivacyPolicy = () => {
           connection with any commercial endeavours except those that are
           specifically endorsed or approved by us.
         </p>
-        <p>As a user of the Site, you agree not to:</p>
+        <p>As a user of the Site, you agree not to.</p>
         <ul>
           <li>
-            <div>1 :</div> Systematically retrieve data or other content from
-            the Site to create or compile, directly or indirectly, a collection,
+            <div>1.</div> Systematically retrieve data or other content from the
+            Site to create or compile, directly or indirectly, a collection,
             compilation, database, or directory without written permission from
             us.
           </li>
           <li>
-            <div>2 :</div> Trick, defraud, or mislead us and other users,
+            <div>2.</div> Trick, defraud, or mislead us and other users,
             especially in any attempt to learn sensitive account information
             such as user passwords.
           </li>
           <li>
-            <div>3 :</div> Circumvent, disable, or otherwise interfere with
+            <div>3.</div> Circumvent, disable, or otherwise interfere with
             security-related features ofthe Site, including features that
             prevent or restrict the use or copying of any Content or enforce
             limitations on the use of the Site and/or the Content contained
             therein.
           </li>
           <li>
-            <div>4 :</div> Disparage, tarnish, or otherwise harm, in our
-            opinion, us and/or the Site.
+            <div>4.</div> Disparage, tarnish, or otherwise harm, in our opinion,
+            us and/or the Site.
           </li>
           <li>
-            <div>5 :</div> Use any information obtained from the Site in order
-            to harass, abuse, or harm another person.
+            <div>5.</div> Use any information obtained from the Site in order to
+            harass, abuse, or harm another person.
           </li>
           <li>
-            <div>6 :</div> Make improper use of our support services or submit
+            <div>6.</div> Make improper use of our support services or submit
             false reports of abuseor misconduct.
           </li>
           <li>
-            <div>7 :</div> Use the Site in a manner inconsistent with any
+            <div>7.</div> Use the Site in a manner inconsistent with any
             applicable laws or regulations.
           </li>
           <li>
-            <div>8 :</div> Engage in unauthorized framing of or linking to the
+            <div>8.</div> Engage in unauthorized framing of or linking to the
             Site.
           </li>
           <li>
-            <div>9 :</div> Upload or transmit (or attempt to upload or to
+            <div>9.</div> Upload or transmit (or attempt to upload or to
             transmit) viruses, Trojan horses, or other material, including
             excessive use of capital letters and spamming (continuous posting of
             repetitive text), that interferes with any party’s uninterrupted use
@@ -462,23 +462,23 @@ const PrivacyPolicy = () => {
             maintenance of the Site.
           </li>
           <li>
-            <div>10 :</div> Engage in any automated use of the system, such as
+            <div>10.</div> Engage in any automated use of the system, such as
             using scripts to sendcomments or messages, or using any data mining,
             robots, or similar data gathering and extraction tools.
           </li>
           <li>
-            <div>11 :</div> Delete the copyright or other proprietary rights
+            <div>11.</div> Delete the copyright or other proprietary rights
             notice from any Content.
           </li>
           <li>
-            <div>12 :</div> EAttempt to impersonate another user or person or
-            use the username of another user.
+            <div>12.</div> EAttempt to impersonate another user or person or use
+            the username of another user.
           </li>
           <li>
-            <div>13 :</div> Sell or otherwise transfer your profile.
+            <div>13.</div> Sell or otherwise transfer your profile.
           </li>
           <li>
-            <div>14 :</div> Upload or transmit (or attempt to upload or to
+            <div>14.</div> Upload or transmit (or attempt to upload or to
             transmit) any material thatacts as a passive or active information
             collection or transmission mechanism,including without limitation,
             clear graphics interchange formats (“gifs”), 1×1 pixels, web bugs,
@@ -486,47 +486,47 @@ const PrivacyPolicy = () => {
             “spyware” or “passive collection mechanisms” or “pcms”).
           </li>
           <li>
-            <div>15 :</div> Interfere with, disrupt, or create an undue burden
-            on the Site or the networks or services connected to the Site.
+            <div>15.</div> Interfere with, disrupt, or create an undue burden on
+            the Site or the networks or services connected to the Site.
           </li>
           <li>
-            <div>16 :</div> Harass, annoy, intimidate, or threaten any of our
+            <div>16.</div> Harass, annoy, intimidate, or threaten any of our
             employees or agents engaged in providing any portion of the Site to
             you.
           </li>
           <li>
-            <div>17 :</div> Attempt to bypass any measures of the Site designed
+            <div>17.</div> Attempt to bypass any measures of the Site designed
             to prevent or restrict access to the Site, or any portion of the
             Site.
           </li>
           <li>
-            <div>18 :</div> Copy or adapt the Site’s software, including but not
+            <div>18.</div> Copy or adapt the Site’s software, including but not
             limited to Flash, PHP, HTML, JavaScript, or other code.
           </li>
           <li>
-            <div>19 :</div> Decipher, decompile, disassemble, or reverse
-            engineer any of the software comprising or in any way making up a
-            part of the Site.
+            <div>19.</div> Decipher, decompile, disassemble, or reverse engineer
+            any of the software comprising or in any way making up a part of the
+            Site.
           </li>
           <li>
-            <div>20 :</div> Except as may bethe result of standard search engine
+            <div>20.</div> Except as may bethe result of standard search engine
             or Internet browser usage, use, launch, develop, or distribute any
             automated system, including without limitation, any spider, robot,
             cheat utility, scraper, or offlinereader that accesses the Site, or
             using or launching any unauthorized script or other software.
           </li>
           <li>
-            <div>21 :</div> Use a buying agent or purchasing agent to make
+            <div>21.</div> Use a buying agent or purchasing agent to make
             purchases on the Site.
           </li>
           <li>
-            <div>22 :</div> Engage in any automated use of the system, such as
+            <div>22.</div> Engage in any automated use of the system, such as
             using scripts to sendcomments or messages, or using any data mining,
             robots, or similar data gathering and extraction tools.
           </li>
           <li>
-            <div>23 :</div> Use the Site as part of any effort to compete with
-            us or otherwise use the Site and/or the Content for any
+            <div>23.</div> Use the Site as part of any effort to compete with us
+            or otherwise use the Site and/or the Content for any
             revenue-generating endeavour or commercialenterprise.
           </li>
         </ul>
@@ -543,11 +543,11 @@ const PrivacyPolicy = () => {
           Site and through third-party websites. As such, any Contributions you
           transmit may be treated as non-confidential and non-proprietary. When
           you create or make available any Contributions, you thereby represent
-          and warrant that:
+          and warrant that.
         </p>
         <ul>
           <li>
-            <div>1 :</div>
+            <div>1.</div>
             The creation, distribution, transmission, public display, or
             performance, and the accessing, downloading, or copying of your
             Contributions do not and will not infringe the proprietary rights,
@@ -555,14 +555,14 @@ const PrivacyPolicy = () => {
             secret, or moral rights of any third party.
           </li>
           <li>
-            <div>2 :</div>
+            <div>2.</div>
             You are the creator and owner of or have the necessary licenses,
             rights, consents,releases, and permissions to use and to authorize
             us, the Site, and other users of theSite to use your Contributions
             in any manner contemplated by the Site and these Terms of Use.
           </li>
           <li>
-            <div>3 :</div>
+            <div>3.</div>
             You have the written consent, release, and/or permission of each and
             every identifiable individual person in your Contributions to use
             the name or likeness of each and every such identifiable individual
@@ -570,62 +570,62 @@ const PrivacyPolicy = () => {
             manner contemplated by the Site and these Terms of Use.
           </li>
           <li>
-            <div>4 :</div>
+            <div>4.</div>
             Your Contributions are not false, inaccurate, or misleading.
           </li>
           <li>
-            <div>5 :</div>
+            <div>5.</div>
             Your Contributions are not unsolicited or unauthorized advertising,
             promotional materials, pyramid schemes, chain letters, spam, mass
             mailings, or other forms of solicitation.
           </li>
           <li>
-            <div>6 :</div>
+            <div>6.</div>
             Your Contributions are not obscene, lewd, lascivious, filthy,
             violent, harassing, libelous, slanderous, or otherwise objectionable
             (as determined by us).
           </li>
           <li>
-            <div>7 :</div>
+            <div>7.</div>
             Your Contributions do not ridicule, mock, disparage, intimidate, or
             abuse anyone.
           </li>
           <li>
-            <div>8 :</div>
+            <div>8.</div>
             Your Contributions are not used to harass or threaten (in the legal
             sense of those terms) any other person and to promote violence
             against a specific person or class ofpeople.
           </li>
           <li>
-            <div>9 :</div>
+            <div>9.</div>
             Your Contributions do not violate any applicable law, regulation, or
             rule.
           </li>
           <li>
-            <div>10 :</div>
+            <div>10.</div>
             Your Contributions do not violate the privacy or publicity rights of
             any third party.
           </li>
           <li>
-            <div>11 :</div>
+            <div>11.</div>
             Your Contributions do not contain any material that solicits
             personal information from anyone under the age of 18 or exploits
             people under the age of 18 in a sexual or violent manner.
           </li>
           <li>
-            <div>12 :</div>
+            <div>12.</div>
             Your Contributions do not violate any applicable law concerning
             child pornography, or otherwise intended to protect the health or
             well-being of minors.
           </li>
           <li>
-            <div>13 :</div>
+            <div>13.</div>
             Your Contributions do not include any offensive comments that are
             connected torace, national origin, gender, sexual preference, or
             physical handicap.
           </li>
           <li>
-            <div>14 :</div>
+            <div>14.</div>
             Your Contributions do not otherwise violate, or link to material
             that violates, any provision of these Terms of Use, or any
             applicable law or regulation.
@@ -637,7 +637,7 @@ const PrivacyPolicy = () => {
             <li>
               <div>15.</div>
               We may share your Data with the following groups of people for the
-              following reasons:
+              following reasons.
             </li>
             <div className="abc-point">
               <ul>
@@ -685,7 +685,7 @@ const PrivacyPolicy = () => {
             <li>
               <div>16.</div>
               We will use technical and organisational measures to safeguard
-              your Data, for example:
+              your Data, for example.
             </li>
             <div className="abc-point">
               <ul>
@@ -715,7 +715,7 @@ const PrivacyPolicy = () => {
               Technical and organisational measures include measures to deal
               with any suspected data breach. If you suspect any misuse or loss
               or unauthorised access to your Data, please let us know
-              immediately by contacting us via this e-mail address:
+              immediately by contacting us via this e-mail address.
             </li>
           </ul>
         </div>
@@ -789,14 +789,14 @@ const PrivacyPolicy = () => {
               To make enquiries, exercise any of your rights set out above, or
               withdraw your consent to the processing of your Data (where
               consent is our legal basis for processing your Data), please
-              contact us via this e-mail address:
+              contact us via this e-mail address.
             </li>
             <li>
               <div>23.</div>
               To make enquiries, exercise any of your rights set out above, or
               withdraw your consent to the processing of your Data (where
               consent is our legal basis for processing your Data), please
-              contact us via this e-mail address:
+              contact us via this e-mail address.
             </li>
             <li>
               <div>24.</div>
