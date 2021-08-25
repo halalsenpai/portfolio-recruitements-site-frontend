@@ -46,6 +46,7 @@ import {
   selectProfileImage,
   removePreUploadedProfileImage,
   selectCompanyLogo,
+  setSignupStateFalse
 } from "./slice";
 // import AvatarPicker from "../../shared-ui/AvatarPicker/AvatarPicker";
 import { SuperSelectFindJobs } from "../../shared-ui/superselectfindjobs/superselectfindjobs";
@@ -118,6 +119,7 @@ function EmployerSignUp() {
 
   useEffect(() => {
     if (signupSuccess === true) {
+      dispatch(setSignupStateFalse());
       history.push("confirm-email");
     }
   }, [signupSuccess]);

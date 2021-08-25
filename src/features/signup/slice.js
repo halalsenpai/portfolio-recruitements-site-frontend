@@ -54,6 +54,11 @@ export const slice = createSlice({
     removePreUploadedProfileImage: (state) => {
       state.profileImage = null;
     },
+    setSignupStateFalse: (state)=>{
+      state.jobseekerSignupSuccess = false;
+      state.employerSignupSuccess = false;
+      state.agencySignupSuccess = false;
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -192,6 +197,6 @@ state.signup.isCompanyLogoLoading;
 export const selectCompanyLogo = (state) => state.signup.companyLogo;
 
 
-export const { removePreUploadedProfileImage } = slice.actions;
+export const { removePreUploadedProfileImage, setSignupStateFalse } = slice.actions;
 
 export default slice.reducer;

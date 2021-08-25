@@ -44,6 +44,7 @@ import {
   selectProfileImage,
   selectAgencySignUpSuccess,
   removePreUploadedProfileImage,
+  setSignupStateFalse
 } from "./slice";
 import AvatarPicker from "../../shared-ui/AvatarPicker/AvatarPicker";
 
@@ -87,6 +88,7 @@ function AgencySignUp() {
 
   useEffect(() => {
     if (signupSuccess === true) {
+      dispatch(setSignupStateFalse());
       history.push("confirm-email");
     }
   }, [signupSuccess]);

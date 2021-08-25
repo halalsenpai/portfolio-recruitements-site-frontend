@@ -33,6 +33,7 @@ import {
   selectErrorMessage,
   selectLoadingStatus,
   selectCountryByIp,
+  setSignupStateFalse
 } from "./slice";
 import TermsConditions from "./TermsConditions";
 import { getNationality } from "./service";
@@ -84,6 +85,7 @@ function JobSeekerSignUp() {
 
   useEffect(() => {
     if (signupSuccess === true) {
+      dispatch(setSignupStateFalse());
       history.push("confirm-email");
     }
   }, [signupSuccess]);
