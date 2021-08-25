@@ -51,6 +51,7 @@ import {
 import { SuperSelectFindJobs } from "../../shared-ui/superselectfindjobs/superselectfindjobs";
 import CookiePolicy from "../cookiePolicy/CookiePolicy";
 import PrivacyPolicy from "../privacyPolicy/PrivacyPolicy";
+import { SuperSelectEmployerSignup } from "../../shared-ui/superselectfindjobs/superselectEmployerSignup";
 
 const { Option } = Select;
 
@@ -184,6 +185,7 @@ function EmployerSignUp() {
   };
 
   const onCompanyNameChange = (value) => {
+    console.log('onCompanyNameChange', value)
     if (value === "") {
       setCreateCompany(true);
       return;
@@ -242,7 +244,8 @@ function EmployerSignUp() {
                   label="Company name"
                   name="companyProfileId"
                   rules={Rules.requiredRule}>
-                  <SuperSelectFindJobs
+                  <SuperSelectEmployerSignup
+                      idSelect
                     mode={true}
                     getPopupContainer={(trigger) => trigger.parentNode}
                     fetchOptions={getCompany}
