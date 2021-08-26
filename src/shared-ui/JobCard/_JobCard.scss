@@ -11,7 +11,7 @@
   justify-content: space-between;
   overflow: hidden;
   padding: 10px 10px 10px 10px;
-  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3) !important;
+  box-shadow: 1px 1px 10px $shadow-color !important;
   transition: 0.3s all linear;
   cursor: pointer;
 
@@ -284,7 +284,7 @@
 //   justify-content: space-between;
 //   overflow: hidden;
 //   padding: 10px 10px 10px 10px;
-//   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3) !important;
+//   box-shadow: 1px 1px 10px $shadow-color !important;
 //   transition: 0.3s all linear;
 //   cursor: pointer;
 
@@ -516,7 +516,7 @@
 //     justify-content: space-between;
 //     overflow: hidden;
 //     padding: 10px 10px 10px 10px;
-//     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3) !important;
+//     box-shadow: 1px 1px 10px $shadow-color !important;
 //     transition: 0.3s all linear;
 //     cursor: pointer;
 

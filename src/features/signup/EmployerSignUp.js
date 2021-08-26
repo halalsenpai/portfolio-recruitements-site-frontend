@@ -461,6 +461,35 @@ function EmployerSignUp() {
                   </Form.Item>
                 </Col>
                 <Col
+                  style={{ zIndex: 300 }}
+                  span={12}
+                  xs={{ span: 24 }}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    label="Your role within the compnay"
+                    name="currentRole"
+                    className="c-input"
+                    rules={Rules.requiredRule}>
+                    <Select
+                      allowClear
+                      placeholder=""
+                      getPopupContainer={(trigger) => trigger.parentNode}>
+                      <Option value="business-owner">Business owner</Option>
+                      <Option value="decision-maker-within-he-business">
+                        Decision maker within the business
+                      </Option>
+                      <Option value="hr-Director/Manager">
+                        HR Director/Manager
+                      </Option>
+                      <Option value="department-Manager/Head">
+                        Department Manager/Head
+                      </Option>
+                      <Option value="Team-member">Team member</Option>
+                    </Select>
+                  </Form.Item>
+                </Col>
+                <Col
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
@@ -535,6 +564,7 @@ function EmployerSignUp() {
                     />
                   </Form.Item>
                 </Col>
+
                 <Col
                   span={12}
                   xs={{ span: 24 }}

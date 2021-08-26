@@ -101,7 +101,7 @@
     .ant-slider-handle {
       background-color: $blue;
       border: solid 4px $white;
-      box-shadow: 0 0 10px #c3c3c3;
+      box-shadow: 0 0 10px $shadow-color;
       border-radius: 50%;
       width: 20px;
       height: 20px;
@@ -125,9 +125,7 @@
       border-color: #eee;
     }
 
-    .ant-select-show-search.ant-select:not(.ant-select-customize-input)
-      .ant-select-selector
-      input {
+    .ant-select-show-search.ant-select:not(.ant-select-customize-input) .ant-select-selector input {
       cursor: unset;
       visibility: unset;
     }
@@ -140,12 +138,7 @@
     justify-content: space-between !important;
 
     button {
-      background: linear-gradient(
-        90deg,
-        #020024 0%,
-        #6ad259 0%,
-        #00b0fa 100%
-      ) !important;
+      background: linear-gradient(90deg, #020024 0%, #6ad259 0%, #00b0fa 100%) !important;
     }
   }
 }

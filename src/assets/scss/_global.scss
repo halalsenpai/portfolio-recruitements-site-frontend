@@ -207,7 +207,7 @@ p {
   &:focus {
     border: none;
     box-shadow: none;
-    // box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3) !important;
+    // box-shadow: 1px 1px 10px $shadow-color !important;
   }
 }
 
@@ -267,7 +267,7 @@ p {
 
   .ant-select-selector {
     font-size: $font-size-sm;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2) !important;
+    box-shadow: 0 0 10px $shadow-color !important;
     border: none !important;
     border-radius: 100px !important;
     height: 36px !important;
@@ -311,7 +311,7 @@ p {
     resize: none;
     height: 200px !important;
     border-radius: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px $shadow-color;
     border: none !important;
     padding: 20px;
   }
@@ -361,7 +361,7 @@ p {
 .react-tel-input {
   width: 300px;
   font-size: $font-size-md;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px $shadow-color;
   border-radius: 100px;
   height: 36px;
   padding: 0 18px 0px 0px;
@@ -406,7 +406,7 @@ p {
     font-size: $font-size-sm;
     border: none !important;
     border-radius: 100px !important;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2) !important;
+    box-shadow: 0 0 10px $shadow-color !important;
     height: 36px !important;
     padding: 0 18px !important;
     background: $white !important;
@@ -468,7 +468,7 @@ p {
 
 .ant-picker {
   font-size: $font-size-sm;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2) !important;
+  box-shadow: 0px 0px 10px $shadow-color !important;
   border: none !important;
   border-radius: 100px !important;
   padding: 0 18px 0px 0px !important;
@@ -503,7 +503,7 @@ p {
   width: 100%;
   height: 720px;
   border-radius: 20px;
-  box-shadow: 0 0 16px #00000026;
+  box-shadow: 0 0 16px $shadow-color;
   padding: 0px !important;
   overflow: hidden;
 
@@ -607,10 +607,7 @@ p {
   height: 3px;
 }
 
-.ant-steps-item-finish
-  > .ant-steps-item-container
-  > .ant-steps-item-content
-  > .ant-steps-item-title::after {
+.ant-steps-item-finish > .ant-steps-item-container > .ant-steps-item-content > .ant-steps-item-title::after {
   background-color: $green;
 }
 
@@ -913,9 +910,7 @@ html {
     width: 145px !important;
     z-index: 40 !important;
 
-    &.ant-select:not(.ant-select-customize-input)
-      .ant-select-selector
-      .ant-select-selection-search-input {
+    &.ant-select:not(.ant-select-customize-input) .ant-select-selector .ant-select-selection-search-input {
       padding: 0px 6px !important;
     }
 
