@@ -21,7 +21,7 @@
       padding: 9px 0;
       cursor: pointer;
       font-family: $font-medium !important;
-      box-shadow: 2px 3px 5px #00000026;
+      box-shadow: 2px 3px 5px $shadow-color;
       color: $text-color;
       &.active {
         background-color: $primary;

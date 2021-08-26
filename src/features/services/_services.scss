@@ -92,7 +92,7 @@
           .ant-form-item-control-input {
             border-radius: 16px;
             padding: 10px 0;
-            box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.2) !important;
+            box-shadow: 0 0 10px $shadow-color !important;
           }
         }
         .submit-btn {

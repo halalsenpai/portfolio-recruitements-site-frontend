@@ -38,12 +38,11 @@
     padding: 0px !important;
     height: 950px;
     position: relative;
-    box-shadow: 0 0 16px #00000026;
+    box-shadow: 0 0 16px $shadow-color;
 
     .first-container {
       width: 480px !important;
-      background: transparent url("../../assets/images/auth/signup-ban-2.jpg")
-        0% 0% no-repeat padding-box;
+      background: transparent url("../../assets/images/auth/signup-ban-2.jpg") 0% 0% no-repeat padding-box;
       background-position: top;
       background-repeat: no-repeat;
       background-size: cover;
@@ -217,7 +216,7 @@
             .photo-square {
               width: 140px;
               height: 140px;
-              box-shadow: 0 0 10px rgba($color: black, $alpha: 0.1);
+              box-shadow: 0 0 10px $shadow-color;
               border-radius: 24px;
               overflow: hidden;
               img {
@@ -276,7 +275,7 @@
             .photo-square {
               width: 140px;
               height: 140px;
-              box-shadow: 0 0 10px rgba($color: black, $alpha: 0.1);
+              box-shadow: 0 0 10px $shadow-color;
               border-radius: 24px;
               overflow: hidden;
               img {
@@ -361,7 +360,7 @@
             .photo-square {
               width: 140px;
               height: 140px;
-              box-shadow: 0 0 10px rgba($color: black, $alpha: 0.1);
+              box-shadow: 0 0 10px $shadow-color;
               border-radius: 24px;
               overflow: hidden;
               img {
@@ -420,7 +419,7 @@
             .photo-square {
               width: 140px;
               height: 140px;
-              box-shadow: 0 0 10px rgba($color: black, $alpha: 0.1);
+              box-shadow: 0 0 10px $shadow-color;
               border-radius: 24px;
               overflow: hidden;
               img {
