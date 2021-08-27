@@ -47,7 +47,7 @@ import {
   removePreUploadedProfileImage,
   removePreExistingErrorMessages,
   selectCompanyLogo,
-  setSignupStateFalse
+  setSignupStateFalse,
 } from "./slice";
 // import AvatarPicker from "../../shared-ui/AvatarPicker/AvatarPicker";
 import { SuperSelectFindJobs } from "../../shared-ui/superselectfindjobs/superselectfindjobs";
@@ -188,7 +188,7 @@ function EmployerSignUp() {
   };
 
   const onCompanyNameChange = (value) => {
-    console.log('onCompanyNameChange', value)
+    console.log("onCompanyNameChange", value);
     if (value === "") {
       setCreateCompany(true);
       return;
@@ -248,7 +248,7 @@ function EmployerSignUp() {
                   name="companyProfileId"
                   rules={Rules.requiredRule}>
                   <SuperSelectEmployerSignup
-                      idSelect
+                    idSelect
                     mode={true}
                     getPopupContainer={(trigger) => trigger.parentNode}
                     fetchOptions={getCompany}
