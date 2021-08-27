@@ -8,24 +8,35 @@ import Button from "../../shared-ui/Button/Button";
 import "./_SignUp.scss";
 import "./_Responsive.scss";
 import { useAppDispatch } from "../../store/hooks";
-import { removePreUploadedProfileImage } from "./slice";
+import {
+  removePreExistingErrorMessages,
+  removePreUploadedProfileImage,
+} from "./slice";
 
 function SignUp() {
   const [userType, setUserType] = useState(userTypes.JOBSEEKER.title);
   const history = useHistory();
+  const dispatch = useAppDispatch();
 
   const onFinish = useCallback(() => {
+    dispatch(removePreExistingErrorMessages());
     switch (userType) {
       case userTypes.JOBSEEKER.title:
+        console.log("userType", userType);
         history.push("user-signup");
         return;
       case userTypes.EMPLOYER.title:
+        console.log("userType", userType);
+
         history.push("employer-signup");
+
         return;
       case userTypes.AGENCY.title:
+        console.log("userType", userType);
         history.push("agency-signup");
         return;
       default:
+        console.log("default", userType);
         history.push("user-signup");
         return;
     }
@@ -40,8 +51,7 @@ function SignUp() {
       <div className="signup-container with-form role-container height-720">
         <Form
           className="second-container c-form w-100 signup-option"
-          onFinish={onFinish}
-        >
+          onFinish={onFinish}>
           {/* <img
             src={require("../../assets/images/auth/signup-illus.png")}
             alt="logo"
@@ -69,8 +79,7 @@ function SignUp() {
               htmlType="submit"
               // loading={true}
               block
-              themeColor="primary"
-            >
+              themeColor="primary">
               Next
             </Button>
           </Form.Item>

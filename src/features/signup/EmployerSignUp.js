@@ -45,8 +45,9 @@ import {
   selectCitiesByCountry,
   selectProfileImage,
   removePreUploadedProfileImage,
+  removePreExistingErrorMessages,
   selectCompanyLogo,
-  setSignupStateFalse
+  setSignupStateFalse,
 } from "./slice";
 // import AvatarPicker from "../../shared-ui/AvatarPicker/AvatarPicker";
 import { SuperSelectFindJobs } from "../../shared-ui/superselectfindjobs/superselectfindjobs";
@@ -61,7 +62,6 @@ function EmployerSignUp() {
   const history = useHistory();
   const location = useLocation();
   const dispatch = useAppDispatch();
-
   const [isCreateCompany, setCreateCompany] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({});
@@ -85,7 +85,7 @@ function EmployerSignUp() {
   const citiesByCountry = useAppSelector(selectCitiesByCountry);
   const profileImage = useAppSelector(selectProfileImage);
   const companyLogo = useAppSelector(selectCompanyLogo);
-
+  console.log("errorMessage", errorMessage);
   useEffect(() => {
     // let params = queryString.parse(location.search);
     dispatch(getRole());
@@ -111,6 +111,7 @@ function EmployerSignUp() {
 
   useEffect(() => {
     dispatch(removePreUploadedProfileImage());
+    // return dispatch(removePreExistingErrorMessages());
   }, []);
 
   useEffect(() => {
@@ -187,7 +188,7 @@ function EmployerSignUp() {
   };
 
   const onCompanyNameChange = (value) => {
-    console.log('onCompanyNameChange', value)
+    console.log("onCompanyNameChange", value);
     if (value === "") {
       setCreateCompany(true);
       return;
@@ -247,7 +248,7 @@ function EmployerSignUp() {
                   name="companyProfileId"
                   rules={Rules.requiredRule}>
                   <SuperSelectEmployerSignup
-                      idSelect
+                    idSelect
                     mode={true}
                     getPopupContainer={(trigger) => trigger.parentNode}
                     fetchOptions={getCompany}
