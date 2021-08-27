@@ -8,7 +8,7 @@ import { FaStar } from "react-icons/fa";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-import { Map } from "../../shared-ui/Map/Map";
+import { JobMap, Map } from "../../shared-ui/Map/Map";
 import { getTitleById, useWindowSize } from "../../utils/helper";
 import Button from "../../shared-ui/Button/Button";
 import defaultImage from "../../assets/images/default.png";
@@ -16,7 +16,12 @@ import ImagesGallery from "../../shared-ui/ImagesGallery/ImagesGallery";
 import defaultBanner from "../../assets/images/sample/job-banner.png";
 import "./_JobDetails.scss";
 import "./_Responsive.scss";
-import { selectCountries, selectEmploymentTypes, selectJobTitles, selectOtherJobs } from "../../features/jobs/slice";
+import {
+  selectCountries,
+  selectEmploymentTypes,
+  selectJobTitles,
+  selectOtherJobs,
+} from "../../features/jobs/slice";
 import JobCard from "../../shared-ui/JobCard/JobCard";
 import { transformJobData } from "../../features/jobs/transformers";
 import { useAppSelector } from "../../store/hooks";
@@ -24,7 +29,15 @@ import { useAppSelector } from "../../store/hooks";
 
 const { Option } = Select;
 
-function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData = {}, otherJobs, executeScroll, setShowJobDetails }) {
+function JobDetails({
+  data = {},
+  showAllDetails = true,
+  setJobDetails,
+  extraData = {},
+  otherJobs,
+  executeScroll,
+  setShowJobDetails,
+}) {
   const countries = useAppSelector(selectCountries);
   const jobTitles = useAppSelector(selectJobTitles);
   const employmentTypes = useAppSelector(selectEmploymentTypes);
@@ -55,11 +68,19 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
     <div className="c-job-detail-card">
       {/* Header */}
       <div className="header">
-        <img className="job-banner-img" src={data.company?.companyBanner || defaultBanner} alt="banner-img" />
+        <img
+          className="job-banner-img"
+          src={data.company?.companyBanner || defaultBanner}
+          alt="banner-img"
+        />
         <span className="banner-img-overlay"></span>
 
         <span className="job-info-wrapper">
-          <img className="job-img" src={data.company?.companyLogo || defaultImage} alt="" />
+          <img
+            className="job-img"
+            src={data.company?.companyLogo || defaultImage}
+            alt=""
+          />
           <span className="job-info">
             <h6 className="job-title">{data.company?.tagLine}</h6>
             <h3 className="job-company">{data.company?.companyName}</h3>
@@ -72,7 +93,10 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
         )} */}
 
         <div onClick={() => setJobDetails(data)} className="back-btn">
-          <img src={require("../../assets/images/icons/back-button.svg")} alt="" />
+          <img
+            src={require("../../assets/images/icons/back-button.svg")}
+            alt=""
+          />
         </div>
       </div>
 
@@ -85,7 +109,9 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
                 <span className="details-header">
                   <span className="job-title content-block">
                     <h6 className="company-page-heading">Job title:</h6>
-                    <span className="title">{data?.jobTitle?.title || ""}</span>{" "}
+                    <span className="title">
+                      {data?.jobTitle?.title || ""}
+                    </span>{" "}
                   </span>
 
                   <span className="actions-wrapper">
@@ -123,7 +149,9 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
                   </span>
                 </span>
                 <span className="content-block">
-                  <h6 className="block-title company-page-heading">Job brief</h6>
+                  <h6 className="block-title company-page-heading">
+                    Job brief
+                  </h6>
                   <p className="block-text">{data.jobBrief}</p>
                 </span>
               </>
@@ -136,7 +164,11 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
                 {/* {data.additionalRequirement?.map((d) => (
                   <li>{d}</li>
                 ))} */}
-                <div dangerouslySetInnerHTML={createMarkup(data?.additionalRequirement)} />
+                <div
+                  dangerouslySetInnerHTML={createMarkup(
+                    data?.additionalRequirement
+                  )}
+                />
               </ul>
             </span>
           </span>
@@ -146,10 +178,14 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
                 <span className="content-section">
                   <span className="job-title content-block">
                     <h6 className="company-page-heading">Job title:</h6>
-                    <span className="title">{data?.jobTitle?.title || ""}</span>{" "}
+                    <span className="title">
+                      {data?.jobTitle?.title || ""}
+                    </span>{" "}
                   </span>
                   <span className="content-block">
-                    <h6 className="block-title company-page-heading">Job brief</h6>
+                    <h6 className="block-title company-page-heading">
+                      Job brief
+                    </h6>
                     <p className="block-text">{data.jobBrief}</p>
                   </span>
                 </span>
@@ -193,7 +229,14 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
               <span>
                 Accommodation
                 {!data.accommodationListId && <mark></mark>}
-                {data.accommodationListId && <mark>{getTitleById(extraData.accommodations, data?.accommodationListId)}</mark>}
+                {data.accommodationListId && (
+                  <mark>
+                    {getTitleById(
+                      extraData.accommodations,
+                      data?.accommodationListId
+                    )}
+                  </mark>
+                )}
               </span>
               <span>
                 Utility bills
@@ -214,7 +257,9 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
         <span className="content-box">
           <span className="content-section">
             <span className="content-block">
-              <h6 className="block-title company-page-heading">Jobs description</h6>
+              <h6 className="block-title company-page-heading">
+                Jobs description
+              </h6>
 
               {/* <p className="block-text">{data.description}</p> */}
               <div dangerouslySetInnerHTML={createMarkup(data?.description)} />
@@ -230,15 +275,31 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
               </ul>
             </span> */}
             <span className="content-block">
-              <h6 className="block-title company-page-heading">Skills required</h6>
+              <h6 className="block-title company-page-heading">
+                Skills required
+              </h6>
 
               <div dangerouslySetInnerHTML={createMarkup(data?.skills)} />
             </span>
 
-            <Divider className="divider" />
-
             {showAllDetails && (
               <>
+                <span className="content-block mt-2 pr-0">
+                  <h6 className="company-page-heading thick-title mb-3">
+                    Job Location
+                  </h6>
+                  <span className="padding-left">
+                    <div className="block-map">
+                      <JobMap
+                        data={data?.company}
+                        lat={data?.city?.lat}
+                        lng={data?.city?.lng}
+                        zoom={16}
+                      />
+                    </div>
+                  </span>
+                </span>
+                <Divider className="divider" />
                 <span className="content-block">
                   <h6 className="block-title  d-flex justify-content-between align-items-center">
                     <h6 className="company-page-heading">
@@ -257,34 +318,52 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
                     </Select> */}
                   </h6>
 
-                  <span className="block-text markup" dangerouslySetInnerHTML={createMarkup(data?.company?.introduction)}></span>
+                  <span
+                    className="block-text markup"
+                    dangerouslySetInnerHTML={createMarkup(
+                      data?.company?.introduction
+                    )}></span>
                 </span>
 
                 {/* <ImagesGallery
                   images={data?.company?.photoUrl}
                   title="Company Photos"
                 /> */}
-                <Carousel
-                  className="company-photos-carousel"
-                  swipeable={false}
-                  draggable={false}
-                  showDots
-                  responsive={responsive}
-                  ssr={true} // means to render carousel on server-side.
-                  infinite={true}
-                  autoPlaySpeed={1000}
-                  keyBoardControl={true}
-                  customTransition="all 1s"
-                  transitionDuration={1000}
-                  containerClass="carousel-container"
-                  dotListClass="custom-dot-list-style">
-                  {data?.company?.photoUrl.map((img, i) => (
-                    <img style={{ borderRadius: "20px" }} className="company-single-photo" src={img} alt={`image ${i}`} height={250} width="100%" />
-                  ))}
-                </Carousel>
+                {console.log(data?.company?.photoUrl)}
+                {data?.company?.photoUrl &&
+                  data?.company?.photoUrl?.length > 0 && (
+                    <Carousel
+                      className="company-photos-carousel"
+                      swipeable={true}
+                      draggable={true}
+                      showDots
+                      responsive={responsive}
+                      ssr={true} // means to render carousel on server-side.
+                      infinite={true}
+                      autoPlaySpeed={1000}
+                      keyBoardControl={true}
+                      customTransition="all 1s"
+                      transitionDuration={1000}
+                      containerClass="carousel-container"
+                      dotListClass="custom-dot-list-style">
+                      {data?.company?.photoUrl?.length &&
+                        data.company.photoUrl.map((img, i) => (
+                          <img
+                            style={{ borderRadius: "20px" }}
+                            className="company-single-photo"
+                            src={img}
+                            alt={`image ${i}`}
+                            height={250}
+                            width="100%"
+                          />
+                        ))}
+                    </Carousel>
+                  )}
 
                 <span className="content-block mt-4 pr-0">
-                  <h6 className="block-title company-page-heading thick-title mb-3">Company Video </h6>
+                  <h6 className="block-title company-page-heading thick-title mb-3">
+                    Company Video{" "}
+                  </h6>
 
                   {!data.company?.videoUrl && ""}
                   {data.company?.videoUrl && (
@@ -298,9 +377,15 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
                 </span>
 
                 <span className="content-block mt-4 pr-0">
-                  <h6 className="block-title company-page-heading thick-title mb-3">Map</h6>
+                  <h6 className="block-title company-page-heading thick-title mb-3">
+                    Map
+                  </h6>
                   <div className="block-map">
-                    <Map data={data?.company} location={data?.company?.companyLocation} />
+                    <Map
+                      data={data?.company}
+                      location={data?.company?.companyLocation}
+                      zoom={16}
+                    />
                   </div>
                 </span>
               </>
@@ -313,17 +398,34 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
             <span className="content-box first">
               <span className="content-section">
                 <span className="content-block">
-                  <h6 className="block-title company-page-heading thick-title mb-3">Other jobs in your sector</h6>
+                  <h6 className="block-title company-page-heading thick-title mb-3">
+                    Other jobs in your sector
+                  </h6>
 
-                  <Row gutter={16} style={{ margin: "0 auto", width: "100%" }} justify={`${otherJobs?.length === 4 ? "space-around" : "flex-start"}`}>
-                    {otherJobs?.map((otherJob) => (
-                      <Col span={8} lg={{ span: 8 }} sm={{ span: 12 }} xs={{ span: 24 }}>
+                  <Row
+                    gutter={16}
+                    style={{ margin: "0 auto", width: "100%" }}
+                    justify={`${
+                      otherJobs?.length === 4 ? "space-around" : "flex-start"
+                    }`}>
+                    {otherJobs?.map((otherJob, i) => (
+                      <Col
+                        key={i}
+                        span={8}
+                        lg={{ span: 8 }}
+                        sm={{ span: 12 }}
+                        xs={{ span: 24 }}>
                         <JobCard
                           onClick={() => {
                             setJobDetails(otherJob);
                             executeScroll();
                           }}
-                          job={transformJobData(otherJob, jobTitles, employmentTypes, countries)}
+                          job={transformJobData(
+                            otherJob,
+                            jobTitles,
+                            employmentTypes,
+                            countries
+                          )}
                           type="box"
                         />
                       </Col>
@@ -338,7 +440,9 @@ function JobDetails({ data = {}, showAllDetails = true, setJobDetails, extraData
             <span className="content-box first">
               <span className="content-section">
                 <span className="content-block">
-                  <h6 className="block-title company-page-heading thick-title">Other jobs by this company</h6>
+                  <h6 className="block-title company-page-heading thick-title">
+                    Other jobs by this company
+                  </h6>
                   <p></p>
                   {/* <Row
                     gutter={16}
