@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useRefState from "react-usestateref";
 
-import { useHistory, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { Input, Form, Select, Checkbox, Alert, Row, Col, Upload } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import queryString from "query-string";
@@ -47,9 +47,13 @@ import {
   removePreUploadedProfileImage,
   removePreExistingErrorMessages,
   selectCompanyLogo,
+  setSignupStateFalse
 } from "./slice";
 // import AvatarPicker from "../../shared-ui/AvatarPicker/AvatarPicker";
 import { SuperSelectFindJobs } from "../../shared-ui/superselectfindjobs/superselectfindjobs";
+import CookiePolicy from "../cookiePolicy/CookiePolicy";
+import PrivacyPolicy from "../privacyPolicy/PrivacyPolicy";
+import { SuperSelectEmployerSignup } from "../../shared-ui/superselectfindjobs/superselectEmployerSignup";
 
 const { Option } = Select;
 
@@ -62,6 +66,8 @@ function EmployerSignUp() {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({});
   const [termsModalShow, setTermsModalShow] = useState(false);
+  const [cookiesModalShow, setCookiesModalShow] = useState(false);
+  const [privacyPolicyModalShow, setPrivacyPolicyModalShow] = useState(false);
   const [countryCode, setCountryCode] = useState("gb");
   const [agreeToTerms, setAgreeToTerms] = useState(false);
   const [categoryId, setCategoryId] = useState(null);
@@ -114,6 +120,7 @@ function EmployerSignUp() {
 
   useEffect(() => {
     if (signupSuccess === true) {
+      dispatch(setSignupStateFalse());
       history.push("confirm-email");
     }
   }, [signupSuccess]);
@@ -181,6 +188,7 @@ function EmployerSignUp() {
   };
 
   const onCompanyNameChange = (value) => {
+    console.log('onCompanyNameChange', value)
     if (value === "") {
       setCreateCompany(true);
       return;
@@ -239,7 +247,8 @@ function EmployerSignUp() {
                   label="Company name"
                   name="companyProfileId"
                   rules={Rules.requiredRule}>
-                  <SuperSelectFindJobs
+                  <SuperSelectEmployerSignup
+                      idSelect
                     mode={true}
                     getPopupContainer={(trigger) => trigger.parentNode}
                     fetchOptions={getCompany}
@@ -914,19 +923,39 @@ function EmployerSignUp() {
                   checked={agreeToTerms}
                   onChange={(e) => setAgreeToTerms(e.target.checked)}>
                   I agree with Jobsmideast.com{" "}
-                  <mark onClick={() => setTermsModalShow(true)}>
-                    T&C's, Cookie &amp; Privacy Policy,
-                  </mark>
-                  and agree to receive advertising, notifications and marketing
-                  communications.
+                  <Link to="/terms-and-condition" target="_blank">
+                    <mark>T&C's</mark>
+                  </Link>
+                  ,&nbsp;
+                  <Link to="/cookie-policy" target="_blank">
+                    <mark>Cookies</mark>
+                  </Link>
+                  &nbsp; &amp; &nbsp;
+                  <Link to="/privacy-policy" target="_blank">
+                    <mark>Privacy Policy</mark>
+                  </Link>
+                  &nbsp; and agree to receive advertising, notifications and
+                  marketing communications.
                 </Checkbox>
               </Form.Item>
-              <Modal
+              {/* <Modal
                 show={termsModalShow}
                 onHide={() => setTermsModalShow(false)}>
                 {" "}
                 <TermsConditions />
               </Modal>
+              <Modal
+                show={cookiesModalShow}
+                onHide={() => setCookiesModalShow(false)}>
+                {" "}
+                <CookiePolicy />
+              </Modal>
+              <Modal
+                show={privacyPolicyModalShow}
+                onHide={() => setPrivacyPolicyModalShow(false)}>
+                {" "}
+                <PrivacyPolicy />
+              </Modal> */}
             </>
           )}
 

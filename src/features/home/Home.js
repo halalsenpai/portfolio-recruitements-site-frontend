@@ -82,7 +82,7 @@ function Home() {
 
             <div className="container-fluid mid-image p-0 d-flex justify-content-center">
               <img
-                className="img-mobile"
+                className="img-mobile h-100"
                 src={require("../../assets/images/home/1-homepage.png")}
                 alt=""
               />
@@ -149,7 +149,7 @@ function Home() {
 
             <div className="container-fluid p-0 d-flex justify-content-center">
               <img
-                className="w-75 img-mobile"
+                className="w-75 img-mobile h-50"
                 src={require("../../assets/images/home/8.png")}
                 alt=""
               />
@@ -236,11 +236,11 @@ function Home() {
                 </p>
 
                 <p>
-                  Jobsmideast.com will be operating in Bahrain, Egypt, Kuwait,
-                  Oman, Qatar, Saudi Arabia & United Arab Emirates providing the
-                  most advanced recruitment tools, communication systems and API
-                  capabilities which will cater for 38 sectors and over 439 sub
-                  sectors.
+                  Jobsmideast.com will be operating in Bahrain, Egypt, India,
+                  Kuwait, Oman, Pakistan, Qatar, Saudi Arabia & United Arab
+                  Emirates providing the most advanced recruitment tools,
+                  communication systems and API capabilities which will cater
+                  for 38 sectors and over 439 sub sectors.
                 </p>
               </span>
               <Button className="demo-btn" themeColor="blue">
