@@ -45,6 +45,7 @@ import {
   selectCitiesByCountry,
   selectProfileImage,
   removePreUploadedProfileImage,
+  removePreExistingErrorMessages,
   selectCompanyLogo,
 } from "./slice";
 // import AvatarPicker from "../../shared-ui/AvatarPicker/AvatarPicker";
@@ -57,7 +58,6 @@ function EmployerSignUp() {
   const history = useHistory();
   const location = useLocation();
   const dispatch = useAppDispatch();
-
   const [isCreateCompany, setCreateCompany] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({});
@@ -79,7 +79,7 @@ function EmployerSignUp() {
   const citiesByCountry = useAppSelector(selectCitiesByCountry);
   const profileImage = useAppSelector(selectProfileImage);
   const companyLogo = useAppSelector(selectCompanyLogo);
-
+  console.log("errorMessage", errorMessage);
   useEffect(() => {
     // let params = queryString.parse(location.search);
     dispatch(getRole());
@@ -105,6 +105,7 @@ function EmployerSignUp() {
 
   useEffect(() => {
     dispatch(removePreUploadedProfileImage());
+    // return dispatch(removePreExistingErrorMessages());
   }, []);
 
   useEffect(() => {
