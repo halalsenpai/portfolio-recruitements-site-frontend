@@ -1,6 +1,7 @@
 @import "../../assets/scss/variables";
 @media screen and (max-width: 767px) {
   .home {
+    background: #ffffff;
     .banner-spacing {
       padding-left: 0;
       text-align: center;
@@ -88,6 +89,9 @@
     }
     .bottom-container {
       padding: 0;
+      .bottom-logo {
+        display: none;
+      }
       .bottom-container-row {
         padding: 20px 0 0 0;
         // flex-direction: column-reverse;

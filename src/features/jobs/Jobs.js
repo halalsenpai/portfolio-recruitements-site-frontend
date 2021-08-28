@@ -10,6 +10,7 @@ import JobFilter from "../../app-ui/JobFilter/JobFilter";
 import JobDetails from "../../app-ui/JobDetails/JobDetails";
 import filterIcon from "../../assets/images/icons/filter_icon.svg";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { RiCloseCircleLine } from "react-icons/ri";
 
 import {
   getJob,
@@ -139,15 +140,15 @@ function Jobs() {
             </div>
           )}
 
-          <Form onFinish={onSearchJob} ref={formRef}>
+          <Form className="job-sc" onFinish={onSearchJob} ref={formRef}>
             <span className="form-fields job-filter-section">
               <div className="jobs-filter-header-secrion">
                 <Form.Item
+                  style={{ zIndex: "390" }}
                   name="jobTitleName"
-                  className="find-job-super-select c-input"
-                  
-                >
+                  className="find-job-super-select c-input">
                   <SuperSelectFindJobs
+                    style={{ zIndex: "390" }}
                     placeholder="Job title"
                     allowClear={true}
                     onType={false}
@@ -159,8 +160,7 @@ function Jobs() {
                 </Form.Item>
                 <Form.Item
                   name="location"
-                  className="find-job-super-select c-input"
-                >
+                  className="find-job-super-select c-input">
                   {/* <Input
                     size="small"
                     className="xs"
@@ -178,7 +178,7 @@ function Jobs() {
                     fetchOptions={cityisDesired}
                     // className="super-select"
                   /> */}
-                   <SuperSelectFindJobs
+                  <SuperSelectFindJobs
                     placeholder="Desired location"
                     allowClear={true}
                     onType={false}
@@ -195,22 +195,24 @@ function Jobs() {
                   htmlType="submit"
                   className="filter-btns"
                   themeColor="rounded light"
-                  style={{ height: "32px" }}
-                >
+                  style={{ height: "32px" }}>
                   Go
                 </Button>
 
                 <Button
                   icon={<img src={filterIcon} alt="ico" />}
                   className=" filter-icon rounded shadowed filter-btns"
-                  onClick={ShowFilter}
-                ></Button>
+                  onClick={ShowFilter}></Button>
               </div>
             </span>
           </Form>
 
           <div className="jobs-list">
-            {!jobs.length && <CEmpty description={"No jobs"} />}
+            {!jobs.length && (
+              <div className="preloader">
+                <Spin />
+              </div>
+            )}
 
             <MappedElement
               data={jobs}
@@ -220,6 +222,7 @@ function Jobs() {
                     key={index}
                     onClick={() => {
                       setJobDetails(obj);
+                      executeScroll();
                       setShowJobDetails(true);
                       setcategoryId(obj.categoriesId);
                       setcompanyId(obj.companyId);
@@ -240,18 +243,27 @@ function Jobs() {
         {/* Job Detail */}
         <div
           ref={myRef}
-          className={`job-details ${showJobDetails && "job-details-show"}`}
-        >
+          className={`job-details ${showJobDetails ? "job-details-show" : ""}`}>
           {isLoading && (
             <div className="preloader">
               <Spin />
             </div>
           )}
 
-          {!jobDetails && <CEmpty description={"please select a job"} />}
+          <RiCloseCircleLine
+            className="back-icon-job"
+            onClick={() => setShowJobDetails(false)}
+          />
+
+          {!jobDetails && (
+            <div className="preloader">
+              <Spin />
+            </div>
+          )}
 
           {jobDetails && (
             <JobDetails
+              setShowJobDetails={() => setJobDetails(false)}
               otherJobs={otherJobs}
               data={transformJobData(
                 jobDetails,

@@ -54,6 +54,15 @@ export const slice = createSlice({
     removePreUploadedProfileImage: (state) => {
       state.profileImage = null;
     },
+    removePreExistingErrorMessages: (state) => {
+      state.errorMessage = null;
+      state.employerSignupSuccess = false;
+    },
+    setSignupStateFalse: (state) => {
+      state.jobseekerSignupSuccess = false;
+      state.employerSignupSuccess = false;
+      state.agencySignupSuccess = false;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -185,13 +194,16 @@ export const selectEmployerSignup = (state) =>
 export const selectCountryByIp = (state) => state.signup.countryByIp;
 export const selectCitiesByCountry = (state) => state.signup.citiesByCountry;
 export const selectIsProfileImageLoading = (state) =>
-state.signup.isProfileImageLoading;
+  state.signup.isProfileImageLoading;
 export const selectProfileImage = (state) => state.signup.profileImage;
-export const selectIsCompanyLogoLoading= (state) =>
-state.signup.isCompanyLogoLoading;
+export const selectIsCompanyLogoLoading = (state) =>
+  state.signup.isCompanyLogoLoading;
 export const selectCompanyLogo = (state) => state.signup.companyLogo;
 
-
-export const { removePreUploadedProfileImage } = slice.actions;
+export const {
+  removePreUploadedProfileImage,
+  removePreExistingErrorMessages,
+  setSignupStateFalse,
+} = slice.actions;
 
 export default slice.reducer;

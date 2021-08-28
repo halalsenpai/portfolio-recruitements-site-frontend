@@ -35,12 +35,7 @@ import { getTitleById } from "../../utils/helper";
 import { useForm } from "antd/lib/form/Form";
 import { SuperSelect } from "../../shared-ui/SuperSelect/SuperSelect";
 import { SuperSelectWithSelect } from "../../shared-ui/SuperSelect/SuperSelect-withSelect";
-import {
-  getAccommodation,
-  getCategories,
-  getEmploymentType,
-  getQualification,
-} from "../../features/jobs/service";
+import { getAccommodation, getCategories, getEmploymentType, getQualification } from "../../features/jobs/service";
 import { useRef } from "react";
 import { getCategory, getJobTitles, getJobtype } from "./service";
 
@@ -95,14 +90,7 @@ const JobFilter = (props) => {
     }
   }, [filterApplySuccess]);
 
-  const options = [
-    { value: "Takashi" },
-    { value: "John" },
-    { value: "Frank" },
-    { value: "Traver" },
-    { value: "Mili" },
-    { value: "Jack" },
-  ];
+  const options = [{ value: "Takashi" }, { value: "John" }, { value: "Frank" }, { value: "Traver" }, { value: "Mili" }, { value: "Jack" }];
   const [value, setValue] = useState([]);
   const [form] = Form.useForm();
 
@@ -115,9 +103,7 @@ const JobFilter = (props) => {
     values.salaryRangeFrom = salaryStart;
     values.salaryRangeUpto = salaryEnd;
     delete values.salaryRange;
-    let o = Object.fromEntries(
-      Object.entries(values).filter(([_, v]) => v != null)
-    );
+    let o = Object.fromEntries(Object.entries(values).filter(([_, v]) => v != null));
     const payload = new URLSearchParams(o).toString();
     console.log(payload);
     dispatch(getFilteredJob(payload));
@@ -151,15 +137,8 @@ const JobFilter = (props) => {
   };
   return (
     <>
-      <Modal
-        className="center lg filter-modal override-width"
-        show={props.show}
-        onHide={props.onHide}>
-        <Form
-          style={{ zIndex: "50" }}
-          form={form}
-          onFinish={onFinish}
-          className="filter-main">
+      <Modal className="center lg filter-modal override-width" show={props.show} onHide={props.onHide}>
+        <Form style={{ zIndex: "50" }} form={form} onFinish={onFinish} className="filter-main">
           <div className="filter-header">
             <div className="filter-cell">
               <p>Filters</p>
@@ -167,19 +146,8 @@ const JobFilter = (props) => {
           </div>
           <div className="filter-section">
             <Row justify="center" wrap={true}>
-              <Col
-                span={8}
-                style={{ zIndex: "400" }}
-                className="jobs-grid switch-grid"
-                lg={{ span: 8 }}
-                sm={{ span: 12 }}
-                xs={{ span: 24 }}>
-                <Form.Item
-                  label="Job type"
-                  name="jobType"
-                  className="c-input c-form p-0"
-                  rules={null}
-                  placeholder="Bla Bla Bla">
+              <Col span={8} style={{ zIndex: "400" }} className="jobs-grid switch-grid" lg={{ span: 8 }} sm={{ span: 12 }} xs={{ span: 24 }}>
+                <Form.Item label="Job type" name="jobType" className="c-input c-form p-0" rules={null} placeholder="Bla Bla Bla">
                   {/* <Select
                     getPopupContainer={(trigger) => trigger.parentNode}
                     placeholder="Select">
@@ -195,31 +163,14 @@ const JobFilter = (props) => {
                   />
                 </Form.Item>
               </Col>
-              <Col
-                lg={{ span: 8 }}
-                sm={{ span: 12 }}
-                xs={{ span: 24 }}
-                className="jobs-grid"
-                span={8}>
-                <Form.Item
-                  label="Add location"
-                  name="addLocation"
-                  className="c-input c-input-with-icon c-form p-0"
-                  rules={null}>
-                  <img
-                    className="input-icon"
-                    src={require("../../assets/images/icons/country-select-icon.svg")}
-                    alt=""
-                  />
+              <Col lg={{ span: 8 }} sm={{ span: 12 }} xs={{ span: 24 }} className="jobs-grid" span={8}>
+                <Form.Item label="Add location" name="addLocation" className="c-input c-input-with-icon c-form p-0" rules={null}>
+                  <img className="input-icon" src={require("../../assets/images/icons/country-select-icon.svg")} alt="" />
                   <Input
                     autoComplete={"" + Math.random()}
                     onClick={handleSetCountriesCitiesModal}
                     placeholder="Select countires and cities"
-                    value={`${
-                      selectedCountryId
-                        ? getTitleById(countries, selectedCountryId)
-                        : ""
-                    }`}></Input>
+                    value={`${selectedCountryId ? getTitleById(countries, selectedCountryId) : ""}`}></Input>
                 </Form.Item>
                 <Modal
                   className="rm-padding medium country-city-modal-parent"
@@ -235,19 +186,8 @@ const JobFilter = (props) => {
                   />
                 </Modal>
               </Col>
-              <Col
-                style={{ zIndex: "390" }}
-                lg={{ span: 8 }}
-                sm={{ span: 12 }}
-                xs={{ span: 24 }}
-                className="jobs-grid"
-                span={8}>
-                <Form.Item
-                  label="Category"
-                  placeholder="Select category"
-                  name="category"
-                  className="c-input c-form p-0"
-                  rules={null}>
+              <Col style={{ zIndex: "392" }} lg={{ span: 8 }} sm={{ span: 12 }} xs={{ span: 24 }} className="jobs-grid" span={8}>
+                <Form.Item label="Category" placeholder="Select category" name="category" className="c-input c-form p-0" rules={null}>
                   {/* <Select
                     getPopupContainer={(trigger) => trigger.parentNode}
                     onSelect={(v) => dispatch(getJobTitlesById(v))}>
@@ -272,6 +212,7 @@ const JobFilter = (props) => {
                   fetchOptions={getSectors}
                 /> */}
                   <SuperSelectWithSelect
+                    style={{ zIndex: "392" }}
                     defaultValue="Select Category"
                     placeholder="Select Category"
                     onSelect={(v) => {
@@ -285,19 +226,10 @@ const JobFilter = (props) => {
                   />
                 </Form.Item>
               </Col>
-              <Col
-                style={{ zIndex: "380" }}
-                lg={{ span: 8 }}
-                sm={{ span: 12 }}
-                xs={{ span: 24 }}
-                className="jobs-grid"
-                span={8}>
-                <Form.Item
-                  label="Job title"
-                  name="jobTitle"
-                  className="c-input c-form p-0"
-                  rules={null}>
+              <Col style={{ zIndex: "390" }} lg={{ span: 8 }} sm={{ span: 12 }} xs={{ span: 24 }} className="jobs-grid" span={8}>
+                <Form.Item label="Job title" name="jobTitle" className="c-input c-form p-0" rules={null}>
                   <SuperSelectWithSelect
+                    style={{ zIndex: 390 }}
                     defaultValue="Select Job Title"
                     disabled={selectedSector}
                     dependencyId={categoryId}
@@ -316,62 +248,28 @@ const JobFilter = (props) => {
                   </Select> */}
                 </Form.Item>
               </Col>
-              <Col
-                style={{ zIndex: "360" }}
-                lg={{ span: 8 }}
-                sm={{ span: 12 }}
-                xs={{ span: 24 }}
-                className="jobs-grid"
-                span={8}>
-                <Form.Item
-                  label="Gender"
-                  name="gender"
-                  className="c-input c-form p-0"
-                  rules={null}>
-                  <Select
-                    getPopupContainer={(trigger) => trigger.parentNode}
-                    placeholder="Select">
+              <Col style={{ zIndex: "380" }} lg={{ span: 8 }} sm={{ span: 12 }} xs={{ span: 24 }} className="jobs-grid" span={8}>
+                <Form.Item label="Gender" name="gender" className="c-input c-form p-0" rules={null}>
+                  <Select style={{ zIndex: 380 }} getPopupContainer={(trigger) => trigger.parentNode} placeholder="Select">
                     <Option value="Male">Male</Option>
                     <Option value="Female"> Female </Option>
                     <Option value="Other"> Other </Option>
                   </Select>
                 </Form.Item>
               </Col>
-              <Col
-                style={{ zIndex: "350" }}
-                lg={{ span: 8 }}
-                sm={{ span: 12 }}
-                xs={{ span: 24 }}
-                className="jobs-grid"
-                span={8}>
-                <Form.Item
-                  label="Qualification"
-                  name="qualification"
-                  className="c-input c-form p-0"
-                  rules={null}>
+              <Col style={{ zIndex: "360" }} lg={{ span: 8 }} sm={{ span: 12 }} xs={{ span: 24 }} className="jobs-grid" span={8}>
+                <Form.Item label="Qualification" name="qualification" className="c-input c-form p-0" rules={null}>
                   <SuperSelectWithSelect
+                    style={{ zIndex: 360 }}
                     getPopupContainer={(trigger) => trigger.parentNode}
                     defaultValue="Select Qualification"
                     fetchOptions={getQualification}
                   />
                 </Form.Item>
               </Col>
-              <Col
-                style={{ zIndex: "370" }}
-                lg={{ span: 8 }}
-                sm={{ span: 12 }}
-                xs={{ span: 24 }}
-                className="jobs-grid"
-                span={12}>
-                <Form.Item
-                  label="Salary type"
-                  name="salaryType"
-                  className="c-input c-form p-0"
-                  rules={null}>
-                  <Select
-                    getPopupContainer={(trigger) => trigger.parentNode}
-                    placeholder="Select salary type"
-                    onSelect={handleMaxSalaryLimit}>
+              <Col style={{ zIndex: "350" }} lg={{ span: 8 }} sm={{ span: 12 }} xs={{ span: 24 }} className="jobs-grid" span={12}>
+                <Form.Item label="Salary type" name="salaryType" className="c-input c-form p-0" rules={null}>
+                  <Select style={{ zIndex: 350 }} getPopupContainer={(trigger) => trigger.parentNode} placeholder="Select salary type" onSelect={handleMaxSalaryLimit}>
                     {salaryType?.map((d, i) => (
                       <Option key={i} value={d?.id}>
                         {d?.title}
@@ -380,42 +278,14 @@ const JobFilter = (props) => {
                   </Select>
                 </Form.Item>
               </Col>
-              <Col
-                style={{ zIndex: "370" }}
-                lg={{ span: 8 }}
-                sm={{ span: 12 }}
-                xs={{ span: 24 }}
-                className="jobs-grid"
-                span={12}>
-                <Form.Item
-                  label="Salary range from 0"
-                  name="range"
-                  className="c-input c-form p-0"
-                  rules={null}>
-                  <Input
-                    type="number"
-                    autoComplete={"" + Math.random()}
-                    placeholder="Enter first name"
-                  />
+              <Col lg={{ span: 8 }} sm={{ span: 12 }} xs={{ span: 24 }} className="jobs-grid" span={12}>
+                <Form.Item label="Salary range from 0" name="range" className="c-input c-form p-0" rules={null}>
+                  <Input type="number" autoComplete={"" + Math.random()} placeholder="Enter first name" />
                 </Form.Item>
               </Col>
-              <Col
-                style={{ zIndex: "370" }}
-                lg={{ span: 8 }}
-                sm={{ span: 12 }}
-                xs={{ span: 24 }}
-                className="jobs-grid"
-                span={12}>
-                <Form.Item
-                  label="Upto 0"
-                  name="upto"
-                  className="c-input c-form p-0"
-                  rules={null}>
-                  <Input
-                    type="number"
-                    autoComplete={"" + Math.random()}
-                    placeholder="Enter first name"
-                  />
+              <Col lg={{ span: 8 }} sm={{ span: 12 }} xs={{ span: 24 }} className="jobs-grid" span={12}>
+                <Form.Item label="Upto 0" name="upto" className="c-input c-form p-0" rules={null}>
+                  <Input type="number" autoComplete={"" + Math.random()} placeholder="Enter first name" />
                 </Form.Item>
               </Col>
               {/* <Form.Item
@@ -461,40 +331,14 @@ const JobFilter = (props) => {
                   />
                 </Form.Item>
               </Col> */}
-              <Col
-                style={{ zIndex: "340" }}
-                lg={{ span: 8 }}
-                sm={{ span: 12 }}
-                xs={{ span: 24 }}
-                className="jobs-grid"
-                span={12}>
-                <Form.Item
-                  label="Accommodation"
-                  name="accommodation"
-                  className="c-input c-form p-0"
-                  rules={null}>
-                  <SuperSelectWithSelect
-                    getPopupContainer={(trigger) => trigger.parentNode}
-                    defaultValue=""
-                    fetchOptions={getAccommodation}
-                  />
+              <Col style={{ zIndex: "340" }} lg={{ span: 8 }} sm={{ span: 12 }} xs={{ span: 24 }} className="jobs-grid" span={12}>
+                <Form.Item label="Accommodation" name="accommodation" className="c-input c-form p-0" rules={null}>
+                  <SuperSelectWithSelect style={{ zIndex: "340" }} getPopupContainer={(trigger) => trigger.parentNode} defaultValue="" fetchOptions={getAccommodation} />
                 </Form.Item>
               </Col>
-              <Col
-                style={{ zIndex: "330" }}
-                lg={{ span: 8 }}
-                sm={{ span: 12 }}
-                xs={{ span: 24 }}
-                className="jobs-grid"
-                span={12}>
-                <Form.Item
-                  label="Suitable for"
-                  name="suitableFor"
-                  className="c-input c-form p-0"
-                  rules={null}>
-                  <Select
-                    getPopupContainer={(trigger) => trigger.parentNode}
-                    placeholder="Select">
+              <Col style={{ zIndex: "330" }} lg={{ span: 8 }} sm={{ span: 12 }} xs={{ span: 24 }} className="jobs-grid" span={12}>
+                <Form.Item label="Suitable for" name="suitableFor" className="c-input c-form p-0" rules={null}>
+                  <Select style={{ zIndex: 330 }} getPopupContainer={(trigger) => trigger.parentNode} placeholder="Select">
                     {" "}
                     {suitableFor?.map((d, i) => (
                       <Option key={i} value={d?.id}>
@@ -511,88 +355,35 @@ const JobFilter = (props) => {
           </div>
           <div className="filter-section ">
             <Row justify="center" wrap={true} className="width-auto">
-              <Col
-                span={8}
-                className="jobs-grid switch-grid cent"
-                lg={{ span: 8 }}
-                sm={{ span: 12 }}
-                xs={{ span: 24 }}>
-                <Form.Item
-                  className="switches"
-                  valuePropName="checked"
-                  name="isAnnualFlight"
-                  label="Anual flight provided">
+              <Col span={8} className="jobs-grid switch-grid cent" lg={{ span: 8 }} sm={{ span: 12 }} xs={{ span: 24 }}>
+                <Form.Item className="switches" valuePropName="checked" name="isAnnualFlight" label="Anual flight provided">
                   <Switch size="small" />
                 </Form.Item>
               </Col>
-              <Col
-                span={8}
-                className="jobs-grid switch-grid cent"
-                lg={{ span: 8 }}
-                sm={{ span: 12 }}
-                xs={{ span: 24 }}>
-                <Form.Item
-                  className="switches"
-                  valuePropName="checked"
-                  name="isFamilyFlight"
-                  label="Include family flights">
+              <Col span={8} className="jobs-grid switch-grid cent" lg={{ span: 8 }} sm={{ span: 12 }} xs={{ span: 24 }}>
+                <Form.Item className="switches" valuePropName="checked" name="isFamilyFlight" label="Include family flights">
                   <Switch size="small" />{" "}
                 </Form.Item>
               </Col>
-              <Col
-                span={8}
-                className="jobs-grid switch-grid cent"
-                lg={{ span: 8 }}
-                sm={{ span: 12 }}
-                xs={{ span: 24 }}>
-                <Form.Item
-                  className="switches"
-                  label="Include utility bills"
-                  name="isUtilityBills">
+              <Col span={8} className="jobs-grid switch-grid cent" lg={{ span: 8 }} sm={{ span: 12 }} xs={{ span: 24 }}>
+                <Form.Item className="switches" label="Include utility bills" name="isUtilityBills">
                   {" "}
                   <Switch size="small" />
                 </Form.Item>
               </Col>
-              <Col
-                span={8}
-                className="jobs-grid switch-grid cent"
-                lg={{ span: 8 }}
-                sm={{ span: 12 }}
-                xs={{ span: 24 }}>
-                <Form.Item
-                  className="switches"
-                  valuePropName="checked"
-                  label="Include tuition fees"
-                  name="isTuitionFee">
+              <Col span={8} className="jobs-grid switch-grid cent" lg={{ span: 8 }} sm={{ span: 12 }} xs={{ span: 24 }}>
+                <Form.Item className="switches" valuePropName="checked" label="Include tuition fees" name="isTuitionFee">
                   <Switch size="small" />
                 </Form.Item>
               </Col>
-              <Col
-                span={8}
-                className="jobs-grid switch-grid cent"
-                lg={{ span: 8 }}
-                sm={{ span: 12 }}
-                xs={{ span: 24 }}>
-                <Form.Item
-                  className="switches"
-                  valuePropName="checked"
-                  label=" Provides gratuity bonus"
-                  name="isGratuityBonus">
+              <Col span={8} className="jobs-grid switch-grid cent" lg={{ span: 8 }} sm={{ span: 12 }} xs={{ span: 24 }}>
+                <Form.Item className="switches" valuePropName="checked" label=" Provides gratuity bonus" name="isGratuityBonus">
                   {" "}
                   <Switch size="small" />
                 </Form.Item>
               </Col>
-              <Col
-                span={8}
-                className="jobs-grid switch-grid cent"
-                lg={{ span: 8 }}
-                sm={{ span: 12 }}
-                xs={{ span: 24 }}>
-                <Form.Item
-                  className="switches"
-                  valuePropName="checked"
-                  label="Provides visa"
-                  name="isProvideVisa">
+              <Col span={8} className="jobs-grid switch-grid cent" lg={{ span: 8 }} sm={{ span: 12 }} xs={{ span: 24 }}>
+                <Form.Item className="switches" valuePropName="checked" label="Provides visa" name="isProvideVisa">
                   {" "}
                   <Switch size="small" />{" "}
                 </Form.Item>

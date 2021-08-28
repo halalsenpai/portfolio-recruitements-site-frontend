@@ -1,8 +1,15 @@
 @import "../../assets/scss/variables";
 
 .jobs-page {
-  position: relative;
+  overflow-y: auto;
+  height: calc(100vh - 65px);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  .jobs-wrapper {
+    flex-grow: 1;
+  }
   .header-wrapper {
     height: 110px;
     padding: 0px 50px 0px 50px;
@@ -18,7 +25,6 @@
       flex-direction: row;
       align-items: center;
       width: 100%;
-      height: 100%;
       justify-content: space-between;
       padding: 0px 5px;
 
@@ -80,29 +86,45 @@
   .jobs-wrapper {
     display: flex;
     padding: 0px;
+    overflow: hidden;
+
     .find-jobs-section {
       width: 35%;
+      height: 100%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-width: 500px;
+
+      .job-sc {
+      }
     }
 
     .jobs-list {
       padding: 15px 30px;
-      height: calc(100vh - 124px);
-      overflow-y: scroll;
+      flex-grow: 1;
+      overflow-y: auto;
     }
 
     .job-details {
       overflow: hidden;
       flex: 1;
-      height: calc(100vh - 64px);
       overflow-y: auto;
       // background: #efefef;
-      z-index: 200 !important;
+      z-index: 450 !important;
+      .back-icon-job {
+        position: absolute;
+        color: #fff;
+        font-size: 25px;
+        top: 6px;
+        z-index: 101;
+        right: 6px;
+      }
       .ant-empty {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 100%;
       }
     }
 
@@ -142,20 +164,22 @@
         input#location {
           padding: 0 7px !important;
         }
-        .icon-in-super-select{
+        .icon-in-super-select {
           position: relative;
           width: 100%;
-          img{
-            position:absolute;
-            left : 0;
+          img {
+            position: absolute;
+            left: 0;
             top: 7px;
             z-index: 41;
             padding-left: 12px;
           }
-          .ant-select-single.ant-select-show-arrow .ant-select-selection-item, .ant-select-single.ant-select-show-arrow .ant-select-selection-placeholder {
+          .ant-select-single.ant-select-show-arrow .ant-select-selection-item,
+          .ant-select-single.ant-select-show-arrow
+            .ant-select-selection-placeholder {
             padding-right: 18px;
             padding-left: 14px;
-        }
+          }
         }
       }
 

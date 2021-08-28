@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Spin } from "antd";
 import { useHistory } from "react-router";
@@ -23,6 +23,7 @@ function ConfirmEmail() {
   const confirmEmailSuccess = useAppSelector(selectConfirmEmail);
   const confirmEmailResponse = useAppSelector(selectConfirmEmailResponse);
   const roles = useAppSelector(selectRole);
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
   const isLoading = useAppSelector(selectLoadingStatus);
 
   useEffect(() => {
@@ -51,6 +52,9 @@ function ConfirmEmail() {
           window.location = `${url}/?token=${token}`;
         }
       }
+    }
+    if(!confirmEmailSuccess) {
+      setCurrentPath("/login");
     }
   }, [confirmEmailSuccess, roles]);
 

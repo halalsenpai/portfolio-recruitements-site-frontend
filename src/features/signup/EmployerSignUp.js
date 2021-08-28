@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useRefState from "react-usestateref";
 
-import { useHistory, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { Input, Form, Select, Checkbox, Alert, Row, Col, Upload } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import queryString from "query-string";
@@ -45,10 +45,15 @@ import {
   selectCitiesByCountry,
   selectProfileImage,
   removePreUploadedProfileImage,
+  removePreExistingErrorMessages,
   selectCompanyLogo,
+  setSignupStateFalse,
 } from "./slice";
 // import AvatarPicker from "../../shared-ui/AvatarPicker/AvatarPicker";
 import { SuperSelectFindJobs } from "../../shared-ui/superselectfindjobs/superselectfindjobs";
+import CookiePolicy from "../cookiePolicy/CookiePolicy";
+import PrivacyPolicy from "../privacyPolicy/PrivacyPolicy";
+import { SuperSelectEmployerSignup } from "../../shared-ui/superselectfindjobs/superselectEmployerSignup";
 
 const { Option } = Select;
 
@@ -57,11 +62,12 @@ function EmployerSignUp() {
   const history = useHistory();
   const location = useLocation();
   const dispatch = useAppDispatch();
-
   const [isCreateCompany, setCreateCompany] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({});
   const [termsModalShow, setTermsModalShow] = useState(false);
+  const [cookiesModalShow, setCookiesModalShow] = useState(false);
+  const [privacyPolicyModalShow, setPrivacyPolicyModalShow] = useState(false);
   const [countryCode, setCountryCode] = useState("gb");
   const [agreeToTerms, setAgreeToTerms] = useState(false);
   const [categoryId, setCategoryId] = useState(null);
@@ -79,7 +85,7 @@ function EmployerSignUp() {
   const citiesByCountry = useAppSelector(selectCitiesByCountry);
   const profileImage = useAppSelector(selectProfileImage);
   const companyLogo = useAppSelector(selectCompanyLogo);
-
+  console.log("errorMessage", errorMessage);
   useEffect(() => {
     // let params = queryString.parse(location.search);
     dispatch(getRole());
@@ -105,6 +111,7 @@ function EmployerSignUp() {
 
   useEffect(() => {
     dispatch(removePreUploadedProfileImage());
+    // return dispatch(removePreExistingErrorMessages());
   }, []);
 
   useEffect(() => {
@@ -113,6 +120,7 @@ function EmployerSignUp() {
 
   useEffect(() => {
     if (signupSuccess === true) {
+      dispatch(setSignupStateFalse());
       history.push("confirm-email");
     }
   }, [signupSuccess]);
@@ -180,6 +188,7 @@ function EmployerSignUp() {
   };
 
   const onCompanyNameChange = (value) => {
+    console.log("onCompanyNameChange", value);
     if (value === "") {
       setCreateCompany(true);
       return;
@@ -233,14 +242,13 @@ function EmployerSignUp() {
                 span={24}
                 md={{ span: 12 }}
                 lg={{ span: 12 }}
-                sm={{ span: 24 }}
-              >
+                sm={{ span: 24 }}>
                 <Form.Item
                   label="Company name"
                   name="companyProfileId"
-                  rules={Rules.requiredRule}
-                >
-                  <SuperSelectFindJobs
+                  rules={Rules.requiredRule}>
+                  <SuperSelectEmployerSignup
+                    idSelect
                     mode={true}
                     getPopupContainer={(trigger) => trigger.parentNode}
                     fetchOptions={getCompany}
@@ -281,8 +289,7 @@ function EmployerSignUp() {
                 <Col style={{ marginBottom: "24px", zIndex: 300 }} span={24}>
                   <Upload
                     beforeUpload={profileImageBeforeUpload}
-                    showUploadList={false}
-                  >
+                    showUploadList={false}>
                     <div className="avatar-upload">
                       <div className="photo-square">
                         {profileImage && <img src={profileImage?.url} alt="" />}
@@ -302,14 +309,12 @@ function EmployerSignUp() {
                   xs={{ span: 24 }}
                   span={12}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     className="c-input"
                     label="First name"
                     rules={Rules.firstNameRule}
-                    name="firstName"
-                  >
+                    name="firstName">
                     <Input
                       autoComplete={"" + Math.random()}
                       placeholder="Enter first name"
@@ -320,14 +325,12 @@ function EmployerSignUp() {
                   xs={{ span: 24 }}
                   span={12}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     className="c-input"
                     label="Last name"
                     rules={Rules.lastNameRule}
-                    name="lastName"
-                  >
+                    name="lastName">
                     <Input
                       autoComplete={"" + Math.random()}
                       placeholder="Enter last name"
@@ -338,14 +341,12 @@ function EmployerSignUp() {
                   xs={{ span: 24 }}
                   span={12}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     name="mobile"
                     label="Mobile number"
                     className="c-input"
-                    rules={Rules.phoneRule}
-                  >
+                    rules={Rules.phoneRule}>
                     <PhoneInput
                       placeholder="Enter your phone number."
                       country={countryCode}
@@ -357,14 +358,12 @@ function EmployerSignUp() {
                   xs={{ span: 24 }}
                   span={12}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     label="Direct work phone"
                     name="directWorkPhone"
                     className="c-input"
-                    rules={Rules.phoneRule}
-                  >
+                    rules={Rules.phoneRule}>
                     <PhoneInput
                       placeholder="Enter your work phone."
                       country={countryCode}
@@ -378,14 +377,12 @@ function EmployerSignUp() {
                   xs={{ span: 24 }}
                   span={12}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     label="Work email address"
                     name="email"
                     className="c-input"
-                    rules={Rules.emailRule}
-                  >
+                    rules={Rules.emailRule}>
                     <Input
                       autoComplete={"" + Math.random()}
                       placeholder="Enter your email"
@@ -398,19 +395,16 @@ function EmployerSignUp() {
                   xs={{ span: 24 }}
                   span={12}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     className="c-input"
                     name="findUsId"
                     label="How did you find us?"
-                    rules={Rules.requiredRule}
-                  >
+                    rules={Rules.requiredRule}>
                     <Select
                       allowClear
                       getPopupContainer={(trigger) => trigger.parentNode}
-                      placeholder="Select platform"
-                    >
+                      placeholder="Select platform">
                       {findUsPlatforms?.map((fu) => (
                         <Option value={fu.id}>{fu.title}</Option>
                       ))}
@@ -430,8 +424,7 @@ function EmployerSignUp() {
                     beforeUpload={companyLogoBeforeUpload}
                     // beforeUpload={profileImageBeforeUpload}
 
-                    showUploadList={false}
-                  >
+                    showUploadList={false}>
                     <div className="avatar-upload">
                       <div className="photo-square">
                         {companyLogo && <img src={companyLogo?.url} alt="" />}
@@ -452,19 +445,16 @@ function EmployerSignUp() {
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     label="I’m registering a"
                     name="companyType"
                     className="c-input"
-                    rules={Rules.requiredRule}
-                  >
+                    rules={Rules.requiredRule}>
                     <Select
                       allowClear
                       placeholder="I’m registering a"
-                      getPopupContainer={(trigger) => trigger.parentNode}
-                    >
+                      getPopupContainer={(trigger) => trigger.parentNode}>
                       <Option value="single-company">Single company</Option>
                       <Option value="headquarters">Headquarters</Option>
                       <Option value="branch">Branch within the company</Option>
@@ -472,17 +462,44 @@ function EmployerSignUp() {
                   </Form.Item>
                 </Col>
                 <Col
+                  style={{ zIndex: 300 }}
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    label="Your role within the compnay"
+                    name="currentRole"
+                    className="c-input"
+                    rules={Rules.requiredRule}>
+                    <Select
+                      allowClear
+                      placeholder=""
+                      getPopupContainer={(trigger) => trigger.parentNode}>
+                      <Option value="business-owner">Business owner</Option>
+                      <Option value="decision-maker-within-he-business">
+                        Decision maker within the business
+                      </Option>
+                      <Option value="hr-Director/Manager">
+                        HR Director/Manager
+                      </Option>
+                      <Option value="department-Manager/Head">
+                        Department Manager/Head
+                      </Option>
+                      <Option value="Team-member">Team member</Option>
+                    </Select>
+                  </Form.Item>
+                </Col>
+                <Col
+                  span={12}
+                  xs={{ span: 24 }}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
                   <Form.Item
                     label="Company name"
                     name="companyName"
                     className="c-input"
-                    rules={Rules.requiredRule}
-                  >
+                    rules={Rules.requiredRule}>
                     <Input
                       autoComplete={"" + Math.random()}
                       placeholder="Enter company name"
@@ -495,15 +512,13 @@ function EmployerSignUp() {
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     style={{ zIndex: 170 }}
                     label="Company location"
                     name="countryId"
                     className="c-input"
-                    rules={Rules.requiredRule}
-                  >
+                    rules={Rules.requiredRule}>
                     <SuperSelect
                       getPopupContainer={(trigger) => trigger.parentNode}
                       fetchOptions={getCountry}
@@ -517,15 +532,13 @@ function EmployerSignUp() {
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     style={{ zIndex: 170 }}
                     label="City"
                     name="cityId"
                     className="c-input"
-                    rules={Rules.requiredRule}
-                  >
+                    rules={Rules.requiredRule}>
                     <SuperSelect
                       disabled={categoryId ? false : true}
                       dependencyId={categoryId}
@@ -539,14 +552,12 @@ function EmployerSignUp() {
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     label="Company phone number"
                     name="companyPhone"
                     className="c-input"
-                    rules={Rules.phoneRule}
-                  >
+                    rules={Rules.phoneRule}>
                     <PhoneInput
                       onChange={(e) => console.log(e)}
                       placeholder="Enter your phone number."
@@ -554,18 +565,17 @@ function EmployerSignUp() {
                     />
                   </Form.Item>
                 </Col>
+
                 <Col
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     label="Website https://"
                     name="webUrl"
                     className="c-input"
-                    rules={Rules.requiredRule}
-                  >
+                    rules={Rules.requiredRule}>
                     <Input autoComplete="off" placeholder="Enter Website" />
                   </Form.Item>
                 </Col>
@@ -613,14 +623,12 @@ function EmployerSignUp() {
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     label="Sector"
                     name="categoryId"
                     className="c-input"
-                    rules={Rules.requiredRule}
-                  >
+                    rules={Rules.requiredRule}>
                     <SuperSelect
                       onSelect={(v) => {
                         setCategoryId(v);
@@ -637,14 +645,12 @@ function EmployerSignUp() {
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     label="Job title"
                     name="jobTitleId"
                     className="c-input"
-                    rules={Rules.requiredRule}
-                  >
+                    rules={Rules.requiredRule}>
                     <SuperSelect
                       dependencyId={categoryId}
                       getPopupContainer={(trigger) => trigger.parentNode}
@@ -657,14 +663,12 @@ function EmployerSignUp() {
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     label="Password"
                     name="password"
                     className="c-input"
-                    rules={Rules.passwordRule}
-                  >
+                    rules={Rules.passwordRule}>
                     <Input.Password
                       autoComplete="off"
                       type="password"
@@ -676,14 +680,12 @@ function EmployerSignUp() {
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     label="Confirm password"
                     name="ConfirmPassword"
                     className="c-input"
-                    rules={Rules.confirmPasswordRule}
-                  >
+                    rules={Rules.confirmPasswordRule}>
                     <Input.Password
                       autoComplete="off"
                       type="password"
@@ -702,8 +704,7 @@ function EmployerSignUp() {
                 <Col style={{ marginBottom: "24px", zIndex: 300 }} span={24}>
                   <Upload
                     beforeUpload={profileImageBeforeUpload}
-                    showUploadList={false}
-                  >
+                    showUploadList={false}>
                     <div className="avatar-upload">
                       <div className="photo-square">
                         {profileImage && <img src={profileImage?.url} alt="" />}
@@ -723,14 +724,12 @@ function EmployerSignUp() {
                   xs={{ span: 24 }}
                   span={12}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     className="c-input"
                     label="First name"
                     rules={Rules.firstNameRule}
-                    name="firstName"
-                  >
+                    name="firstName">
                     <Input autoComplete="off" placeholder="Enter first name" />
                   </Form.Item>
                 </Col>
@@ -738,14 +737,12 @@ function EmployerSignUp() {
                   xs={{ span: 24 }}
                   span={12}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     className="c-input"
                     label="Last name"
                     rules={Rules.lastNameRule}
-                    name="lastName"
-                  >
+                    name="lastName">
                     <Input autoComplete="off" placeholder="Enter last name" />
                   </Form.Item>
                 </Col>
@@ -753,14 +750,12 @@ function EmployerSignUp() {
                   xs={{ span: 24 }}
                   span={12}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     name="mobile"
                     label="Mobile number"
                     className="c-input"
-                    rules={Rules.phoneRule}
-                  >
+                    rules={Rules.phoneRule}>
                     <PhoneInput
                       placeholder="Enter your phone number."
                       country={countryCode}
@@ -772,14 +767,12 @@ function EmployerSignUp() {
                   xs={{ span: 24 }}
                   span={12}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     label="Direct work phone"
                     name="directWorkPhone"
                     className="c-input"
-                    rules={Rules.phoneRule}
-                  >
+                    rules={Rules.phoneRule}>
                     <PhoneInput
                       placeholder="Enter your work phone."
                       country={countryCode}
@@ -790,14 +783,12 @@ function EmployerSignUp() {
                   xs={{ span: 24 }}
                   span={12}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     label="Work email address"
                     name="email"
                     className="c-input"
-                    rules={Rules.emailRule}
-                  >
+                    rules={Rules.emailRule}>
                     <Input
                       autoComplete={"" + Math.random()}
                       placeholder="Enter your email"
@@ -810,14 +801,12 @@ function EmployerSignUp() {
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     label="Sector"
                     name="categoryId"
                     className="c-input"
-                    rules={Rules.requiredRule}
-                  >
+                    rules={Rules.requiredRule}>
                     <SuperSelect
                       onSelect={(v) => {
                         setCategoryId(v);
@@ -834,14 +823,12 @@ function EmployerSignUp() {
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     label="Job title"
                     name="jobTitleId"
                     className="c-input"
-                    rules={Rules.requiredRule}
-                  >
+                    rules={Rules.requiredRule}>
                     <SuperSelect
                       dependencyId={categoryId}
                       getPopupContainer={(trigger) => trigger.parentNode}
@@ -855,19 +842,16 @@ function EmployerSignUp() {
                   xs={{ span: 24 }}
                   span={12}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     className="c-input"
                     name="findUsId"
                     label="How did you find us?"
-                    rules={Rules.requiredRule}
-                  >
+                    rules={Rules.requiredRule}>
                     <Select
                       allowClear
                       getPopupContainer={(trigger) => trigger.parentNode}
-                      placeholder="Select platform"
-                    >
+                      placeholder="Select platform">
                       {findUsPlatforms?.map((fu) => (
                         <Option value={fu.id}>{fu.title}</Option>
                       ))}
@@ -878,14 +862,12 @@ function EmployerSignUp() {
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     label="Password"
                     name="password"
                     className="c-input"
-                    rules={Rules.passwordRule}
-                  >
+                    rules={Rules.passwordRule}>
                     <Input.Password
                       autoComplete="off"
                       type="password"
@@ -897,14 +879,12 @@ function EmployerSignUp() {
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     label="Confirm password"
                     name="ConfirmPassword"
                     className="c-input"
-                    rules={Rules.confirmPasswordRule}
-                  >
+                    rules={Rules.confirmPasswordRule}>
                     <Input.Password
                       autoComplete="off"
                       type="password"
@@ -922,16 +902,14 @@ function EmployerSignUp() {
     <div className="c-container auth-wrapper">
       <div
         className="signup-container with-form"
-        style={currentStep == 3 ? { height: 750 } : { height: 750 }}
-      >
+        style={currentStep == 3 ? {} : { height: 750 }}>
         <Form
           style={{ zIndex: "40" }}
           form={form}
           layout="vertical"
           className="employer-sign-up c-form second-container"
           onFinish={onFinish}
-          autoComplete="off"
-        >
+          autoComplete="off">
           {renderSteps(currentStep)}
 
           {currentStep == 3 && (
@@ -940,27 +918,44 @@ function EmployerSignUp() {
                 name="agreeTerms"
                 className="mb-3"
                 valuePropName="checked"
-                rules={Rules.requiredRule}
-              >
+                rules={Rules.requiredRule}>
                 <Checkbox
                   checked={agreeToTerms}
-                  onChange={(e) => setAgreeToTerms(e.target.checked)}
-                >
+                  onChange={(e) => setAgreeToTerms(e.target.checked)}>
                   I agree with Jobsmideast.com{" "}
-                  <mark onClick={() => setTermsModalShow(true)}>
-                    T&C's, Cookie &amp; Privacy Policy,
-                  </mark>
-                  and agree to receive advertising, notifications and marketing
-                  communications.
+                  <Link to="/terms-and-condition" target="_blank">
+                    <mark>T&C's</mark>
+                  </Link>
+                  ,&nbsp;
+                  <Link to="/cookie-policy" target="_blank">
+                    <mark>Cookies</mark>
+                  </Link>
+                  &nbsp; &amp; &nbsp;
+                  <Link to="/privacy-policy" target="_blank">
+                    <mark>Privacy Policy</mark>
+                  </Link>
+                  &nbsp; and agree to receive advertising, notifications and
+                  marketing communications.
                 </Checkbox>
               </Form.Item>
-              <Modal
+              {/* <Modal
                 show={termsModalShow}
-                onHide={() => setTermsModalShow(false)}
-              >
+                onHide={() => setTermsModalShow(false)}>
                 {" "}
                 <TermsConditions />
               </Modal>
+              <Modal
+                show={cookiesModalShow}
+                onHide={() => setCookiesModalShow(false)}>
+                {" "}
+                <CookiePolicy />
+              </Modal>
+              <Modal
+                show={privacyPolicyModalShow}
+                onHide={() => setPrivacyPolicyModalShow(false)}>
+                {" "}
+                <PrivacyPolicy />
+              </Modal> */}
             </>
           )}
 
@@ -972,8 +967,7 @@ function EmployerSignUp() {
               className="next-btn"
               htmlType="submit"
               themeColor="light"
-              loading={isLoading}
-            >
+              loading={isLoading}>
               Next
             </Button>
           )}
@@ -984,15 +978,13 @@ function EmployerSignUp() {
                 display: "flex",
                 justifyContent: "flex-end",
                 marginBottom: "20px",
-              }}
-            >
+              }}>
               <Button
                 block
                 className="next-btn-2"
                 htmlType="submit"
                 themeColor="light"
-                loading={isLoading}
-              >
+                loading={isLoading}>
                 Next
               </Button>
             </div>
@@ -1003,15 +995,13 @@ function EmployerSignUp() {
                 display: "flex",
                 justifyContent: "flex-end",
                 marginBottom: "20px",
-              }}
-            >
+              }}>
               <Button
                 block
                 className="next-btn-2"
                 htmlType="submit"
                 themeColor="light"
-                loading={isLoading}
-              >
+                loading={isLoading}>
                 Submit
               </Button>
             </div>
