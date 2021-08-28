@@ -160,16 +160,32 @@ function JobDetails({
             <span className="content-block ">
               <h6 className="block-title company-page-heading">Requirements</h6>
 
-              <ul className="c-list">
-                {/* {data.additionalRequirement?.map((d) => (
-                  <li>{d}</li>
-                ))} */}
-                <div
-                  dangerouslySetInnerHTML={createMarkup(
-                    data?.additionalRequirement
-                  )}
-                />
+              <ul className="">
+                {data?.qualification?.title && (
+                  <li>{data?.qualification?.title}</li>
+                )}
+                {data?.certificate?.title && (
+                  <li>Certificate required{data?.certificate?.title}</li>
+                )}
+                {data?.experienceListId > 0 && (
+                  <li>
+                    {data?.experienceListId}&nbsp;years of minimum experience
+                  </li>
+                )}
+                {data?.language?.title && (
+                  <li>Native language: &nbsp;{data?.language?.title}</li>
+                )}
+                {data?.ageLimit && <li>Age Limit: &nbsp;{data?.ageLimit}</li>}
+                {data?.suitableJob?.title && (
+                  <li>{data?.suitableJob?.title}</li>
+                )}
               </ul>
+
+              <div
+                dangerouslySetInnerHTML={createMarkup(
+                  data?.additionalRequirement
+                )}
+              />
             </span>
           </span>
           {width < 1025 && (
