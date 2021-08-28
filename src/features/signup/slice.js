@@ -54,6 +54,11 @@ export const slice = createSlice({
     removePreUploadedProfileImage: (state) => {
       state.profileImage = null;
     },
+    setSignupStateFalse: (state) => {
+      state.jobseekerSignupSuccess = false;
+      state.employerSignupSuccess = false;
+      state.agencySignupSuccess = false;
+    },
     removePreExistingErrorMessages: (state) => {
       state.errorMessage = null;
       state.employerSignupSuccess = false;
@@ -202,8 +207,8 @@ export const selectCompanyLogo = (state) => state.signup.companyLogo;
 
 export const {
   removePreUploadedProfileImage,
-  removePreExistingErrorMessages,
   setSignupStateFalse,
+  removePreExistingErrorMessages,
 } = slice.actions;
 
 export default slice.reducer;

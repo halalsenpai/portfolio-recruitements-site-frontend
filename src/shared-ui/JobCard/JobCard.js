@@ -72,7 +72,7 @@ const getTagByType = (type) => {
 };
 
 function JobCard({ job = {}, type, onClick }) {
-  console.log(job?.featured);
+  // console.log(job?.featured);
   return (
     <div
       onClick={onClick}
