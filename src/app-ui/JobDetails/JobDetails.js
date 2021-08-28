@@ -221,7 +221,7 @@ function JobDetails({
               <>
                 <span className="content-block">
                   <h6 className="block-title  d-flex justify-content-between align-items-center">
-                    <h6 className="company-page-heading">
+                    <h6 className="company-page-heading">     
                       About company:
                       <span style={{ color: "#2a8fff" }} className="ml-2 blue">
                         {data?.company?.companyName || ""}
