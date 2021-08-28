@@ -202,8 +202,8 @@ export const selectCompanyLogo = (state) => state.signup.companyLogo;
 
 export const {
   removePreUploadedProfileImage,
-  removePreExistingErrorMessages,
   setSignupStateFalse,
+  removePreExistingErrorMessages,
 } = slice.actions;
 
 export default slice.reducer;
