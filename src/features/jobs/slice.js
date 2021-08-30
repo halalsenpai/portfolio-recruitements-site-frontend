@@ -20,6 +20,7 @@ import {
   getSuitableFor,
   getFilteredJob,
   getCitiesByCountry,
+  getCurrencyType,
 } from "./thunk";
 
 const thunks = [
@@ -34,9 +35,8 @@ const thunks = [
   getGrade,
   getCompany,
   getAccommodation,
-
+  getCurrencyType,
   getSalaryType,
-
   getSuitableFor,
   getFilteredJob,
 ];
@@ -51,6 +51,7 @@ const initialState = {
   cities: [],
   qualifications: [],
   fieldsOfStudy: [],
+  currencyType: [],
   grades: [],
   companies: [],
   accommodations: [],
@@ -147,6 +148,10 @@ export const slice = createSlice({
         state.status = "idle";
         state.citiesByCountry = action.payload;
       })
+      .addCase(getCurrencyType.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.currencyType = action.payload;
+      })
       .addMatcher(isPending(...thunks), (state) => {
         state.status = "loading";
         state.errorMessage = null;
@@ -176,10 +181,13 @@ export const selectAccommodations = (state) => state.jobs.accommodations;
 export const selectCategories = (state) => state.jobs.categories;
 export const selectJobTitlesById = (state) => state.jobs.jobTitlesById;
 export const selectSalaryType = (state) => state.jobs.salaryType;
-export const selectOtherJobsByCompany = (state) => state.jobs.otherJobsByCompany;
+export const selectOtherJobsByCompany = (state) =>
+  state.jobs.otherJobsByCompany;
 export const selectSuitableFor = (state) => state.jobs.suitableFor;
 export const selectCitiesByCountry = (state) => state.jobs.citiesByCountry;
-export const selectFilterApplySuccess = (state) => state.jobs.applyFilterSuccess;
+export const selectFilterApplySuccess = (state) =>
+  state.jobs.applyFilterSuccess;
+export const selectCurrencyType = (state) => state.jobs.currencyType;
 
 // export const { getProfile } = slice.actions;
 

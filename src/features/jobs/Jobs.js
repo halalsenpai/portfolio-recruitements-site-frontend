@@ -24,6 +24,7 @@ import {
   getQualification,
   getJobByCategory,
   getJobsByCompany,
+  getCurrencyType,
 } from "./thunk";
 
 import {
@@ -31,7 +32,12 @@ import {
   getCityisDesired as cityisDesired,
   jobTitlesFindJobs,
 } from "./service";
-import { selectJobs, selectStatus } from "./slice";
+import {
+  selectCurrencyType,
+  selectJobs,
+  selectStatus,
+  selectSalaryType,
+} from "./slice";
 import {
   selectCountries,
   selectEmploymentTypes,
@@ -52,6 +58,8 @@ function Jobs() {
   const isLoading = useAppSelector(selectStatus);
   const jobTitles = useAppSelector(selectJobTitles);
   const employmentTypes = useAppSelector(selectEmploymentTypes);
+  const currencyType = useAppSelector(selectCurrencyType);
+  const salaryTypes = useAppSelector(selectSalaryType);
   const countries = useAppSelector(selectCountries);
   const jobs = useAppSelector(selectJobs);
   const accommodations = useAppSelector(selectAccommodations);
@@ -71,13 +79,13 @@ function Jobs() {
     dispatch(getJob());
     dispatch(getJobTitle());
     dispatch(getEmploymentType());
-    // dispatch(getCountry());
     dispatch(getCountryisDesired());
     dispatch(getCity());
     dispatch(getQualification());
     dispatch(getFieldOfStudy());
     dispatch(getGrade());
     dispatch(getAccommodation());
+    dispatch(getCurrencyType());
   }, []);
 
   useEffect(() => {
@@ -146,7 +154,8 @@ function Jobs() {
                 <Form.Item
                   style={{ zIndex: "390" }}
                   name="jobTitleName"
-                  className="find-job-super-select c-input">
+                  className="find-job-super-select c-input"
+                >
                   <SuperSelectFindJobs
                     style={{ zIndex: "390" }}
                     placeholder="Job title"
@@ -160,7 +169,8 @@ function Jobs() {
                 </Form.Item>
                 <Form.Item
                   name="location"
-                  className="find-job-super-select c-input">
+                  className="find-job-super-select c-input"
+                >
                   {/* <Input
                     size="small"
                     className="xs"
@@ -195,14 +205,16 @@ function Jobs() {
                   htmlType="submit"
                   className="filter-btns"
                   themeColor="rounded light"
-                  style={{ height: "32px" }}>
+                  style={{ height: "32px" }}
+                >
                   Go
                 </Button>
 
                 <Button
                   icon={<img src={filterIcon} alt="ico" />}
                   className=" filter-icon rounded shadowed filter-btns"
-                  onClick={ShowFilter}></Button>
+                  onClick={ShowFilter}
+                ></Button>
               </div>
             </span>
           </Form>
@@ -231,7 +243,9 @@ function Jobs() {
                       obj,
                       jobTitles,
                       employmentTypes,
-                      countries
+                      countries,
+                      salaryTypes,
+                      currencyType
                     )}
                   />
                 );
@@ -243,7 +257,8 @@ function Jobs() {
         {/* Job Detail */}
         <div
           ref={myRef}
-          className={`job-details ${showJobDetails ? "job-details-show" : ""}`}>
+          className={`job-details ${showJobDetails ? "job-details-show" : ""}`}
+        >
           {isLoading && (
             <div className="preloader">
               <Spin />
@@ -260,7 +275,7 @@ function Jobs() {
               <Spin />
             </div>
           )}
-
+          {console.log("DATA", jobDetails)}
           {jobDetails && (
             <JobDetails
               setShowJobDetails={() => setJobDetails(false)}
@@ -269,7 +284,9 @@ function Jobs() {
                 jobDetails,
                 jobTitles,
                 employmentTypes,
-                countries
+                countries,
+                salaryTypes,
+                currencyType
               )}
               extraData={{ accommodations }}
               setJobDetails={setJobDetails}
