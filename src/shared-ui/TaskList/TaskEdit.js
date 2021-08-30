@@ -16,7 +16,7 @@ const TaskEdit = () => {
           />
 
           <div className="date-save-div">
-            <DatePicker className="date-picker" />
+            <DatePicker format="DD-MM-YYYY" className="date-picker" />
 
             <Button themeColor="blue" className="float-right">
               Save

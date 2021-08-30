@@ -89,7 +89,7 @@ const DashboardFrom = () => {
                 rules={Rules.phoneRule}
               >
                 <label className="required">Start year</label>
-                <DatePicker />
+                <DatePicker format="DD-MM-YYYY" />
               </Form.Item>
 
               <Form.Item
@@ -98,7 +98,7 @@ const DashboardFrom = () => {
                 rules={Rules.phoneRule}
               >
                 <label className="required">End year</label>
-                <DatePicker />
+                <DatePicker format="DD-MM-YYYY" />
               </Form.Item>
 
               <Form.Item
