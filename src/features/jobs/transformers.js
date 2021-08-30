@@ -13,14 +13,6 @@ export const transformJobData = (
   const country = getTitleById(countries, data.countryId);
   const salaryType = getTitleById(salaryTypes, data?.salaryTypeId);
   const currency = findCurrencyCodeById(currencyType, data?.currencyId);
-  console.log("TRANSFORM DATA", {
-    ...data,
-    title,
-    employmentType,
-    country,
-    salaryType,
-    currency,
-  });
   return {
     ...data,
     title,

@@ -228,9 +228,9 @@ function JobDetails({
               <span>
                 <h6 className="title">Benefits</h6>
               </span>
-              <span>
+              <span style={{ gap: "4px" }}>
                 Salary
-                <mark>
+                <mark style={{ textAlign: "end" }}>
                   {data?.salaryRangeFrom}-{data?.salaryRangeUpto}{" "}
                   {data?.currency}/{data?.salaryType}
                 </mark>
@@ -247,15 +247,17 @@ function JobDetails({
                 Tuition fees covered
                 <mark>{data.isTuitionFee ? "Yes" : "No"}</mark>
               </span>
-              <span>
+              <span style={{ gap: "1px" }}>
                 Accommodation
                 {!data.accommodationListId && <mark></mark>}
-                {data.accommodationListId && (
-                  <mark>
-                    {getTitleById(
-                      extraData.accommodations,
-                      data?.accommodationListId
-                    )}
+                {data?.accommodationListId && (
+                  <mark style={{ textAlign: "end" }}>
+                    {!isNaN(Number(data?.accommodationListId))
+                      ? getTitleById(
+                          extraData.accommodations,
+                          Number(data?.accommodationListId?.[0])
+                        )
+                      : data?.accommodationListId?.[0]}
                   </mark>
                 )}
               </span>
@@ -439,7 +441,6 @@ function JobDetails({
                         sm={{ span: 12 }}
                         xs={{ span: 24 }}
                       >
-                        {console.log("OTEHRS JOB", otherJob)}
                         <JobCard
                           onClick={() => {
                             setJobDetails(otherJob);

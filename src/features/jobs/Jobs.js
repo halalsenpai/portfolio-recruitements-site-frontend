@@ -275,7 +275,6 @@ function Jobs() {
               <Spin />
             </div>
           )}
-          {console.log("DATA", jobDetails)}
           {jobDetails && (
             <JobDetails
               setShowJobDetails={() => setJobDetails(false)}
