@@ -47,7 +47,8 @@ function Home() {
                       onClick={() => history.push("/signup")}
                       className="mt-4 mb-3 button-center get-started-btn"
                       themeColor="blue"
-                      type={"large"}>
+                      type={"large"}
+                    >
                       Get Started{" "}
                       <img
                         className="animated-icon"
@@ -227,18 +228,19 @@ function Home() {
             <div className="padding-mobile bottom-text-section text-column ">
               <img
                 className="bottom-logo"
-                src={require("..//..//assets/images/logo/logo-md.png")}
+                src={require("..//..//assets/images/logo/jobsmideast-logo.png")}
                 alt=""
               />
               <span className="small-paragraph">
+                <strong>The smartest job site in the Middle East</strong>
+                <br />
                 <p>
-                  JThe smartest job site in the Middle East Jobsmideast.com is
-                  the most advanced recruitment platform in the Middle East.
-                  Whether you’re a job seeker or looking to hire, Jobsmideast is
-                  here to support you in finding the right fit. We have
-                  partnered with over thousands of Middle East based companies,
-                  as well as other international companies that use our
-                  intelligent features to look for qualified candidates.
+                  Jobsmideast.com is the most advanced recruitment platform in
+                  the Middle East. Whether you’re a job seeker or looking to
+                  hire, Jobsmideast is here to support you in finding the right
+                  fit. We have partnered with over thousands of Middle East
+                  based companies, as well as other international companies that
+                  use our intelligent features to look for qualified candidates.
                 </p>
 
                 <p>
@@ -269,7 +271,8 @@ function Home() {
               <Button className="demo-btn" themeColor="blue">
                 <a
                   className="book-a-demo-btn"
-                  href="https://calendly.com/jobsmideast/demo?month=2021-04&back=1">
+                  href="https://calendly.com/jobsmideast/demo?month=2021-04&back=1"
+                >
                   Book a Demo
                 </a>
               </Button>

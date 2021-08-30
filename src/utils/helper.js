@@ -124,8 +124,12 @@ export const getTitleById = (data, id) => {
   if (!id) {
     return null;
   }
-  const d = data.find((d) => d.id === id);
+  const d = data?.find((d) => d.id === id);
   return d?.title;
+};
+export const findCurrencyCodeById = (data, id) => {
+  const found = data?.find((d) => d.id === id);
+  return found?.code || null;
 };
 
 export const getLat = (location) => {

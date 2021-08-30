@@ -102,7 +102,7 @@ const ExpForm = () => {
                 rules={Rules.phoneRule}
               >
                 <label className="required">Start date</label>
-                <DatePicker />
+                <DatePicker format="DD-MM-YYYY" />
               </Form.Item>
 
               <Form.Item
@@ -118,7 +118,7 @@ const ExpForm = () => {
                   </Checkbox>
                 </span>
 
-                <DatePicker />
+                <DatePicker format="DD-MM-YYYY" />
               </Form.Item>
             </div>
 

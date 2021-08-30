@@ -333,7 +333,7 @@ const JobFilter = (props) => {
               </Col> */}
               <Col style={{ zIndex: "340" }} lg={{ span: 8 }} sm={{ span: 12 }} xs={{ span: 24 }} className="jobs-grid" span={12}>
                 <Form.Item label="Accommodation" name="accommodation" className="c-input c-form p-0" rules={null}>
-                  <SuperSelectWithSelect style={{ zIndex: "340" }} getPopupContainer={(trigger) => trigger.parentNode} defaultValue="" fetchOptions={getAccommodation} />
+                  <SuperSelectWithSelect style={{ zIndex: "340" }} getPopupContainer={(trigger) => trigger.parentNode} defaultValue="Select" fetchOptions={getAccommodation} />
                 </Form.Item>
               </Col>
               <Col style={{ zIndex: "330" }} lg={{ span: 8 }} sm={{ span: 12 }} xs={{ span: 24 }} className="jobs-grid" span={12}>

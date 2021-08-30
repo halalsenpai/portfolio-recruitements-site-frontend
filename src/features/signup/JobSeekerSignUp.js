@@ -33,7 +33,7 @@ import {
   selectErrorMessage,
   selectLoadingStatus,
   selectCountryByIp,
-  setSignupStateFalse
+  setSignupStateFalse,
 } from "./slice";
 import TermsConditions from "./TermsConditions";
 import { getNationality } from "./service";
@@ -50,7 +50,8 @@ const WithHintText = ({ content, children }) => (
     placement="topLeft"
     overlayInnerStyle={{ width: 400 }}
     content={content}
-    trigger="click">
+    trigger="click"
+  >
     {children}
   </Popover>
 );
@@ -120,7 +121,8 @@ function JobSeekerSignUp() {
           form={form}
           layout="vertical"
           onFinish={onFinish}
-          className="second-container c-form align-items-start jobseeker-sign-up-form">
+          className="second-container c-form align-items-start jobseeker-sign-up-form"
+        >
           {/* <h3 className="form-title">
             Discover a new way of hiring & make the right connections.
           </h3> */}
@@ -131,7 +133,8 @@ function JobSeekerSignUp() {
                 label="First name"
                 name="firstName"
                 className="c-input"
-                rules={Rules.firstNameRule}>
+                rules={Rules.firstNameRule}
+              >
                 <Input
                   autoComplete={"" + Math.random()}
                   placeholder="Enter your first name"
@@ -145,7 +148,8 @@ function JobSeekerSignUp() {
                 label="Last name"
                 name="lastName"
                 className="c-input"
-                rules={Rules.lastNameRule}>
+                rules={Rules.lastNameRule}
+              >
                 <Input
                   autoComplete={"" + Math.random()}
                   placeholder="Enter your last name"
@@ -160,7 +164,8 @@ function JobSeekerSignUp() {
                 label="Mobile number"
                 name="mobile"
                 className="c-input"
-                rules={Rules.phoneRule}>
+                rules={Rules.phoneRule}
+              >
                 <PhoneInput
                   placeholder="Enter your mobile no."
                   country={countryCode}
@@ -173,7 +178,8 @@ function JobSeekerSignUp() {
                 label="Email"
                 name="email"
                 className="c-input"
-                rules={Rules.emailRule}>
+                rules={Rules.emailRule}
+              >
                 <Input
                   autoComplete={"" + Math.random()}
                   placeholder="Enter your email"
@@ -187,7 +193,8 @@ function JobSeekerSignUp() {
                 label="Password"
                 name="password"
                 className="c-input"
-                rules={Rules.passwordRule}>
+                rules={Rules.passwordRule}
+              >
                 <Input.Password
                   autoComplete={"" + Math.random()}
                   placeholder="Enter password"
@@ -202,7 +209,8 @@ function JobSeekerSignUp() {
                 name="confirmPassword"
                 className="c-input"
                 rules={Rules.confirmPasswordRule}
-                dependencies={["password"]}>
+                dependencies={["password"]}
+              >
                 <Input.Password
                   autoComplete="off"
                   placeholder="Confirm password"
@@ -227,12 +235,14 @@ function JobSeekerSignUp() {
                 }
                 name="familyStatusId"
                 className="c-input"
-                rules={Rules.requiredRule}>
+                rules={Rules.requiredRule}
+              >
                 <Select
                   allowClear
                   placeholder="Select family status"
                   getPopupContainer={(trigger) => trigger.parentNode}
-                  size="large">
+                  size="large"
+                >
                   {familyStatuses?.map((fs) => (
                     <Option value={fs.id}>{fs.title}</Option>
                   ))}
@@ -248,7 +258,8 @@ function JobSeekerSignUp() {
                     <label>Gender&nbsp;</label>
                     <WithHintText
                       content="Some jobs in the Middle East are gender specific, e.g. a female swimming instructor
-for an all girls school.">
+for an all girls school."
+                    >
                       <img
                         class="label-icon"
                         src={require("../../assets/images/icons/information-icon.svg")}
@@ -259,11 +270,13 @@ for an all girls school.">
                 }
                 name="gender"
                 className="c-input"
-                rules={Rules.requiredRule}>
+                rules={Rules.requiredRule}
+              >
                 <Select
                   allowClear
                   placeholder="Select gender"
-                  getPopupContainer={(trigger) => trigger.parentNode}>
+                  getPopupContainer={(trigger) => trigger.parentNode}
+                >
                   <Option value="male">Male</Option>
                   <Option value="female">Female</Option>
                   <Option value="other">Other</Option>
@@ -280,7 +293,8 @@ for an all girls school.">
                 }
                 name="dob"
                 className="c-input"
-                rules={Rules.requiredRule}>
+                rules={Rules.requiredRule}
+              >
                 <DatePicker
                   inputReadOnly
                   disabledDate={(d) =>
@@ -289,6 +303,7 @@ for an all girls school.">
                     d.isSameOrBefore("1960-01-01")
                   }
                   defaultPickerValue={moment("2000-01-01")}
+                  format="DD-MM-YYYY"
                 />
               </Form.Item>
             </Col>
@@ -301,7 +316,8 @@ for an all girls school.">
                     <WithHintText
                       content="Certain countries require more documents and verifications in order to issue visas.
 Knowing your nationality will help employers take the necessary steps in order to
-secure visas for everyone.">
+secure visas for everyone."
+                    >
                       <img
                         class="label-icon"
                         src={require("../../assets/images/icons/information-icon.svg")}
@@ -312,7 +328,8 @@ secure visas for everyone.">
                 }
                 name="nationalityId"
                 className="c-input"
-                rules={Rules.requiredRule}>
+                rules={Rules.requiredRule}
+              >
                 {/* <Select
                   getPopupContainer={(trigger) => trigger.parentNode}
                   size="large"
@@ -341,7 +358,8 @@ secure visas for everyone.">
                 name="agreeTerms"
                 className="mb-0"
                 style={{ marginLeft: "16px", marginTop: "16px" }}
-                valuePropName="checked">
+                valuePropName="checked"
+              >
                 <Checkbox>
                   I agree with Jobsmideast.com{" "}
                   {/* <mark onClick={() => setTermsModalShow(true)}>
@@ -368,7 +386,8 @@ secure visas for everyone.">
                 type="large"
                 htmlType="submit"
                 loading={isLoading}
-                block>
+                block
+              >
                 Create my profile
               </Button>
 

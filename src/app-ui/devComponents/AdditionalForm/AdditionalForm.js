@@ -92,7 +92,7 @@ const DashboardFrom = () => {
                 rules={Rules.phoneRule}
               >
                 <label className="required">Date of birth</label>
-                <DatePicker />
+                <DatePicker format="DD-MM-YYYY" />
               </Form.Item>
 
               <Form.Item

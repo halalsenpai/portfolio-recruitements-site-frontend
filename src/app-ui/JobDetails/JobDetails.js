@@ -18,9 +18,11 @@ import "./_JobDetails.scss";
 import "./_Responsive.scss";
 import {
   selectCountries,
+  selectCurrencyType,
   selectEmploymentTypes,
   selectJobTitles,
   selectOtherJobs,
+  selectSalaryType,
 } from "../../features/jobs/slice";
 import JobCard from "../../shared-ui/JobCard/JobCard";
 import { transformJobData } from "../../features/jobs/transformers";
@@ -41,6 +43,8 @@ function JobDetails({
   const countries = useAppSelector(selectCountries);
   const jobTitles = useAppSelector(selectJobTitles);
   const employmentTypes = useAppSelector(selectEmploymentTypes);
+  const currencyType = useAppSelector(selectCurrencyType);
+  const salaryTypes = useAppSelector(selectSalaryType);
   const history = useHistory();
   const createMarkup = (html) => {
     return { __html: html };
@@ -224,10 +228,11 @@ function JobDetails({
               <span>
                 <h6 className="title">Benefits</h6>
               </span>
-              <span>
+              <span style={{ gap: "4px" }}>
                 Salary
-                <mark>
-                  {data.salaryRangeFrom}-{data.salaryRangeUpto} AED/month
+                <mark style={{ textAlign: "end" }}>
+                  {data?.salaryRangeFrom}-{data?.salaryRangeUpto}{" "}
+                  {data?.currency}/{data?.salaryType}
                 </mark>
               </span>
               <span>
@@ -242,15 +247,17 @@ function JobDetails({
                 Tuition fees covered
                 <mark>{data.isTuitionFee ? "Yes" : "No"}</mark>
               </span>
-              <span>
+              <span style={{ gap: "1px" }}>
                 Accommodation
                 {!data.accommodationListId && <mark></mark>}
-                {data.accommodationListId && (
-                  <mark>
-                    {getTitleById(
-                      extraData.accommodations,
-                      data?.accommodationListId
-                    )}
+                {data?.accommodationListId && (
+                  <mark style={{ textAlign: "end" }}>
+                    {!isNaN(Number(data?.accommodationListId))
+                      ? getTitleById(
+                          extraData.accommodations,
+                          Number(data?.accommodationListId?.[0])
+                        )
+                      : data?.accommodationListId?.[0]}
                   </mark>
                 )}
               </span>
@@ -318,7 +325,7 @@ function JobDetails({
                 <Divider className="divider" />
                 <span className="content-block">
                   <h6 className="block-title  d-flex justify-content-between align-items-center">
-                    <h6 className="company-page-heading">     
+                    <h6 className="company-page-heading">
                       About company:
                       <span style={{ color: "#2a8fff" }} className="ml-2 blue">
                         {data?.company?.companyName || ""}
@@ -338,14 +345,14 @@ function JobDetails({
                     className="block-text markup"
                     dangerouslySetInnerHTML={createMarkup(
                       data?.company?.introduction
-                    )}></span>
+                    )}
+                  ></span>
                 </span>
 
                 {/* <ImagesGallery
                   images={data?.company?.photoUrl}
                   title="Company Photos"
                 /> */}
-                {console.log(data?.company?.photoUrl)}
                 {data?.company?.photoUrl &&
                   data?.company?.photoUrl?.length > 0 && (
                     <Carousel
@@ -361,7 +368,8 @@ function JobDetails({
                       customTransition="all 1s"
                       transitionDuration={1000}
                       containerClass="carousel-container"
-                      dotListClass="custom-dot-list-style">
+                      dotListClass="custom-dot-list-style"
+                    >
                       {data?.company?.photoUrl?.length &&
                         data.company.photoUrl.map((img, i) => (
                           <img
@@ -423,14 +431,16 @@ function JobDetails({
                     style={{ margin: "0 auto", width: "100%" }}
                     justify={`${
                       otherJobs?.length === 4 ? "space-around" : "flex-start"
-                    }`}>
+                    }`}
+                  >
                     {otherJobs?.map((otherJob, i) => (
                       <Col
                         key={i}
                         span={8}
                         lg={{ span: 8 }}
                         sm={{ span: 12 }}
-                        xs={{ span: 24 }}>
+                        xs={{ span: 24 }}
+                      >
                         <JobCard
                           onClick={() => {
                             setJobDetails(otherJob);
@@ -440,7 +450,9 @@ function JobDetails({
                             otherJob,
                             jobTitles,
                             employmentTypes,
-                            countries
+                            countries,
+                            salaryTypes,
+                            currencyType
                           )}
                           type="box"
                         />
@@ -452,7 +464,7 @@ function JobDetails({
                 </span>
               </span>
             </span>
-
+            {/* 
             <span className="content-box first">
               <span className="content-section">
                 <span className="content-block">
@@ -460,12 +472,13 @@ function JobDetails({
                     Other jobs by this company
                   </h6>
                   <p></p>
-                  {/* <Row
+                  <Row
                     gutter={16}
                     style={{ margin: "0 auto", width: "100%" }}
                     justify={`${
                       otherJobs?.length === 4 ? "space-around" : "flex-start"
-                    }`}>
+                    }`}
+                  >
                     {otherJobs?.map((otherJob) => (
                       <Col>
                         <JobCard
@@ -483,10 +496,10 @@ function JobDetails({
                         />
                       </Col>
                     ))}
-                  </Row> */}
+                  </Row>
                 </span>
               </span>
-            </span>
+            </span> */}
           </>
         )}
       </div>
@@ -494,4 +507,4 @@ function JobDetails({
   );
 }
 
-export default JobDetails;
+export default React.memo(JobDetails);
