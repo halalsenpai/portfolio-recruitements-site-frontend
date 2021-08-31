@@ -54,12 +54,12 @@ function Header() {
             className={getActiveClassForPath(currentPath, "/services")}>
             Services
           </Link>
-          <Link
+          {/* <Link
             to="/pricing"
             onClick={() => setCurrentPath("/pricing")}
             className={getActiveClassForPath(currentPath, "/pricing")}>
             Pricing
-          </Link>
+          </Link> */}
         </nav>
         <div className={`mobile-menu ${menu ? "menu-open" : ""}`}>
           <div className="links-wrapper">
