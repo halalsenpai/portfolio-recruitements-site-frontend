@@ -2,6 +2,7 @@ import React from "react";
 
 import { Link, useHistory } from "react-router-dom";
 import { Col, Divider, Popover, Row, Select } from "antd";
+import { IoMdCloseCircle } from "react-icons/io";
 import { BsFillChatFill } from "react-icons/bs";
 import { FaStar } from "react-icons/fa";
 
@@ -18,6 +19,7 @@ import "./_JobDetails.scss";
 import "./_Responsive.scss";
 import {
   selectCountries,
+  selectCategories,
   selectCurrencyType,
   selectEmploymentTypes,
   selectJobTitles,
@@ -27,6 +29,7 @@ import {
 import JobCard from "../../shared-ui/JobCard/JobCard";
 import { transformJobData } from "../../features/jobs/transformers";
 import { useAppSelector } from "../../store/hooks";
+import moment from "moment";
 // import { createMarkup } from "../../utils/helper";
 
 const { Option } = Select;
@@ -36,13 +39,16 @@ function JobDetails({
   showAllDetails = true,
   setJobDetails,
   extraData = {},
+  setSelectedJobId,
   otherJobs,
   executeScroll,
   setShowJobDetails,
+  searchedCompany,
 }) {
   const countries = useAppSelector(selectCountries);
   const jobTitles = useAppSelector(selectJobTitles);
   const employmentTypes = useAppSelector(selectEmploymentTypes);
+  const categories = useAppSelector(selectCategories);
   const currencyType = useAppSelector(selectCurrencyType);
   const salaryTypes = useAppSelector(selectSalaryType);
   const history = useHistory();
@@ -50,6 +56,10 @@ function JobDetails({
     return { __html: html };
   };
   const { width, height } = useWindowSize();
+  const {
+    company: { specialities, companySize, categoryId, videoUrl },
+  } = data;
+  const category = getTitleById(categories, categoryId);
 
   const responsive = {
     desktop: {
@@ -82,15 +92,115 @@ function JobDetails({
         <span className="job-info-wrapper">
           <img
             className="job-img"
-            src={data.company?.companyLogo || defaultImage}
+            src={data?.company?.companyLogo || defaultImage}
             alt=""
           />
-          <span className="job-info">
+          {/* <span className="job-info">
             <h6 className="job-title">{data.company?.tagLine}</h6>
             <h3 className="job-company">{data.company?.companyName}</h3>
             <p className="job-sector">{data.company?.companyType}</p>
+          </span> */}
+          {console.log("my data", data.company)}
+          <span className="company-details">
+            <h1 className="company-name">{data?.company?.companyName}</h1>
+            <h1 className="company-type">{data?.company?.tagLine || " "}</h1>
+            <h1 className="company-location small-text-common">
+              {data?.country || " "} {data?.country && data?.city?.title && ","}
+              {data?.city?.title || " "}{" "}
+            </h1>
+            <p className="job-date small-text-common">
+              Job start date:{" "}
+              {moment(data?.startDate ? data?.startDate : " ").format(
+                "DD/MM/YYYY"
+              )}{" "}
+            </p>
+
+            <p className="job-date small-text-common">
+              Contract end date:{" "}
+              {moment(data?.endDate ? data?.endDate : " ").format("DD/MM/YYYY")}{" "}
+            </p>
+            {width > 769 ? (
+              <>
+                {specialities?.length >= 1 && (
+                  <p className="company-specialities small-text-common">
+                    Specialise in: {specialities?.join(", ")}
+                  </p>
+                )}
+              </>
+            ) : null}
           </span>
         </span>
+        {width > 769 ? (
+          <div className="display-flex company-details-wrapper">
+            <div className="display-flex align-items company-sector-details">
+              <span className="company-details center">
+                <img
+                  className="mr-1"
+                  src={require("./../../assets/images/icons/Pie.svg")}
+                />{" "}
+                <div>
+                  <h1 className="company-type d-flex align-items-center">
+                    {" "}
+                    Company Sector{" "}
+                  </h1>
+                  <p className="company-category">{category || "N/A"}</p>
+                </div>
+              </span>
+
+              <span className="company-details center">
+                <img
+                  className="mr-1"
+                  src={require("./../../assets/images/icons/Users-3.svg")}
+                />{" "}
+                <div className="short-details">
+                  <h1 className="company-type d-flex align-items-center">
+                    Company Size{" "}
+                  </h1>
+                  <p className="company-category">{companySize || "N/A"}</p>
+                </div>
+              </span>
+            </div>
+            {/* V I E W __ A L L ___ J O B S */}
+            <div
+              className="close-btn"
+              onClick={() => {
+                setShowJobDetails(false);
+                setSelectedJobId(null);
+              }}>
+              <IoMdCloseCircle color="white" size="24px" />
+            </div>
+            {!searchedCompany ? (
+              <div className="view-jobs">
+                {/* <Button
+                    themeColor="outlined-white"
+                    onClick={() => NavigateToFindJobs(data.company?.id)}>
+                    View All Jobs
+                  </Button> */}
+              </div>
+            ) : null}
+          </div>
+        ) : (
+          <>
+            {/* V I E W __ A L L ___ J O B S */}
+            <div
+              className="close-btn"
+              onClick={() => {
+                setShowJobDetails(false);
+                setSelectedJobId(null);
+              }}>
+              <IoMdCloseCircle color="white" size="24px" />
+            </div>
+            {!searchedCompany ? (
+              <div className="view-jobs">
+                {/* <Button
+                    themeColor="outlined-white"
+                    onClick={() => NavigateToFindJobs(data.company?.id)}>
+                    View All Jobs
+                  </Button> */}
+              </div>
+            ) : null}
+          </>
+        )}
 
         {/* {showAllDetails && (
           <Button themeColor="transparent small">View Jobs</Button>
@@ -119,9 +229,6 @@ function JobDetails({
                   </span>
 
                   <span className="actions-wrapper">
-                    {/* <Button themeColor="shadowed">
-              <Link to="/login">Apply</Link>
-            </Button> */}
                     <Button className="applied" themeColor="outlined">
                       <Link to="/login">Apply</Link>
                     </Button>
@@ -345,8 +452,7 @@ function JobDetails({
                     className="block-text markup"
                     dangerouslySetInnerHTML={createMarkup(
                       data?.company?.introduction
-                    )}
-                  ></span>
+                    )}></span>
                 </span>
 
                 {/* <ImagesGallery
@@ -368,8 +474,7 @@ function JobDetails({
                       customTransition="all 1s"
                       transitionDuration={1000}
                       containerClass="carousel-container"
-                      dotListClass="custom-dot-list-style"
-                    >
+                      dotListClass="custom-dot-list-style">
                       {data?.company?.photoUrl?.length &&
                         data.company.photoUrl.map((img, i) => (
                           <img
@@ -431,16 +536,14 @@ function JobDetails({
                     style={{ margin: "0 auto", width: "100%" }}
                     justify={`${
                       otherJobs?.length === 4 ? "space-around" : "flex-start"
-                    }`}
-                  >
+                    }`}>
                     {otherJobs?.map((otherJob, i) => (
                       <Col
                         key={i}
                         span={8}
                         lg={{ span: 8 }}
                         sm={{ span: 12 }}
-                        xs={{ span: 24 }}
-                      >
+                        xs={{ span: 24 }}>
                         <JobCard
                           onClick={() => {
                             setJobDetails(otherJob);
