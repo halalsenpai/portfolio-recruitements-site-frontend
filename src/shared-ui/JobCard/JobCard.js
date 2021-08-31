@@ -72,8 +72,7 @@ function JobCard({ job = {}, type, onClick }) {
   return (
     <div
       onClick={onClick}
-      className={`c-job-card ${job.featured && "featured"} ${type}`}
-    >
+      className={`c-job-card ${job.featured && "featured"} ${type}`}>
       <div id="for-flex" className="job-card-first-container">
         <img
           className="job-thumbnail"
@@ -111,7 +110,7 @@ function JobCard({ job = {}, type, onClick }) {
           {type === "box" && (
             <>
               <span className="more-info">
-                <p>Ends on {readableDate(job.endDate)}</p>
+                <p>Ends on {readableDate(job.expiredAt)}</p>
               </span>
             </>
           )}
@@ -131,8 +130,7 @@ function JobCard({ job = {}, type, onClick }) {
       <div
         className={
           type === "box" ? "details-container-box" : "details-container"
-        }
-      >
+        }>
         {type !== "box" ? (
           <p>
             {job?.jobBrief ? String(job?.jobBrief).slice(0, 145) + "..." : ""}

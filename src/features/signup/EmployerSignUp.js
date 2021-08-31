@@ -206,6 +206,8 @@ function EmployerSignUp() {
   // }, [categoryId]);
 
   const profileImageBeforeUpload = (file) => {
+    console.log("file+file+file++++++++file", file);
+
     const payload = new FormData();
     payload.append("file", file, file.name);
     dispatch(uploadProfileImage({ payload }));
@@ -287,23 +289,27 @@ function EmployerSignUp() {
             {!isCreateCompany && (
               <Row gutter={[32, 32]}>
                 <Col style={{ marginBottom: "24px", zIndex: 300 }} span={24}>
-                  <Upload
-                    beforeUpload={profileImageBeforeUpload}
-                    showUploadList={false}>
-                    <div className="avatar-upload">
-                      <div className="photo-square">
-                        {profileImage && <img src={profileImage?.url} alt="" />}
+                  <Form.Item rules={Rules.requiredRule}>
+                    <Upload
+                      beforeUpload={profileImageBeforeUpload}
+                      showUploadList={false}>
+                      <div className="avatar-upload">
+                        <div className="photo-square">
+                          {profileImage && (
+                            <img src={profileImage?.url} alt="" />
+                          )}
+                        </div>
+                        {!profileImage && (
+                          <Button>
+                            <PlusOutlined />
+                          </Button>
+                        )}
                       </div>
-                      {!profileImage && (
-                        <Button>
-                          <PlusOutlined />
-                        </Button>
-                      )}
-                    </div>
-                    <div style={{ fontSize: "12px", marginTop: "12px" }}>
-                      Upload profile photo
-                    </div>
-                  </Upload>
+                      <div style={{ fontSize: "12px", marginTop: "12px" }}>
+                        Upload profile photo
+                      </div>
+                    </Upload>
+                  </Form.Item>
                 </Col>
                 <Col
                   xs={{ span: 24 }}
