@@ -100,7 +100,7 @@ function JobDetails({
             <h3 className="job-company">{data.company?.companyName}</h3>
             <p className="job-sector">{data.company?.companyType}</p>
           </span> */}
-          {console.log("my data", data.company)}
+          {/* {console.log("my data", data.company)} */}
           <span className="company-details">
             <h1 className="company-name">{data?.company?.companyName}</h1>
             <h1 className="company-type">{data?.company?.tagLine || " "}</h1>
@@ -393,6 +393,16 @@ function JobDetails({
 
               {/* <p className="block-text">{data.description}</p> */}
               <div dangerouslySetInnerHTML={createMarkup(data?.description)} />
+            </span>
+            <span className="content-block">
+              {data?.lisence?.length >= 1 && (
+                <h6 className="company-page-heading mt-5">Licenses</h6>
+              )}
+              <div className="license-tags">
+                {data?.lisence?.map((tag) => (
+                  <span className="tags">{tag}</span>
+                ))}
+              </div>
             </span>
 
             {/* <span className="content-block">

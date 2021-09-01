@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 import { Form, Empty, Spin } from "antd";
 import { SuperSelectFindJobs } from "../../shared-ui/superselectfindjobs/superselectfindjobs";
 import { transformJobData } from "./transformers";
+import { useForm } from "antd/lib/form/Form";
 import Button from "../../shared-ui/Button/Button";
 import { MappedElement } from "../../utils/helper";
 import JobCard from "../../shared-ui/JobCard/JobCard";
@@ -31,6 +33,7 @@ import {
   getCountryisDesired as countryisDesired,
   getCityisDesired as cityisDesired,
   jobTitlesFindJobs,
+  getCityById,
 } from "./service";
 import {
   selectCurrencyType,
@@ -54,6 +57,7 @@ import { SuperSelect } from "../../shared-ui/SuperSelect/SuperSelect";
 function Jobs() {
   const myRef = useRef(null);
   const formRef = useRef();
+  const [form] = useForm();
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(selectStatus);
   const jobTitles = useAppSelector(selectJobTitles);
@@ -70,10 +74,21 @@ function Jobs() {
   const [showJobDetails, setShowJobDetails] = useState(false);
   const [categoryId, setcategoryId] = useState(null);
   const [companyId, setcompanyId] = useState(null);
+  const [searchedCityId, setSearchedCityId] = useState(null);
+
   const [queryParams, setQueryParams] = useState({
     page: 1,
     limit: 100,
   });
+
+  const searchCityName = async (id) => {
+    try {
+      let res = await getCityById(id);
+      res.data.length && setSearchedCityId(res.data[0].title);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     dispatch(getJob());
@@ -91,6 +106,12 @@ function Jobs() {
   useEffect(() => {
     dispatch(getJob({ qs: queryParams }));
   }, []);
+  useEffect(() => {
+    dispatch(getJob({ qs: queryParams }));
+  }, [queryParams]);
+  useEffect(() => {
+    searchedCityId && searchCityName(searchedCityId);
+  }, [searchedCityId]);
 
   useEffect(() => {
     dispatch(getJobByCategory(categoryId));
@@ -121,6 +142,8 @@ function Jobs() {
   const onSearchJob = (values) => {
     const qs = { ...queryParams, ...values };
     setQueryParams(qs);
+    setSearchedCityId(values.location);
+
     dispatch(getJob({ qs }));
   };
   let timeout = 0;
@@ -142,20 +165,23 @@ function Jobs() {
 
         {/* Job List */}
         <div className="find-jobs-section">
-          {isLoading && (
+          {/* {isLoading && (
             <div className="preloader">
               <Spin />
             </div>
-          )}
+          )} */}
 
-          <Form className="job-sc" onFinish={onSearchJob} ref={formRef}>
+          <Form
+            className="job-sc"
+            onFinish={onSearchJob}
+            form={form}
+            ref={formRef}>
             <span className="form-fields job-filter-section">
               <div className="jobs-filter-header-secrion">
                 <Form.Item
                   style={{ zIndex: "390" }}
                   name="jobTitleName"
-                  className="find-job-super-select c-input"
-                >
+                  className="find-job-super-select c-input">
                   <SuperSelectFindJobs
                     style={{ zIndex: "390" }}
                     placeholder="Job title"
@@ -169,8 +195,7 @@ function Jobs() {
                 </Form.Item>
                 <Form.Item
                   name="location"
-                  className="find-job-super-select c-input"
-                >
+                  className="find-job-super-select c-input">
                   {/* <Input
                     size="small"
                     className="xs"
@@ -205,25 +230,66 @@ function Jobs() {
                   htmlType="submit"
                   className="filter-btns"
                   themeColor="rounded light"
-                  style={{ height: "32px" }}
-                >
+                  style={{ height: "32px" }}>
                   Go
                 </Button>
 
                 <Button
                   icon={<img src={filterIcon} alt="ico" />}
                   className=" filter-icon rounded shadowed filter-btns"
-                  onClick={ShowFilter}
-                ></Button>
+                  onClick={ShowFilter}></Button>
               </div>
             </span>
           </Form>
 
           <div className="jobs-list">
-            {!jobs.length && (
+            {/* {!jobs.length && (
               <div className="preloader">
                 <Spin />
               </div>
+            )} */}
+            {!jobs.length && (
+              <>
+                {/* <Empty
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    height: "95%",
+                    justifyContent: "center",
+                  }}
+                  description={"No job"}
+                  image={require("../../assets/images/icons/noData.png")}
+                  imageStyle={{
+                    height: 150,
+                  }}
+                /> */}
+                <p>
+                  We couldn't find any jobs that matches your search. Your
+                  Search for <b> {form.getFieldValue("jobTitleName")} </b> in
+                  <b> {searchedCityId} </b> didn't match any jobs{" "}
+                </p>
+                <br />
+                <p>Here are some tips: </p>
+                <ul>
+                  <li>Try other job titles</li>
+                  <li>Try Alternative Locations</li>
+                  <li>Adjust the filter to broaden your search</li>
+                </ul>
+                <Link to="/jobs">
+                  <Button
+                    className="applied"
+                    themeColor="filled_blue"
+                    onClick={() => {
+                      setQueryParams({ page: 1, limit: 100 });
+                    }}
+                    // onClick={onApplyJob}
+                    // loading={applyJobLoading}
+                    // need to use reset job functionality here
+                  >
+                    Back to jobs
+                  </Button>
+                </Link>
+              </>
             )}
 
             <MappedElement
@@ -257,8 +323,7 @@ function Jobs() {
         {/* Job Detail */}
         <div
           ref={myRef}
-          className={`job-details ${showJobDetails ? "job-details-show" : ""}`}
-        >
+          className={`job-details ${showJobDetails ? "job-details-show" : ""}`}>
           {isLoading && (
             <div className="preloader">
               <Spin />
