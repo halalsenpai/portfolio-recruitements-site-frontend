@@ -8,7 +8,7 @@ import { FaStar } from "react-icons/fa";
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-
+import ReactPlayer from "react-player";
 import { JobMap, Map } from "../../shared-ui/Map/Map";
 import { getTitleById, useWindowSize } from "../../utils/helper";
 import Button from "../../shared-ui/Button/Button";
@@ -166,7 +166,8 @@ function JobDetails({
               onClick={() => {
                 setShowJobDetails(false);
                 setSelectedJobId(null);
-              }}>
+              }}
+            >
               <IoMdCloseCircle color="white" size="24px" />
             </div>
             {!searchedCompany ? (
@@ -187,7 +188,8 @@ function JobDetails({
               onClick={() => {
                 setShowJobDetails(false);
                 setSelectedJobId(null);
-              }}>
+              }}
+            >
               <IoMdCloseCircle color="white" size="24px" />
             </div>
             {!searchedCompany ? (
@@ -452,7 +454,8 @@ function JobDetails({
                     className="block-text markup"
                     dangerouslySetInnerHTML={createMarkup(
                       data?.company?.introduction
-                    )}></span>
+                    )}
+                  ></span>
                 </span>
 
                 {/* <ImagesGallery
@@ -474,7 +477,8 @@ function JobDetails({
                       customTransition="all 1s"
                       transitionDuration={1000}
                       containerClass="carousel-container"
-                      dotListClass="custom-dot-list-style">
+                      dotListClass="custom-dot-list-style"
+                    >
                       {data?.company?.photoUrl?.length &&
                         data.company.photoUrl.map((img, i) => (
                           <img
@@ -489,21 +493,25 @@ function JobDetails({
                     </Carousel>
                   )}
 
-                <span className="content-block mt-4 pr-0">
-                  <h6 className="block-title company-page-heading thick-title mb-3">
-                    Company Video{" "}
-                  </h6>
-
-                  {!data.company?.videoUrl && ""}
-                  {data.company?.videoUrl && (
-                    <div className="block-video">
-                      <video className="w-100" controls>
-                        <source src={data.company.videoUrl} type="video/mp4" />
-                        Your browser does not support the video tag.
-                      </video>
-                    </div>
-                  )}
-                </span>
+                {data?.company?.videoUrl && (
+                  <span className="content-block mt-4 pr-0">
+                    <h6 className="block-title company-page-heading thick-title mb-3">
+                      Company Video{" "}
+                    </h6>
+                    {data?.company?.videoUrl && (
+                      <div className="page-layouts video-section">
+                        <div className="w-100">
+                          <ReactPlayer
+                            width={"100%"}
+                            style={{ width: "100%" }}
+                            url={data.company?.videoUrl}
+                            className="company-profile-video"
+                          />
+                        </div>
+                      </div>
+                    )}
+                  </span>
+                )}
 
                 <span className="content-block mt-4 pr-0">
                   <h6 className="block-title company-page-heading thick-title mb-3">
@@ -536,14 +544,16 @@ function JobDetails({
                     style={{ margin: "0 auto", width: "100%" }}
                     justify={`${
                       otherJobs?.length === 4 ? "space-around" : "flex-start"
-                    }`}>
+                    }`}
+                  >
                     {otherJobs?.map((otherJob, i) => (
                       <Col
                         key={i}
                         span={8}
                         lg={{ span: 8 }}
                         sm={{ span: 12 }}
-                        xs={{ span: 24 }}>
+                        xs={{ span: 24 }}
+                      >
                         <JobCard
                           onClick={() => {
                             setJobDetails(otherJob);
