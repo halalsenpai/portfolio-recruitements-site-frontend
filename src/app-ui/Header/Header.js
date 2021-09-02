@@ -109,7 +109,7 @@ function Header() {
               }}>
               Services
             </Link>
-            <Link
+            {/* <Link
               to="/pricing"
               onClick={() => {
                 setCurrentPath("/pricing");
@@ -117,7 +117,7 @@ function Header() {
               }}
               className={getActiveClassForPath(currentPath, "/pricing")}>
               Pricing
-            </Link>
+            </Link> */}
             <Link
               to="/login"
               onClick={() => {
