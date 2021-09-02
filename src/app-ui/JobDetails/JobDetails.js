@@ -505,27 +505,11 @@ function JobDetails({
                     </Carousel>
                   )}
 
-<<<<<<< HEAD
-                {data?.company?.videoUrl && (
-=======
                 {data.company.videoUrl && (
->>>>>>> 2ab35ca5b8b6fcb60efd6775b9208dd8df8d52b3
                   <span className="content-block mt-4 pr-0">
                     <h6 className="block-title company-page-heading thick-title mb-3">
                       Company Video{" "}
                     </h6>
-<<<<<<< HEAD
-                    {data?.company?.videoUrl && (
-                      <div className="page-layouts video-section">
-                        <div className="w-100">
-                          <ReactPlayer
-                            width={"100%"}
-                            style={{ width: "100%" }}
-                            url={data.company?.videoUrl}
-                            className="company-profile-video"
-                          />
-                        </div>
-=======
 
                     {!data.company?.videoUrl && ""}
                     {data.company?.videoUrl && (
@@ -537,26 +521,10 @@ function JobDetails({
                           />
                           Your browser does not support the video tag.
                         </video>
->>>>>>> 2ab35ca5b8b6fcb60efd6775b9208dd8df8d52b3
                       </div>
                     )}
                   </span>
                 )}
-<<<<<<< HEAD
-
-                <span className="content-block mt-4 pr-0">
-                  <h6 className="block-title company-page-heading thick-title mb-3">
-                    Map
-                  </h6>
-                  <div className="block-map">
-                    <Map
-                      data={data?.company}
-                      location={data?.company?.companyLocation}
-                      zoom={16}
-                    />
-                  </div>
-                </span>
-=======
                 {data?.company?.companyLocation && (
                   <span className="content-block mt-4 pr-0">
                     <h6 className="block-title company-page-heading thick-title mb-3">
@@ -571,7 +539,6 @@ function JobDetails({
                     </div>
                   </span>
                 )}
->>>>>>> 2ab35ca5b8b6fcb60efd6775b9208dd8df8d52b3
               </>
             )}
           </span>
