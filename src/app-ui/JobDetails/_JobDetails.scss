@@ -11,7 +11,7 @@
     min-height: 270px;
     display: flex;
     justify-content: space-between;
-    padding: 30px;
+    padding: 20px;
     align-items: flex-end;
     .company-details-wrapper {
       gap: 20px;
@@ -233,6 +233,25 @@
               height: 2px;
               width: 15px;
               background-color: $text-color;
+            }
+          }
+          .license-tags {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 5px 0;
+            margin: -10px 0 0 0;
+
+            .tags {
+              margin: 10px 10px 0 0;
+              background-color: $white;
+              color: $black;
+              padding: 5px 20px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              border-radius: 5px;
+              font-size: $font-size-sm;
+              border: 1px solid $black;
             }
           }
 

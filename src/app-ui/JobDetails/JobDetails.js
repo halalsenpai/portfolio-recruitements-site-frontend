@@ -100,7 +100,7 @@ function JobDetails({
             <h3 className="job-company">{data.company?.companyName}</h3>
             <p className="job-sector">{data.company?.companyType}</p>
           </span> */}
-          {console.log("my data", data.company)}
+          {/* {console.log("my data", data.company)} */}
           <span className="company-details">
             <h1 className="company-name">{data?.company?.companyName}</h1>
             <h1 className="company-type">{data?.company?.tagLine || " "}</h1>
@@ -396,6 +396,16 @@ function JobDetails({
               {/* <p className="block-text">{data.description}</p> */}
               <div dangerouslySetInnerHTML={createMarkup(data?.description)} />
             </span>
+            <span className="content-block">
+              {data?.lisence?.length >= 1 && (
+                <h6 className="company-page-heading mt-5">Licenses</h6>
+              )}
+              <div className="license-tags">
+                {data?.lisence?.map((tag) => (
+                  <span className="tags">{tag}</span>
+                ))}
+              </div>
+            </span>
 
             {/* <span className="content-block">
               <h6 className="block-title">Skills required</h6>
@@ -495,11 +505,16 @@ function JobDetails({
                     </Carousel>
                   )}
 
+<<<<<<< HEAD
                 {data?.company?.videoUrl && (
+=======
+                {data.company.videoUrl && (
+>>>>>>> ec1e05d69d22c2273169bdd9494418721b177357
                   <span className="content-block mt-4 pr-0">
                     <h6 className="block-title company-page-heading thick-title mb-3">
                       Company Video{" "}
                     </h6>
+<<<<<<< HEAD
                     {data?.company?.videoUrl && (
                       <div className="page-layouts video-section">
                         <div className="w-100">
@@ -510,10 +525,24 @@ function JobDetails({
                             className="company-profile-video"
                           />
                         </div>
+=======
+
+                    {!data.company?.videoUrl && ""}
+                    {data.company?.videoUrl && (
+                      <div className="block-video">
+                        <video className="w-100" controls>
+                          <source
+                            src={data.company.videoUrl}
+                            type="video/mp4"
+                          />
+                          Your browser does not support the video tag.
+                        </video>
+>>>>>>> ec1e05d69d22c2273169bdd9494418721b177357
                       </div>
                     )}
                   </span>
                 )}
+<<<<<<< HEAD
 
                 <span className="content-block mt-4 pr-0">
                   <h6 className="block-title company-page-heading thick-title mb-3">
@@ -527,6 +556,22 @@ function JobDetails({
                     />
                   </div>
                 </span>
+=======
+                {data?.company?.companyLocation && (
+                  <span className="content-block mt-4 pr-0">
+                    <h6 className="block-title company-page-heading thick-title mb-3">
+                      Company location
+                    </h6>
+                    <div className="block-map">
+                      <Map
+                        data={data?.company}
+                        location={data?.company?.companyLocation}
+                        zoom={16}
+                      />
+                    </div>
+                  </span>
+                )}
+>>>>>>> ec1e05d69d22c2273169bdd9494418721b177357
               </>
             )}
           </span>

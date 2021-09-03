@@ -26,6 +26,7 @@ const SERVICE_URLS = {
   getCitiesByCountry: (id) => `/city/by-country-id/${id}?page=1&limit=500`,
   getFindJobTitle: (qs) => `/jobtitle/for-find-job${qs}`,
   getCurrencyType: () => `/currency`,
+  getCityById: (id) => `city/${id}`,
 };
 
 export const getJob = (qs) => get(SERVICE_URLS.getJob(qs));
@@ -52,6 +53,8 @@ export const getFilteredJob = (params) =>
   get(SERVICE_URLS.getFilteredJob(params));
 export const getCitiesByCountry = (id) =>
   get(SERVICE_URLS.getCitiesByCountry(id));
+export const getCityById = (id) => get(SERVICE_URLS.getCityById(id));
+
 export const getCityisDesired = (params) => {
   console.log("getCityisDesired", params);
   // const qs = jsonToQueryString(params);

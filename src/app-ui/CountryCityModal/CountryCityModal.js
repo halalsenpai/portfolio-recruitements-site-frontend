@@ -30,16 +30,16 @@ const CountryCityModal = ({
   useEffect(() => {
     if (selectedCountryId) {
       dispatch(getCitiesByCountry(selectedCountryId));
-      console.log(selectedCountryId);
     }
   }, [selectedCountryId]);
 
   const handleSelectedCities = (v) => {
+    console.log("cities: ", v);
     setSelectedCitiesIds(v);
+    // console.log(selectedCountryId);
   };
   const onSave = () => {
     setCountriesCitiesModal(false);
-    console.log(selectedCountryId);
   };
 
   return (
