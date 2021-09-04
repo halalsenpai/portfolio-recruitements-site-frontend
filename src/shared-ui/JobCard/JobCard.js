@@ -1,7 +1,4 @@
-import React, { useEffect } from "react";
-
-import { Checkbox } from "antd";
-
+import React from "react";
 import defaultImage from "../../assets/images/default.png";
 import { readableDate } from "../../utils/helper";
 
@@ -72,7 +69,6 @@ const getTagByType = (type) => {
 };
 
 function JobCard({ job = {}, type, onClick }) {
-  console.log(job?.featured);
   return (
     <div
       onClick={onClick}
@@ -114,7 +110,7 @@ function JobCard({ job = {}, type, onClick }) {
           {type === "box" && (
             <>
               <span className="more-info">
-                <p>Ends on {readableDate(job.endDate)}</p>
+                <p>Ends on {readableDate(job.expiredAt)}</p>
               </span>
             </>
           )}
@@ -123,7 +119,8 @@ function JobCard({ job = {}, type, onClick }) {
             <span className="more-info">
               <p>{job.employmentType}</p>
               <p>
-                {job.salaryRangeFrom}-{job.salaryRangeUpto} AED-month
+                {job?.salaryRangeFrom}-{job?.salaryRangeUpto} {job?.currency}/
+                {job?.salaryType}
               </p>
             </span>
           )}
@@ -145,7 +142,9 @@ function JobCard({ job = {}, type, onClick }) {
             <p style={{ fontSize: "14px" }}>{job?.title}</p>
             <p>{job?.company?.companyName}</p>
             <p>{job?.employmentType}</p>
-            <p>{job?.salaryRangeUpto} AED-month</p>
+            <p>
+              {job?.salaryRangeUpto} {job?.currency}/{job?.salaryType}{" "}
+            </p>
             <p style={{ color: "#5271FF" }}>{job.country}</p>
           </div>
         )}
@@ -176,4 +175,4 @@ function JobCard({ job = {}, type, onClick }) {
   );
 }
 
-export default JobCard;
+export default React.memo(JobCard);

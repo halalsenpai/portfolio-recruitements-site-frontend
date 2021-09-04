@@ -1,18 +1,15 @@
+@import "../../assets/scss/variables";
+
 .country-city-modal-parent .modal-dialog {
   padding: 0 !important;
 }
 
 .country-city-modal-parent .modal-dialog .modal-content {
-  -webkit-box-shadow: 0 0 0 1px rgba(128, 128, 128, 0.4);
-          box-shadow: 0 0 0 1px rgba(128, 128, 128, 0.4);
+  : 0 0 0 1px #d4d4d4;
   border-radius: 16px;
   max-width: 660px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
   margin: 0 auto;
 }
 
@@ -26,26 +23,16 @@
   background-color: #ffffff;
   outline: none;
   opacity: 1;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
   float: right;
   font-size: 1rem;
 }
 
 .country-city-modal-parent .countries-cities-selector .country-city-wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
   border-bottom: gray;
 }
 
@@ -55,8 +42,8 @@
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 100%;
   padding: 1em 2em;
   font-size: 18px;
@@ -66,24 +53,24 @@
 .country-city-modal-parent .countries-cities-selector .header {
   height: 60px;
   -webkit-box-shadow: 0 8px 8px -8px gray;
-          box-shadow: 0 8px 8px -8px gray;
+  box-shadow: 0 8px 8px -8px gray;
   font-size: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .country-city-modal-parent .countries-cities-selector .country-list {
   height: calc(100vh - 220px);
   overflow-y: auto;
   -ms-flex-preferred-size: 50%;
-      flex-basis: 50%;
+  flex-basis: 50%;
 }
 
 .country-city-modal-parent .countries-cities-selector .country-list .country-list-item {
@@ -91,8 +78,8 @@
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   padding: 1em 2em;
   border-bottom: solid 1px rgba(42, 143, 255, 0.4);
   cursor: pointer;
@@ -116,7 +103,7 @@
   height: calc(100vh - 220px);
   overflow-y: auto;
   -ms-flex-preferred-size: 50%;
-      flex-basis: 50%;
+  flex-basis: 50%;
 }
 
 .country-city-modal-parent .countries-cities-selector .city-list .title {
@@ -125,8 +112,8 @@
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   width: 100%;
   padding: 1em 2em;
   font-size: 18px;
@@ -151,8 +138,8 @@
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: baseline;
-      -ms-flex-align: baseline;
-          align-items: baseline;
+  -ms-flex-align: baseline;
+  align-items: baseline;
   padding: 1em 2em;
 }
 
@@ -161,16 +148,11 @@
 }
 
 .country-city-modal-parent .countries-cities-selector .footer {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
   padding-top: 1em;
   padding-bottom: 1em;
-  -webkit-box-shadow: 0 -8px 8px -8px rgba(128, 128, 128, 0.4);
-          box-shadow: 0 -8px 8px -8px rgba(128, 128, 128, 0.4);
+  box-shadow: 0 -8px 8px -8px rgba(128, 128, 128, 0.4);
 }
 
 .country-city-modal-parent .country-city-modal {

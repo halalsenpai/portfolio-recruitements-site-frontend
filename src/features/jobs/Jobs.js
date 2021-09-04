@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 import { Form, Empty, Spin } from "antd";
 import { SuperSelectFindJobs } from "../../shared-ui/superselectfindjobs/superselectfindjobs";
 import { transformJobData } from "./transformers";
+import { useForm } from "antd/lib/form/Form";
 import Button from "../../shared-ui/Button/Button";
 import { MappedElement } from "../../utils/helper";
 import JobCard from "../../shared-ui/JobCard/JobCard";
@@ -24,11 +26,29 @@ import {
   getQualification,
   getJobByCategory,
   getJobsByCompany,
+  getCurrencyType,
 } from "./thunk";
 
-import { getCountryisDesired as countryisDesired, getCityisDesired as cityisDesired, jobTitlesFindJobs } from "./service";
-import { selectJobs, selectStatus } from "./slice";
-import { selectCountries, selectEmploymentTypes, selectJobTitles, selectAccommodations, selectOtherJobs, selectOtherJobsByCompany } from "./slice";
+import {
+  getCountryisDesired as countryisDesired,
+  getCityisDesired as cityisDesired,
+  jobTitlesFindJobs,
+  getCityById,
+} from "./service";
+import {
+  selectCurrencyType,
+  selectJobs,
+  selectStatus,
+  selectSalaryType,
+} from "./slice";
+import {
+  selectCountries,
+  selectEmploymentTypes,
+  selectJobTitles,
+  selectAccommodations,
+  selectOtherJobs,
+  selectOtherJobsByCompany,
+} from "./slice";
 
 import "./_Jobs.scss";
 import "./_Responsive.scss";
@@ -37,10 +57,13 @@ import { SuperSelect } from "../../shared-ui/SuperSelect/SuperSelect";
 function Jobs() {
   const myRef = useRef(null);
   const formRef = useRef();
+  const [form] = useForm();
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(selectStatus);
   const jobTitles = useAppSelector(selectJobTitles);
   const employmentTypes = useAppSelector(selectEmploymentTypes);
+  const currencyType = useAppSelector(selectCurrencyType);
+  const salaryTypes = useAppSelector(selectSalaryType);
   const countries = useAppSelector(selectCountries);
   const jobs = useAppSelector(selectJobs);
   const accommodations = useAppSelector(selectAccommodations);
@@ -51,27 +74,44 @@ function Jobs() {
   const [showJobDetails, setShowJobDetails] = useState(false);
   const [categoryId, setcategoryId] = useState(null);
   const [companyId, setcompanyId] = useState(null);
+  const [searchedCityId, setSearchedCityId] = useState(null);
+
   const [queryParams, setQueryParams] = useState({
     page: 1,
     limit: 100,
   });
 
+  const searchCityName = async (id) => {
+    try {
+      let res = await getCityById(id);
+      res.data.length && setSearchedCityId(res.data[0].title);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     dispatch(getJob());
     dispatch(getJobTitle());
     dispatch(getEmploymentType());
-    // dispatch(getCountry());
     dispatch(getCountryisDesired());
     dispatch(getCity());
     dispatch(getQualification());
     dispatch(getFieldOfStudy());
     dispatch(getGrade());
     dispatch(getAccommodation());
+    dispatch(getCurrencyType());
   }, []);
 
   useEffect(() => {
     dispatch(getJob({ qs: queryParams }));
   }, []);
+  useEffect(() => {
+    dispatch(getJob({ qs: queryParams }));
+  }, [queryParams]);
+  useEffect(() => {
+    searchedCityId && searchCityName(searchedCityId);
+  }, [searchedCityId]);
 
   useEffect(() => {
     dispatch(getJobByCategory(categoryId));
@@ -102,6 +142,8 @@ function Jobs() {
   const onSearchJob = (values) => {
     const qs = { ...queryParams, ...values };
     setQueryParams(qs);
+    setSearchedCityId(values.location);
+
     dispatch(getJob({ qs }));
   };
   let timeout = 0;
@@ -123,16 +165,23 @@ function Jobs() {
 
         {/* Job List */}
         <div className="find-jobs-section">
-          {isLoading && (
+          {/* {isLoading && (
             <div className="preloader">
               <Spin />
             </div>
-          )}
+          )} */}
 
-          <Form className="job-sc" onFinish={onSearchJob} ref={formRef}>
+          <Form
+            className="job-sc"
+            onFinish={onSearchJob}
+            form={form}
+            ref={formRef}>
             <span className="form-fields job-filter-section">
               <div className="jobs-filter-header-secrion">
-                <Form.Item style={{ zIndex: "390" }} name="jobTitleName" className="find-job-super-select c-input">
+                <Form.Item
+                  style={{ zIndex: "390" }}
+                  name="jobTitleName"
+                  className="find-job-super-select c-input">
                   <SuperSelectFindJobs
                     style={{ zIndex: "390" }}
                     placeholder="Job title"
@@ -144,7 +193,9 @@ function Jobs() {
                     // className="small"
                   />
                 </Form.Item>
-                <Form.Item name="location" className="find-job-super-select c-input">
+                <Form.Item
+                  name="location"
+                  className="find-job-super-select c-input">
                   {/* <Input
                     size="small"
                     className="xs"
@@ -174,17 +225,72 @@ function Jobs() {
                 </Form.Item>
               </div>
               <div className="jobs-button-section">
-                <Button type="small" htmlType="submit" className="filter-btns" themeColor="rounded light" style={{ height: "32px" }}>
+                <Button
+                  type="small"
+                  htmlType="submit"
+                  className="filter-btns"
+                  themeColor="rounded light"
+                  style={{ height: "32px" }}>
                   Go
                 </Button>
 
-                <Button icon={<img src={filterIcon} alt="ico" />} className=" filter-icon rounded shadowed filter-btns" onClick={ShowFilter}></Button>
+                <Button
+                  icon={<img src={filterIcon} alt="ico" />}
+                  className=" filter-icon rounded shadowed filter-btns"
+                  onClick={ShowFilter}></Button>
               </div>
             </span>
           </Form>
 
           <div className="jobs-list">
-            {!jobs.length && <CEmpty description={"No jobs"} />}
+            {/* {!jobs.length && (
+              <div className="preloader">
+                <Spin />
+              </div>
+            )} */}
+            {!jobs.length && (
+              <>
+                {/* <Empty
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    height: "95%",
+                    justifyContent: "center",
+                  }}
+                  description={"No job"}
+                  image={require("../../assets/images/icons/noData.png")}
+                  imageStyle={{
+                    height: 150,
+                  }}
+                /> */}
+                <p>
+                  We couldn't find any jobs that matches your search. Your
+                  Search for <b> {form.getFieldValue("jobTitleName")} </b> in
+                  <b> {searchedCityId} </b> didn't match any jobs{" "}
+                </p>
+                <br />
+                <p>Here are some tips: </p>
+                <ul>
+                  <li>Try other job titles</li>
+                  <li>Try Alternative Locations</li>
+                  <li>Adjust the filter to broaden your search</li>
+                </ul>
+                <Link to="/jobs">
+                  <Button
+                    className="applied"
+                    themeColor="filled_blue"
+                    onClick={() => {
+                      setQueryParams({ page: 1, limit: 100 });
+                    }}
+                    // onClick={onApplyJob}
+                    // loading={applyJobLoading}
+                    // need to use reset job functionality here
+                  >
+                    Back to jobs
+                  </Button>
+                </Link>
+              </>
+            )}
 
             <MappedElement
               data={jobs}
@@ -194,11 +300,19 @@ function Jobs() {
                     key={index}
                     onClick={() => {
                       setJobDetails(obj);
+                      executeScroll();
                       setShowJobDetails(true);
                       setcategoryId(obj.categoriesId);
                       setcompanyId(obj.companyId);
                     }}
-                    job={transformJobData(obj, jobTitles, employmentTypes, countries)}
+                    job={transformJobData(
+                      obj,
+                      jobTitles,
+                      employmentTypes,
+                      countries,
+                      salaryTypes,
+                      currencyType
+                    )}
                   />
                 );
               }}
@@ -207,22 +321,37 @@ function Jobs() {
         </div>
 
         {/* Job Detail */}
-        <div ref={myRef} className={`job-details ${showJobDetails ? "job-details-show" : ""}`}>
+        <div
+          ref={myRef}
+          className={`job-details ${showJobDetails ? "job-details-show" : ""}`}>
           {isLoading && (
             <div className="preloader">
               <Spin />
             </div>
           )}
 
-          <RiCloseCircleLine className="back-icon-job" onClick={() => setShowJobDetails(false)} />
+          <RiCloseCircleLine
+            className="back-icon-job"
+            onClick={() => setShowJobDetails(false)}
+          />
 
-          {!jobDetails && <CEmpty description={"please select a job"} />}
-
+          {!jobDetails && (
+            <div className="preloader">
+              <Spin />
+            </div>
+          )}
           {jobDetails && (
             <JobDetails
               setShowJobDetails={() => setJobDetails(false)}
               otherJobs={otherJobs}
-              data={transformJobData(jobDetails, jobTitles, employmentTypes, countries)}
+              data={transformJobData(
+                jobDetails,
+                jobTitles,
+                employmentTypes,
+                countries,
+                salaryTypes,
+                currencyType
+              )}
               extraData={{ accommodations }}
               setJobDetails={setJobDetails}
               executeScroll={executeScroll}

@@ -33,10 +33,11 @@ function Home() {
 
                 <Fade bottom delay={500}>
                   <p className="banner-content mobile-textalign">
-                    We asked 97 companies in the Middle East and 1000 job
-                    seekers across the globe to find out what they struggle with
-                    when searching on job sites, and based on your feedback we
-                    have built the most advanced hiring platform in the MidEast.
+                    Jobsmideast is the fastest growing career platform in the
+                    Middle East. Our portal allows job seekers and companies to
+                    connect directly, chat in real time, track of all
+                    applications sent or received, and other cutting-edge
+                    features to help you find the right fit.
                   </p>
                 </Fade>
 
@@ -46,7 +47,8 @@ function Home() {
                       onClick={() => history.push("/signup")}
                       className="mt-4 mb-3 button-center get-started-btn"
                       themeColor="blue"
-                      type={"large"}>
+                      type={"large"}
+                    >
                       Get Started{" "}
                       <img
                         className="animated-icon"
@@ -99,7 +101,7 @@ function Home() {
                 />
                 <span>
                   <h3 className="a-text">Free CRM</h3>
-                  <p>Stay connected with your entire team.</p>
+                  <p>Built-in CRM with drag and drop function.</p>
                 </span>
               </div>
 
@@ -120,7 +122,9 @@ function Home() {
                 />
                 <span>
                   <h3 className="a-text">Direct chat + Inbox</h3>
-                  <p>Keep all your conversations in one place.</p>
+                  <p>
+                    No more emails; connect & chat with candidates directly.
+                  </p>
                 </span>
               </div>
               <div className="box">
@@ -129,8 +133,11 @@ function Home() {
                   alt="img"
                 />
                 <span>
-                  <h3 className="a-text">Profile Match</h3>
-                  <p>Find the suitable person for the job in a few clicks.</p>
+                  <h3 className="a-text">Candidate Match</h3>
+                  <p>
+                    Our smart filters will find you the perfect match in no
+                    time.
+                  </p>
                 </span>
               </div>
             </div>
@@ -167,7 +174,10 @@ function Home() {
                 />
                 <span>
                   <h3 className="b-text">One click apply</h3>
-                  <p>Shortlist jobs and apply to all of them with 1 click</p>
+                  <p>
+                    Short list multiple jobs and apply to them all with just 1
+                    click
+                  </p>
                 </span>
               </div>
 
@@ -179,7 +189,8 @@ function Home() {
                 <span>
                   <h3 className="b-text">Job Match</h3>
                   <p>
-                    Let our system do the work for you even while you sleep!
+                    Set filters and let our clever system to match you with the
+                    right jobs
                   </p>
                 </span>
               </div>
@@ -190,7 +201,9 @@ function Home() {
                 />
                 <span>
                   <h3 className="b-text">Direct chat + Inbox</h3>
-                  <p>Talk to employers & agencies in real time, no emails!</p>
+                  <p>
+                    Chat to employers & agencies in real time, no more emails!
+                  </p>
                 </span>
               </div>
               <div className="box">
@@ -201,7 +214,8 @@ function Home() {
                 <span>
                   <h3 className="b-text">Follow Companies</h3>
                   <p>
-                    Follow companies and stay up to date with all their jobs
+                    Follow your favorite companies and stay up to date with
+                    their latest vacancies
                   </p>
                 </span>
               </div>
@@ -214,39 +228,51 @@ function Home() {
             <div className="padding-mobile bottom-text-section text-column ">
               <img
                 className="bottom-logo"
-                src={require("..//..//assets/images/logo/logo-md.png")}
+                src={require("..//..//assets/images/logo/jobsmideast-logo.png")}
                 alt=""
               />
               <span className="small-paragraph">
+                <strong>The smartest job site in the Middle East</strong>
+                <br />
                 <p>
-                  Jobsmideast.com is the most advanced job platform in the
-                  Middle East. We understand the problems individuals face on
-                  daily basis when searching for the right role, or finding the
-                  suitable candidate to join their team, and we are forever
-                  changing the way employers, job seekers & agencies connect.
+                  Jobsmideast.com is the most advanced recruitment platform in
+                  the Middle East. Whether you’re a job seeker or looking to
+                  hire, Jobsmideast is here to support you in finding the right
+                  fit. We have partnered with over thousands of Middle East
+                  based companies, as well as other international companies that
+                  use our intelligent features to look for qualified candidates.
+                </p>
+
+                <p>
+                  We’re striving to innovate technologies that bring employers
+                  and candidates together, using cutting edge software solution
+                  allowing companies to shortlist profiles by filtering through
+                  bulks of applicants and finding the right people for the job
+                  in a few clicks.
                 </p>
 
                 <p>
                   Our creative team consists of some of the most talented and
                   experienced web developers, recruitment consultants, social
-                  media specialists and client account managers to make your
-                  Jobsmideast experience efficient, effortless and enjoyable.
-                  Client service is at the heart of our operation and it’s our
-                  number 1 priority here at Jobsmideast.
+                  media specialists, and client account managers to make your
+                  hiring experience efficient, effortless, and enjoyable. Client
+                  service is at the heart of our operations, and it is our
+                  priority at Jobsmideast.com.
                 </p>
 
                 <p>
-                  Jobsmideast.com will be operating in Bahrain, Egypt, India,
-                  Kuwait, Oman, Pakistan, Qatar, Saudi Arabia & United Arab
-                  Emirates providing the most advanced recruitment tools,
-                  communication systems and API capabilities which will cater
-                  for 38 sectors and over 439 sub sectors.
+                  Jobsmideast.com operates in Bahrain, Egypt, India, Kuwait,
+                  Oman, Pakistan, Qatar, Saudi Arabia & the United Arab
+                  Emirates, providing the most advanced recruitment tools,
+                  communication systems, and API capabilities which will cater
+                  to a minimum of 38 sectors and over 439 sub-sectors.
                 </p>
               </span>
               <Button className="demo-btn" themeColor="blue">
                 <a
                   className="book-a-demo-btn"
-                  href="https://calendly.com/jobsmideast/demo?month=2021-04&back=1">
+                  href="https://calendly.com/jobsmideast/demo?month=2021-04&back=1"
+                >
                   Book a Demo
                 </a>
               </Button>

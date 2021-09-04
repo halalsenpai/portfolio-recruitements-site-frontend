@@ -38,7 +38,7 @@ const ModalCertificateForm = () => {
                 rules={Rules.phoneRule}
               >
                 <label className="required">Start date</label>
-                <DatePicker />
+                <DatePicker format="DD-MM-YYYY" />
               </Form.Item>
 
               <Form.Item
@@ -53,7 +53,7 @@ const ModalCertificateForm = () => {
                   </Checkbox>
                 </span>
 
-                <DatePicker />
+                <DatePicker format="DD-MM-YYYY" />
               </Form.Item>
             </div>
 

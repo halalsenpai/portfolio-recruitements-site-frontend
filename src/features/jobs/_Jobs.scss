@@ -1,4 +1,4 @@
-@import "../../assets/scss/variables";
+@import '../../assets/scss/variables';
 
 .jobs-page {
   overflow-y: auto;
@@ -14,7 +14,12 @@
     height: 110px;
     padding: 0px 50px 0px 50px;
     background: rgb(2, 0, 36);
-    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(52, 30, 91, 1) 0%, rgba(245, 38, 102, 1) 100%);
+    background: linear-gradient(
+      90deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(52, 30, 91, 1) 0%,
+      rgba(245, 38, 102, 1) 100%
+    );
 
     .header {
       flex-direction: row;
@@ -89,6 +94,7 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      min-width: 500px;
 
       .job-sc {
       }
@@ -105,7 +111,7 @@
       flex: 1;
       overflow-y: auto;
       // background: #efefef;
-      z-index: 200 !important;
+      z-index: 450 !important;
       .back-icon-job {
         position: absolute;
         color: #fff;
@@ -169,7 +175,8 @@
             padding-left: 12px;
           }
           .ant-select-single.ant-select-show-arrow .ant-select-selection-item,
-          .ant-select-single.ant-select-show-arrow .ant-select-selection-placeholder {
+          .ant-select-single.ant-select-show-arrow
+            .ant-select-selection-placeholder {
             padding-right: 18px;
             padding-left: 14px;
           }

@@ -21,7 +21,7 @@ function JobSeekers() {
         </div>
         <div className="w-45 job-n-demo">
           <Button
-            onClick={() => history.push("/signup")}
+            onClick={() => history.push("/user-signup")}
             type="large"
             className="blue"
           >

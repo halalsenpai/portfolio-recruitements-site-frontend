@@ -21,6 +21,7 @@ import {
   getSuitableFor as getSuitableForAPI,
   getFilteredJob as getFilteredJobAPI,
   getCitiesByCountry as getCitiesByCountryAPI,
+  getCurrencyType as getCurrencyTypeAPI,
 } from "./service";
 
 export const getJob = createAsyncThunk("jobs/get-job", async ({ qs }) => {
@@ -41,16 +42,25 @@ export const getEmploymentType = createAsyncThunk(
     return response.data;
   }
 );
-
+export const getCurrencyType = createAsyncThunk(
+  "auth/get-currency-type",
+  async () => {
+    const response = await getCurrencyTypeAPI();
+    return response.data;
+  }
+);
 export const getCountry = createAsyncThunk("jobs/get-country", async () => {
   const response = await getCountryAPI();
   return response.data;
 });
 
-export const getCountryisDesired = createAsyncThunk("jobs/get-country-isDesired", async () => {
-  const response = await getCountryisDesiredAPI();
-  return response.data;
-});
+export const getCountryisDesired = createAsyncThunk(
+  "jobs/get-country-isDesired",
+  async () => {
+    const response = await getCountryisDesiredAPI();
+    return response.data;
+  }
+);
 
 export const getCity = createAsyncThunk("jobs/get-city", async () => {
   const response = await getCityAPI();
@@ -145,7 +155,7 @@ export const getFilteredJob = createAsyncThunk(
   "jobs/get-filtered-job",
   async (params) => {
     const newparams = String("&").concat(params);
-    console.log(newparams);
+    // console.log(newparams);
     const response = await getFilteredJobAPI(newparams);
     return response.data;
   }
