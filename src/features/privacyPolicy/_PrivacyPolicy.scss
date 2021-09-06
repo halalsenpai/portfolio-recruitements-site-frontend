@@ -107,7 +107,7 @@
         text-align: left !important;
       }
       .ul-div {
-        padding-left: 10px;
+        padding-left: 0px;
       }
       ul {
         li {
@@ -115,11 +115,11 @@
           div {
             font-size: 12px !important;
             margin-right: 10px;
-            min-width: 28px;
+            min-width: 20px !important;
           }
         }
         .abc-point {
-          text-indent: 4px;
+          text-indent: 15px;
           .overide-right {
             margin-right: 12px;
           }
