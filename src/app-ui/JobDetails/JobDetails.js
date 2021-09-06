@@ -280,9 +280,12 @@ function JobDetails({
                 {data?.certificate?.title && (
                   <li>Certificate required{data?.certificate?.title}</li>
                 )}
-                {data?.experienceListId > 0 && (
+                {data?.experienceListId >= 0 && (
                   <li>
-                    {data?.experienceListId}&nbsp;years of minimum experience
+                    {data?.experienceListId === 0
+                      ? "No experience required"
+                      : data.experienceListId + " years of minimum experience"}
+                    &nbsp;
                   </li>
                 )}
                 {data?.language?.title && (
@@ -505,16 +508,11 @@ function JobDetails({
                     </Carousel>
                   )}
 
-<<<<<<< HEAD
                 {data?.company?.videoUrl && (
-=======
-                {data.company.videoUrl && (
->>>>>>> ec1e05d69d22c2273169bdd9494418721b177357
                   <span className="content-block mt-4 pr-0">
                     <h6 className="block-title company-page-heading thick-title mb-3">
                       Company Video{" "}
                     </h6>
-<<<<<<< HEAD
                     {data?.company?.videoUrl && (
                       <div className="page-layouts video-section">
                         <div className="w-100">
@@ -525,24 +523,10 @@ function JobDetails({
                             className="company-profile-video"
                           />
                         </div>
-=======
-
-                    {!data.company?.videoUrl && ""}
-                    {data.company?.videoUrl && (
-                      <div className="block-video">
-                        <video className="w-100" controls>
-                          <source
-                            src={data.company.videoUrl}
-                            type="video/mp4"
-                          />
-                          Your browser does not support the video tag.
-                        </video>
->>>>>>> ec1e05d69d22c2273169bdd9494418721b177357
                       </div>
                     )}
                   </span>
                 )}
-<<<<<<< HEAD
 
                 <span className="content-block mt-4 pr-0">
                   <h6 className="block-title company-page-heading thick-title mb-3">
@@ -556,22 +540,6 @@ function JobDetails({
                     />
                   </div>
                 </span>
-=======
-                {data?.company?.companyLocation && (
-                  <span className="content-block mt-4 pr-0">
-                    <h6 className="block-title company-page-heading thick-title mb-3">
-                      Company location
-                    </h6>
-                    <div className="block-map">
-                      <Map
-                        data={data?.company}
-                        location={data?.company?.companyLocation}
-                        zoom={16}
-                      />
-                    </div>
-                  </span>
-                )}
->>>>>>> ec1e05d69d22c2273169bdd9494418721b177357
               </>
             )}
           </span>
@@ -590,7 +558,7 @@ function JobDetails({
                     gutter={16}
                     style={{ margin: "0 auto", width: "100%" }}
                     justify={`${
-                      otherJobs?.length === 4 ? "space-around" : "flex-start"
+                      otherJobs?.length === 4 ? "space-between" : "flex-start"
                     }`}
                   >
                     {otherJobs?.map((otherJob, i) => (
