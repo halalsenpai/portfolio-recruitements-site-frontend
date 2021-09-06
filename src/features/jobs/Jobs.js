@@ -13,7 +13,7 @@ import JobDetails from "../../app-ui/JobDetails/JobDetails";
 import filterIcon from "../../assets/images/icons/filter_icon.svg";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { RiCloseCircleLine } from "react-icons/ri";
-
+import { useHistory } from "react-router";
 import {
   getJob,
   getAccommodation,
@@ -75,6 +75,11 @@ function Jobs() {
   const [categoryId, setcategoryId] = useState(null);
   const [companyId, setcompanyId] = useState(null);
   const [searchedCityId, setSearchedCityId] = useState(null);
+  const history = useHistory();
+  const searchId = history.location.search;
+
+  console.log("searchId", searchId);
+  console.log("history", history);
 
   const [queryParams, setQueryParams] = useState({
     page: 1,
@@ -162,6 +167,7 @@ function Jobs() {
     <div className="jobs-page">
       <div className="jobs-wrapper">
         <JobFilter show={filter} onHide={ShowFilter} />
+        {console.log("jobs", jobs)}
 
         {/* Job List */}
         <div className="find-jobs-section">
@@ -175,13 +181,15 @@ function Jobs() {
             className="job-sc"
             onFinish={onSearchJob}
             form={form}
-            ref={formRef}>
+            ref={formRef}
+          >
             <span className="form-fields job-filter-section">
               <div className="jobs-filter-header-secrion">
                 <Form.Item
                   style={{ zIndex: "390" }}
                   name="jobTitleName"
-                  className="find-job-super-select c-input">
+                  className="find-job-super-select c-input"
+                >
                   <SuperSelectFindJobs
                     style={{ zIndex: "390" }}
                     placeholder="Job title"
@@ -195,7 +203,8 @@ function Jobs() {
                 </Form.Item>
                 <Form.Item
                   name="location"
-                  className="find-job-super-select c-input">
+                  className="find-job-super-select c-input"
+                >
                   {/* <Input
                     size="small"
                     className="xs"
@@ -230,14 +239,16 @@ function Jobs() {
                   htmlType="submit"
                   className="filter-btns"
                   themeColor="rounded light"
-                  style={{ height: "32px" }}>
+                  style={{ height: "32px" }}
+                >
                   Go
                 </Button>
 
                 <Button
                   icon={<img src={filterIcon} alt="ico" />}
                   className=" filter-icon rounded shadowed filter-btns"
-                  onClick={ShowFilter}></Button>
+                  onClick={ShowFilter}
+                ></Button>
               </div>
             </span>
           </Form>
@@ -323,7 +334,8 @@ function Jobs() {
         {/* Job Detail */}
         <div
           ref={myRef}
-          className={`job-details ${showJobDetails ? "job-details-show" : ""}`}>
+          className={`job-details ${showJobDetails ? "job-details-show" : ""}`}
+        >
           {isLoading && (
             <div className="preloader">
               <Spin />

@@ -557,9 +557,8 @@ function JobDetails({
                   <Row
                     gutter={16}
                     style={{ margin: "0 auto", width: "100%" }}
-                    justify={`${
-                      otherJobs?.length === 4 ? "space-between" : "flex-start"
-                    }`}
+                    // justify={`${otherJobs?.length === 4 ? " " : "flex-start"}`}
+                    justify="flex-start"
                   >
                     {otherJobs?.map((otherJob, i) => (
                       <Col
