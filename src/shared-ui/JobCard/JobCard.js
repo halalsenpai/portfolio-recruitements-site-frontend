@@ -1,6 +1,6 @@
 import React from "react";
 import defaultImage from "../../assets/images/default.png";
-import { readableDate } from "../../utils/helper";
+import { dayTimeLeftFromNowTrue, readableDate } from "../../utils/helper";
 
 const JobTagTypes = {
   MESSAGED: "MESSAGED",
@@ -103,7 +103,9 @@ function JobCard({ job = {}, type, onClick }) {
               <span>
                 <p>{job.company?.companyName}</p>
 
-                <p>Open till {readableDate(job.endDate)}</p>
+                {/* <p>Open till {readableDate(job.endDate)}</p> */}
+                <p>Ends in {dayTimeLeftFromNowTrue(job.expiredAt)}</p>
+                {console.log(readableDate(job.expiredAt))}
               </span>
             )}
           </span>
@@ -146,7 +148,8 @@ function JobCard({ job = {}, type, onClick }) {
             <p>{job?.company?.companyName}</p>
             <p>{job?.employmentType}</p>
             <p>
-              {job?.salaryRangeUpto} {job?.currency}/{job?.salaryType}{" "}
+              {job?.salaryRangeFrom}-{job?.salaryRangeUpto} {job?.currency}/
+              {job?.salaryType}{" "}
             </p>
             <p style={{ color: "#5271FF" }}>{job.country}</p>
           </div>

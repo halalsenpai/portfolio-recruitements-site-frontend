@@ -92,11 +92,11 @@ export const readableDate = (d) => {
   return moment(d).format("DD MMM YYYY");
 };
 
-export const dayTimeLeftFromNow = (d) => {
+export const dayTimeLeftFromNowTrue = (d) => {
   if (!d) {
     return null;
   }
-  return moment(d).fromNow();
+  return moment(d).fromNow(true);
 };
 
 export const setTimeToZero = (d) => {
