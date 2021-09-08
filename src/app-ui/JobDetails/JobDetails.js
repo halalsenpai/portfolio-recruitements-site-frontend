@@ -292,12 +292,6 @@ function JobDetails({
                 {data?.language?.title && (
                   <li>Native language: &nbsp;{data?.language?.title}</li>
                 )}
-                {console.log(languages, data?.otherLanguageId)}
-                {console.log(
-                  data?.otherLanguageId
-                    .map((lang) => getTitleById(languages, parseInt(lang)))
-                    ?.join(", ")
-                )}
                 {data?.otherLanguageId?.length && (
                   <li>
                     Other languages: &nbsp;
