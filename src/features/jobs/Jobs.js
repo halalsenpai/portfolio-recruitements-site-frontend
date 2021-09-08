@@ -27,6 +27,7 @@ import {
   getJobByCategory,
   getJobsByCompany,
   getCurrencyType,
+  getLanguage,
 } from "./thunk";
 
 import {
@@ -65,6 +66,7 @@ function Jobs() {
   const currencyType = useAppSelector(selectCurrencyType);
   const salaryTypes = useAppSelector(selectSalaryType);
   const countries = useAppSelector(selectCountries);
+
   const jobs = useAppSelector(selectJobs);
   const accommodations = useAppSelector(selectAccommodations);
   const otherJobs = useAppSelector(selectOtherJobs);
@@ -78,8 +80,8 @@ function Jobs() {
   const history = useHistory();
   const searchId = history.location.search;
 
-  console.log("searchId", searchId);
-  console.log("history", history);
+  // console.log("searchId", searchId);
+  // console.log("history", history);
 
   const [queryParams, setQueryParams] = useState({
     page: 1,
@@ -106,6 +108,7 @@ function Jobs() {
     dispatch(getGrade());
     dispatch(getAccommodation());
     dispatch(getCurrencyType());
+    dispatch(getLanguage());
   }, []);
 
   useEffect(() => {
@@ -167,7 +170,7 @@ function Jobs() {
     <div className="jobs-page">
       <div className="jobs-wrapper">
         <JobFilter show={filter} onHide={ShowFilter} />
-        {console.log("jobs", jobs)}
+        {/* {console.log("jobs", jobs)} */}
 
         {/* Job List */}
         <div className="find-jobs-section">
@@ -181,15 +184,13 @@ function Jobs() {
             className="job-sc"
             onFinish={onSearchJob}
             form={form}
-            ref={formRef}
-          >
+            ref={formRef}>
             <span className="form-fields job-filter-section">
               <div className="jobs-filter-header-secrion">
                 <Form.Item
                   style={{ zIndex: "390" }}
                   name="jobTitleName"
-                  className="find-job-super-select c-input"
-                >
+                  className="find-job-super-select c-input">
                   <SuperSelectFindJobs
                     style={{ zIndex: "390" }}
                     placeholder="Job title"
@@ -203,8 +204,7 @@ function Jobs() {
                 </Form.Item>
                 <Form.Item
                   name="location"
-                  className="find-job-super-select c-input"
-                >
+                  className="find-job-super-select c-input">
                   {/* <Input
                     size="small"
                     className="xs"
@@ -239,16 +239,14 @@ function Jobs() {
                   htmlType="submit"
                   className="filter-btns"
                   themeColor="rounded light"
-                  style={{ height: "32px" }}
-                >
+                  style={{ height: "32px" }}>
                   Go
                 </Button>
 
                 <Button
                   icon={<img src={filterIcon} alt="ico" />}
                   className=" filter-icon rounded shadowed filter-btns"
-                  onClick={ShowFilter}
-                ></Button>
+                  onClick={ShowFilter}></Button>
               </div>
             </span>
           </Form>
@@ -334,8 +332,7 @@ function Jobs() {
         {/* Job Detail */}
         <div
           ref={myRef}
-          className={`job-details ${showJobDetails ? "job-details-show" : ""}`}
-        >
+          className={`job-details ${showJobDetails ? "job-details-show" : ""}`}>
           {isLoading && (
             <div className="preloader">
               <Spin />

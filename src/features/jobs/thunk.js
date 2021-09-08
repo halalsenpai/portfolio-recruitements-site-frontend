@@ -23,6 +23,7 @@ import {
   getCitiesByCountry as getCitiesByCountryAPI,
   getCurrencyType as getCurrencyTypeAPI,
 } from "./service";
+import { getLanguage as getLanguageAPI } from "./../../app-ui/JobFilter/service";
 
 export const getJob = createAsyncThunk("jobs/get-job", async ({ qs }) => {
   const _qs = jsonToQueryString(qs);
@@ -168,3 +169,8 @@ export const getCitiesByCountry = createAsyncThunk(
     return response.data;
   }
 );
+
+export const getLanguage = createAsyncThunk("/jobs/get-languages", async () => {
+  const response = await getLanguageAPI();
+  return response.data;
+});

@@ -21,6 +21,7 @@ import {
   getFilteredJob,
   getCitiesByCountry,
   getCurrencyType,
+  getLanguage,
 } from "./thunk";
 
 const thunks = [
@@ -61,6 +62,7 @@ const initialState = {
   otherJobs: [],
   otherJobsByCompany: [],
   suitableFor: [],
+  language: [],
   citiesByCountry: [],
   applyFilterSuccess: false,
 };
@@ -140,6 +142,10 @@ export const slice = createSlice({
         state.status = "idle";
         state.otherJobsByCompany = action.payload;
       })
+      .addCase(getLanguage.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.language = action.payload;
+      })
       .addCase(getSuitableFor.fulfilled, (state, action) => {
         state.status = "idle";
         state.suitableFor = action.payload;
@@ -173,6 +179,7 @@ export const selectJobTitles = (state) => state.jobs.jobTitles;
 export const selectEmploymentTypes = (state) => state.jobs.employmentTypes;
 export const selectCountries = (state) => state.jobs.countries;
 export const selectCities = (state) => state.jobs.cities;
+export const selectLanguage = (state) => state.jobs.language;
 export const selectQualifications = (state) => state.jobs.qualifications;
 export const selectFieldsOfStudy = (state) => state.jobs.fieldsOfStudy;
 export const selectGrades = (state) => state.jobs.grades;

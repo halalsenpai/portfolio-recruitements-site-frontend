@@ -25,6 +25,7 @@ import {
   selectJobTitles,
   selectOtherJobs,
   selectSalaryType,
+  selectLanguage,
 } from "../../features/jobs/slice";
 import JobCard from "../../shared-ui/JobCard/JobCard";
 import { transformJobData } from "../../features/jobs/transformers";
@@ -51,6 +52,8 @@ function JobDetails({
   const categories = useAppSelector(selectCategories);
   const currencyType = useAppSelector(selectCurrencyType);
   const salaryTypes = useAppSelector(selectSalaryType);
+  const languages = useAppSelector(selectLanguage);
+
   const history = useHistory();
   const createMarkup = (html) => {
     return { __html: html };
@@ -166,8 +169,7 @@ function JobDetails({
               onClick={() => {
                 setShowJobDetails(false);
                 setSelectedJobId(null);
-              }}
-            >
+              }}>
               <IoMdCloseCircle color="white" size="24px" />
             </div>
             {!searchedCompany ? (
@@ -188,8 +190,7 @@ function JobDetails({
               onClick={() => {
                 setShowJobDetails(false);
                 setSelectedJobId(null);
-              }}
-            >
+              }}>
               <IoMdCloseCircle color="white" size="24px" />
             </div>
             {!searchedCompany ? (
@@ -291,6 +292,21 @@ function JobDetails({
                 {data?.language?.title && (
                   <li>Native language: &nbsp;{data?.language?.title}</li>
                 )}
+                {console.log(languages, data?.otherLanguageId)}
+                {console.log(
+                  data?.otherLanguageId
+                    .map((lang) => getTitleById(languages, parseInt(lang)))
+                    ?.join(", ")
+                )}
+                {data?.otherLanguageId?.length && (
+                  <li>
+                    Other languages: &nbsp;
+                    {data?.otherLanguageId
+                      .map((lang) => getTitleById(languages, parseInt(lang)))
+                      ?.join(", ")}
+                  </li>
+                )}
+
                 {data?.ageLimit && <li>Age Limit: &nbsp;{data?.ageLimit}</li>}
                 {data?.suitableJob?.title && (
                   <li>{data?.suitableJob?.title}</li>
@@ -469,8 +485,7 @@ function JobDetails({
                     className="block-text markup"
                     dangerouslySetInnerHTML={createMarkup(
                       data?.company?.introduction
-                    )}
-                  ></span>
+                    )}></span>
                 </span>
 
                 {/* <ImagesGallery
@@ -492,8 +507,7 @@ function JobDetails({
                       customTransition="all 1s"
                       transitionDuration={1000}
                       containerClass="carousel-container"
-                      dotListClass="custom-dot-list-style"
-                    >
+                      dotListClass="custom-dot-list-style">
                       {data?.company?.photoUrl?.length &&
                         data.company.photoUrl.map((img, i) => (
                           <img
@@ -558,16 +572,14 @@ function JobDetails({
                     gutter={16}
                     style={{ margin: "0 auto", width: "100%" }}
                     // justify={`${otherJobs?.length === 4 ? " " : "flex-start"}`}
-                    justify="flex-start"
-                  >
+                    justify="flex-start">
                     {otherJobs?.map((otherJob, i) => (
                       <Col
                         key={i}
                         span={8}
                         lg={{ span: 8 }}
                         sm={{ span: 12 }}
-                        xs={{ span: 24 }}
-                      >
+                        xs={{ span: 24 }}>
                         <JobCard
                           onClick={() => {
                             setJobDetails(otherJob);
