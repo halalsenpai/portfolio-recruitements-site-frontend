@@ -28,7 +28,7 @@ import Footer from "../app-ui/Footer/Footer";
 import Header from "../app-ui/Header/Header";
 import { userTypes } from "../utils/constants";
 import { persistor } from "../store"; // or w/e
-// import ShareJobDetails from "../features/shareJobDetails/ShareJobDetails";
+import NotFound from "../shared-ui/NotFound/NotFound";
 
 function Routing() {
   const param = useLocation().search;
@@ -85,14 +85,7 @@ function Routing() {
         <Route path="/share-job-details/:id" component={ShareJobDetails} />
         <Route path="/share-user-details/:id" component={ShareUserProfile} />
 
-        <Route
-          path="*"
-          render={() => (
-            <div>
-              <h1>Not Found</h1>
-            </div>
-          )}
-        />
+        <Route path="*" component={NotFound} />
       </Switch>
       <Footer />
     </Fragment>
