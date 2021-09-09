@@ -14,6 +14,8 @@ import Services from "./services/services";
 import TermsAndCondition from "./termsAndCondition/TermsAndCondition";
 import CookiePolicy from "./cookiePolicy/CookiePolicy";
 import PrivacyPolicy from "./privacyPolicy/PrivacyPolicy";
+import ShareJobDetails from "./shareJobDetails/ShareJobDetails";
+import ShareUserProfile from "./shareUserProfile/ShareUserProfile";
 
 import Test from "./test/Test";
 
@@ -35,4 +37,6 @@ export {
   TermsAndCondition,
   CookiePolicy,
   PrivacyPolicy,
+  ShareJobDetails,
+  ShareUserProfile,
 };
