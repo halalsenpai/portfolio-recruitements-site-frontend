@@ -70,6 +70,13 @@
       width: 100% !important;
     }
   }
+  .filter-main .filter-section .jobs-grid {
+    padding: 0;
+    min-height: 80px;
+    .ant-form-item {
+      margin-bottom: 10px;
+    }
+  }
 }
 @media only screen and (max-width: 410px) {
   .filter-main {

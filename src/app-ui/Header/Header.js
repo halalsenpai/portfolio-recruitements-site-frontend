@@ -48,12 +48,15 @@ function Header() {
             className={getActiveClassForPath(currentPath, "/jobs")}>
             Jobs
           </Link>
-          <Link
+
+          {/* S E R V I C E S ____ P A G E ______D O W N_______ F O R  ______ N O W */}
+
+          {/* <Link
             to="/services"
             onClick={() => setCurrentPath("/services")}
             className={getActiveClassForPath(currentPath, "/services")}>
             Services
-          </Link>
+          </Link> */}
           {/* <Link
             to="/pricing"
             onClick={() => setCurrentPath("/pricing")}
@@ -101,14 +104,15 @@ function Header() {
               className={getActiveClassForPath(currentPath, "/jobs")}>
               Jobs
             </Link>
-            <Link
+            {/* D O W N ____ F O R _____ N O W */}
+            {/* <Link
               to="/services"
               onClick={() => {
                 setCurrentPath("/services");
                 setMenu(false);
               }}>
               Services
-            </Link>
+            </Link> */}
             {/* <Link
               to="/pricing"
               onClick={() => {
