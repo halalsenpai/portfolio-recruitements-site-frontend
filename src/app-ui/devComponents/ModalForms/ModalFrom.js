@@ -35,8 +35,7 @@ const DashboardFrom = () => {
               <Form.Item
                 name="email"
                 className="c-input"
-                rules={Rules.emailRule}
-              >
+                rules={Rules.emailRule}>
                 <div className="c-label">
                   <label className="required">Qualification</label>
                 </div>
@@ -44,15 +43,13 @@ const DashboardFrom = () => {
                 <Select
                   size="large"
                   defaultValue=""
-                  style={{ width: 120 }}
-                ></Select>
+                  style={{ width: 120 }}></Select>
               </Form.Item>
 
               <Form.Item
                 name="email"
                 className="c-input"
-                rules={Rules.emailRule}
-              >
+                rules={Rules.emailRule}>
                 <div className="c-label">
                   <label className="required">Subject / Field of study</label>
                 </div>
@@ -60,8 +57,7 @@ const DashboardFrom = () => {
                 <Select
                   size="large"
                   defaultValue=""
-                  style={{ width: 120 }}
-                ></Select>
+                  style={{ width: 120 }}></Select>
               </Form.Item>
             </div>
 
@@ -69,8 +65,7 @@ const DashboardFrom = () => {
               <Form.Item
                 name="firstName"
                 className="c-input w-100 "
-                rules={Rules.firstNameRule}
-              >
+                rules={Rules.firstNameRule}>
                 <label className="required">Desired locations to work in</label>
                 <Input
                   autoComplete="off"
@@ -86,8 +81,7 @@ const DashboardFrom = () => {
               <Form.Item
                 name="dateOfbirth"
                 className="c-input "
-                rules={Rules.phoneRule}
-              >
+                rules={Rules.phoneRule}>
                 <label className="required">Start year</label>
                 <DatePicker format="DD-MM-YYYY" />
               </Form.Item>
@@ -95,8 +89,7 @@ const DashboardFrom = () => {
               <Form.Item
                 name="dateOfbirth"
                 className="c-input "
-                rules={Rules.phoneRule}
-              >
+                rules={Rules.phoneRule}>
                 <label className="required">End year</label>
                 <DatePicker format="DD-MM-YYYY" />
               </Form.Item>
@@ -104,8 +97,7 @@ const DashboardFrom = () => {
               <Form.Item
                 name="email"
                 className="c-input"
-                rules={Rules.emailRule}
-              >
+                rules={Rules.emailRule}>
                 <div className="c-label">
                   <label className="required">Grade</label>
                 </div>
@@ -113,8 +105,7 @@ const DashboardFrom = () => {
                 <Select
                   size="large"
                   defaultValue=""
-                  style={{ width: 120 }}
-                ></Select>
+                  style={{ width: 120 }}></Select>
               </Form.Item>
             </div>
 
@@ -130,12 +121,11 @@ const DashboardFrom = () => {
 
             <div className="m-form-row left-align">
               <Button
-                themeColor="light"
+                themecolor="light"
                 type="large"
                 htmlType="submit"
                 // loading={true}
-                block
-              >
+                block>
                 Update
               </Button>
             </div>

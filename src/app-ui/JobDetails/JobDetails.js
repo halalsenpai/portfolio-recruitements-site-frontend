@@ -175,7 +175,7 @@ function JobDetails({
             {!searchedCompany ? (
               <div className="view-jobs">
                 {/* <Button
-                    themeColor="outlined-white"
+                    themecolor="outlined-white"
                     onClick={() => NavigateToFindJobs(data.company?.id)}>
                     View All Jobs
                   </Button> */}
@@ -196,7 +196,7 @@ function JobDetails({
             {!searchedCompany ? (
               <div className="view-jobs">
                 {/* <Button
-                    themeColor="outlined-white"
+                    themecolor="outlined-white"
                     onClick={() => NavigateToFindJobs(data.company?.id)}>
                     View All Jobs
                   </Button> */}
@@ -206,7 +206,7 @@ function JobDetails({
         )}
 
         {/* {showAllDetails && (
-          <Button themeColor="transparent small">View Jobs</Button>
+          <Button themecolor="transparent small">View Jobs</Button>
         )} */}
 
         <div onClick={() => setJobDetails(data)} className="back-btn">
@@ -232,28 +232,28 @@ function JobDetails({
                   </span>
 
                   <span className="actions-wrapper">
-                    <Button className="applied" themeColor="outlined">
+                    <Button className="applied" themecolor="outlined">
                       <Link to="/login">Apply</Link>
                     </Button>
-                    <Button className="applied" themeColor="outlined">
+                    <Button className="applied" themecolor="outlined">
                       <Link to="/login">Follow Company</Link>
                     </Button>
-                    <Button className="applied" themeColor="outlined">
+                    <Button className="applied" themecolor="outlined">
                       <Link to="/login">Shorlist Job</Link>
                     </Button>
                     {/* <Button
               icon={<span className="icon following-icon"></span>}
               title="Follow Company"
-              themeColor="shadowed rounded">
+              themecolor="shadowed rounded">
               <Link to="/login"></Link>
             </Button>
             <Button
               title="Shorlist Job"
               onClick={() => history.push("/login")}
-              themeColor="shadowed rounded"
+              themecolor="shadowed rounded"
               icon={<FaStar size="14px" className="highlighted" />}
             />
-            <Button title="Chat" themeColor="shadowed rounded">
+            <Button title="Chat" themecolor="shadowed rounded">
               {" "}
               <Link to="/login">
                 {" "}
@@ -332,13 +332,13 @@ function JobDetails({
                   </span>
                 </span>
                 <span className="actions-wrapper">
-                  <Button className="applied" themeColor="outlined">
+                  <Button className="applied" themecolor="outlined">
                     <Link to="/login">Apply</Link>
                   </Button>
-                  <Button className="applied" themeColor="outlined">
+                  <Button className="applied" themecolor="outlined">
                     <Link to="/login">Follow Company</Link>
                   </Button>
-                  <Button className="applied" themeColor="outlined">
+                  <Button className="applied" themecolor="outlined">
                     <Link to="/login">Shorlist Job</Link>
                   </Button>
                 </span>

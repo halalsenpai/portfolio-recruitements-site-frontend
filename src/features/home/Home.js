@@ -46,9 +46,8 @@ function Home() {
                     <Button
                       onClick={() => history.push("/signup")}
                       className="mt-4 mb-3 button-center get-started-btn"
-                      themeColor="blue"
-                      type={"large"}
-                    >
+                      themecolor="blue"
+                      type={"large"}>
                       Get Started{" "}
                       <img
                         className="animated-icon"
@@ -268,11 +267,10 @@ function Home() {
                   to a minimum of 38 sectors and over 439 sub-sectors.
                 </p>
               </span>
-              <Button className="demo-btn" themeColor="blue">
+              <Button className="demo-btn" themecolor="blue">
                 <a
                   className="book-a-demo-btn"
-                  href="https://calendly.com/jobsmideast/demo?month=2021-04&back=1"
-                >
+                  href="https://calendly.com/jobsmideast/demo?month=2021-04&back=1">
                   Book a Demo
                 </a>
               </Button>
