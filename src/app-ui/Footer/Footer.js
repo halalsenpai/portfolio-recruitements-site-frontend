@@ -29,7 +29,8 @@ function Footer() {
           <ul>
             <Link to="/">Home</Link>
             <Link to="/login">Login</Link>
-            <Link to="/services">Services</Link>
+            {/* S E R V I C E S ___ R E M O V E ___ F O R ____  N O W */}
+            {/* <Link to="/services">Services</Link> */}
             {/* <Link to="/">Report a problem</Link> */}
           </ul>
           <ul>

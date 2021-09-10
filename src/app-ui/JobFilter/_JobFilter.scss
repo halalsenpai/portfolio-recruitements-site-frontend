@@ -12,6 +12,13 @@
       width: 100% !important;
       margin: 0 0 20px 0;
     }
+    .filter-cell {
+      font-family: $font-subtitle;
+      p {
+        font-size: 16px;
+        padding-bottom: 10px;
+      }
+    }
   }
 
   .filter-section {
@@ -125,7 +132,9 @@
       border-color: #eee;
     }
 
-    .ant-select-show-search.ant-select:not(.ant-select-customize-input) .ant-select-selector input {
+    .ant-select-show-search.ant-select:not(.ant-select-customize-input)
+      .ant-select-selector
+      input {
       cursor: unset;
       visibility: unset;
     }
@@ -138,8 +147,17 @@
     justify-content: space-between !important;
 
     button {
-      background: linear-gradient(90deg, #020024 0%, #6ad259 0%, #00b0fa 100%) !important;
+      background: linear-gradient(
+        90deg,
+        #020024 0%,
+        #6ad259 0%,
+        #00b0fa 100%
+      ) !important;
     }
+  }
+  .ant-form-item-label > label {
+    color: rgba(0, 0, 0, 0.85);
+    font-size: 12px;
   }
 }
 
