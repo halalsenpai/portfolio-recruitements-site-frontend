@@ -238,7 +238,7 @@ function Jobs() {
                   type="small"
                   htmlType="submit"
                   className="filter-btns"
-                  themeColor="rounded light"
+                  themecolor="rounded light"
                   style={{ height: "32px" }}>
                   Go
                 </Button>
@@ -287,7 +287,7 @@ function Jobs() {
                 <Link to="/jobs">
                   <Button
                     className="applied"
-                    themeColor="filled_blue"
+                    themecolor="filled_blue"
                     onClick={() => {
                       setQueryParams({ page: 1, limit: 100 });
                     }}

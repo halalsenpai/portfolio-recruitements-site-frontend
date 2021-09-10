@@ -1,4 +1,4 @@
-@mixin font-face($style-name, $file, $file-format: ".woff2",  $category:"") {
+@mixin font-face($style-name, $file, $file-format: ".woff2", $category: "") {
   $filepath: "../fonts/" + $file;
   @font-face {
     font-family: "#{$style-name}";
@@ -8,8 +8,7 @@
     font: {
       @if $category != "" {
         family: "#{$style-name}", #{$category};
-      }
-      @else {
+      } @else {
         family: "#{$style-name}";
         //weight: normal;
       }
@@ -21,10 +20,10 @@
   overflow-y: auto;
   &::-webkit-scrollbar-thumb {
     background-color: $wild-blue;
-    border-radius: 5px;
+    border-radius: 4px;
   }
   &::-webkit-scrollbar {
-    width: 5px;
+    width: 4px;
   }
   &::-webkit-scrollbar-track {
     background: transparent;

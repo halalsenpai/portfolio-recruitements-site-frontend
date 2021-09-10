@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import "./_ShareUserProfile.scss";
+import "./_Responsive.scss";
 import { useHistory } from "react-router-dom";
 import { Select, Dropdown, Menu, Popover, Spin } from "antd";
 
@@ -264,7 +266,7 @@ const ShareUserProfile = ({
             <div className="profile-header">
               <img
                 className="tag"
-                // src={require("../../assets/images/auth/group-path-32.svg")}	//to handle
+                src={require("../../assets/images/auth/group-path-32.svg")} //to handle
                 alt=""
               />
               <div className="profile-video-section">
@@ -328,7 +330,7 @@ const ShareUserProfile = ({
 
                         additionalInfo(
                           profile,
-                          // countries,
+                          false,
                           findTitleById,
                           jobseekerProfileById
                         )
@@ -340,7 +342,7 @@ const ShareUserProfile = ({
                       visible={visible}
                       trigger={["click"]}>
                       <Button
-                        themecolor="rounded-outlined"
+                        themecolor="rounded outlined"
                         className="primary outlined">
                         <PlusOutlined />
                       </Button>
@@ -365,12 +367,13 @@ const ShareUserProfile = ({
                             : () => setConnectModal(true)
                         }
                         className="icon-btn ml-2"
-                        // src={require("../../assets/images/icons/profile/Call.svg")} 	//to handle
+                        src={require("../../assets/images/icons/profile/Call.svg")} //to handle
                       />
                     ) : (
                       <Popover
                         placement="bottom"
                         overlayClassName="popover-mobile-number"
+                        getPopupContainer={(trigger) => trigger.parentNode}
                         content={
                           <span>
                             {"+" + jobseekerProfileById?.mobile}
@@ -387,7 +390,7 @@ const ShareUserProfile = ({
                               <img
                                 className="ml-2"
                                 style={{ width: "10px" }}
-                                // src={require("../../assets/images/icons/Copy.svg")}	//to handle
+                                src={require("../../assets/images/icons/Copy.svg")} //to handle
                               />
                               <span style={{ fontSize: "12px" }}>Copy</span>
                             </span>
@@ -400,12 +403,13 @@ const ShareUserProfile = ({
                               : () => setConnectModal(true)
                           }
                           className="icon-btn ml-2"
-                          // src={require("../../assets/images/icons/profile/Call.svg")} 		//to handle
+                          src={require("../../assets/images/icons/profile/Call.svg")} //to handle
                         />
                       </Popover>
                     )}
 
-                    {true || showConnectedBtn ? (
+                    {/** CHAT BUTTON */}
+                    {/* {true || showConnectedBtn ? (
                       <span
                         onClick={
                           // initiateChat(jobseekerProfileById?.userId)}
@@ -414,12 +418,12 @@ const ShareUserProfile = ({
                         <img
                           style={{ width: 50 }}
                           className="ml-2"
-                          // src={require("../../assets/images/icons/profile/Chat.svg")} 	//to handle
+                          src={require("../../assets/images/icons/profile/Chat.svg")} //to handle
                         />
                       </span>
                     ) : (
                       ""
-                    )}
+                    )} */}
                   </span>
                   {/* <span className="w-100">
                     {jobseekerProfileById?.mobile || showConnectedBtn ? (

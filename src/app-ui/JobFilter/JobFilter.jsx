@@ -610,10 +610,10 @@ const JobFilter = (props) => {
             </Row>
             <Divider></Divider>
             <divide className="d-flex justify-content-center">
-              <Button onClick={handleReset} themeColor="light mr-3">
+              <Button onClick={handleReset} themecolor="light mr-3">
                 Reset Filter
               </Button>
-              <Button type="submit" htmlType="submit" themeColor="light">
+              <Button type="submit" htmlType="submit" themecolor="light">
                 Apply Filter
               </Button>
             </divide>
