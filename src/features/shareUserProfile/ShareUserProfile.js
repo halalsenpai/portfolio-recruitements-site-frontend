@@ -55,6 +55,7 @@ const additionalInfo = (
         )}
         {jobseekerProfileById?.jobseekerDesiredLocation?.length > 1 && (
           <Popover
+          style={{ zIndex: 500 }}
             className="desired-location-popover"
             getPopupContainer={(trigger) =>
               document.getElementById("cv-container")
