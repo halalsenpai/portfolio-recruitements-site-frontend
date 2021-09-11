@@ -144,15 +144,10 @@
     padding: 0 45px !important;
     padding-bottom: 20px !important;
     display: flex !important;
-    justify-content: space-between !important;
+    justify-content: flex-end !important;
 
     button {
-      background: linear-gradient(
-        90deg,
-        #020024 0%,
-        #6ad259 0%,
-        #00b0fa 100%
-      ) !important;
+      // background: linear-gradient(90deg, #020024 0%, #6ad259 0%, #00b0fa 100%) !important;
     }
   }
   .ant-form-item-label > label {
@@ -196,9 +191,14 @@
     }
   }
   .filter-cell {
+    display: flex;
+    align-items: center;
     .switches {
       display: inline-flex !important;
       flex-direction: row !important;
+    }
+    p {
+      margin-right: 10px;
     }
   }
   .ant-form-item-label {
@@ -219,3 +219,15 @@
     }
   }
 }
+
+// @keyframes spin {
+//   0% {
+//     transform: rotate(0deg);
+//   }
+//   100% {
+//     transform: rotate(359deg);
+//   }
+// }
+// #star svg {
+//   animation: spin 1s linear forwards;
+// }
