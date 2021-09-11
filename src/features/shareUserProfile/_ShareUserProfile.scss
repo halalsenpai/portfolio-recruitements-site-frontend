@@ -864,6 +864,8 @@
         z-index: 300;
         display: flex;
         flex-direction: column;
+        height: 150px;
+        overflow: auto;
         color: $primary;
         font-size: 12px;
       }
