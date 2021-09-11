@@ -60,7 +60,8 @@ function Routing() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/user-signup" component={JobSeekerSignUp} />
-        <Route exact path="/services" component={Services} />
+        {/* D O W N ____ F O R _____ N O W */}
+        {/* <Route exact path="/services" component={Services} />*/}
         <Route exact path="/forgot-password" component={ForgotPassword} />
         <Route exact path="/agency-signup" component={AgencySignUp} />
         <Route exact path="/confirm-email" component={ConfirmEmail} />
