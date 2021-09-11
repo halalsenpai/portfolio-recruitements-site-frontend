@@ -34,6 +34,8 @@ import CountryCityModal from "../CountryCityModal/CountryCityModal";
 import { getTitleById } from "../../utils/helper";
 import { useForm } from "antd/lib/form/Form";
 import { SuperSelect } from "../../shared-ui/SuperSelect/SuperSelect";
+import { ReloadOutlined } from "@ant-design/icons";
+
 import { SuperSelectWithSelect } from "../../shared-ui/SuperSelect/SuperSelect-withSelect";
 import {
   getAccommodation,
@@ -89,6 +91,7 @@ const JobFilter = (props) => {
 
   useEffect(() => {
     if (filterApplySuccess === true) {
+      props.setCheckFilterValues(true);
       props.onHide();
     }
   }, [filterApplySuccess]);
@@ -168,6 +171,18 @@ const JobFilter = (props) => {
           <div className="filter-header">
             <div className="filter-cell">
               <p>Filters</p>
+              <Col>
+                <Button
+                  loading={props.isLoading}
+                  htmlType="button"
+                  onClick={() => {
+                    handleReset();
+                  }}
+                  themecolor="outlined-red">
+                  <ReloadOutlined id="star" />
+                  Reset
+                </Button>
+              </Col>
             </div>
           </div>
           <div className="filter-section">
@@ -609,11 +624,15 @@ const JobFilter = (props) => {
               </Col>
             </Row>
             <Divider></Divider>
-            <divide className="d-flex justify-content-center">
-              <Button onClick={handleReset} themecolor="light mr-3">
+            <divide>
+              {/* <Button onClick={handleReset} themecolor="light mr-3">
                 Reset Filter
-              </Button>
-              <Button type="submit" htmlType="submit" themecolor="light">
+              </Button> */}
+              <Button
+                loading={props.isLoading}
+                type="submit"
+                htmlType="submit"
+                themecolor="outlined">
                 Apply Filter
               </Button>
             </divide>

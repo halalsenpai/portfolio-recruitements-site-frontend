@@ -156,7 +156,7 @@ const ShareJobDetails = ({
               {width > 1024 && (
                 <>
                   <span>
-                    <h3 className="job-title">
+                    <h3 className="job-title company-page-heading">
                       Job title :{" "}
                       <mark className="title">
                         {data?.jobTitle?.title || ""}
