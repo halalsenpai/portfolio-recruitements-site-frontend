@@ -441,7 +441,7 @@ function JobDetails({
               <>
                 {data?.city?.lat && data?.city?.lng && (
                   <span className="content-block mt-2 pr-0">
-                    <h6 className="company-page-heading thick-title mb-3">
+                    <h6 className=" company-page-heading thick-title mb-3">
                       Job Location
                     </h6>
                     <span className="padding-left">
@@ -458,8 +458,8 @@ function JobDetails({
                 )}
                 <Divider className="divider" />
                 <span className="content-block">
-                  <h6 className="block-title  d-flex justify-content-between align-items-center">
-                    <h6 className="company-page-heading">
+                  <h6 className="  d-flex justify-content-between align-items-center">
+                    <h6 className=" block-title company-page-heading">
                       About company:
                       <span style={{ color: "#2a8fff" }} className="ml-2 blue">
                         {data?.company?.companyName || ""}
@@ -504,12 +504,19 @@ function JobDetails({
                       {data?.company?.photoUrl?.length &&
                         data.company.photoUrl.map((img, i) => (
                           <img
-                            style={{ borderRadius: "20px" }}
+                            style={
+                              {
+                                // borderRadius: "20px",
+                                // objectFit: "contain",
+                                // width: "100%",
+                                // height: "100%",
+                              }
+                            }
                             className="company-single-photo"
                             src={img}
                             alt={`image ${i}`}
-                            height={250}
-                            width="100%"
+                            // height={220}
+                            // width={220}
                           />
                         ))}
                     </Carousel>
@@ -536,7 +543,7 @@ function JobDetails({
                 )}
 
                 <span className="content-block mt-4 pr-0">
-                  <h6 className="block-title company-page-heading thick-title mb-3">
+                  <h6 className=" company-page-heading thick-title mb-3">
                     Map
                   </h6>
                   <div className="block-map">
