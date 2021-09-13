@@ -22,12 +22,12 @@ import defaultBanner from "./../../assets/images/sample/job-banner.png";
 import moment from "moment";
 import Button from "../../shared-ui/Button/Button";
 // import { AdditionalInfo } from "./AdditionalInfo";
-
 const additionalInfo = (
   profile,
   countries,
   findTitleById,
-  jobseekerProfileById
+  jobseekerProfileById,
+  width
 ) => (
   <Menu>
     <div className="title">Additional Info</div>
@@ -55,18 +55,20 @@ const additionalInfo = (
         )}
         {jobseekerProfileById?.jobseekerDesiredLocation?.length > 1 && (
           <Popover
-          style={{ zIndex: 500 }}
+            style={{ zIndex: 500 }}
             className="desired-location-popover"
             getPopupContainer={(trigger) =>
               document.getElementById("cv-container")
             }
-            placement="right"
+            placement={`${width < 540 ? "topRight" : "right"}`}
             // visible={jobseekerProfileById?.jobseekerDesiredLocation?.length > 1}
             content={jobseekerProfileById?.jobseekerDesiredLocation?.map(
               (data, i) => (
                 <div key={i}>{data.city.title}</div>
               )
-            )}>
+            )}
+          >
+            {/* {console.log("WIDTH",width)} */}
             <span>
               {!jobseekerProfileById?.jobseekerDesiredLocation?.length
                 ? "-"
@@ -154,7 +156,8 @@ const additionalInfo = (
             className="other-language-popover"
             content={jobseekerProfileById?.otherLanguages?.map((data, i) => (
               <div key={i}>{data.language.title} </div>
-            ))}>
+            ))}
+          >
             <span>View</span>
           </Popover>
         )}
@@ -333,7 +336,8 @@ const ShareUserProfile = ({
                           profile,
                           false,
                           findTitleById,
-                          jobseekerProfileById
+                          jobseekerProfileById,
+                          width
                         )
                       }
                       getPopupContainer={(trigger) => trigger.parentNode}
@@ -341,10 +345,12 @@ const ShareUserProfile = ({
                       placement="bottomCenter"
                       onVisibleChange={handleVisibleChange}
                       visible={visible}
-                      trigger={["click"]}>
+                      trigger={["click"]}
+                    >
                       <Button
                         themecolor="rounded outlined"
-                        className="primary outlined">
+                        className="primary outlined"
+                      >
                         <PlusOutlined />
                       </Button>
                     </Dropdown>
@@ -387,7 +393,8 @@ const ShareUserProfile = ({
                                 showSuccessMessage(
                                   "Number copied to clipboard"
                                 );
-                              }}>
+                              }}
+                            >
                               <img
                                 className="ml-2"
                                 style={{ width: "10px" }}
@@ -396,7 +403,8 @@ const ShareUserProfile = ({
                               <span style={{ fontSize: "12px" }}>Copy</span>
                             </span>
                           </span>
-                        }>
+                        }
+                      >
                         <img
                           onClick={
                             jobseekerProfileById?.mobile
@@ -495,7 +503,8 @@ const ShareUserProfile = ({
                     whiteSpace: "pre-line",
                     wordBreak: "break-word",
                     wordWrap: "break-word",
-                  }}>
+                  }}
+                >
                   {jobseekerProfileById?.description}
                 </p>
               </div>
@@ -523,9 +532,8 @@ const ShareUserProfile = ({
 
                       <p
                         className="markup"
-                        dangerouslySetInnerHTML={createMarkup(
-                          exp?.description
-                        )}></p>
+                        dangerouslySetInnerHTML={createMarkup(exp?.description)}
+                      ></p>
 
                       <p style={{ wordBreak: "break-word" }}>
                         Achievement: {exp?.achievement}
@@ -553,9 +561,8 @@ const ShareUserProfile = ({
                       <p
                         style={{ wordBreak: "break-word" }}
                         className="markup"
-                        dangerouslySetInnerHTML={createMarkup(
-                          edu?.description
-                        )}></p>
+                        dangerouslySetInnerHTML={createMarkup(edu?.description)}
+                      ></p>
                     </div>
                   ))}
                 <br />
@@ -578,7 +585,8 @@ const ShareUserProfile = ({
                         className="markup"
                         dangerouslySetInnerHTML={createMarkup(
                           cert?.description
-                        )}></p>
+                        )}
+                      ></p>
                       <p>{cert?.type}</p>
                     </div>
                   ))}
@@ -594,7 +602,8 @@ const ShareUserProfile = ({
                         className="markup"
                         dangerouslySetInnerHTML={createMarkup(
                           skill?.description
-                        )}></p>
+                        )}
+                      ></p>
                     </div>
                   ))}
               </div>

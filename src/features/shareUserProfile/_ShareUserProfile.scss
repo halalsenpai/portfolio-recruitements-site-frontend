@@ -648,9 +648,9 @@
 .additionalInfo-menu > .ant-dropdown-menu {
   // box-shadow: 0 3px 6px -4px $shadow-color;
   padding: 10px 0;
-  border-radius: 16px 0 0 16px;
+  border-radius:8px;
   width: 100%;
-  max-width: 370px;
+  max-width: 290px;
   max-height: 500px;
   overflow-y: auto;
   top: 10px;
@@ -670,9 +670,13 @@
       flex-wrap: wrap;
       span {
         font-size: $font-size-sm;
+        // color: $primary !important;
       }
       :nth-child(2) {
-        color: $primary;
+        color: $primary !important;
+        span {
+          color: $primary !important;
+        }
       }
     }
     &:hover {
