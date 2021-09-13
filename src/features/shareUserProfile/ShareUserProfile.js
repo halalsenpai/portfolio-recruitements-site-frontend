@@ -45,7 +45,7 @@ const additionalInfo = (
       </div>
     </Menu.Item>
     <Menu.Item>
-      <div>
+      <div style= {{width: '100%'}}>
         <span>Desired locations to work in : </span>
 
         {jobseekerProfileById?.jobseekerDesiredLocation?.length === 1 && (
