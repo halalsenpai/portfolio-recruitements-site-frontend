@@ -216,6 +216,12 @@
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
   }
+  .user-profile-wrapper
+    .profile-section
+    .cv-container
+    .ant-popover {
+      z-index: 1050;
+    }
 }
 
 @media only screen and (max-width: 340px) {
