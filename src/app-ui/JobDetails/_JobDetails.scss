@@ -1,5 +1,9 @@
 @import "../../assets/scss/variables";
-
+.small-text-common {
+  color: $white;
+  font-size: $font-size-md-sm;
+  margin: 0;
+}
 .c-job-detail-card {
   .header {
     z-index: 1;
@@ -7,8 +11,41 @@
     min-height: 270px;
     display: flex;
     justify-content: space-between;
-    padding: 30px;
+    padding: 20px;
     align-items: flex-end;
+    .company-details-wrapper {
+      gap: 20px;
+      flex-direction: column-reverse;
+    }
+    .display-flex {
+      display: flex;
+      align-items: flex-end;
+    }
+    .company-details {
+      padding-left: 10px;
+      height: max-content;
+      p {
+        margin: 0;
+      }
+      &.center {
+        display: flex;
+        align-items: flex-start;
+      }
+      .company-name {
+        font-size: $font-size-lg;
+        color: $white;
+        font-family: $font-bold;
+      }
+      .company-type {
+        font-size: $font-size-x-sm;
+        color: $white;
+      }
+    }
+    .company-category {
+      color: $light-grey;
+      font-weight: lighter;
+      font-size: $font-size-sm;
+    }
     .back-btn {
       display: none;
     }
@@ -40,16 +77,37 @@
       align-items: center;
       max-width: 550px;
       flex-wrap: wrap;
+      .company-details {
+        padding-left: 10px;
+        height: max-content;
+        p {
+          margin: 0;
+        }
+        &.center {
+          display: flex;
+          align-items: flex-start;
+        }
+        .company-name {
+          font-size: $font-size-lg;
+          color: $white;
+          font-family: $font-bold;
+        }
+        .company-type {
+          font-size: $font-size-x-sm;
+          color: $white;
+        }
+      }
 
       .job-img {
-        width: 100px;
-        height: 100px;
+        width: 110px;
+        height: 110px;
         object-fit: cover;
         border-radius: 10px;
         margin-bottom: 6px;
       }
 
       .job-info {
+        flex: 1;
         display: flex;
         justify-content: center;
         align-items: flex-start;
@@ -112,7 +170,7 @@
         button {
           margin: 0px 0px;
           width: 120px;
-          margin-right: 5px;
+          margin-right: 15px;
           font-size: 12px;
           a {
             font-size: 12px;
@@ -167,6 +225,8 @@
             font-family: $font-subtitle;
             margin-bottom: 10px;
             margin-top: 10px;
+            font-size: $font-size-md;
+
             &::after {
               content: "";
               position: absolute;
@@ -175,6 +235,25 @@
               height: 2px;
               width: 15px;
               background-color: $text-color;
+            }
+          }
+          .license-tags {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 5px 0;
+            margin: -10px 0 0 0;
+
+            .tags {
+              margin: 10px 10px 0 0;
+              background-color: $white;
+              color: $black;
+              padding: 5px 20px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              border-radius: 5px;
+              font-size: $font-size-sm;
+              border: 1px solid $black;
             }
           }
 
@@ -243,7 +322,7 @@
         list-style: none;
         display: flex;
         flex-direction: column;
-        box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 0 16px $shadow-color;
         border-radius: 10px;
         padding: 0px;
         min-width: 250px;
@@ -286,6 +365,18 @@
   .ant-select {
     width: unset !important;
     width: 200px !important;
+  }
+
+  .video-section {
+    display: flex;
+    justify-content: center;
+    .company-profile-video {
+      border-radius: 15px;
+      height: 350px;
+      width: 100%;
+      margin: auto;
+      overflow: hidden;
+    }
   }
 }
 

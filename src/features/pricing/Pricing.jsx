@@ -97,7 +97,7 @@ const Pricing = () => {
                   <div className="top-items-head">VIP package</div>
                   <div className="top-items-head">
                     {" "}
-                    <Button themeColor={""} className="m-auto" type="small">
+                    <Button themecolor={""} className="m-auto" type="small">
                       <Popover content="coming soon">
                         <Link>Customize</Link>
                       </Popover>

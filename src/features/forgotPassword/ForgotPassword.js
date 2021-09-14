@@ -37,8 +37,7 @@ const renderSteps = (currentStep, onResendCode, isResendLoading) => {
           label="Email"
           name="email"
           className="c-input"
-          rules={rules.requiredRule}
-        >
+          rules={rules.requiredRule}>
           <Input
             autoComplete="off"
             placeholder="Enter your email"
@@ -55,8 +54,7 @@ const renderSteps = (currentStep, onResendCode, isResendLoading) => {
             label="Verification code"
             name="token"
             className="c-input"
-            rules={rules.requiredRule}
-          >
+            rules={rules.requiredRule}>
             <Input
               autoComplete="off"
               placeholder="Enter the verification code"
@@ -72,11 +70,10 @@ const renderSteps = (currentStep, onResendCode, isResendLoading) => {
               block
               type="large"
               htmlType="button"
-              themeColor="light"
+              themecolor="light"
               className="align-self-center"
               onClick={onResendCode}
-              loading={isResendLoading}
-            >
+              loading={isResendLoading}>
               <FaRedo className="mr-2" />
               Resend code
             </Button>
@@ -91,8 +88,7 @@ const renderSteps = (currentStep, onResendCode, isResendLoading) => {
             label="New Password"
             name="password"
             className="c-input"
-            rules={rules.passwordRule}
-          >
+            rules={rules.passwordRule}>
             <Input
               autoComplete="off"
               placeholder="Enter your new password"
@@ -105,8 +101,7 @@ const renderSteps = (currentStep, onResendCode, isResendLoading) => {
             name="confirmPassword"
             className="c-input"
             rules={rules.confirmPasswordRule}
-            dependencies={["password"]}
-          >
+            dependencies={["password"]}>
             <Input
               autoComplete="off"
               placeholder="Confirm your password"

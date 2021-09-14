@@ -21,7 +21,7 @@ const EmployerAndAgency = () => {
           </div>
           <div className="w-55 job-n-demo">
             <Button
-              onClick={() => history.push("/login")}
+              onClick={() => history.push("/employer-signup")}
               type="large"
               className="blue mr-4">
               Post a free job

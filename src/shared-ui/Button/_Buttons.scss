@@ -1,11 +1,11 @@
 .c-button {
-  padding: 5px 10px;
+  padding: 5px 25px;
   color: #ffffff;
   height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 8px 25px;
+  // padding: 8px 25px;
   font-size: 14px;
   border-radius: 6px;
   width: max-content;
@@ -134,7 +134,7 @@
 
   &.shadowed {
     background: $white;
-    box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 16px $shadow-color;
     span {
       color: $text-color;
     }
@@ -165,7 +165,7 @@
 
   &.shadowed {
     background: $white;
-    box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 16px $shadow-color;
     span {
       color: $text-color;
     }
@@ -186,6 +186,29 @@
     }
     &:focus {
       background: $blue;
+    }
+  }
+  &.outlined-red {
+    background: $white;
+    border: 1px solid $red;
+
+    span {
+      color: $red;
+    }
+
+    &:hover {
+      background: $red;
+
+      span {
+        color: $white;
+      }
+    }
+
+    &:focus {
+      background: $red;
+      span {
+        color: $white;
+      }
     }
   }
 

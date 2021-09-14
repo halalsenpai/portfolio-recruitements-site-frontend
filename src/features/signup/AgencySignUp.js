@@ -44,7 +44,7 @@ import {
   selectProfileImage,
   selectAgencySignUpSuccess,
   removePreUploadedProfileImage,
-  setSignupStateFalse
+  setSignupStateFalse,
 } from "./slice";
 import AvatarPicker from "../../shared-ui/AvatarPicker/AvatarPicker";
 
@@ -190,8 +190,7 @@ function AgencySignUp() {
                 <Form.Item
                   label="Company name"
                   name="companyProfileId"
-                  rules={Rules.requiredRule}
-                >
+                  rules={Rules.requiredRule}>
                   <SuperSelect
                     getPopupContainer={(trigger) => trigger.parentNode}
                     fetchOptions={getCompany}
@@ -228,14 +227,12 @@ function AgencySignUp() {
                   xs={{ span: 24 }}
                   span={12}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     className="c-input"
                     label="First name"
                     rules={Rules.firstNameRule}
-                    name="firstName"
-                  >
+                    name="firstName">
                     <Input autoComplete="off" placeholder="Enter first name" />
                   </Form.Item>
                 </Col>
@@ -243,14 +240,12 @@ function AgencySignUp() {
                   xs={{ span: 24 }}
                   span={12}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     className="c-input"
                     label="Last name"
                     rules={Rules.lastNameRule}
-                    name="lastName"
-                  >
+                    name="lastName">
                     <Input autoComplete="off" placeholder="Enter last name" />
                   </Form.Item>
                 </Col>
@@ -258,14 +253,12 @@ function AgencySignUp() {
                   xs={{ span: 24 }}
                   span={12}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     name="mobile"
                     label="Mobile number"
                     className="c-input"
-                    rules={Rules.phoneRule}
-                  >
+                    rules={Rules.phoneRule}>
                     <PhoneInput
                       placeholder="Enter your phone number."
                       country={countryCode}
@@ -277,14 +270,12 @@ function AgencySignUp() {
                   xs={{ span: 24 }}
                   span={12}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     label="Direct work phone"
                     name="directWorkPhone"
                     className="c-input"
-                    rules={Rules.phoneRule}
-                  >
+                    rules={Rules.phoneRule}>
                     <PhoneInput
                       placeholder="Enter your work phone."
                       country={countryCode}
@@ -295,14 +286,12 @@ function AgencySignUp() {
                   xs={{ span: 24 }}
                   span={12}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     label="Work email address"
                     name="email"
                     className="c-input"
-                    rules={Rules.emailRule}
-                  >
+                    rules={Rules.emailRule}>
                     <Input
                       autoComplete={"" + Math.random()}
                       placeholder="Enter your email"
@@ -315,19 +304,16 @@ function AgencySignUp() {
                   xs={{ span: 24 }}
                   span={12}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     className="c-input"
                     name="findUsId"
                     label="How did you find us?"
-                    rules={Rules.requiredRule}
-                  >
+                    rules={Rules.requiredRule}>
                     <Select
                       allowClear
                       getPopupContainer={(trigger) => trigger.parentNode}
-                      placeholder="Select platform"
-                    >
+                      placeholder="Select platform">
                       {findUsPlatforms?.map((fu) => (
                         <Option value={fu.id}>{fu.title}</Option>
                       ))}
@@ -342,8 +328,7 @@ function AgencySignUp() {
                   <Upload
                     accept="image/*"
                     beforeUpload={profileImageBeforeUpload}
-                    showUploadList={false}
-                  >
+                    showUploadList={false}>
                     <div className="avatar-upload">
                       <div className="photo-square">
                         {profileImage && <img src={profileImage?.url} alt="" />}
@@ -364,19 +349,16 @@ function AgencySignUp() {
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     label="I’m registering a"
                     name="companyType"
                     className="c-input"
-                    rules={Rules.requiredRule}
-                  >
+                    rules={Rules.requiredRule}>
                     <Select
                       allowClear
                       placeholder="I’m registering a"
-                      getPopupContainer={(trigger) => trigger.parentNode}
-                    >
+                      getPopupContainer={(trigger) => trigger.parentNode}>
                       <Option value="single-company">Single company</Option>
                       <Option value="headquarters">Headquarters</Option>
                       <Option value="branch">Branch within the company</Option>
@@ -387,14 +369,12 @@ function AgencySignUp() {
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     label="Company name"
                     name="companyName"
                     className="c-input"
-                    rules={Rules.requiredRule}
-                  >
+                    rules={Rules.requiredRule}>
                     <Input
                       autoComplete="off"
                       placeholder="Enter company name"
@@ -407,15 +387,13 @@ function AgencySignUp() {
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     style={{ zIndex: 170 }}
                     label="Company location"
                     name="countryId"
                     className="c-input"
-                    rules={Rules.requiredRule}
-                  >
+                    rules={Rules.requiredRule}>
                     <SuperSelect
                       getPopupContainer={(trigger) => trigger.parentNode}
                       fetchOptions={getCountry}
@@ -429,15 +407,13 @@ function AgencySignUp() {
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     style={{ zIndex: 170 }}
                     label="City"
                     name="cityId"
                     className="c-input"
-                    rules={Rules.requiredRule}
-                  >
+                    rules={Rules.requiredRule}>
                     <SuperSelect
                       disabled={categoryId ? false : true}
                       dependencyId={categoryId}
@@ -451,14 +427,12 @@ function AgencySignUp() {
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     label="Company phone number"
                     name="companyPhone"
                     className="c-input"
-                    rules={Rules.phoneRule}
-                  >
+                    rules={Rules.phoneRule}>
                     <PhoneInput
                       placeholder="Enter your phone number."
                       country={countryCode}
@@ -469,14 +443,12 @@ function AgencySignUp() {
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     label="Website http://"
                     name="webUrl"
                     className="c-input"
-                    rules={Rules.requiredRule}
-                  >
+                    rules={Rules.requiredRule}>
                     <Input
                       autoComplete="off"
                       placeholder="Enter your website"
@@ -505,8 +477,7 @@ function AgencySignUp() {
                   <Upload
                     accept="image/*"
                     beforeUpload={profileImageBeforeUpload}
-                    showUploadList={false}
-                  >
+                    showUploadList={false}>
                     <div className="avatar-upload">
                       <div className="photo-square">
                         {profileImage && <img src={profileImage?.url} alt="" />}
@@ -526,14 +497,12 @@ function AgencySignUp() {
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     label="Sector"
                     name="categoryId"
                     className="c-input"
-                    rules={Rules.requiredRule}
-                  >
+                    rules={Rules.requiredRule}>
                     <SuperSelect
                       onSelect={(v) => {
                         setCategoryId(v);
@@ -549,14 +518,12 @@ function AgencySignUp() {
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     label="Job title"
                     name="jobTitleId"
                     className="c-input"
-                    rules={Rules.requiredRule}
-                  >
+                    rules={Rules.requiredRule}>
                     <SuperSelect
                       dependencyId={categoryId}
                       getPopupContainer={(trigger) => trigger.parentNode}
@@ -569,14 +536,12 @@ function AgencySignUp() {
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     label="Password"
                     name="password"
                     className="c-input"
-                    rules={Rules.passwordRule}
-                  >
+                    rules={Rules.passwordRule}>
                     <Input.Password
                       autoComplete="off"
                       type="password"
@@ -588,14 +553,12 @@ function AgencySignUp() {
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     label="Confirm password"
                     name="ConfirmPassword"
                     className="c-input"
-                    rules={Rules.confirmPasswordRule}
-                  >
+                    rules={Rules.confirmPasswordRule}>
                     <Input.Password
                       autoComplete="off"
                       type="password"
@@ -611,14 +574,12 @@ function AgencySignUp() {
                   xs={{ span: 24 }}
                   span={12}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     className="c-input"
                     label="First name"
                     rules={Rules.firstNameRule}
-                    name="firstName"
-                  >
+                    name="firstName">
                     <Input autoComplete="off" placeholder="Enter first name" />
                   </Form.Item>
                 </Col>
@@ -626,14 +587,12 @@ function AgencySignUp() {
                   xs={{ span: 24 }}
                   span={12}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     className="c-input"
                     label="Last name"
                     rules={Rules.lastNameRule}
-                    name="lastName"
-                  >
+                    name="lastName">
                     <Input autoComplete="off" placeholder="Enter last name" />
                   </Form.Item>
                 </Col>
@@ -641,14 +600,12 @@ function AgencySignUp() {
                   xs={{ span: 24 }}
                   span={12}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     name="mobile"
                     label="Mobile number"
                     className="c-input"
-                    rules={Rules.phoneRule}
-                  >
+                    rules={Rules.phoneRule}>
                     <PhoneInput
                       placeholder="Enter your phone number."
                       country={countryCode}
@@ -660,14 +617,12 @@ function AgencySignUp() {
                   xs={{ span: 24 }}
                   span={12}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     label="Direct work phone"
                     name="directWorkPhone"
                     className="c-input"
-                    rules={Rules.phoneRule}
-                  >
+                    rules={Rules.phoneRule}>
                     <PhoneInput
                       placeholder="Enter your work phone."
                       country={countryCode}
@@ -678,14 +633,12 @@ function AgencySignUp() {
                   xs={{ span: 24 }}
                   span={12}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     label="Work email address"
                     name="email"
                     className="c-input"
-                    rules={Rules.emailRule}
-                  >
+                    rules={Rules.emailRule}>
                     <Input
                       autoComplete={"" + Math.random()}
                       placeholder="Enter your email"
@@ -698,14 +651,12 @@ function AgencySignUp() {
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     label="Sector"
                     name="categoryId"
                     className="c-input"
-                    rules={Rules.requiredRule}
-                  >
+                    rules={Rules.requiredRule}>
                     <SuperSelect
                       onSelect={(v) => {
                         setCategoryId(v);
@@ -722,14 +673,12 @@ function AgencySignUp() {
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     label="Job title"
                     name="jobTitleId"
                     className="c-input"
-                    rules={Rules.requiredRule}
-                  >
+                    rules={Rules.requiredRule}>
                     <SuperSelect
                       dependencyId={categoryId}
                       getPopupContainer={(trigger) => trigger.parentNode}
@@ -743,19 +692,16 @@ function AgencySignUp() {
                   xs={{ span: 24 }}
                   span={12}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     className="c-input"
                     name="findUsId"
                     label="How did you find us?"
-                    rules={Rules.requiredRule}
-                  >
+                    rules={Rules.requiredRule}>
                     <Select
                       allowClear
                       getPopupContainer={(trigger) => trigger.parentNode}
-                      placeholder="Select platform"
-                    >
+                      placeholder="Select platform">
                       {findUsPlatforms?.map((fu) => (
                         <Option value={fu.id}>{fu.title}</Option>
                       ))}
@@ -766,14 +712,12 @@ function AgencySignUp() {
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     label="Password"
                     name="password"
                     className="c-input"
-                    rules={Rules.passwordRule}
-                  >
+                    rules={Rules.passwordRule}>
                     <Input.Password
                       autoComplete="off"
                       type="password"
@@ -785,14 +729,12 @@ function AgencySignUp() {
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
-                  lg={{ span: 12 }}
-                >
+                  lg={{ span: 12 }}>
                   <Form.Item
                     label="Confirm password"
                     name="ConfirmPassword"
                     className="c-input"
-                    rules={Rules.confirmPasswordRule}
-                  >
+                    rules={Rules.confirmPasswordRule}>
                     <Input.Password
                       autoComplete="off"
                       type="password"
@@ -815,8 +757,7 @@ function AgencySignUp() {
           form={form}
           layout="vertical"
           className="agency-sign-up c-form second-container"
-          onFinish={onFinish}
-        >
+          onFinish={onFinish}>
           {renderSteps(currentStep)}
 
           {(currentStep === 2 || currentStep == 3) && (
@@ -825,12 +766,10 @@ function AgencySignUp() {
                 name="agreeTerms"
                 className="mb-3"
                 valuePropName="checked"
-                rules={Rules.requiredRule}
-              >
+                rules={Rules.requiredRule}>
                 <Checkbox
                   checked={agreeToTerms}
-                  onChange={(e) => setAgreeToTerms(e.target.checked)}
-                >
+                  onChange={(e) => setAgreeToTerms(e.target.checked)}>
                   I agree with Jobsmideast.com{" "}
                   <mark onClick={() => setTermsModalShow(true)}>
                     T&C's, Cookie &amp; Privacy Policy,
@@ -841,8 +780,7 @@ function AgencySignUp() {
               </Form.Item>
               <Modal
                 show={termsModalShow}
-                onHide={() => setTermsModalShow(false)}
-              >
+                onHide={() => setTermsModalShow(false)}>
                 {" "}
                 <TermsConditions />
               </Modal>
@@ -856,9 +794,8 @@ function AgencySignUp() {
               block
               className="next-btn"
               htmlType="submit"
-              themeColor="light"
-              loading={isLoading}
-            >
+              themecolor="light"
+              loading={isLoading}>
               Next
             </Button>
           )}
@@ -869,15 +806,13 @@ function AgencySignUp() {
                 display: "flex",
                 justifyContent: "flex-end",
                 marginBottom: "20px",
-              }}
-            >
+              }}>
               <Button
                 block
                 className="next-btn-2"
                 htmlType="submit"
-                themeColor="light"
-                loading={isLoading}
-              >
+                themecolor="light"
+                loading={isLoading}>
                 Next
               </Button>
             </div>
@@ -888,15 +823,13 @@ function AgencySignUp() {
                 display: "flex",
                 justifyContent: "flex-end",
                 marginBottom: "20px",
-              }}
-            >
+              }}>
               <Button
                 block
                 className="next-btn-2"
                 htmlType="submit"
-                themeColor="light"
-                loading={isLoading}
-              >
+                themecolor="light"
+                loading={isLoading}>
                 Submit
               </Button>
             </div>

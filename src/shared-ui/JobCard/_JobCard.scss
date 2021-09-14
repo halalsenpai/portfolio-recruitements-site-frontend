@@ -11,7 +11,7 @@
   justify-content: space-between;
   overflow: hidden;
   padding: 10px 10px 10px 10px;
-  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3) !important;
+  box-shadow: 1px 1px 10px $shadow-color !important;
   transition: 0.3s all linear;
   cursor: pointer;
 
@@ -54,10 +54,12 @@
         justify-content: space-between;
         align-items: flex-start;
         // height: 40px;
+        flex-grow: 1;
 
         .title-row {
           display: flex;
           align-items: center;
+          width: 100%;
 
           .title {
             font-size: 12px;
@@ -99,9 +101,10 @@
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      justify-content: flex-end;
+      justify-content: flex-start;
       height: 100%;
       align-self: flex-end;
+      padding-top: 15px;
       p,
       a {
         // font-family: $font-light !important;
@@ -252,6 +255,14 @@
   .c-job-card {
     .job-card-first-container {
       flex-direction: column;
+      position: relative;
+    }
+    .more-info {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: fit-content !important;
+      min-height: fit-content;
     }
   }
   .job-thumbnail {
@@ -284,7 +295,7 @@
 //   justify-content: space-between;
 //   overflow: hidden;
 //   padding: 10px 10px 10px 10px;
-//   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3) !important;
+//   box-shadow: 1px 1px 10px $shadow-color !important;
 //   transition: 0.3s all linear;
 //   cursor: pointer;
 
@@ -516,7 +527,7 @@
 //     justify-content: space-between;
 //     overflow: hidden;
 //     padding: 10px 10px 10px 10px;
-//     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3) !important;
+//     box-shadow: 1px 1px 10px $shadow-color !important;
 //     transition: 0.3s all linear;
 //     cursor: pointer;
 

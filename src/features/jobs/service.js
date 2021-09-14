@@ -10,7 +10,8 @@ const SERVICE_URLS = {
   getCountry: () => `/country`,
   getCountryisDesired: () => `/country?isDesired=true`,
   getCity: () => `/city?page=1&limit=100`,
-  getCityisDesired: (qs) => `/city?page=1&limit=100&isDesired=true${qs ? `&search=${qs}` : ''}`,
+  getCityisDesired: (qs) =>
+    `/city?page=1&limit=100&isDesired=true${qs ? `&search=${qs}` : ""}`,
   getQualification: () => `/qualification`,
   getFieldOfStudy: () => `/field-of-study`,
   getGrade: () => `/grade`,
@@ -24,13 +25,16 @@ const SERVICE_URLS = {
   getSuitableFor: (id) => `/suitable-job-list`,
   getCitiesByCountry: (id) => `/city/by-country-id/${id}?page=1&limit=500`,
   getFindJobTitle: (qs) => `/jobtitle/for-find-job${qs}`,
+  getCurrencyType: () => `/currency`,
+  getCityById: (id) => `city/${id}`,
 };
 
 export const getJob = (qs) => get(SERVICE_URLS.getJob(qs));
 export const getJobTitle = () => get(SERVICE_URLS.getJobTitle());
 export const getEmploymentType = () => get(SERVICE_URLS.getEmploymentType());
 export const getCountry = () => get(SERVICE_URLS.getCountry());
-export const getCountryisDesired = () => get(SERVICE_URLS.getCountryisDesired());
+export const getCountryisDesired = () =>
+  get(SERVICE_URLS.getCountryisDesired());
 export const getCity = () => get(SERVICE_URLS.getCity());
 // export const getCityisDesired = () => get(SERVICE_URLS.getCityisDesired());
 export const getQualification = () => get(SERVICE_URLS.getQualification());
@@ -49,15 +53,21 @@ export const getFilteredJob = (params) =>
   get(SERVICE_URLS.getFilteredJob(params));
 export const getCitiesByCountry = (id) =>
   get(SERVICE_URLS.getCitiesByCountry(id));
+export const getCityById = (id) => get(SERVICE_URLS.getCityById(id));
+
 export const getCityisDesired = (params) => {
-  console.log("getCityisDesired", params)
+  console.log("getCityisDesired", params);
   // const qs = jsonToQueryString(params);
-  const qs = params?.search ? params.search : params?.title ? params.title: false;
+  const qs = params?.search
+    ? params.search
+    : params?.title
+    ? params.title
+    : false;
   return get(SERVICE_URLS.getCityisDesired(qs));
 };
+export const getCurrencyType = () => get(SERVICE_URLS.getCurrencyType());
 
 export const jobTitlesFindJobs = (params) => {
   const qs = jsonToQueryString(params);
   return get(SERVICE_URLS.getFindJobTitle(qs));
 };
-

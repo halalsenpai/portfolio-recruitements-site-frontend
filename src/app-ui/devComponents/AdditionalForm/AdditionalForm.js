@@ -14,8 +14,7 @@ const DashboardFrom = () => {
       placement="topLeft"
       overlayInnerStyle={{ width: 400 }}
       content={helperText}
-      trigger="click"
-    >
+      trigger="click">
       {children}
     </Popover>
   );
@@ -42,8 +41,7 @@ const DashboardFrom = () => {
               <Form.Item
                 name="familyStatus"
                 className="c-input form-padding"
-                rules={Rules.phoneRule}
-              >
+                rules={Rules.phoneRule}>
                 <div className="c-label">
                   <label className="required"> Family status </label>
 
@@ -66,8 +64,7 @@ const DashboardFrom = () => {
               <Form.Item
                 name="familyStatus"
                 className="c-input form-padding"
-                rules={Rules.phoneRule}
-              >
+                rules={Rules.phoneRule}>
                 <div className="c-label">
                   <label className="required"> Gender </label>
 
@@ -89,17 +86,15 @@ const DashboardFrom = () => {
               <Form.Item
                 name="dateOfbirth"
                 className="c-input form-padding"
-                rules={Rules.phoneRule}
-              >
+                rules={Rules.phoneRule}>
                 <label className="required">Date of birth</label>
-                <DatePicker />
+                <DatePicker format="DD-MM-YYYY" />
               </Form.Item>
 
               <Form.Item
                 name="email"
                 className="c-input form-padding"
-                rules={Rules.emailRule}
-              >
+                rules={Rules.emailRule}>
                 <div className="c-label">
                   <label className="required">Passport nationality</label>
 
@@ -135,8 +130,7 @@ const DashboardFrom = () => {
               <Form.Item
                 name="mobileNumber"
                 className="c-input form-padding"
-                rules={Rules.phoneRule}
-              >
+                rules={Rules.phoneRule}>
                 <label className="required">Mobile number</label>
 
                 <PhoneInput
@@ -149,8 +143,7 @@ const DashboardFrom = () => {
               <Form.Item
                 name="firstName"
                 className="c-input form-padding"
-                rules={Rules.firstNameRule}
-              >
+                rules={Rules.firstNameRule}>
                 <label className="required">Email address</label>
                 <Input
                   autoComplete="off"
@@ -164,8 +157,7 @@ const DashboardFrom = () => {
               <Form.Item
                 name="firstName"
                 className="c-input form-padding"
-                rules={Rules.firstNameRule}
-              >
+                rules={Rules.firstNameRule}>
                 <label className="">Facebook profile link</label>
                 <Input
                   autoComplete="off"
@@ -178,8 +170,7 @@ const DashboardFrom = () => {
               <Form.Item
                 name="firstName"
                 className="c-input form-padding"
-                rules={Rules.firstNameRule}
-              >
+                rules={Rules.firstNameRule}>
                 <label className="">LinkedIn profile link</label>
                 <Input
                   autoComplete="off"
@@ -206,8 +197,7 @@ const DashboardFrom = () => {
               <Form.Item
                 name="familyStatus"
                 className="c-input form-padding"
-                rules={Rules.phoneRule}
-              >
+                rules={Rules.phoneRule}>
                 <div className="c-label">
                   <label className="required">
                     Minimum monthly salary in AED
@@ -224,8 +214,7 @@ const DashboardFrom = () => {
               <Form.Item
                 name="familyStatus"
                 className="c-input form-padding"
-                rules={Rules.phoneRule}
-              >
+                rules={Rules.phoneRule}>
                 <div className="c-label">
                   <label className="required">Notice period</label>
                 </div>
@@ -238,8 +227,7 @@ const DashboardFrom = () => {
               <Form.Item
                 name="email"
                 className="c-input form-padding"
-                rules={Rules.emailRule}
-              >
+                rules={Rules.emailRule}>
                 <div className="c-label">
                   <label className="required">Native language</label>
                 </div>
@@ -252,8 +240,7 @@ const DashboardFrom = () => {
               <Form.Item
                 name="email"
                 className="c-input form-padding"
-                rules={Rules.emailRule}
-              >
+                rules={Rules.emailRule}>
                 <div className="c-label">
                   <label className="required">Other languages</label>
                 </div>
@@ -268,8 +255,7 @@ const DashboardFrom = () => {
               <Form.Item
                 name="familyStatus"
                 className="c-input form-padding"
-                rules={Rules.phoneRule}
-              >
+                rules={Rules.phoneRule}>
                 <div className="c-label">
                   <label className="required">Medical conditions</label>
                 </div>
@@ -285,8 +271,7 @@ const DashboardFrom = () => {
               <Form.Item
                 name="familyStatus"
                 className="c-input form-padding"
-                rules={Rules.phoneRule}
-              >
+                rules={Rules.phoneRule}>
                 <div className="c-label">
                   <label className="required">Driving license</label>
                 </div>
@@ -299,8 +284,7 @@ const DashboardFrom = () => {
               <Form.Item
                 name="email"
                 className="c-input form-padding"
-                rules={Rules.emailRule}
-              >
+                rules={Rules.emailRule}>
                 <div className="c-label">
                   <label className="required">Visa status</label>
                 </div>
@@ -313,8 +297,7 @@ const DashboardFrom = () => {
               <Form.Item
                 name="email"
                 className="c-input form-padding"
-                rules={Rules.emailRule}
-              >
+                rules={Rules.emailRule}>
                 <div className="c-label">
                   <label className="required">
                     Do you clear police certificate?
@@ -343,8 +326,7 @@ const DashboardFrom = () => {
               <Form.Item
                 name="email"
                 className="c-input form-padding"
-                rules={Rules.emailRule}
-              >
+                rules={Rules.emailRule}>
                 <div className="c-label">
                   <label className="required">Current country</label>
                 </div>
@@ -357,8 +339,7 @@ const DashboardFrom = () => {
               <Form.Item
                 name="email"
                 className="c-input form-padding"
-                rules={Rules.emailRule}
-              >
+                rules={Rules.emailRule}>
                 <div className="c-label">
                   <label className="required">Current city</label>
                 </div>
@@ -371,8 +352,7 @@ const DashboardFrom = () => {
               <Form.Item
                 name="firstName"
                 className="c-input form-padding"
-                rules={Rules.firstNameRule}
-              >
+                rules={Rules.firstNameRule}>
                 <label className="required">Desired locations to work in</label>
                 <Input
                   autoComplete="off"
@@ -385,12 +365,11 @@ const DashboardFrom = () => {
 
             <div className=" mb-0 align-self-center update-form">
               <Button
-                themeColor="light"
+                themecolor="light"
                 type="large"
                 htmlType="submit"
                 // loading={true}
-                block
-              >
+                block>
                 Update
               </Button>
             </div>

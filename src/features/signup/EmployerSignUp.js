@@ -45,8 +45,10 @@ import {
   selectCitiesByCountry,
   selectProfileImage,
   removePreUploadedProfileImage,
+  removePreUploadedCompanyLogo,
+  removePreExistingErrorMessages,
   selectCompanyLogo,
-  setSignupStateFalse
+  setSignupStateFalse,
 } from "./slice";
 // import AvatarPicker from "../../shared-ui/AvatarPicker/AvatarPicker";
 import { SuperSelectFindJobs } from "../../shared-ui/superselectfindjobs/superselectfindjobs";
@@ -61,7 +63,6 @@ function EmployerSignUp() {
   const history = useHistory();
   const location = useLocation();
   const dispatch = useAppDispatch();
-
   const [isCreateCompany, setCreateCompany] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({});
@@ -85,7 +86,6 @@ function EmployerSignUp() {
   const citiesByCountry = useAppSelector(selectCitiesByCountry);
   const profileImage = useAppSelector(selectProfileImage);
   const companyLogo = useAppSelector(selectCompanyLogo);
-
   useEffect(() => {
     // let params = queryString.parse(location.search);
     dispatch(getRole());
@@ -111,6 +111,7 @@ function EmployerSignUp() {
 
   useEffect(() => {
     dispatch(removePreUploadedProfileImage());
+    dispatch(removePreUploadedCompanyLogo());
   }, []);
 
   useEffect(() => {
@@ -128,18 +129,18 @@ function EmployerSignUp() {
     console.log("onFinish", values);
     setFormData({ ...formData, ...values, companyLogo: companyLogo?.url });
 
+    if (isCreateCompany && !companyLogo) {
+      showWarningMessage("Company logo is required");
+      return;
+    }
+    if (isCreateCompany && currentStep === 3 && !profileImage) {
+      showWarningMessage("Profile photo is required");
+      return;
+    }
     if (agreeToTerms === false && currentStep === 3) {
       showWarningMessage("Agree to terms and conditions to proceed");
       return;
     }
-    // if (isCreateCompany && currentStep === 2 && !profileImage?.url) {
-    //   showWarningMessage("profile photo is required");
-    //   return;
-    // }
-    // if (!isCreateCompany && currentStep === 3 && !profileImage?.url) {
-    //   showWarningMessage("profile photo is required");
-    //   return;
-    // }
 
     if (currentStep < 3) {
       setCurrentStep((prevValue) => prevValue + 1);
@@ -172,8 +173,6 @@ function EmployerSignUp() {
     delete payload.agreeTerms;
     payload.profilePhoto = profileImage?.url;
     payload.companyLogo = companyLogo?.url;
-    console.log("profile photo", profileImage);
-    console.log("payload", payload);
     dispatch(employerSignup(payload));
   };
 
@@ -187,7 +186,6 @@ function EmployerSignUp() {
   };
 
   const onCompanyNameChange = (value) => {
-    console.log('onCompanyNameChange', value)
     if (value === "") {
       setCreateCompany(true);
       return;
@@ -208,7 +206,6 @@ function EmployerSignUp() {
     const payload = new FormData();
     payload.append("file", file, file.name);
     dispatch(uploadProfileImage({ payload }));
-    console.log("uploadProfileImage", uploadProfileImage);
     return false;
   };
 
@@ -216,7 +213,6 @@ function EmployerSignUp() {
     const payload = new FormData();
     payload.append("file", file, file.name);
     dispatch(uploadCompanyLogo({ payload }));
-    console.log("uploadCompanyLogo", uploadCompanyLogo);
     return false;
   };
   const handleCreateNewCompany = () => {
@@ -247,7 +243,7 @@ function EmployerSignUp() {
                   name="companyProfileId"
                   rules={Rules.requiredRule}>
                   <SuperSelectEmployerSignup
-                      idSelect
+                    idSelect
                     mode={true}
                     getPopupContainer={(trigger) => trigger.parentNode}
                     fetchOptions={getCompany}
@@ -286,23 +282,27 @@ function EmployerSignUp() {
             {!isCreateCompany && (
               <Row gutter={[32, 32]}>
                 <Col style={{ marginBottom: "24px", zIndex: 300 }} span={24}>
-                  <Upload
-                    beforeUpload={profileImageBeforeUpload}
-                    showUploadList={false}>
-                    <div className="avatar-upload">
-                      <div className="photo-square">
-                        {profileImage && <img src={profileImage?.url} alt="" />}
+                  <Form.Item rules={Rules.requiredRule}>
+                    <Upload
+                      beforeUpload={profileImageBeforeUpload}
+                      showUploadList={false}>
+                      <div className="avatar-upload">
+                        <div className="photo-square">
+                          {profileImage && (
+                            <img src={profileImage?.url} alt="" />
+                          )}
+                        </div>
+                        {!profileImage && (
+                          <Button>
+                            <PlusOutlined />
+                          </Button>
+                        )}
                       </div>
-                      {!profileImage && (
-                        <Button>
-                          <PlusOutlined />
-                        </Button>
-                      )}
-                    </div>
-                    <div style={{ fontSize: "12px", marginTop: "12px" }}>
-                      Upload profile photo
-                    </div>
-                  </Upload>
+                      <div style={{ fontSize: "12px", marginTop: "12px" }}>
+                        Upload profile photo
+                      </div>
+                    </Upload>
+                  </Form.Item>
                 </Col>
                 <Col
                   xs={{ span: 24 }}
@@ -461,6 +461,35 @@ function EmployerSignUp() {
                   </Form.Item>
                 </Col>
                 <Col
+                  style={{ zIndex: 300 }}
+                  span={12}
+                  xs={{ span: 24 }}
+                  md={{ span: 12 }}
+                  lg={{ span: 12 }}>
+                  <Form.Item
+                    label="Your role within the compnay"
+                    name="currentRole"
+                    className="c-input"
+                    rules={Rules.requiredRule}>
+                    <Select
+                      allowClear
+                      placeholder=""
+                      getPopupContainer={(trigger) => trigger.parentNode}>
+                      <Option value="business-owner">Business owner</Option>
+                      <Option value="decision-maker-within-he-business">
+                        Decision maker within the business
+                      </Option>
+                      <Option value="hr-Director/Manager">
+                        HR Director/Manager
+                      </Option>
+                      <Option value="department-Manager/Head">
+                        Department Manager/Head
+                      </Option>
+                      <Option value="Team-member">Team member</Option>
+                    </Select>
+                  </Form.Item>
+                </Col>
+                <Col
                   span={12}
                   xs={{ span: 24 }}
                   md={{ span: 12 }}
@@ -529,12 +558,12 @@ function EmployerSignUp() {
                     className="c-input"
                     rules={Rules.phoneRule}>
                     <PhoneInput
-                      onChange={(e) => console.log(e)}
                       placeholder="Enter your phone number."
                       country={countryCode}
                     />
                   </Form.Item>
                 </Col>
+
                 <Col
                   span={12}
                   xs={{ span: 24 }}
@@ -935,7 +964,7 @@ function EmployerSignUp() {
               block
               className="next-btn"
               htmlType="submit"
-              themeColor="light"
+              themecolor="light"
               loading={isLoading}>
               Next
             </Button>
@@ -952,7 +981,7 @@ function EmployerSignUp() {
                 block
                 className="next-btn-2"
                 htmlType="submit"
-                themeColor="light"
+                themecolor="light"
                 loading={isLoading}>
                 Next
               </Button>
@@ -969,7 +998,7 @@ function EmployerSignUp() {
                 block
                 className="next-btn-2"
                 htmlType="submit"
-                themeColor="light"
+                themecolor="light"
                 loading={isLoading}>
                 Submit
               </Button>

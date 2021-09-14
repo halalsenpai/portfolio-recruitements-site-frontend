@@ -172,9 +172,9 @@ const CookiePolicy = () => {
           For more information about how we use information collected by cookies
           and other tracking technologies, please refer to our Privacy Policy
           <Link to="privacy-policy">www.jobsmideast.com/privacy-policy</Link>
-          posted on the Site. This Cookie Policy is part of and is incorporated
-          into our Privacy Policy. By usingthe Site, you agree to be bound by
-          this Cookie Policy and our Privacy Policy.
+          &nbsp; posted on the Site. This Cookie Policy is part of and is
+          incorporated into our Privacy Policy. By usingthe Site, you agree to
+          be bound by this Cookie Policy and our Privacy Policy.
         </p>
         <h1>CONTACT US</h1>
         <p>

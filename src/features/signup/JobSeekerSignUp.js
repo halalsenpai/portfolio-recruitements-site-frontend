@@ -33,7 +33,7 @@ import {
   selectErrorMessage,
   selectLoadingStatus,
   selectCountryByIp,
-  setSignupStateFalse
+  setSignupStateFalse,
 } from "./slice";
 import TermsConditions from "./TermsConditions";
 import { getNationality } from "./service";
@@ -289,6 +289,7 @@ for an all girls school.">
                     d.isSameOrBefore("1960-01-01")
                   }
                   defaultPickerValue={moment("2000-01-01")}
+                  format="DD-MM-YYYY"
                 />
               </Form.Item>
             </Col>
@@ -364,7 +365,7 @@ secure visas for everyone.">
               </Form.Item>
               <Button
                 className="create-profile-button"
-                themeColor="light"
+                themecolor="light"
                 type="large"
                 htmlType="submit"
                 loading={isLoading}

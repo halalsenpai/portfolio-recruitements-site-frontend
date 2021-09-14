@@ -20,8 +20,7 @@ const ExpForm = () => {
               <Form.Item
                 name="firstName"
                 className="c-input mx-auto"
-                rules={Rules.firstNameRule}
-              >
+                rules={Rules.firstNameRule}>
                 <label className="required">Job title</label>
                 <Input
                   autoComplete="off"
@@ -35,8 +34,7 @@ const ExpForm = () => {
               <Form.Item
                 name="email"
                 className="c-input mx-auto"
-                rules={Rules.emailRule}
-              >
+                rules={Rules.emailRule}>
                 <div className="c-label">
                   <label className="required">Employment type</label>
                 </div>
@@ -51,8 +49,7 @@ const ExpForm = () => {
               <Form.Item
                 name="firstName"
                 className="c-input w-100 "
-                rules={Rules.firstNameRule}
-              >
+                rules={Rules.firstNameRule}>
                 <label className="required">Company</label>
                 <Input
                   autoComplete="off"
@@ -68,8 +65,7 @@ const ExpForm = () => {
               <Form.Item
                 name="firstName"
                 className="c-input mx-auto"
-                rules={Rules.firstNameRule}
-              >
+                rules={Rules.firstNameRule}>
                 <label className="required">Company location</label>
                 <Input
                   autoComplete="off"
@@ -83,8 +79,7 @@ const ExpForm = () => {
               <Form.Item
                 name="email"
                 className="c-input mx-auto"
-                rules={Rules.emailRule}
-              >
+                rules={Rules.emailRule}>
                 <div className="c-label">
                   <label className="required">City</label>
                 </div>
@@ -99,17 +94,15 @@ const ExpForm = () => {
               <Form.Item
                 name="dateOfbirth"
                 className="c-input mx-auto"
-                rules={Rules.phoneRule}
-              >
+                rules={Rules.phoneRule}>
                 <label className="required">Start date</label>
-                <DatePicker />
+                <DatePicker format="DD-MM-YYYY" />
               </Form.Item>
 
               <Form.Item
                 name="dateOfbirth"
                 className="c-input mx-auto"
-                rules={Rules.phoneRule}
-              >
+                rules={Rules.phoneRule}>
                 <span className="spacing-between">
                   <label className="required">End date</label>
 
@@ -118,7 +111,7 @@ const ExpForm = () => {
                   </Checkbox>
                 </span>
 
-                <DatePicker />
+                <DatePicker format="DD-MM-YYYY" />
               </Form.Item>
             </div>
 
@@ -126,8 +119,7 @@ const ExpForm = () => {
               <Form.Item
                 name="firstName"
                 className="c-input w-100 "
-                rules={Rules.firstNameRule}
-              >
+                rules={Rules.firstNameRule}>
                 <label className="">Achievements (Optional)</label>
                 <Input
                   autoComplete="off"
@@ -143,8 +135,7 @@ const ExpForm = () => {
               <Form.Item
                 name="firstName"
                 className="c-input w-100 "
-                rules={Rules.firstNameRule}
-              >
+                rules={Rules.firstNameRule}>
                 <label className="">
                   Reason for leaving / looking for a new position (optional)
                 </label>
@@ -163,7 +154,7 @@ const ExpForm = () => {
             </div>
 
             <div className="exp-form-rows exp-x-spacing">
-              <Button themeColor="light" type="large" htmlType="submit" block>
+              <Button themecolor="light" type="large" htmlType="submit" block>
                 Update
               </Button>
             </div>
