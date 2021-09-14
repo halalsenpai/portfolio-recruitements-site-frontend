@@ -1,11 +1,11 @@
 .c-button {
-  padding: 5px 10px;
+  padding: 5px 25px;
   color: #ffffff;
   height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 8px 25px;
+  // padding: 8px 25px;
   font-size: 14px;
   border-radius: 6px;
   width: max-content;
@@ -74,12 +74,27 @@
   }
 
   &.light {
-    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(106, 210, 89, 1) 0%, rgba(0, 176, 250, 1) 100%);
+    background: linear-gradient(
+      90deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(106, 210, 89, 1) 0%,
+      rgba(0, 176, 250, 1) 100%
+    );
     &:hover {
-      background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(106, 210, 89, 1) 0%, rgba(0, 176, 250, 1) 100%);
+      background: linear-gradient(
+        90deg,
+        rgba(2, 0, 36, 1) 0%,
+        rgba(106, 210, 89, 1) 0%,
+        rgba(0, 176, 250, 1) 100%
+      );
     }
     &:focus {
-      background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(106, 210, 89, 1) 0%, rgba(0, 176, 250, 1) 100%);
+      background: linear-gradient(
+        90deg,
+        rgba(2, 0, 36, 1) 0%,
+        rgba(106, 210, 89, 1) 0%,
+        rgba(0, 176, 250, 1) 100%
+      );
     }
     color: $white;
   }
@@ -171,6 +186,29 @@
     }
     &:focus {
       background: $blue;
+    }
+  }
+  &.outlined-red {
+    background: $white;
+    border: 1px solid $red;
+
+    span {
+      color: $red;
+    }
+
+    &:hover {
+      background: $red;
+
+      span {
+        color: $white;
+      }
+    }
+
+    &:focus {
+      background: $red;
+      span {
+        color: $white;
+      }
     }
   }
 

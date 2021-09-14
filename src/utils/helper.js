@@ -12,6 +12,14 @@ export const uuid = () => {
   // return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
   return s4() + s4() + "-" + s4();
 };
+export const findTitleById = (data, id) => {
+  const found = data?.find((d) => d.id === id);
+  return found?.title || null;
+};
+
+export const toCommas = (value) => {
+  return value?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
 
 export const MappedElement = ({ data, renderElement, count }) => {
   if (data && data.length) {
@@ -92,11 +100,11 @@ export const readableDate = (d) => {
   return moment(d).format("DD MMM YYYY");
 };
 
-export const dayTimeLeftFromNow = (d) => {
+export const dayTimeLeftFromNowTrue = (d) => {
   if (!d) {
     return null;
   }
-  return moment(d).fromNow();
+  return moment(d).fromNow(true);
 };
 
 export const setTimeToZero = (d) => {

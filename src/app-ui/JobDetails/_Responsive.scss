@@ -70,6 +70,12 @@
         justify-content: space-between;
         flex-direction: row-reverse;
         width: 100%;
+        position: relative;
+        .actions-wrapper {
+          position: absolute;
+          // top: 0;
+          // right: 0;
+        }
         button {
           &.ant-btn {
             &.c-button {
@@ -146,7 +152,8 @@
       }
     }
     .job-details-wrapper {
-      padding: 15px 0px !important;
+      padding: 0em !important;
+      padding-top: 1em !important;
       span.content-box {
         padding: 0px 10px 0px 10px !important;
         .content-section {
@@ -160,6 +167,7 @@
       .details-header {
         .actions-wrapper {
           max-width: unset !important;
+          // position: absolute;
         }
       }
       span.details-header {
@@ -182,6 +190,12 @@
     padding: 15px 11px !important;
     height: 100% !important;
     margin-top: 15px !important;
+  }
+  .c-job-detail-card .header .job-info-wrapper {
+    align-items: flex-start;
+    span {
+      padding-left: 0px;
+    }
   }
 }
 @media screen and (min-width: 1044px) and (max-width: 1180px) {

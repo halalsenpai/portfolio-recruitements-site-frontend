@@ -79,7 +79,7 @@ function SignUp() {
               htmlType="submit"
               // loading={true}
               block
-              themeColor="primary">
+              themecolor="primary">
               Next
             </Button>
           </Form.Item>

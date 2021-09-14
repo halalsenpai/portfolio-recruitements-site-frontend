@@ -29,7 +29,8 @@ function Footer() {
           <ul>
             <Link to="/">Home</Link>
             <Link to="/login">Login</Link>
-            <Link to="/services">Services</Link>
+            {/* S E R V I C E S ___ R E M O V E ___ F O R ____  N O W */}
+            {/* <Link to="/services">Services</Link> */}
             {/* <Link to="/">Report a problem</Link> */}
           </ul>
           <ul>
@@ -41,7 +42,9 @@ function Footer() {
             {/*<Link>
               <h3 className="blue">Employers & Agencies</h3>
             </a> */}
-            <Link to="/pricing">Pricing</Link>
+
+            {/* P R I C I N G __ R E M O V E ____ F O R _____ N O W */}
+            {/* <Link to="/pricing">Pricing</Link> */}
             <Link to="/terms-and-condition">T&C's</Link>
             <Link to="/privacy-policy">Privacy policy</Link>
             <Link to="cookie-policy">Cookie policy</Link>

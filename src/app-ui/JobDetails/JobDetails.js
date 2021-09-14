@@ -25,6 +25,7 @@ import {
   selectJobTitles,
   selectOtherJobs,
   selectSalaryType,
+  selectLanguage,
 } from "../../features/jobs/slice";
 import JobCard from "../../shared-ui/JobCard/JobCard";
 import { transformJobData } from "../../features/jobs/transformers";
@@ -33,6 +34,23 @@ import moment from "moment";
 // import { createMarkup } from "../../utils/helper";
 
 const { Option } = Select;
+export const responsive = {
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 3,
+    slidesToSlide: 3, // optional, default to 1.
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 2,
+    slidesToSlide: 2, // optional, default to 1.
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+    slidesToSlide: 1, // optional, default to 1.
+  },
+};
 
 function JobDetails({
   data = {},
@@ -51,6 +69,8 @@ function JobDetails({
   const categories = useAppSelector(selectCategories);
   const currencyType = useAppSelector(selectCurrencyType);
   const salaryTypes = useAppSelector(selectSalaryType);
+  const languages = useAppSelector(selectLanguage);
+
   const history = useHistory();
   const createMarkup = (html) => {
     return { __html: html };
@@ -61,23 +81,6 @@ function JobDetails({
   } = data;
   const category = getTitleById(categories, categoryId);
 
-  const responsive = {
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 3,
-      slidesToSlide: 3, // optional, default to 1.
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-      slidesToSlide: 2, // optional, default to 1.
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-      slidesToSlide: 1, // optional, default to 1.
-    },
-  };
   return (
     <div className="c-job-detail-card">
       {/* Header */}
@@ -166,14 +169,13 @@ function JobDetails({
               onClick={() => {
                 setShowJobDetails(false);
                 setSelectedJobId(null);
-              }}
-            >
+              }}>
               <IoMdCloseCircle color="white" size="24px" />
             </div>
             {!searchedCompany ? (
               <div className="view-jobs">
                 {/* <Button
-                    themeColor="outlined-white"
+                    themecolor="outlined-white"
                     onClick={() => NavigateToFindJobs(data.company?.id)}>
                     View All Jobs
                   </Button> */}
@@ -188,14 +190,13 @@ function JobDetails({
               onClick={() => {
                 setShowJobDetails(false);
                 setSelectedJobId(null);
-              }}
-            >
+              }}>
               <IoMdCloseCircle color="white" size="24px" />
             </div>
             {!searchedCompany ? (
               <div className="view-jobs">
                 {/* <Button
-                    themeColor="outlined-white"
+                    themecolor="outlined-white"
                     onClick={() => NavigateToFindJobs(data.company?.id)}>
                     View All Jobs
                   </Button> */}
@@ -205,7 +206,7 @@ function JobDetails({
         )}
 
         {/* {showAllDetails && (
-          <Button themeColor="transparent small">View Jobs</Button>
+          <Button themecolor="transparent small">View Jobs</Button>
         )} */}
 
         <div onClick={() => setJobDetails(data)} className="back-btn">
@@ -231,28 +232,28 @@ function JobDetails({
                   </span>
 
                   <span className="actions-wrapper">
-                    <Button className="applied" themeColor="outlined">
+                    <Button className="applied" themecolor="outlined">
                       <Link to="/login">Apply</Link>
                     </Button>
-                    <Button className="applied" themeColor="outlined">
+                    <Button className="applied" themecolor="outlined">
                       <Link to="/login">Follow Company</Link>
                     </Button>
-                    <Button className="applied" themeColor="outlined">
+                    <Button className="applied" themecolor="outlined">
                       <Link to="/login">Shorlist Job</Link>
                     </Button>
                     {/* <Button
               icon={<span className="icon following-icon"></span>}
               title="Follow Company"
-              themeColor="shadowed rounded">
+              themecolor="shadowed rounded">
               <Link to="/login"></Link>
             </Button>
             <Button
               title="Shorlist Job"
               onClick={() => history.push("/login")}
-              themeColor="shadowed rounded"
+              themecolor="shadowed rounded"
               icon={<FaStar size="14px" className="highlighted" />}
             />
-            <Button title="Chat" themeColor="shadowed rounded">
+            <Button title="Chat" themecolor="shadowed rounded">
               {" "}
               <Link to="/login">
                 {" "}
@@ -280,14 +281,26 @@ function JobDetails({
                 {data?.certificate?.title && (
                   <li>Certificate required{data?.certificate?.title}</li>
                 )}
-                {data?.experienceListId > 0 && (
+                {data?.experienceListId >= 0 && (
                   <li>
-                    {data?.experienceListId}&nbsp;years of minimum experience
+                    {data?.experienceListId === 0
+                      ? "No experience required"
+                      : data.experienceListId + " years of minimum experience"}
+                    &nbsp;
                   </li>
                 )}
                 {data?.language?.title && (
                   <li>Native language: &nbsp;{data?.language?.title}</li>
                 )}
+                {data?.otherLanguageId?.length && (
+                  <li>
+                    Other languages: &nbsp;
+                    {data?.otherLanguageId
+                      .map((lang) => getTitleById(languages, parseInt(lang)))
+                      ?.join(", ")}
+                  </li>
+                )}
+
                 {data?.ageLimit && <li>Age Limit: &nbsp;{data?.ageLimit}</li>}
                 {data?.suitableJob?.title && (
                   <li>{data?.suitableJob?.title}</li>
@@ -319,13 +332,13 @@ function JobDetails({
                   </span>
                 </span>
                 <span className="actions-wrapper">
-                  <Button className="applied" themeColor="outlined">
+                  <Button className="applied" themecolor="outlined">
                     <Link to="/login">Apply</Link>
                   </Button>
-                  <Button className="applied" themeColor="outlined">
+                  <Button className="applied" themecolor="outlined">
                     <Link to="/login">Follow Company</Link>
                   </Button>
-                  <Button className="applied" themeColor="outlined">
+                  <Button className="applied" themecolor="outlined">
                     <Link to="/login">Shorlist Job</Link>
                   </Button>
                 </span>
@@ -428,7 +441,7 @@ function JobDetails({
               <>
                 {data?.city?.lat && data?.city?.lng && (
                   <span className="content-block mt-2 pr-0">
-                    <h6 className="company-page-heading thick-title mb-3">
+                    <h6 className=" company-page-heading thick-title mb-3">
                       Job Location
                     </h6>
                     <span className="padding-left">
@@ -445,8 +458,8 @@ function JobDetails({
                 )}
                 <Divider className="divider" />
                 <span className="content-block">
-                  <h6 className="block-title  d-flex justify-content-between align-items-center">
-                    <h6 className="company-page-heading">
+                  <h6 className="  d-flex justify-content-between align-items-center">
+                    <h6 className=" block-title company-page-heading">
                       About company:
                       <span style={{ color: "#2a8fff" }} className="ml-2 blue">
                         {data?.company?.companyName || ""}
@@ -466,8 +479,7 @@ function JobDetails({
                     className="block-text markup"
                     dangerouslySetInnerHTML={createMarkup(
                       data?.company?.introduction
-                    )}
-                  ></span>
+                    )}></span>
                 </span>
 
                 {/* <ImagesGallery
@@ -482,63 +494,66 @@ function JobDetails({
                       draggable={true}
                       showDots
                       responsive={responsive}
-                      ssr={true} // means to render carousel on server-side.
                       infinite={true}
                       autoPlaySpeed={1000}
                       keyBoardControl={true}
                       customTransition="all 1s"
                       transitionDuration={1000}
                       containerClass="carousel-container"
-                      dotListClass="custom-dot-list-style"
-                    >
+                      dotListClass="custom-dot-list-style">
                       {data?.company?.photoUrl?.length &&
                         data.company.photoUrl.map((img, i) => (
                           <img
-                            style={{ borderRadius: "20px" }}
+                            style={
+                              {
+                                // borderRadius: "20px",
+                                // objectFit: "contain",
+                                // width: "100%",
+                                // height: "100%",
+                              }
+                            }
                             className="company-single-photo"
                             src={img}
                             alt={`image ${i}`}
-                            height={250}
-                            width="100%"
+                            // height={220}
+                            // width={220}
                           />
                         ))}
                     </Carousel>
                   )}
 
-                {data.company.videoUrl && (
+                {data?.company?.videoUrl && (
                   <span className="content-block mt-4 pr-0">
                     <h6 className="block-title company-page-heading thick-title mb-3">
                       Company Video{" "}
                     </h6>
-
-                    {!data.company?.videoUrl && ""}
-                    {data.company?.videoUrl && (
-                      <div className="block-video">
-                        <video className="w-100" controls>
-                          <source
-                            src={data.company.videoUrl}
-                            type="video/mp4"
+                    {data?.company?.videoUrl && (
+                      <div className="page-layouts video-section">
+                        <div className="w-100">
+                          <ReactPlayer
+                            width={"100%"}
+                            style={{ width: "100%" }}
+                            url={data.company?.videoUrl}
+                            className="company-profile-video"
                           />
-                          Your browser does not support the video tag.
-                        </video>
+                        </div>
                       </div>
                     )}
                   </span>
                 )}
-                {data?.company?.companyLocation && (
-                  <span className="content-block mt-4 pr-0">
-                    <h6 className="block-title company-page-heading thick-title mb-3">
-                      Company location
-                    </h6>
-                    <div className="block-map">
-                      <Map
-                        data={data?.company}
-                        location={data?.company?.companyLocation}
-                        zoom={16}
-                      />
-                    </div>
-                  </span>
-                )}
+
+                <span className="content-block mt-4 pr-0">
+                  <h6 className=" company-page-heading thick-title mb-3">
+                    Map
+                  </h6>
+                  <div className="block-map">
+                    <Map
+                      data={data?.company}
+                      location={data?.company?.companyLocation}
+                      zoom={16}
+                    />
+                  </div>
+                </span>
               </>
             )}
           </span>
@@ -556,18 +571,15 @@ function JobDetails({
                   <Row
                     gutter={16}
                     style={{ margin: "0 auto", width: "100%" }}
-                    justify={`${
-                      otherJobs?.length === 4 ? "space-around" : "flex-start"
-                    }`}
-                  >
+                    // justify={`${otherJobs?.length === 4 ? " " : "flex-start"}`}
+                    justify="flex-start">
                     {otherJobs?.map((otherJob, i) => (
                       <Col
                         key={i}
                         span={8}
                         lg={{ span: 8 }}
                         sm={{ span: 12 }}
-                        xs={{ span: 24 }}
-                      >
+                        xs={{ span: 24 }}>
                         <JobCard
                           onClick={() => {
                             setJobDetails(otherJob);

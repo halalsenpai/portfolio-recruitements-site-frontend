@@ -13,7 +13,7 @@ import JobDetails from "../../app-ui/JobDetails/JobDetails";
 import filterIcon from "../../assets/images/icons/filter_icon.svg";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { RiCloseCircleLine } from "react-icons/ri";
-
+import { useHistory } from "react-router";
 import {
   getJob,
   getAccommodation,
@@ -27,6 +27,7 @@ import {
   getJobByCategory,
   getJobsByCompany,
   getCurrencyType,
+  getLanguage,
 } from "./thunk";
 
 import {
@@ -65,6 +66,7 @@ function Jobs() {
   const currencyType = useAppSelector(selectCurrencyType);
   const salaryTypes = useAppSelector(selectSalaryType);
   const countries = useAppSelector(selectCountries);
+
   const jobs = useAppSelector(selectJobs);
   const accommodations = useAppSelector(selectAccommodations);
   const otherJobs = useAppSelector(selectOtherJobs);
@@ -75,6 +77,13 @@ function Jobs() {
   const [categoryId, setcategoryId] = useState(null);
   const [companyId, setcompanyId] = useState(null);
   const [searchedCityId, setSearchedCityId] = useState(null);
+  const [checkFilterValues, setCheckFilterValues] = useState(false);
+
+  const history = useHistory();
+  const searchId = history.location.search;
+
+  // console.log("searchId", searchId);
+  // console.log("history", history);
 
   const [queryParams, setQueryParams] = useState({
     page: 1,
@@ -101,6 +110,7 @@ function Jobs() {
     dispatch(getGrade());
     dispatch(getAccommodation());
     dispatch(getCurrencyType());
+    dispatch(getLanguage());
   }, []);
 
   useEffect(() => {
@@ -161,15 +171,21 @@ function Jobs() {
   return (
     <div className="jobs-page">
       <div className="jobs-wrapper">
-        <JobFilter show={filter} onHide={ShowFilter} />
+        <JobFilter
+          isLoading={isLoading}
+          show={filter}
+          onHide={ShowFilter}
+          setCheckFilterValues={setCheckFilterValues}
+        />
+        {/* {console.log("jobs", jobs)} */}
 
         {/* Job List */}
         <div className="find-jobs-section">
-          {/* {isLoading && (
+          {isLoading && !jobs.length && !checkFilterValues && (
             <div className="preloader">
               <Spin />
             </div>
-          )} */}
+          )}
 
           <Form
             className="job-sc"
@@ -229,7 +245,7 @@ function Jobs() {
                   type="small"
                   htmlType="submit"
                   className="filter-btns"
-                  themeColor="rounded light"
+                  themecolor="rounded light"
                   style={{ height: "32px" }}>
                   Go
                 </Button>
@@ -243,14 +259,19 @@ function Jobs() {
           </Form>
 
           <div className="jobs-list">
-            {/* {!jobs.length && (
-              <div className="preloader">
-                <Spin />
-              </div>
-            )} */}
-            {!jobs.length && (
-              <>
-                {/* <Empty
+            {console.log(isLoading, !jobs.length, !checkFilterValues)}
+            {isLoading ||
+              (!jobs.length && !checkFilterValues && (
+                <div className="preloader">
+                  <Spin />
+                </div>
+              ))}
+            {(searchedCityId ||
+              checkFilterValues ||
+              form.getFieldValue("jobTitleName")) &&
+              !jobs.length && (
+                <>
+                  {/* <Empty
                   style={{
                     display: "flex",
                     flexDirection: "column",
@@ -263,34 +284,34 @@ function Jobs() {
                     height: 150,
                   }}
                 /> */}
-                <p>
-                  We couldn't find any jobs that matches your search. Your
-                  Search for <b> {form.getFieldValue("jobTitleName")} </b> in
-                  <b> {searchedCityId} </b> didn't match any jobs{" "}
-                </p>
-                <br />
-                <p>Here are some tips: </p>
-                <ul>
-                  <li>Try other job titles</li>
-                  <li>Try Alternative Locations</li>
-                  <li>Adjust the filter to broaden your search</li>
-                </ul>
-                <Link to="/jobs">
-                  <Button
-                    className="applied"
-                    themeColor="filled_blue"
-                    onClick={() => {
-                      setQueryParams({ page: 1, limit: 100 });
-                    }}
-                    // onClick={onApplyJob}
-                    // loading={applyJobLoading}
-                    // need to use reset job functionality here
-                  >
-                    Back to jobs
-                  </Button>
-                </Link>
-              </>
-            )}
+                  <p>
+                    We couldn't find any jobs that matches your search. Your
+                    Search for <b> {form.getFieldValue("jobTitleName")} </b> in
+                    <b> {searchedCityId} </b> didn't match any jobs{" "}
+                  </p>
+                  <br />
+                  <p>Here are some tips: </p>
+                  <ul>
+                    <li>Try other job titles</li>
+                    <li>Try Alternative Locations</li>
+                    <li>Adjust the filter to broaden your search</li>
+                  </ul>
+                  <Link to="/jobs">
+                    <Button
+                      className="applied"
+                      themecolor="filled_blue"
+                      onClick={() => {
+                        setQueryParams({ page: 1, limit: 100 });
+                      }}
+                      // onClick={onApplyJob}
+                      // loading={applyJobLoading}
+                      // need to use reset job functionality here
+                    >
+                      Back to jobs
+                    </Button>
+                  </Link>
+                </>
+              )}
 
             <MappedElement
               data={jobs}

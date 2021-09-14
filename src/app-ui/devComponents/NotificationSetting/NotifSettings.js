@@ -131,8 +131,7 @@ const DashboardFrom = () => {
                         <Form.Item
                           name="email"
                           className="c-input form-padding"
-                          rules={Rules.emailRule}
-                        >
+                          rules={Rules.emailRule}>
                           <Input
                             autoComplete="off"
                             placeholder=""
@@ -144,8 +143,7 @@ const DashboardFrom = () => {
                         <Form.Item
                           name="password"
                           className="c-input form-padding"
-                          rules={Rules.passwordRule}
-                        >
+                          rules={Rules.passwordRule}>
                           <Input
                             autoComplete="off"
                             placeholder=""
@@ -160,11 +158,10 @@ const DashboardFrom = () => {
                         </p>
 
                         <Button
-                          themeColor="light"
+                          themecolor="light"
                           type="small"
                           htmlType="password"
-                          block
-                        >
+                          block>
                           {" "}
                           Update
                         </Button>
