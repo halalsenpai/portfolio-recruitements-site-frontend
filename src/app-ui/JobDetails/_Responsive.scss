@@ -70,6 +70,12 @@
         justify-content: space-between;
         flex-direction: row-reverse;
         width: 100%;
+        position: relative;
+        .actions-wrapper {
+          position: absolute;
+          // top: 0;
+          // right: 0;
+        }
         button {
           &.ant-btn {
             &.c-button {
@@ -161,6 +167,7 @@
       .details-header {
         .actions-wrapper {
           max-width: unset !important;
+          // position: absolute;
         }
       }
       span.details-header {

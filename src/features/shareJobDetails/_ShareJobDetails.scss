@@ -108,7 +108,7 @@
     }
   }
 
-  .job-details-wrapper {
+  .job-details-wrappers {
     display: flex;
     flex-direction: column;
     padding: 2em !important;
@@ -127,7 +127,7 @@
 
       .company-page-heading {
         margin: 0px;
-        font-size: 20px !important;
+        font-size: 16px !important;
         margin-bottom: 20px;
         position: relative;
         font-family: "Gordita-medium";
@@ -243,7 +243,7 @@
           margin: 0px 0px 20px 0px;
 
           .block-title {
-            font-size: $font-size-lg !important;
+            font-size: $font-size-16 !important;
             color: $secondary;
             position: relative;
             font-family: "Gordita-medium";

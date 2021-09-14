@@ -149,7 +149,7 @@ const ShareJobDetails = ({
       </div>
 
       {/* Content */}
-      <div className="job-details-wrapper">
+      <div className="job-details-wrappers">
         <span className="content-box first">
           <span className="content-section">
             <span className="details-header">
