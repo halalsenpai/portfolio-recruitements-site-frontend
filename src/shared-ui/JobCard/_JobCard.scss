@@ -45,7 +45,7 @@
       width: 100%;
       justify-content: space-between;
       border-bottom: $border-color 1px solid;
-      padding: 10px 0px 0px 0px;
+      padding: 2px 0px 0px 0px;
       margin: 0px 0px 0px 0px;
 
       .info {
@@ -57,25 +57,26 @@
         flex-grow: 1;
 
         .title-row {
-          display: flex;
-          align-items: center;
+          // display: flex;
+          // align-items: center;
           width: 100%;
 
           .title {
             font-size: 12px;
-            margin-top: 10px;
-            margin-bottom: 3px;
+            // margin-top: 10px;
+            margin-bottom: 2px;
             text-overflow: ellipsis;
             white-space: nowrap;
-            max-width: 140px;
+            // max-width: 140px;
             width: 100%;
+            // padding: 3px;
 
             overflow: hidden;
           }
 
           .location-container {
             display: flex;
-            margin: 7px 0px 0px 10px;
+            // margin: 7px 0px 0px 10px;
 
             .location-icon {
               max-width: 10px;
@@ -125,6 +126,7 @@
     padding: 10px 0px;
 
     p {
+      word-break: break-word;
       text-align: left;
     }
   }

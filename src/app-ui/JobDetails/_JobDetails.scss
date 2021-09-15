@@ -269,6 +269,9 @@
           .block-text {
             font-size: $font-size-sm;
             padding: 0px 0px 0px 20px;
+            text-overflow: ellipsis;
+            word-break: break-word;
+            white-space: pre-wrap;
           }
 
           .block-video {

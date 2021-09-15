@@ -116,7 +116,7 @@
       justify-content: center;
       .job-info-wrapper {
         flex-direction: column;
-        align-items: center;
+        align-items: unset !important;
         text-align: center;
         .job-info {
           justify-content: center;
