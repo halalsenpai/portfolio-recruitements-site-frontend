@@ -81,10 +81,21 @@
     padding: 20px;
   }
 
-  .c-job-detail-card .header .banner-items .company-img img {
-    width: 100px;
-    height: 100px;
-    border-radius: 6px;
+  .c-job-detail-card {
+    .header {
+      .banner-items {
+        .company-details {
+          .company-name {
+            font-size: 18px;
+          }
+        }
+        .company-img img {
+          width: 100px;
+          height: 100px;
+          border-radius: 6px;
+        }
+      }
+    }
   }
   .c-job-detail-card {
     .job-details-wrapper {
@@ -101,6 +112,15 @@
         .c-button {
           padding: 8px 40px !important;
         }
+      }
+    }
+  }
+}
+@media screen and (max-width: 900px) {
+  .c-job-detail-card {
+    .job-details-wrappers {
+      .content-box {
+        flex-direction: column-reverse;
       }
     }
   }
