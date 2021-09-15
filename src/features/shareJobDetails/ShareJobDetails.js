@@ -6,12 +6,13 @@ import defaultImage from "./../../assets/images/default.png";
 import defaultBanner from "./../../assets/images/sample/job-banner.png";
 
 import { createMarkup, getTitleById, useWindowSize } from "../../utils/helper";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import moment from "moment";
 import Carousel from "react-multi-carousel";
 import ReactPlayer from "react-player";
 import { Map } from "./../../shared-ui/Map/Map";
 import { Divider } from "antd";
+import Button from "../../shared-ui/Button/Button";
 import "./_ShareJobDetails.scss";
 import "./_Responsive.scss";
 import { responsive } from "./../../app-ui/JobDetails/JobDetails";
@@ -153,7 +154,7 @@ const ShareJobDetails = ({
         <span className="content-box first">
           <span className="content-section">
             <span className="details-header">
-              {width > 1024 && (
+              {width > 1039 && (
                 <>
                   <span>
                     <h3 className="job-title company-page-heading">
@@ -168,30 +169,46 @@ const ShareJobDetails = ({
                     </span>
                   </span>
 
-                  {/**to handle */}
-                  {/* <span className="actions-wrapper">
-                    <Button
-                      onClick={handleApplyToJob}
-                      themecolor="outlinedfilled">
-                      Apply
+                  <span className="actions-wrapper">
+                    <Button className="applied" themecolor="outlined">
+                      <Link to="/login">Apply</Link>
                     </Button>
-                    <ApplyToJobModal
-                      applyToJobModal={applyToJobModal}
-                      setApplyToJobModal={setApplyToJobModal}
-                    />
-                    <Button
-                      // icon={<span className="icon following-icon"></span>}
-                      title="Follow the company"
-                      themecolor="outlined-green">
-                      Following
+                    <Button className="applied" themecolor="outlined">
+                      <Link to="/login">Follow Company</Link>
                     </Button>
-                    <Button
-                      // icon={<span className="icon following-icon"></span>}
-                      // title="Follow the company"
-                      themecolor="outlined">
-                      Shorlist Job
+                    <Button className="applied" themecolor="outlined">
+                      <Link to="/login">Shorlist Job</Link>
                     </Button>
-                  </span> */}
+                  </span>
+                </>
+              )}
+            </span>
+            <span className="details-header upper-button">
+              {width < 1040 && width > 900 && (
+                <>
+                  <span className="actions-wrapper">
+                    <Button className="applied" themecolor="outlined">
+                      <Link to="/login">Apply</Link>
+                    </Button>
+                    <Button className="applied" themecolor="outlined">
+                      <Link to="/login">Follow Company</Link>
+                    </Button>
+                    <Button className="applied" themecolor="outlined">
+                      <Link to="/login">Shorlist Job</Link>
+                    </Button>
+                  </span>
+                  <span>
+                    <h3 className="job-title company-page-heading">
+                      Job title :{" "}
+                      <mark className="title">
+                        {data?.jobTitle?.title || ""}
+                      </mark>{" "}
+                    </h3>
+                    <span className="content-block">
+                      <h6 className="block-title">Job brief</h6>
+                      <p className="block-text">{data?.jobBrief}</p>
+                    </span>
+                  </span>
                 </>
               )}
             </span>
@@ -242,8 +259,51 @@ const ShareJobDetails = ({
           {/* {console.log("DATA", data)} */}
 
           {/* B E N E F I T S */}
-          {width < 1025 && (
+          {width < 900 && (
             <>
+              {true && (
+                <div className="benefits-list">
+                  <span>
+                    <h6 className="title">Benefits</h6>
+                  </span>
+                  <span>
+                    Salary
+                    <mark>
+                      {data?.salaryRangeFrom}-{data?.salaryRangeUpto}{" "}
+                      {data?.currency?.title}/{data?.salaryType?.title}
+                    </mark>
+                  </span>
+                  <span>
+                    Flights provided
+                    <mark>{data?.isAnnualFlight ? "Yes" : "No"}</mark>
+                  </span>
+                  <span>
+                    Family flights included
+                    <mark>{data?.isFamilyFlight ? "Yes" : "No"}</mark>
+                  </span>
+                  <span>
+                    Tuition fees covered
+                    <mark>{data?.isTuitionFee ? "Yes" : "No"}</mark>
+                  </span>
+                  <span>
+                    Accommodation
+                    {!data?.accommodationListId && <mark>None</mark>}
+                    {data?.accommodationListId && <mark>Yes</mark>}
+                  </span>
+                  <span>
+                    Utility bills
+                    <mark>{data?.isUtilityBills ? "Yes" : "No"}</mark>
+                  </span>
+                  <span>
+                    Visa provided
+                    <mark>{data?.isProvideVisa ? "Yes" : "No"}</mark>
+                  </span>
+                  <span>
+                    Gratuity bonus
+                    <mark>{data?.isGratuityBonus ? "Yes" : "No"}</mark>
+                  </span>
+                </div>
+              )}
               <span className="mobile-view">
                 <span>
                   <h3 className="job-title">
@@ -255,36 +315,23 @@ const ShareJobDetails = ({
                     <p className="block-text">{data?.jobBrief}</p>
                   </span>
                 </span>
-                {/** to handle */}
-                {/* <span className="actions-wrapper">
-                  <Button
-                    onClick={handleApplyToJob}
-                    themecolor="outlinedfilled">
-                    Apply
+                <span className="actions-wrapper">
+                  <Button className="applied" themecolor="outlined">
+                    <Link to="/login">Apply</Link>
                   </Button>
-                  <ApplyToJobModal
-                    applyToJobModal={applyToJobModal}
-                    setApplyToJobModal={setApplyToJobModal}
-                  />
-                  <Button
-                    // icon={<span className="icon following-icon"></span>}
-                    title="Follow the company"
-                    themecolor="outlined-green">
-                    Following
+                  <Button className="applied" themecolor="outlined">
+                    <Link to="/login">Follow Company</Link>
                   </Button>
-                  <Button
-                    // icon={<span className="icon following-icon"></span>}
-                    // title="Follow the company"
-                    themecolor="outlined">
-                    Shorlist Job
+                  <Button className="applied" themecolor="outlined">
+                    <Link to="/login">Shorlist Job</Link>
                   </Button>
-                </span> */}
+                </span>
               </span>
             </>
           )}
           {/** to handle  */}
           {/* {(showAllDetails || showBenefits || true) && ( */}
-          {true && (
+          {true && width > 900 && (
             <div className="benefits-list">
               <span>
                 <h6 className="title">Benefits</h6>
@@ -369,7 +416,7 @@ const ShareJobDetails = ({
             {/* {(showAllDetails || true) && ( */}
             {true && (
               <>
-                <Divider type="horizontal" />
+                {/* <Divider type="horizontal" /> */}
                 <span className="content-block">
                   <h6 className="block-title">
                     About company:
