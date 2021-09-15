@@ -193,6 +193,10 @@
         }
       }
     }
+    span.details-header.upper-button {
+      display: flex;
+      flex-direction: column;
+    }
 
     .content-box {
       display: flex;
@@ -222,7 +226,7 @@
         .actions-wrapper {
           button {
             margin-bottom: 10px;
-            width: 110px;
+            width: 140px;
           }
         }
       }
@@ -408,13 +412,13 @@ button.react-multiple-carousel__arrow.react-multiple-carousel__arrow--left:hover
   box-shadow: 3px 5px 10px 14px rgba(255, 255, 255, 0.3);
 }
 
-.company-photos-carousel {
-  ul {
-    li {
-      margin: 0 10px;
-    }
-  }
-}
+// .company-photos-carousel {
+//   ul {
+//     li {
+//       margin: 0 0px;
+//     }
+//   }
+// }
 
 .company-single-photo {
   border-radius: 20px;
