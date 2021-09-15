@@ -128,7 +128,7 @@ function Jobs() {
   }, [categoryId]);
 
   useEffect(() => {
-    companyId && dispatch(getJobsByCompany(companyId));
+    dispatch(getJobsByCompany(companyId));
   }, [companyId]);
 
   useEffect(() => {
@@ -181,11 +181,11 @@ function Jobs() {
 
         {/* Job List */}
         <div className="find-jobs-section">
-          {isLoading && !jobs.length && !checkFilterValues && (
+          {/* {isLoading && !jobs.length && !checkFilterValues && (
             <div className="preloader">
               <Spin />
             </div>
-          )}
+          )} */}
 
           <Form
             className="job-sc"
