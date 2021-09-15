@@ -128,7 +128,7 @@ function Jobs() {
   }, [categoryId]);
 
   useEffect(() => {
-    dispatch(getJobsByCompany(companyId));
+    companyId && dispatch(getJobsByCompany(companyId));
   }, [companyId]);
 
   useEffect(() => {
