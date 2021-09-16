@@ -96,6 +96,7 @@ function Jobs() {
 
   const searchCityName = async (id) => {
     try {
+      console.log("id api call", id);
       let res = await getCityById(id);
       res.data.length && setSearchedCityId(res.data[0].title);
     } catch (error) {
@@ -126,7 +127,7 @@ function Jobs() {
     dispatch(getJob({ qs: queryParams }));
   }, [queryParams]);
   useEffect(() => {
-    searchedCityId && searchCityName(searchedCityId);
+    typeof searchedCityId === "number" && searchCityName(searchedCityId);
   }, [searchedCityId]);
 
   useEffect(() => {
@@ -156,6 +157,7 @@ function Jobs() {
     });
 
   const onSearchJob = (values) => {
+    console.log("values", values);
     const qs = { ...queryParams, ...values };
     setQueryParams(qs);
     setSearchedCityId(values.location);
@@ -267,11 +269,14 @@ function Jobs() {
           <div className="jobs-list">
             {/* {console.log(isLoading, !jobs.length, !checkFilterValues)} */}
             {isLoading ||
-              (!jobs.length && !checkFilterValues && (
-                <div className="preloader">
-                  <Spin />
-                </div>
-              ))}
+              (!jobs.length &&
+                !checkFilterValues &&
+                !searchedCityId &&
+                !form.getFieldValue("jobTitleName") && (
+                  <div className="preloader">
+                    <Spin />
+                  </div>
+                ))}
             {(searchedCityId ||
               checkFilterValues ||
               form.getFieldValue("jobTitleName")) &&
@@ -292,7 +297,8 @@ function Jobs() {
                 /> */}
                   <p>
                     We couldn't find any jobs that matches your search. Your
-                    Search for <b> {form.getFieldValue("jobTitleName")} </b> in
+                    Search for job <b> {form.getFieldValue("jobTitleName")} </b>{" "}
+                    in
                     <b> {searchedCityId} </b> didn't match any jobs{" "}
                   </p>
                   <br />
