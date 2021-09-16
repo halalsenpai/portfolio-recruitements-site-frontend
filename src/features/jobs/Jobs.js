@@ -28,6 +28,8 @@ import {
   getJobsByCompany,
   getCurrencyType,
   getLanguage,
+  getCountry,
+  getCategories,
 } from "./thunk";
 
 import {
@@ -44,6 +46,7 @@ import {
 } from "./slice";
 import {
   selectCountries,
+  selectAllCountries,
   selectEmploymentTypes,
   selectJobTitles,
   selectAccommodations,
@@ -66,6 +69,7 @@ function Jobs() {
   const currencyType = useAppSelector(selectCurrencyType);
   const salaryTypes = useAppSelector(selectSalaryType);
   const countries = useAppSelector(selectCountries);
+  const allCountries = useAppSelector(selectAllCountries);
 
   const jobs = useAppSelector(selectJobs);
   const accommodations = useAppSelector(selectAccommodations);
@@ -92,6 +96,7 @@ function Jobs() {
 
   const searchCityName = async (id) => {
     try {
+      console.log("id api call", id);
       let res = await getCityById(id);
       res.data.length && setSearchedCityId(res.data[0].title);
     } catch (error) {
@@ -111,6 +116,8 @@ function Jobs() {
     dispatch(getAccommodation());
     dispatch(getCurrencyType());
     dispatch(getLanguage());
+    dispatch(getCountry());
+    dispatch(getCategories());
   }, []);
 
   useEffect(() => {
@@ -120,7 +127,7 @@ function Jobs() {
     dispatch(getJob({ qs: queryParams }));
   }, [queryParams]);
   useEffect(() => {
-    searchedCityId && searchCityName(searchedCityId);
+    typeof searchedCityId === "number" && searchCityName(searchedCityId);
   }, [searchedCityId]);
 
   useEffect(() => {
@@ -150,6 +157,7 @@ function Jobs() {
     });
 
   const onSearchJob = (values) => {
+    console.log("values", values);
     const qs = { ...queryParams, ...values };
     setQueryParams(qs);
     setSearchedCityId(values.location);
@@ -259,13 +267,16 @@ function Jobs() {
           </Form>
 
           <div className="jobs-list">
-            {console.log(isLoading, !jobs.length, !checkFilterValues)}
+            {/* {console.log(isLoading, !jobs.length, !checkFilterValues)} */}
             {isLoading ||
-              (!jobs.length && !checkFilterValues && (
-                <div className="preloader">
-                  <Spin />
-                </div>
-              ))}
+              (!jobs.length &&
+                !checkFilterValues &&
+                !searchedCityId &&
+                !form.getFieldValue("jobTitleName") && (
+                  <div className="preloader">
+                    <Spin />
+                  </div>
+                ))}
             {(searchedCityId ||
               checkFilterValues ||
               form.getFieldValue("jobTitleName")) &&
@@ -286,7 +297,8 @@ function Jobs() {
                 /> */}
                   <p>
                     We couldn't find any jobs that matches your search. Your
-                    Search for <b> {form.getFieldValue("jobTitleName")} </b> in
+                    Search for job <b> {form.getFieldValue("jobTitleName")} </b>{" "}
+                    in
                     <b> {searchedCityId} </b> didn't match any jobs{" "}
                   </p>
                   <br />
@@ -330,7 +342,7 @@ function Jobs() {
                       obj,
                       jobTitles,
                       employmentTypes,
-                      countries,
+                      allCountries,
                       salaryTypes,
                       currencyType
                     )}
@@ -369,7 +381,7 @@ function Jobs() {
                 jobDetails,
                 jobTitles,
                 employmentTypes,
-                countries,
+                allCountries,
                 salaryTypes,
                 currencyType
               )}

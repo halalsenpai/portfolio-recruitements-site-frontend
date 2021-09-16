@@ -49,6 +49,7 @@ const initialState = {
   jobTitles: [],
   employmentTypes: [],
   countries: [],
+  allCountries: [],
   cities: [],
   qualifications: [],
   fieldsOfStudy: [],
@@ -96,7 +97,7 @@ export const slice = createSlice({
       })
       .addCase(getCountry.fulfilled, (state, action) => {
         state.status = "idle";
-        state.countries = action.payload;
+        state.allCountries = action.payload;
       })
       .addCase(getCountryisDesired.fulfilled, (state, action) => {
         state.status = "idle";
@@ -178,6 +179,7 @@ export const selectOtherJobs = (state) => state.jobs.otherJobs;
 export const selectJobTitles = (state) => state.jobs.jobTitles;
 export const selectEmploymentTypes = (state) => state.jobs.employmentTypes;
 export const selectCountries = (state) => state.jobs.countries;
+export const selectAllCountries = (state) => state.jobs.allCountries;
 export const selectCities = (state) => state.jobs.cities;
 export const selectLanguage = (state) => state.jobs.language;
 export const selectQualifications = (state) => state.jobs.qualifications;
