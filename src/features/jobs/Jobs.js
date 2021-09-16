@@ -265,7 +265,7 @@ function Jobs() {
           </Form>
 
           <div className="jobs-list">
-            {console.log(isLoading, !jobs.length, !checkFilterValues)}
+            {/* {console.log(isLoading, !jobs.length, !checkFilterValues)} */}
             {isLoading ||
               (!jobs.length && !checkFilterValues && (
                 <div className="preloader">
