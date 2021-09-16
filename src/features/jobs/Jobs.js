@@ -28,6 +28,8 @@ import {
   getJobsByCompany,
   getCurrencyType,
   getLanguage,
+  getCountry,
+  getCategories,
 } from "./thunk";
 
 import {
@@ -44,6 +46,7 @@ import {
 } from "./slice";
 import {
   selectCountries,
+  selectAllCountries,
   selectEmploymentTypes,
   selectJobTitles,
   selectAccommodations,
@@ -66,6 +69,7 @@ function Jobs() {
   const currencyType = useAppSelector(selectCurrencyType);
   const salaryTypes = useAppSelector(selectSalaryType);
   const countries = useAppSelector(selectCountries);
+  const allCountries = useAppSelector(selectAllCountries);
 
   const jobs = useAppSelector(selectJobs);
   const accommodations = useAppSelector(selectAccommodations);
@@ -111,6 +115,8 @@ function Jobs() {
     dispatch(getAccommodation());
     dispatch(getCurrencyType());
     dispatch(getLanguage());
+    dispatch(getCountry());
+    dispatch(getCategories());
   }, []);
 
   useEffect(() => {
@@ -330,7 +336,7 @@ function Jobs() {
                       obj,
                       jobTitles,
                       employmentTypes,
-                      countries,
+                      allCountries,
                       salaryTypes,
                       currencyType
                     )}
@@ -369,7 +375,7 @@ function Jobs() {
                 jobDetails,
                 jobTitles,
                 employmentTypes,
-                countries,
+                allCountries,
                 salaryTypes,
                 currencyType
               )}

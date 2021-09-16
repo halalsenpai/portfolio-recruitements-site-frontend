@@ -70,7 +70,7 @@ function JobDetails({
   const currencyType = useAppSelector(selectCurrencyType);
   const salaryTypes = useAppSelector(selectSalaryType);
   const languages = useAppSelector(selectLanguage);
-
+  // console.log("job details -> ", data);
   const history = useHistory();
   const createMarkup = (html) => {
     return { __html: html };
@@ -79,6 +79,7 @@ function JobDetails({
   const {
     company: { specialities, companySize, categoryId, videoUrl },
   } = data;
+  console.log("job details -> ", data);
   const category = getTitleById(categories, categoryId);
 
   return (
