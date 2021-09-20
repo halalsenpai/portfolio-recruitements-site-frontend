@@ -36,6 +36,10 @@ function Routing() {
   const logout = new URLSearchParams(param).get("logout");
   const pathname = history.location.pathname;
 
+  // React.useEffect(() => {
+  //   console.log("index.js");
+  // }, []);
+
   console.log(logout);
   if (logout == "true") {
     localStorage.clear();
