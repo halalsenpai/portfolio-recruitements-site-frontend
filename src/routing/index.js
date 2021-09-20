@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Route, Switch, useLocation } from "react-router-dom";
+import { Route, Switch, useLocation, useHistory } from "react-router-dom";
 import storage from "redux-persist/lib/storage";
 
 import {
@@ -32,12 +32,24 @@ import NotFound from "../shared-ui/NotFound/NotFound";
 
 function Routing() {
   const param = useLocation().search;
+  const history = useHistory();
   const logout = new URLSearchParams(param).get("logout");
+  const pathname = history.location.pathname;
+
+  // React.useEffect(() => {
+  //   console.log("index.js");
+  // }, []);
+
   console.log(logout);
   if (logout == "true") {
     localStorage.clear();
     persistor.flush();
     storage.removeItem("persist:root");
+  } else if (
+    pathname.includes("/share-job-details/") ||
+    pathname.includes("/share-user-details/")
+  ) {
+    console.log("persisting");
   } else {
     const token = localStorage.getItem("token");
     const r = localStorage.getItem("role");
@@ -45,12 +57,14 @@ function Routing() {
       const role = JSON.parse(r);
       if (role && role.title) {
         const url = userTypes[role.title.toUpperCase()].url;
+        console.log("url based role", url);
         if (url) {
           window.location = `${url}/?token=${token}`;
         }
       }
     }
   }
+
   return (
     <Fragment>
       <Header />
