@@ -26,6 +26,7 @@ import {
   selectOtherJobs,
   selectSalaryType,
   selectLanguage,
+  selectAllCountries,
 } from "../../features/jobs/slice";
 import JobCard from "../../shared-ui/JobCard/JobCard";
 import { transformJobData } from "../../features/jobs/transformers";
@@ -70,7 +71,9 @@ function JobDetails({
   const currencyType = useAppSelector(selectCurrencyType);
   const salaryTypes = useAppSelector(selectSalaryType);
   const languages = useAppSelector(selectLanguage);
+  const allCountries = useAppSelector(selectAllCountries);
 
+  // console.log("job details -> ", data);
   const history = useHistory();
   const createMarkup = (html) => {
     return { __html: html };
@@ -79,6 +82,7 @@ function JobDetails({
   const {
     company: { specialities, companySize, categoryId, videoUrl },
   } = data;
+  // console.log("job details -> ", data);
   const category = getTitleById(categories, categoryId);
 
   return (
@@ -589,7 +593,7 @@ function JobDetails({
                             otherJob,
                             jobTitles,
                             employmentTypes,
-                            countries,
+                            allCountries,
                             salaryTypes,
                             currencyType
                           )}

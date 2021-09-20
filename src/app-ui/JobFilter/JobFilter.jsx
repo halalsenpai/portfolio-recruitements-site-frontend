@@ -111,7 +111,7 @@ const JobFilter = (props) => {
   const [form] = Form.useForm();
 
   const onFinish = (values) => {
-    console.log("default", values);
+    // console.log("default", values);
     // console.log("EXTERNALLEY", form.getFieldsValue());
     // console.log("modified", values);
     if (selectedCountryId && selectedCitiesIds) {
@@ -126,7 +126,7 @@ const JobFilter = (props) => {
       Object.entries(values).filter(([_, v]) => v != null)
     );
     const payload = new URLSearchParams(o).toString();
-    console.log("values", payload);
+    // console.log("values", payload);
 
     dispatch(getFilteredJob(payload));
   };
