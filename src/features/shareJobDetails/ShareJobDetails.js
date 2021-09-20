@@ -306,10 +306,12 @@ const ShareJobDetails = ({
               )}
               <span className="mobile-view">
                 <span>
-                  <h3 className="job-title">
-                    Job title :{" "}
-                    <mark className="title">{data?.jobTitle?.title || ""}</mark>{" "}
-                  </h3>
+                  <h3 className="job-title">Job title :</h3>
+                  <p className="mb-3">
+                    <mark className="title ">
+                      {data?.jobTitle?.title || ""}
+                    </mark>
+                  </p>{" "}
                   <span className="content-block">
                     <h6 className="job-title">Job brief</h6>
                     <p className="block-text">{data?.jobBrief}</p>
