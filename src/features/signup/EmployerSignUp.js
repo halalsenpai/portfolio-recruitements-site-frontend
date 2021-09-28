@@ -745,6 +745,7 @@ function EmployerSignUp() {
                   </Form.Item>
                 </Col>
                 <Col
+                  style={{ zIndex: 210 }}
                   xs={{ span: 24 }}
                   span={12}
                   md={{ span: 12 }}
