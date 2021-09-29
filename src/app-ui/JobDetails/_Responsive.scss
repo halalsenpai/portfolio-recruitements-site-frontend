@@ -24,7 +24,8 @@
         justify-content: flex-start !important;
         align-items: flex-start !important;
         .actions-wrapper {
-          min-width: 375px;
+          min-width: 458px;
+          // width: 73% !important;
         }
       }
     }
@@ -217,5 +218,14 @@
         }
       }
     }
+  }
+  .actions-wrapper {
+    min-width: 375px;
+    width: 100% !important;
+  }
+}
+@media screen and (max-width: 1618px) and (min-width: 1336px) {
+  .actions-wrapper {
+    width: 68% !important;
   }
 }
