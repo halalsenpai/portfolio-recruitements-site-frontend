@@ -32,6 +32,11 @@ import JobCard from "../../shared-ui/JobCard/JobCard";
 import { transformJobData } from "../../features/jobs/transformers";
 import { useAppSelector } from "../../store/hooks";
 import moment from "moment";
+import {
+  showErrorMessage,
+  showSuccessMessage,
+  showWarningMessage,
+} from "../../utils/message";
 // import { createMarkup } from "../../utils/helper";
 
 const { Option } = Select;
@@ -84,7 +89,7 @@ function JobDetails({
   } = data;
   // console.log("job details -> ", data);
   const category = getTitleById(categories, categoryId);
-
+  const shareLink = `${process.env.REACT_APP_CANDIDATE_PORTAL_URL}/find-jobs/${data.id}`;
   return (
     <div className="c-job-detail-card">
       {/* Header */}
@@ -245,6 +250,18 @@ function JobDetails({
                     <Button className="applied" themecolor="outlined">
                       <Link to="/login">Shorlist Job</Link>
                     </Button>
+                    <div className="share-only-mobile">
+                      <img
+                        onClick={() => {
+                          navigator.clipboard.writeText(shareLink);
+                          showSuccessMessage("Link copied to clip board");
+                        }}
+                        className="avatar"
+                        src={require("../../assets/images/icons/profile/fly.png")}
+                        alt="share"
+                        height={25}
+                      />
+                    </div>
                     {/* <Button
               icon={<span className="icon following-icon"></span>}
               title="Follow Company"
@@ -323,10 +340,22 @@ function JobDetails({
               <span className="mobile-button">
                 <span className="content-section">
                   <span className="job-title content-block">
-                    <h6 className="company-page-heading">Job title:</h6>
-                    <span className="title">
-                      {data?.jobTitle?.title || ""}
-                    </span>{" "}
+                    <h6 className="company-page-heading">
+                      Job title:
+                      <div className="share-only-mobiles">
+                        <img
+                          onClick={() => {
+                            navigator.clipboard.writeText(shareLink);
+                            showSuccessMessage("Link copied to clip board");
+                          }}
+                          className="avatar"
+                          src={require("../../assets/images/icons/profile/fly.png")}
+                          alt="share"
+                          height={25}
+                        />
+                      </div>
+                    </h6>
+                    <span className="title">{data?.jobTitle?.title || ""}</span>{" "}
                   </span>
                   <span className="content-block">
                     <h6 className="block-title company-page-heading">
