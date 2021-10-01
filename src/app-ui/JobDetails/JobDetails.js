@@ -89,7 +89,8 @@ function JobDetails({
   } = data;
   // console.log("job details -> ", data);
   const category = getTitleById(categories, categoryId);
-  const shareLink = `${process.env.REACT_APP_CANDIDATE_PORTAL_URL}/find-jobs/${data.id}`;
+  // const shareLink = `${process.env.REACT_APP_CANDIDATE_PORTAL_URL}/find-jobs/${data.id}`;
+  const shareLink = `${process.env.REACT_APP_HOMEPAGE_URL}/share-job-details/${data.id}`;
   return (
     <div className="c-job-detail-card">
       {/* Header */}
