@@ -14,6 +14,9 @@
   box-shadow: 1px 1px 10px $shadow-color !important;
   transition: 0.3s all linear;
   cursor: pointer;
+  &.messaged {
+    padding: 24px 10px 10px 10px;
+  }
 
   p {
     margin: 0px;

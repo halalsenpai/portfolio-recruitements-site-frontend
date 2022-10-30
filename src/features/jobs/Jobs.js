@@ -32,31 +32,14 @@ import {
   getCategories,
 } from "./thunk";
 
-import {
-  getCountryisDesired as countryisDesired,
-  getCityisDesired as cityisDesired,
-  jobTitlesFindJobs,
-  getCityById,
-} from "./service";
-import {
-  selectCurrencyType,
-  selectJobs,
-  selectStatus,
-  selectSalaryType,
-} from "./slice";
-import {
-  selectCountries,
-  selectAllCountries,
-  selectEmploymentTypes,
-  selectJobTitles,
-  selectAccommodations,
-  selectOtherJobs,
-  selectOtherJobsByCompany,
-} from "./slice";
+import { getCountryisDesired as countryisDesired, getCityisDesired as cityisDesired, jobTitlesFindJobs, getCityById } from "./service";
+import { selectCurrencyType, selectJobs, selectStatus, selectSalaryType } from "./slice";
+import { selectCountries, selectAllCountries, selectEmploymentTypes, selectJobTitles, selectAccommodations, selectOtherJobs, selectOtherJobsByCompany } from "./slice";
 
 import "./_Jobs.scss";
 import "./_Responsive.scss";
 import { SuperSelect } from "../../shared-ui/SuperSelect/SuperSelect";
+import data from "./Data";
 
 function Jobs() {
   const myRef = useRef(null);
@@ -71,7 +54,7 @@ function Jobs() {
   const countries = useAppSelector(selectCountries);
   const allCountries = useAppSelector(selectAllCountries);
 
-  const jobs = useAppSelector(selectJobs);
+  const jobs = useAppSelector(selectJobs) || data;
   const accommodations = useAppSelector(selectAccommodations);
   const otherJobs = useAppSelector(selectOtherJobs);
   const otherJobsByCompany = useAppSelector(selectOtherJobsByCompany);
@@ -179,12 +162,7 @@ function Jobs() {
   return (
     <div className="jobs-page">
       <div className="jobs-wrapper">
-        <JobFilter
-          isLoading={isLoading}
-          show={filter}
-          onHide={ShowFilter}
-          setCheckFilterValues={setCheckFilterValues}
-        />
+        <JobFilter isLoading={isLoading} show={filter} onHide={ShowFilter} setCheckFilterValues={setCheckFilterValues} />
         {/* {console.log("jobs", jobs)} */}
 
         {/* Job List */}
@@ -195,17 +173,10 @@ function Jobs() {
             </div>
           )} */}
 
-          <Form
-            className="job-sc"
-            onFinish={onSearchJob}
-            form={form}
-            ref={formRef}>
+          <Form className="job-sc" onFinish={onSearchJob} form={form} ref={formRef}>
             <span className="form-fields job-filter-section">
               <div className="jobs-filter-header-secrion">
-                <Form.Item
-                  style={{ zIndex: "390" }}
-                  name="jobTitleName"
-                  className="find-job-super-select c-input">
+                <Form.Item style={{ zIndex: "390" }} name="jobTitleName" className="find-job-super-select c-input">
                   <SuperSelectFindJobs
                     style={{ zIndex: "390" }}
                     placeholder="Job title"
@@ -217,9 +188,7 @@ function Jobs() {
                     // className="small"
                   />
                 </Form.Item>
-                <Form.Item
-                  name="location"
-                  className="find-job-super-select c-input">
+                <Form.Item name="location" className="find-job-super-select c-input">
                   {/* <Input
                     size="small"
                     className="xs"
@@ -249,40 +218,26 @@ function Jobs() {
                 </Form.Item>
               </div>
               <div className="jobs-button-section">
-                <Button
-                  type="small"
-                  htmlType="submit"
-                  className="filter-btns"
-                  themecolor="rounded light"
-                  style={{ height: "32px" }}>
+                <Button type="small" htmlType="submit" className="filter-btns" themecolor="rounded light" style={{ height: "32px" }}>
                   Go
                 </Button>
 
-                <Button
-                  icon={<img src={filterIcon} alt="ico" />}
-                  className=" filter-icon rounded shadowed filter-btns"
-                  onClick={ShowFilter}></Button>
+                <Button icon={<img src={filterIcon} alt="ico" />} className=" filter-icon rounded shadowed filter-btns" onClick={ShowFilter}></Button>
               </div>
             </span>
           </Form>
 
           <div className="jobs-list">
             {/* {console.log(isLoading, !jobs.length, !checkFilterValues)} */}
-            {isLoading ||
-              (!jobs.length &&
-                !checkFilterValues &&
-                !searchedCityId &&
-                !form.getFieldValue("jobTitleName") && (
-                  <div className="preloader">
-                    <Spin />
-                  </div>
-                ))}
-            {(searchedCityId ||
-              checkFilterValues ||
-              form.getFieldValue("jobTitleName")) &&
-              !jobs.length && (
-                <>
-                  {/* <Empty
+            {!isLoading ||
+              (!jobs.length && !checkFilterValues && !searchedCityId && !form.getFieldValue("jobTitleName") && (
+                <div className="preloader">
+                  <Spin />
+                </div>
+              ))}
+            {(searchedCityId || checkFilterValues || form.getFieldValue("jobTitleName")) && !jobs.length && (
+              <>
+                {/* <Empty
                   style={{
                     display: "flex",
                     flexDirection: "column",
@@ -295,38 +250,36 @@ function Jobs() {
                     height: 150,
                   }}
                 /> */}
-                  <p>
-                    We couldn't find any jobs that matches your search. Your
-                    Search for job <b> {form.getFieldValue("jobTitleName")} </b>{" "}
-                    in
-                    <b> {searchedCityId} </b> didn't match any jobs{" "}
-                  </p>
-                  <br />
-                  <p>Here are some tips: </p>
-                  <ul>
-                    <li>Try other job titles</li>
-                    <li>Try Alternative Locations</li>
-                    <li>Adjust the filter to broaden your search</li>
-                  </ul>
-                  <Link to="/jobs">
-                    <Button
-                      className="applied"
-                      themecolor="filled_blue"
-                      onClick={() => {
-                        setQueryParams({ page: 1, limit: 100 });
-                      }}
-                      // onClick={onApplyJob}
-                      // loading={applyJobLoading}
-                      // need to use reset job functionality here
-                    >
-                      Back to jobs
-                    </Button>
-                  </Link>
-                </>
-              )}
+                <p>
+                  We couldn't find any jobs that matches your search. Your Search for job <b> {form.getFieldValue("jobTitleName")} </b> in
+                  <b> {searchedCityId} </b> didn't match any jobs{" "}
+                </p>
+                <br />
+                <p>Here are some tips: </p>
+                <ul>
+                  <li>Try other job titles</li>
+                  <li>Try Alternative Locations</li>
+                  <li>Adjust the filter to broaden your search</li>
+                </ul>
+                <Link to="/jobs">
+                  <Button
+                    className="applied"
+                    themecolor="filled_blue"
+                    onClick={() => {
+                      setQueryParams({ page: 1, limit: 100 });
+                    }}
+                    // onClick={onApplyJob}
+                    // loading={applyJobLoading}
+                    // need to use reset job functionality here
+                  >
+                    Back to jobs
+                  </Button>
+                </Link>
+              </>
+            )}
 
             <MappedElement
-              data={jobs}
+              data={data}
               renderElement={(obj, index) => {
                 return (
                   <JobCard
@@ -338,14 +291,7 @@ function Jobs() {
                       setcategoryId(obj.categoriesId);
                       setcompanyId(obj.companyId);
                     }}
-                    job={transformJobData(
-                      obj,
-                      jobTitles,
-                      employmentTypes,
-                      allCountries,
-                      salaryTypes,
-                      currencyType
-                    )}
+                    job={obj}
                   />
                 );
               }}
@@ -354,37 +300,25 @@ function Jobs() {
         </div>
 
         {/* Job Detail */}
-        <div
-          ref={myRef}
-          className={`job-details ${showJobDetails ? "job-details-show" : ""}`}>
-          {isLoading && (
+        <div ref={myRef} className={`job-details ${showJobDetails ? "job-details-show" : ""}`}>
+          {/* {isLoading && (
             <div className="preloader">
               <Spin />
             </div>
-          )}
+          )} */}
 
-          <RiCloseCircleLine
-            className="back-icon-job"
-            onClick={() => setShowJobDetails(false)}
-          />
+          <RiCloseCircleLine className="back-icon-job" onClick={() => setShowJobDetails(false)} />
 
-          {!jobDetails && (
+          {/* {!jobDetails && (
             <div className="preloader">
               <Spin />
             </div>
-          )}
+          )} */}
           {jobDetails && (
             <JobDetails
               setShowJobDetails={() => setJobDetails(false)}
               otherJobs={otherJobs}
-              data={transformJobData(
-                jobDetails,
-                jobTitles,
-                employmentTypes,
-                allCountries,
-                salaryTypes,
-                currencyType
-              )}
+              data={jobDetails}
               extraData={{ accommodations }}
               setJobDetails={setJobDetails}
               executeScroll={executeScroll}

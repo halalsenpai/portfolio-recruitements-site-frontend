@@ -14,11 +14,7 @@ const getTagByType = (type) => {
     case JobTagTypes.FEATURED:
       return (
         <span className="featured-tag">
-          <img
-            className="tag-icon"
-            src={require("../../assets/images/icons/diamond_white_icon.svg")}
-            alt=""
-          />
+          <img className="tag-icon" src={require("../../assets/images/icons/diamond_white_icon.svg")} alt="" />
 
           <p className="tag-text">Featured</p>
         </span>
@@ -27,11 +23,7 @@ const getTagByType = (type) => {
     case JobTagTypes.APPLIED:
       return (
         <span className="job-tag">
-          <img
-            className="tag-icon"
-            src={require("../../assets/images/icons/check-icon-green.svg")}
-            alt=""
-          />
+          <img className="tag-icon" src={require("../../assets/images/icons/check-icon-green.svg")} alt="" />
 
           <p className="tag-text">Applied</p>
         </span>
@@ -40,11 +32,7 @@ const getTagByType = (type) => {
     case JobTagTypes.SHORTLISTED:
       return (
         <span className="job-tag">
-          <img
-            className="tag-icon"
-            src={require("../../assets/images/icons/shortlisted-job-icon.svg")}
-            alt=""
-          />
+          <img className="tag-icon" src={require("../../assets/images/icons/shortlisted-job-icon.svg")} alt="" />
 
           <p className="tag-text">Shorlisted</p>
         </span>
@@ -53,11 +41,7 @@ const getTagByType = (type) => {
     case JobTagTypes.MESSAGED:
       return (
         <span className="job-tag">
-          <img
-            className="tag-icon"
-            src={require("../../assets/images/icons/messaged-job-icon.svg")}
-            alt=""
-          />
+          <img className="tag-icon" src={require("../../assets/images/icons/messaged-job-icon.svg")} alt="" />
 
           <p className="tag-text">Messaged</p>
         </span>
@@ -70,40 +54,30 @@ const getTagByType = (type) => {
 
 function JobCard({ job = {}, type, onClick }) {
   return (
-    <div
-      onClick={onClick}
-      className={`c-job-card ${job.featured && "featured"} ${type}`}>
+    <div onClick={onClick} className={`c-job-card  ${job.featured && "featured"} ${job.messaged && " messaged"} ${type}`}>
       <div id="for-flex" className="job-card-first-container">
-        <img
-          className="job-thumbnail"
-          src={job?.company?.companyLogo || defaultImage}
-          alt="logo"
-        />
+        <img className="job-thumbnail" src={job?.company?.companyLogo || job.imgUrl} alt="logo" />
 
         <span className={type === "box" ? "" : "info-wrapper"}>
           <span className={type === "box" ? "" : "info"}>
             {type !== "box" && (
               <span className="title-row">
-                <h6 className="title">{job?.jobTitle?.title || ""}</h6>
+                <h6 className="title">{job.title}</h6>
 
                 <span className="location-container">
-                  <img
-                    className="location-icon"
-                    src={require("../../assets/images/icons/location_icon.svg")}
-                    alt="icon"
-                  />
+                  <img className="location-icon" src={require("../../assets/images/icons/location_icon.svg")} alt="icon" />
 
-                  <p className="location-text">{job.country || ""}</p>
+                  <p className="location-text">{job.country || job.location}</p>
                 </span>
               </span>
             )}
 
             {type !== "box" && (
               <span>
-                <p>{job.company?.companyName}</p>
+                <p>{job.company?.companyName || job.company}</p>
 
                 {/* <p>Open till {readableDate(job.endDate)}</p> */}
-                <p>Ends in {dayTimeLeftFromNowTrue(job.expiredAt)}</p>
+                <p> {dayTimeLeftFromNowTrue(job.expiredAt) || job.endDate}</p>
                 {/* {console.log(readableDate(job.expiredAt))} */}
               </span>
             )}
@@ -112,33 +86,26 @@ function JobCard({ job = {}, type, onClick }) {
           {type === "box" && (
             <>
               <span className="more-info">
-                <p>Ends on {readableDate(job.expiredAt)}</p>
+                <p>{readableDate(job.expiredAt) || job.endDate}</p>
               </span>
             </>
           )}
 
           {type !== "box" && (
             <span className="more-info">
-              <p>{job.employmentType}</p>
+              <p>{job.type}</p>
               <p>
-                {job?.salaryRangeFrom}-{job?.salaryRangeUpto} {job?.currency}{" "}
-                {job?.currency && job?.salaryType && "/"}
-                {job?.salaryType}
+                {/* {job?.salaryRangeFrom}-{job?.salaryRangeUpto} {job?.currency} {job?.currency && job?.salaryType && "/"}
+                {job?.salaryType} */}
+                {job.salary}
               </p>
             </span>
           )}
         </span>
       </div>
 
-      <div
-        className={
-          type === "box" ? "details-container-box" : "details-container"
-        }>
-        {type !== "box" ? (
-          <p>
-            {job?.jobBrief ? String(job?.jobBrief).slice(0, 145) + "..." : ""}
-          </p>
-        ) : null}
+      <div className={type === "box" ? "details-container-box" : "details-container"}>
+        {type !== "box" ? <p>{job?.jobBrief ? String(job?.jobBrief).slice(0, 145) + "..." : ""}</p> : null}
 
         {type === "box" && (
           <div>
@@ -146,8 +113,7 @@ function JobCard({ job = {}, type, onClick }) {
             <p>{job?.company?.companyName}</p>
             <p>{job?.employmentType}</p>
             <p>
-              {job?.salaryRangeFrom}-{job?.salaryRangeUpto} {job?.currency}/
-              {job?.salaryType}{" "}
+              {job?.salaryRangeFrom}-{job?.salaryRangeUpto} {job?.currency}/{job?.salaryType}{" "}
             </p>
             <p style={{ color: "#5271FF" }}>{job.country}</p>
           </div>
@@ -157,14 +123,11 @@ function JobCard({ job = {}, type, onClick }) {
       <span className="tag-container">
         {type !== "box" && getTagByType(job.messaged)}
 
-        {type !== "box" &&
-          getTagByType(
-            job?.shortListJob?.length ? JobTagTypes.SHORTLISTED : null
-          )}
+        {type !== "box" && getTagByType(job?.shortListJob?.length ? JobTagTypes.SHORTLISTED : null)}
 
         {type !== "box" && getTagByType(job.applied)}
 
-        {job?.isFeature && getTagByType(JobTagTypes.FEATURED)}
+        {job?.featured && getTagByType(JobTagTypes.FEATURED)}
         {/* <Checkbox className="jobcard-checkbox-mobile job-tag" /> */}
 
         {/* {type !== "box" && getTagByType(job.MESSAGE)} */}

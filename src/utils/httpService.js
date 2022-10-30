@@ -28,13 +28,12 @@ const request = async ({ method, url, data, headers, skipAuth }) => {
     if (err.response.data.details) {
       msg = err.response.data.details.message;
     }
+
     throw new Error(msg);
   }
 };
 
 export const get = (url, params) => request({ method: "get", url, ...params });
-export const post = (url, data, params) =>
-  request({ method: "post", url, data, ...params });
-export const put = (url, data, params) =>
-  request({ method: "put", url, data, ...params });
+export const post = (url, data, params) => request({ method: "post", url, data, ...params });
+export const put = (url, data, params) => request({ method: "put", url, data, ...params });
 export const del = (url) => request({ method: "delete", url });
