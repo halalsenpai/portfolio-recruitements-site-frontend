@@ -1,68 +1,77 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Recruiting Portal Signup (Portfolio frontend)
 
-## Available Scripts
+A stripped down recruitment portal sign up frontend made with reactjs and bootstrap for portfolio purpose.
 
-In the project directory, you can run:
+## Description
 
-### `yarn start`
+This portal allows job seekers and companies to connect directly, chat in real time, track of all applications sent or received, and other cutting-edge features to help you find the right fit.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Getting Started
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Dependencies
 
-### `yarn test`
+node v14.20.1
+npm v6.14.17
+ "@reduxjs/toolkit": "^1.5.1",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "antd": "^4.12.3",
+    "axios": "^0.19.2",
+    "bootstrap": "^4.6.0",
+    "dotenv": "^9.0.2",
+    "google-map-react": "^2.1.9",
+    "leaflet": "^1.7.1",
+    "node-sass": "^4.14.1",
+    "query-string": "^4.3.4",
+    "react": "^16.13.1",
+    "react-bootstrap": "^1.4.3",
+    "react-crossfade-image": "^1.2.0",
+    "react-dom": "^16.13.1",
+    "react-icons": "^3.11.0",
+    "react-leaflet": "^3.2.0",
+    "react-multi-carousel": "^2.6.3",
+    "react-phone-input-international": "^2.14.1",
+    "react-player": "^2.9.0",
+    "react-redux": "^7.2.0",
+    "react-reveal": "^1.2.2",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "^3.4.1",
+    "react-slick": "^0.28.1",
+    "react-usestateref": "^1.0.5",
+    "redux": "^4.0.5",
+    "redux-logger": "^3.0.6",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.3.0",
+    "slick-carousel": "^1.8.1",
+    "swiper": "^6.5.0"
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Installing
 
-### `yarn build`
+clone the repo
+run ->
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### Executing program
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* How to run the program
 
-### `yarn eject`
+```
+npm i
+npm run start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Help
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Any advise for common problems or issues.
+```
+contact devchaghtai@gmail.com for access to full code for portfolio purpose
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Authors
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Contributors names and contact info
 
-## Learn More
+Abdullah Chaghtai
+Shoaib Raza
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
